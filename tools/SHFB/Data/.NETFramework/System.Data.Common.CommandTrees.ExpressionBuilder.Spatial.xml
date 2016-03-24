@@ -1,0 +1,2821 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Data.Entity">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Entity.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Entity.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Entity.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial">
+      <topicdata group="api" />
+      <apidata name="System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" group="namespace" />
+      <elements>
+        <element api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" />
+      </elements>
+      <file name="0b018e53-8850-ad58-57f9-a7964e602009" />
+    </api>
+    <api id="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" />
+      <apidata name="SpatialEdmFunctions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="afdb3981-64de-c6c5-660d-082547375669" />
+    </api>
+    <api id="AllMembers.T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions">
+      <topicdata name="SpatialEdmFunctions" group="list" subgroup="members" typeTopicId="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" />
+      <apidata name="SpatialEdmFunctions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Area(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.AsBinary(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.AsGml(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.AsText(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Centroid(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.CoordinateSystemId(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Distance(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Elevation(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.EndPoint(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.ExteriorRing(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyCollectionFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyCollectionFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromBinary">
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromBinary(System.Data.Common.CommandTrees.DbExpression)" />
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        </element>
+        <element api="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromGml">
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromGml(System.Data.Common.CommandTrees.DbExpression)" />
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromGml(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        </element>
+        <element api="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromText">
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromText(System.Data.Common.CommandTrees.DbExpression)" />
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        </element>
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyLineFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyLineFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiLineFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiLineFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiPointFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiPointFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiPolygonFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiPolygonFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyPointFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyPointFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyPolygonFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyPolygonFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryCollectionFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryCollectionFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromBinary">
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromBinary(System.Data.Common.CommandTrees.DbExpression)" />
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        </element>
+        <element api="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromGml">
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromGml(System.Data.Common.CommandTrees.DbExpression)" />
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromGml(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        </element>
+        <element api="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromText">
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromText(System.Data.Common.CommandTrees.DbExpression)" />
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        </element>
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryLineFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryLineFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiLineFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiLineFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiPointFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiPointFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiPolygonFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiPolygonFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryPointFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryPointFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryPolygonFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryPolygonFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.InteriorRingAt(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.InteriorRingCount(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.IsClosedSpatial(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.IsEmptySpatial(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.IsRing(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.IsSimpleGeometry(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.IsValidGeometry(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Latitude(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Longitude(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Measure(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.PointAt(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.PointCount(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.PointOnSurface(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialBoundary(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialBuffer(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialContains(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialConvexHull(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialCrosses(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialDifference(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialDimension(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialDisjoint(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialElementAt(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialElementCount(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialEnvelope(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialEquals(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialIntersection(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialIntersects(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialLength(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialOverlaps(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialRelate(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialSymmetricDifference(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialTouches(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialTypeName(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialUnion(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialWithin(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.StartPoint(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.XCoordinate(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.YCoordinate(System.Data.Common.CommandTrees.DbExpression)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" />
+      </containers>
+      <file name="42489b56-7c6b-dba6-6055-2f2b40d93275" />
+    </api>
+    <api id="Methods.T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions">
+      <topicdata name="SpatialEdmFunctions" group="list" subgroup="Methods" typeTopicId="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" />
+      <apidata name="SpatialEdmFunctions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Area(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.AsBinary(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.AsGml(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.AsText(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Centroid(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.CoordinateSystemId(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Distance(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Elevation(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.EndPoint(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.ExteriorRing(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyCollectionFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyCollectionFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromBinary">
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromBinary(System.Data.Common.CommandTrees.DbExpression)" />
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        </element>
+        <element api="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromGml">
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromGml(System.Data.Common.CommandTrees.DbExpression)" />
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromGml(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        </element>
+        <element api="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromText">
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromText(System.Data.Common.CommandTrees.DbExpression)" />
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        </element>
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyLineFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyLineFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiLineFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiLineFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiPointFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiPointFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiPolygonFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiPolygonFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyPointFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyPointFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyPolygonFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyPolygonFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryCollectionFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryCollectionFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromBinary">
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromBinary(System.Data.Common.CommandTrees.DbExpression)" />
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        </element>
+        <element api="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromGml">
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromGml(System.Data.Common.CommandTrees.DbExpression)" />
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromGml(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        </element>
+        <element api="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromText">
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromText(System.Data.Common.CommandTrees.DbExpression)" />
+          <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        </element>
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryLineFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryLineFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiLineFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiLineFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiPointFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiPointFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiPolygonFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiPolygonFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryPointFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryPointFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryPolygonFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryPolygonFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.InteriorRingAt(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.InteriorRingCount(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.IsClosedSpatial(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.IsEmptySpatial(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.IsRing(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.IsSimpleGeometry(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.IsValidGeometry(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Latitude(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Longitude(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Measure(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.PointAt(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.PointCount(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.PointOnSurface(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialBoundary(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialBuffer(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialContains(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialConvexHull(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialCrosses(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialDifference(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialDimension(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialDisjoint(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialElementAt(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialElementCount(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialEnvelope(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialEquals(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialIntersection(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialIntersects(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialLength(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialOverlaps(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialRelate(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialSymmetricDifference(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialTouches(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialTypeName(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialUnion(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialWithin(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.StartPoint(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.XCoordinate(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.YCoordinate(System.Data.Common.CommandTrees.DbExpression)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" />
+      </containers>
+      <file name="f06679c4-b41a-9bca-3a71-cf1382b9c46e" />
+    </api>
+    <api id="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromBinary">
+      <topicdata name="GeographyFromBinary" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" />
+      <apidata name="GeographyFromBinary" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromBinary(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="d03b9754-72af-fa3e-7543-5ddfaedd90c7" />
+    </api>
+    <api id="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromGml">
+      <topicdata name="GeographyFromGml" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" />
+      <apidata name="GeographyFromGml" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromGml(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromGml(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="f201ca98-4c7b-b381-2a58-3d8f10e68d13" />
+    </api>
+    <api id="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromText">
+      <topicdata name="GeographyFromText" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" />
+      <apidata name="GeographyFromText" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromText(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="f4187c6e-29ca-bb33-3606-753dd8568b5f" />
+    </api>
+    <api id="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromBinary">
+      <topicdata name="GeometryFromBinary" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" />
+      <apidata name="GeometryFromBinary" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromBinary(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="409a55b0-f7a8-7ff5-83b3-6be5dcae1e3e" />
+    </api>
+    <api id="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromGml">
+      <topicdata name="GeometryFromGml" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" />
+      <apidata name="GeometryFromGml" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromGml(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromGml(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="893f5fd9-e847-3469-8381-f5e72e95bc04" />
+    </api>
+    <api id="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromText">
+      <topicdata name="GeometryFromText" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" />
+      <apidata name="GeometryFromText" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromText(System.Data.Common.CommandTrees.DbExpression)" />
+        <element api="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="f00d645a-59e6-af71-ee9b-613d8f63eb9f" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Area(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="Area" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c256fbe8-c0b6-12aa-0253-714b24f7616a" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.AsBinary(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="AsBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="bae5ef1e-eef7-2640-0f1f-c39c6d296b3a" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.AsGml(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="AsGml" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8773eda7-3dde-3cc0-1561-fbfe0e740348" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.AsText(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="AsText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e095dee6-2c39-b02d-294d-7451fc777e03" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Centroid(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="Centroid" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8f56ee39-5044-da21-26b0-dd7f18b73c27" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.CoordinateSystemId(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="CoordinateSystemId" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d2a90479-e7a6-9b61-7cd3-eba15abcc20b" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Distance(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="Distance" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue1">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="spatialValue2">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="37a0d99d-67eb-89ee-d0a7-d7e67121b751" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Elevation(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="Elevation" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="afb9b258-7ccf-a581-c1aa-8ae031c51516" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.EndPoint(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="EndPoint" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="db63bd32-6cb9-b6c0-8c26-251a41ed1247" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.ExteriorRing(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="ExteriorRing" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="fd56cb93-9c00-cae8-81d1-553a305dcd64" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyCollectionFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyCollectionFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geographyCollectionWellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="c5aa38f2-6aea-edc3-11d0-ec22122d5193" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyCollectionFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyCollectionFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geographyCollectionWellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="95ab181c-b353-9953-24bb-2d62947b24ae" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromBinary(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromBinary" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="wellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="ca93e9ff-4078-5858-d7f9-90d5d57ec320" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromBinary" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="wellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="75d25b3f-7318-db05-eda7-13310a86d00d" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromGml(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyFromGml" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromGml" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geographyMarkup">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="81e4b9d4-2d42-bf09-bf6f-f64d6f14d8d4" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromGml(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyFromGml" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromGml" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geographyMarkup">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="ed27f019-fa31-56d2-df03-3fc8b91d3848" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromText(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromText" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="wellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="69e6faf8-2f45-4ce0-ccb8-2479e73430ce" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyFromText" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="wellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="40623f52-8c7b-d808-716f-9005a2881c66" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyLineFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyLineFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="lineWellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="765b65cd-6df3-5893-cc20-18ecad7e52b9" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyLineFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyLineFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="lineWellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="cbf744f2-b668-19e1-02b2-5592a56466a5" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiLineFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyMultiLineFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="multiLineWellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="8bc3dee1-23f4-4078-bc19-917abc3e20b9" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiLineFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyMultiLineFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="multiLineWellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="88513447-cefb-120f-c13f-9661e87aa831" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiPointFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyMultiPointFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="multiPointWellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="79b4027b-1ab6-145d-62f4-4671fcb5b592" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiPointFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyMultiPointFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="multiPointWellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="6be63b7d-a56c-be7b-199b-9763894bea32" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiPolygonFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyMultiPolygonFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="multiPolygonWellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="9569c35b-fbb1-b65a-2f1b-ba08decb9485" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyMultiPolygonFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyMultiPolygonFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="multiPolygonWellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="e72ff8e2-c120-b37a-31c7-84a0bb67e06d" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyPointFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyPointFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="pointWellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="cf429654-e2a5-b622-1069-9c26dd93f5ae" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyPointFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyPointFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="pointWellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="c9802deb-a1a4-4e90-edca-e174b9aaf9e8" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyPolygonFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyPolygonFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="polygonWellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="cfc7e776-f0e3-ad27-d433-bb5ddc151b84" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeographyPolygonFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeographyPolygonFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="polygonWellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="27eff584-d701-0b2e-c33c-fd18eed0139f" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryCollectionFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryCollectionFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryCollectionWellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="3bbd6d48-251b-eb83-acd5-b19055b997a9" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryCollectionFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryCollectionFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryCollectionWellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="caa3d08e-4c47-2a70-4bd6-10633cf31121" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromBinary(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromBinary" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="wellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="9df37113-79cc-e087-07e8-5b35bad2d065" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromBinary" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="wellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="bf5c0c72-3d06-5369-ea0d-4ccb4665b8ea" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromGml(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryFromGml" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromGml" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryMarkup">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="aa1cdfbf-9528-a15e-4f08-c6f5dad7b30e" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromGml(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryFromGml" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromGml" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryMarkup">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="22d5ef45-abd8-d45d-0426-e3e3dc7e7c48" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromText(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromText" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="wellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="188cca12-4f9d-d909-50ab-062974548625" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryFromText" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="wellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="4a1492f2-4809-7c3f-76b7-d5b15429e521" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryLineFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryLineFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="lineWellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="8f3d6d4c-1535-fae0-945c-e049f60d845b" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryLineFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryLineFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="lineWellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="9f0a167f-2fc4-fb87-efa1-9ea78630a210" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiLineFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryMultiLineFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="multiLineWellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="23762d74-1956-7314-4ae5-a420f265c22c" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiLineFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryMultiLineFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="multiLineWellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="ad9d7f34-eb15-8da2-971a-efaa97d459e7" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiPointFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryMultiPointFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="multiPointWellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="86408a8b-22cf-15b9-d0b3-34d4ab32c5e5" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiPointFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryMultiPointFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="multiPointWellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="e5b3a017-7528-860f-b88a-dc26b4f0c2d8" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiPolygonFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryMultiPolygonFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="multiPolygonWellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="bb172f48-d1fd-771c-7d9e-a65b3c7ea7e2" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryMultiPolygonFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryMultiPolygonFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="multiPolygonWellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="9e2b1c1f-8fd7-537e-37e6-2a3f00a5eec6" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryPointFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryPointFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="pointWellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="2012958e-643b-c06b-361d-aa922f415e2f" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryPointFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryPointFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="pointWellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="b23f2279-207c-1c30-ac05-b827b0ad5741" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryPolygonFromBinary(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryPolygonFromBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="polygonWellKnownBinaryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="e3f12524-39e8-e106-b203-33b5e3a2f7e5" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.GeometryPolygonFromText(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="GeometryPolygonFromText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="polygonWellKnownText">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="coordinateSystemId">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <file name="72b0d188-775b-75c3-aeda-349b3a642eea" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.InteriorRingAt(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="InteriorRingAt" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="indexValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="9b4c7e6d-a103-4f37-ae55-934c35a64373" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.InteriorRingCount(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="InteriorRingCount" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a214ef65-e576-70d0-1411-942d30d9b61f" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.IsClosedSpatial(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="IsClosedSpatial" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="eba99cbf-0c3b-a983-30e6-faffccd4df80" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.IsEmptySpatial(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="IsEmptySpatial" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e5f99f8f-df77-fa7c-757d-09941a102857" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.IsRing(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="IsRing" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d3f5acdd-33cb-d296-f818-32fbb4624c3c" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.IsSimpleGeometry(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="IsSimpleGeometry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="233d6c76-bbf5-d656-8a7f-ebbf3afeec29" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.IsValidGeometry(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="IsValidGeometry" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d0b9a755-d6b1-0dd1-9637-1fbb58013b16" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Latitude(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="Latitude" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geographyValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="f5256637-6aea-7fc6-7575-cdab0943ffb8" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Longitude(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="Longitude" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geographyValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="3df607f3-486b-5ded-4c11-10f679f49c84" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.Measure(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="Measure" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ed310f62-00e1-d668-39f1-880ad929eef2" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.PointAt(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="PointAt" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="indexValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="3e9e55d0-d3bd-426e-8e81-a33fac897bb1" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.PointCount(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="PointCount" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="58641487-6883-c565-9cfc-67abcd82926f" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.PointOnSurface(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="PointOnSurface" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c7d94b5f-55c6-58c1-3086-e7158e1d698e" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialBoundary(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialBoundary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d898938f-3f29-adc4-b4fb-147224e8bd57" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialBuffer(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="distance">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2ccad5b9-8d1c-305b-17cf-9dde91025777" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialContains(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialContains" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue1">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="geometryValue2">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="19352dd0-5b7c-6c0d-83d1-7bf4ec9f3629" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialConvexHull(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialConvexHull" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="66782215-6f5a-8083-831a-bfe139afa70d" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialCrosses(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialCrosses" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue1">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="geometryValue2">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="bcb1c41a-3874-2cc1-4e94-922a30cf4b0f" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialDifference(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialDifference" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue1">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="spatialValue2">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="3940a582-b71d-77e4-98c0-7386778790b2" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialDimension(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialDimension" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2be571f4-64f4-92dc-83a2-2f39b66c63ac" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialDisjoint(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialDisjoint" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue1">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="spatialValue2">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2fdda159-e95b-cc55-b092-27407b5054f8" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialElementAt(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialElementAt" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="indexValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="82235fc7-6c8b-8741-4bbd-73fe2de65349" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialElementCount(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialElementCount" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="f10e4822-3e9e-d0d7-5526-3eafb27e327b" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialEnvelope(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialEnvelope" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d43ab357-bbd5-b84e-c8dc-0ca330cfc020" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialEquals(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialEquals" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue1">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="spatialValue2">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e96a4b33-f024-23c0-221d-e400f3a899e9" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialIntersection(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialIntersection" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue1">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="spatialValue2">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="60ccdb6b-2225-1301-88a8-8ffcb2e39316" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialIntersects(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialIntersects" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue1">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="spatialValue2">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2a1f2651-531d-0561-e095-ca8726231b96" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialLength(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialLength" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a1259c5d-9658-5c03-ed37-fa366581aba4" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialOverlaps(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialOverlaps" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue1">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="geometryValue2">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="7ab87cb8-88c4-9a04-5eb0-a50f044b0228" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialRelate(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialRelate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue1">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="geometryValue2">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="intersectionPatternMatrix">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e457004b-be78-3567-14ec-73fd10e28c90" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialSymmetricDifference(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialSymmetricDifference" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue1">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="spatialValue2">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e50efac9-0fe7-f683-1199-02160ef024fb" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialTouches(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialTouches" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue1">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="geometryValue2">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="45402d83-6cc8-7255-c503-d7191886aa3a" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialTypeName(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialTypeName" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="670b908a-5fa4-fa34-fec5-37e857f14b77" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialUnion(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialUnion" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue1">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="spatialValue2">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a67e6762-46db-9728-0d5c-f6485af181b2" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.SpatialWithin(System.Data.Common.CommandTrees.DbExpression,System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="SpatialWithin" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue1">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+        <parameter name="geometryValue2">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="0a5e6362-25d5-d393-c9df-5275451fc41b" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.StartPoint(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="StartPoint" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="spatialValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="3baa4116-41b0-85b0-9a23-58f9867256ca" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.XCoordinate(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="XCoordinate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="64fc7569-bbb0-92a1-ea16-b83916ec9d9a" />
+    </api>
+    <api id="M:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions.YCoordinate(System.Data.Common.CommandTrees.DbExpression)">
+      <topicdata group="api" />
+      <apidata name="YCoordinate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="geometryValue">
+          <type api="T:System.Data.Common.CommandTrees.DbExpression" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Data.Common.CommandTrees.DbFunctionExpression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity" module="System.Data.Entity" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial" />
+        <type api="T:System.Data.Common.CommandTrees.ExpressionBuilder.Spatial.SpatialEdmFunctions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="92fba616-cf6f-108e-9cdc-a6ad699092bc" />
+    </api>
+  </apis>
+</reflection>

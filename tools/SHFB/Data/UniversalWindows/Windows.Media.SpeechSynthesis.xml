@@ -1,0 +1,1552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media.SpeechSynthesis">
+      <topicdata group="api" />
+      <apidata name="Windows.Media.SpeechSynthesis" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.SpeechSynthesis.VoiceGender" />
+        <element api="T:Windows.Media.SpeechSynthesis.VoiceInformation" />
+        <element api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" />
+        <element api="T:Windows.Media.SpeechSynthesis.SpeechSynthesizer" />
+      </elements>
+      <file name="a421d8b4-4316-504a-fe7a-13404bc8bbd6" />
+    </api>
+    <api id="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" />
+      <apidata name="SpeechSynthesisStream" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStreamWithContentType" ref="true" />
+        <type api="T:Windows.Storage.Streams.IContentTypeProvider" ref="true" />
+        <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+        <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="006b1329-8552-d6a5-015b-22ddaf6dd958" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream">
+      <topicdata name="SpeechSynthesisStream" group="list" subgroup="members" typeTopicId="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" />
+      <apidata name="SpeechSynthesisStream" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.CanRead" />
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.CanWrite" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.CloneStream" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.Close" />
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.ContentType" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.FlushAsync" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.GetInputStreamAt(System.UInt64)" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.GetOutputStreamAt(System.UInt64)" />
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.Markers" />
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.Position" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.ReadAsync(Windows.Storage.Streams.IBuffer,System.UInt32,Windows.Storage.Streams.InputStreamOptions)" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.Seek(System.UInt64)" />
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.Size" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.WriteAsync(Windows.Storage.Streams.IBuffer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" />
+      </containers>
+      <file name="2d6d09fc-937a-855b-bf4f-3f1627b28217" />
+    </api>
+    <api id="Methods.T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream">
+      <topicdata name="SpeechSynthesisStream" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" />
+      <apidata name="SpeechSynthesisStream" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.CloneStream" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.Close" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.FlushAsync" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.GetInputStreamAt(System.UInt64)" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.GetOutputStreamAt(System.UInt64)" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.ReadAsync(Windows.Storage.Streams.IBuffer,System.UInt32,Windows.Storage.Streams.InputStreamOptions)" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.Seek(System.UInt64)" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.WriteAsync(Windows.Storage.Streams.IBuffer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" />
+      </containers>
+      <file name="bbcff387-a55a-8a23-a07e-9b2cdc751caa" />
+    </api>
+    <api id="Properties.T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream">
+      <topicdata name="SpeechSynthesisStream" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" />
+      <apidata name="SpeechSynthesisStream" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.CanRead" />
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.CanWrite" />
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.ContentType" />
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.Markers" />
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.Position" />
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" />
+      </containers>
+      <file name="7526d016-7f2b-a576-7631-2fbc257a2296" />
+    </api>
+    <api id="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.CanRead">
+      <topicdata group="api" />
+      <apidata name="CanRead" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CanRead" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Storage.Streams.IRandomAccessStream.CanRead">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" ref="true" />
+      </containers>
+      <file name="4027eb05-174f-8bc6-8d5c-18051366f23d" />
+    </api>
+    <api id="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.CanWrite">
+      <topicdata group="api" />
+      <apidata name="CanWrite" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CanWrite" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Storage.Streams.IRandomAccessStream.CanWrite">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" ref="true" />
+      </containers>
+      <file name="bc182f58-147a-a162-30d9-e3ca36e66dee" />
+    </api>
+    <api id="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.CloneStream">
+      <topicdata group="api" />
+      <apidata name="CloneStream" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.Streams.IRandomAccessStream.CloneStream">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" ref="true" />
+      </containers>
+      <file name="81813bbc-c889-29ed-121b-613cfe95f39f" />
+    </api>
+    <api id="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" ref="true" />
+      </containers>
+      <file name="6eb518b3-b702-e896-4ec9-fd29217ab4ce" />
+    </api>
+    <api id="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.ContentType">
+      <topicdata group="api" />
+      <apidata name="ContentType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ContentType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Storage.Streams.IContentTypeProvider.ContentType">
+          <type api="T:Windows.Storage.Streams.IContentTypeProvider" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" ref="true" />
+      </containers>
+      <file name="5787e288-6d80-d5b7-88c0-62d179a913f4" />
+    </api>
+    <api id="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.FlushAsync">
+      <topicdata group="api" />
+      <apidata name="FlushAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.Streams.IOutputStream.FlushAsync">
+          <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" ref="true" />
+      </containers>
+      <file name="bda130eb-c745-18ce-d8e6-0448bc9ddf64" />
+    </api>
+    <api id="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.GetInputStreamAt(System.UInt64)">
+      <topicdata group="api" />
+      <apidata name="GetInputStreamAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="position" in="true">
+          <type api="T:System.UInt64" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.Streams.IRandomAccessStream.GetInputStreamAt(System.UInt64)">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" ref="true" />
+      </containers>
+      <file name="ce8f8643-e92f-30ca-ec7a-10d8c88cdd57" />
+    </api>
+    <api id="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.GetOutputStreamAt(System.UInt64)">
+      <topicdata group="api" />
+      <apidata name="GetOutputStreamAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="position" in="true">
+          <type api="T:System.UInt64" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.Streams.IRandomAccessStream.GetOutputStreamAt(System.UInt64)">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" ref="true" />
+      </containers>
+      <file name="a3efe291-a4db-b68e-332f-c5eef1ce80f7" />
+    </api>
+    <api id="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.Markers">
+      <topicdata group="api" />
+      <apidata name="Markers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Markers" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.IMediaMarker" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" ref="true" />
+      </containers>
+      <file name="1f329b64-e135-e1f4-7b4e-4f20ce3bfee0" />
+    </api>
+    <api id="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.Position">
+      <topicdata group="api" />
+      <apidata name="Position" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Position" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Storage.Streams.IRandomAccessStream.Position">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" ref="true" />
+      </containers>
+      <file name="02dbd927-823b-0256-97bd-c708dfde8f06" />
+    </api>
+    <api id="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.ReadAsync(Windows.Storage.Streams.IBuffer,System.UInt32,Windows.Storage.Streams.InputStreamOptions)">
+      <topicdata group="api" />
+      <apidata name="ReadAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="buffer" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="count" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Storage.Streams.InputStreamOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.Streams.IInputStream.ReadAsync(Windows.Storage.Streams.IBuffer,System.UInt32,Windows.Storage.Streams.InputStreamOptions)">
+          <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" ref="true" />
+      </containers>
+      <file name="171a29ce-0f74-730f-d444-0d27ce05003d" />
+    </api>
+    <api id="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.Seek(System.UInt64)">
+      <topicdata group="api" />
+      <apidata name="Seek" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="position" in="true">
+          <type api="T:System.UInt64" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Storage.Streams.IRandomAccessStream.Seek(System.UInt64)">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" ref="true" />
+      </containers>
+      <file name="053e5b06-b017-3fde-6075-ab4901c490c6" />
+    </api>
+    <api id="P:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Size" />
+      <setter name="set_Size" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Storage.Streams.IRandomAccessStream.Size">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" ref="true" />
+      </containers>
+      <file name="d23ad40b-602e-ffbf-c543-70ca98dd5527" />
+    </api>
+    <api id="M:Windows.Media.SpeechSynthesis.SpeechSynthesisStream.WriteAsync(Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="WriteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="buffer" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Storage.Streams.IOutputStream.WriteAsync(Windows.Storage.Streams.IBuffer)">
+          <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" ref="true" />
+      </containers>
+      <file name="6834b0e1-3ebf-a1fc-38f7-654045c3c57f" />
+    </api>
+    <api id="T:Windows.Media.SpeechSynthesis.SpeechSynthesizer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.SpeechSynthesis.SpeechSynthesizer" />
+      <apidata name="SpeechSynthesizer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.SpeechSynthesis.SpeechSynthesizer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7ce2a787-54fe-0e20-40a3-8e2832eaddc1" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.SpeechSynthesis.SpeechSynthesizer">
+      <topicdata name="SpeechSynthesizer" group="list" subgroup="members" typeTopicId="T:Windows.Media.SpeechSynthesis.SpeechSynthesizer" />
+      <apidata name="SpeechSynthesizer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.SpeechSynthesis.SpeechSynthesizer.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesizer.#ctor" />
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesizer.AllVoices" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesizer.Close" />
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesizer.DefaultVoice" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesizer.SynthesizeSsmlToStreamAsync(System.String)" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesizer.SynthesizeTextToStreamAsync(System.String)" />
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesizer.Voice" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesizer" />
+      </containers>
+      <file name="2a176488-1942-4927-31a5-1b12a07676d9" />
+    </api>
+    <api id="Methods.T:Windows.Media.SpeechSynthesis.SpeechSynthesizer">
+      <topicdata name="SpeechSynthesizer" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.SpeechSynthesis.SpeechSynthesizer" />
+      <apidata name="SpeechSynthesizer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.SpeechSynthesis.SpeechSynthesizer.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesizer.Close" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesizer.SynthesizeSsmlToStreamAsync(System.String)" />
+        <element api="M:Windows.Media.SpeechSynthesis.SpeechSynthesizer.SynthesizeTextToStreamAsync(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesizer" />
+      </containers>
+      <file name="7e8aa965-b4f7-3b3f-e5dc-b3b1d4805b36" />
+    </api>
+    <api id="Properties.T:Windows.Media.SpeechSynthesis.SpeechSynthesizer">
+      <topicdata name="SpeechSynthesizer" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.SpeechSynthesis.SpeechSynthesizer" />
+      <apidata name="SpeechSynthesizer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.SpeechSynthesis.SpeechSynthesizer.#ctor" />
+      <elements>
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesizer.AllVoices" />
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesizer.DefaultVoice" />
+        <element api="P:Windows.Media.SpeechSynthesis.SpeechSynthesizer.Voice" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesizer" />
+      </containers>
+      <file name="4a7c343e-48ca-9323-ebda-001bc57d8e88" />
+    </api>
+    <api id="M:Windows.Media.SpeechSynthesis.SpeechSynthesizer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesizer" ref="true" />
+      </containers>
+      <file name="77b8b83c-9548-1607-7fd9-f01460e7ab71" />
+    </api>
+    <api id="P:Windows.Media.SpeechSynthesis.SpeechSynthesizer.AllVoices">
+      <topicdata group="api" />
+      <apidata name="AllVoices" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AllVoices" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.SpeechSynthesis.VoiceInformation" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesizer" ref="true" />
+      </containers>
+      <file name="d150d359-b754-7885-81cd-d261304466c1" />
+    </api>
+    <api id="M:Windows.Media.SpeechSynthesis.SpeechSynthesizer.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesizer" ref="true" />
+      </containers>
+      <file name="d90318dc-5a1f-5b85-b4cc-1fd8d8332682" />
+    </api>
+    <api id="P:Windows.Media.SpeechSynthesis.SpeechSynthesizer.DefaultVoice">
+      <topicdata group="api" />
+      <apidata name="DefaultVoice" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DefaultVoice" />
+      <returns>
+        <type api="T:Windows.Media.SpeechSynthesis.VoiceInformation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesizer" ref="true" />
+      </containers>
+      <file name="f6c940d7-9c73-469a-af8d-92b42f2b6e59" />
+    </api>
+    <api id="M:Windows.Media.SpeechSynthesis.SpeechSynthesizer.SynthesizeSsmlToStreamAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="SynthesizeSsmlToStreamAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="Ssml" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesizer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="9bfa9164-0c8a-ce85-113c-91735e0ceea3" />
+    </api>
+    <api id="M:Windows.Media.SpeechSynthesis.SpeechSynthesizer.SynthesizeTextToStreamAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="SynthesizeTextToStreamAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="text" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesisStream" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesizer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="0f77a322-1438-c544-cce8-678716defc0c" />
+    </api>
+    <api id="P:Windows.Media.SpeechSynthesis.SpeechSynthesizer.Voice">
+      <topicdata group="api" />
+      <apidata name="Voice" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Voice" />
+      <setter name="set_Voice" />
+      <returns>
+        <type api="T:Windows.Media.SpeechSynthesis.VoiceInformation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.SpeechSynthesizer" ref="true" />
+      </containers>
+      <file name="096d695d-a77c-38f9-b2db-1ba7d6e3359d" />
+    </api>
+    <api id="T:Windows.Media.SpeechSynthesis.VoiceGender">
+      <topicdata group="api" />
+      <apidata name="VoiceGender" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.SpeechSynthesis.VoiceGender.Male" />
+        <element api="F:Windows.Media.SpeechSynthesis.VoiceGender.Female" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4a2ebb38-5453-b3e9-0069-04d52ef4a4d9" />
+    </api>
+    <api id="F:Windows.Media.SpeechSynthesis.VoiceGender.Female">
+      <topicdata group="api" notopic="" />
+      <apidata name="Female" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.SpeechSynthesis.VoiceGender" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.VoiceGender" ref="false" />
+      </containers>
+      <file name="eeba0774-eeab-bc02-f875-82b60207af29" />
+    </api>
+    <api id="F:Windows.Media.SpeechSynthesis.VoiceGender.Male">
+      <topicdata group="api" notopic="" />
+      <apidata name="Male" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.SpeechSynthesis.VoiceGender" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.VoiceGender" ref="false" />
+      </containers>
+      <file name="43d0778f-4fe1-4a05-bba2-b0cca770c55f" />
+    </api>
+    <api id="T:Windows.Media.SpeechSynthesis.VoiceInformation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.SpeechSynthesis.VoiceInformation" />
+      <apidata name="VoiceInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e5d24a6b-b331-884b-1556-008789badd6b" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.SpeechSynthesis.VoiceInformation">
+      <topicdata name="VoiceInformation" group="list" subgroup="members" typeTopicId="T:Windows.Media.SpeechSynthesis.VoiceInformation" />
+      <apidata name="VoiceInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Media.SpeechSynthesis.VoiceInformation.Description" />
+        <element api="P:Windows.Media.SpeechSynthesis.VoiceInformation.DisplayName" />
+        <element api="P:Windows.Media.SpeechSynthesis.VoiceInformation.Gender" />
+        <element api="P:Windows.Media.SpeechSynthesis.VoiceInformation.Id" />
+        <element api="P:Windows.Media.SpeechSynthesis.VoiceInformation.Language" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.VoiceInformation" />
+      </containers>
+      <file name="75590ec0-9f57-712b-8464-84a4401cbe14" />
+    </api>
+    <api id="Methods.T:Windows.Media.SpeechSynthesis.VoiceInformation">
+      <topicdata name="VoiceInformation" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.SpeechSynthesis.VoiceInformation" />
+      <apidata name="VoiceInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.VoiceInformation" />
+      </containers>
+      <file name="093e9561-a43f-0a65-4ee1-898e23ac84d9" />
+    </api>
+    <api id="Properties.T:Windows.Media.SpeechSynthesis.VoiceInformation">
+      <topicdata name="VoiceInformation" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.SpeechSynthesis.VoiceInformation" />
+      <apidata name="VoiceInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.SpeechSynthesis.VoiceInformation.Description" />
+        <element api="P:Windows.Media.SpeechSynthesis.VoiceInformation.DisplayName" />
+        <element api="P:Windows.Media.SpeechSynthesis.VoiceInformation.Gender" />
+        <element api="P:Windows.Media.SpeechSynthesis.VoiceInformation.Id" />
+        <element api="P:Windows.Media.SpeechSynthesis.VoiceInformation.Language" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.VoiceInformation" />
+      </containers>
+      <file name="9d4624d0-39b5-7b9d-b6ef-d2f78c46ea2b" />
+    </api>
+    <api id="P:Windows.Media.SpeechSynthesis.VoiceInformation.Description">
+      <topicdata group="api" />
+      <apidata name="Description" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Description" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.VoiceInformation" ref="true" />
+      </containers>
+      <file name="4e0cb2e4-bb98-eea4-037e-e12f058a7e8d" />
+    </api>
+    <api id="P:Windows.Media.SpeechSynthesis.VoiceInformation.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.VoiceInformation" ref="true" />
+      </containers>
+      <file name="c6e19748-4251-1e1b-71b1-0739363e87f1" />
+    </api>
+    <api id="P:Windows.Media.SpeechSynthesis.VoiceInformation.Gender">
+      <topicdata group="api" />
+      <apidata name="Gender" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Gender" />
+      <returns>
+        <type api="T:Windows.Media.SpeechSynthesis.VoiceGender" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.VoiceInformation" ref="true" />
+      </containers>
+      <file name="ee684bf0-a2db-cca2-1529-51205bc2421b" />
+    </api>
+    <api id="P:Windows.Media.SpeechSynthesis.VoiceInformation.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.VoiceInformation" ref="true" />
+      </containers>
+      <file name="3326a188-3dd2-d1f5-3249-f7aac06b4bf1" />
+    </api>
+    <api id="P:Windows.Media.SpeechSynthesis.VoiceInformation.Language">
+      <topicdata group="api" />
+      <apidata name="Language" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Language" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.SpeechSynthesis" />
+        <type api="T:Windows.Media.SpeechSynthesis.VoiceInformation" ref="true" />
+      </containers>
+      <file name="150c2f39-2fbc-da18-936a-296bc56417ac" />
+    </api>
+  </apis>
+</reflection>

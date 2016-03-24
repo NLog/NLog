@@ -1,0 +1,1685 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Diagnostics">
+      <topicdata group="api" />
+      <apidata name="System.Diagnostics" group="namespace" />
+      <elements>
+        <element api="T:System.Diagnostics.ConditionalAttribute" />
+        <element api="T:System.Diagnostics.Debugger" />
+        <element api="T:System.Diagnostics.DebuggerStepThroughAttribute" />
+        <element api="T:System.Diagnostics.DebuggerStepperBoundaryAttribute" />
+        <element api="T:System.Diagnostics.DebuggerHiddenAttribute" />
+        <element api="T:System.Diagnostics.DebuggerNonUserCodeAttribute" />
+        <element api="T:System.Diagnostics.DebuggableAttribute" />
+        <element api="T:System.Diagnostics.DebuggableAttribute.DebuggingModes" />
+        <element api="T:System.Diagnostics.DebuggerBrowsableState" />
+        <element api="T:System.Diagnostics.DebuggerBrowsableAttribute" />
+        <element api="T:System.Diagnostics.DebuggerTypeProxyAttribute" />
+        <element api="T:System.Diagnostics.DebuggerDisplayAttribute" />
+      </elements>
+      <file name="ef3b933d-2e9d-7a96-67d9-c295b0050d69" />
+    </api>
+    <api id="T:System.Diagnostics.ConditionalAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.ConditionalAttribute" />
+      <apidata name="ConditionalAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Method" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="4426a30d-ee45-b32b-f61f-c611becaec9b" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.ConditionalAttribute">
+      <topicdata name="ConditionalAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.ConditionalAttribute" />
+      <apidata name="ConditionalAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.ConditionalAttribute.#ctor(System.String)" />
+        <element api="P:System.Diagnostics.ConditionalAttribute.ConditionString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.ConditionalAttribute" />
+      </containers>
+      <file name="b13db948-f783-884d-b64f-6a8a5887c0fa" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.ConditionalAttribute">
+      <topicdata name="ConditionalAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.ConditionalAttribute" />
+      <apidata name="ConditionalAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.ConditionalAttribute" />
+      </containers>
+      <file name="0cfecf38-7408-2d03-8ec0-c5778a6883aa" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.ConditionalAttribute">
+      <topicdata name="ConditionalAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.ConditionalAttribute" />
+      <apidata name="ConditionalAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="P:System.Diagnostics.ConditionalAttribute.ConditionString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.ConditionalAttribute" />
+      </containers>
+      <file name="4215c076-138b-25da-54b3-2e3a17555e91" />
+    </api>
+    <api id="M:System.Diagnostics.ConditionalAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="conditionString">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+      </containers>
+      <file name="551554d9-3782-cce3-f78c-a45019019d24" />
+    </api>
+    <api id="P:System.Diagnostics.ConditionalAttribute.ConditionString">
+      <topicdata group="api" />
+      <apidata name="ConditionString" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ConditionString" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+      </containers>
+      <file name="f31692fb-ec15-0e7d-3bc3-a22dcdc5cc97" />
+    </api>
+    <api id="T:System.Diagnostics.DebuggableAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.DebuggableAttribute" />
+      <apidata name="DebuggableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+              <field name="Module" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="bffb965c-024c-4cf1-6847-f6fd60e107e2" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.DebuggableAttribute">
+      <topicdata name="DebuggableAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.DebuggableAttribute" />
+      <apidata name="DebuggableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Diagnostics.DebuggableAttribute.#ctor">
+          <element api="M:System.Diagnostics.DebuggableAttribute.#ctor(System.Diagnostics.DebuggableAttribute.DebuggingModes)" />
+          <element api="M:System.Diagnostics.DebuggableAttribute.#ctor(System.Boolean,System.Boolean)" />
+        </element>
+        <element api="P:System.Diagnostics.DebuggableAttribute.DebuggingFlags" />
+        <element api="P:System.Diagnostics.DebuggableAttribute.IsJITOptimizerDisabled" />
+        <element api="P:System.Diagnostics.DebuggableAttribute.IsJITTrackingEnabled" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggableAttribute" />
+      </containers>
+      <file name="2621aa1b-1428-8b67-5151-8d2e0e7b5d1d" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.DebuggableAttribute">
+      <topicdata name="DebuggableAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.DebuggableAttribute" />
+      <apidata name="DebuggableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggableAttribute" />
+      </containers>
+      <file name="9fb4ad67-1332-88c6-683c-a96597c00d5d" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.DebuggableAttribute">
+      <topicdata name="DebuggableAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.DebuggableAttribute" />
+      <apidata name="DebuggableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Diagnostics.DebuggableAttribute.DebuggingFlags" />
+        <element api="P:System.Diagnostics.DebuggableAttribute.IsJITOptimizerDisabled" />
+        <element api="P:System.Diagnostics.DebuggableAttribute.IsJITTrackingEnabled" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggableAttribute" />
+      </containers>
+      <file name="ad82c09e-76b5-9f29-490e-e800b3cd8a62" />
+    </api>
+    <api id="Overload:System.Diagnostics.DebuggableAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.DebuggableAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Diagnostics.DebuggableAttribute.#ctor(System.Diagnostics.DebuggableAttribute.DebuggingModes)" />
+        <element api="M:System.Diagnostics.DebuggableAttribute.#ctor(System.Boolean,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+      </containers>
+      <file name="26bdc67b-4c1d-da55-5598-aa66c002df63" />
+    </api>
+    <api id="M:System.Diagnostics.DebuggableAttribute.#ctor(System.Boolean,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Diagnostics.DebuggableAttribute.#ctor" />
+      <parameters>
+        <parameter name="isJITTrackingEnabled">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="isJITOptimizerDisabled">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+      </containers>
+      <file name="40273dba-2740-3777-d256-d13fe881575c" />
+    </api>
+    <api id="M:System.Diagnostics.DebuggableAttribute.#ctor(System.Diagnostics.DebuggableAttribute.DebuggingModes)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Diagnostics.DebuggableAttribute.#ctor" />
+      <parameters>
+        <parameter name="modes">
+          <type api="T:System.Diagnostics.DebuggableAttribute.DebuggingModes" ref="false">
+            <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+      </containers>
+      <file name="db3cf700-1686-dcd4-684c-3671c1f7eef6" />
+    </api>
+    <api id="P:System.Diagnostics.DebuggableAttribute.DebuggingFlags">
+      <topicdata group="api" />
+      <apidata name="DebuggingFlags" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DebuggingFlags" />
+      <returns>
+        <type api="T:System.Diagnostics.DebuggableAttribute.DebuggingModes" ref="false">
+          <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+        </type>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+      </containers>
+      <file name="484c008d-3a86-ca2f-b7a6-44a6a3be8274" />
+    </api>
+    <api id="P:System.Diagnostics.DebuggableAttribute.IsJITOptimizerDisabled">
+      <topicdata group="api" />
+      <apidata name="IsJITOptimizerDisabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsJITOptimizerDisabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+      </containers>
+      <file name="a2fbde91-9a32-7620-8fd2-4cdf3a6e9afc" />
+    </api>
+    <api id="P:System.Diagnostics.DebuggableAttribute.IsJITTrackingEnabled">
+      <topicdata group="api" />
+      <apidata name="IsJITTrackingEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsJITTrackingEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+      </containers>
+      <file name="9f109812-3c14-dcb2-9aff-e18e20dc33ff" />
+    </api>
+    <api id="T:System.Diagnostics.DebuggableAttribute.DebuggingModes">
+      <topicdata group="api" />
+      <apidata name="DebuggingModes" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Diagnostics.DebuggableAttribute.DebuggingModes.None" />
+        <element api="F:System.Diagnostics.DebuggableAttribute.DebuggingModes.Default" />
+        <element api="F:System.Diagnostics.DebuggableAttribute.DebuggingModes.DisableOptimizations" />
+        <element api="F:System.Diagnostics.DebuggableAttribute.DebuggingModes.IgnoreSymbolStoreSequencePoints" />
+        <element api="F:System.Diagnostics.DebuggableAttribute.DebuggingModes.EnableEditAndContinue" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c80ca24a-ad6c-d61c-ecb6-8ab4e8aa714a" />
+    </api>
+    <api id="F:System.Diagnostics.DebuggableAttribute.DebuggingModes.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.DebuggableAttribute.DebuggingModes" ref="false">
+          <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+        </type>
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggableAttribute.DebuggingModes" ref="false">
+          <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+        </type>
+      </containers>
+      <file name="acec3c6b-9d97-d2a3-7f84-bbf2e5d2a0b4" />
+    </api>
+    <api id="F:System.Diagnostics.DebuggableAttribute.DebuggingModes.DisableOptimizations">
+      <topicdata group="api" notopic="" />
+      <apidata name="DisableOptimizations" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.DebuggableAttribute.DebuggingModes" ref="false">
+          <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+        </type>
+      </returns>
+      <value>256</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggableAttribute.DebuggingModes" ref="false">
+          <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+        </type>
+      </containers>
+      <file name="6d5cf83c-36df-87f2-67d6-ca5864236ff0" />
+    </api>
+    <api id="F:System.Diagnostics.DebuggableAttribute.DebuggingModes.EnableEditAndContinue">
+      <topicdata group="api" notopic="" />
+      <apidata name="EnableEditAndContinue" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.DebuggableAttribute.DebuggingModes" ref="false">
+          <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+        </type>
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggableAttribute.DebuggingModes" ref="false">
+          <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+        </type>
+      </containers>
+      <file name="765b8d15-2776-6f2c-098c-7f11da1f5c35" />
+    </api>
+    <api id="F:System.Diagnostics.DebuggableAttribute.DebuggingModes.IgnoreSymbolStoreSequencePoints">
+      <topicdata group="api" notopic="" />
+      <apidata name="IgnoreSymbolStoreSequencePoints" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.DebuggableAttribute.DebuggingModes" ref="false">
+          <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+        </type>
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggableAttribute.DebuggingModes" ref="false">
+          <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+        </type>
+      </containers>
+      <file name="d1ae3271-4e0f-6980-5280-5fd6d2f08b2f" />
+    </api>
+    <api id="F:System.Diagnostics.DebuggableAttribute.DebuggingModes.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.DebuggableAttribute.DebuggingModes" ref="false">
+          <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+        </type>
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggableAttribute.DebuggingModes" ref="false">
+          <type api="T:System.Diagnostics.DebuggableAttribute" ref="true" />
+        </type>
+      </containers>
+      <file name="60a7143a-79a0-38f0-83c0-69b8daff2f85" />
+    </api>
+    <api id="T:System.Diagnostics.Debugger">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Debugger" />
+      <apidata name="Debugger" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+      </containers>
+      <file name="6fef5206-f85b-8bd7-1dd8-e4d63c9c0d69" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Debugger">
+      <topicdata name="Debugger" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Debugger" />
+      <apidata name="Debugger" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Diagnostics.Debugger.Break" />
+        <element api="P:System.Diagnostics.Debugger.IsAttached" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.Debugger" />
+      </containers>
+      <file name="b2db657e-cab7-fa95-c0dc-eebb537043aa" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Debugger">
+      <topicdata name="Debugger" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Debugger" />
+      <apidata name="Debugger" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Diagnostics.Debugger.Break" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.Debugger" />
+      </containers>
+      <file name="fd530712-72cb-7680-deda-1c542687a281" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.Debugger">
+      <topicdata name="Debugger" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.Debugger" />
+      <apidata name="Debugger" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Diagnostics.Debugger.IsAttached" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.Debugger" />
+      </containers>
+      <file name="3fd3a0c3-8593-4528-fc59-8a7511eaafdd" />
+    </api>
+    <api id="M:System.Diagnostics.Debugger.Break">
+      <topicdata group="api" />
+      <apidata name="Break" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.Debugger" ref="true" />
+      </containers>
+      <file name="f247a556-d798-12fa-ada0-ac4b87c1df3a" />
+    </api>
+    <api id="P:System.Diagnostics.Debugger.IsAttached">
+      <topicdata group="api" />
+      <apidata name="IsAttached" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsAttached" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.Debugger" ref="true" />
+      </containers>
+      <file name="0f3a0dc7-f7b6-2677-c3aa-ce9830b1cef8" />
+    </api>
+    <api id="T:System.Diagnostics.DebuggerBrowsableAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.DebuggerBrowsableAttribute" />
+      <apidata name="DebuggerBrowsableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Property" />
+              <field name="Field" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="fd752e9c-03bf-2564-bc8c-d2ff7628fd50" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.DebuggerBrowsableAttribute">
+      <topicdata name="DebuggerBrowsableAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.DebuggerBrowsableAttribute" />
+      <apidata name="DebuggerBrowsableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.DebuggerBrowsableAttribute.#ctor(System.Diagnostics.DebuggerBrowsableState)" />
+        <element api="P:System.Diagnostics.DebuggerBrowsableAttribute.State" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerBrowsableAttribute" />
+      </containers>
+      <file name="b880855b-358c-b0f0-eaeb-452922ff9e94" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.DebuggerBrowsableAttribute">
+      <topicdata name="DebuggerBrowsableAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.DebuggerBrowsableAttribute" />
+      <apidata name="DebuggerBrowsableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerBrowsableAttribute" />
+      </containers>
+      <file name="ffb8c59c-e62c-8338-be7c-60447bfa439c" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.DebuggerBrowsableAttribute">
+      <topicdata name="DebuggerBrowsableAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.DebuggerBrowsableAttribute" />
+      <apidata name="DebuggerBrowsableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Diagnostics.DebuggerBrowsableAttribute.State" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerBrowsableAttribute" />
+      </containers>
+      <file name="c04a3bfa-fe1f-1efe-a7ee-76536d349f80" />
+    </api>
+    <api id="M:System.Diagnostics.DebuggerBrowsableAttribute.#ctor(System.Diagnostics.DebuggerBrowsableState)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="state">
+          <type api="T:System.Diagnostics.DebuggerBrowsableState" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerBrowsableAttribute" ref="true" />
+      </containers>
+      <file name="b4b780d3-a244-143e-b3e0-95c146691f12" />
+    </api>
+    <api id="P:System.Diagnostics.DebuggerBrowsableAttribute.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:System.Diagnostics.DebuggerBrowsableState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerBrowsableAttribute" ref="true" />
+      </containers>
+      <file name="372b54c1-5499-738a-c636-ad576f6b74d5" />
+    </api>
+    <api id="T:System.Diagnostics.DebuggerBrowsableState">
+      <topicdata group="api" />
+      <apidata name="DebuggerBrowsableState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Diagnostics.DebuggerBrowsableState.Never" />
+        <element api="F:System.Diagnostics.DebuggerBrowsableState.Collapsed" />
+        <element api="F:System.Diagnostics.DebuggerBrowsableState.RootHidden" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+      </containers>
+      <file name="d599743a-d06e-5df0-2d7c-9226aa1ca42b" />
+    </api>
+    <api id="F:System.Diagnostics.DebuggerBrowsableState.Collapsed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Collapsed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.DebuggerBrowsableState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerBrowsableState" ref="false" />
+      </containers>
+      <file name="4647fe8d-d0a7-5a57-b5a4-921368af1d1f" />
+    </api>
+    <api id="F:System.Diagnostics.DebuggerBrowsableState.Never">
+      <topicdata group="api" notopic="" />
+      <apidata name="Never" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.DebuggerBrowsableState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerBrowsableState" ref="false" />
+      </containers>
+      <file name="1615c922-fa47-0356-fbf0-50d1b253a31c" />
+    </api>
+    <api id="F:System.Diagnostics.DebuggerBrowsableState.RootHidden">
+      <topicdata group="api" notopic="" />
+      <apidata name="RootHidden" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.DebuggerBrowsableState" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerBrowsableState" ref="false" />
+      </containers>
+      <file name="45c25df3-edcc-cbbd-220a-7668e6b462d6" />
+    </api>
+    <api id="T:System.Diagnostics.DebuggerDisplayAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.DebuggerDisplayAttribute" />
+      <apidata name="DebuggerDisplayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+              <field name="Class" />
+              <field name="Struct" />
+              <field name="Enum" />
+              <field name="Property" />
+              <field name="Field" />
+              <field name="Delegate" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="5cdde1cc-3aa5-23d6-919d-8016aefa16be" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.DebuggerDisplayAttribute">
+      <topicdata name="DebuggerDisplayAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.DebuggerDisplayAttribute" />
+      <apidata name="DebuggerDisplayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.DebuggerDisplayAttribute.#ctor(System.String)" />
+        <element api="P:System.Diagnostics.DebuggerDisplayAttribute.Name" />
+        <element api="P:System.Diagnostics.DebuggerDisplayAttribute.Target" />
+        <element api="P:System.Diagnostics.DebuggerDisplayAttribute.TargetTypeName" />
+        <element api="P:System.Diagnostics.DebuggerDisplayAttribute.Type" />
+        <element api="P:System.Diagnostics.DebuggerDisplayAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerDisplayAttribute" />
+      </containers>
+      <file name="c31f07fa-4f50-a98d-4329-606992ed5589" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.DebuggerDisplayAttribute">
+      <topicdata name="DebuggerDisplayAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.DebuggerDisplayAttribute" />
+      <apidata name="DebuggerDisplayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerDisplayAttribute" />
+      </containers>
+      <file name="3d669849-02e0-bfbe-145d-58e74f6f9a7d" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.DebuggerDisplayAttribute">
+      <topicdata name="DebuggerDisplayAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.DebuggerDisplayAttribute" />
+      <apidata name="DebuggerDisplayAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Diagnostics.DebuggerDisplayAttribute.Name" />
+        <element api="P:System.Diagnostics.DebuggerDisplayAttribute.Target" />
+        <element api="P:System.Diagnostics.DebuggerDisplayAttribute.TargetTypeName" />
+        <element api="P:System.Diagnostics.DebuggerDisplayAttribute.Type" />
+        <element api="P:System.Diagnostics.DebuggerDisplayAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerDisplayAttribute" />
+      </containers>
+      <file name="22d606cf-6257-538d-3703-7b756150d42b" />
+    </api>
+    <api id="M:System.Diagnostics.DebuggerDisplayAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerDisplayAttribute" ref="true" />
+      </containers>
+      <file name="1bb9c7d4-d18a-8e4d-28d5-f2bd43296040" />
+    </api>
+    <api id="P:System.Diagnostics.DebuggerDisplayAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerDisplayAttribute" ref="true" />
+      </containers>
+      <file name="c17c1bbf-9112-2fd9-82e9-921e2f965e48" />
+    </api>
+    <api id="P:System.Diagnostics.DebuggerDisplayAttribute.Target">
+      <topicdata group="api" />
+      <apidata name="Target" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Target" />
+      <setter name="set_Target" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerDisplayAttribute" ref="true" />
+      </containers>
+      <file name="0e5630ba-57ff-03ae-fc78-31a2b8f5c427" />
+    </api>
+    <api id="P:System.Diagnostics.DebuggerDisplayAttribute.TargetTypeName">
+      <topicdata group="api" />
+      <apidata name="TargetTypeName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TargetTypeName" />
+      <setter name="set_TargetTypeName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerDisplayAttribute" ref="true" />
+      </containers>
+      <file name="16fb54c9-88df-0e9f-ed47-28ea4552971f" />
+    </api>
+    <api id="P:System.Diagnostics.DebuggerDisplayAttribute.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Type" />
+      <setter name="set_Type" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerDisplayAttribute" ref="true" />
+      </containers>
+      <file name="21eee6ee-dd4b-6a24-d729-7b83ab0b4118" />
+    </api>
+    <api id="P:System.Diagnostics.DebuggerDisplayAttribute.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerDisplayAttribute" ref="true" />
+      </containers>
+      <file name="843ea955-396d-6b3c-c81a-d41b9902e1f0" />
+    </api>
+    <api id="T:System.Diagnostics.DebuggerHiddenAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.DebuggerHiddenAttribute" />
+      <apidata name="DebuggerHiddenAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Diagnostics.DebuggerHiddenAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Constructor" />
+              <field name="Method" />
+              <field name="Property" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="6ec58862-b6d4-fdf8-aa3c-f290a9d757b3" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.DebuggerHiddenAttribute">
+      <topicdata name="DebuggerHiddenAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.DebuggerHiddenAttribute" />
+      <apidata name="DebuggerHiddenAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Diagnostics.DebuggerHiddenAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.DebuggerHiddenAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerHiddenAttribute" />
+      </containers>
+      <file name="9b66467a-cba8-70e3-b48e-05a9024fafb6" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.DebuggerHiddenAttribute">
+      <topicdata name="DebuggerHiddenAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.DebuggerHiddenAttribute" />
+      <apidata name="DebuggerHiddenAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Diagnostics.DebuggerHiddenAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerHiddenAttribute" />
+      </containers>
+      <file name="ebc57cea-f27b-0bf5-a966-4cd9458d5196" />
+    </api>
+    <api id="M:System.Diagnostics.DebuggerHiddenAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerHiddenAttribute" ref="true" />
+      </containers>
+      <file name="76e118ee-1f9e-646c-105d-421f9e196cc3" />
+    </api>
+    <api id="T:System.Diagnostics.DebuggerNonUserCodeAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.DebuggerNonUserCodeAttribute" />
+      <apidata name="DebuggerNonUserCodeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Diagnostics.DebuggerNonUserCodeAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Struct" />
+              <field name="Constructor" />
+              <field name="Method" />
+              <field name="Property" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="aa7cfc87-63aa-9259-9593-303357c71ed2" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.DebuggerNonUserCodeAttribute">
+      <topicdata name="DebuggerNonUserCodeAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.DebuggerNonUserCodeAttribute" />
+      <apidata name="DebuggerNonUserCodeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Diagnostics.DebuggerNonUserCodeAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.DebuggerNonUserCodeAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerNonUserCodeAttribute" />
+      </containers>
+      <file name="a15484b2-b8e7-3997-b256-7f990c58ae8f" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.DebuggerNonUserCodeAttribute">
+      <topicdata name="DebuggerNonUserCodeAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.DebuggerNonUserCodeAttribute" />
+      <apidata name="DebuggerNonUserCodeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Diagnostics.DebuggerNonUserCodeAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerNonUserCodeAttribute" />
+      </containers>
+      <file name="65636628-a506-d211-34b0-0444d909eb7d" />
+    </api>
+    <api id="M:System.Diagnostics.DebuggerNonUserCodeAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerNonUserCodeAttribute" ref="true" />
+      </containers>
+      <file name="3dbac357-f44a-8442-109f-f9ed87cc09b3" />
+    </api>
+    <api id="T:System.Diagnostics.DebuggerStepperBoundaryAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.DebuggerStepperBoundaryAttribute" />
+      <apidata name="DebuggerStepperBoundaryAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Diagnostics.DebuggerStepperBoundaryAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Constructor" />
+              <field name="Method" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="84c24272-da4b-19f3-0e3d-f64bbd0b6078" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.DebuggerStepperBoundaryAttribute">
+      <topicdata name="DebuggerStepperBoundaryAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.DebuggerStepperBoundaryAttribute" />
+      <apidata name="DebuggerStepperBoundaryAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Diagnostics.DebuggerStepperBoundaryAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.DebuggerStepperBoundaryAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerStepperBoundaryAttribute" />
+      </containers>
+      <file name="6ef5620f-b512-e547-c5d2-90bd33113425" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.DebuggerStepperBoundaryAttribute">
+      <topicdata name="DebuggerStepperBoundaryAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.DebuggerStepperBoundaryAttribute" />
+      <apidata name="DebuggerStepperBoundaryAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Diagnostics.DebuggerStepperBoundaryAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerStepperBoundaryAttribute" />
+      </containers>
+      <file name="f4612147-d962-fce0-5c00-9397ccf2986f" />
+    </api>
+    <api id="M:System.Diagnostics.DebuggerStepperBoundaryAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerStepperBoundaryAttribute" ref="true" />
+      </containers>
+      <file name="9ee9eb08-d87d-53c0-0c6d-b774838fb819" />
+    </api>
+    <api id="T:System.Diagnostics.DebuggerStepThroughAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.DebuggerStepThroughAttribute" />
+      <apidata name="DebuggerStepThroughAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Diagnostics.DebuggerStepThroughAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Struct" />
+              <field name="Constructor" />
+              <field name="Method" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="199fb786-9a5b-4996-cdd4-3106b8e6e7d3" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.DebuggerStepThroughAttribute">
+      <topicdata name="DebuggerStepThroughAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.DebuggerStepThroughAttribute" />
+      <apidata name="DebuggerStepThroughAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Diagnostics.DebuggerStepThroughAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.DebuggerStepThroughAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerStepThroughAttribute" />
+      </containers>
+      <file name="46706adf-3b22-f0c9-428b-4a34c2da6758" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.DebuggerStepThroughAttribute">
+      <topicdata name="DebuggerStepThroughAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.DebuggerStepThroughAttribute" />
+      <apidata name="DebuggerStepThroughAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Diagnostics.DebuggerStepThroughAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerStepThroughAttribute" />
+      </containers>
+      <file name="c8dc9acb-992c-dcb8-3a51-03d691a08277" />
+    </api>
+    <api id="M:System.Diagnostics.DebuggerStepThroughAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerStepThroughAttribute" ref="true" />
+      </containers>
+      <file name="6f97443f-ab3b-4171-9452-90b236944e90" />
+    </api>
+    <api id="T:System.Diagnostics.DebuggerTypeProxyAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.DebuggerTypeProxyAttribute" />
+      <apidata name="DebuggerTypeProxyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+              <field name="Class" />
+              <field name="Struct" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="11242f7f-6037-eca1-573b-48d8e48be6c0" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.DebuggerTypeProxyAttribute">
+      <topicdata name="DebuggerTypeProxyAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.DebuggerTypeProxyAttribute" />
+      <apidata name="DebuggerTypeProxyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Diagnostics.DebuggerTypeProxyAttribute.#ctor">
+          <element api="M:System.Diagnostics.DebuggerTypeProxyAttribute.#ctor(System.String)" />
+          <element api="M:System.Diagnostics.DebuggerTypeProxyAttribute.#ctor(System.Type)" />
+        </element>
+        <element api="P:System.Diagnostics.DebuggerTypeProxyAttribute.ProxyTypeName" />
+        <element api="P:System.Diagnostics.DebuggerTypeProxyAttribute.Target" />
+        <element api="P:System.Diagnostics.DebuggerTypeProxyAttribute.TargetTypeName" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerTypeProxyAttribute" />
+      </containers>
+      <file name="fddaa74c-4824-d3a4-f752-7e285bfbe453" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.DebuggerTypeProxyAttribute">
+      <topicdata name="DebuggerTypeProxyAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.DebuggerTypeProxyAttribute" />
+      <apidata name="DebuggerTypeProxyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerTypeProxyAttribute" />
+      </containers>
+      <file name="ba1eb6b0-eaeb-6ee2-4dcf-48df66f37aaa" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.DebuggerTypeProxyAttribute">
+      <topicdata name="DebuggerTypeProxyAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.DebuggerTypeProxyAttribute" />
+      <apidata name="DebuggerTypeProxyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Diagnostics.DebuggerTypeProxyAttribute.ProxyTypeName" />
+        <element api="P:System.Diagnostics.DebuggerTypeProxyAttribute.Target" />
+        <element api="P:System.Diagnostics.DebuggerTypeProxyAttribute.TargetTypeName" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerTypeProxyAttribute" />
+      </containers>
+      <file name="6a95afe7-04fa-6c3f-0eb4-aeb11b502f4b" />
+    </api>
+    <api id="Overload:System.Diagnostics.DebuggerTypeProxyAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.DebuggerTypeProxyAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Diagnostics.DebuggerTypeProxyAttribute.#ctor(System.String)" />
+        <element api="M:System.Diagnostics.DebuggerTypeProxyAttribute.#ctor(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerTypeProxyAttribute" ref="true" />
+      </containers>
+      <file name="f2dff223-13b3-2869-08bc-97477185271d" />
+    </api>
+    <api id="M:System.Diagnostics.DebuggerTypeProxyAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Diagnostics.DebuggerTypeProxyAttribute.#ctor" />
+      <parameters>
+        <parameter name="typeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerTypeProxyAttribute" ref="true" />
+      </containers>
+      <file name="92951402-cbad-a0c3-e981-8bb345bcf700" />
+    </api>
+    <api id="M:System.Diagnostics.DebuggerTypeProxyAttribute.#ctor(System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Diagnostics.DebuggerTypeProxyAttribute.#ctor" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerTypeProxyAttribute" ref="true" />
+      </containers>
+      <file name="88ed1e3a-88b5-aace-e47a-836c71f9e47d" />
+    </api>
+    <api id="P:System.Diagnostics.DebuggerTypeProxyAttribute.ProxyTypeName">
+      <topicdata group="api" />
+      <apidata name="ProxyTypeName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ProxyTypeName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerTypeProxyAttribute" ref="true" />
+      </containers>
+      <file name="f4827d35-1502-28b0-a001-afd0f6b30bed" />
+    </api>
+    <api id="P:System.Diagnostics.DebuggerTypeProxyAttribute.Target">
+      <topicdata group="api" />
+      <apidata name="Target" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Target" />
+      <setter name="set_Target" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerTypeProxyAttribute" ref="true" />
+      </containers>
+      <file name="6b06e570-17b4-2030-de2d-804e49d6e34d" />
+    </api>
+    <api id="P:System.Diagnostics.DebuggerTypeProxyAttribute.TargetTypeName">
+      <topicdata group="api" />
+      <apidata name="TargetTypeName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TargetTypeName" />
+      <setter name="set_TargetTypeName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics" />
+        <type api="T:System.Diagnostics.DebuggerTypeProxyAttribute" ref="true" />
+      </containers>
+      <file name="1cf208ff-9547-588d-3dd0-9f1ee76e77c5" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,660 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Transactions">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Transactions.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Transactions.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Transactions.dll</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Transactions.Configuration">
+      <topicdata group="api" />
+      <apidata name="System.Transactions.Configuration" group="namespace" />
+      <elements>
+        <element api="T:System.Transactions.Configuration.DefaultSettingsSection" />
+        <element api="T:System.Transactions.Configuration.MachineSettingsSection" />
+        <element api="T:System.Transactions.Configuration.TransactionsSectionGroup" />
+      </elements>
+      <file name="f14f4f6d-59e2-985d-ac0c-7a429285ef36" />
+    </api>
+    <api id="T:System.Transactions.Configuration.DefaultSettingsSection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Transactions.Configuration.DefaultSettingsSection" />
+      <apidata name="DefaultSettingsSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Transactions.Configuration.DefaultSettingsSection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+      </containers>
+      <file name="33fe98cd-7b6b-0faf-4e03-c2093af5abfd" />
+    </api>
+    <api id="AllMembers.T:System.Transactions.Configuration.DefaultSettingsSection">
+      <topicdata name="DefaultSettingsSection" group="list" subgroup="members" typeTopicId="T:System.Transactions.Configuration.DefaultSettingsSection" />
+      <apidata name="DefaultSettingsSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Transactions.Configuration.DefaultSettingsSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="M:System.Transactions.Configuration.DefaultSettingsSection.#ctor" />
+        <element api="P:System.Transactions.Configuration.DefaultSettingsSection.DistributedTransactionManagerName" />
+        <element api="P:System.Transactions.Configuration.DefaultSettingsSection.Timeout" />
+      </elements>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.DefaultSettingsSection" />
+      </containers>
+      <file name="63dba96e-8d3d-0e6c-05d0-d273d5246b74" />
+    </api>
+    <api id="Methods.T:System.Transactions.Configuration.DefaultSettingsSection">
+      <topicdata name="DefaultSettingsSection" group="list" subgroup="Methods" typeTopicId="T:System.Transactions.Configuration.DefaultSettingsSection" />
+      <apidata name="DefaultSettingsSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Transactions.Configuration.DefaultSettingsSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.DefaultSettingsSection" />
+      </containers>
+      <file name="cb46f141-b4de-d7d3-f966-e24369c1ca18" />
+    </api>
+    <api id="Properties.T:System.Transactions.Configuration.DefaultSettingsSection">
+      <topicdata name="DefaultSettingsSection" group="list" subgroup="Properties" typeTopicId="T:System.Transactions.Configuration.DefaultSettingsSection" />
+      <apidata name="DefaultSettingsSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Transactions.Configuration.DefaultSettingsSection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="P:System.Transactions.Configuration.DefaultSettingsSection.DistributedTransactionManagerName" />
+        <element api="P:System.Transactions.Configuration.DefaultSettingsSection.Timeout" />
+      </elements>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.DefaultSettingsSection" />
+      </containers>
+      <file name="1c4ee43d-eb9c-6292-37de-621464c2cabe" />
+    </api>
+    <api id="M:System.Transactions.Configuration.DefaultSettingsSection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.DefaultSettingsSection" ref="true" />
+      </containers>
+      <file name="757d6888-fb5c-c1c8-b946-614fecdb7955" />
+    </api>
+    <api id="P:System.Transactions.Configuration.DefaultSettingsSection.DistributedTransactionManagerName">
+      <topicdata group="api" />
+      <apidata name="DistributedTransactionManagerName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DistributedTransactionManagerName" />
+      <setter name="set_DistributedTransactionManagerName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.DefaultSettingsSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>distributedTransactionManagerName</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value />
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="b6e22e7a-b8f4-868d-0758-c06119d7d736" />
+    </api>
+    <api id="P:System.Transactions.Configuration.DefaultSettingsSection.Timeout">
+      <topicdata group="api" />
+      <apidata name="Timeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Timeout" />
+      <setter name="set_Timeout" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.DefaultSettingsSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.TimeSpanValidatorAttribute" ref="true" />
+          <assignment name="MinValueString">
+            <type api="T:System.String" ref="true" />
+            <value>00:00:00</value>
+          </assignment>
+          <assignment name="MaxValueString">
+            <type api="T:System.String" ref="true" />
+            <value>10675199.02:48:05.4775807</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>timeout</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value>00:01:00</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="1b2d601b-d077-e7b1-254f-61cdb9cb5eb9" />
+    </api>
+    <api id="T:System.Transactions.Configuration.MachineSettingsSection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Transactions.Configuration.MachineSettingsSection" />
+      <apidata name="MachineSettingsSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Transactions.Configuration.MachineSettingsSection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+      </containers>
+      <file name="f612d356-6b6c-c3bd-a1f9-090184962353" />
+    </api>
+    <api id="AllMembers.T:System.Transactions.Configuration.MachineSettingsSection">
+      <topicdata name="MachineSettingsSection" group="list" subgroup="members" typeTopicId="T:System.Transactions.Configuration.MachineSettingsSection" />
+      <apidata name="MachineSettingsSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Transactions.Configuration.MachineSettingsSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="M:System.Transactions.Configuration.MachineSettingsSection.#ctor" />
+        <element api="P:System.Transactions.Configuration.MachineSettingsSection.MaxTimeout" />
+      </elements>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.MachineSettingsSection" />
+      </containers>
+      <file name="9959baae-285c-62f7-f1f3-764e3592b12a" />
+    </api>
+    <api id="Methods.T:System.Transactions.Configuration.MachineSettingsSection">
+      <topicdata name="MachineSettingsSection" group="list" subgroup="Methods" typeTopicId="T:System.Transactions.Configuration.MachineSettingsSection" />
+      <apidata name="MachineSettingsSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Transactions.Configuration.MachineSettingsSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.MachineSettingsSection" />
+      </containers>
+      <file name="04681c63-38f4-e7c7-40c7-46ff4b71adc1" />
+    </api>
+    <api id="Properties.T:System.Transactions.Configuration.MachineSettingsSection">
+      <topicdata name="MachineSettingsSection" group="list" subgroup="Properties" typeTopicId="T:System.Transactions.Configuration.MachineSettingsSection" />
+      <apidata name="MachineSettingsSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Transactions.Configuration.MachineSettingsSection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="P:System.Transactions.Configuration.MachineSettingsSection.MaxTimeout" />
+      </elements>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.MachineSettingsSection" />
+      </containers>
+      <file name="9b476503-054e-9b51-5fbc-3ad95c0ab687" />
+    </api>
+    <api id="M:System.Transactions.Configuration.MachineSettingsSection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.MachineSettingsSection" ref="true" />
+      </containers>
+      <file name="c3c002c2-8e5a-6a53-1a84-0c4ef4eec3ef" />
+    </api>
+    <api id="P:System.Transactions.Configuration.MachineSettingsSection.MaxTimeout">
+      <topicdata group="api" />
+      <apidata name="MaxTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxTimeout" />
+      <setter name="set_MaxTimeout" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.MachineSettingsSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>maxTimeout</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value>00:10:00</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.TimeSpanValidatorAttribute" ref="true" />
+          <assignment name="MinValueString">
+            <type api="T:System.String" ref="true" />
+            <value>00:00:00</value>
+          </assignment>
+          <assignment name="MaxValueString">
+            <type api="T:System.String" ref="true" />
+            <value>10675199.02:48:05.4775807</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="b4ef6a07-6a3f-dbd0-352c-14d11ef95069" />
+    </api>
+    <api id="T:System.Transactions.Configuration.TransactionsSectionGroup">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Transactions.Configuration.TransactionsSectionGroup" />
+      <apidata name="TransactionsSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Transactions.Configuration.TransactionsSectionGroup.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSectionGroup" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+      </containers>
+      <file name="dc5e097f-dbbf-210c-7eba-14d5ae3c88c1" />
+    </api>
+    <api id="AllMembers.T:System.Transactions.Configuration.TransactionsSectionGroup">
+      <topicdata name="TransactionsSectionGroup" group="list" subgroup="members" typeTopicId="T:System.Transactions.Configuration.TransactionsSectionGroup" />
+      <apidata name="TransactionsSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Transactions.Configuration.TransactionsSectionGroup.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Transactions.Configuration.TransactionsSectionGroup.ForceDeclaration">
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration" />
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration(System.Boolean)" />
+        </element>
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclarationRequired" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclared" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Name" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroupName" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroups" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Sections" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Type" />
+        <element api="M:System.Transactions.Configuration.TransactionsSectionGroup.#ctor" />
+        <element api="P:System.Transactions.Configuration.TransactionsSectionGroup.DefaultSettings" />
+        <element api="M:System.Transactions.Configuration.TransactionsSectionGroup.GetSectionGroup(System.Configuration.Configuration)" />
+        <element api="P:System.Transactions.Configuration.TransactionsSectionGroup.MachineSettings" />
+      </elements>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.TransactionsSectionGroup" />
+      </containers>
+      <file name="179f28f5-0f25-3b77-5ea3-23ac3a441060" />
+    </api>
+    <api id="Methods.T:System.Transactions.Configuration.TransactionsSectionGroup">
+      <topicdata name="TransactionsSectionGroup" group="list" subgroup="Methods" typeTopicId="T:System.Transactions.Configuration.TransactionsSectionGroup" />
+      <apidata name="TransactionsSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Transactions.Configuration.TransactionsSectionGroup.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Transactions.Configuration.TransactionsSectionGroup.ForceDeclaration">
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration" />
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration(System.Boolean)" />
+        </element>
+        <element api="M:System.Transactions.Configuration.TransactionsSectionGroup.GetSectionGroup(System.Configuration.Configuration)" />
+      </elements>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.TransactionsSectionGroup" />
+      </containers>
+      <file name="cb8db120-88ff-30c3-6391-eb622d8183ac" />
+    </api>
+    <api id="Properties.T:System.Transactions.Configuration.TransactionsSectionGroup">
+      <topicdata name="TransactionsSectionGroup" group="list" subgroup="Properties" typeTopicId="T:System.Transactions.Configuration.TransactionsSectionGroup" />
+      <apidata name="TransactionsSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Transactions.Configuration.TransactionsSectionGroup.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclarationRequired" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclared" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Name" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroupName" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroups" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Sections" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Type" />
+        <element api="P:System.Transactions.Configuration.TransactionsSectionGroup.DefaultSettings" />
+        <element api="P:System.Transactions.Configuration.TransactionsSectionGroup.MachineSettings" />
+      </elements>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.TransactionsSectionGroup" />
+      </containers>
+      <file name="fd4679b4-4667-5332-c482-0a0d6f8a621b" />
+    </api>
+    <api id="M:System.Transactions.Configuration.TransactionsSectionGroup.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.TransactionsSectionGroup" ref="true" />
+      </containers>
+      <file name="1cca0490-645d-f963-fba9-fe96e92cc618" />
+    </api>
+    <api id="P:System.Transactions.Configuration.TransactionsSectionGroup.DefaultSettings">
+      <topicdata group="api" />
+      <apidata name="DefaultSettings" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DefaultSettings" />
+      <returns>
+        <type api="T:System.Transactions.Configuration.DefaultSettingsSection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.TransactionsSectionGroup" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>defaultSettings</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="25829fe6-76be-5e4f-e551-5b279772d8c8" />
+    </api>
+    <api id="M:System.Transactions.Configuration.TransactionsSectionGroup.GetSectionGroup(System.Configuration.Configuration)">
+      <topicdata group="api" />
+      <apidata name="GetSectionGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="config">
+          <type api="T:System.Configuration.Configuration" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Transactions.Configuration.TransactionsSectionGroup" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.TransactionsSectionGroup" ref="true" />
+      </containers>
+      <file name="7a1747b4-0b39-96ed-64d2-3d4710fe753e" />
+    </api>
+    <api id="P:System.Transactions.Configuration.TransactionsSectionGroup.MachineSettings">
+      <topicdata group="api" />
+      <apidata name="MachineSettings" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MachineSettings" />
+      <returns>
+        <type api="T:System.Transactions.Configuration.MachineSettingsSection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Transactions" module="System.Transactions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Transactions.Configuration" />
+        <type api="T:System.Transactions.Configuration.TransactionsSectionGroup" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>machineSettings</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0350f5c7-94ce-a800-867d-f3bab9755146" />
+    </api>
+  </apis>
+</reflection>

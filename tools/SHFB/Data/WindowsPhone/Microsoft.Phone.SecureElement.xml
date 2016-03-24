@@ -1,0 +1,1863 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.SecureElement">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.SecureElement" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.SecureElement.ISecureElementItem" />
+        <element api="T:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind" />
+        <element api="T:Microsoft.Phone.SecureElement.SecureElementChannel" />
+        <element api="T:Microsoft.Phone.SecureElement.SecureElementProperties" />
+        <element api="T:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState" />
+        <element api="T:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs" />
+        <element api="T:Microsoft.Phone.SecureElement.SecureElementItemAction" />
+        <element api="T:Microsoft.Phone.SecureElement.CardEmulationMode" />
+        <element api="T:Microsoft.Phone.SecureElement.UserActionEventArgs" />
+        <element api="T:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs" />
+        <element api="T:Microsoft.Phone.SecureElement.SecureElementReader" />
+        <element api="T:Microsoft.Phone.SecureElement.SecureElementSession" />
+      </elements>
+      <file name="9e6c5033-c96e-83e3-e137-6ed19ae6a282" />
+    </api>
+    <api id="T:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind">
+      <topicdata group="api" />
+      <apidata name="ActivationAuthenticationResultKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind.Unknown" />
+        <element api="F:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind.Canceled" />
+        <element api="F:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind.Failed" />
+        <element api="F:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind.Succeeded" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+      </containers>
+      <file name="ef32ddbe-3b4d-93a7-ca82-0bbfeeecef07" />
+    </api>
+    <api id="F:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind.Canceled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Canceled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind" ref="false" />
+      </containers>
+      <file name="0d368dd2-9909-2fc3-924f-f4c44c43af0d" />
+    </api>
+    <api id="F:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind.Failed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Failed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind" ref="false" />
+      </containers>
+      <file name="f9ff4bd2-7909-5b92-7057-d7579e0669cd" />
+    </api>
+    <api id="F:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind.Succeeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="Succeeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind" ref="false" />
+      </containers>
+      <file name="6388288b-90b9-a784-bd0f-7962671de4d4" />
+    </api>
+    <api id="F:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind" ref="false" />
+      </containers>
+      <file name="a5b86f1f-89a2-adff-e685-aa2ccafadf0e" />
+    </api>
+    <api id="T:Microsoft.Phone.SecureElement.CardEmulationMode">
+      <topicdata group="api" />
+      <apidata name="CardEmulationMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.SecureElement.CardEmulationMode.Off" />
+        <element api="F:Microsoft.Phone.SecureElement.CardEmulationMode.OnEvenIfWalletIsClosed" />
+        <element api="F:Microsoft.Phone.SecureElement.CardEmulationMode.OnOnlyWhenWalletIsOpened" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+      </containers>
+      <file name="9112221a-5c1a-7f81-0bd8-1282cd8d8b9e" />
+    </api>
+    <api id="F:Microsoft.Phone.SecureElement.CardEmulationMode.Off">
+      <topicdata group="api" notopic="" />
+      <apidata name="Off" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.CardEmulationMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.CardEmulationMode" ref="false" />
+      </containers>
+      <file name="6642b6b9-43b9-d1ab-1bd3-5acedf82b92a" />
+    </api>
+    <api id="F:Microsoft.Phone.SecureElement.CardEmulationMode.OnEvenIfWalletIsClosed">
+      <topicdata group="api" notopic="" />
+      <apidata name="OnEvenIfWalletIsClosed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.CardEmulationMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.CardEmulationMode" ref="false" />
+      </containers>
+      <file name="4ee5d5e1-ac57-0ba2-c6c3-62d65bba599b" />
+    </api>
+    <api id="F:Microsoft.Phone.SecureElement.CardEmulationMode.OnOnlyWhenWalletIsOpened">
+      <topicdata group="api" notopic="" />
+      <apidata name="OnOnlyWhenWalletIsOpened" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.CardEmulationMode" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.CardEmulationMode" ref="false" />
+      </containers>
+      <file name="1bbb739b-69b4-7131-6281-5c8b4a0387d8" />
+    </api>
+    <api id="T:Microsoft.Phone.SecureElement.ISecureElementItem">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.SecureElement.ISecureElementItem" />
+      <apidata name="ISecureElementItem" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Microsoft.Phone.Wallet.WalletTransactionItemBase" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+      </containers>
+      <file name="0d94a7b0-86ff-04f2-7016-4e4112272dc9" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.SecureElement.ISecureElementItem">
+      <topicdata name="ISecureElementItem" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.SecureElement.ISecureElementItem" />
+      <apidata name="ISecureElementItem" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.SecureElement.ISecureElementItem.NotifyActivationAuthenticationCompleted(Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind)" />
+        <element api="P:Microsoft.Phone.SecureElement.ISecureElementItem.SecureElementProperties" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.ISecureElementItem" />
+      </containers>
+      <file name="94c5b30c-f5b9-54b4-2169-cebe4e5b8d0b" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.SecureElement.ISecureElementItem">
+      <topicdata name="ISecureElementItem" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.SecureElement.ISecureElementItem" />
+      <apidata name="ISecureElementItem" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.SecureElement.ISecureElementItem.NotifyActivationAuthenticationCompleted(Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.ISecureElementItem" />
+      </containers>
+      <file name="733811f8-b0a4-3afa-e0c8-39fd8ae8b7d1" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.SecureElement.ISecureElementItem">
+      <topicdata name="ISecureElementItem" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.SecureElement.ISecureElementItem" />
+      <apidata name="ISecureElementItem" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.SecureElement.ISecureElementItem.SecureElementProperties" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.ISecureElementItem" />
+      </containers>
+      <file name="3b51e1e6-bcc4-6972-f617-e1f1769d8eb0" />
+    </api>
+    <api id="M:Microsoft.Phone.SecureElement.ISecureElementItem.NotifyActivationAuthenticationCompleted(Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind)">
+      <topicdata group="api" />
+      <apidata name="NotifyActivationAuthenticationCompleted" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:Microsoft.Phone.SecureElement.ActivationAuthenticationResultKind" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.ISecureElementItem" ref="true" />
+      </containers>
+      <file name="8879eb52-008c-82d4-d2b7-df9ba8db451c" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.ISecureElementItem.SecureElementProperties">
+      <topicdata group="api" />
+      <apidata name="SecureElementProperties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_SecureElementProperties" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.ISecureElementItem" ref="true" />
+      </containers>
+      <file name="cdf4035a-8e78-053e-aa1b-f4603ea6ca9a" />
+    </api>
+    <api id="T:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs" />
+      <apidata name="RegisterSecureElementItemEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+      </containers>
+      <file name="d295dff8-4497-bca6-b23d-7108c91af476" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs">
+      <topicdata name="RegisterSecureElementItemEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs" />
+      <apidata name="RegisterSecureElementItemEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs.Result" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs" />
+      </containers>
+      <file name="01e336ab-0f7f-e605-9e1a-5e3c7a4eecc5" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs">
+      <topicdata name="RegisterSecureElementItemEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs" />
+      <apidata name="RegisterSecureElementItemEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs" />
+      </containers>
+      <file name="078710ad-c281-d425-d348-ead1a45f9a57" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs">
+      <topicdata name="RegisterSecureElementItemEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs" />
+      <apidata name="RegisterSecureElementItemEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs.Result" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs" />
+      </containers>
+      <file name="a51d366a-7a83-da93-293f-078db405d015" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs.Result">
+      <topicdata group="api" />
+      <apidata name="Result" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Result" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs" ref="true" />
+      </containers>
+      <file name="abd87ea9-e530-2d91-868d-503743542cab" />
+    </api>
+    <api id="T:Microsoft.Phone.SecureElement.SecureElementChannel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.SecureElement.SecureElementChannel" />
+      <apidata name="SecureElementChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+      </containers>
+      <file name="3af5b5ee-5bdd-58df-b2a0-9a8328bb1f00" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.SecureElement.SecureElementChannel">
+      <topicdata name="SecureElementChannel" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.SecureElement.SecureElementChannel" />
+      <apidata name="SecureElementChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementChannel.Dispose" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementChannel.Finalize" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementChannel.SelectResponse" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementChannel.Session" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementChannel.Transmit(System.Byte[])" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementChannel" />
+      </containers>
+      <file name="b1d5c98b-3a52-fe07-efc0-0815eacfa7e9" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.SecureElement.SecureElementChannel">
+      <topicdata name="SecureElementChannel" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.SecureElement.SecureElementChannel" />
+      <apidata name="SecureElementChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementChannel.Dispose" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementChannel.Finalize" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementChannel.Transmit(System.Byte[])" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementChannel" />
+      </containers>
+      <file name="ed3e6657-e096-13ac-49b2-ef60af9b08d4" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.SecureElement.SecureElementChannel">
+      <topicdata name="SecureElementChannel" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.SecureElement.SecureElementChannel" />
+      <apidata name="SecureElementChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementChannel.SelectResponse" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementChannel.Session" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementChannel" />
+      </containers>
+      <file name="b34d9b2f-ce4e-1b49-9b77-c0eb8707b3fb" />
+    </api>
+    <api id="M:Microsoft.Phone.SecureElement.SecureElementChannel.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementChannel" ref="true" />
+      </containers>
+      <file name="10080b46-47ab-df7f-c20f-a1ccc49f8552" />
+    </api>
+    <api id="M:Microsoft.Phone.SecureElement.SecureElementChannel.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementChannel" ref="true" />
+      </containers>
+      <file name="5ac9fe56-3c8a-a4ba-e58b-64c5737d61c3" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.SecureElementChannel.SelectResponse">
+      <topicdata group="api" />
+      <apidata name="SelectResponse" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SelectResponse" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementChannel" ref="true" />
+      </containers>
+      <file name="d97df968-f740-a7a4-5daa-37b1fda147b9" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.SecureElementChannel.Session">
+      <topicdata group="api" />
+      <apidata name="Session" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Session" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementSession" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementChannel" ref="true" />
+      </containers>
+      <file name="7f45dc22-e6a6-7189-961b-c6893c4391f9" />
+    </api>
+    <api id="M:Microsoft.Phone.SecureElement.SecureElementChannel.Transmit(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="Transmit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="command">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementChannel" ref="true" />
+      </containers>
+      <file name="87db90a4-3819-dfcc-ab02-c89e45d00da2" />
+    </api>
+    <api id="T:Microsoft.Phone.SecureElement.SecureElementItemAction">
+      <topicdata group="api" />
+      <apidata name="SecureElementItemAction" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.SecureElement.SecureElementItemAction.Activate" />
+        <element api="F:Microsoft.Phone.SecureElement.SecureElementItemAction.Deactivate" />
+        <element api="F:Microsoft.Phone.SecureElement.SecureElementItemAction.Delete" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+      </containers>
+      <file name="a4896317-eecd-4746-8f60-8bcabe0a2932" />
+    </api>
+    <api id="F:Microsoft.Phone.SecureElement.SecureElementItemAction.Activate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Activate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementItemAction" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementItemAction" ref="false" />
+      </containers>
+      <file name="cbdc4688-513d-2fb1-b2db-20675fd03469" />
+    </api>
+    <api id="F:Microsoft.Phone.SecureElement.SecureElementItemAction.Deactivate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Deactivate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementItemAction" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementItemAction" ref="false" />
+      </containers>
+      <file name="6d917947-86ec-be20-6e01-07690caed6e5" />
+    </api>
+    <api id="F:Microsoft.Phone.SecureElement.SecureElementItemAction.Delete">
+      <topicdata group="api" notopic="" />
+      <apidata name="Delete" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementItemAction" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementItemAction" ref="false" />
+      </containers>
+      <file name="9cc83fd3-8777-3d9d-ebae-83e7ed435351" />
+    </api>
+    <api id="T:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs" />
+      <apidata name="SecureElementItemActionEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+      </containers>
+      <file name="77a265a5-5d03-7a8a-1508-2e1eb4307b40" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs">
+      <topicdata name="SecureElementItemActionEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs" />
+      <apidata name="SecureElementItemActionEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs.#ctor" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs.Item" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs.Operation" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs" />
+      </containers>
+      <file name="4d337fcb-a4e3-7bb2-5d98-d475cdd126cf" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs">
+      <topicdata name="SecureElementItemActionEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs" />
+      <apidata name="SecureElementItemActionEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs" />
+      </containers>
+      <file name="cfe60fda-3b11-e1d0-d7ba-0e7da06f9e42" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs">
+      <topicdata name="SecureElementItemActionEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs" />
+      <apidata name="SecureElementItemActionEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs.Item" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs.Operation" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs" />
+      </containers>
+      <file name="b82f7d45-4ab6-1daf-98e0-fec29a3a803d" />
+    </api>
+    <api id="M:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs" ref="true" />
+      </containers>
+      <file name="c5335158-082f-9d37-8977-620a681aad50" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs.Item">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.ISecureElementItem" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs" ref="true" />
+      </containers>
+      <file name="3bd0644c-4436-6e89-4ce9-e41de9d64f41" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs.Operation">
+      <topicdata group="api" />
+      <apidata name="Operation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Operation" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementItemAction" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementItemActionEventArgs" ref="true" />
+      </containers>
+      <file name="3595d974-c4c3-43fa-4c8f-85316447cab9" />
+    </api>
+    <api id="T:Microsoft.Phone.SecureElement.SecureElementProperties">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.SecureElement.SecureElementProperties" />
+      <apidata name="SecureElementProperties" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+      </containers>
+      <file name="d7fc08ed-0dfc-2278-01cc-b1d8ad162b79" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.SecureElement.SecureElementProperties">
+      <topicdata name="SecureElementProperties" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.SecureElement.SecureElementProperties" />
+      <apidata name="SecureElementProperties" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementProperties.ActivationRequiresAuthentication" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementProperties.AppletId" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementProperties.LastKnownAppletState" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementProperties.ServiceId" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" />
+      </containers>
+      <file name="5e0c4bc1-28ec-8b21-40d9-7e71ef0cab2d" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.SecureElement.SecureElementProperties">
+      <topicdata name="SecureElementProperties" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.SecureElement.SecureElementProperties" />
+      <apidata name="SecureElementProperties" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" />
+      </containers>
+      <file name="8c661b07-f4f4-b54d-c8b5-e6557e6551a4" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.SecureElement.SecureElementProperties">
+      <topicdata name="SecureElementProperties" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.SecureElement.SecureElementProperties" />
+      <apidata name="SecureElementProperties" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementProperties.ActivationRequiresAuthentication" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementProperties.AppletId" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementProperties.LastKnownAppletState" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementProperties.ServiceId" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" />
+      </containers>
+      <file name="1f168dbc-3935-a9d3-8800-fbea4c9090cc" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.SecureElementProperties.ActivationRequiresAuthentication">
+      <topicdata group="api" />
+      <apidata name="ActivationRequiresAuthentication" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ActivationRequiresAuthentication" />
+      <setter name="set_ActivationRequiresAuthentication" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+      </containers>
+      <file name="51a1d815-3333-7ea9-2b0b-13bed3be05aa" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.SecureElementProperties.AppletId">
+      <topicdata group="api" />
+      <apidata name="AppletId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AppletId" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+      </containers>
+      <file name="be47eaef-a2fc-3df4-346f-c85200a09739" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.SecureElementProperties.LastKnownAppletState">
+      <topicdata group="api" />
+      <apidata name="LastKnownAppletState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LastKnownAppletState" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState" ref="false">
+          <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+      </containers>
+      <file name="c2e61be2-9911-bc83-7a00-125ca77ee926" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.SecureElementProperties.ServiceId">
+      <topicdata group="api" />
+      <apidata name="ServiceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ServiceId" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+      </containers>
+      <file name="56f454f5-b4a9-e335-af25-9e8e0a08e0e1" />
+    </api>
+    <api id="T:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState">
+      <topicdata group="api" />
+      <apidata name="AppletState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState.None" />
+        <element api="F:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState.Init" />
+        <element api="F:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState.Deactivated" />
+        <element api="F:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState.Activated" />
+        <element api="F:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState.Locked" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+      </containers>
+      <file name="7656112d-805d-3d61-8269-65d719323c4b" />
+    </api>
+    <api id="F:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState.Activated">
+      <topicdata group="api" notopic="" />
+      <apidata name="Activated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState" ref="false">
+          <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+        </type>
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState" ref="false">
+          <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+        </type>
+      </containers>
+      <file name="ea3b15c6-c51e-a37d-b607-17fafb4f034a" />
+    </api>
+    <api id="F:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState.Deactivated">
+      <topicdata group="api" notopic="" />
+      <apidata name="Deactivated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState" ref="false">
+          <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+        </type>
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState" ref="false">
+          <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+        </type>
+      </containers>
+      <file name="3ba46de2-434a-62f9-e591-288fdda762f2" />
+    </api>
+    <api id="F:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState.Init">
+      <topicdata group="api" notopic="" />
+      <apidata name="Init" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState" ref="false">
+          <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+        </type>
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState" ref="false">
+          <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+        </type>
+      </containers>
+      <file name="22ca0731-f45e-2f95-5ed0-af733f133718" />
+    </api>
+    <api id="F:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState.Locked">
+      <topicdata group="api" notopic="" />
+      <apidata name="Locked" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState" ref="false">
+          <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+        </type>
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState" ref="false">
+          <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+        </type>
+      </containers>
+      <file name="8d09299b-5b89-0e44-c36a-35648eddbd73" />
+    </api>
+    <api id="F:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState" ref="false">
+          <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+        </type>
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties.AppletState" ref="false">
+          <type api="T:Microsoft.Phone.SecureElement.SecureElementProperties" ref="true" />
+        </type>
+      </containers>
+      <file name="54dbee3b-0b08-52f6-3767-ce899d80d933" />
+    </api>
+    <api id="T:Microsoft.Phone.SecureElement.SecureElementReader">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.SecureElement.SecureElementReader" />
+      <apidata name="SecureElementReader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+      </containers>
+      <file name="2a0f753e-6e58-8937-f140-2961317f5668" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.SecureElement.SecureElementReader">
+      <topicdata name="SecureElementReader" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.SecureElement.SecureElementReader" />
+      <apidata name="SecureElementReader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementReader.CardEmulationMode" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementReader.Dispose" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementReader.Finalize" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementReader.GetDefault" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementReader.IsSecureElementPresent" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementReader.OpenSession" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementReader.RegisterSecureElementItemAsync(Microsoft.Phone.SecureElement.ISecureElementItem,System.Byte[])" />
+        <element api="E:Microsoft.Phone.SecureElement.SecureElementReader.RegisterSecureElementItemCompleted" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementReader.TsmRoutingId" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementReader" />
+      </containers>
+      <file name="3cf9fe35-c875-a9ac-4bbd-2ea25df5e97b" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.SecureElement.SecureElementReader">
+      <topicdata name="SecureElementReader" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.SecureElement.SecureElementReader" />
+      <apidata name="SecureElementReader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementReader.Dispose" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementReader.Finalize" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementReader.GetDefault" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementReader.OpenSession" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementReader.RegisterSecureElementItemAsync(Microsoft.Phone.SecureElement.ISecureElementItem,System.Byte[])" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementReader" />
+      </containers>
+      <file name="ca6f7537-c057-070c-c148-2284fdf2f685" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.SecureElement.SecureElementReader">
+      <topicdata name="SecureElementReader" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.SecureElement.SecureElementReader" />
+      <apidata name="SecureElementReader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementReader.CardEmulationMode" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementReader.IsSecureElementPresent" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementReader.TsmRoutingId" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementReader" />
+      </containers>
+      <file name="80adfa64-8a0f-46b4-d5ea-6e6d00f09488" />
+    </api>
+    <api id="Events.T:Microsoft.Phone.SecureElement.SecureElementReader">
+      <topicdata name="SecureElementReader" group="list" subgroup="Events" typeTopicId="T:Microsoft.Phone.SecureElement.SecureElementReader" />
+      <apidata name="SecureElementReader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.Phone.SecureElement.SecureElementReader.RegisterSecureElementItemCompleted" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementReader" />
+      </containers>
+      <file name="b3572dd9-26cc-1f4c-5e2d-e271f0d7d417" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.SecureElementReader.CardEmulationMode">
+      <topicdata group="api" />
+      <apidata name="CardEmulationMode" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CardEmulationMode" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.CardEmulationMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementReader" ref="true" />
+      </containers>
+      <file name="c60dae36-d599-e046-1b17-4f3d5abe169e" />
+    </api>
+    <api id="M:Microsoft.Phone.SecureElement.SecureElementReader.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementReader" ref="true" />
+      </containers>
+      <file name="dbc8f7b9-c4e5-6c17-0945-571c76ba9a67" />
+    </api>
+    <api id="M:Microsoft.Phone.SecureElement.SecureElementReader.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementReader" ref="true" />
+      </containers>
+      <file name="8241c22e-6417-ab1c-c294-df3ab4bdbb3c" />
+    </api>
+    <api id="M:Microsoft.Phone.SecureElement.SecureElementReader.GetDefault">
+      <topicdata group="api" />
+      <apidata name="GetDefault" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementReader" ref="true" />
+      </containers>
+      <file name="f67647d5-098e-889a-1a0a-b68c2b0dda8e" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.SecureElementReader.IsSecureElementPresent">
+      <topicdata group="api" />
+      <apidata name="IsSecureElementPresent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsSecureElementPresent" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementReader" ref="true" />
+      </containers>
+      <file name="1ba550aa-13ae-5855-d9a7-dd9c919e4e3d" />
+    </api>
+    <api id="M:Microsoft.Phone.SecureElement.SecureElementReader.OpenSession">
+      <topicdata group="api" />
+      <apidata name="OpenSession" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementSession" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementReader" ref="true" />
+      </containers>
+      <file name="98ee54c2-6570-7d98-f3d5-60f4da1c9ab0" />
+    </api>
+    <api id="M:Microsoft.Phone.SecureElement.SecureElementReader.RegisterSecureElementItemAsync(Microsoft.Phone.SecureElement.ISecureElementItem,System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="RegisterSecureElementItemAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="item">
+          <type api="T:Microsoft.Phone.SecureElement.ISecureElementItem" ref="true" />
+        </parameter>
+        <parameter name="serviceId">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementReader" ref="true" />
+      </containers>
+      <file name="a41328ed-b359-95eb-4583-80e2d5f4c6de" />
+    </api>
+    <api id="E:Microsoft.Phone.SecureElement.SecureElementReader.RegisterSecureElementItemCompleted">
+      <topicdata group="api" />
+      <apidata name="RegisterSecureElementItemCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_RegisterSecureElementItemCompleted" />
+      <remover name="remove_RegisterSecureElementItemCompleted" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Phone.SecureElement.RegisterSecureElementItemEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementReader" ref="true" />
+      </containers>
+      <file name="391ea022-6567-f400-ad5a-fd09b65afd1d" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.SecureElementReader.TsmRoutingId">
+      <topicdata group="api" />
+      <apidata name="TsmRoutingId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TsmRoutingId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementReader" ref="true" />
+      </containers>
+      <file name="d9aad4c8-c6e6-2d87-6a5a-7a1b9dde84a0" />
+    </api>
+    <api id="T:Microsoft.Phone.SecureElement.SecureElementSession">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.SecureElement.SecureElementSession" />
+      <apidata name="SecureElementSession" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+      </containers>
+      <file name="666bb177-96bb-10cc-2455-c3eb2fa2eedc" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.SecureElement.SecureElementSession">
+      <topicdata name="SecureElementSession" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.SecureElement.SecureElementSession" />
+      <apidata name="SecureElementSession" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementSession.AnswerToReset" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementSession.Dispose" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementSession.Finalize" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementSession.OpenChannel(System.Byte[])" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementSession.Reader" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementSession" />
+      </containers>
+      <file name="f7004c18-6f51-597f-0702-5a9a4eb27164" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.SecureElement.SecureElementSession">
+      <topicdata name="SecureElementSession" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.SecureElement.SecureElementSession" />
+      <apidata name="SecureElementSession" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementSession.Dispose" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementSession.Finalize" />
+        <element api="M:Microsoft.Phone.SecureElement.SecureElementSession.OpenChannel(System.Byte[])" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementSession" />
+      </containers>
+      <file name="f28bdfd5-ea59-568c-058b-32cb9b57951f" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.SecureElement.SecureElementSession">
+      <topicdata name="SecureElementSession" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.SecureElement.SecureElementSession" />
+      <apidata name="SecureElementSession" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementSession.AnswerToReset" />
+        <element api="P:Microsoft.Phone.SecureElement.SecureElementSession.Reader" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementSession" />
+      </containers>
+      <file name="42883e14-6763-34d1-9abc-e3470971b88b" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.SecureElementSession.AnswerToReset">
+      <topicdata group="api" />
+      <apidata name="AnswerToReset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AnswerToReset" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementSession" ref="true" />
+      </containers>
+      <file name="61e72d43-ebd9-98e9-7a52-03236d8c4a46" />
+    </api>
+    <api id="M:Microsoft.Phone.SecureElement.SecureElementSession.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementSession" ref="true" />
+      </containers>
+      <file name="5f7e3532-b6f6-88cf-85be-6e0210833b73" />
+    </api>
+    <api id="M:Microsoft.Phone.SecureElement.SecureElementSession.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementSession" ref="true" />
+      </containers>
+      <file name="6ec53957-2180-9284-775a-15e542beb439" />
+    </api>
+    <api id="M:Microsoft.Phone.SecureElement.SecureElementSession.OpenChannel(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="OpenChannel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="appletId">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementChannel" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementSession" ref="true" />
+      </containers>
+      <file name="0cee8ee0-b487-9c5f-fc70-d38f99866691" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.SecureElementSession.Reader">
+      <topicdata group="api" />
+      <apidata name="Reader" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Reader" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.SecureElementSession" ref="true" />
+      </containers>
+      <file name="b76a4a23-dba6-9503-a168-1feb173c133b" />
+    </api>
+    <api id="T:Microsoft.Phone.SecureElement.UserActionEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.SecureElement.UserActionEventArgs" />
+      <apidata name="UserActionEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.SecureElement.UserActionEventArgs.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+      </containers>
+      <file name="0c220d9a-2782-8daa-8f02-c64e29cac016" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.SecureElement.UserActionEventArgs">
+      <topicdata name="UserActionEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.SecureElement.UserActionEventArgs" />
+      <apidata name="UserActionEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.SecureElement.UserActionEventArgs.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.SecureElement.UserActionEventArgs.#ctor" />
+        <element api="P:Microsoft.Phone.SecureElement.UserActionEventArgs.ActionData" />
+        <element api="P:Microsoft.Phone.SecureElement.UserActionEventArgs.Item" />
+        <element api="P:Microsoft.Phone.SecureElement.UserActionEventArgs.Result" />
+        <element api="P:Microsoft.Phone.SecureElement.UserActionEventArgs.TransactionAmount" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.UserActionEventArgs" />
+      </containers>
+      <file name="be4f5ca6-3917-f273-376e-592c52127a8a" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.SecureElement.UserActionEventArgs">
+      <topicdata name="UserActionEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.SecureElement.UserActionEventArgs" />
+      <apidata name="UserActionEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.SecureElement.UserActionEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.UserActionEventArgs" />
+      </containers>
+      <file name="df977d4a-5354-29e5-403c-f0015362b555" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.SecureElement.UserActionEventArgs">
+      <topicdata name="UserActionEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.SecureElement.UserActionEventArgs" />
+      <apidata name="UserActionEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.SecureElement.UserActionEventArgs.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Phone.SecureElement.UserActionEventArgs.ActionData" />
+        <element api="P:Microsoft.Phone.SecureElement.UserActionEventArgs.Item" />
+        <element api="P:Microsoft.Phone.SecureElement.UserActionEventArgs.Result" />
+        <element api="P:Microsoft.Phone.SecureElement.UserActionEventArgs.TransactionAmount" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.UserActionEventArgs" />
+      </containers>
+      <file name="f675c682-92ed-43b0-ce2f-52124dd9d567" />
+    </api>
+    <api id="M:Microsoft.Phone.SecureElement.UserActionEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.UserActionEventArgs" ref="true" />
+      </containers>
+      <file name="1266e3b0-62ee-1a7c-0461-3df24411606c" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.UserActionEventArgs.ActionData">
+      <topicdata group="api" />
+      <apidata name="ActionData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ActionData" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.UserActionEventArgs" ref="true" />
+      </containers>
+      <file name="4396dc7b-6f91-812f-4b89-909b2f48b14f" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.UserActionEventArgs.Item">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <returns>
+        <type api="T:Microsoft.Phone.SecureElement.ISecureElementItem" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.UserActionEventArgs" ref="true" />
+      </containers>
+      <file name="3d34a8a4-722f-4f18-6725-9acf23558d7b" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.UserActionEventArgs.Result">
+      <topicdata group="api" />
+      <apidata name="Result" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Result" />
+      <setter name="set_Result" />
+      <returns>
+        <type api="T:Microsoft.Phone.Wallet.WalletUserActionResultKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.UserActionEventArgs" ref="true" />
+      </containers>
+      <file name="abe0a158-4b7a-8277-1641-5728da09d7c0" />
+    </api>
+    <api id="P:Microsoft.Phone.SecureElement.UserActionEventArgs.TransactionAmount">
+      <topicdata group="api" />
+      <apidata name="TransactionAmount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TransactionAmount" />
+      <setter name="set_TransactionAmount" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.SecureElement" />
+        <type api="T:Microsoft.Phone.SecureElement.UserActionEventArgs" ref="true" />
+      </containers>
+      <file name="0b1def91-d8c4-b9c9-34e7-8d0192985205" />
+    </api>
+  </apis>
+</reflection>

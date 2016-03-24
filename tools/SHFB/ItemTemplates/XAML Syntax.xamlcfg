@@ -1,0 +1,43 @@
+<xamlConfiguration>
+	<!-- Add ancestor classes here that should not get XAML syntax even though they otherwise satisfy the
+			 XAML-ness algorithm.  These classes, their descendants, and all of their members will not get a XAML
+			 syntax section.  You only need to add a class here if you see it get XAML syntax and it should not. -->
+	<xamlExcludedAncestors>
+		<!--
+		<class api="T:MyNamespace.MyNonXamlClass1"/>
+		<class api="T:MyNamespace.MyNonXamlClass2"/>
+		<class api="T:MyNamespace.MyNonXamlClass3"/>
+		-->
+	</xamlExcludedAncestors>
+
+	<!-- Add the assemblies containing types for which the syntax generator should generates XAML syntax.  Types in
+			 all other assemblies will get no XAML syntax. -->
+	<xamlAssemblies>
+		<!-- Specify the assembly name without the extension. -->
+		<assembly name="CompanyName.AssemblyName">
+			<!-- Add an XML namespace entry for each namespace that you want to see after the "XMLNS for XAML" label
+					 in the API topics. -->
+			<xmlns uri="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+				<!-- Types and their members in these namespaces will include the XML namespace after the label.  These
+						 can appear in multiple XML namespace elements to include multiple XML namespaces in the list. -->
+				<clrNamespace name="MyNamespace.Controls"/>
+				<clrNamespace name="MyNamespace.UserControls"/>
+			</xmlns>
+			<xmlns uri="http://schemas.microsoft.com/winfx/2006/xaml">
+				<clrNamespace name="MyNamespace.Controls"/>
+				<clrNamespace name="MyNamespace.UserControls"/>
+			</xmlns>
+			<xmlns uri="clr-namespace:MyNamespace.Controls">
+				<clrNamespace name="MyNamespace.Controls"/>
+			</xmlns>
+			<xmlns uri="clr-namespace:MyNamespace.UserControls">
+				<clrNamespace name="MyNamespace.UserControls"/>
+			</xmlns>
+		</assembly>
+		
+		<!-- If no namespace elements are listed for an assembly, the types and members will get usage syntax but
+				 will show "Not mapped to an xmlns" after the "XMLNS for XAML" label. -->
+		<assembly name="CompanyName.OtherAssembly" />
+
+	</xamlAssemblies>
+</xamlConfiguration>

@@ -1,0 +1,1094 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\silverlightplatformpublickey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Security">
+      <topicdata group="api" />
+      <apidata name="System.Security" group="namespace" />
+      <elements>
+        <element api="T:System.Security.SecurityState" />
+        <element api="T:System.Security.UnverifiableCodeAttribute" />
+        <element api="T:System.Security.AllowPartiallyTrustedCallersAttribute" />
+        <element api="T:System.Security.SecurityCriticalAttribute" />
+        <element api="T:System.Security.SecuritySafeCriticalAttribute" />
+        <element api="T:System.Security.SecurityTransparentAttribute" />
+        <element api="T:System.Security.SecurityException" />
+        <element api="T:System.Security.VerificationException" />
+      </elements>
+      <file name="85d7d446-022f-1eb6-5879-cce99a3f87f7" />
+    </api>
+    <api id="T:System.Security.AllowPartiallyTrustedCallersAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.AllowPartiallyTrustedCallersAttribute" />
+      <apidata name="AllowPartiallyTrustedCallersAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.AllowPartiallyTrustedCallersAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="8a546fc2-afa0-c394-67a7-23fe1b48a3fc" />
+    </api>
+    <api id="AllMembers.T:System.Security.AllowPartiallyTrustedCallersAttribute">
+      <topicdata name="AllowPartiallyTrustedCallersAttribute" group="list" subgroup="members" typeTopicId="T:System.Security.AllowPartiallyTrustedCallersAttribute" />
+      <apidata name="AllowPartiallyTrustedCallersAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.AllowPartiallyTrustedCallersAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Security.AllowPartiallyTrustedCallersAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" />
+      </containers>
+      <file name="aa8473c4-09de-2ad3-f0d9-247d524e2a32" />
+    </api>
+    <api id="Methods.T:System.Security.AllowPartiallyTrustedCallersAttribute">
+      <topicdata name="AllowPartiallyTrustedCallersAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Security.AllowPartiallyTrustedCallersAttribute" />
+      <apidata name="AllowPartiallyTrustedCallersAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.AllowPartiallyTrustedCallersAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" />
+      </containers>
+      <file name="6d8dc3a2-35a7-c734-395b-8f08f528fd84" />
+    </api>
+    <api id="M:System.Security.AllowPartiallyTrustedCallersAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+      </containers>
+      <file name="1d0be180-5d0e-1eee-1e5d-7236214748b3" />
+    </api>
+    <api id="T:System.Security.SecurityCriticalAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.SecurityCriticalAttribute" />
+      <apidata name="SecurityCriticalAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.SecurityCriticalAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+              <field name="Class" />
+              <field name="Struct" />
+              <field name="Enum" />
+              <field name="Constructor" />
+              <field name="Method" />
+              <field name="Field" />
+              <field name="Interface" />
+              <field name="Delegate" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="2465c3d4-f78d-4c3f-4d5b-0c8c3ac76d4d" />
+    </api>
+    <api id="AllMembers.T:System.Security.SecurityCriticalAttribute">
+      <topicdata name="SecurityCriticalAttribute" group="list" subgroup="members" typeTopicId="T:System.Security.SecurityCriticalAttribute" />
+      <apidata name="SecurityCriticalAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.SecurityCriticalAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Security.SecurityCriticalAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityCriticalAttribute" />
+      </containers>
+      <file name="172a1950-c31b-2a7d-594e-e746972a0fd7" />
+    </api>
+    <api id="Methods.T:System.Security.SecurityCriticalAttribute">
+      <topicdata name="SecurityCriticalAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Security.SecurityCriticalAttribute" />
+      <apidata name="SecurityCriticalAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.SecurityCriticalAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityCriticalAttribute" />
+      </containers>
+      <file name="ecf4c2c7-6393-5a36-6975-d36574869f41" />
+    </api>
+    <api id="M:System.Security.SecurityCriticalAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+      </containers>
+      <file name="cf3ce0e4-0e82-841d-294e-94256eba9d63" />
+    </api>
+    <api id="T:System.Security.SecurityException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.SecurityException" />
+      <apidata name="SecurityException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.SecurityException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d41c06c6-021c-7423-8854-63a9d372a0c3" />
+    </api>
+    <api id="AllMembers.T:System.Security.SecurityException">
+      <topicdata name="SecurityException" group="list" subgroup="members" typeTopicId="T:System.Security.SecurityException" />
+      <apidata name="SecurityException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.SecurityException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Security.SecurityException.#ctor">
+          <element api="M:System.Security.SecurityException.#ctor" />
+          <element api="M:System.Security.SecurityException.#ctor(System.String)" />
+          <element api="M:System.Security.SecurityException.#ctor(System.String,System.Exception)" />
+        </element>
+        <element api="M:System.Security.SecurityException.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityException" />
+      </containers>
+      <file name="f3b63fe3-f6d1-e1d5-d5ea-057a898dece2" />
+    </api>
+    <api id="Methods.T:System.Security.SecurityException">
+      <topicdata name="SecurityException" group="list" subgroup="Methods" typeTopicId="T:System.Security.SecurityException" />
+      <apidata name="SecurityException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.SecurityException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Security.SecurityException.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityException" />
+      </containers>
+      <file name="3801f840-814f-2eb2-859c-60b19f2bdea3" />
+    </api>
+    <api id="Properties.T:System.Security.SecurityException">
+      <topicdata name="SecurityException" group="list" subgroup="Properties" typeTopicId="T:System.Security.SecurityException" />
+      <apidata name="SecurityException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.SecurityException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityException" />
+      </containers>
+      <file name="7520cf3e-956d-b416-2b1d-130e2b83af9c" />
+    </api>
+    <api id="Overload:System.Security.SecurityException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Security.SecurityException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Security.SecurityException.#ctor" />
+        <element api="M:System.Security.SecurityException.#ctor(System.String)" />
+        <element api="M:System.Security.SecurityException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityException" ref="true" />
+      </containers>
+      <file name="405a563f-3a3c-07b3-54d9-fb794bb2a307" />
+    </api>
+    <api id="M:System.Security.SecurityException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.SecurityException.#ctor" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityException" ref="true" />
+      </containers>
+      <file name="0dccb737-782e-583e-0a00-8f4b004fac16" />
+    </api>
+    <api id="M:System.Security.SecurityException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.SecurityException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityException" ref="true" />
+      </containers>
+      <file name="3e0487dc-4f77-48fe-b8c7-d90b0042f96a" />
+    </api>
+    <api id="M:System.Security.SecurityException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.SecurityException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inner">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityException" ref="true" />
+      </containers>
+      <file name="98d66f8e-08d7-30bd-126f-75880936bd09" />
+    </api>
+    <api id="M:System.Security.SecurityException.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Exception.ToString">
+          <type api="T:System.Exception" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityException" ref="true" />
+      </containers>
+      <file name="fa164c36-aaf7-b2a9-bddb-68fb58afa282" />
+    </api>
+    <api id="T:System.Security.SecuritySafeCriticalAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.SecuritySafeCriticalAttribute" />
+      <apidata name="SecuritySafeCriticalAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.SecuritySafeCriticalAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Struct" />
+              <field name="Enum" />
+              <field name="Constructor" />
+              <field name="Method" />
+              <field name="Field" />
+              <field name="Interface" />
+              <field name="Delegate" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="f42c1604-7502-49f7-bb67-77233dcb4b48" />
+    </api>
+    <api id="AllMembers.T:System.Security.SecuritySafeCriticalAttribute">
+      <topicdata name="SecuritySafeCriticalAttribute" group="list" subgroup="members" typeTopicId="T:System.Security.SecuritySafeCriticalAttribute" />
+      <apidata name="SecuritySafeCriticalAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.SecuritySafeCriticalAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Security.SecuritySafeCriticalAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecuritySafeCriticalAttribute" />
+      </containers>
+      <file name="6c3963ee-91ec-3175-9163-1cde1dccc7c8" />
+    </api>
+    <api id="Methods.T:System.Security.SecuritySafeCriticalAttribute">
+      <topicdata name="SecuritySafeCriticalAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Security.SecuritySafeCriticalAttribute" />
+      <apidata name="SecuritySafeCriticalAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.SecuritySafeCriticalAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecuritySafeCriticalAttribute" />
+      </containers>
+      <file name="440ca2f1-a6ad-65f6-0d96-a4d18674853b" />
+    </api>
+    <api id="M:System.Security.SecuritySafeCriticalAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecuritySafeCriticalAttribute" ref="true" />
+      </containers>
+      <file name="899eb37d-b8ec-61c6-b9b6-85a0059302e0" />
+    </api>
+    <api id="T:System.Security.SecurityState">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.SecurityState" />
+      <apidata name="SecurityState" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="066164ef-b0d6-643b-abe0-a74e89dedc44" />
+    </api>
+    <api id="AllMembers.T:System.Security.SecurityState">
+      <topicdata name="SecurityState" group="list" subgroup="members" typeTopicId="T:System.Security.SecurityState" />
+      <apidata name="SecurityState" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Security.SecurityState.#ctor" />
+        <element api="M:System.Security.SecurityState.EnsureState" />
+        <element api="M:System.Security.SecurityState.IsStateAvailable" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityState" />
+      </containers>
+      <file name="13ca808d-2785-74d9-5068-bc8fce2ffa5f" />
+    </api>
+    <api id="Methods.T:System.Security.SecurityState">
+      <topicdata name="SecurityState" group="list" subgroup="Methods" typeTopicId="T:System.Security.SecurityState" />
+      <apidata name="SecurityState" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Security.SecurityState.EnsureState" />
+        <element api="M:System.Security.SecurityState.IsStateAvailable" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityState" />
+      </containers>
+      <file name="e5c9aa68-aa7e-5ef2-85ab-49dd736cc210" />
+    </api>
+    <api id="M:System.Security.SecurityState.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityState" ref="true" />
+      </containers>
+      <file name="041182ce-4551-db33-83ab-6849abbf51d2" />
+    </api>
+    <api id="M:System.Security.SecurityState.EnsureState">
+      <topicdata group="api" />
+      <apidata name="EnsureState" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityState" ref="true" />
+      </containers>
+      <file name="e10cff5f-7128-3600-cebf-48c4772bc99d" />
+    </api>
+    <api id="M:System.Security.SecurityState.IsStateAvailable">
+      <topicdata group="api" />
+      <apidata name="IsStateAvailable" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityState" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="efca2170-6214-0d38-b44a-6688f3e695b3" />
+    </api>
+    <api id="T:System.Security.SecurityTransparentAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.SecurityTransparentAttribute" />
+      <apidata name="SecurityTransparentAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.SecurityTransparentAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="856910d1-9d4a-57d7-c05e-78e0489a735c" />
+    </api>
+    <api id="AllMembers.T:System.Security.SecurityTransparentAttribute">
+      <topicdata name="SecurityTransparentAttribute" group="list" subgroup="members" typeTopicId="T:System.Security.SecurityTransparentAttribute" />
+      <apidata name="SecurityTransparentAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.SecurityTransparentAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Security.SecurityTransparentAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityTransparentAttribute" />
+      </containers>
+      <file name="9401eece-2d8c-6ad1-30f9-564f1e03761f" />
+    </api>
+    <api id="Methods.T:System.Security.SecurityTransparentAttribute">
+      <topicdata name="SecurityTransparentAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Security.SecurityTransparentAttribute" />
+      <apidata name="SecurityTransparentAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.SecurityTransparentAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityTransparentAttribute" />
+      </containers>
+      <file name="bd5dd518-6875-bd9f-27cb-a3788231ae42" />
+    </api>
+    <api id="M:System.Security.SecurityTransparentAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.SecurityTransparentAttribute" ref="true" />
+      </containers>
+      <file name="6b6a2db0-0985-e768-bd6f-8fc258920520" />
+    </api>
+    <api id="T:System.Security.UnverifiableCodeAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.UnverifiableCodeAttribute" />
+      <apidata name="UnverifiableCodeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.UnverifiableCodeAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Module" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="2bcc2d64-03d6-93cd-1276-57dd3f2be816" />
+    </api>
+    <api id="AllMembers.T:System.Security.UnverifiableCodeAttribute">
+      <topicdata name="UnverifiableCodeAttribute" group="list" subgroup="members" typeTopicId="T:System.Security.UnverifiableCodeAttribute" />
+      <apidata name="UnverifiableCodeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.UnverifiableCodeAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Security.UnverifiableCodeAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.UnverifiableCodeAttribute" />
+      </containers>
+      <file name="321209af-5290-33c4-8c0f-ee32399096d5" />
+    </api>
+    <api id="Methods.T:System.Security.UnverifiableCodeAttribute">
+      <topicdata name="UnverifiableCodeAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Security.UnverifiableCodeAttribute" />
+      <apidata name="UnverifiableCodeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Security.UnverifiableCodeAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.UnverifiableCodeAttribute" />
+      </containers>
+      <file name="735a8beb-8ffd-cb19-564b-bdf7f46155f6" />
+    </api>
+    <api id="M:System.Security.UnverifiableCodeAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.UnverifiableCodeAttribute" ref="true" />
+      </containers>
+      <file name="f4ef310d-e767-70b8-66af-302e173beaea" />
+    </api>
+    <api id="T:System.Security.VerificationException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.VerificationException" />
+      <apidata name="VerificationException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.VerificationException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8f80136c-31bc-6060-f958-411dae4990e2" />
+    </api>
+    <api id="AllMembers.T:System.Security.VerificationException">
+      <topicdata name="VerificationException" group="list" subgroup="members" typeTopicId="T:System.Security.VerificationException" />
+      <apidata name="VerificationException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.VerificationException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Security.VerificationException.#ctor">
+          <element api="M:System.Security.VerificationException.#ctor" />
+          <element api="M:System.Security.VerificationException.#ctor(System.String)" />
+          <element api="M:System.Security.VerificationException.#ctor(System.String,System.Exception)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.VerificationException" />
+      </containers>
+      <file name="4be2b72f-b2ed-a5f4-d489-2c51bc3b7db8" />
+    </api>
+    <api id="Methods.T:System.Security.VerificationException">
+      <topicdata name="VerificationException" group="list" subgroup="Methods" typeTopicId="T:System.Security.VerificationException" />
+      <apidata name="VerificationException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.VerificationException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.VerificationException" />
+      </containers>
+      <file name="5fff6aec-72cf-2edd-ca79-a4f00ec6a4dc" />
+    </api>
+    <api id="Properties.T:System.Security.VerificationException">
+      <topicdata name="VerificationException" group="list" subgroup="Properties" typeTopicId="T:System.Security.VerificationException" />
+      <apidata name="VerificationException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.VerificationException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.VerificationException" />
+      </containers>
+      <file name="0376a2b5-5bc2-c5f3-3b36-3ba56e8ae522" />
+    </api>
+    <api id="Overload:System.Security.VerificationException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Security.VerificationException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Security.VerificationException.#ctor" />
+        <element api="M:System.Security.VerificationException.#ctor(System.String)" />
+        <element api="M:System.Security.VerificationException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.VerificationException" ref="true" />
+      </containers>
+      <file name="48beb94b-426d-4afb-1e1d-ffe1be6e6e70" />
+    </api>
+    <api id="M:System.Security.VerificationException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.VerificationException.#ctor" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.VerificationException" ref="true" />
+      </containers>
+      <file name="4e7e5fd8-e1e9-4b15-6e7c-9a87864c39e2" />
+    </api>
+    <api id="M:System.Security.VerificationException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.VerificationException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.VerificationException" ref="true" />
+      </containers>
+      <file name="378c68e3-63cc-c4c4-e3d7-065dba3a2dda" />
+    </api>
+    <api id="M:System.Security.VerificationException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.VerificationException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security" />
+        <type api="T:System.Security.VerificationException" ref="true" />
+      </containers>
+      <file name="e7d48784-7575-0181-f153-318266c1abb9" />
+    </api>
+  </apis>
+</reflection>

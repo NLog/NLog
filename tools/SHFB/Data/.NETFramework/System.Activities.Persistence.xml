@@ -1,0 +1,556 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>97bdccfe-43bf-4c17-991d-c797c2ef2243</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Activities.Persistence">
+      <topicdata group="api" />
+      <apidata name="System.Activities.Persistence" group="namespace" />
+      <elements>
+        <element api="T:System.Activities.Persistence.PersistenceParticipant" />
+        <element api="T:System.Activities.Persistence.PersistenceIOParticipant" />
+      </elements>
+      <file name="f5bcb530-a331-255b-20c8-91d84ecd50ae" />
+    </api>
+    <api id="T:System.Activities.Persistence.PersistenceIOParticipant">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Persistence.PersistenceIOParticipant" />
+      <apidata name="PersistenceIOParticipant" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.Persistence.PersistenceParticipant" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Persistence" />
+      </containers>
+      <file name="9e7154ef-e50e-a835-7f78-1f9692d05319" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Persistence.PersistenceIOParticipant">
+      <topicdata name="PersistenceIOParticipant" group="list" subgroup="members" typeTopicId="T:System.Activities.Persistence.PersistenceIOParticipant" />
+      <apidata name="PersistenceIOParticipant" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Persistence.PersistenceIOParticipant.#ctor(System.Boolean,System.Boolean)" />
+        <element api="M:System.Activities.Persistence.PersistenceIOParticipant.Abort" />
+        <element api="M:System.Activities.Persistence.PersistenceIOParticipant.BeginOnLoad(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object},System.TimeSpan,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Activities.Persistence.PersistenceIOParticipant.BeginOnSave(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object},System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object},System.TimeSpan,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Activities.Persistence.PersistenceIOParticipant.EndOnLoad(System.IAsyncResult)" />
+        <element api="M:System.Activities.Persistence.PersistenceIOParticipant.EndOnSave(System.IAsyncResult)" />
+        <element api="M:System.Activities.Persistence.PersistenceParticipant.CollectValues(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}@,System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}@)" />
+        <element api="M:System.Activities.Persistence.PersistenceParticipant.MapValues(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object},System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object})" />
+        <element api="M:System.Activities.Persistence.PersistenceParticipant.PublishValues(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object})" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Persistence" />
+        <type api="T:System.Activities.Persistence.PersistenceIOParticipant" />
+      </containers>
+      <file name="be04282a-e0d8-655c-6598-81fa42c576ca" />
+    </api>
+    <api id="Methods.T:System.Activities.Persistence.PersistenceIOParticipant">
+      <topicdata name="PersistenceIOParticipant" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Persistence.PersistenceIOParticipant" />
+      <apidata name="PersistenceIOParticipant" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Persistence.PersistenceIOParticipant.Abort" />
+        <element api="M:System.Activities.Persistence.PersistenceIOParticipant.BeginOnLoad(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object},System.TimeSpan,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Activities.Persistence.PersistenceIOParticipant.BeginOnSave(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object},System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object},System.TimeSpan,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Activities.Persistence.PersistenceIOParticipant.EndOnLoad(System.IAsyncResult)" />
+        <element api="M:System.Activities.Persistence.PersistenceIOParticipant.EndOnSave(System.IAsyncResult)" />
+        <element api="M:System.Activities.Persistence.PersistenceParticipant.CollectValues(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}@,System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}@)" />
+        <element api="M:System.Activities.Persistence.PersistenceParticipant.MapValues(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object},System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object})" />
+        <element api="M:System.Activities.Persistence.PersistenceParticipant.PublishValues(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object})" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Persistence" />
+        <type api="T:System.Activities.Persistence.PersistenceIOParticipant" />
+      </containers>
+      <file name="443b8527-6117-4566-43c0-342d1cbcc840" />
+    </api>
+    <api id="M:System.Activities.Persistence.PersistenceIOParticipant.#ctor(System.Boolean,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <parameters>
+        <parameter name="isSaveTransactionRequired">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="isLoadTransactionRequired">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Persistence" />
+        <type api="T:System.Activities.Persistence.PersistenceIOParticipant" ref="true" />
+      </containers>
+      <file name="bf736b47-be24-4f00-e286-a11408252cd0" />
+    </api>
+    <api id="M:System.Activities.Persistence.PersistenceIOParticipant.Abort">
+      <topicdata group="api" />
+      <apidata name="Abort" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Persistence" />
+        <type api="T:System.Activities.Persistence.PersistenceIOParticipant" ref="true" />
+      </containers>
+      <file name="d6f2379c-0205-b206-9f81-35f36bd0d10c" />
+    </api>
+    <api id="M:System.Activities.Persistence.PersistenceIOParticipant.BeginOnLoad(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object},System.TimeSpan,System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginOnLoad" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="readWriteValues">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.Xml.Linq.XName" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="timeout">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Persistence" />
+        <type api="T:System.Activities.Persistence.PersistenceIOParticipant" ref="true" />
+      </containers>
+      <file name="278b8401-4be0-24de-062f-fb391709f616" />
+    </api>
+    <api id="M:System.Activities.Persistence.PersistenceIOParticipant.BeginOnSave(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object},System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object},System.TimeSpan,System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginOnSave" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="readWriteValues">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.Xml.Linq.XName" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="writeOnlyValues">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.Xml.Linq.XName" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="timeout">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Persistence" />
+        <type api="T:System.Activities.Persistence.PersistenceIOParticipant" ref="true" />
+      </containers>
+      <file name="c2ddba7a-3e20-5686-92ae-280cff5ca0f9" />
+    </api>
+    <api id="M:System.Activities.Persistence.PersistenceIOParticipant.EndOnLoad(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndOnLoad" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Persistence" />
+        <type api="T:System.Activities.Persistence.PersistenceIOParticipant" ref="true" />
+      </containers>
+      <file name="56c99831-ec8a-839e-56ed-9a5ec7ad2e31" />
+    </api>
+    <api id="M:System.Activities.Persistence.PersistenceIOParticipant.EndOnSave(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndOnSave" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Persistence" />
+        <type api="T:System.Activities.Persistence.PersistenceIOParticipant" ref="true" />
+      </containers>
+      <file name="ebad4712-2ead-6d39-4fc7-834f7c327b36" />
+    </api>
+    <api id="T:System.Activities.Persistence.PersistenceParticipant">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Persistence.PersistenceParticipant" />
+      <apidata name="PersistenceParticipant" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Activities.Statements.CompensationExtension" ref="true" />
+          <type api="T:System.Activities.Persistence.PersistenceIOParticipant" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Persistence" />
+      </containers>
+      <file name="1c1bddd1-b364-8d78-17cf-60cebfd5e17d" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Persistence.PersistenceParticipant">
+      <topicdata name="PersistenceParticipant" group="list" subgroup="members" typeTopicId="T:System.Activities.Persistence.PersistenceParticipant" />
+      <apidata name="PersistenceParticipant" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Persistence.PersistenceParticipant.#ctor" />
+        <element api="M:System.Activities.Persistence.PersistenceParticipant.CollectValues(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}@,System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}@)" />
+        <element api="M:System.Activities.Persistence.PersistenceParticipant.MapValues(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object},System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object})" />
+        <element api="M:System.Activities.Persistence.PersistenceParticipant.PublishValues(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object})" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Persistence" />
+        <type api="T:System.Activities.Persistence.PersistenceParticipant" />
+      </containers>
+      <file name="1c99d95d-f64b-7fa1-1a2a-b4415f52d107" />
+    </api>
+    <api id="Methods.T:System.Activities.Persistence.PersistenceParticipant">
+      <topicdata name="PersistenceParticipant" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Persistence.PersistenceParticipant" />
+      <apidata name="PersistenceParticipant" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Persistence.PersistenceParticipant.CollectValues(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}@,System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}@)" />
+        <element api="M:System.Activities.Persistence.PersistenceParticipant.MapValues(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object},System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object})" />
+        <element api="M:System.Activities.Persistence.PersistenceParticipant.PublishValues(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object})" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Persistence" />
+        <type api="T:System.Activities.Persistence.PersistenceParticipant" />
+      </containers>
+      <file name="cebf00ca-612e-1cbf-82bd-ef377da5fd51" />
+    </api>
+    <api id="M:System.Activities.Persistence.PersistenceParticipant.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Persistence" />
+        <type api="T:System.Activities.Persistence.PersistenceParticipant" ref="true" />
+      </containers>
+      <file name="f31d37b1-c8f2-d993-48f0-2673e796948f" />
+    </api>
+    <api id="M:System.Activities.Persistence.PersistenceParticipant.CollectValues(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}@,System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}@)">
+      <topicdata group="api" />
+      <apidata name="CollectValues" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="readWriteValues" out="true">
+          <referenceTo>
+            <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+              <specialization>
+                <type api="T:System.Xml.Linq.XName" ref="true" />
+                <type api="T:System.Object" ref="true" />
+              </specialization>
+            </type>
+          </referenceTo>
+        </parameter>
+        <parameter name="writeOnlyValues" out="true">
+          <referenceTo>
+            <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+              <specialization>
+                <type api="T:System.Xml.Linq.XName" ref="true" />
+                <type api="T:System.Object" ref="true" />
+              </specialization>
+            </type>
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Persistence" />
+        <type api="T:System.Activities.Persistence.PersistenceParticipant" ref="true" />
+      </containers>
+      <file name="7a891824-b5db-32f5-c78d-e6ae230f1685" />
+    </api>
+    <api id="M:System.Activities.Persistence.PersistenceParticipant.MapValues(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object},System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object})">
+      <topicdata group="api" />
+      <apidata name="MapValues" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="readWriteValues">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.Xml.Linq.XName" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="writeOnlyValues">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.Xml.Linq.XName" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.Xml.Linq.XName" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Persistence" />
+        <type api="T:System.Activities.Persistence.PersistenceParticipant" ref="true" />
+      </containers>
+      <file name="e8842b0b-d344-0cdb-d17c-8070bb88edff" />
+    </api>
+    <api id="M:System.Activities.Persistence.PersistenceParticipant.PublishValues(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object})">
+      <topicdata group="api" />
+      <apidata name="PublishValues" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="readWriteValues">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.Xml.Linq.XName" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Persistence" />
+        <type api="T:System.Activities.Persistence.PersistenceParticipant" ref="true" />
+      </containers>
+      <file name="6642f070-c1fa-705b-f9c4-813c90917c77" />
+    </api>
+  </apis>
+</reflection>

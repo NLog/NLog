@@ -1,0 +1,1328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="MFDpwsExtensions">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MFDpwsExtensions</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Ext.Xml">
+      <topicdata group="api" />
+      <apidata name="System.Ext.Xml" group="namespace" />
+      <elements>
+        <element api="T:System.Ext.Xml.XmlWriter" />
+        <element api="T:System.Ext.Xml.XmlMemoryWriter" />
+      </elements>
+      <file name="c20c79b5-e9dd-ce66-f698-4830ccb6f259" />
+    </api>
+    <api id="T:System.Ext.Xml.XmlMemoryWriter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Ext.Xml.XmlMemoryWriter" />
+      <apidata name="XmlMemoryWriter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+      </containers>
+      <file name="388cd6f9-fc31-fa80-6111-544452f764c1" />
+    </api>
+    <api id="AllMembers.T:System.Ext.Xml.XmlMemoryWriter">
+      <topicdata name="XmlMemoryWriter" group="list" subgroup="members" typeTopicId="T:System.Ext.Xml.XmlMemoryWriter" />
+      <apidata name="XmlMemoryWriter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Ext.Xml.XmlMemoryWriter.#ctor(System.IO.MemoryStream)" />
+        <element api="M:System.Ext.Xml.XmlMemoryWriter.Create" />
+        <element api="Overload:System.Ext.Xml.XmlMemoryWriter.Dispose">
+          <element api="M:System.Ext.Xml.XmlWriter.Dispose" />
+          <element api="M:System.Ext.Xml.XmlMemoryWriter.Dispose(System.Boolean)" />
+        </element>
+        <element api="P:System.Ext.Xml.XmlMemoryWriter.InnerStream" />
+        <element api="M:System.Ext.Xml.XmlMemoryWriter.ToArray" />
+        <element api="M:System.Ext.Xml.XmlWriter.Close" />
+        <element api="M:System.Ext.Xml.XmlWriter.Finalize" />
+        <element api="M:System.Ext.Xml.XmlWriter.Flush" />
+        <element api="M:System.Ext.Xml.XmlWriter.LookupPrefix(System.String)" />
+        <element api="Overload:System.Ext.Xml.XmlMemoryWriter.WriteAttributeString">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String,System.String,System.String)" />
+        </element>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteBase64(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteChars(System.Char[],System.Int32,System.Int32)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteComment(System.String)" />
+        <element api="Overload:System.Ext.Xml.XmlMemoryWriter.WriteElementString">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String,System.String,System.String)" />
+        </element>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteEndAttribute" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteEndElement" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteProcessingInstruction(System.String,System.String)" />
+        <element api="Overload:System.Ext.Xml.XmlMemoryWriter.WriteRaw">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteRaw(System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteRaw(System.Char[],System.Int32,System.Int32)" />
+        </element>
+        <element api="Overload:System.Ext.Xml.XmlMemoryWriter.WriteStartAttribute">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String,System.String,System.String)" />
+        </element>
+        <element api="Overload:System.Ext.Xml.XmlMemoryWriter.WriteStartElement">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String,System.String,System.String)" />
+        </element>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteString(System.String)" />
+        <element api="P:System.Ext.Xml.XmlWriter.XmlLang" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlMemoryWriter" />
+      </containers>
+      <file name="b5e50512-9730-953d-c002-9bc9b1545c58" />
+    </api>
+    <api id="Methods.T:System.Ext.Xml.XmlMemoryWriter">
+      <topicdata name="XmlMemoryWriter" group="list" subgroup="Methods" typeTopicId="T:System.Ext.Xml.XmlMemoryWriter" />
+      <apidata name="XmlMemoryWriter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Ext.Xml.XmlMemoryWriter.Create" />
+        <element api="Overload:System.Ext.Xml.XmlMemoryWriter.Dispose">
+          <element api="M:System.Ext.Xml.XmlWriter.Dispose" />
+          <element api="M:System.Ext.Xml.XmlMemoryWriter.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Ext.Xml.XmlMemoryWriter.ToArray" />
+        <element api="M:System.Ext.Xml.XmlWriter.Close" />
+        <element api="M:System.Ext.Xml.XmlWriter.Finalize" />
+        <element api="M:System.Ext.Xml.XmlWriter.Flush" />
+        <element api="M:System.Ext.Xml.XmlWriter.LookupPrefix(System.String)" />
+        <element api="Overload:System.Ext.Xml.XmlMemoryWriter.WriteAttributeString">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String,System.String,System.String)" />
+        </element>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteBase64(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteChars(System.Char[],System.Int32,System.Int32)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteComment(System.String)" />
+        <element api="Overload:System.Ext.Xml.XmlMemoryWriter.WriteElementString">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String,System.String,System.String)" />
+        </element>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteEndAttribute" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteEndElement" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteProcessingInstruction(System.String,System.String)" />
+        <element api="Overload:System.Ext.Xml.XmlMemoryWriter.WriteRaw">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteRaw(System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteRaw(System.Char[],System.Int32,System.Int32)" />
+        </element>
+        <element api="Overload:System.Ext.Xml.XmlMemoryWriter.WriteStartAttribute">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String,System.String,System.String)" />
+        </element>
+        <element api="Overload:System.Ext.Xml.XmlMemoryWriter.WriteStartElement">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String,System.String,System.String)" />
+        </element>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteString(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlMemoryWriter" />
+      </containers>
+      <file name="5ad6f1eb-e8b4-a438-68bd-ee15a841d112" />
+    </api>
+    <api id="Properties.T:System.Ext.Xml.XmlMemoryWriter">
+      <topicdata name="XmlMemoryWriter" group="list" subgroup="Properties" typeTopicId="T:System.Ext.Xml.XmlMemoryWriter" />
+      <apidata name="XmlMemoryWriter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Ext.Xml.XmlMemoryWriter.InnerStream" />
+        <element api="P:System.Ext.Xml.XmlWriter.XmlLang" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlMemoryWriter" />
+      </containers>
+      <file name="f4bc414a-3a73-7de0-1dda-12565d82b2da" />
+    </api>
+    <api id="Overload:System.Ext.Xml.XmlMemoryWriter.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Ext.Xml.XmlMemoryWriter" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Ext.Xml.XmlWriter.Dispose" />
+        <element api="M:System.Ext.Xml.XmlMemoryWriter.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlMemoryWriter" ref="true" />
+      </containers>
+      <file name="71be81a5-c47d-3e18-a592-dc9396cad13c" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlMemoryWriter.#ctor(System.IO.MemoryStream)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.MemoryStream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlMemoryWriter" ref="true" />
+      </containers>
+      <file name="6e23775e-c745-ac20-e03f-e4bb4ce18311" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlMemoryWriter.Create">
+      <topicdata group="api" />
+      <apidata name="Create" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Ext.Xml.XmlMemoryWriter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlMemoryWriter" ref="true" />
+      </containers>
+      <file name="a50a5c7e-a934-4187-2042-c5b090139240" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlMemoryWriter.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Ext.Xml.XmlMemoryWriter.Dispose" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Ext.Xml.XmlWriter.Dispose(System.Boolean)">
+          <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlMemoryWriter" ref="true" />
+      </containers>
+      <file name="7fc87f72-bd1a-d12d-0e02-85874a51e789" />
+    </api>
+    <api id="P:System.Ext.Xml.XmlMemoryWriter.InnerStream">
+      <topicdata group="api" />
+      <apidata name="InnerStream" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InnerStream" />
+      <returns>
+        <type api="T:System.IO.MemoryStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlMemoryWriter" ref="true" />
+      </containers>
+      <file name="dda294f0-f514-be15-12be-6cc8e5e06d26" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlMemoryWriter.ToArray">
+      <topicdata group="api" />
+      <apidata name="ToArray" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlMemoryWriter" ref="true" />
+      </containers>
+      <file name="ec041117-b8c4-d78d-cdae-7b8ba3b743b4" />
+    </api>
+    <api id="T:System.Ext.Xml.XmlWriter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Ext.Xml.XmlWriter" />
+      <apidata name="XmlWriter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Ext.Xml.XmlMemoryWriter" ref="true" />
+        </descendents>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+      </containers>
+      <file name="52000a46-a9e8-edfe-c124-db5cf0669edc" />
+    </api>
+    <api id="AllMembers.T:System.Ext.Xml.XmlWriter">
+      <topicdata name="XmlWriter" group="list" subgroup="members" typeTopicId="T:System.Ext.Xml.XmlWriter" />
+      <apidata name="XmlWriter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Ext.Xml.XmlWriter.#ctor">
+          <element api="M:System.Ext.Xml.XmlWriter.#ctor" />
+          <element api="M:System.Ext.Xml.XmlWriter.#ctor(System.IO.Stream)" />
+        </element>
+        <element api="M:System.Ext.Xml.XmlWriter.Close" />
+        <element api="M:System.Ext.Xml.XmlWriter.Create(System.IO.Stream)" />
+        <element api="Overload:System.Ext.Xml.XmlWriter.Dispose">
+          <element api="M:System.Ext.Xml.XmlWriter.Dispose" />
+          <element api="M:System.Ext.Xml.XmlWriter.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Ext.Xml.XmlWriter.Finalize" />
+        <element api="M:System.Ext.Xml.XmlWriter.Flush" />
+        <element api="M:System.Ext.Xml.XmlWriter.LookupPrefix(System.String)" />
+        <element api="Overload:System.Ext.Xml.XmlWriter.WriteAttributeString">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String,System.String,System.String)" />
+        </element>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteBase64(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteChars(System.Char[],System.Int32,System.Int32)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteComment(System.String)" />
+        <element api="Overload:System.Ext.Xml.XmlWriter.WriteElementString">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String,System.String,System.String)" />
+        </element>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteEndAttribute" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteEndElement" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteProcessingInstruction(System.String,System.String)" />
+        <element api="Overload:System.Ext.Xml.XmlWriter.WriteRaw">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteRaw(System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteRaw(System.Char[],System.Int32,System.Int32)" />
+        </element>
+        <element api="Overload:System.Ext.Xml.XmlWriter.WriteStartAttribute">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String,System.String,System.String)" />
+        </element>
+        <element api="Overload:System.Ext.Xml.XmlWriter.WriteStartElement">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String,System.String,System.String)" />
+        </element>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteString(System.String)" />
+        <element api="P:System.Ext.Xml.XmlWriter.XmlLang" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" />
+      </containers>
+      <file name="9b678f8f-cf19-e19a-5e45-f559e97ae3cf" />
+    </api>
+    <api id="Methods.T:System.Ext.Xml.XmlWriter">
+      <topicdata name="XmlWriter" group="list" subgroup="Methods" typeTopicId="T:System.Ext.Xml.XmlWriter" />
+      <apidata name="XmlWriter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Ext.Xml.XmlWriter.Close" />
+        <element api="M:System.Ext.Xml.XmlWriter.Create(System.IO.Stream)" />
+        <element api="Overload:System.Ext.Xml.XmlWriter.Dispose">
+          <element api="M:System.Ext.Xml.XmlWriter.Dispose" />
+          <element api="M:System.Ext.Xml.XmlWriter.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Ext.Xml.XmlWriter.Finalize" />
+        <element api="M:System.Ext.Xml.XmlWriter.Flush" />
+        <element api="M:System.Ext.Xml.XmlWriter.LookupPrefix(System.String)" />
+        <element api="Overload:System.Ext.Xml.XmlWriter.WriteAttributeString">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String,System.String,System.String)" />
+        </element>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteBase64(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteChars(System.Char[],System.Int32,System.Int32)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteComment(System.String)" />
+        <element api="Overload:System.Ext.Xml.XmlWriter.WriteElementString">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String,System.String,System.String)" />
+        </element>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteEndAttribute" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteEndElement" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteProcessingInstruction(System.String,System.String)" />
+        <element api="Overload:System.Ext.Xml.XmlWriter.WriteRaw">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteRaw(System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteRaw(System.Char[],System.Int32,System.Int32)" />
+        </element>
+        <element api="Overload:System.Ext.Xml.XmlWriter.WriteStartAttribute">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String,System.String,System.String)" />
+        </element>
+        <element api="Overload:System.Ext.Xml.XmlWriter.WriteStartElement">
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String,System.String)" />
+          <element api="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String,System.String,System.String)" />
+        </element>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteString(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" />
+      </containers>
+      <file name="7f2decbe-eb51-d992-2600-46274a4ca143" />
+    </api>
+    <api id="Properties.T:System.Ext.Xml.XmlWriter">
+      <topicdata name="XmlWriter" group="list" subgroup="Properties" typeTopicId="T:System.Ext.Xml.XmlWriter" />
+      <apidata name="XmlWriter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Ext.Xml.XmlWriter.XmlLang" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" />
+      </containers>
+      <file name="6712eb82-d0a5-ad5d-96d5-2f467f7c87e3" />
+    </api>
+    <api id="Overload:System.Ext.Xml.XmlWriter.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Ext.Xml.XmlWriter" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Ext.Xml.XmlWriter.#ctor" />
+        <element api="M:System.Ext.Xml.XmlWriter.#ctor(System.IO.Stream)" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="efe73979-5a89-b1d6-5952-0130d71db2bd" />
+    </api>
+    <api id="Overload:System.Ext.Xml.XmlWriter.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Ext.Xml.XmlWriter" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Ext.Xml.XmlWriter.Dispose" />
+        <element api="M:System.Ext.Xml.XmlWriter.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="3b73c68d-dfce-b31a-9c3f-a6da7a1dc5eb" />
+    </api>
+    <api id="Overload:System.Ext.Xml.XmlWriter.WriteAttributeString">
+      <topicdata name="WriteAttributeString" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Ext.Xml.XmlWriter" />
+      <apidata name="WriteAttributeString" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String,System.String)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="52a8c72a-b530-708f-3ed6-e58d43c9b7a2" />
+    </api>
+    <api id="Overload:System.Ext.Xml.XmlWriter.WriteElementString">
+      <topicdata name="WriteElementString" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Ext.Xml.XmlWriter" />
+      <apidata name="WriteElementString" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String,System.String)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="6118e454-7956-ba2b-a4a1-31baff8daa9b" />
+    </api>
+    <api id="Overload:System.Ext.Xml.XmlWriter.WriteRaw">
+      <topicdata name="WriteRaw" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Ext.Xml.XmlWriter" />
+      <apidata name="WriteRaw" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteRaw(System.String)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteRaw(System.Char[],System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="6c8e3ecb-ae37-a782-d8b9-cd94b5d8a795" />
+    </api>
+    <api id="Overload:System.Ext.Xml.XmlWriter.WriteStartAttribute">
+      <topicdata name="WriteStartAttribute" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Ext.Xml.XmlWriter" />
+      <apidata name="WriteStartAttribute" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String,System.String)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="c60e972a-57c0-c297-31f7-c1ed048979f7" />
+    </api>
+    <api id="Overload:System.Ext.Xml.XmlWriter.WriteStartElement">
+      <topicdata name="WriteStartElement" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Ext.Xml.XmlWriter" />
+      <apidata name="WriteStartElement" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String,System.String)" />
+        <element api="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="3a4023e0-c864-fdce-5489-24147d489120" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Ext.Xml.XmlWriter.#ctor" />
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="bd48a193-f671-0846-49a6-7d7a4cd23cc9" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.#ctor(System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Ext.Xml.XmlWriter.#ctor" />
+      <parameters>
+        <parameter name="output">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="c5f25b10-e5ff-972a-6230-efaeda7f2bc6" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="68d290d7-ee27-0310-bb61-61defd9f71f3" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.Create(System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="Create" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="output">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="609d5653-5d92-4bd2-cac2-2b8c478f1eeb" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Ext.Xml.XmlWriter.Dispose" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="65bd342a-fd2c-7ee2-84c9-2450a3ed2152" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Ext.Xml.XmlWriter.Dispose" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="30df0248-49ec-ab08-4f28-b893b24b6f95" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="480ab5e3-76d6-0d94-b0dd-f72143b18fa9" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.Flush">
+      <topicdata group="api" />
+      <apidata name="Flush" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="b8495f66-08fa-59d3-eb97-2dd354662d2d" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.LookupPrefix(System.String)">
+      <topicdata group="api" />
+      <apidata name="LookupPrefix" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="ns">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="173368ae-78d1-f47b-9a7c-2a880e772bbd" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteAttributeString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Ext.Xml.XmlWriter.WriteAttributeString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="localName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="cda4ee40-3250-7be0-5da2-526f09570151" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteAttributeString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Ext.Xml.XmlWriter.WriteAttributeString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="localName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ns">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="0912783e-30ad-ca70-8920-856fec0ab00f" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteAttributeString(System.String,System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteAttributeString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Ext.Xml.XmlWriter.WriteAttributeString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="prefix">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="localName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ns">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="700533e0-98b9-b1c5-5cda-967b3b3135f6" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteBase64(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="WriteBase64" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="9760550b-d695-aa68-f72c-ab7cceac7546" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteChars(System.Char[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="WriteChars" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Char" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="ca20c226-8053-7121-aef3-c4b3dc0e033a" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteComment(System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteComment" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="6a10e341-2f32-f4c3-b64b-693d92b065a2" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteElementString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Ext.Xml.XmlWriter.WriteElementString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="localName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="1d11862e-9248-15e0-1bff-45eb7829b023" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteElementString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Ext.Xml.XmlWriter.WriteElementString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="localName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ns">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="3496c79a-90d7-acd4-d258-17ab4bdb6790" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteElementString(System.String,System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteElementString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Ext.Xml.XmlWriter.WriteElementString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="prefix">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="localName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ns">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="4dfc7001-0056-feec-5690-2cdc128b3108" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteEndAttribute">
+      <topicdata group="api" />
+      <apidata name="WriteEndAttribute" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="5a9c2830-6c9e-8de8-bdb4-b0025852b99a" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteEndElement">
+      <topicdata group="api" />
+      <apidata name="WriteEndElement" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="55fc12cf-2227-d509-2b86-5aea28cf9774" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteProcessingInstruction(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteProcessingInstruction" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="a394a707-8c8c-1f3b-841e-72827fbece49" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteRaw(System.Char[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="WriteRaw" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Ext.Xml.XmlWriter.WriteRaw" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Char" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="7c34b4c7-3bd1-5351-2ea7-ffab4862f51c" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteRaw(System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteRaw" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Ext.Xml.XmlWriter.WriteRaw" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="data">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="79fbc3e8-c879-de50-cc39-5e0038a4a356" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteStartAttribute" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Ext.Xml.XmlWriter.WriteStartAttribute" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="localName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="1d101042-6e03-9302-6f7b-819d122c6fe7" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteStartAttribute" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Ext.Xml.XmlWriter.WriteStartAttribute" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="localName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ns">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="617a13ed-429d-29c8-728f-49d8fac4a569" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteStartAttribute(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteStartAttribute" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Ext.Xml.XmlWriter.WriteStartAttribute" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="prefix">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="localName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ns">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="be56790c-2f89-8d04-e311-2c57cfb332f3" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteStartElement" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Ext.Xml.XmlWriter.WriteStartElement" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="localName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="dce17351-df83-91f0-e24a-d9a02a74dde6" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteStartElement" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Ext.Xml.XmlWriter.WriteStartElement" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="localName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ns">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="ac51cb13-95e1-dae6-2e6d-30482c9aebe3" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteStartElement(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteStartElement" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Ext.Xml.XmlWriter.WriteStartElement" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="prefix">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="localName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ns">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="26b5e013-f347-9d87-b811-b00844d3d176" />
+    </api>
+    <api id="M:System.Ext.Xml.XmlWriter.WriteString(System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="7c3bd28a-59d2-347e-ca5a-0cc9ddc10e42" />
+    </api>
+    <api id="P:System.Ext.Xml.XmlWriter.XmlLang">
+      <topicdata group="api" />
+      <apidata name="XmlLang" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_XmlLang" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsExtensions" module="MFDpwsExtensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Ext.Xml" />
+        <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+      </containers>
+      <file name="18252bb3-b84a-bae4-4eac-5a122663c693" />
+    </api>
+  </apis>
+</reflection>

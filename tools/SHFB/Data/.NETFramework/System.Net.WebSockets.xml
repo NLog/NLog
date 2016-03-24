@@ -1,0 +1,3653 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Net.WebSockets">
+      <topicdata group="api" />
+      <apidata name="System.Net.WebSockets" group="namespace" />
+      <elements>
+        <element api="T:System.Net.WebSockets.ClientWebSocket" />
+        <element api="T:System.Net.WebSockets.ClientWebSocketOptions" />
+        <element api="T:System.Net.WebSockets.HttpListenerWebSocketContext" />
+        <element api="T:System.Net.WebSockets.WebSocket" />
+        <element api="T:System.Net.WebSockets.WebSocketCloseStatus" />
+        <element api="T:System.Net.WebSockets.WebSocketContext" />
+        <element api="T:System.Net.WebSockets.WebSocketError" />
+        <element api="T:System.Net.WebSockets.WebSocketException" />
+        <element api="T:System.Net.WebSockets.WebSocketMessageType" />
+        <element api="T:System.Net.WebSockets.WebSocketReceiveResult" />
+        <element api="T:System.Net.WebSockets.WebSocketState" />
+      </elements>
+      <file name="18969305-3a50-4725-755d-12fdfe06e97f" />
+    </api>
+    <api id="T:System.Net.WebSockets.ClientWebSocket">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.WebSockets.ClientWebSocket" />
+      <apidata name="ClientWebSocket" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Net.WebSockets.ClientWebSocket.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+      </containers>
+      <file name="764cd06f-32fe-54d7-ed75-a7a26f31c919" />
+    </api>
+    <api id="AllMembers.T:System.Net.WebSockets.ClientWebSocket">
+      <topicdata name="ClientWebSocket" group="list" subgroup="members" typeTopicId="T:System.Net.WebSockets.ClientWebSocket" />
+      <apidata name="ClientWebSocket" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Net.WebSockets.ClientWebSocket.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Net.WebSockets.ClientWebSocket.#ctor" />
+        <element api="M:System.Net.WebSockets.ClientWebSocket.Abort" />
+        <element api="M:System.Net.WebSockets.ClientWebSocket.CloseAsync(System.Net.WebSockets.WebSocketCloseStatus,System.String,System.Threading.CancellationToken)" />
+        <element api="M:System.Net.WebSockets.ClientWebSocket.CloseOutputAsync(System.Net.WebSockets.WebSocketCloseStatus,System.String,System.Threading.CancellationToken)" />
+        <element api="P:System.Net.WebSockets.ClientWebSocket.CloseStatus" />
+        <element api="P:System.Net.WebSockets.ClientWebSocket.CloseStatusDescription" />
+        <element api="M:System.Net.WebSockets.ClientWebSocket.ConnectAsync(System.Uri,System.Threading.CancellationToken)" />
+        <element api="M:System.Net.WebSockets.ClientWebSocket.Dispose" />
+        <element api="P:System.Net.WebSockets.ClientWebSocket.Options" />
+        <element api="M:System.Net.WebSockets.ClientWebSocket.ReceiveAsync(System.ArraySegment{System.Byte},System.Threading.CancellationToken)" />
+        <element api="M:System.Net.WebSockets.ClientWebSocket.SendAsync(System.ArraySegment{System.Byte},System.Net.WebSockets.WebSocketMessageType,System.Boolean,System.Threading.CancellationToken)" />
+        <element api="P:System.Net.WebSockets.ClientWebSocket.State" />
+        <element api="P:System.Net.WebSockets.ClientWebSocket.SubProtocol" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocket" />
+      </containers>
+      <file name="989b2ba3-98b4-7da6-1858-1791a6ecc5a4" />
+    </api>
+    <api id="Methods.T:System.Net.WebSockets.ClientWebSocket">
+      <topicdata name="ClientWebSocket" group="list" subgroup="Methods" typeTopicId="T:System.Net.WebSockets.ClientWebSocket" />
+      <apidata name="ClientWebSocket" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Net.WebSockets.ClientWebSocket.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Net.WebSockets.ClientWebSocket.Abort" />
+        <element api="M:System.Net.WebSockets.ClientWebSocket.CloseAsync(System.Net.WebSockets.WebSocketCloseStatus,System.String,System.Threading.CancellationToken)" />
+        <element api="M:System.Net.WebSockets.ClientWebSocket.CloseOutputAsync(System.Net.WebSockets.WebSocketCloseStatus,System.String,System.Threading.CancellationToken)" />
+        <element api="M:System.Net.WebSockets.ClientWebSocket.ConnectAsync(System.Uri,System.Threading.CancellationToken)" />
+        <element api="M:System.Net.WebSockets.ClientWebSocket.Dispose" />
+        <element api="M:System.Net.WebSockets.ClientWebSocket.ReceiveAsync(System.ArraySegment{System.Byte},System.Threading.CancellationToken)" />
+        <element api="M:System.Net.WebSockets.ClientWebSocket.SendAsync(System.ArraySegment{System.Byte},System.Net.WebSockets.WebSocketMessageType,System.Boolean,System.Threading.CancellationToken)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocket" />
+      </containers>
+      <file name="f4c46908-0f1a-f96c-53e0-fd5a26e1e308" />
+    </api>
+    <api id="Properties.T:System.Net.WebSockets.ClientWebSocket">
+      <topicdata name="ClientWebSocket" group="list" subgroup="Properties" typeTopicId="T:System.Net.WebSockets.ClientWebSocket" />
+      <apidata name="ClientWebSocket" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Net.WebSockets.ClientWebSocket.#ctor" />
+      <elements>
+        <element api="P:System.Net.WebSockets.ClientWebSocket.CloseStatus" />
+        <element api="P:System.Net.WebSockets.ClientWebSocket.CloseStatusDescription" />
+        <element api="P:System.Net.WebSockets.ClientWebSocket.Options" />
+        <element api="P:System.Net.WebSockets.ClientWebSocket.State" />
+        <element api="P:System.Net.WebSockets.ClientWebSocket.SubProtocol" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocket" />
+      </containers>
+      <file name="84c8c8e6-238e-4b19-9e80-c85470849316" />
+    </api>
+    <api id="M:System.Net.WebSockets.ClientWebSocket.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocket" ref="true" />
+      </containers>
+      <file name="5b8a1875-2ff5-b6c1-5434-3e261c2e0ae4" />
+    </api>
+    <api id="M:System.Net.WebSockets.ClientWebSocket.Abort">
+      <topicdata group="api" />
+      <apidata name="Abort" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Net.WebSockets.WebSocket.Abort">
+          <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocket" ref="true" />
+      </containers>
+      <file name="d0bd8210-4d43-e43a-b0a2-d35c457799f0" />
+    </api>
+    <api id="M:System.Net.WebSockets.ClientWebSocket.CloseAsync(System.Net.WebSockets.WebSocketCloseStatus,System.String,System.Threading.CancellationToken)">
+      <topicdata group="api" />
+      <apidata name="CloseAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Net.WebSockets.WebSocket.CloseAsync(System.Net.WebSockets.WebSocketCloseStatus,System.String,System.Threading.CancellationToken)">
+          <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="closeStatus">
+          <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+        </parameter>
+        <parameter name="statusDescription">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="cancellationToken">
+          <type api="T:System.Threading.CancellationToken" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Threading.Tasks.Task" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocket" ref="true" />
+      </containers>
+      <file name="bfc54ffd-215c-1403-aef6-bd4b38a4ca80" />
+    </api>
+    <api id="M:System.Net.WebSockets.ClientWebSocket.CloseOutputAsync(System.Net.WebSockets.WebSocketCloseStatus,System.String,System.Threading.CancellationToken)">
+      <topicdata group="api" />
+      <apidata name="CloseOutputAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Net.WebSockets.WebSocket.CloseOutputAsync(System.Net.WebSockets.WebSocketCloseStatus,System.String,System.Threading.CancellationToken)">
+          <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="closeStatus">
+          <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+        </parameter>
+        <parameter name="statusDescription">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="cancellationToken">
+          <type api="T:System.Threading.CancellationToken" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Threading.Tasks.Task" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocket" ref="true" />
+      </containers>
+      <file name="fa217841-54e1-ca8d-c9b9-826dcf3c4f8e" />
+    </api>
+    <api id="P:System.Net.WebSockets.ClientWebSocket.CloseStatus">
+      <topicdata group="api" />
+      <apidata name="CloseStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.WebSockets.WebSocket.CloseStatus">
+          <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CloseStatus" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocket" ref="true" />
+      </containers>
+      <file name="c0073986-667e-a58a-a193-e6c03cfe592a" />
+    </api>
+    <api id="P:System.Net.WebSockets.ClientWebSocket.CloseStatusDescription">
+      <topicdata group="api" />
+      <apidata name="CloseStatusDescription" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.WebSockets.WebSocket.CloseStatusDescription">
+          <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CloseStatusDescription" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocket" ref="true" />
+      </containers>
+      <file name="d9d3e2f9-0aec-aa8b-1174-33e93743af9c" />
+    </api>
+    <api id="M:System.Net.WebSockets.ClientWebSocket.ConnectAsync(System.Uri,System.Threading.CancellationToken)">
+      <topicdata group="api" />
+      <apidata name="ConnectAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="uri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="cancellationToken">
+          <type api="T:System.Threading.CancellationToken" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Threading.Tasks.Task" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocket" ref="true" />
+      </containers>
+      <file name="a5b60395-70d6-6810-2d55-15569ec874e7" />
+    </api>
+    <api id="M:System.Net.WebSockets.ClientWebSocket.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Net.WebSockets.WebSocket.Dispose">
+          <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+        </member>
+      </overrides>
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocket" ref="true" />
+      </containers>
+      <file name="8aa2bc1a-cb8a-e90f-ffe6-e296af4d11e3" />
+    </api>
+    <api id="P:System.Net.WebSockets.ClientWebSocket.Options">
+      <topicdata group="api" />
+      <apidata name="Options" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Options" />
+      <returns>
+        <type api="T:System.Net.WebSockets.ClientWebSocketOptions" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocket" ref="true" />
+      </containers>
+      <file name="862a2343-04f7-17de-8c0d-e26ec451fdd4" />
+    </api>
+    <api id="M:System.Net.WebSockets.ClientWebSocket.ReceiveAsync(System.ArraySegment{System.Byte},System.Threading.CancellationToken)">
+      <topicdata group="api" />
+      <apidata name="ReceiveAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Net.WebSockets.WebSocket.ReceiveAsync(System.ArraySegment{System.Byte},System.Threading.CancellationToken)">
+          <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="buffer">
+          <type api="T:System.ArraySegment`1" ref="false">
+            <specialization>
+              <type api="T:System.Byte" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="cancellationToken">
+          <type api="T:System.Threading.CancellationToken" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Threading.Tasks.Task`1" ref="true">
+          <specialization>
+            <type api="T:System.Net.WebSockets.WebSocketReceiveResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocket" ref="true" />
+      </containers>
+      <file name="996d01fd-8ed1-4468-10b6-b026fee9ef53" />
+    </api>
+    <api id="M:System.Net.WebSockets.ClientWebSocket.SendAsync(System.ArraySegment{System.Byte},System.Net.WebSockets.WebSocketMessageType,System.Boolean,System.Threading.CancellationToken)">
+      <topicdata group="api" />
+      <apidata name="SendAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Net.WebSockets.WebSocket.SendAsync(System.ArraySegment{System.Byte},System.Net.WebSockets.WebSocketMessageType,System.Boolean,System.Threading.CancellationToken)">
+          <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="buffer">
+          <type api="T:System.ArraySegment`1" ref="false">
+            <specialization>
+              <type api="T:System.Byte" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="messageType">
+          <type api="T:System.Net.WebSockets.WebSocketMessageType" ref="false" />
+        </parameter>
+        <parameter name="endOfMessage">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="cancellationToken">
+          <type api="T:System.Threading.CancellationToken" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Threading.Tasks.Task" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocket" ref="true" />
+      </containers>
+      <file name="c45c2dec-211c-14e5-7a78-39fe5b52912d" />
+    </api>
+    <api id="P:System.Net.WebSockets.ClientWebSocket.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.WebSockets.WebSocket.State">
+          <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocket" ref="true" />
+      </containers>
+      <file name="af75125b-9089-942e-e9fc-0c5fafc6da24" />
+    </api>
+    <api id="P:System.Net.WebSockets.ClientWebSocket.SubProtocol">
+      <topicdata group="api" />
+      <apidata name="SubProtocol" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.WebSockets.WebSocket.SubProtocol">
+          <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_SubProtocol" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocket" ref="true" />
+      </containers>
+      <file name="fcedf5e4-dcab-c20c-c0cf-99e9212d9369" />
+    </api>
+    <api id="T:System.Net.WebSockets.ClientWebSocketOptions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.WebSockets.ClientWebSocketOptions" />
+      <apidata name="ClientWebSocketOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+      </containers>
+      <file name="1368846d-ca89-4180-31fa-1b77e749a668" />
+    </api>
+    <api id="AllMembers.T:System.Net.WebSockets.ClientWebSocketOptions">
+      <topicdata name="ClientWebSocketOptions" group="list" subgroup="members" typeTopicId="T:System.Net.WebSockets.ClientWebSocketOptions" />
+      <apidata name="ClientWebSocketOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Net.WebSockets.ClientWebSocketOptions.AddSubProtocol(System.String)" />
+        <element api="P:System.Net.WebSockets.ClientWebSocketOptions.ClientCertificates" />
+        <element api="P:System.Net.WebSockets.ClientWebSocketOptions.Cookies" />
+        <element api="P:System.Net.WebSockets.ClientWebSocketOptions.Credentials" />
+        <element api="P:System.Net.WebSockets.ClientWebSocketOptions.KeepAliveInterval" />
+        <element api="P:System.Net.WebSockets.ClientWebSocketOptions.Proxy" />
+        <element api="Overload:System.Net.WebSockets.ClientWebSocketOptions.SetBuffer">
+          <element api="M:System.Net.WebSockets.ClientWebSocketOptions.SetBuffer(System.Int32,System.Int32)" />
+          <element api="M:System.Net.WebSockets.ClientWebSocketOptions.SetBuffer(System.Int32,System.Int32,System.ArraySegment{System.Byte})" />
+        </element>
+        <element api="M:System.Net.WebSockets.ClientWebSocketOptions.SetRequestHeader(System.String,System.String)" />
+        <element api="P:System.Net.WebSockets.ClientWebSocketOptions.UseDefaultCredentials" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocketOptions" />
+      </containers>
+      <file name="8ab5f36c-e2de-2d99-386f-79c1a2f7100c" />
+    </api>
+    <api id="Methods.T:System.Net.WebSockets.ClientWebSocketOptions">
+      <topicdata name="ClientWebSocketOptions" group="list" subgroup="Methods" typeTopicId="T:System.Net.WebSockets.ClientWebSocketOptions" />
+      <apidata name="ClientWebSocketOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Net.WebSockets.ClientWebSocketOptions.AddSubProtocol(System.String)" />
+        <element api="Overload:System.Net.WebSockets.ClientWebSocketOptions.SetBuffer">
+          <element api="M:System.Net.WebSockets.ClientWebSocketOptions.SetBuffer(System.Int32,System.Int32)" />
+          <element api="M:System.Net.WebSockets.ClientWebSocketOptions.SetBuffer(System.Int32,System.Int32,System.ArraySegment{System.Byte})" />
+        </element>
+        <element api="M:System.Net.WebSockets.ClientWebSocketOptions.SetRequestHeader(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocketOptions" />
+      </containers>
+      <file name="859b86f9-c56e-37f1-7e3c-877c1c75c6e0" />
+    </api>
+    <api id="Properties.T:System.Net.WebSockets.ClientWebSocketOptions">
+      <topicdata name="ClientWebSocketOptions" group="list" subgroup="Properties" typeTopicId="T:System.Net.WebSockets.ClientWebSocketOptions" />
+      <apidata name="ClientWebSocketOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Net.WebSockets.ClientWebSocketOptions.ClientCertificates" />
+        <element api="P:System.Net.WebSockets.ClientWebSocketOptions.Cookies" />
+        <element api="P:System.Net.WebSockets.ClientWebSocketOptions.Credentials" />
+        <element api="P:System.Net.WebSockets.ClientWebSocketOptions.KeepAliveInterval" />
+        <element api="P:System.Net.WebSockets.ClientWebSocketOptions.Proxy" />
+        <element api="P:System.Net.WebSockets.ClientWebSocketOptions.UseDefaultCredentials" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocketOptions" />
+      </containers>
+      <file name="d31f9c78-9d35-d4a8-7e03-50bd93b984e6" />
+    </api>
+    <api id="Overload:System.Net.WebSockets.ClientWebSocketOptions.SetBuffer">
+      <topicdata name="SetBuffer" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.WebSockets.ClientWebSocketOptions" />
+      <apidata name="SetBuffer" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Net.WebSockets.ClientWebSocketOptions.SetBuffer(System.Int32,System.Int32)" />
+        <element api="M:System.Net.WebSockets.ClientWebSocketOptions.SetBuffer(System.Int32,System.Int32,System.ArraySegment{System.Byte})" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocketOptions" ref="true" />
+      </containers>
+      <file name="09c51df8-1ce2-54d5-657e-21b193958df0" />
+    </api>
+    <api id="M:System.Net.WebSockets.ClientWebSocketOptions.AddSubProtocol(System.String)">
+      <topicdata group="api" />
+      <apidata name="AddSubProtocol" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="subProtocol">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocketOptions" ref="true" />
+      </containers>
+      <file name="6d985274-5438-7e30-59c1-05963af12193" />
+    </api>
+    <api id="P:System.Net.WebSockets.ClientWebSocketOptions.ClientCertificates">
+      <topicdata group="api" />
+      <apidata name="ClientCertificates" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ClientCertificates" />
+      <setter name="set_ClientCertificates" />
+      <returns>
+        <type api="T:System.Security.Cryptography.X509Certificates.X509CertificateCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocketOptions" ref="true" />
+      </containers>
+      <file name="fe9fc261-3dec-27e6-fc7f-af691235ffff" />
+    </api>
+    <api id="P:System.Net.WebSockets.ClientWebSocketOptions.Cookies">
+      <topicdata group="api" />
+      <apidata name="Cookies" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Cookies" />
+      <setter name="set_Cookies" />
+      <returns>
+        <type api="T:System.Net.CookieContainer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocketOptions" ref="true" />
+      </containers>
+      <file name="b9dbf4bf-962b-ab7c-cfe6-9ef199a4fcf2" />
+    </api>
+    <api id="P:System.Net.WebSockets.ClientWebSocketOptions.Credentials">
+      <topicdata group="api" />
+      <apidata name="Credentials" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Credentials" />
+      <setter name="set_Credentials" />
+      <returns>
+        <type api="T:System.Net.ICredentials" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocketOptions" ref="true" />
+      </containers>
+      <file name="82fd5e29-f080-cfe6-6857-d3e4a17cbff0" />
+    </api>
+    <api id="P:System.Net.WebSockets.ClientWebSocketOptions.KeepAliveInterval">
+      <topicdata group="api" />
+      <apidata name="KeepAliveInterval" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_KeepAliveInterval" />
+      <setter name="set_KeepAliveInterval" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocketOptions" ref="true" />
+      </containers>
+      <file name="8b6843be-cbf9-4bcd-4a86-c83beb248218" />
+    </api>
+    <api id="P:System.Net.WebSockets.ClientWebSocketOptions.Proxy">
+      <topicdata group="api" />
+      <apidata name="Proxy" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Proxy" />
+      <setter name="set_Proxy" />
+      <returns>
+        <type api="T:System.Net.IWebProxy" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocketOptions" ref="true" />
+      </containers>
+      <file name="082d6769-46d9-29be-9d07-5d82fa5ba576" />
+    </api>
+    <api id="M:System.Net.WebSockets.ClientWebSocketOptions.SetBuffer(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="SetBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.WebSockets.ClientWebSocketOptions.SetBuffer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="receiveBufferSize">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sendBufferSize">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocketOptions" ref="true" />
+      </containers>
+      <file name="9668f9b0-c3de-3610-680c-a45081f15946" />
+    </api>
+    <api id="M:System.Net.WebSockets.ClientWebSocketOptions.SetBuffer(System.Int32,System.Int32,System.ArraySegment{System.Byte})">
+      <topicdata group="api" />
+      <apidata name="SetBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.WebSockets.ClientWebSocketOptions.SetBuffer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="receiveBufferSize">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sendBufferSize">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="buffer">
+          <type api="T:System.ArraySegment`1" ref="false">
+            <specialization>
+              <type api="T:System.Byte" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocketOptions" ref="true" />
+      </containers>
+      <file name="356f28df-71c0-b4e3-bcc3-2a19201d65e4" />
+    </api>
+    <api id="M:System.Net.WebSockets.ClientWebSocketOptions.SetRequestHeader(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="SetRequestHeader" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="headerName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="headerValue">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocketOptions" ref="true" />
+      </containers>
+      <file name="0c9444be-fb6d-9342-5922-b419347be8b1" />
+    </api>
+    <api id="P:System.Net.WebSockets.ClientWebSocketOptions.UseDefaultCredentials">
+      <topicdata group="api" />
+      <apidata name="UseDefaultCredentials" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UseDefaultCredentials" />
+      <setter name="set_UseDefaultCredentials" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.ClientWebSocketOptions" ref="true" />
+      </containers>
+      <file name="6cd401da-ed29-c480-e8dc-b03f910000b1" />
+    </api>
+    <api id="T:System.Net.WebSockets.HttpListenerWebSocketContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.WebSockets.HttpListenerWebSocketContext" />
+      <apidata name="HttpListenerWebSocketContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+      </containers>
+      <file name="04ef245d-e5d3-4177-240b-f8db8cdf2c34" />
+    </api>
+    <api id="AllMembers.T:System.Net.WebSockets.HttpListenerWebSocketContext">
+      <topicdata name="HttpListenerWebSocketContext" group="list" subgroup="members" typeTopicId="T:System.Net.WebSockets.HttpListenerWebSocketContext" />
+      <apidata name="HttpListenerWebSocketContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.CookieCollection" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.Headers" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsAuthenticated" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsLocal" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsSecureConnection" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.Origin" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.RequestUri" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketKey" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketProtocols" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketVersion" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.User" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.WebSocket" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.HttpListenerWebSocketContext" />
+      </containers>
+      <file name="8dfda3fc-8ff8-cd2e-76a1-be61409bd2ae" />
+    </api>
+    <api id="Methods.T:System.Net.WebSockets.HttpListenerWebSocketContext">
+      <topicdata name="HttpListenerWebSocketContext" group="list" subgroup="Methods" typeTopicId="T:System.Net.WebSockets.HttpListenerWebSocketContext" />
+      <apidata name="HttpListenerWebSocketContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.HttpListenerWebSocketContext" />
+      </containers>
+      <file name="84bf19fa-3b50-0309-b8ea-08d648e985a9" />
+    </api>
+    <api id="Properties.T:System.Net.WebSockets.HttpListenerWebSocketContext">
+      <topicdata name="HttpListenerWebSocketContext" group="list" subgroup="Properties" typeTopicId="T:System.Net.WebSockets.HttpListenerWebSocketContext" />
+      <apidata name="HttpListenerWebSocketContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.CookieCollection" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.Headers" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsAuthenticated" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsLocal" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsSecureConnection" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.Origin" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.RequestUri" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketKey" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketProtocols" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketVersion" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.User" />
+        <element api="P:System.Net.WebSockets.HttpListenerWebSocketContext.WebSocket" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.HttpListenerWebSocketContext" />
+      </containers>
+      <file name="3a45651e-8366-4861-e554-c361ba35c086" />
+    </api>
+    <api id="P:System.Net.WebSockets.HttpListenerWebSocketContext.CookieCollection">
+      <topicdata group="api" />
+      <apidata name="CookieCollection" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.WebSockets.WebSocketContext.CookieCollection">
+          <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CookieCollection" />
+      <returns>
+        <type api="T:System.Net.CookieCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.HttpListenerWebSocketContext" ref="true" />
+      </containers>
+      <file name="b2e75203-8a48-59f3-9217-12e44925f9e9" />
+    </api>
+    <api id="P:System.Net.WebSockets.HttpListenerWebSocketContext.Headers">
+      <topicdata group="api" />
+      <apidata name="Headers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.WebSockets.WebSocketContext.Headers">
+          <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Headers" />
+      <returns>
+        <type api="T:System.Collections.Specialized.NameValueCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.HttpListenerWebSocketContext" ref="true" />
+      </containers>
+      <file name="55a8a6aa-4cc3-919a-e27a-325dc7ce25c4" />
+    </api>
+    <api id="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsAuthenticated">
+      <topicdata group="api" />
+      <apidata name="IsAuthenticated" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.WebSockets.WebSocketContext.IsAuthenticated">
+          <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_IsAuthenticated" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.HttpListenerWebSocketContext" ref="true" />
+      </containers>
+      <file name="5bc094e7-709f-7580-f8bf-3c4191eddaa5" />
+    </api>
+    <api id="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsLocal">
+      <topicdata group="api" />
+      <apidata name="IsLocal" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.WebSockets.WebSocketContext.IsLocal">
+          <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_IsLocal" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.HttpListenerWebSocketContext" ref="true" />
+      </containers>
+      <file name="6a17a7b7-9033-3abe-48e8-75d30dfb164c" />
+    </api>
+    <api id="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsSecureConnection">
+      <topicdata group="api" />
+      <apidata name="IsSecureConnection" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.WebSockets.WebSocketContext.IsSecureConnection">
+          <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_IsSecureConnection" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.HttpListenerWebSocketContext" ref="true" />
+      </containers>
+      <file name="ca89e511-c9ed-35e0-1065-f49afcff5858" />
+    </api>
+    <api id="P:System.Net.WebSockets.HttpListenerWebSocketContext.Origin">
+      <topicdata group="api" />
+      <apidata name="Origin" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.WebSockets.WebSocketContext.Origin">
+          <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Origin" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.HttpListenerWebSocketContext" ref="true" />
+      </containers>
+      <file name="7db5eaf8-2bd3-e967-8de1-8a75bc6ac00f" />
+    </api>
+    <api id="P:System.Net.WebSockets.HttpListenerWebSocketContext.RequestUri">
+      <topicdata group="api" />
+      <apidata name="RequestUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.WebSockets.WebSocketContext.RequestUri">
+          <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_RequestUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.HttpListenerWebSocketContext" ref="true" />
+      </containers>
+      <file name="7754e07e-f92a-18a8-09e8-d1e1239312b6" />
+    </api>
+    <api id="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketKey">
+      <topicdata group="api" />
+      <apidata name="SecWebSocketKey" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.WebSockets.WebSocketContext.SecWebSocketKey">
+          <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_SecWebSocketKey" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.HttpListenerWebSocketContext" ref="true" />
+      </containers>
+      <file name="cf70d2cc-dac6-eb09-eb19-b6dcdcec79d9" />
+    </api>
+    <api id="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketProtocols">
+      <topicdata group="api" />
+      <apidata name="SecWebSocketProtocols" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.WebSockets.WebSocketContext.SecWebSocketProtocols">
+          <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_SecWebSocketProtocols" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.HttpListenerWebSocketContext" ref="true" />
+      </containers>
+      <file name="a2ec043e-e124-61b8-83a9-211d430a9e78" />
+    </api>
+    <api id="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketVersion">
+      <topicdata group="api" />
+      <apidata name="SecWebSocketVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.WebSockets.WebSocketContext.SecWebSocketVersion">
+          <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_SecWebSocketVersion" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.HttpListenerWebSocketContext" ref="true" />
+      </containers>
+      <file name="c12965e7-5760-c81b-e680-dc176663de9d" />
+    </api>
+    <api id="P:System.Net.WebSockets.HttpListenerWebSocketContext.User">
+      <topicdata group="api" />
+      <apidata name="User" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.WebSockets.WebSocketContext.User">
+          <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_User" />
+      <returns>
+        <type api="T:System.Security.Principal.IPrincipal" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.HttpListenerWebSocketContext" ref="true" />
+      </containers>
+      <file name="e95ab78a-2f66-ade4-a376-7b9a53a25e3e" />
+    </api>
+    <api id="P:System.Net.WebSockets.HttpListenerWebSocketContext.WebSocket">
+      <topicdata group="api" />
+      <apidata name="WebSocket" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.WebSockets.WebSocketContext.WebSocket">
+          <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_WebSocket" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.HttpListenerWebSocketContext" ref="true" />
+      </containers>
+      <file name="2484d88c-6018-a564-3a4b-844ebfcd91d8" />
+    </api>
+    <api id="T:System.Net.WebSockets.WebSocket">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.WebSockets.WebSocket" />
+      <apidata name="WebSocket" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Net.WebSockets.ClientWebSocket" ref="true" />
+          <type api="T:System.Web.WebSockets.AspNetWebSocket" ref="true" />
+        </descendents>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+      </containers>
+      <file name="d9054871-2c8f-d25d-e086-e7fd0ccd5f5c" />
+    </api>
+    <api id="AllMembers.T:System.Net.WebSockets.WebSocket">
+      <topicdata name="WebSocket" group="list" subgroup="members" typeTopicId="T:System.Net.WebSockets.WebSocket" />
+      <apidata name="WebSocket" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Net.WebSockets.WebSocket.#ctor" />
+        <element api="M:System.Net.WebSockets.WebSocket.Abort" />
+        <element api="M:System.Net.WebSockets.WebSocket.CloseAsync(System.Net.WebSockets.WebSocketCloseStatus,System.String,System.Threading.CancellationToken)" />
+        <element api="M:System.Net.WebSockets.WebSocket.CloseOutputAsync(System.Net.WebSockets.WebSocketCloseStatus,System.String,System.Threading.CancellationToken)" />
+        <element api="P:System.Net.WebSockets.WebSocket.CloseStatus" />
+        <element api="P:System.Net.WebSockets.WebSocket.CloseStatusDescription" />
+        <element api="M:System.Net.WebSockets.WebSocket.CreateClientBuffer(System.Int32,System.Int32)" />
+        <element api="M:System.Net.WebSockets.WebSocket.CreateClientWebSocket(System.IO.Stream,System.String,System.Int32,System.Int32,System.TimeSpan,System.Boolean,System.ArraySegment{System.Byte})" />
+        <element api="M:System.Net.WebSockets.WebSocket.CreateServerBuffer(System.Int32)" />
+        <element api="P:System.Net.WebSockets.WebSocket.DefaultKeepAliveInterval" />
+        <element api="M:System.Net.WebSockets.WebSocket.Dispose" />
+        <element api="M:System.Net.WebSockets.WebSocket.IsApplicationTargeting45" />
+        <element api="M:System.Net.WebSockets.WebSocket.IsStateTerminal(System.Net.WebSockets.WebSocketState)" />
+        <element api="M:System.Net.WebSockets.WebSocket.ReceiveAsync(System.ArraySegment{System.Byte},System.Threading.CancellationToken)" />
+        <element api="M:System.Net.WebSockets.WebSocket.RegisterPrefixes" />
+        <element api="M:System.Net.WebSockets.WebSocket.SendAsync(System.ArraySegment{System.Byte},System.Net.WebSockets.WebSocketMessageType,System.Boolean,System.Threading.CancellationToken)" />
+        <element api="P:System.Net.WebSockets.WebSocket.State" />
+        <element api="P:System.Net.WebSockets.WebSocket.SubProtocol" />
+        <element api="M:System.Net.WebSockets.WebSocket.ThrowOnInvalidState(System.Net.WebSockets.WebSocketState,System.Net.WebSockets.WebSocketState[])" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" />
+      </containers>
+      <file name="5e2edda6-e6d2-bc2c-658a-b81a46083860" />
+    </api>
+    <api id="Methods.T:System.Net.WebSockets.WebSocket">
+      <topicdata name="WebSocket" group="list" subgroup="Methods" typeTopicId="T:System.Net.WebSockets.WebSocket" />
+      <apidata name="WebSocket" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Net.WebSockets.WebSocket.Abort" />
+        <element api="M:System.Net.WebSockets.WebSocket.CloseAsync(System.Net.WebSockets.WebSocketCloseStatus,System.String,System.Threading.CancellationToken)" />
+        <element api="M:System.Net.WebSockets.WebSocket.CloseOutputAsync(System.Net.WebSockets.WebSocketCloseStatus,System.String,System.Threading.CancellationToken)" />
+        <element api="M:System.Net.WebSockets.WebSocket.CreateClientBuffer(System.Int32,System.Int32)" />
+        <element api="M:System.Net.WebSockets.WebSocket.CreateClientWebSocket(System.IO.Stream,System.String,System.Int32,System.Int32,System.TimeSpan,System.Boolean,System.ArraySegment{System.Byte})" />
+        <element api="M:System.Net.WebSockets.WebSocket.CreateServerBuffer(System.Int32)" />
+        <element api="M:System.Net.WebSockets.WebSocket.Dispose" />
+        <element api="M:System.Net.WebSockets.WebSocket.IsApplicationTargeting45" />
+        <element api="M:System.Net.WebSockets.WebSocket.IsStateTerminal(System.Net.WebSockets.WebSocketState)" />
+        <element api="M:System.Net.WebSockets.WebSocket.ReceiveAsync(System.ArraySegment{System.Byte},System.Threading.CancellationToken)" />
+        <element api="M:System.Net.WebSockets.WebSocket.RegisterPrefixes" />
+        <element api="M:System.Net.WebSockets.WebSocket.SendAsync(System.ArraySegment{System.Byte},System.Net.WebSockets.WebSocketMessageType,System.Boolean,System.Threading.CancellationToken)" />
+        <element api="M:System.Net.WebSockets.WebSocket.ThrowOnInvalidState(System.Net.WebSockets.WebSocketState,System.Net.WebSockets.WebSocketState[])" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" />
+      </containers>
+      <file name="d29bc47c-0eb9-abd4-51e2-5d6a64007728" />
+    </api>
+    <api id="Properties.T:System.Net.WebSockets.WebSocket">
+      <topicdata name="WebSocket" group="list" subgroup="Properties" typeTopicId="T:System.Net.WebSockets.WebSocket" />
+      <apidata name="WebSocket" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Net.WebSockets.WebSocket.CloseStatus" />
+        <element api="P:System.Net.WebSockets.WebSocket.CloseStatusDescription" />
+        <element api="P:System.Net.WebSockets.WebSocket.DefaultKeepAliveInterval" />
+        <element api="P:System.Net.WebSockets.WebSocket.State" />
+        <element api="P:System.Net.WebSockets.WebSocket.SubProtocol" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" />
+      </containers>
+      <file name="e86f4148-2117-808a-6139-3f0cd6dc8430" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocket.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <file name="43c82a2a-aa53-3f48-855a-3aec564743eb" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocket.Abort">
+      <topicdata group="api" />
+      <apidata name="Abort" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <file name="0e759cab-fbb8-0ac0-bd0a-f65752c78bcb" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocket.CloseAsync(System.Net.WebSockets.WebSocketCloseStatus,System.String,System.Threading.CancellationToken)">
+      <topicdata group="api" />
+      <apidata name="CloseAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="closeStatus">
+          <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+        </parameter>
+        <parameter name="statusDescription">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="cancellationToken">
+          <type api="T:System.Threading.CancellationToken" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Threading.Tasks.Task" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <file name="fd59ea8b-b9f2-4e54-5af6-df53666dd341" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocket.CloseOutputAsync(System.Net.WebSockets.WebSocketCloseStatus,System.String,System.Threading.CancellationToken)">
+      <topicdata group="api" />
+      <apidata name="CloseOutputAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="closeStatus">
+          <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+        </parameter>
+        <parameter name="statusDescription">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="cancellationToken">
+          <type api="T:System.Threading.CancellationToken" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Threading.Tasks.Task" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <file name="76e98347-d5be-648a-ced0-deddca58fefb" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocket.CloseStatus">
+      <topicdata group="api" />
+      <apidata name="CloseStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CloseStatus" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <file name="c89f7bdc-e879-c2e9-cec1-5bec5fb9d2fb" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocket.CloseStatusDescription">
+      <topicdata group="api" />
+      <apidata name="CloseStatusDescription" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CloseStatusDescription" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <file name="46006d8b-a181-99d9-5627-f45be82401e4" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocket.CreateClientBuffer(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="CreateClientBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="receiveBufferSize">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sendBufferSize">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ArraySegment`1" ref="false">
+          <specialization>
+            <type api="T:System.Byte" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <file name="450bbcea-3eff-2ccd-c1ea-9157b58a05d1" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocket.CreateClientWebSocket(System.IO.Stream,System.String,System.Int32,System.Int32,System.TimeSpan,System.Boolean,System.ArraySegment{System.Byte})">
+      <topicdata group="api" />
+      <apidata name="CreateClientWebSocket" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="innerStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="subProtocol">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="receiveBufferSize">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sendBufferSize">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="keepAliveInterval">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="useZeroMaskingKey">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="internalBuffer">
+          <type api="T:System.ArraySegment`1" ref="false">
+            <specialization>
+              <type api="T:System.Byte" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fbf40222-35f0-6392-019e-6e1380483c23" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocket.CreateServerBuffer(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="CreateServerBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="receiveBufferSize">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ArraySegment`1" ref="false">
+          <specialization>
+            <type api="T:System.Byte" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <file name="70338fea-44b4-6c9b-bbe5-f3bcedfcbe8c" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocket.DefaultKeepAliveInterval">
+      <topicdata group="api" />
+      <apidata name="DefaultKeepAliveInterval" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DefaultKeepAliveInterval" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <file name="293a69e6-1309-bece-a444-142916c4ce14" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocket.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <file name="e4ed4032-8f54-fdc3-1e19-95fde4232edd" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocket.IsApplicationTargeting45">
+      <topicdata group="api" />
+      <apidata name="IsApplicationTargeting45" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>This API supports the .NET Framework infrastructure and is not intended to be used directly from your code.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="eea432b8-fdff-3f15-47bb-ea1fcb4ab155" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocket.IsStateTerminal(System.Net.WebSockets.WebSocketState)">
+      <topicdata group="api" />
+      <apidata name="IsStateTerminal" group="member" subgroup="method" />
+      <memberdata visibility="family" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="state">
+          <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <file name="5c6a3e49-9a56-7dc2-2b47-bb13d5f21ec6" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocket.ReceiveAsync(System.ArraySegment{System.Byte},System.Threading.CancellationToken)">
+      <topicdata group="api" />
+      <apidata name="ReceiveAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="buffer">
+          <type api="T:System.ArraySegment`1" ref="false">
+            <specialization>
+              <type api="T:System.Byte" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="cancellationToken">
+          <type api="T:System.Threading.CancellationToken" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Threading.Tasks.Task`1" ref="true">
+          <specialization>
+            <type api="T:System.Net.WebSockets.WebSocketReceiveResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <file name="e0fb6679-fc12-88fc-4af9-862d8d75e886" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocket.RegisterPrefixes">
+      <topicdata group="api" />
+      <apidata name="RegisterPrefixes" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="36e54560-1209-9717-984f-1b98409aeb16" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocket.SendAsync(System.ArraySegment{System.Byte},System.Net.WebSockets.WebSocketMessageType,System.Boolean,System.Threading.CancellationToken)">
+      <topicdata group="api" />
+      <apidata name="SendAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="buffer">
+          <type api="T:System.ArraySegment`1" ref="false">
+            <specialization>
+              <type api="T:System.Byte" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="messageType">
+          <type api="T:System.Net.WebSockets.WebSocketMessageType" ref="false" />
+        </parameter>
+        <parameter name="endOfMessage">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="cancellationToken">
+          <type api="T:System.Threading.CancellationToken" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Threading.Tasks.Task" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <file name="47e7ff2e-ee7c-b425-39b2-a26df1f71f1d" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocket.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <file name="94d2703e-4473-6873-f48c-af1fefc1c795" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocket.SubProtocol">
+      <topicdata group="api" />
+      <apidata name="SubProtocol" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_SubProtocol" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <file name="48dcb9a6-8180-8c35-6997-d593550786d0" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocket.ThrowOnInvalidState(System.Net.WebSockets.WebSocketState,System.Net.WebSockets.WebSocketState[])">
+      <topicdata group="api" />
+      <apidata name="ThrowOnInvalidState" group="member" subgroup="method" />
+      <memberdata visibility="family" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="state">
+          <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+        </parameter>
+        <parameter name="validStates" params="true">
+          <arrayOf rank="1">
+            <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </containers>
+      <file name="a7dc6897-bf82-6c67-4e23-fe529b7fb957" />
+    </api>
+    <api id="T:System.Net.WebSockets.WebSocketCloseStatus">
+      <topicdata group="api" />
+      <apidata name="WebSocketCloseStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.WebSockets.WebSocketCloseStatus.NormalClosure" />
+        <element api="F:System.Net.WebSockets.WebSocketCloseStatus.EndpointUnavailable" />
+        <element api="F:System.Net.WebSockets.WebSocketCloseStatus.ProtocolError" />
+        <element api="F:System.Net.WebSockets.WebSocketCloseStatus.InvalidMessageType" />
+        <element api="F:System.Net.WebSockets.WebSocketCloseStatus.Empty" />
+        <element api="F:System.Net.WebSockets.WebSocketCloseStatus.InvalidPayloadData" />
+        <element api="F:System.Net.WebSockets.WebSocketCloseStatus.PolicyViolation" />
+        <element api="F:System.Net.WebSockets.WebSocketCloseStatus.MessageTooBig" />
+        <element api="F:System.Net.WebSockets.WebSocketCloseStatus.MandatoryExtension" />
+        <element api="F:System.Net.WebSockets.WebSocketCloseStatus.InternalServerError" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+      </containers>
+      <file name="bce33c1d-0b87-3e1c-2ce3-338199b5b17b" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketCloseStatus.Empty">
+      <topicdata group="api" notopic="" />
+      <apidata name="Empty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </returns>
+      <value>1005</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </containers>
+      <file name="0e9d1375-a217-402f-4af0-27a291b9bcf9" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketCloseStatus.EndpointUnavailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="EndpointUnavailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </returns>
+      <value>1001</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </containers>
+      <file name="e87c1606-f462-cade-4325-d5b05adfa25e" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketCloseStatus.InternalServerError">
+      <topicdata group="api" notopic="" />
+      <apidata name="InternalServerError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </returns>
+      <value>1011</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </containers>
+      <file name="c61aed3c-68a3-90e4-9adb-07ffd609edf0" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketCloseStatus.InvalidMessageType">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidMessageType" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </returns>
+      <value>1003</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </containers>
+      <file name="40902a6d-89a1-ea8b-01b7-5832ea4df549" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketCloseStatus.InvalidPayloadData">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidPayloadData" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </returns>
+      <value>1007</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </containers>
+      <file name="103fe123-95fa-c7d5-949b-4a56247e2a30" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketCloseStatus.MandatoryExtension">
+      <topicdata group="api" notopic="" />
+      <apidata name="MandatoryExtension" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </returns>
+      <value>1010</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </containers>
+      <file name="33c9d032-9b0e-d46e-82b7-a89771536ffe" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketCloseStatus.MessageTooBig">
+      <topicdata group="api" notopic="" />
+      <apidata name="MessageTooBig" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </returns>
+      <value>1009</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </containers>
+      <file name="dd0286e4-3a88-46ec-d9d5-be8e8d76e9ce" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketCloseStatus.NormalClosure">
+      <topicdata group="api" notopic="" />
+      <apidata name="NormalClosure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </returns>
+      <value>1000</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </containers>
+      <file name="3966236b-b547-7016-ab79-70172212672e" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketCloseStatus.PolicyViolation">
+      <topicdata group="api" notopic="" />
+      <apidata name="PolicyViolation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </returns>
+      <value>1008</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </containers>
+      <file name="f8da4087-5e8f-f4f0-de0b-8859bb26122c" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketCloseStatus.ProtocolError">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProtocolError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </returns>
+      <value>1002</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+      </containers>
+      <file name="0e7313ca-bff6-83a6-c9e1-1cad8325c9b2" />
+    </api>
+    <api id="T:System.Net.WebSockets.WebSocketContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.WebSockets.WebSocketContext" />
+      <apidata name="WebSocketContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Net.WebSockets.HttpListenerWebSocketContext" ref="true" />
+          <type api="T:System.Web.WebSockets.AspNetWebSocketContext" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+      </containers>
+      <file name="155752fb-0fc1-f0d0-5c31-24b77c5d0690" />
+    </api>
+    <api id="AllMembers.T:System.Net.WebSockets.WebSocketContext">
+      <topicdata name="WebSocketContext" group="list" subgroup="members" typeTopicId="T:System.Net.WebSockets.WebSocketContext" />
+      <apidata name="WebSocketContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Net.WebSockets.WebSocketContext.#ctor" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.CookieCollection" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.Headers" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.IsAuthenticated" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.IsLocal" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.IsSecureConnection" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.Origin" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.RequestUri" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.SecWebSocketKey" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.SecWebSocketProtocols" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.SecWebSocketVersion" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.User" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.WebSocket" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketContext" />
+      </containers>
+      <file name="bfac69d5-d499-7cdb-d7ad-b737ad3c0ade" />
+    </api>
+    <api id="Methods.T:System.Net.WebSockets.WebSocketContext">
+      <topicdata name="WebSocketContext" group="list" subgroup="Methods" typeTopicId="T:System.Net.WebSockets.WebSocketContext" />
+      <apidata name="WebSocketContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketContext" />
+      </containers>
+      <file name="43682e96-440d-9dbf-975d-10e44dbc2979" />
+    </api>
+    <api id="Properties.T:System.Net.WebSockets.WebSocketContext">
+      <topicdata name="WebSocketContext" group="list" subgroup="Properties" typeTopicId="T:System.Net.WebSockets.WebSocketContext" />
+      <apidata name="WebSocketContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Net.WebSockets.WebSocketContext.CookieCollection" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.Headers" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.IsAuthenticated" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.IsLocal" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.IsSecureConnection" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.Origin" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.RequestUri" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.SecWebSocketKey" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.SecWebSocketProtocols" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.SecWebSocketVersion" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.User" />
+        <element api="P:System.Net.WebSockets.WebSocketContext.WebSocket" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketContext" />
+      </containers>
+      <file name="d4fcc9c6-68d0-002c-291a-e1ca819bc290" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketContext.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+      </containers>
+      <file name="7107af74-1770-f29f-5914-d3ff9826eb86" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketContext.CookieCollection">
+      <topicdata group="api" />
+      <apidata name="CookieCollection" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CookieCollection" />
+      <returns>
+        <type api="T:System.Net.CookieCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+      </containers>
+      <file name="767ed50f-64c8-b54e-70e1-65e0dcb23529" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketContext.Headers">
+      <topicdata group="api" />
+      <apidata name="Headers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Headers" />
+      <returns>
+        <type api="T:System.Collections.Specialized.NameValueCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+      </containers>
+      <file name="42aafd91-eeb2-ccc1-6523-57417fde3ea9" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketContext.IsAuthenticated">
+      <topicdata group="api" />
+      <apidata name="IsAuthenticated" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsAuthenticated" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+      </containers>
+      <file name="7d594f4a-7b41-0653-672a-d5d1db6091ad" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketContext.IsLocal">
+      <topicdata group="api" />
+      <apidata name="IsLocal" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsLocal" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+      </containers>
+      <file name="98d36d40-086a-b1b9-e7e1-a35a3c9f9218" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketContext.IsSecureConnection">
+      <topicdata group="api" />
+      <apidata name="IsSecureConnection" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsSecureConnection" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+      </containers>
+      <file name="45348430-e671-39e9-4b3e-229e88e64a48" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketContext.Origin">
+      <topicdata group="api" />
+      <apidata name="Origin" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Origin" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+      </containers>
+      <file name="de7906e7-e5af-ea19-6bf5-d56e61e66c46" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketContext.RequestUri">
+      <topicdata group="api" />
+      <apidata name="RequestUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_RequestUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+      </containers>
+      <file name="2683460b-ae24-cecf-3b5c-24e8947edb2a" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketContext.SecWebSocketKey">
+      <topicdata group="api" />
+      <apidata name="SecWebSocketKey" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_SecWebSocketKey" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+      </containers>
+      <file name="1c4108b2-3c25-995b-5cae-02e4f8563f88" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketContext.SecWebSocketProtocols">
+      <topicdata group="api" />
+      <apidata name="SecWebSocketProtocols" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_SecWebSocketProtocols" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+      </containers>
+      <file name="66a25f72-6398-5f20-0686-6cdcc660d731" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketContext.SecWebSocketVersion">
+      <topicdata group="api" />
+      <apidata name="SecWebSocketVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_SecWebSocketVersion" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+      </containers>
+      <file name="f6b6cf5d-2fc3-7f30-c38c-efd9db5d4be2" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketContext.User">
+      <topicdata group="api" />
+      <apidata name="User" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_User" />
+      <returns>
+        <type api="T:System.Security.Principal.IPrincipal" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+      </containers>
+      <file name="609e4f07-b7c9-e82a-6b7f-d1a67c7337f6" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketContext.WebSocket">
+      <topicdata group="api" />
+      <apidata name="WebSocket" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_WebSocket" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocket" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketContext" ref="true" />
+      </containers>
+      <file name="9ab7c88b-7be9-be19-89d9-0ef90ca72c4b" />
+    </api>
+    <api id="T:System.Net.WebSockets.WebSocketError">
+      <topicdata group="api" />
+      <apidata name="WebSocketError" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.WebSockets.WebSocketError.Success" />
+        <element api="F:System.Net.WebSockets.WebSocketError.InvalidMessageType" />
+        <element api="F:System.Net.WebSockets.WebSocketError.Faulted" />
+        <element api="F:System.Net.WebSockets.WebSocketError.NativeError" />
+        <element api="F:System.Net.WebSockets.WebSocketError.NotAWebSocket" />
+        <element api="F:System.Net.WebSockets.WebSocketError.UnsupportedVersion" />
+        <element api="F:System.Net.WebSockets.WebSocketError.UnsupportedProtocol" />
+        <element api="F:System.Net.WebSockets.WebSocketError.HeaderError" />
+        <element api="F:System.Net.WebSockets.WebSocketError.ConnectionClosedPrematurely" />
+        <element api="F:System.Net.WebSockets.WebSocketError.InvalidState" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+      </containers>
+      <file name="986c4715-e4f2-2c53-6c80-adbc455c13a0" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketError.ConnectionClosedPrematurely">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConnectionClosedPrematurely" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </containers>
+      <file name="9c9e0186-39e8-f421-73f9-5d46a53d42fc" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketError.Faulted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Faulted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </containers>
+      <file name="72de66c2-43de-8f56-185d-1aaeb8f7a948" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketError.HeaderError">
+      <topicdata group="api" notopic="" />
+      <apidata name="HeaderError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </containers>
+      <file name="463d6bf5-5948-e530-7f4b-62faff512d91" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketError.InvalidMessageType">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidMessageType" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </containers>
+      <file name="494bc031-2698-319d-f97b-055b6011269b" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketError.InvalidState">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidState" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </containers>
+      <file name="e87e3145-1119-6289-1c09-7ab9f1d57372" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketError.NativeError">
+      <topicdata group="api" notopic="" />
+      <apidata name="NativeError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </containers>
+      <file name="8505d5e1-00f7-228d-3bf0-817fafdf77f6" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketError.NotAWebSocket">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotAWebSocket" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </containers>
+      <file name="d46be899-91cc-ca33-1dbb-fd106d6db7ca" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketError.Success">
+      <topicdata group="api" notopic="" />
+      <apidata name="Success" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </containers>
+      <file name="c7a69dbd-696d-e3b5-73b3-b59639cb2e1a" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketError.UnsupportedProtocol">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnsupportedProtocol" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </containers>
+      <file name="ae53957f-fb7e-d6ff-2830-13c9e62983fa" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketError.UnsupportedVersion">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnsupportedVersion" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </containers>
+      <file name="6d75640b-547f-6e54-29bc-708f29a09a61" />
+    </api>
+    <api id="T:System.Net.WebSockets.WebSocketException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.WebSockets.WebSocketException" />
+      <apidata name="WebSocketException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Net.WebSockets.WebSocketException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.Win32Exception" ref="true" />
+          <type api="T:System.Runtime.InteropServices.ExternalException" ref="true" />
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+      </containers>
+      <file name="5afe4733-b848-a8fd-fb14-15d4a183339b" />
+    </api>
+    <api id="AllMembers.T:System.Net.WebSockets.WebSocketException">
+      <topicdata name="WebSocketException" group="list" subgroup="members" typeTopicId="T:System.Net.WebSockets.WebSocketException" />
+      <apidata name="WebSocketException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Net.WebSockets.WebSocketException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="P:System.ComponentModel.Win32Exception.NativeErrorCode" />
+        <element api="Overload:System.Net.WebSockets.WebSocketException.#ctor">
+          <element api="M:System.Net.WebSockets.WebSocketException.#ctor" />
+          <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Int32)" />
+          <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.String)" />
+          <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError)" />
+          <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Int32,System.Exception)" />
+          <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Int32,System.String)" />
+          <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.String,System.Exception)" />
+          <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Exception)" />
+          <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Int32)" />
+          <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.String)" />
+          <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Int32,System.Exception)" />
+          <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Int32,System.String)" />
+          <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.String,System.Exception)" />
+          <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Int32,System.String,System.Exception)" />
+        </element>
+        <element api="P:System.Net.WebSockets.WebSocketException.ErrorCode" />
+        <element api="M:System.Net.WebSockets.WebSocketException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="P:System.Net.WebSockets.WebSocketException.WebSocketErrorCode" />
+        <element api="M:System.Runtime.InteropServices.ExternalException.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" />
+      </containers>
+      <file name="1db646d9-c72c-470b-a428-0afd78c63657" />
+    </api>
+    <api id="Methods.T:System.Net.WebSockets.WebSocketException">
+      <topicdata name="WebSocketException" group="list" subgroup="Methods" typeTopicId="T:System.Net.WebSockets.WebSocketException" />
+      <apidata name="WebSocketException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Net.WebSockets.WebSocketException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Net.WebSockets.WebSocketException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Runtime.InteropServices.ExternalException.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" />
+      </containers>
+      <file name="03376819-0c18-d1d8-49d9-3dd04c576126" />
+    </api>
+    <api id="Properties.T:System.Net.WebSockets.WebSocketException">
+      <topicdata name="WebSocketException" group="list" subgroup="Properties" typeTopicId="T:System.Net.WebSockets.WebSocketException" />
+      <apidata name="WebSocketException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:System.Net.WebSockets.WebSocketException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="P:System.ComponentModel.Win32Exception.NativeErrorCode" />
+        <element api="P:System.Net.WebSockets.WebSocketException.ErrorCode" />
+        <element api="P:System.Net.WebSockets.WebSocketException.WebSocketErrorCode" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" />
+      </containers>
+      <file name="33fa661b-e249-20c9-8f94-c151bfc075fd" />
+    </api>
+    <api id="Overload:System.Net.WebSockets.WebSocketException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.WebSockets.WebSocketException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Net.WebSockets.WebSocketException.#ctor" />
+        <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Int32)" />
+        <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.String)" />
+        <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError)" />
+        <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Int32,System.Exception)" />
+        <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Int32,System.String)" />
+        <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.String,System.Exception)" />
+        <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Exception)" />
+        <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Int32)" />
+        <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.String)" />
+        <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Int32,System.Exception)" />
+        <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Int32,System.String)" />
+        <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.String,System.Exception)" />
+        <element api="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Int32,System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="ea67d890-d0b8-7992-3c8a-ef3db69a9b74" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.WebSockets.WebSocketException.#ctor" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="fbf2c207-a389-d1ba-0310-e665210b6cd3" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketException.#ctor(System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.WebSockets.WebSocketException.#ctor" />
+      <parameters>
+        <parameter name="nativeError">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="6bd42620-f0f6-0bc3-e70c-388cef52d9d1" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketException.#ctor(System.Int32,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.WebSockets.WebSocketException.#ctor" />
+      <parameters>
+        <parameter name="nativeError">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="0b496792-d82f-a489-4b0f-af81ce8212a0" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketException.#ctor(System.Int32,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.WebSockets.WebSocketException.#ctor" />
+      <parameters>
+        <parameter name="nativeError">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="546b94ea-3e81-6aba-d142-72a9623d1104" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.WebSockets.WebSocketException.#ctor" />
+      <parameters>
+        <parameter name="error">
+          <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="a925f958-cee0-159b-f0dd-8e1326975479" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.WebSockets.WebSocketException.#ctor" />
+      <parameters>
+        <parameter name="error">
+          <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="98027146-4f78-99ed-21e1-ab59f7a3fd2c" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.WebSockets.WebSocketException.#ctor" />
+      <parameters>
+        <parameter name="error">
+          <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+        </parameter>
+        <parameter name="nativeError">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="8caeaee5-0aa2-223c-d972-f789a6255e1e" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Int32,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.WebSockets.WebSocketException.#ctor" />
+      <parameters>
+        <parameter name="error">
+          <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+        </parameter>
+        <parameter name="nativeError">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="5e100d4b-68c3-e90c-7ebe-4381812327d2" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Int32,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.WebSockets.WebSocketException.#ctor" />
+      <parameters>
+        <parameter name="error">
+          <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+        </parameter>
+        <parameter name="nativeError">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="d9940d01-d2f8-eb14-17c4-998f89660fe9" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.Int32,System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.WebSockets.WebSocketException.#ctor" />
+      <parameters>
+        <parameter name="error">
+          <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+        </parameter>
+        <parameter name="nativeError">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="4c80a267-073e-ee70-3ae3-be314a1f10d7" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.WebSockets.WebSocketException.#ctor" />
+      <parameters>
+        <parameter name="error">
+          <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+        </parameter>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="f6e12ee0-9166-b0a0-ef2e-29cce6425ad5" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketException.#ctor(System.Net.WebSockets.WebSocketError,System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.WebSockets.WebSocketException.#ctor" />
+      <parameters>
+        <parameter name="error">
+          <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+        </parameter>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="53b3f562-b448-444f-856e-b8eea4534933" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.WebSockets.WebSocketException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="9d56dd2c-a256-35e1-3fe6-48dfbdc55104" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.WebSockets.WebSocketException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="800bfadd-0c8d-1bec-b9f8-2dec42d01392" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketException.ErrorCode">
+      <topicdata group="api" />
+      <apidata name="ErrorCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.InteropServices.ExternalException.ErrorCode">
+          <type api="T:System.Runtime.InteropServices.ExternalException" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_ErrorCode" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="df56dc49-cde8-e98e-d1a6-e12e19e10df6" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name="GetObjectData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.Win32Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.ComponentModel.Win32Exception" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.Serialization.ISerializable" ref="true" />
+        </member>
+        <member api="M:System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.Serialization.ISerializable" ref="true" />
+        </member>
+        <member api="M:System.Runtime.InteropServices._Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.InteropServices._Exception" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="3c168f35-3d06-ecea-cb6e-2dcd1b68a19d" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketException.WebSocketErrorCode">
+      <topicdata group="api" />
+      <apidata name="WebSocketErrorCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_WebSocketErrorCode" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketError" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketException" ref="true" />
+      </containers>
+      <file name="ed1e94c3-eca3-4440-f8b1-182c095bf30c" />
+    </api>
+    <api id="T:System.Net.WebSockets.WebSocketMessageType">
+      <topicdata group="api" />
+      <apidata name="WebSocketMessageType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.WebSockets.WebSocketMessageType.Text" />
+        <element api="F:System.Net.WebSockets.WebSocketMessageType.Binary" />
+        <element api="F:System.Net.WebSockets.WebSocketMessageType.Close" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+      </containers>
+      <file name="3f51aa17-c7b8-fce9-dedb-ca7cdc7a27ce" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketMessageType.Binary">
+      <topicdata group="api" notopic="" />
+      <apidata name="Binary" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketMessageType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketMessageType" ref="false" />
+      </containers>
+      <file name="e49e760c-b570-fd17-085e-ef860ebc6c11" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketMessageType.Close">
+      <topicdata group="api" notopic="" />
+      <apidata name="Close" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketMessageType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketMessageType" ref="false" />
+      </containers>
+      <file name="e8c1d116-7e67-e3df-f7af-d3a3349818d9" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketMessageType.Text">
+      <topicdata group="api" notopic="" />
+      <apidata name="Text" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketMessageType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketMessageType" ref="false" />
+      </containers>
+      <file name="bd896b44-ea09-9da2-a45e-f69ad8d562db" />
+    </api>
+    <api id="T:System.Net.WebSockets.WebSocketReceiveResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.WebSockets.WebSocketReceiveResult" />
+      <apidata name="WebSocketReceiveResult" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+      </containers>
+      <file name="f9aaecfe-d6ec-b435-6591-bb198bb60793" />
+    </api>
+    <api id="AllMembers.T:System.Net.WebSockets.WebSocketReceiveResult">
+      <topicdata name="WebSocketReceiveResult" group="list" subgroup="members" typeTopicId="T:System.Net.WebSockets.WebSocketReceiveResult" />
+      <apidata name="WebSocketReceiveResult" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Net.WebSockets.WebSocketReceiveResult.#ctor">
+          <element api="M:System.Net.WebSockets.WebSocketReceiveResult.#ctor(System.Int32,System.Net.WebSockets.WebSocketMessageType,System.Boolean)" />
+          <element api="M:System.Net.WebSockets.WebSocketReceiveResult.#ctor(System.Int32,System.Net.WebSockets.WebSocketMessageType,System.Boolean,System.Nullable{System.Net.WebSockets.WebSocketCloseStatus},System.String)" />
+        </element>
+        <element api="P:System.Net.WebSockets.WebSocketReceiveResult.CloseStatus" />
+        <element api="P:System.Net.WebSockets.WebSocketReceiveResult.CloseStatusDescription" />
+        <element api="P:System.Net.WebSockets.WebSocketReceiveResult.Count" />
+        <element api="P:System.Net.WebSockets.WebSocketReceiveResult.EndOfMessage" />
+        <element api="P:System.Net.WebSockets.WebSocketReceiveResult.MessageType" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketReceiveResult" />
+      </containers>
+      <file name="15e7d95b-a2ba-e8e0-daf8-efe110ebeb20" />
+    </api>
+    <api id="Methods.T:System.Net.WebSockets.WebSocketReceiveResult">
+      <topicdata name="WebSocketReceiveResult" group="list" subgroup="Methods" typeTopicId="T:System.Net.WebSockets.WebSocketReceiveResult" />
+      <apidata name="WebSocketReceiveResult" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketReceiveResult" />
+      </containers>
+      <file name="61dfaa6c-628f-3e7b-f74b-277eef592069" />
+    </api>
+    <api id="Properties.T:System.Net.WebSockets.WebSocketReceiveResult">
+      <topicdata name="WebSocketReceiveResult" group="list" subgroup="Properties" typeTopicId="T:System.Net.WebSockets.WebSocketReceiveResult" />
+      <apidata name="WebSocketReceiveResult" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Net.WebSockets.WebSocketReceiveResult.CloseStatus" />
+        <element api="P:System.Net.WebSockets.WebSocketReceiveResult.CloseStatusDescription" />
+        <element api="P:System.Net.WebSockets.WebSocketReceiveResult.Count" />
+        <element api="P:System.Net.WebSockets.WebSocketReceiveResult.EndOfMessage" />
+        <element api="P:System.Net.WebSockets.WebSocketReceiveResult.MessageType" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketReceiveResult" />
+      </containers>
+      <file name="b93a4adf-bc99-fb9b-2938-3ac8bf913f3a" />
+    </api>
+    <api id="Overload:System.Net.WebSockets.WebSocketReceiveResult.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.WebSockets.WebSocketReceiveResult" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Net.WebSockets.WebSocketReceiveResult.#ctor(System.Int32,System.Net.WebSockets.WebSocketMessageType,System.Boolean)" />
+        <element api="M:System.Net.WebSockets.WebSocketReceiveResult.#ctor(System.Int32,System.Net.WebSockets.WebSocketMessageType,System.Boolean,System.Nullable{System.Net.WebSockets.WebSocketCloseStatus},System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketReceiveResult" ref="true" />
+      </containers>
+      <file name="e29033eb-010b-f261-2e7c-09d65d819121" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketReceiveResult.#ctor(System.Int32,System.Net.WebSockets.WebSocketMessageType,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.WebSockets.WebSocketReceiveResult.#ctor" />
+      <parameters>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="messageType">
+          <type api="T:System.Net.WebSockets.WebSocketMessageType" ref="false" />
+        </parameter>
+        <parameter name="endOfMessage">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketReceiveResult" ref="true" />
+      </containers>
+      <file name="b42a2864-7e63-4bee-cad8-7bc6cd3cd5b7" />
+    </api>
+    <api id="M:System.Net.WebSockets.WebSocketReceiveResult.#ctor(System.Int32,System.Net.WebSockets.WebSocketMessageType,System.Boolean,System.Nullable{System.Net.WebSockets.WebSocketCloseStatus},System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.WebSockets.WebSocketReceiveResult.#ctor" />
+      <parameters>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="messageType">
+          <type api="T:System.Net.WebSockets.WebSocketMessageType" ref="false" />
+        </parameter>
+        <parameter name="endOfMessage">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="closeStatus">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="closeStatusDescription">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketReceiveResult" ref="true" />
+      </containers>
+      <file name="742253ef-ed5a-5a91-2dbe-6a37d06afc59" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketReceiveResult.CloseStatus">
+      <topicdata group="api" />
+      <apidata name="CloseStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CloseStatus" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Net.WebSockets.WebSocketCloseStatus" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketReceiveResult" ref="true" />
+      </containers>
+      <file name="24b3dfc4-a7d9-2409-7b67-ed4f356110e7" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketReceiveResult.CloseStatusDescription">
+      <topicdata group="api" />
+      <apidata name="CloseStatusDescription" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CloseStatusDescription" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketReceiveResult" ref="true" />
+      </containers>
+      <file name="9b218b36-3621-4159-599e-840d5c39d7b2" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketReceiveResult.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketReceiveResult" ref="true" />
+      </containers>
+      <file name="7fc53d63-531b-b9ff-ee6a-fdfd132a329e" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketReceiveResult.EndOfMessage">
+      <topicdata group="api" />
+      <apidata name="EndOfMessage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EndOfMessage" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketReceiveResult" ref="true" />
+      </containers>
+      <file name="cb1302f6-5136-cd85-0a5e-df75fe76c925" />
+    </api>
+    <api id="P:System.Net.WebSockets.WebSocketReceiveResult.MessageType">
+      <topicdata group="api" />
+      <apidata name="MessageType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MessageType" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketMessageType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketReceiveResult" ref="true" />
+      </containers>
+      <file name="1fb4bd05-b573-d95f-ef73-076f2733df35" />
+    </api>
+    <api id="T:System.Net.WebSockets.WebSocketState">
+      <topicdata group="api" />
+      <apidata name="WebSocketState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.WebSockets.WebSocketState.None" />
+        <element api="F:System.Net.WebSockets.WebSocketState.Connecting" />
+        <element api="F:System.Net.WebSockets.WebSocketState.Open" />
+        <element api="F:System.Net.WebSockets.WebSocketState.CloseSent" />
+        <element api="F:System.Net.WebSockets.WebSocketState.CloseReceived" />
+        <element api="F:System.Net.WebSockets.WebSocketState.Closed" />
+        <element api="F:System.Net.WebSockets.WebSocketState.Aborted" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+      </containers>
+      <file name="49548447-3e3c-400c-af8e-4324416d0442" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketState.Aborted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Aborted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+      </containers>
+      <file name="6a8bd395-df9a-ab02-81ab-5cd0a4cb423a" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketState.Closed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Closed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+      </containers>
+      <file name="0c430357-9810-7597-c19a-dd8fb7bd060c" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketState.CloseReceived">
+      <topicdata group="api" notopic="" />
+      <apidata name="CloseReceived" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+      </containers>
+      <file name="d883cca5-860b-4db5-08db-3cf20754d853" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketState.CloseSent">
+      <topicdata group="api" notopic="" />
+      <apidata name="CloseSent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+      </containers>
+      <file name="3ad04c2f-1ba9-6826-557e-248a6f89d715" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketState.Connecting">
+      <topicdata group="api" notopic="" />
+      <apidata name="Connecting" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+      </containers>
+      <file name="4459483f-e6f9-d1c0-fc6b-bb034cda63a3" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketState.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+      </containers>
+      <file name="72ce2cc7-15ff-d0bf-ddaa-59ec0b14aad0" />
+    </api>
+    <api id="F:System.Net.WebSockets.WebSocketState.Open">
+      <topicdata group="api" notopic="" />
+      <apidata name="Open" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.WebSockets" />
+        <type api="T:System.Net.WebSockets.WebSocketState" ref="false" />
+      </containers>
+      <file name="1752c41e-97a1-1c4c-3c99-911ab7fbecf3" />
+    </api>
+  </apis>
+</reflection>

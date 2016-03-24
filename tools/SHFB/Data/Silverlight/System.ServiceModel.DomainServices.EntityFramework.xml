@@ -1,0 +1,842 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel.DomainServices.EntityFramework">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WCF RIA Services</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.1.61829.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.DomainServices.EntityFramework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.DomainServices.EntityFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>20790a5f-1dd7-4d1c-8303-c34256e12c68</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceModel.DomainServices.EntityFramework">
+      <topicdata group="api" />
+      <apidata name="System.ServiceModel.DomainServices.EntityFramework" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" />
+        <element api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute" />
+        <element api="T:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions" />
+      </elements>
+      <file name="2e7f2eec-f8d1-4dbb-432a-addc2bd0f28c" />
+    </api>
+    <api id="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" />
+      <apidata name="LinqToEntitiesDomainService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.ServiceModel.DomainServices.Server.DomainService" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <templates>
+        <template name="TContext">
+          <constrained ctor="true">
+            <type api="T:System.Data.Objects.ObjectContext" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="af58de80-0a63-7103-c666-66c183a875d7" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1">
+      <topicdata name="LinqToEntitiesDomainService" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" />
+      <apidata name="LinqToEntitiesDomainService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="TContext">
+          <constrained ctor="true">
+            <type api="T:System.Data.Objects.ObjectContext" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.#ctor" />
+        <element api="Overload:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Count">
+          <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Count``1(System.Linq.IQueryable{``0})" />
+          <element api="M:System.ServiceModel.DomainServices.Server.DomainService.Count``1(System.Linq.IQueryable{``0})" />
+        </element>
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.CreateObjectContext" />
+        <element api="Overload:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Dispose">
+          <element api="M:System.ServiceModel.DomainServices.Server.DomainService.Dispose" />
+          <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Initialize(System.ServiceModel.DomainServices.Server.DomainServiceContext)" />
+        <element api="P:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.ObjectContext" />
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.PersistChangeSet" />
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.ResolveConflicts(System.Collections.Generic.IEnumerable{System.Data.Objects.ObjectStateEntry})" />
+        <element api="P:System.ServiceModel.DomainServices.Server.DomainService.AuthorizationContext" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.AuthorizeChangeSet" />
+        <element api="P:System.ServiceModel.DomainServices.Server.DomainService.ChangeSet" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.ExecuteChangeSet" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.Invoke(System.ServiceModel.DomainServices.Server.InvokeDescription,System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult}@)" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.IsAuthorized(System.ServiceModel.DomainServices.Server.DomainOperationEntry,System.Object)" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.OnError(System.ServiceModel.DomainServices.Server.DomainServiceErrorInfo)" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.Query(System.ServiceModel.DomainServices.Server.QueryDescription,System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult}@,System.Int32@)" />
+        <element api="P:System.ServiceModel.DomainServices.Server.DomainService.ServiceContext" />
+        <element api="P:System.ServiceModel.DomainServices.Server.DomainService.ServiceDescription" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.Submit(System.ServiceModel.DomainServices.Server.ChangeSet)" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.ValidateChangeSet" />
+        <element api="P:System.ServiceModel.DomainServices.Server.DomainService.ValidationContext" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" />
+      </containers>
+      <file name="1b813767-ca85-5743-3bcb-d4691a7209dc" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1">
+      <topicdata name="LinqToEntitiesDomainService" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" />
+      <apidata name="LinqToEntitiesDomainService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="TContext">
+          <constrained ctor="true">
+            <type api="T:System.Data.Objects.ObjectContext" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Count">
+          <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Count``1(System.Linq.IQueryable{``0})" />
+          <element api="M:System.ServiceModel.DomainServices.Server.DomainService.Count``1(System.Linq.IQueryable{``0})" />
+        </element>
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.CreateObjectContext" />
+        <element api="Overload:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Dispose">
+          <element api="M:System.ServiceModel.DomainServices.Server.DomainService.Dispose" />
+          <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Initialize(System.ServiceModel.DomainServices.Server.DomainServiceContext)" />
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.PersistChangeSet" />
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.ResolveConflicts(System.Collections.Generic.IEnumerable{System.Data.Objects.ObjectStateEntry})" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.AuthorizeChangeSet" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.ExecuteChangeSet" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.Invoke(System.ServiceModel.DomainServices.Server.InvokeDescription,System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult}@)" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.IsAuthorized(System.ServiceModel.DomainServices.Server.DomainOperationEntry,System.Object)" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.OnError(System.ServiceModel.DomainServices.Server.DomainServiceErrorInfo)" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.Query(System.ServiceModel.DomainServices.Server.QueryDescription,System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult}@,System.Int32@)" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.Submit(System.ServiceModel.DomainServices.Server.ChangeSet)" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.ValidateChangeSet" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" />
+      </containers>
+      <file name="94bfe881-5bf7-8125-9f06-0a896d8ac436" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1">
+      <topicdata name="LinqToEntitiesDomainService" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" />
+      <apidata name="LinqToEntitiesDomainService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="TContext">
+          <constrained ctor="true">
+            <type api="T:System.Data.Objects.ObjectContext" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <elements>
+        <element api="P:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.ObjectContext" />
+        <element api="P:System.ServiceModel.DomainServices.Server.DomainService.AuthorizationContext" />
+        <element api="P:System.ServiceModel.DomainServices.Server.DomainService.ChangeSet" />
+        <element api="P:System.ServiceModel.DomainServices.Server.DomainService.ServiceContext" />
+        <element api="P:System.ServiceModel.DomainServices.Server.DomainService.ServiceDescription" />
+        <element api="P:System.ServiceModel.DomainServices.Server.DomainService.ValidationContext" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" />
+      </containers>
+      <file name="17074d85-4124-032b-e036-a3a06e181acb" />
+    </api>
+    <api id="Overload:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Count">
+      <topicdata name="Count" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" />
+      <apidata name="Count" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Count``1(System.Linq.IQueryable{``0})" />
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.Count``1(System.Linq.IQueryable{``0})" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" ref="true" />
+      </containers>
+      <file name="616b1289-8664-8147-5ba8-64e69e5a8fae" />
+    </api>
+    <api id="Overload:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceModel.DomainServices.Server.DomainService.Dispose" />
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" ref="true" />
+      </containers>
+      <file name="b9154e77-75c3-f6d7-2f03-7b3066706197" />
+    </api>
+    <api id="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" ref="true" />
+      </containers>
+      <file name="9ae4c197-a53f-890c-6b06-4c2a1fa52604" />
+    </api>
+    <api id="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Count``1(System.Linq.IQueryable{``0})">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Count" />
+      <proceduredata virtual="true" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="query">
+          <type api="T:System.Linq.IQueryable`1" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Count``1(System.Linq.IQueryable{``0})" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" ref="true" />
+      </containers>
+      <file name="900e3333-b29b-3680-6e78-eb4c2a87ca3b" />
+    </api>
+    <api id="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.CreateObjectContext">
+      <topicdata group="api" />
+      <apidata name="CreateObjectContext" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <returns>
+        <template name="TContext" index="0" api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" ref="true" />
+      </containers>
+      <file name="6d9a8e55-b5b0-4550-b748-f23c260537fa" />
+    </api>
+    <api id="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Dispose" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ServiceModel.DomainServices.Server.DomainService.Dispose(System.Boolean)">
+          <type api="T:System.ServiceModel.DomainServices.Server.DomainService" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" ref="true" />
+      </containers>
+      <file name="b7f10518-d469-1a23-1235-00d1c58a05ce" />
+    </api>
+    <api id="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.Initialize(System.ServiceModel.DomainServices.Server.DomainServiceContext)">
+      <topicdata group="api" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ServiceModel.DomainServices.Server.DomainService.Initialize(System.ServiceModel.DomainServices.Server.DomainServiceContext)">
+          <type api="T:System.ServiceModel.DomainServices.Server.DomainService" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ServiceModel.DomainServices.Server.DomainServiceContext" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" ref="true" />
+      </containers>
+      <file name="d29c0cfe-1ec4-dfb3-a570-a2b181acbeab" />
+    </api>
+    <api id="P:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.ObjectContext">
+      <topicdata group="api" />
+      <apidata name="ObjectContext" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ObjectContext" />
+      <returns>
+        <template name="TContext" index="0" api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" ref="true" />
+      </containers>
+      <file name="0274fb4d-0541-0e20-2824-4395afec3aa8" />
+    </api>
+    <api id="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.PersistChangeSet">
+      <topicdata group="api" />
+      <apidata name="PersistChangeSet" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ServiceModel.DomainServices.Server.DomainService.PersistChangeSet">
+          <type api="T:System.ServiceModel.DomainServices.Server.DomainService" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" ref="true" />
+      </containers>
+      <file name="d561bc1a-996b-eb15-e845-41f0554d706e" />
+    </api>
+    <api id="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1.ResolveConflicts(System.Collections.Generic.IEnumerable{System.Data.Objects.ObjectStateEntry})">
+      <topicdata group="api" />
+      <apidata name="ResolveConflicts" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="conflicts">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Data.Objects.ObjectStateEntry" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainService`1" ref="true" />
+      </containers>
+      <file name="96b094d7-6518-5988-45fa-baa33503e717" />
+    </api>
+    <api id="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute" />
+      <apidata name="LinqToEntitiesDomainServiceDescriptionProviderAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ServiceModel.DomainServices.Server.DomainServiceDescriptionProviderAttribute" ref="true" />
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="ae5a7ffb-46b5-acd9-bc8a-990fd0ef5d8d" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute">
+      <topicdata name="LinqToEntitiesDomainServiceDescriptionProviderAttribute" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute" />
+      <apidata name="LinqToEntitiesDomainServiceDescriptionProviderAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.#ctor">
+          <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.#ctor" />
+          <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.#ctor(System.Type)" />
+        </element>
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.CreateProvider(System.Type,System.ServiceModel.DomainServices.Server.DomainServiceDescriptionProvider)" />
+        <element api="P:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.ObjectContextType" />
+        <element api="P:System.ServiceModel.DomainServices.Server.DomainServiceDescriptionProviderAttribute.DomainServiceDescriptionProviderType" />
+        <element api="P:System.ServiceModel.DomainServices.Server.DomainServiceDescriptionProviderAttribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute" />
+      </containers>
+      <file name="e9080d69-503a-20f6-488b-9317439d62d1" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute">
+      <topicdata name="LinqToEntitiesDomainServiceDescriptionProviderAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute" />
+      <apidata name="LinqToEntitiesDomainServiceDescriptionProviderAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.CreateProvider(System.Type,System.ServiceModel.DomainServices.Server.DomainServiceDescriptionProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute" />
+      </containers>
+      <file name="3d21e434-f7ee-9f64-fef5-957ca2e49f31" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute">
+      <topicdata name="LinqToEntitiesDomainServiceDescriptionProviderAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute" />
+      <apidata name="LinqToEntitiesDomainServiceDescriptionProviderAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.ObjectContextType" />
+        <element api="P:System.ServiceModel.DomainServices.Server.DomainServiceDescriptionProviderAttribute.DomainServiceDescriptionProviderType" />
+        <element api="P:System.ServiceModel.DomainServices.Server.DomainServiceDescriptionProviderAttribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute" />
+      </containers>
+      <file name="027d6354-3ab9-30d7-0fa3-6ed26f5eecb0" />
+    </api>
+    <api id="Overload:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.#ctor" />
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.#ctor(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute" ref="true" />
+      </containers>
+      <file name="857e219c-8ee2-0fdb-6de8-b97a12f7f5c5" />
+    </api>
+    <api id="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute" ref="true" />
+      </containers>
+      <file name="a1868386-3fc0-5dcb-1c99-98cce7f60f66" />
+    </api>
+    <api id="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.#ctor(System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.#ctor" />
+      <parameters>
+        <parameter name="objectContextType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute" ref="true" />
+      </containers>
+      <file name="c7d03663-5101-4748-9c1c-d7ef5ac4a4f1" />
+    </api>
+    <api id="M:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.CreateProvider(System.Type,System.ServiceModel.DomainServices.Server.DomainServiceDescriptionProvider)">
+      <topicdata group="api" />
+      <apidata name="CreateProvider" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ServiceModel.DomainServices.Server.DomainServiceDescriptionProviderAttribute.CreateProvider(System.Type,System.ServiceModel.DomainServices.Server.DomainServiceDescriptionProvider)">
+          <type api="T:System.ServiceModel.DomainServices.Server.DomainServiceDescriptionProviderAttribute" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="domainServiceType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="parent">
+          <type api="T:System.ServiceModel.DomainServices.Server.DomainServiceDescriptionProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.DomainServices.Server.DomainServiceDescriptionProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute" ref="true" />
+      </containers>
+      <file name="506afc0b-c4c9-fa64-d537-7fe692d70ed4" />
+    </api>
+    <api id="P:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute.ObjectContextType">
+      <topicdata group="api" />
+      <apidata name="ObjectContextType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ObjectContextType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.LinqToEntitiesDomainServiceDescriptionProviderAttribute" ref="true" />
+      </containers>
+      <file name="a08f9bfa-2f86-8b9d-c576-04ddafd8ce56" />
+    </api>
+    <api id="T:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions" />
+      <apidata name="ObjectContextExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d841c994-c0b4-c3eb-7659-40d64d94f8b9" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions">
+      <topicdata name="ObjectContextExtensions" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions" />
+      <apidata name="ObjectContextExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified">
+          <element api="M:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified``1(System.Data.Objects.ObjectSet{``0},``0)" />
+          <element api="M:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified``1(System.Data.Objects.ObjectSet{``0},``0,``0)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions" />
+      </containers>
+      <file name="2e5cdf81-e4eb-e610-70dc-81e00e62eb5f" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions">
+      <topicdata name="ObjectContextExtensions" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions" />
+      <apidata name="ObjectContextExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified">
+          <element api="M:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified``1(System.Data.Objects.ObjectSet{``0},``0)" />
+          <element api="M:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified``1(System.Data.Objects.ObjectSet{``0},``0,``0)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions" />
+      </containers>
+      <file name="636b3c2a-ca55-7ab2-d8d4-f6b5fdce901e" />
+    </api>
+    <api id="Overload:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified">
+      <topicdata name="AttachAsModified" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions" />
+      <apidata name="AttachAsModified" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified``1(System.Data.Objects.ObjectSet{``0},``0)" />
+        <element api="M:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified``1(System.Data.Objects.ObjectSet{``0},``0,``0)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions" ref="true" />
+      </containers>
+      <file name="7ca2d66f-e655-d814-500f-c5b86d784541" />
+    </api>
+    <api id="M:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified``1(System.Data.Objects.ObjectSet{``0},``0)">
+      <topicdata group="api" />
+      <apidata name="AttachAsModified" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T">
+          <constrained ref="true" />
+        </template>
+      </templates>
+      <parameters>
+        <parameter name="objectSet">
+          <type api="T:System.Data.Objects.ObjectSet`1" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified``1(System.Data.Objects.ObjectSet{``0},``0)" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="entity">
+          <template name="T" index="0" api="M:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified``1(System.Data.Objects.ObjectSet{``0},``0)" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="fa612c7b-717e-4129-d391-f6aee2f809a4" />
+    </api>
+    <api id="M:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified``1(System.Data.Objects.ObjectSet{``0},``0,``0)">
+      <topicdata group="api" />
+      <apidata name="AttachAsModified" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T">
+          <constrained ref="true" />
+        </template>
+      </templates>
+      <parameters>
+        <parameter name="objectSet">
+          <type api="T:System.Data.Objects.ObjectSet`1" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified``1(System.Data.Objects.ObjectSet{``0},``0,``0)" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="current">
+          <template name="T" index="0" api="M:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified``1(System.Data.Objects.ObjectSet{``0},``0,``0)" />
+        </parameter>
+        <parameter name="original">
+          <template name="T" index="0" api="M:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions.AttachAsModified``1(System.Data.Objects.ObjectSet{``0},``0,``0)" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.DomainServices.EntityFramework" module="System.ServiceModel.DomainServices.EntityFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.0.0 (4.1.61829.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.DomainServices.EntityFramework" />
+        <type api="T:System.ServiceModel.DomainServices.EntityFramework.ObjectContextExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="6d62a325-daa8-f87b-046a-a9bfa556582d" />
+    </api>
+  </apis>
+</reflection>

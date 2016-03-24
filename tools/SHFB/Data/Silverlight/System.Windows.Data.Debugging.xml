@@ -1,0 +1,904 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Data.Debugging">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Data.Debugging" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Data.Debugging.BindingAction" />
+        <element api="T:System.Windows.Data.Debugging.BindingDebugState" />
+        <element api="T:System.Windows.Data.Debugging.BindingStage" />
+        <element api="T:System.Windows.Data.Debugging.BindingValuePipeline" />
+      </elements>
+      <file name="b6f1be8f-162e-71c6-b6ee-4a096d2f44ba" />
+    </api>
+    <api id="T:System.Windows.Data.Debugging.BindingAction">
+      <topicdata group="api" />
+      <apidata name="BindingAction" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Data.Debugging.BindingAction.UpdatingSource" />
+        <element api="F:System.Windows.Data.Debugging.BindingAction.UpdatingTarget" />
+        <element api="F:System.Windows.Data.Debugging.BindingAction.ValidationNotification" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8a060b0c-f418-7bfa-8345-720652009fdd" />
+    </api>
+    <api id="F:System.Windows.Data.Debugging.BindingAction.UpdatingSource">
+      <topicdata group="api" notopic="" />
+      <apidata name="UpdatingSource" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.Debugging.BindingAction" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingAction" ref="false" />
+      </containers>
+      <file name="2c4cf713-d8e5-a98f-064d-6c5edcef7299" />
+    </api>
+    <api id="F:System.Windows.Data.Debugging.BindingAction.UpdatingTarget">
+      <topicdata group="api" notopic="" />
+      <apidata name="UpdatingTarget" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.Debugging.BindingAction" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingAction" ref="false" />
+      </containers>
+      <file name="5a7a01c7-7b69-c9ae-2de9-28a1acbaf6a8" />
+    </api>
+    <api id="F:System.Windows.Data.Debugging.BindingAction.ValidationNotification">
+      <topicdata group="api" notopic="" />
+      <apidata name="ValidationNotification" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.Debugging.BindingAction" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingAction" ref="false" />
+      </containers>
+      <file name="9eae17c9-dad8-a024-1382-f2dc537e9249" />
+    </api>
+    <api id="T:System.Windows.Data.Debugging.BindingDebugState">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Data.Debugging.BindingDebugState" />
+      <apidata name="BindingDebugState" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c1941f6e-92fd-ffd5-dad2-b0c0b117935a" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Data.Debugging.BindingDebugState">
+      <topicdata name="BindingDebugState" group="list" subgroup="members" typeTopicId="T:System.Windows.Data.Debugging.BindingDebugState" />
+      <apidata name="BindingDebugState" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="P:System.Windows.Data.Debugging.BindingDebugState.Action" />
+        <element api="P:System.Windows.Data.Debugging.BindingDebugState.Binding" />
+        <element api="P:System.Windows.Data.Debugging.BindingDebugState.BindingExpression" />
+        <element api="P:System.Windows.Data.Debugging.BindingDebugState.Error" />
+        <element api="P:System.Windows.Data.Debugging.BindingDebugState.FinalSource" />
+        <element api="P:System.Windows.Data.Debugging.BindingDebugState.LastCompletedStage" />
+        <element api="P:System.Windows.Data.Debugging.BindingDebugState.Pipeline" />
+        <element api="M:System.Windows.Data.Debugging.BindingDebugState.ToString" />
+        <element api="P:System.Windows.Data.Debugging.BindingDebugState.ValidationErrors" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingDebugState" />
+      </containers>
+      <file name="649b33e8-76bd-3a0e-47fe-966d8a83e03e" />
+    </api>
+    <api id="Methods.T:System.Windows.Data.Debugging.BindingDebugState">
+      <topicdata name="BindingDebugState" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Data.Debugging.BindingDebugState" />
+      <apidata name="BindingDebugState" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Windows.Data.Debugging.BindingDebugState.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingDebugState" />
+      </containers>
+      <file name="25694082-ed56-5d19-84ed-b8d299e6cd64" />
+    </api>
+    <api id="Properties.T:System.Windows.Data.Debugging.BindingDebugState">
+      <topicdata name="BindingDebugState" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Data.Debugging.BindingDebugState" />
+      <apidata name="BindingDebugState" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Data.Debugging.BindingDebugState.Action" />
+        <element api="P:System.Windows.Data.Debugging.BindingDebugState.Binding" />
+        <element api="P:System.Windows.Data.Debugging.BindingDebugState.BindingExpression" />
+        <element api="P:System.Windows.Data.Debugging.BindingDebugState.Error" />
+        <element api="P:System.Windows.Data.Debugging.BindingDebugState.FinalSource" />
+        <element api="P:System.Windows.Data.Debugging.BindingDebugState.LastCompletedStage" />
+        <element api="P:System.Windows.Data.Debugging.BindingDebugState.Pipeline" />
+        <element api="P:System.Windows.Data.Debugging.BindingDebugState.ValidationErrors" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingDebugState" />
+      </containers>
+      <file name="867b6f12-526c-1d8a-441c-52ef9a0228af" />
+    </api>
+    <api id="P:System.Windows.Data.Debugging.BindingDebugState.Action">
+      <topicdata group="api" />
+      <apidata name="Action" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Action" />
+      <returns>
+        <type api="T:System.Windows.Data.Debugging.BindingAction" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingDebugState" ref="true" />
+      </containers>
+      <file name="bc4bdfcc-1823-2adb-8fcd-986ca30cccbe" />
+    </api>
+    <api id="P:System.Windows.Data.Debugging.BindingDebugState.Binding">
+      <topicdata group="api" />
+      <apidata name="Binding" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Binding" />
+      <returns>
+        <type api="T:System.Windows.Data.BindingBase" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingDebugState" ref="true" />
+      </containers>
+      <file name="a676a382-e0f3-eac2-83c9-40b0b3fe5a27" />
+    </api>
+    <api id="P:System.Windows.Data.Debugging.BindingDebugState.BindingExpression">
+      <topicdata group="api" />
+      <apidata name="BindingExpression" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BindingExpression" />
+      <returns>
+        <type api="T:System.Windows.Expression" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingDebugState" ref="true" />
+      </containers>
+      <file name="4fe14d4a-a937-e121-abd0-e278f6f159de" />
+    </api>
+    <api id="P:System.Windows.Data.Debugging.BindingDebugState.Error">
+      <topicdata group="api" />
+      <apidata name="Error" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Error" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingDebugState" ref="true" />
+      </containers>
+      <file name="8b116455-5587-3839-61ab-c7e09ec3b5b9" />
+    </api>
+    <api id="P:System.Windows.Data.Debugging.BindingDebugState.FinalSource">
+      <topicdata group="api" />
+      <apidata name="FinalSource" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FinalSource" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingDebugState" ref="true" />
+      </containers>
+      <file name="c0331932-9d63-feda-42c2-b041f414fd9a" />
+    </api>
+    <api id="P:System.Windows.Data.Debugging.BindingDebugState.LastCompletedStage">
+      <topicdata group="api" />
+      <apidata name="LastCompletedStage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LastCompletedStage" />
+      <returns>
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingDebugState" ref="true" />
+      </containers>
+      <file name="37dedf98-d389-3416-85ac-df14120bf1a3" />
+    </api>
+    <api id="P:System.Windows.Data.Debugging.BindingDebugState.Pipeline">
+      <topicdata group="api" />
+      <apidata name="Pipeline" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Pipeline" />
+      <returns>
+        <type api="T:System.Windows.Data.Debugging.BindingValuePipeline" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingDebugState" ref="true" />
+      </containers>
+      <file name="952a26e4-4bef-b5b8-e93b-57898edb90df" />
+    </api>
+    <api id="M:System.Windows.Data.Debugging.BindingDebugState.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingDebugState" ref="true" />
+      </containers>
+      <file name="bc53ab3d-1864-a3b9-bc23-2c0a37bf5561" />
+    </api>
+    <api id="P:System.Windows.Data.Debugging.BindingDebugState.ValidationErrors">
+      <topicdata group="api" />
+      <apidata name="ValidationErrors" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ValidationErrors" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Object" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingDebugState" ref="true" />
+      </containers>
+      <file name="0be95578-7f3d-1ff4-8ef5-1df377b312fd" />
+    </api>
+    <api id="T:System.Windows.Data.Debugging.BindingStage">
+      <topicdata group="api" />
+      <apidata name="BindingStage" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Data.Debugging.BindingStage.SourceResolution" />
+        <element api="F:System.Windows.Data.Debugging.BindingStage.PathResolution" />
+        <element api="F:System.Windows.Data.Debugging.BindingStage.ValueConversion" />
+        <element api="F:System.Windows.Data.Debugging.BindingStage.StringFormatting" />
+        <element api="F:System.Windows.Data.Debugging.BindingStage.TypeConversion" />
+        <element api="F:System.Windows.Data.Debugging.BindingStage.SetSource" />
+        <element api="F:System.Windows.Data.Debugging.BindingStage.SetTarget" />
+        <element api="F:System.Windows.Data.Debugging.BindingStage.SetValidationResult" />
+        <element api="F:System.Windows.Data.Debugging.BindingStage.Validating" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c8974cd0-0de7-9b0c-ec5e-280a8cce5443" />
+    </api>
+    <api id="F:System.Windows.Data.Debugging.BindingStage.PathResolution">
+      <topicdata group="api" notopic="" />
+      <apidata name="PathResolution" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </containers>
+      <file name="c95303b9-dde4-3cbd-f60a-e7b9981a9c0d" />
+    </api>
+    <api id="F:System.Windows.Data.Debugging.BindingStage.SetSource">
+      <topicdata group="api" notopic="" />
+      <apidata name="SetSource" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </containers>
+      <file name="ebc32595-5ddd-a90b-168f-ee142db9a4e1" />
+    </api>
+    <api id="F:System.Windows.Data.Debugging.BindingStage.SetTarget">
+      <topicdata group="api" notopic="" />
+      <apidata name="SetTarget" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </containers>
+      <file name="70858338-0eae-f240-988b-64f32c5f28f8" />
+    </api>
+    <api id="F:System.Windows.Data.Debugging.BindingStage.SetValidationResult">
+      <topicdata group="api" notopic="" />
+      <apidata name="SetValidationResult" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </containers>
+      <file name="ec34fe7a-9c16-a055-6d14-9b2aa5df237c" />
+    </api>
+    <api id="F:System.Windows.Data.Debugging.BindingStage.SourceResolution">
+      <topicdata group="api" notopic="" />
+      <apidata name="SourceResolution" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </containers>
+      <file name="cbe84643-46e6-87d2-b271-e80cd4ce1185" />
+    </api>
+    <api id="F:System.Windows.Data.Debugging.BindingStage.StringFormatting">
+      <topicdata group="api" notopic="" />
+      <apidata name="StringFormatting" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </containers>
+      <file name="fd8d006f-6fa4-4aeb-9855-30bc92988e3c" />
+    </api>
+    <api id="F:System.Windows.Data.Debugging.BindingStage.TypeConversion">
+      <topicdata group="api" notopic="" />
+      <apidata name="TypeConversion" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </containers>
+      <file name="9f93211a-8a28-de07-3bb7-8cf03a9334e6" />
+    </api>
+    <api id="F:System.Windows.Data.Debugging.BindingStage.Validating">
+      <topicdata group="api" notopic="" />
+      <apidata name="Validating" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </containers>
+      <file name="12073c95-8ec1-5ab0-e8b2-80f865b989ef" />
+    </api>
+    <api id="F:System.Windows.Data.Debugging.BindingStage.ValueConversion">
+      <topicdata group="api" notopic="" />
+      <apidata name="ValueConversion" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingStage" ref="false" />
+      </containers>
+      <file name="1750f2ee-fb2b-c2b7-c643-57ed339ee64f" />
+    </api>
+    <api id="T:System.Windows.Data.Debugging.BindingValuePipeline">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Data.Debugging.BindingValuePipeline" />
+      <apidata name="BindingValuePipeline" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2a94ef2a-555f-ad3c-bae0-1f49a9197c23" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Data.Debugging.BindingValuePipeline">
+      <topicdata name="BindingValuePipeline" group="list" subgroup="members" typeTopicId="T:System.Windows.Data.Debugging.BindingValuePipeline" />
+      <apidata name="BindingValuePipeline" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Data.Debugging.BindingValuePipeline.AfterFallbackValue" />
+        <element api="P:System.Windows.Data.Debugging.BindingValuePipeline.AfterStringFormat" />
+        <element api="P:System.Windows.Data.Debugging.BindingValuePipeline.AfterStringFormatParse" />
+        <element api="P:System.Windows.Data.Debugging.BindingValuePipeline.AfterTypeConversion" />
+        <element api="P:System.Windows.Data.Debugging.BindingValuePipeline.AfterValueConversion" />
+        <element api="P:System.Windows.Data.Debugging.BindingValuePipeline.InitialValue" />
+        <element api="P:System.Windows.Data.Debugging.BindingValuePipeline.IsUsingTargetNullValue" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingValuePipeline" />
+      </containers>
+      <file name="806ad143-722d-0baa-762b-bc1f020e13d3" />
+    </api>
+    <api id="Methods.T:System.Windows.Data.Debugging.BindingValuePipeline">
+      <topicdata name="BindingValuePipeline" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Data.Debugging.BindingValuePipeline" />
+      <apidata name="BindingValuePipeline" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingValuePipeline" />
+      </containers>
+      <file name="69c753ae-87bf-89da-d7a6-f2bbd2d48829" />
+    </api>
+    <api id="Properties.T:System.Windows.Data.Debugging.BindingValuePipeline">
+      <topicdata name="BindingValuePipeline" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Data.Debugging.BindingValuePipeline" />
+      <apidata name="BindingValuePipeline" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Data.Debugging.BindingValuePipeline.AfterFallbackValue" />
+        <element api="P:System.Windows.Data.Debugging.BindingValuePipeline.AfterStringFormat" />
+        <element api="P:System.Windows.Data.Debugging.BindingValuePipeline.AfterStringFormatParse" />
+        <element api="P:System.Windows.Data.Debugging.BindingValuePipeline.AfterTypeConversion" />
+        <element api="P:System.Windows.Data.Debugging.BindingValuePipeline.AfterValueConversion" />
+        <element api="P:System.Windows.Data.Debugging.BindingValuePipeline.InitialValue" />
+        <element api="P:System.Windows.Data.Debugging.BindingValuePipeline.IsUsingTargetNullValue" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingValuePipeline" />
+      </containers>
+      <file name="b17fff71-a5b4-fd91-cf5d-b0d432f34e84" />
+    </api>
+    <api id="P:System.Windows.Data.Debugging.BindingValuePipeline.AfterFallbackValue">
+      <topicdata group="api" />
+      <apidata name="AfterFallbackValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AfterFallbackValue" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingValuePipeline" ref="true" />
+      </containers>
+      <file name="10615fc5-86b6-81ff-9306-e49f571bb820" />
+    </api>
+    <api id="P:System.Windows.Data.Debugging.BindingValuePipeline.AfterStringFormat">
+      <topicdata group="api" />
+      <apidata name="AfterStringFormat" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AfterStringFormat" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingValuePipeline" ref="true" />
+      </containers>
+      <file name="96e87bef-5fe2-8c66-2cb4-995a92ad51b5" />
+    </api>
+    <api id="P:System.Windows.Data.Debugging.BindingValuePipeline.AfterStringFormatParse">
+      <topicdata group="api" />
+      <apidata name="AfterStringFormatParse" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AfterStringFormatParse" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingValuePipeline" ref="true" />
+      </containers>
+      <file name="8453fc45-b8d2-8865-0cbc-a82fc022f5ac" />
+    </api>
+    <api id="P:System.Windows.Data.Debugging.BindingValuePipeline.AfterTypeConversion">
+      <topicdata group="api" />
+      <apidata name="AfterTypeConversion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AfterTypeConversion" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingValuePipeline" ref="true" />
+      </containers>
+      <file name="5a0ea266-f4e8-e31d-7340-e0a9c98f3651" />
+    </api>
+    <api id="P:System.Windows.Data.Debugging.BindingValuePipeline.AfterValueConversion">
+      <topicdata group="api" />
+      <apidata name="AfterValueConversion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AfterValueConversion" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingValuePipeline" ref="true" />
+      </containers>
+      <file name="e3f3a759-e2b5-613f-7e5b-c25a0c49aecb" />
+    </api>
+    <api id="P:System.Windows.Data.Debugging.BindingValuePipeline.InitialValue">
+      <topicdata group="api" />
+      <apidata name="InitialValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InitialValue" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingValuePipeline" ref="true" />
+      </containers>
+      <file name="6aabac4b-dcda-28a3-2641-89f19baa143d" />
+    </api>
+    <api id="P:System.Windows.Data.Debugging.BindingValuePipeline.IsUsingTargetNullValue">
+      <topicdata group="api" />
+      <apidata name="IsUsingTargetNullValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsUsingTargetNullValue" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Data.Debugging" />
+        <type api="T:System.Windows.Data.Debugging.BindingValuePipeline" ref="true" />
+      </containers>
+      <file name="824e012b-1d97-900b-9f4c-ebebf8cabfae" />
+    </api>
+  </apis>
+</reflection>

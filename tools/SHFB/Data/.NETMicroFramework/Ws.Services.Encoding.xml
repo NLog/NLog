@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="MFWsStack">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MFWsStack</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Ws.Services.Encoding">
+      <topicdata group="api" />
+      <apidata name="Ws.Services.Encoding" group="namespace" />
+      <elements>
+        <element api="T:Ws.Services.Encoding.TextMessageEncodingBindingElement" />
+      </elements>
+      <file name="35255ffa-9f75-facb-9fa9-461faf053f69" />
+    </api>
+    <api id="T:Ws.Services.Encoding.TextMessageEncodingBindingElement">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Encoding.TextMessageEncodingBindingElement" />
+      <apidata name="TextMessageEncodingBindingElement" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Encoding.TextMessageEncodingBindingElement.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Ws.Services.Binding.MessageEncodingBindingElement" ref="true" />
+          <type api="T:Ws.Services.Binding.BindingElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Encoding" />
+      </containers>
+      <file name="3d6f1013-6b10-7b3d-097b-e1cdcc4800d0" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Encoding.TextMessageEncodingBindingElement">
+      <topicdata name="TextMessageEncodingBindingElement" group="list" subgroup="members" typeTopicId="T:Ws.Services.Encoding.TextMessageEncodingBindingElement" />
+      <apidata name="TextMessageEncodingBindingElement" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Encoding.TextMessageEncodingBindingElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Binding.BindingElement.Close(System.IO.Stream,Ws.Services.Binding.BindingContext)" />
+        <element api="M:Ws.Services.Binding.BindingElement.GetBindingProperty(System.String)" />
+        <element api="F:Ws.Services.Binding.BindingElement.m_Next" />
+        <element api="M:Ws.Services.Binding.BindingElement.OnClose(System.IO.Stream,Ws.Services.Binding.BindingContext)" />
+        <element api="M:Ws.Services.Binding.BindingElement.OnGetBindingProperty(System.String)" />
+        <element api="M:Ws.Services.Binding.BindingElement.OnOpen(System.IO.Stream@,Ws.Services.Binding.BindingContext)" />
+        <element api="M:Ws.Services.Binding.BindingElement.OnSetBindingConfiguration(System.Object)" />
+        <element api="M:Ws.Services.Binding.BindingElement.Open(System.IO.Stream@,Ws.Services.Binding.BindingContext)" />
+        <element api="M:Ws.Services.Binding.BindingElement.ProcessInputMessage(Ws.Services.Soap.WsMessage@,Ws.Services.Binding.BindingContext)" />
+        <element api="M:Ws.Services.Binding.BindingElement.ProcessOutputMessage(Ws.Services.Soap.WsMessage@,Ws.Services.Binding.BindingContext)" />
+        <element api="M:Ws.Services.Binding.BindingElement.SetBindingConfiguration(System.Object)" />
+        <element api="M:Ws.Services.Binding.BindingElement.SetNext(Ws.Services.Binding.BindingElement)" />
+        <element api="M:Ws.Services.Encoding.TextMessageEncodingBindingElement.#ctor" />
+        <element api="M:Ws.Services.Encoding.TextMessageEncodingBindingElement.OnProcessInputMessage(Ws.Services.Soap.WsMessage@,Ws.Services.Binding.BindingContext)" />
+        <element api="M:Ws.Services.Encoding.TextMessageEncodingBindingElement.OnProcessOutputMessage(Ws.Services.Soap.WsMessage@,Ws.Services.Binding.BindingContext)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Encoding" />
+        <type api="T:Ws.Services.Encoding.TextMessageEncodingBindingElement" />
+      </containers>
+      <file name="4ebd0fdc-2ef3-c335-b174-77b2cd6f4c75" />
+    </api>
+    <api id="Methods.T:Ws.Services.Encoding.TextMessageEncodingBindingElement">
+      <topicdata name="TextMessageEncodingBindingElement" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Encoding.TextMessageEncodingBindingElement" />
+      <apidata name="TextMessageEncodingBindingElement" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Encoding.TextMessageEncodingBindingElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Binding.BindingElement.Close(System.IO.Stream,Ws.Services.Binding.BindingContext)" />
+        <element api="M:Ws.Services.Binding.BindingElement.GetBindingProperty(System.String)" />
+        <element api="M:Ws.Services.Binding.BindingElement.OnClose(System.IO.Stream,Ws.Services.Binding.BindingContext)" />
+        <element api="M:Ws.Services.Binding.BindingElement.OnGetBindingProperty(System.String)" />
+        <element api="M:Ws.Services.Binding.BindingElement.OnOpen(System.IO.Stream@,Ws.Services.Binding.BindingContext)" />
+        <element api="M:Ws.Services.Binding.BindingElement.OnSetBindingConfiguration(System.Object)" />
+        <element api="M:Ws.Services.Binding.BindingElement.Open(System.IO.Stream@,Ws.Services.Binding.BindingContext)" />
+        <element api="M:Ws.Services.Binding.BindingElement.ProcessInputMessage(Ws.Services.Soap.WsMessage@,Ws.Services.Binding.BindingContext)" />
+        <element api="M:Ws.Services.Binding.BindingElement.ProcessOutputMessage(Ws.Services.Soap.WsMessage@,Ws.Services.Binding.BindingContext)" />
+        <element api="M:Ws.Services.Binding.BindingElement.SetBindingConfiguration(System.Object)" />
+        <element api="M:Ws.Services.Binding.BindingElement.SetNext(Ws.Services.Binding.BindingElement)" />
+        <element api="M:Ws.Services.Encoding.TextMessageEncodingBindingElement.OnProcessInputMessage(Ws.Services.Soap.WsMessage@,Ws.Services.Binding.BindingContext)" />
+        <element api="M:Ws.Services.Encoding.TextMessageEncodingBindingElement.OnProcessOutputMessage(Ws.Services.Soap.WsMessage@,Ws.Services.Binding.BindingContext)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Encoding" />
+        <type api="T:Ws.Services.Encoding.TextMessageEncodingBindingElement" />
+      </containers>
+      <file name="20cdaf7c-a1e8-e9a0-369b-100b74d1f714" />
+    </api>
+    <api id="Fields.T:Ws.Services.Encoding.TextMessageEncodingBindingElement">
+      <topicdata name="TextMessageEncodingBindingElement" group="list" subgroup="Fields" typeTopicId="T:Ws.Services.Encoding.TextMessageEncodingBindingElement" />
+      <apidata name="TextMessageEncodingBindingElement" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Encoding.TextMessageEncodingBindingElement.#ctor" />
+      <elements>
+        <element api="F:Ws.Services.Binding.BindingElement.m_Next" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Encoding" />
+        <type api="T:Ws.Services.Encoding.TextMessageEncodingBindingElement" />
+      </containers>
+      <file name="89626adc-d466-2eb1-f9fd-9620418ecd1a" />
+    </api>
+    <api id="M:Ws.Services.Encoding.TextMessageEncodingBindingElement.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Encoding" />
+        <type api="T:Ws.Services.Encoding.TextMessageEncodingBindingElement" ref="true" />
+      </containers>
+      <file name="6af75871-97a3-1c6c-43f1-335ecac3747c" />
+    </api>
+    <api id="M:Ws.Services.Encoding.TextMessageEncodingBindingElement.OnProcessInputMessage(Ws.Services.Soap.WsMessage@,Ws.Services.Binding.BindingContext)">
+      <topicdata group="api" />
+      <apidata name="OnProcessInputMessage" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Ws.Services.Binding.BindingElement.OnProcessInputMessage(Ws.Services.Soap.WsMessage@,Ws.Services.Binding.BindingContext)">
+          <type api="T:Ws.Services.Binding.BindingElement" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="msg">
+          <referenceTo>
+            <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="ctx">
+          <type api="T:Ws.Services.Binding.BindingContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Binding.BindingElement.ChainResult" ref="false">
+          <type api="T:Ws.Services.Binding.BindingElement" ref="true" />
+        </type>
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Encoding" />
+        <type api="T:Ws.Services.Encoding.TextMessageEncodingBindingElement" ref="true" />
+      </containers>
+      <file name="01baf740-e57b-6354-1d53-02a5d3b8c398" />
+    </api>
+    <api id="M:Ws.Services.Encoding.TextMessageEncodingBindingElement.OnProcessOutputMessage(Ws.Services.Soap.WsMessage@,Ws.Services.Binding.BindingContext)">
+      <topicdata group="api" />
+      <apidata name="OnProcessOutputMessage" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Ws.Services.Binding.BindingElement.OnProcessOutputMessage(Ws.Services.Soap.WsMessage@,Ws.Services.Binding.BindingContext)">
+          <type api="T:Ws.Services.Binding.BindingElement" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="msg">
+          <referenceTo>
+            <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="ctx">
+          <type api="T:Ws.Services.Binding.BindingContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Binding.BindingElement.ChainResult" ref="false">
+          <type api="T:Ws.Services.Binding.BindingElement" ref="true" />
+        </type>
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Encoding" />
+        <type api="T:Ws.Services.Encoding.TextMessageEncodingBindingElement" ref="true" />
+      </containers>
+      <file name="49308f10-39cc-cae8-289d-e19088a7030a" />
+    </api>
+  </apis>
+</reflection>

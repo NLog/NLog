@@ -1,0 +1,2523 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.UI.Xaml.Interop">
+      <topicdata group="api" />
+      <apidata name="Windows.UI.Xaml.Interop" group="namespace" />
+      <elements>
+        <element api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction" />
+        <element api="T:Windows.UI.Xaml.Interop.BindableVectorChangedEventHandler" />
+        <element api="T:Windows.UI.Xaml.Interop.IBindableIterable" />
+        <element api="T:Windows.UI.Xaml.Interop.IBindableVector" />
+        <element api="T:Windows.UI.Xaml.Interop.IBindableObservableVector" />
+        <element api="T:Windows.UI.Xaml.Interop.IBindableVectorView" />
+        <element api="T:Windows.UI.Xaml.Interop.IBindableIterator" />
+        <element api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventHandler" />
+        <element api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs" />
+        <element api="T:Windows.UI.Xaml.Interop.INotifyCollectionChanged" />
+        <element api="T:Windows.UI.Xaml.Interop.TypeKind" />
+        <element api="T:Windows.UI.Xaml.Interop.TypeName" />
+      </elements>
+      <file name="44fd7e66-0b06-2d9a-701b-cd2a5b81f8f8" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Interop.BindableVectorChangedEventHandler">
+      <topicdata group="api" />
+      <apidata name="BindableVectorChangedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="vector" in="true">
+          <type api="T:Windows.UI.Xaml.Interop.IBindableObservableVector" ref="true" />
+        </parameter>
+        <parameter name="e" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1649202401</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>53255</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17329</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>156</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>3</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>175</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>77</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>62</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>98</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>88</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>196</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8c28ab1c-033b-7f14-1c36-00daace35258" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Interop.IBindableIterable">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Interop.IBindableIterable" />
+      <apidata name="IBindableIterable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" ref="true" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableObservableVector" ref="true" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVectorView" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>57486344</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>57129</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>16815</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>138</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>162</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>215</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>116</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>190</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>98</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>186</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>111</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e90dc919-41f3-87ab-7e62-77417db790d2" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Interop.IBindableIterable">
+      <topicdata name="IBindableIterable" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Interop.IBindableIterable" />
+      <apidata name="IBindableIterable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Interop.IBindableIterable.First" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableIterable" />
+      </containers>
+      <file name="90b4dec0-0d42-876d-b721-2d5a041b1e08" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Interop.IBindableIterable">
+      <topicdata name="IBindableIterable" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Interop.IBindableIterable" />
+      <apidata name="IBindableIterable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Interop.IBindableIterable.First" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableIterable" />
+      </containers>
+      <file name="bb206053-8580-44aa-a323-06364ee15bf8" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Interop.IBindableIterable.First">
+      <topicdata group="api" />
+      <apidata name="First" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.IBindableIterator" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableIterable" ref="true" />
+      </containers>
+      <file name="cd4d6b27-abc4-16b7-8bdd-f4aa3abf9709" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Interop.IBindableIterator">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Interop.IBindableIterator" />
+      <apidata name="IBindableIterator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1780313095</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>1901</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18930</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>131</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>20</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>245</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>44</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>156</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>154</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>131</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>49</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f2773ddc-cd6e-28c1-d941-733dcb5f643a" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Interop.IBindableIterator">
+      <topicdata name="IBindableIterator" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Interop.IBindableIterator" />
+      <apidata name="IBindableIterator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Interop.IBindableIterator.Current" />
+        <element api="P:Windows.UI.Xaml.Interop.IBindableIterator.HasCurrent" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableIterator.MoveNext" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableIterator" />
+      </containers>
+      <file name="94909269-bef6-1746-25c4-4fc4a71d394d" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Interop.IBindableIterator">
+      <topicdata name="IBindableIterator" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Interop.IBindableIterator" />
+      <apidata name="IBindableIterator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Interop.IBindableIterator.MoveNext" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableIterator" />
+      </containers>
+      <file name="ef683bad-2ecc-b0f8-64b9-e946a31f1d30" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Interop.IBindableIterator">
+      <topicdata name="IBindableIterator" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Interop.IBindableIterator" />
+      <apidata name="IBindableIterator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Interop.IBindableIterator.Current" />
+        <element api="P:Windows.UI.Xaml.Interop.IBindableIterator.HasCurrent" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableIterator" />
+      </containers>
+      <file name="e8d4b356-357c-dcee-f71a-3a9377b8f13c" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Interop.IBindableIterator.Current">
+      <topicdata group="api" />
+      <apidata name="Current" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Current" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableIterator" ref="true" />
+      </containers>
+      <file name="343304a6-2fe9-51df-811e-c955ac047c0c" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Interop.IBindableIterator.HasCurrent">
+      <topicdata group="api" />
+      <apidata name="HasCurrent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_HasCurrent" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableIterator" ref="true" />
+      </containers>
+      <file name="918306d3-6014-7f7b-804e-a8caa844de53" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Interop.IBindableIterator.MoveNext">
+      <topicdata group="api" />
+      <apidata name="MoveNext" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableIterator" ref="true" />
+      </containers>
+      <file name="126b90d8-1a4c-3aaf-afa6-bcdd2263b23f" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Interop.IBindableObservableVector">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Interop.IBindableObservableVector" />
+      <apidata name="IBindableObservableVector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" ref="true" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableIterable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>4263425334</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>32383</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>20368</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>172</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>154</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>71</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>73</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>132</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>170</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>229</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>18</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="b19b2a5a-299f-f461-7c62-7de037eb2307" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Interop.IBindableObservableVector">
+      <topicdata name="IBindableObservableVector" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Interop.IBindableObservableVector" />
+      <apidata name="IBindableObservableVector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Interop.IBindableIterable.First" />
+        <element api="E:Windows.UI.Xaml.Interop.IBindableObservableVector.VectorChanged" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.Append(System.Object)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.Clear" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.GetAt(System.UInt32)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.GetView" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.IndexOf(System.Object,System.UInt32@)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.InsertAt(System.UInt32,System.Object)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.RemoveAt(System.UInt32)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.RemoveAtEnd" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.SetAt(System.UInt32,System.Object)" />
+        <element api="P:Windows.UI.Xaml.Interop.IBindableVector.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableObservableVector" />
+      </containers>
+      <file name="c60dce64-5c1c-bcde-67de-704ed9a8264f" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Interop.IBindableObservableVector">
+      <topicdata name="IBindableObservableVector" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Interop.IBindableObservableVector" />
+      <apidata name="IBindableObservableVector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Interop.IBindableIterable.First" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.Append(System.Object)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.Clear" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.GetAt(System.UInt32)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.GetView" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.IndexOf(System.Object,System.UInt32@)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.InsertAt(System.UInt32,System.Object)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.RemoveAt(System.UInt32)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.RemoveAtEnd" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.SetAt(System.UInt32,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableObservableVector" />
+      </containers>
+      <file name="3bec2b91-b264-6f63-3c35-a43e403c3d91" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Interop.IBindableObservableVector">
+      <topicdata name="IBindableObservableVector" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Interop.IBindableObservableVector" />
+      <apidata name="IBindableObservableVector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Interop.IBindableVector.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableObservableVector" />
+      </containers>
+      <file name="4216cad9-d16c-2ded-b8f2-d949ff69b077" />
+    </api>
+    <api id="Events.T:Windows.UI.Xaml.Interop.IBindableObservableVector">
+      <topicdata name="IBindableObservableVector" group="list" subgroup="Events" typeTopicId="T:Windows.UI.Xaml.Interop.IBindableObservableVector" />
+      <apidata name="IBindableObservableVector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.UI.Xaml.Interop.IBindableObservableVector.VectorChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableObservableVector" />
+      </containers>
+      <file name="2d637211-17d8-9986-9e4f-9f99e876c886" />
+    </api>
+    <api id="E:Windows.UI.Xaml.Interop.IBindableObservableVector.VectorChanged">
+      <topicdata group="api" />
+      <apidata name="VectorChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_VectorChanged" />
+      <remover name="remove_VectorChanged" />
+      <eventhandler>
+        <type api="T:Windows.UI.Xaml.Interop.BindableVectorChangedEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableObservableVector" ref="true" />
+      </containers>
+      <file name="cceead55-50d6-a1c0-71d6-39c9f76c7834" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Interop.IBindableVector">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Interop.IBindableVector" />
+      <apidata name="IBindableVector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:Windows.UI.Xaml.Interop.IBindableIterable" ref="true" />
+      </implements>
+      <implementors>
+        <type api="T:Windows.UI.Xaml.Interop.IBindableObservableVector" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>960358366</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>28624</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19469</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>187</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>113</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>71</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>36</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>74</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>17</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>62</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>147</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="17e53d04-d562-e0aa-37cd-f1080db358d4" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Interop.IBindableVector">
+      <topicdata name="IBindableVector" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Interop.IBindableVector" />
+      <apidata name="IBindableVector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Interop.IBindableIterable.First" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.Append(System.Object)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.Clear" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.GetAt(System.UInt32)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.GetView" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.IndexOf(System.Object,System.UInt32@)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.InsertAt(System.UInt32,System.Object)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.RemoveAt(System.UInt32)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.RemoveAtEnd" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.SetAt(System.UInt32,System.Object)" />
+        <element api="P:Windows.UI.Xaml.Interop.IBindableVector.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" />
+      </containers>
+      <file name="42a0e5ab-828b-5c82-043c-503258a55441" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Interop.IBindableVector">
+      <topicdata name="IBindableVector" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Interop.IBindableVector" />
+      <apidata name="IBindableVector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Interop.IBindableIterable.First" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.Append(System.Object)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.Clear" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.GetAt(System.UInt32)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.GetView" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.IndexOf(System.Object,System.UInt32@)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.InsertAt(System.UInt32,System.Object)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.RemoveAt(System.UInt32)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.RemoveAtEnd" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVector.SetAt(System.UInt32,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" />
+      </containers>
+      <file name="12eef0c6-bd6f-c955-3d22-43fa2ef7cf4e" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Interop.IBindableVector">
+      <topicdata name="IBindableVector" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Interop.IBindableVector" />
+      <apidata name="IBindableVector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Interop.IBindableVector.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" />
+      </containers>
+      <file name="de97e915-5203-65c7-2855-f92257696041" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Interop.IBindableVector.Append(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Append" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" ref="true" />
+      </containers>
+      <file name="379ab149-4cfd-7a22-3a04-a487a009cc74" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Interop.IBindableVector.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" ref="true" />
+      </containers>
+      <file name="aea372e9-d32d-a339-d428-3651b55757fc" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Interop.IBindableVector.GetAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" ref="true" />
+      </containers>
+      <file name="a353f882-8d02-7a6b-bd8d-26a450f5f114" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Interop.IBindableVector.GetView">
+      <topicdata group="api" />
+      <apidata name="GetView" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVectorView" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" ref="true" />
+      </containers>
+      <file name="a6bb454f-9317-7942-5dd4-8ce333ae3b65" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Interop.IBindableVector.IndexOf(System.Object,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="index" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" ref="true" />
+      </containers>
+      <file name="ef78591d-873d-5749-6463-c4ef1fb7d894" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Interop.IBindableVector.InsertAt(System.UInt32,System.Object)">
+      <topicdata group="api" />
+      <apidata name="InsertAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="value" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" ref="true" />
+      </containers>
+      <file name="6d7a7b16-319a-44c1-000e-d2a74d5ee2e2" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Interop.IBindableVector.RemoveAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="RemoveAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" ref="true" />
+      </containers>
+      <file name="a607df6d-1c7d-5d1d-5aa8-eb19e1593ade" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Interop.IBindableVector.RemoveAtEnd">
+      <topicdata group="api" />
+      <apidata name="RemoveAtEnd" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" ref="true" />
+      </containers>
+      <file name="42092850-beb2-9ca1-0321-3cad39d04c68" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Interop.IBindableVector.SetAt(System.UInt32,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="value" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" ref="true" />
+      </containers>
+      <file name="da0cf584-24aa-29b4-71db-fedc4de4ae01" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Interop.IBindableVector.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" ref="true" />
+      </containers>
+      <file name="5ad6fe99-cc56-a167-4c91-5f17f0a4cced" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Interop.IBindableVectorView">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Interop.IBindableVectorView" />
+      <apidata name="IBindableVectorView" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:Windows.UI.Xaml.Interop.IBindableIterable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>879613671</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>38766</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19395</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>129</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>93</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>236</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>226</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>67</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>188</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>15</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>51</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ef1a90d2-866a-7e31-a977-4529417283e1" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Interop.IBindableVectorView">
+      <topicdata name="IBindableVectorView" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Interop.IBindableVectorView" />
+      <apidata name="IBindableVectorView" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Interop.IBindableIterable.First" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVectorView.GetAt(System.UInt32)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVectorView.IndexOf(System.Object,System.UInt32@)" />
+        <element api="P:Windows.UI.Xaml.Interop.IBindableVectorView.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVectorView" />
+      </containers>
+      <file name="1aa85eb2-e3b2-b2e6-d45d-66a92bf60b80" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Interop.IBindableVectorView">
+      <topicdata name="IBindableVectorView" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Interop.IBindableVectorView" />
+      <apidata name="IBindableVectorView" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.Interop.IBindableIterable.First" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVectorView.GetAt(System.UInt32)" />
+        <element api="M:Windows.UI.Xaml.Interop.IBindableVectorView.IndexOf(System.Object,System.UInt32@)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVectorView" />
+      </containers>
+      <file name="ce2ed78d-a3d4-dd2d-32e2-4761e43df9d9" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Interop.IBindableVectorView">
+      <topicdata name="IBindableVectorView" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Interop.IBindableVectorView" />
+      <apidata name="IBindableVectorView" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Interop.IBindableVectorView.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVectorView" />
+      </containers>
+      <file name="52a50001-6681-8373-5b5f-e5fa8774f04b" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Interop.IBindableVectorView.GetAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVectorView" ref="true" />
+      </containers>
+      <file name="1148c018-0719-9a97-2f25-ae05c82a116e" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Interop.IBindableVectorView.IndexOf(System.Object,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="index" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVectorView" ref="true" />
+      </containers>
+      <file name="ffe85722-9bdf-a20b-882b-73266c7aeffb" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Interop.IBindableVectorView.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVectorView" ref="true" />
+      </containers>
+      <file name="92bc20d1-2ba1-d5d3-122c-2085ab1aabce" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Interop.INotifyCollectionChanged">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Interop.INotifyCollectionChanged" />
+      <apidata name="INotifyCollectionChanged" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>682715093</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>6705</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18011</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>155</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>37</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>213</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>195</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>174</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>104</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>108</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>64</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a01cee96-8894-ed10-59af-8f8d1c93de37" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Interop.INotifyCollectionChanged">
+      <topicdata name="INotifyCollectionChanged" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Interop.INotifyCollectionChanged" />
+      <apidata name="INotifyCollectionChanged" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.UI.Xaml.Interop.INotifyCollectionChanged.CollectionChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.INotifyCollectionChanged" />
+      </containers>
+      <file name="4874a148-8f89-9896-c7a4-30c0ad83149a" />
+    </api>
+    <api id="Events.T:Windows.UI.Xaml.Interop.INotifyCollectionChanged">
+      <topicdata name="INotifyCollectionChanged" group="list" subgroup="Events" typeTopicId="T:Windows.UI.Xaml.Interop.INotifyCollectionChanged" />
+      <apidata name="INotifyCollectionChanged" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.UI.Xaml.Interop.INotifyCollectionChanged.CollectionChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.INotifyCollectionChanged" />
+      </containers>
+      <file name="eaf3e430-cf73-e214-29ba-c85e0d05d144" />
+    </api>
+    <api id="E:Windows.UI.Xaml.Interop.INotifyCollectionChanged.CollectionChanged">
+      <topicdata group="api" />
+      <apidata name="CollectionChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CollectionChanged" />
+      <remover name="remove_CollectionChanged" />
+      <eventhandler>
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.INotifyCollectionChanged" ref="true" />
+      </containers>
+      <file name="c9ad0b6b-8aa2-f409-9e22-45ed2f8c2e3b" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction">
+      <topicdata group="api" />
+      <apidata name="NotifyCollectionChangedAction" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction.Add" />
+        <element api="F:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction.Remove" />
+        <element api="F:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction.Replace" />
+        <element api="F:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction.Move" />
+        <element api="F:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction.Reset" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b932c10d-fd62-cefc-8e3a-3737c08da7fa" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction.Add">
+      <topicdata group="api" notopic="" />
+      <apidata name="Add" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction" ref="false" />
+      </containers>
+      <file name="6e39ed42-36ab-166d-355d-909ba0c2548f" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction.Move">
+      <topicdata group="api" notopic="" />
+      <apidata name="Move" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction" ref="false" />
+      </containers>
+      <file name="f687de3d-48b9-36cd-f20d-7e3eaaf6f890" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction.Remove">
+      <topicdata group="api" notopic="" />
+      <apidata name="Remove" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction" ref="false" />
+      </containers>
+      <file name="595a8a74-8ec8-aaf2-0309-7c43cefbcc7c" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction.Replace">
+      <topicdata group="api" notopic="" />
+      <apidata name="Replace" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction" ref="false" />
+      </containers>
+      <file name="35eb0b18-dda5-b59e-44d2-d17963a380db" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction.Reset">
+      <topicdata group="api" notopic="" />
+      <apidata name="Reset" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction" ref="false" />
+      </containers>
+      <file name="6512ce76-e5a4-e2e1-3824-b9681c262dc9" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs" />
+      <apidata name="NotifyCollectionChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="12bbfdaa-552a-c90f-c955-e0dfad5d545a" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs">
+      <topicdata name="NotifyCollectionChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs" />
+      <apidata name="NotifyCollectionChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Finalize">
+          <apidata name="Finalize" group="member" subgroup="method" />
+          <memberdata visibility="family" />
+          <proceduredata virtual="true" />
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.MemberwiseClone">
+          <apidata name="MemberwiseClone" group="member" subgroup="method" />
+          <memberdata visibility="family" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Object" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.#ctor(Windows.UI.Xaml.Interop.NotifyCollectionChangedAction,Windows.UI.Xaml.Interop.IBindableVector,Windows.UI.Xaml.Interop.IBindableVector,System.Int32,System.Int32)" />
+        <element api="P:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.Action" />
+        <element api="P:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.NewItems" />
+        <element api="P:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.NewStartingIndex" />
+        <element api="P:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.OldItems" />
+        <element api="P:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.OldStartingIndex" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs" />
+      </containers>
+      <file name="046fe7ef-d5b7-d36d-fe59-66972a6b3f62" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs">
+      <topicdata name="NotifyCollectionChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs" />
+      <apidata name="NotifyCollectionChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Finalize">
+          <apidata name="Finalize" group="member" subgroup="method" />
+          <memberdata visibility="family" />
+          <proceduredata virtual="true" />
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.MemberwiseClone">
+          <apidata name="MemberwiseClone" group="member" subgroup="method" />
+          <memberdata visibility="family" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Object" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs" />
+      </containers>
+      <file name="88ef573b-42d1-4460-7b77-29eaffe80da3" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs">
+      <topicdata name="NotifyCollectionChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs" />
+      <apidata name="NotifyCollectionChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.Action" />
+        <element api="P:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.NewItems" />
+        <element api="P:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.NewStartingIndex" />
+        <element api="P:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.OldItems" />
+        <element api="P:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.OldStartingIndex" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs" />
+      </containers>
+      <file name="c83df569-9f73-80af-b5e0-de178b24b887" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.#ctor(Windows.UI.Xaml.Interop.NotifyCollectionChangedAction,Windows.UI.Xaml.Interop.IBindableVector,Windows.UI.Xaml.Interop.IBindableVector,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="action" in="true">
+          <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction" ref="false" />
+        </parameter>
+        <parameter name="newItems" in="true">
+          <type api="T:Windows.UI.Xaml.Interop.IBindableVector" ref="true" />
+        </parameter>
+        <parameter name="oldItems" in="true">
+          <type api="T:Windows.UI.Xaml.Interop.IBindableVector" ref="true" />
+        </parameter>
+        <parameter name="newIndex" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="oldIndex" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="55d416c1-fd7c-19d2-e6ff-de7278e29dee" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.Action">
+      <topicdata group="api" />
+      <apidata name="Action" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Action" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedAction" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="17a47753-e096-795e-3500-897cd19d88ca" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.NewItems">
+      <topicdata group="api" />
+      <apidata name="NewItems" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NewItems" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="68e87308-2352-68a5-1a5b-4ce4b8096272" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.NewStartingIndex">
+      <topicdata group="api" />
+      <apidata name="NewStartingIndex" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NewStartingIndex" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="c38e81a3-afd9-79dd-4202-2a04e41f2e2d" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.OldItems">
+      <topicdata group="api" />
+      <apidata name="OldItems" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OldItems" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.IBindableVector" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="649315c9-c691-1a74-805c-7fe47165e9a8" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs.OldStartingIndex">
+      <topicdata group="api" />
+      <apidata name="OldStartingIndex" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OldStartingIndex" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs" ref="true" />
+      </containers>
+      <file name="2ec83e47-5a14-7aa7-d771-ba0d420f109c" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventHandler">
+      <topicdata group="api" />
+      <apidata name="NotifyCollectionChangedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e" in="true">
+          <type api="T:Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3390092156</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>62338</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17809</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>133</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>87</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>94</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>36</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>150</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>82</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>121</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>176</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="9a694dcf-768c-3bad-f3fe-22b8bdb5ec7a" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Interop.TypeKind">
+      <topicdata group="api" />
+      <apidata name="TypeKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.Xaml.Interop.TypeKind.Primitive" />
+        <element api="F:Windows.UI.Xaml.Interop.TypeKind.Metadata" />
+        <element api="F:Windows.UI.Xaml.Interop.TypeKind.Custom" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ab9c9123-dc5e-dda0-a8c8-67488c1d2a1b" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Interop.TypeKind.Custom">
+      <topicdata group="api" notopic="" />
+      <apidata name="Custom" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.TypeKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.TypeKind" ref="false" />
+      </containers>
+      <file name="6972243f-2e6f-33de-89f5-aba4e51c604b" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Interop.TypeKind.Metadata">
+      <topicdata group="api" notopic="" />
+      <apidata name="Metadata" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.TypeKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.TypeKind" ref="false" />
+      </containers>
+      <file name="59a7fb50-9c12-2ac2-63d7-92c9ca1136c5" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Interop.TypeKind.Primitive">
+      <topicdata group="api" notopic="" />
+      <apidata name="Primitive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.TypeKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.TypeKind" ref="false" />
+      </containers>
+      <file name="ed815662-6789-343b-6680-f7d751beaeb1" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Interop.TypeName">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Interop.TypeName" />
+      <apidata name="TypeName" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8600415c-93af-c513-9ac4-ae7b9c5cd329" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Interop.TypeName">
+      <topicdata name="TypeName" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Interop.TypeName" />
+      <apidata name="TypeName" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="F:Windows.UI.Xaml.Interop.TypeName.Kind" />
+        <element api="F:Windows.UI.Xaml.Interop.TypeName.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.TypeName" />
+      </containers>
+      <file name="80f625a7-4eb8-1cec-f54c-03634aad880a" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Interop.TypeName">
+      <topicdata name="TypeName" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Interop.TypeName" />
+      <apidata name="TypeName" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.TypeName" />
+      </containers>
+      <file name="40922b34-04a7-53e9-b4fa-da58e918746a" />
+    </api>
+    <api id="Fields.T:Windows.UI.Xaml.Interop.TypeName">
+      <topicdata name="TypeName" group="list" subgroup="Fields" typeTopicId="T:Windows.UI.Xaml.Interop.TypeName" />
+      <apidata name="TypeName" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Windows.UI.Xaml.Interop.TypeName.Kind" />
+        <element api="F:Windows.UI.Xaml.Interop.TypeName.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.TypeName" />
+      </containers>
+      <file name="2b492d9b-024e-3ad4-484f-b4d4044be346" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Interop.TypeName.Kind">
+      <topicdata group="api" />
+      <apidata name="Kind" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.TypeKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.TypeName" ref="false" />
+      </containers>
+      <file name="32f5c5e3-aac6-2f80-9a23-06fc280ae74d" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Interop.TypeName.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Interop" />
+        <type api="T:Windows.UI.Xaml.Interop.TypeName" ref="false" />
+      </containers>
+      <file name="74460322-617b-9626-2924-f2a7f173bdcd" />
+    </api>
+  </apis>
+</reflection>

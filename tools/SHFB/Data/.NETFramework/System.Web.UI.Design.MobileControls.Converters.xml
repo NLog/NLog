@@ -1,0 +1,1091 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Web.Mobile">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.Mobile.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.Mobile.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.Mobile.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Web.UI.Design.MobileControls.Converters">
+      <topicdata group="api" />
+      <apidata name="System.Web.UI.Design.MobileControls.Converters" group="namespace" />
+      <elements>
+        <element api="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" />
+        <element api="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" />
+      </elements>
+      <file name="3e0364b3-eb95-a0b2-f65f-70cdb07a18d1" />
+    </api>
+    <api id="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" />
+      <apidata name="DataFieldConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The System.Web.Mobile.dll assembly has been deprecated and should no longer be used. For information about how to develop ASP.NET mobile applications, see http://go.microsoft.com/fwlink/?LinkId=157231.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Minimal" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="InheritanceDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Minimal" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="c77258e1-2eef-5441-6d56-112b7b82e31a" />
+    </api>
+    <api id="AllMembers.T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter">
+      <topicdata name="DataFieldConverter" group="list" subgroup="members" typeTopicId="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" />
+      <apidata name="DataFieldConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)" />
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)" />
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection,System.String[])" />
+        <element api="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" />
+      </containers>
+      <file name="476d292a-56b5-cc13-c254-0458b840073c" />
+    </api>
+    <api id="Methods.T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter">
+      <topicdata name="DataFieldConverter" group="list" subgroup="Methods" typeTopicId="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" />
+      <apidata name="DataFieldConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)" />
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)" />
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection,System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" />
+      </containers>
+      <file name="e6606fcb-1477-1957-0ddf-cded5cbc0cbb" />
+    </api>
+    <api id="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.CanConvertFrom">
+      <topicdata name="CanConvertFrom" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" />
+      <apidata name="CanConvertFrom" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+        <element api="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" ref="true" />
+      </containers>
+      <file name="4a4c8479-5f79-369b-c662-2840a56c1112" />
+    </api>
+    <api id="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertFrom">
+      <topicdata name="ConvertFrom" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" />
+      <apidata name="ConvertFrom" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+        <element api="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" ref="true" />
+      </containers>
+      <file name="aa51c1ea-d64b-6757-b1a5-f9434d341526" />
+    </api>
+    <api id="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValues">
+      <topicdata name="GetStandardValues" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" />
+      <apidata name="GetStandardValues" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+        <element api="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" ref="true" />
+      </containers>
+      <file name="69c0366c-a229-c623-7434-34fd50e09cc2" />
+    </api>
+    <api id="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesExclusive">
+      <topicdata name="GetStandardValuesExclusive" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" />
+      <apidata name="GetStandardValuesExclusive" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+        <element api="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" ref="true" />
+      </containers>
+      <file name="3cc13b49-934f-1142-0011-4e29630494e4" />
+    </api>
+    <api id="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesSupported">
+      <topicdata name="GetStandardValuesSupported" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" />
+      <apidata name="GetStandardValuesSupported" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+        <element api="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" ref="true" />
+      </containers>
+      <file name="35a88047-2d23-7b0f-b378-4b15a2eb6e6a" />
+    </api>
+    <api id="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" ref="true" />
+      </containers>
+      <file name="b0632ee1-3f5b-e86f-866e-fd57fcad817b" />
+    </api>
+    <api id="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.CanConvertFrom" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="sourceType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" ref="true" />
+      </containers>
+      <file name="c6e4c885-0386-0eb2-2097-249b84e608e9" />
+    </api>
+    <api id="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+      <topicdata group="api" />
+      <apidata name="ConvertFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertFrom" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" ref="true" />
+      </containers>
+      <file name="2c3a1b9e-458b-efd7-0f83-aef60ffc4d38" />
+    </api>
+    <api id="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)">
+      <topicdata group="api" />
+      <apidata name="GetStandardValues" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValues" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.TypeConverter.StandardValuesCollection" ref="true">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" ref="true" />
+      </containers>
+      <file name="8be07e60-584d-e809-19eb-91fcaf0b5f06" />
+    </api>
+    <api id="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)">
+      <topicdata group="api" />
+      <apidata name="GetStandardValuesExclusive" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesExclusive" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" ref="true" />
+      </containers>
+      <file name="9c19af7c-2e75-0fc6-1f1e-b2da43f4f54e" />
+    </api>
+    <api id="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)">
+      <topicdata group="api" />
+      <apidata name="GetStandardValuesSupported" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesSupported" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" ref="true" />
+      </containers>
+      <file name="79f4bea2-c3bf-056d-d146-96ee53b63276" />
+    </api>
+    <api id="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" />
+      <apidata name="DataMemberConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The System.Web.Mobile.dll assembly has been deprecated and should no longer be used. For information about how to develop ASP.NET mobile applications, see http://go.microsoft.com/fwlink/?LinkId=157231.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Minimal" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.AspNetHostingPermissionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="InheritanceDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="Level">
+            <type api="T:System.Web.AspNetHostingPermissionLevel" ref="false" />
+            <enumValue>
+              <field name="Minimal" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="2bbf6eb3-6d76-6121-cc3d-4861f56e9c96" />
+    </api>
+    <api id="AllMembers.T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter">
+      <topicdata name="DataMemberConverter" group="list" subgroup="members" typeTopicId="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" />
+      <apidata name="DataMemberConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)" />
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)" />
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection,System.String[])" />
+        <element api="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" />
+      </containers>
+      <file name="e3b745c8-206b-7980-3b42-55f7eed72ac7" />
+    </api>
+    <api id="Methods.T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter">
+      <topicdata name="DataMemberConverter" group="list" subgroup="Methods" typeTopicId="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" />
+      <apidata name="DataMemberConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)" />
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)" />
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection,System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" />
+      </containers>
+      <file name="178362af-3ef1-0020-0bcb-51fadce69bef" />
+    </api>
+    <api id="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.CanConvertFrom">
+      <topicdata name="CanConvertFrom" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" />
+      <apidata name="CanConvertFrom" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+        <element api="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" ref="true" />
+      </containers>
+      <file name="dfd86e26-204f-d11c-70ec-b6a927759c27" />
+    </api>
+    <api id="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertFrom">
+      <topicdata name="ConvertFrom" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" />
+      <apidata name="ConvertFrom" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+        <element api="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" ref="true" />
+      </containers>
+      <file name="40a595f1-2d9d-1a4a-e3bd-1bbb174738a3" />
+    </api>
+    <api id="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValues">
+      <topicdata name="GetStandardValues" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" />
+      <apidata name="GetStandardValues" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+        <element api="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" ref="true" />
+      </containers>
+      <file name="9d5b4d70-644b-32a7-e97e-848124fa0ab4" />
+    </api>
+    <api id="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesExclusive">
+      <topicdata name="GetStandardValuesExclusive" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" />
+      <apidata name="GetStandardValuesExclusive" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+        <element api="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" ref="true" />
+      </containers>
+      <file name="ab3bd495-e079-512e-9c92-8c7b01667122" />
+    </api>
+    <api id="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesSupported">
+      <topicdata name="GetStandardValuesSupported" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" />
+      <apidata name="GetStandardValuesSupported" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+        <element api="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" ref="true" />
+      </containers>
+      <file name="0cb89a20-b59b-524b-7097-5b008ccacc4e" />
+    </api>
+    <api id="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" ref="true" />
+      </containers>
+      <file name="e598f04f-f2c9-80c3-ecd3-37d41ea759c7" />
+    </api>
+    <api id="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.CanConvertFrom" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="sourceType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" ref="true" />
+      </containers>
+      <file name="004f2ef1-21f3-abd7-d193-ac04ea3fbb5a" />
+    </api>
+    <api id="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+      <topicdata group="api" />
+      <apidata name="ConvertFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertFrom" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" ref="true" />
+      </containers>
+      <file name="e61a73cf-155a-91e6-803e-d5dedeec460f" />
+    </api>
+    <api id="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)">
+      <topicdata group="api" />
+      <apidata name="GetStandardValues" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValues" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.TypeConverter.StandardValuesCollection" ref="true">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" ref="true" />
+      </containers>
+      <file name="ef0f011c-bbe0-020f-8444-ae56933e8ace" />
+    </api>
+    <api id="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)">
+      <topicdata group="api" />
+      <apidata name="GetStandardValuesExclusive" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesExclusive" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" ref="true" />
+      </containers>
+      <file name="58553272-8e37-d35e-4087-87d476881d94" />
+    </api>
+    <api id="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)">
+      <topicdata group="api" />
+      <apidata name="GetStandardValuesSupported" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesSupported" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Mobile" module="System.Web.Mobile" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Design.MobileControls.Converters" />
+        <type api="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" ref="true" />
+      </containers>
+      <file name="b1b2c5f8-250b-e404-59cc-f99c7a30de11" />
+    </api>
+  </apis>
+</reflection>

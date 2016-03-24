@@ -1,0 +1,1404 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceModel.Activation.Configuration">
+      <topicdata group="api" />
+      <apidata name="System.ServiceModel.Activation.Configuration" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceModel.Activation.Configuration.DiagnosticSection" />
+        <element api="T:System.ServiceModel.Activation.Configuration.NetPipeSection" />
+        <element api="T:System.ServiceModel.Activation.Configuration.NetTcpSection" />
+        <element api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement" />
+        <element api="T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup" />
+        <element api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection" />
+      </elements>
+      <file name="6a4a0b38-dd7b-1155-f9d3-15f42ce8d2a0" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.Configuration.DiagnosticSection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.Configuration.DiagnosticSection" />
+      <apidata name="DiagnosticSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.DiagnosticSection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+      </containers>
+      <file name="8233aa2b-247c-f38b-80dc-b2af24c5ca5a" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.Configuration.DiagnosticSection">
+      <topicdata name="DiagnosticSection" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.Configuration.DiagnosticSection" />
+      <apidata name="DiagnosticSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.DiagnosticSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="M:System.ServiceModel.Activation.Configuration.DiagnosticSection.#ctor" />
+        <element api="P:System.ServiceModel.Activation.Configuration.DiagnosticSection.PerformanceCountersEnabled" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.DiagnosticSection" />
+      </containers>
+      <file name="182c574c-8919-3998-0eeb-362a708495cd" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.Configuration.DiagnosticSection">
+      <topicdata name="DiagnosticSection" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.Configuration.DiagnosticSection" />
+      <apidata name="DiagnosticSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.DiagnosticSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.DiagnosticSection" />
+      </containers>
+      <file name="191178a7-59e7-35e4-9276-04e78e279377" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activation.Configuration.DiagnosticSection">
+      <topicdata name="DiagnosticSection" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activation.Configuration.DiagnosticSection" />
+      <apidata name="DiagnosticSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.DiagnosticSection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="P:System.ServiceModel.Activation.Configuration.DiagnosticSection.PerformanceCountersEnabled" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.DiagnosticSection" />
+      </containers>
+      <file name="d84b1393-71bb-f8a3-c522-85db21439f54" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.Configuration.DiagnosticSection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.DiagnosticSection" ref="true" />
+      </containers>
+      <file name="7d7bc442-9d5a-a159-22c0-35db5179b927" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.Configuration.DiagnosticSection.PerformanceCountersEnabled">
+      <topicdata group="api" />
+      <apidata name="PerformanceCountersEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PerformanceCountersEnabled" />
+      <setter name="set_PerformanceCountersEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.DiagnosticSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>performanceCountersEnabled</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="4be2c557-2ce3-bb38-052d-966bbccf98d5" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.Configuration.NetPipeSection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.Configuration.NetPipeSection" />
+      <apidata name="NetPipeSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.NetPipeSection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+      </containers>
+      <file name="78d16d12-2ee1-7667-aafb-79d0436dfc78" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.Configuration.NetPipeSection">
+      <topicdata name="NetPipeSection" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.Configuration.NetPipeSection" />
+      <apidata name="NetPipeSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.NetPipeSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="M:System.ServiceModel.Activation.Configuration.NetPipeSection.#ctor" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetPipeSection.AllowAccounts" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetPipeSection.MaxPendingAccepts" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetPipeSection.MaxPendingConnections" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetPipeSection.ReceiveTimeout" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetPipeSection" />
+      </containers>
+      <file name="a1900ae8-c9b7-d704-deac-8f97a7bf02fd" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.Configuration.NetPipeSection">
+      <topicdata name="NetPipeSection" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.Configuration.NetPipeSection" />
+      <apidata name="NetPipeSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.NetPipeSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetPipeSection" />
+      </containers>
+      <file name="9f2c2035-9f99-50b3-a2bf-16eb14e19210" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activation.Configuration.NetPipeSection">
+      <topicdata name="NetPipeSection" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activation.Configuration.NetPipeSection" />
+      <apidata name="NetPipeSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.NetPipeSection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetPipeSection.AllowAccounts" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetPipeSection.MaxPendingAccepts" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetPipeSection.MaxPendingConnections" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetPipeSection.ReceiveTimeout" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetPipeSection" />
+      </containers>
+      <file name="ddf9fdfb-fb6f-5c51-8b94-2efe5b1b6a12" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.Configuration.NetPipeSection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetPipeSection" ref="true" />
+      </containers>
+      <file name="ce8e8f7a-488f-cf71-4b4c-73cbd787f245" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.Configuration.NetPipeSection.AllowAccounts">
+      <topicdata group="api" />
+      <apidata name="AllowAccounts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AllowAccounts" />
+      <returns>
+        <type api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetPipeSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>allowAccounts</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3c35a089-2ba6-ac5e-6bf7-965ef01af2cf" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.Configuration.NetPipeSection.MaxPendingAccepts">
+      <topicdata group="api" />
+      <apidata name="MaxPendingAccepts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxPendingAccepts" />
+      <setter name="set_MaxPendingAccepts" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetPipeSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>maxPendingAccepts</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.IntegerValidatorAttribute" ref="true" />
+          <assignment name="MinValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="34dd5177-0b58-959d-ff87-d7aa19f4e53c" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.Configuration.NetPipeSection.MaxPendingConnections">
+      <topicdata group="api" />
+      <apidata name="MaxPendingConnections" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxPendingConnections" />
+      <setter name="set_MaxPendingConnections" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetPipeSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>maxPendingConnections</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>100</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.IntegerValidatorAttribute" ref="true" />
+          <assignment name="MinValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="1fa656a6-2ed1-81a1-4d88-4e19201f04bc" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.Configuration.NetPipeSection.ReceiveTimeout">
+      <topicdata group="api" />
+      <apidata name="ReceiveTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReceiveTimeout" />
+      <setter name="set_ReceiveTimeout" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetPipeSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>receiveTimeout</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value>00:00:30</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="4698087a-8c33-9d10-f2ff-6c02191533e2" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.Configuration.NetTcpSection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.Configuration.NetTcpSection" />
+      <apidata name="NetTcpSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.NetTcpSection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+      </containers>
+      <file name="23f7f97f-1976-5db2-5a17-cba505cc6c37" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.Configuration.NetTcpSection">
+      <topicdata name="NetTcpSection" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.Configuration.NetTcpSection" />
+      <apidata name="NetTcpSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.NetTcpSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="M:System.ServiceModel.Activation.Configuration.NetTcpSection.#ctor" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetTcpSection.AllowAccounts" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetTcpSection.ListenBacklog" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetTcpSection.MaxPendingAccepts" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetTcpSection.MaxPendingConnections" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetTcpSection.ReceiveTimeout" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetTcpSection.TeredoEnabled" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetTcpSection" />
+      </containers>
+      <file name="310fea04-fd7c-c4a7-fe3f-ad966b40464b" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.Configuration.NetTcpSection">
+      <topicdata name="NetTcpSection" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.Configuration.NetTcpSection" />
+      <apidata name="NetTcpSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.NetTcpSection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetTcpSection" />
+      </containers>
+      <file name="e4f47c2f-4482-71d2-ed1d-9f621f565dc7" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activation.Configuration.NetTcpSection">
+      <topicdata name="NetTcpSection" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activation.Configuration.NetTcpSection" />
+      <apidata name="NetTcpSection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.NetTcpSection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationSection.SectionInformation" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetTcpSection.AllowAccounts" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetTcpSection.ListenBacklog" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetTcpSection.MaxPendingAccepts" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetTcpSection.MaxPendingConnections" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetTcpSection.ReceiveTimeout" />
+        <element api="P:System.ServiceModel.Activation.Configuration.NetTcpSection.TeredoEnabled" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetTcpSection" />
+      </containers>
+      <file name="d376e0c9-1f49-16c8-223c-af8bd62786d2" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.Configuration.NetTcpSection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetTcpSection" ref="true" />
+      </containers>
+      <file name="05ecd4de-f426-48fd-ad39-7edc30dafd26" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.Configuration.NetTcpSection.AllowAccounts">
+      <topicdata group="api" />
+      <apidata name="AllowAccounts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AllowAccounts" />
+      <returns>
+        <type api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetTcpSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>allowAccounts</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1d57cad9-0a6f-1521-c04e-16c76d384ad1" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.Configuration.NetTcpSection.ListenBacklog">
+      <topicdata group="api" />
+      <apidata name="ListenBacklog" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ListenBacklog" />
+      <setter name="set_ListenBacklog" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetTcpSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>listenBacklog</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.IntegerValidatorAttribute" ref="true" />
+          <assignment name="MinValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="e59c5159-4d50-2f87-e9a0-8917b29a8fec" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.Configuration.NetTcpSection.MaxPendingAccepts">
+      <topicdata group="api" />
+      <apidata name="MaxPendingAccepts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxPendingAccepts" />
+      <setter name="set_MaxPendingAccepts" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetTcpSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>maxPendingAccepts</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.IntegerValidatorAttribute" ref="true" />
+          <assignment name="MinValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="39eb7eb5-6356-2539-4745-953cadf420de" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.Configuration.NetTcpSection.MaxPendingConnections">
+      <topicdata group="api" />
+      <apidata name="MaxPendingConnections" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxPendingConnections" />
+      <setter name="set_MaxPendingConnections" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetTcpSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>maxPendingConnections</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>100</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Configuration.IntegerValidatorAttribute" ref="true" />
+          <assignment name="MinValue">
+            <type api="T:System.Int32" ref="false" />
+            <value>0</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="2d95e2f6-bdfc-4c29-3c09-8af51366db0b" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.Configuration.NetTcpSection.ReceiveTimeout">
+      <topicdata group="api" />
+      <apidata name="ReceiveTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReceiveTimeout" />
+      <setter name="set_ReceiveTimeout" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetTcpSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>receiveTimeout</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <value>00:00:30</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="fbcbc9bc-7be1-4b8b-6ad9-c549e77927bd" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.Configuration.NetTcpSection.TeredoEnabled">
+      <topicdata group="api" />
+      <apidata name="TeredoEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TeredoEnabled" />
+      <setter name="set_TeredoEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.NetTcpSection" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>teredoEnabled</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="86645318-d815-aadb-a442-e92dbd7a7287" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement" />
+      <apidata name="SecurityIdentifierElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+      </containers>
+      <file name="878accd5-989d-70f1-e663-e241649f3124" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement">
+      <topicdata name="SecurityIdentifierElement" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement" />
+      <apidata name="SecurityIdentifierElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="Overload:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.#ctor">
+          <element api="M:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.#ctor" />
+          <element api="M:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.#ctor(System.Security.Principal.SecurityIdentifier)" />
+        </element>
+        <element api="P:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.SecurityIdentifier" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement" />
+      </containers>
+      <file name="19627ead-6701-7acd-f59a-97dd0f46d29d" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement">
+      <topicdata name="SecurityIdentifierElement" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement" />
+      <apidata name="SecurityIdentifierElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.ConfigurationElement.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElement.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElement.IsReadOnly" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement" />
+      </containers>
+      <file name="16328a8a-6b15-f4fe-386a-5f5d9298fb01" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement">
+      <topicdata name="SecurityIdentifierElement" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement" />
+      <apidata name="SecurityIdentifierElement" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.SecurityIdentifier" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement" />
+      </containers>
+      <file name="e0634e92-2bd0-ba9d-7bf0-5ece12f77436" />
+    </api>
+    <api id="Overload:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.#ctor" />
+        <element api="M:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.#ctor(System.Security.Principal.SecurityIdentifier)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement" ref="true" />
+      </containers>
+      <file name="8ba9e76a-b43d-9183-4b75-3313cb15e67a" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement" ref="true" />
+      </containers>
+      <file name="c9bfb115-2101-0f5c-a76f-afb250c49e1c" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.#ctor(System.Security.Principal.SecurityIdentifier)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.#ctor" />
+      <parameters>
+        <parameter name="sid">
+          <type api="T:System.Security.Principal.SecurityIdentifier" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement" ref="true" />
+      </containers>
+      <file name="c00332a1-004f-288a-d7cb-329992b23c0b" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement.SecurityIdentifier">
+      <topicdata group="api" />
+      <apidata name="SecurityIdentifier" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SecurityIdentifier" />
+      <setter name="set_SecurityIdentifier" />
+      <returns>
+        <type api="T:System.Security.Principal.SecurityIdentifier" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>securityIdentifier</value>
+          </argument>
+          <assignment name="DefaultValue">
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </assignment>
+          <assignment name="Options">
+            <type api="T:System.Configuration.ConfigurationPropertyOptions" ref="false" />
+            <enumValue>
+              <field name="IsKey" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="81855624-c0eb-0f7a-ef10-3e8bf6ce2307" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection" />
+      <apidata name="SecurityIdentifierElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1" ref="true">
+            <specialization>
+              <type api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement" ref="true" />
+            </specialization>
+          </type>
+          <type api="T:System.Configuration.ConfigurationElementCollection" ref="true" />
+          <type api="T:System.Configuration.ConfigurationElement" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Configuration.ConfigurationCollectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElement" ref="true" />
+            </typeValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e7f00d96-88f0-636d-2b57-1ca04669dc6f" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection">
+      <topicdata name="SecurityIdentifierElementCollection" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection" />
+      <apidata name="SecurityIdentifierElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="Overload:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection.CopyTo">
+          <element api="M:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.CopyTo(`0[],System.Int32)" />
+          <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        </element>
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection.#ctor" />
+        <element api="M:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.Add(`0)" />
+        <element api="M:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.Clear" />
+        <element api="P:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.CollectionType" />
+        <element api="M:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.ContainsKey(System.Object)" />
+        <element api="M:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.IndexOf(`0)" />
+        <element api="Overload:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection.Item">
+          <element api="P:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.Item(System.Int32)" />
+          <element api="P:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.Item(System.Object)" />
+        </element>
+        <element api="M:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.Remove(`0)" />
+        <element api="Overload:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection.RemoveAt">
+          <element api="M:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.RemoveAt(System.Int32)" />
+          <element api="M:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.RemoveAt(System.Object)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection" />
+      </containers>
+      <file name="a1888859-ded9-fe74-487d-daa4aae2d74b" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection">
+      <topicdata name="SecurityIdentifierElementCollection" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection" />
+      <apidata name="SecurityIdentifierElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection.CopyTo">
+          <element api="M:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.CopyTo(`0[],System.Int32)" />
+          <element api="M:System.Configuration.ConfigurationElementCollection.CopyTo(System.Configuration.ConfigurationElement[],System.Int32)" />
+        </element>
+        <element api="M:System.Configuration.ConfigurationElementCollection.Equals(System.Object)" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetEnumerator" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.GetHashCode" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.IsReadOnly" />
+        <element api="M:System.Configuration.ConfigurationElementCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.Add(`0)" />
+        <element api="M:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.Clear" />
+        <element api="M:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.ContainsKey(System.Object)" />
+        <element api="M:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.IndexOf(`0)" />
+        <element api="M:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.Remove(`0)" />
+        <element api="Overload:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection.RemoveAt">
+          <element api="M:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.RemoveAt(System.Int32)" />
+          <element api="M:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.RemoveAt(System.Object)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection" />
+      </containers>
+      <file name="357caf3e-3789-e903-f9c7-4ecd9b94f2eb" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection">
+      <topicdata name="SecurityIdentifierElementCollection" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection" />
+      <apidata name="SecurityIdentifierElementCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationElement.CurrentConfiguration" />
+        <element api="P:System.Configuration.ConfigurationElement.ElementInformation" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllAttributesExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAllElementsExcept" />
+        <element api="P:System.Configuration.ConfigurationElement.LockAttributes" />
+        <element api="P:System.Configuration.ConfigurationElement.LockElements" />
+        <element api="P:System.Configuration.ConfigurationElement.LockItem" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.Count" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.EmitClear" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.IsSynchronized" />
+        <element api="P:System.Configuration.ConfigurationElementCollection.SyncRoot" />
+        <element api="P:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.CollectionType" />
+        <element api="Overload:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection.Item">
+          <element api="P:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.Item(System.Int32)" />
+          <element api="P:System.ServiceModel.Configuration.ServiceModelConfigurationElementCollection`1.Item(System.Object)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection" />
+      </containers>
+      <file name="717760b5-f4ae-bc30-7798-4712949f8207" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.SecurityIdentifierElementCollection" ref="true" />
+      </containers>
+      <file name="9cf8c875-e55d-480e-2119-a8808ff8b456" />
+    </api>
+    <api id="T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup" />
+      <apidata name="ServiceModelActivationSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Configuration.ConfigurationSectionGroup" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+      </containers>
+      <file name="aa54169f-45f1-690f-739a-fb3572adb602" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup">
+      <topicdata name="ServiceModelActivationSectionGroup" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup" />
+      <apidata name="ServiceModelActivationSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.ForceDeclaration">
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration" />
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration(System.Boolean)" />
+        </element>
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclarationRequired" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclared" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Name" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroupName" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroups" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Sections" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Type" />
+        <element api="M:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.#ctor" />
+        <element api="P:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.Diagnostics" />
+        <element api="M:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.GetSectionGroup(System.Configuration.Configuration)" />
+        <element api="P:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.NetPipe" />
+        <element api="P:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.NetTcp" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup" />
+      </containers>
+      <file name="d04d4798-27f3-1d18-05ac-05fe8fc68393" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup">
+      <topicdata name="ServiceModelActivationSectionGroup" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup" />
+      <apidata name="ServiceModelActivationSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.ForceDeclaration">
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration" />
+          <element api="M:System.Configuration.ConfigurationSectionGroup.ForceDeclaration(System.Boolean)" />
+        </element>
+        <element api="M:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.GetSectionGroup(System.Configuration.Configuration)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup" />
+      </containers>
+      <file name="97b6867d-e183-08a7-dd18-7eb387e2321c" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup">
+      <topicdata name="ServiceModelActivationSectionGroup" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup" />
+      <apidata name="ServiceModelActivationSectionGroup" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclarationRequired" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.IsDeclared" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Name" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroupName" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.SectionGroups" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Sections" />
+        <element api="P:System.Configuration.ConfigurationSectionGroup.Type" />
+        <element api="P:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.Diagnostics" />
+        <element api="P:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.NetPipe" />
+        <element api="P:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.NetTcp" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup" />
+      </containers>
+      <file name="2cbbcca7-a32f-3396-1b30-9ccd7e304a5d" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup" ref="true" />
+      </containers>
+      <file name="5107b79d-30a0-6447-e9c8-a49d474848f7" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.Diagnostics">
+      <topicdata group="api" />
+      <apidata name="Diagnostics" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Diagnostics" />
+      <returns>
+        <type api="T:System.ServiceModel.Activation.Configuration.DiagnosticSection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup" ref="true" />
+      </containers>
+      <file name="8881b86b-841b-7714-1582-9180cb27cb06" />
+    </api>
+    <api id="M:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.GetSectionGroup(System.Configuration.Configuration)">
+      <topicdata group="api" />
+      <apidata name="GetSectionGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="config">
+          <type api="T:System.Configuration.Configuration" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup" ref="true" />
+      </containers>
+      <file name="0fb1497a-1c9c-b945-d957-c741c00ee17c" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.NetPipe">
+      <topicdata group="api" />
+      <apidata name="NetPipe" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NetPipe" />
+      <returns>
+        <type api="T:System.ServiceModel.Activation.Configuration.NetPipeSection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup" ref="true" />
+      </containers>
+      <file name="0701e5dc-5255-ac18-aa32-e2599ec20b5d" />
+    </api>
+    <api id="P:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup.NetTcp">
+      <topicdata group="api" />
+      <apidata name="NetTcp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NetTcp" />
+      <returns>
+        <type api="T:System.ServiceModel.Activation.Configuration.NetTcpSection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activation.Configuration" />
+        <type api="T:System.ServiceModel.Activation.Configuration.ServiceModelActivationSectionGroup" ref="true" />
+      </containers>
+      <file name="cdf21e0e-1f59-bb0a-7821-aa3b8322ff4a" />
+    </api>
+  </apis>
+</reflection>

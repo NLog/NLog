@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Phone.System">
+      <topicdata group="api" />
+      <apidata name="Windows.Phone.System" group="namespace" />
+      <elements>
+        <element api="T:Windows.Phone.System.SystemProtection" />
+      </elements>
+      <file name="3e5b5e78-5e2d-2247-7edb-381ebd9253cd" />
+    </api>
+    <api id="T:Windows.Phone.System.SystemProtection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.System.SystemProtection" />
+      <apidata name="SystemProtection" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8f0aab79-89ce-7658-0db2-787cbc7aadee" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.System.SystemProtection">
+      <topicdata name="SystemProtection" group="list" subgroup="members" typeTopicId="T:Windows.Phone.System.SystemProtection" />
+      <apidata name="SystemProtection" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Phone.System.SystemProtection.RequestScreenUnlock" />
+        <element api="P:Windows.Phone.System.SystemProtection.ScreenLocked" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System" />
+        <type api="T:Windows.Phone.System.SystemProtection" />
+      </containers>
+      <file name="c506af0e-ec1e-d4d8-7be8-354e03f0d314" />
+    </api>
+    <api id="Methods.T:Windows.Phone.System.SystemProtection">
+      <topicdata name="SystemProtection" group="list" subgroup="Methods" typeTopicId="T:Windows.Phone.System.SystemProtection" />
+      <apidata name="SystemProtection" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Phone.System.SystemProtection.RequestScreenUnlock" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System" />
+        <type api="T:Windows.Phone.System.SystemProtection" />
+      </containers>
+      <file name="79f97b66-1385-cee3-3015-411d2d1e7085" />
+    </api>
+    <api id="Properties.T:Windows.Phone.System.SystemProtection">
+      <topicdata name="SystemProtection" group="list" subgroup="Properties" typeTopicId="T:Windows.Phone.System.SystemProtection" />
+      <apidata name="SystemProtection" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Phone.System.SystemProtection.ScreenLocked" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System" />
+        <type api="T:Windows.Phone.System.SystemProtection" />
+      </containers>
+      <file name="a2b36166-3836-45fc-58ee-43966009dd89" />
+    </api>
+    <api id="M:Windows.Phone.System.SystemProtection.RequestScreenUnlock">
+      <topicdata group="api" />
+      <apidata name="RequestScreenUnlock" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System" />
+        <type api="T:Windows.Phone.System.SystemProtection" ref="true" />
+      </containers>
+      <file name="61d16db1-9a9e-84be-a897-c06485336914" />
+    </api>
+    <api id="P:Windows.Phone.System.SystemProtection.ScreenLocked">
+      <topicdata group="api" />
+      <apidata name="ScreenLocked" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ScreenLocked" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System" />
+        <type api="T:Windows.Phone.System.SystemProtection" ref="true" />
+      </containers>
+      <file name="131d4983-790e-3c06-47cf-ecbc1a08a918" />
+    </api>
+  </apis>
+</reflection>

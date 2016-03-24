@@ -1,0 +1,2653 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Web.AtomPub">
+      <topicdata group="api" />
+      <apidata name="Windows.Web.AtomPub" group="namespace" />
+      <elements>
+        <element api="T:Windows.Web.AtomPub.ResourceCollection" />
+        <element api="T:Windows.Web.AtomPub.Workspace" />
+        <element api="T:Windows.Web.AtomPub.ServiceDocument" />
+        <element api="T:Windows.Web.AtomPub.AtomPubClient" />
+      </elements>
+      <file name="d7ca5880-8d15-8f6d-e2dc-4aa8ed01c757" />
+    </api>
+    <api id="T:Windows.Web.AtomPub.AtomPubClient">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Web.AtomPub.AtomPubClient" />
+      <apidata name="AtomPubClient" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Web.AtomPub.AtomPubClient.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Web.Syndication.ISyndicationClient" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="21643324-4a0c-461d-1edd-8aa335b5f33d" />
+    </api>
+    <api id="AllMembers.T:Windows.Web.AtomPub.AtomPubClient">
+      <topicdata name="AtomPubClient" group="list" subgroup="members" typeTopicId="T:Windows.Web.AtomPub.AtomPubClient" />
+      <apidata name="AtomPubClient" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Web.AtomPub.AtomPubClient.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:Windows.Web.AtomPub.AtomPubClient.#ctor">
+          <element api="M:Windows.Web.AtomPub.AtomPubClient.#ctor" />
+          <element api="M:Windows.Web.AtomPub.AtomPubClient.#ctor(Windows.Security.Credentials.PasswordCredential)" />
+        </element>
+        <element api="P:Windows.Web.AtomPub.AtomPubClient.BypassCacheOnRetrieve" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.CancelAsyncOperations" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.CreateMediaResourceAsync(Windows.Foundation.Uri,System.String,System.String,Windows.Storage.Streams.IInputStream)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.CreateResourceAsync(Windows.Foundation.Uri,System.String,Windows.Web.Syndication.SyndicationItem)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.DeleteResourceAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.DeleteResourceItemAsync(Windows.Web.Syndication.SyndicationItem)" />
+        <element api="P:Windows.Web.AtomPub.AtomPubClient.MaxResponseBufferSize" />
+        <element api="P:Windows.Web.AtomPub.AtomPubClient.ProxyCredential" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.RetrieveFeedAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.RetrieveMediaResourceAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.RetrieveResourceAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.RetrieveServiceDocumentAsync(Windows.Foundation.Uri)" />
+        <element api="P:Windows.Web.AtomPub.AtomPubClient.ServerCredential" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.SetRequestHeader(System.String,System.String)" />
+        <element api="P:Windows.Web.AtomPub.AtomPubClient.Timeout" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.UpdateMediaResourceAsync(Windows.Foundation.Uri,System.String,Windows.Storage.Streams.IInputStream)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.UpdateResourceAsync(Windows.Foundation.Uri,Windows.Web.Syndication.SyndicationItem)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.UpdateResourceItemAsync(Windows.Web.Syndication.SyndicationItem)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" />
+      </containers>
+      <file name="b72c2424-1eb0-df85-0706-e6216ca5306b" />
+    </api>
+    <api id="Methods.T:Windows.Web.AtomPub.AtomPubClient">
+      <topicdata name="AtomPubClient" group="list" subgroup="Methods" typeTopicId="T:Windows.Web.AtomPub.AtomPubClient" />
+      <apidata name="AtomPubClient" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Web.AtomPub.AtomPubClient.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.CancelAsyncOperations" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.CreateMediaResourceAsync(Windows.Foundation.Uri,System.String,System.String,Windows.Storage.Streams.IInputStream)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.CreateResourceAsync(Windows.Foundation.Uri,System.String,Windows.Web.Syndication.SyndicationItem)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.DeleteResourceAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.DeleteResourceItemAsync(Windows.Web.Syndication.SyndicationItem)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.RetrieveFeedAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.RetrieveMediaResourceAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.RetrieveResourceAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.RetrieveServiceDocumentAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.SetRequestHeader(System.String,System.String)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.UpdateMediaResourceAsync(Windows.Foundation.Uri,System.String,Windows.Storage.Streams.IInputStream)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.UpdateResourceAsync(Windows.Foundation.Uri,Windows.Web.Syndication.SyndicationItem)" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.UpdateResourceItemAsync(Windows.Web.Syndication.SyndicationItem)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" />
+      </containers>
+      <file name="3dc1b77d-0566-f74c-3de5-86f0aec752ab" />
+    </api>
+    <api id="Properties.T:Windows.Web.AtomPub.AtomPubClient">
+      <topicdata name="AtomPubClient" group="list" subgroup="Properties" typeTopicId="T:Windows.Web.AtomPub.AtomPubClient" />
+      <apidata name="AtomPubClient" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Web.AtomPub.AtomPubClient.#ctor" />
+      <elements>
+        <element api="P:Windows.Web.AtomPub.AtomPubClient.BypassCacheOnRetrieve" />
+        <element api="P:Windows.Web.AtomPub.AtomPubClient.MaxResponseBufferSize" />
+        <element api="P:Windows.Web.AtomPub.AtomPubClient.ProxyCredential" />
+        <element api="P:Windows.Web.AtomPub.AtomPubClient.ServerCredential" />
+        <element api="P:Windows.Web.AtomPub.AtomPubClient.Timeout" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" />
+      </containers>
+      <file name="c9e43837-bad1-7559-bd37-338efc82b425" />
+    </api>
+    <api id="Overload:Windows.Web.AtomPub.AtomPubClient.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Web.AtomPub.AtomPubClient" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.#ctor" />
+        <element api="M:Windows.Web.AtomPub.AtomPubClient.#ctor(Windows.Security.Credentials.PasswordCredential)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <file name="39737700-1eb6-1d4e-9752-358313a1ff59" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.AtomPubClient.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Web.AtomPub.AtomPubClient.#ctor" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <file name="69d14182-44a4-4c75-6c04-7ee31ef4de1b" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.AtomPubClient.#ctor(Windows.Security.Credentials.PasswordCredential)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Web.AtomPub.AtomPubClient.#ctor" />
+      <parameters>
+        <parameter name="serverCredential" in="true">
+          <type api="T:Windows.Security.Credentials.PasswordCredential" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <file name="29a415d6-741a-63df-d8d4-f7c63ed6ad71" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.AtomPubClient.BypassCacheOnRetrieve">
+      <topicdata group="api" />
+      <apidata name="BypassCacheOnRetrieve" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BypassCacheOnRetrieve" />
+      <setter name="set_BypassCacheOnRetrieve" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationClient.BypassCacheOnRetrieve">
+          <type api="T:Windows.Web.Syndication.ISyndicationClient" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <file name="6cee99c6-7eac-76c1-b3c1-e57d59014f18" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.AtomPubClient.CancelAsyncOperations">
+      <topicdata group="api" />
+      <apidata name="CancelAsyncOperations" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <file name="34305373-8891-2bcf-e256-3db2bdcf37a8" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.AtomPubClient.CreateMediaResourceAsync(Windows.Foundation.Uri,System.String,System.String,Windows.Storage.Streams.IInputStream)">
+      <topicdata group="api" />
+      <apidata name="CreateMediaResourceAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="mediaType" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="description" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="mediaStream" in="true">
+          <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Syndication.SyndicationItem" ref="true" />
+            <type api="T:Windows.Web.Syndication.TransferProgress" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2f0205f1-0cac-376a-a688-eb6f56ca3bef" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.AtomPubClient.CreateResourceAsync(Windows.Foundation.Uri,System.String,Windows.Web.Syndication.SyndicationItem)">
+      <topicdata group="api" />
+      <apidata name="CreateResourceAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="description" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="item" in="true">
+          <type api="T:Windows.Web.Syndication.SyndicationItem" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Syndication.SyndicationItem" ref="true" />
+            <type api="T:Windows.Web.Syndication.TransferProgress" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4d7c043c-a35e-d6eb-7e3e-f660145e57c8" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.AtomPubClient.DeleteResourceAsync(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="DeleteResourceAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncActionWithProgress`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Syndication.TransferProgress" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="9c324b78-41e9-04f7-b7dd-396d4efa6846" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.AtomPubClient.DeleteResourceItemAsync(Windows.Web.Syndication.SyndicationItem)">
+      <topicdata group="api" />
+      <apidata name="DeleteResourceItemAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="item" in="true">
+          <type api="T:Windows.Web.Syndication.SyndicationItem" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncActionWithProgress`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Syndication.TransferProgress" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="b774145e-2506-4e71-d122-ea83eda8e573" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.AtomPubClient.MaxResponseBufferSize">
+      <topicdata group="api" />
+      <apidata name="MaxResponseBufferSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxResponseBufferSize" />
+      <setter name="set_MaxResponseBufferSize" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationClient.MaxResponseBufferSize">
+          <type api="T:Windows.Web.Syndication.ISyndicationClient" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <file name="63b911e6-fe9b-324c-881e-025e63cf9063" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.AtomPubClient.ProxyCredential">
+      <topicdata group="api" />
+      <apidata name="ProxyCredential" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ProxyCredential" />
+      <setter name="set_ProxyCredential" />
+      <returns>
+        <type api="T:Windows.Security.Credentials.PasswordCredential" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationClient.ProxyCredential">
+          <type api="T:Windows.Web.Syndication.ISyndicationClient" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <file name="c8eeb5ec-87a2-d89f-4156-13db765b1fda" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.AtomPubClient.RetrieveFeedAsync(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="RetrieveFeedAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Syndication.SyndicationFeed" ref="true" />
+            <type api="T:Windows.Web.Syndication.RetrievalProgress" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Web.Syndication.ISyndicationClient.RetrieveFeedAsync(Windows.Foundation.Uri)">
+          <type api="T:Windows.Web.Syndication.ISyndicationClient" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c0377926-b2b8-3207-8e47-ef28d63dc91f" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.AtomPubClient.RetrieveMediaResourceAsync(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="RetrieveMediaResourceAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+            <type api="T:Windows.Web.Syndication.RetrievalProgress" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="9520a1a2-9ab8-f914-16f9-72e63e5241d5" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.AtomPubClient.RetrieveResourceAsync(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="RetrieveResourceAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Syndication.SyndicationItem" ref="true" />
+            <type api="T:Windows.Web.Syndication.RetrievalProgress" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ab7a8c16-a481-f61d-89de-49f4fba26da4" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.AtomPubClient.RetrieveServiceDocumentAsync(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="RetrieveServiceDocumentAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.AtomPub.ServiceDocument" ref="true" />
+            <type api="T:Windows.Web.Syndication.RetrievalProgress" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4b5f3802-3959-ed9a-8a3e-89bfd2033390" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.AtomPubClient.ServerCredential">
+      <topicdata group="api" />
+      <apidata name="ServerCredential" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ServerCredential" />
+      <setter name="set_ServerCredential" />
+      <returns>
+        <type api="T:Windows.Security.Credentials.PasswordCredential" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationClient.ServerCredential">
+          <type api="T:Windows.Web.Syndication.ISyndicationClient" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <file name="fca3daf8-c467-5674-ab4d-8c5748efa14e" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.AtomPubClient.SetRequestHeader(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="SetRequestHeader" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Web.Syndication.ISyndicationClient.SetRequestHeader(System.String,System.String)">
+          <type api="T:Windows.Web.Syndication.ISyndicationClient" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <file name="e9b95276-a2e3-8cea-3b11-5f4ebdadad11" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.AtomPubClient.Timeout">
+      <topicdata group="api" />
+      <apidata name="Timeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Timeout" />
+      <setter name="set_Timeout" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationClient.Timeout">
+          <type api="T:Windows.Web.Syndication.ISyndicationClient" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <file name="8d989daf-1b02-ced2-bed0-956475c60621" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.AtomPubClient.UpdateMediaResourceAsync(Windows.Foundation.Uri,System.String,Windows.Storage.Streams.IInputStream)">
+      <topicdata group="api" />
+      <apidata name="UpdateMediaResourceAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="mediaType" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="mediaStream" in="true">
+          <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncActionWithProgress`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Syndication.TransferProgress" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="27c79572-836f-9497-744b-8c511ba73d6d" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.AtomPubClient.UpdateResourceAsync(Windows.Foundation.Uri,Windows.Web.Syndication.SyndicationItem)">
+      <topicdata group="api" />
+      <apidata name="UpdateResourceAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="item" in="true">
+          <type api="T:Windows.Web.Syndication.SyndicationItem" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncActionWithProgress`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Syndication.TransferProgress" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="fd74cb31-def7-aaa1-a405-53aead120c6c" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.AtomPubClient.UpdateResourceItemAsync(Windows.Web.Syndication.SyndicationItem)">
+      <topicdata group="api" />
+      <apidata name="UpdateResourceItemAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="item" in="true">
+          <type api="T:Windows.Web.Syndication.SyndicationItem" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncActionWithProgress`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Syndication.TransferProgress" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.AtomPubClient" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e3317f88-e55b-97ca-b206-3407a5563166" />
+    </api>
+    <api id="T:Windows.Web.AtomPub.ResourceCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Web.AtomPub.ResourceCollection" />
+      <apidata name="ResourceCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="50e67bac-2d01-bde8-884e-fa4e2609499f" />
+    </api>
+    <api id="AllMembers.T:Windows.Web.AtomPub.ResourceCollection">
+      <topicdata name="ResourceCollection" group="list" subgroup="members" typeTopicId="T:Windows.Web.AtomPub.ResourceCollection" />
+      <apidata name="ResourceCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.Accepts" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.AttributeExtensions" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.BaseUri" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.Categories" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.ElementExtensions" />
+        <element api="M:Windows.Web.AtomPub.ResourceCollection.GetXmlDocument(Windows.Web.Syndication.SyndicationFormat)" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.Language" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.NodeName" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.NodeNamespace" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.NodeValue" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.Title" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.Uri" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ResourceCollection" />
+      </containers>
+      <file name="765a5ea6-f1e5-76c7-4641-51b10682c695" />
+    </api>
+    <api id="Methods.T:Windows.Web.AtomPub.ResourceCollection">
+      <topicdata name="ResourceCollection" group="list" subgroup="Methods" typeTopicId="T:Windows.Web.AtomPub.ResourceCollection" />
+      <apidata name="ResourceCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Web.AtomPub.ResourceCollection.GetXmlDocument(Windows.Web.Syndication.SyndicationFormat)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ResourceCollection" />
+      </containers>
+      <file name="062240da-2b07-7a42-8846-4f0b17ddcf7b" />
+    </api>
+    <api id="Properties.T:Windows.Web.AtomPub.ResourceCollection">
+      <topicdata name="ResourceCollection" group="list" subgroup="Properties" typeTopicId="T:Windows.Web.AtomPub.ResourceCollection" />
+      <apidata name="ResourceCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.Accepts" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.AttributeExtensions" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.BaseUri" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.Categories" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.ElementExtensions" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.Language" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.NodeName" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.NodeNamespace" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.NodeValue" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.Title" />
+        <element api="P:Windows.Web.AtomPub.ResourceCollection.Uri" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ResourceCollection" />
+      </containers>
+      <file name="6efad0bc-9f1b-98a7-c89e-e73da563f39b" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ResourceCollection.Accepts">
+      <topicdata group="api" />
+      <apidata name="Accepts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Accepts" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ResourceCollection" ref="true" />
+      </containers>
+      <file name="f021587b-a43a-1b7a-7db0-685c8191903a" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ResourceCollection.AttributeExtensions">
+      <topicdata group="api" />
+      <apidata name="AttributeExtensions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AttributeExtensions" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Syndication.SyndicationAttribute" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.AttributeExtensions">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ResourceCollection" ref="true" />
+      </containers>
+      <file name="68ed4a8a-0ecb-07eb-0c62-4dbde7f18f5a" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ResourceCollection.BaseUri">
+      <topicdata group="api" />
+      <apidata name="BaseUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BaseUri" />
+      <setter name="set_BaseUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.BaseUri">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ResourceCollection" ref="true" />
+      </containers>
+      <file name="91db3876-ab71-6f35-502c-4af6bb5cd3d4" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ResourceCollection.Categories">
+      <topicdata group="api" />
+      <apidata name="Categories" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Categories" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Syndication.SyndicationCategory" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ResourceCollection" ref="true" />
+      </containers>
+      <file name="46e14a72-65f8-83d9-ccfc-982ff22cf0c8" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ResourceCollection.ElementExtensions">
+      <topicdata group="api" />
+      <apidata name="ElementExtensions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ElementExtensions" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.ElementExtensions">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ResourceCollection" ref="true" />
+      </containers>
+      <file name="c11eb2aa-21b0-ece1-8540-e9a15aaeeb4e" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.ResourceCollection.GetXmlDocument(Windows.Web.Syndication.SyndicationFormat)">
+      <topicdata group="api" />
+      <apidata name="GetXmlDocument" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="format" in="true">
+          <type api="T:Windows.Web.Syndication.SyndicationFormat" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Xml.Dom.XmlDocument" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Web.Syndication.ISyndicationNode.GetXmlDocument(Windows.Web.Syndication.SyndicationFormat)">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ResourceCollection" ref="true" />
+      </containers>
+      <file name="096b0c56-e0ca-b5ae-477f-c0567ba93b7e" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ResourceCollection.Language">
+      <topicdata group="api" />
+      <apidata name="Language" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Language" />
+      <setter name="set_Language" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.Language">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ResourceCollection" ref="true" />
+      </containers>
+      <file name="98e9a07c-e3a8-0fdd-16c7-696ec46577ee" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ResourceCollection.NodeName">
+      <topicdata group="api" />
+      <apidata name="NodeName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NodeName" />
+      <setter name="set_NodeName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.NodeName">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ResourceCollection" ref="true" />
+      </containers>
+      <file name="2445322e-7d95-c58a-2a4e-f6d4e5f3b1b5" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ResourceCollection.NodeNamespace">
+      <topicdata group="api" />
+      <apidata name="NodeNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NodeNamespace" />
+      <setter name="set_NodeNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.NodeNamespace">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ResourceCollection" ref="true" />
+      </containers>
+      <file name="a086d9ea-c019-6e68-39ba-713732d68922" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ResourceCollection.NodeValue">
+      <topicdata group="api" />
+      <apidata name="NodeValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NodeValue" />
+      <setter name="set_NodeValue" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.NodeValue">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ResourceCollection" ref="true" />
+      </containers>
+      <file name="e55600b3-6b96-cc7d-863a-569967ecad79" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ResourceCollection.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Title" />
+      <returns>
+        <type api="T:Windows.Web.Syndication.ISyndicationText" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ResourceCollection" ref="true" />
+      </containers>
+      <file name="8413d2df-19b8-2bfd-23ea-069d0c4ebbc6" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ResourceCollection.Uri">
+      <topicdata group="api" />
+      <apidata name="Uri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Uri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ResourceCollection" ref="true" />
+      </containers>
+      <file name="2c354fb1-c7a9-8562-ea9d-1173c19dc245" />
+    </api>
+    <api id="T:Windows.Web.AtomPub.ServiceDocument">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Web.AtomPub.ServiceDocument" />
+      <apidata name="ServiceDocument" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="03803a36-f307-ab02-ddae-953bb2974acf" />
+    </api>
+    <api id="AllMembers.T:Windows.Web.AtomPub.ServiceDocument">
+      <topicdata name="ServiceDocument" group="list" subgroup="members" typeTopicId="T:Windows.Web.AtomPub.ServiceDocument" />
+      <apidata name="ServiceDocument" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Web.AtomPub.ServiceDocument.AttributeExtensions" />
+        <element api="P:Windows.Web.AtomPub.ServiceDocument.BaseUri" />
+        <element api="P:Windows.Web.AtomPub.ServiceDocument.ElementExtensions" />
+        <element api="M:Windows.Web.AtomPub.ServiceDocument.GetXmlDocument(Windows.Web.Syndication.SyndicationFormat)" />
+        <element api="P:Windows.Web.AtomPub.ServiceDocument.Language" />
+        <element api="P:Windows.Web.AtomPub.ServiceDocument.NodeName" />
+        <element api="P:Windows.Web.AtomPub.ServiceDocument.NodeNamespace" />
+        <element api="P:Windows.Web.AtomPub.ServiceDocument.NodeValue" />
+        <element api="P:Windows.Web.AtomPub.ServiceDocument.Workspaces" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ServiceDocument" />
+      </containers>
+      <file name="ce305b6a-faca-1635-dbbc-ef58e04c76cf" />
+    </api>
+    <api id="Methods.T:Windows.Web.AtomPub.ServiceDocument">
+      <topicdata name="ServiceDocument" group="list" subgroup="Methods" typeTopicId="T:Windows.Web.AtomPub.ServiceDocument" />
+      <apidata name="ServiceDocument" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Web.AtomPub.ServiceDocument.GetXmlDocument(Windows.Web.Syndication.SyndicationFormat)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ServiceDocument" />
+      </containers>
+      <file name="090362ee-7c9f-f84b-c8e4-455835cede3e" />
+    </api>
+    <api id="Properties.T:Windows.Web.AtomPub.ServiceDocument">
+      <topicdata name="ServiceDocument" group="list" subgroup="Properties" typeTopicId="T:Windows.Web.AtomPub.ServiceDocument" />
+      <apidata name="ServiceDocument" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Web.AtomPub.ServiceDocument.AttributeExtensions" />
+        <element api="P:Windows.Web.AtomPub.ServiceDocument.BaseUri" />
+        <element api="P:Windows.Web.AtomPub.ServiceDocument.ElementExtensions" />
+        <element api="P:Windows.Web.AtomPub.ServiceDocument.Language" />
+        <element api="P:Windows.Web.AtomPub.ServiceDocument.NodeName" />
+        <element api="P:Windows.Web.AtomPub.ServiceDocument.NodeNamespace" />
+        <element api="P:Windows.Web.AtomPub.ServiceDocument.NodeValue" />
+        <element api="P:Windows.Web.AtomPub.ServiceDocument.Workspaces" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ServiceDocument" />
+      </containers>
+      <file name="cd477358-c2be-5e69-26d8-04ff9f23d745" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ServiceDocument.AttributeExtensions">
+      <topicdata group="api" />
+      <apidata name="AttributeExtensions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AttributeExtensions" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Syndication.SyndicationAttribute" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.AttributeExtensions">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ServiceDocument" ref="true" />
+      </containers>
+      <file name="3ee6e0c1-0e34-4660-91cd-d87172fd1546" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ServiceDocument.BaseUri">
+      <topicdata group="api" />
+      <apidata name="BaseUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BaseUri" />
+      <setter name="set_BaseUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.BaseUri">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ServiceDocument" ref="true" />
+      </containers>
+      <file name="740e5fc5-9b68-8732-cc95-d79fbda519e7" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ServiceDocument.ElementExtensions">
+      <topicdata group="api" />
+      <apidata name="ElementExtensions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ElementExtensions" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.ElementExtensions">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ServiceDocument" ref="true" />
+      </containers>
+      <file name="ab5b3f4e-d0ad-add0-8cbf-866261ae83c4" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.ServiceDocument.GetXmlDocument(Windows.Web.Syndication.SyndicationFormat)">
+      <topicdata group="api" />
+      <apidata name="GetXmlDocument" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="format" in="true">
+          <type api="T:Windows.Web.Syndication.SyndicationFormat" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Xml.Dom.XmlDocument" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Web.Syndication.ISyndicationNode.GetXmlDocument(Windows.Web.Syndication.SyndicationFormat)">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ServiceDocument" ref="true" />
+      </containers>
+      <file name="14590d03-249c-d823-e7ee-10cc28b59bb3" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ServiceDocument.Language">
+      <topicdata group="api" />
+      <apidata name="Language" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Language" />
+      <setter name="set_Language" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.Language">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ServiceDocument" ref="true" />
+      </containers>
+      <file name="36191997-ea82-7282-b11e-1065f0a65409" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ServiceDocument.NodeName">
+      <topicdata group="api" />
+      <apidata name="NodeName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NodeName" />
+      <setter name="set_NodeName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.NodeName">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ServiceDocument" ref="true" />
+      </containers>
+      <file name="619494ce-0fbf-1496-b7f0-98ebf10eb041" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ServiceDocument.NodeNamespace">
+      <topicdata group="api" />
+      <apidata name="NodeNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NodeNamespace" />
+      <setter name="set_NodeNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.NodeNamespace">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ServiceDocument" ref="true" />
+      </containers>
+      <file name="e801b818-ad00-6d18-3424-40265f8edee3" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ServiceDocument.NodeValue">
+      <topicdata group="api" />
+      <apidata name="NodeValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NodeValue" />
+      <setter name="set_NodeValue" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.NodeValue">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ServiceDocument" ref="true" />
+      </containers>
+      <file name="20bc1e44-319f-aaf0-69a4-142c97fa322d" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.ServiceDocument.Workspaces">
+      <topicdata group="api" />
+      <apidata name="Workspaces" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Workspaces" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.AtomPub.Workspace" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.ServiceDocument" ref="true" />
+      </containers>
+      <file name="2e616858-b425-490d-a43f-c95429299075" />
+    </api>
+    <api id="T:Windows.Web.AtomPub.Workspace">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Web.AtomPub.Workspace" />
+      <apidata name="Workspace" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5a3888c7-0f4c-3a25-dd9f-9a5288a3f29e" />
+    </api>
+    <api id="AllMembers.T:Windows.Web.AtomPub.Workspace">
+      <topicdata name="Workspace" group="list" subgroup="members" typeTopicId="T:Windows.Web.AtomPub.Workspace" />
+      <apidata name="Workspace" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Web.AtomPub.Workspace.AttributeExtensions" />
+        <element api="P:Windows.Web.AtomPub.Workspace.BaseUri" />
+        <element api="P:Windows.Web.AtomPub.Workspace.Collections" />
+        <element api="P:Windows.Web.AtomPub.Workspace.ElementExtensions" />
+        <element api="M:Windows.Web.AtomPub.Workspace.GetXmlDocument(Windows.Web.Syndication.SyndicationFormat)" />
+        <element api="P:Windows.Web.AtomPub.Workspace.Language" />
+        <element api="P:Windows.Web.AtomPub.Workspace.NodeName" />
+        <element api="P:Windows.Web.AtomPub.Workspace.NodeNamespace" />
+        <element api="P:Windows.Web.AtomPub.Workspace.NodeValue" />
+        <element api="P:Windows.Web.AtomPub.Workspace.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.Workspace" />
+      </containers>
+      <file name="3a8a8fc2-fed4-7f5d-153e-a1b942a475fa" />
+    </api>
+    <api id="Methods.T:Windows.Web.AtomPub.Workspace">
+      <topicdata name="Workspace" group="list" subgroup="Methods" typeTopicId="T:Windows.Web.AtomPub.Workspace" />
+      <apidata name="Workspace" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Web.AtomPub.Workspace.GetXmlDocument(Windows.Web.Syndication.SyndicationFormat)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.Workspace" />
+      </containers>
+      <file name="096047c6-3be4-9a1b-b494-eac22be6a970" />
+    </api>
+    <api id="Properties.T:Windows.Web.AtomPub.Workspace">
+      <topicdata name="Workspace" group="list" subgroup="Properties" typeTopicId="T:Windows.Web.AtomPub.Workspace" />
+      <apidata name="Workspace" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Web.AtomPub.Workspace.AttributeExtensions" />
+        <element api="P:Windows.Web.AtomPub.Workspace.BaseUri" />
+        <element api="P:Windows.Web.AtomPub.Workspace.Collections" />
+        <element api="P:Windows.Web.AtomPub.Workspace.ElementExtensions" />
+        <element api="P:Windows.Web.AtomPub.Workspace.Language" />
+        <element api="P:Windows.Web.AtomPub.Workspace.NodeName" />
+        <element api="P:Windows.Web.AtomPub.Workspace.NodeNamespace" />
+        <element api="P:Windows.Web.AtomPub.Workspace.NodeValue" />
+        <element api="P:Windows.Web.AtomPub.Workspace.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.Workspace" />
+      </containers>
+      <file name="2c059f35-6a35-4048-1761-f168a698c22c" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.Workspace.AttributeExtensions">
+      <topicdata group="api" />
+      <apidata name="AttributeExtensions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AttributeExtensions" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Syndication.SyndicationAttribute" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.AttributeExtensions">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.Workspace" ref="true" />
+      </containers>
+      <file name="10a9c117-e273-0900-0553-6af504497944" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.Workspace.BaseUri">
+      <topicdata group="api" />
+      <apidata name="BaseUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BaseUri" />
+      <setter name="set_BaseUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.BaseUri">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.Workspace" ref="true" />
+      </containers>
+      <file name="c8a1e566-5560-59a6-d80d-e1a2077b5739" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.Workspace.Collections">
+      <topicdata group="api" />
+      <apidata name="Collections" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Collections" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.AtomPub.ResourceCollection" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.Workspace" ref="true" />
+      </containers>
+      <file name="55fe54fb-8662-7ed1-125e-13036174d003" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.Workspace.ElementExtensions">
+      <topicdata group="api" />
+      <apidata name="ElementExtensions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ElementExtensions" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.ElementExtensions">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.Workspace" ref="true" />
+      </containers>
+      <file name="cc0b8ba4-7cd9-6062-0cbc-b7350b693ec0" />
+    </api>
+    <api id="M:Windows.Web.AtomPub.Workspace.GetXmlDocument(Windows.Web.Syndication.SyndicationFormat)">
+      <topicdata group="api" />
+      <apidata name="GetXmlDocument" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="format" in="true">
+          <type api="T:Windows.Web.Syndication.SyndicationFormat" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Data.Xml.Dom.XmlDocument" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Web.Syndication.ISyndicationNode.GetXmlDocument(Windows.Web.Syndication.SyndicationFormat)">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.Workspace" ref="true" />
+      </containers>
+      <file name="1a8d1676-a4af-1125-3aa8-331f0117bec4" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.Workspace.Language">
+      <topicdata group="api" />
+      <apidata name="Language" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Language" />
+      <setter name="set_Language" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.Language">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.Workspace" ref="true" />
+      </containers>
+      <file name="5a143e5b-51a5-5f22-0f7c-98c14042569a" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.Workspace.NodeName">
+      <topicdata group="api" />
+      <apidata name="NodeName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NodeName" />
+      <setter name="set_NodeName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.NodeName">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.Workspace" ref="true" />
+      </containers>
+      <file name="d90891e9-b57e-18d5-b5c4-f30398a19604" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.Workspace.NodeNamespace">
+      <topicdata group="api" />
+      <apidata name="NodeNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NodeNamespace" />
+      <setter name="set_NodeNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.NodeNamespace">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.Workspace" ref="true" />
+      </containers>
+      <file name="17dd0bb0-95e1-6b30-953d-f6b0418e21d3" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.Workspace.NodeValue">
+      <topicdata group="api" />
+      <apidata name="NodeValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NodeValue" />
+      <setter name="set_NodeValue" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Web.Syndication.ISyndicationNode.NodeValue">
+          <type api="T:Windows.Web.Syndication.ISyndicationNode" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.Workspace" ref="true" />
+      </containers>
+      <file name="0eac4301-8e0a-fa72-42e8-7bcd036b2751" />
+    </api>
+    <api id="P:Windows.Web.AtomPub.Workspace.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Title" />
+      <returns>
+        <type api="T:Windows.Web.Syndication.ISyndicationText" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Web.AtomPub" />
+        <type api="T:Windows.Web.AtomPub.Workspace" ref="true" />
+      </containers>
+      <file name="e8b4e3d9-4793-b948-97af-c979dca03adf" />
+    </api>
+  </apis>
+</reflection>

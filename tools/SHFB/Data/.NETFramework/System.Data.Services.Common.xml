@@ -1,0 +1,1393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Data.Services.Client">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Services.Client.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Services.Client.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Services.Client.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Data.Services.Common">
+      <topicdata group="api" />
+      <apidata name="System.Data.Services.Common" group="namespace" />
+      <elements>
+        <element api="T:System.Data.Services.Common.DataServiceEntityAttribute" />
+        <element api="T:System.Data.Services.Common.EntitySetAttribute" />
+        <element api="T:System.Data.Services.Common.SyndicationItemProperty" />
+        <element api="T:System.Data.Services.Common.SyndicationTextContentKind" />
+        <element api="T:System.Data.Services.Common.EntityPropertyMappingAttribute" />
+        <element api="T:System.Data.Services.Common.HasStreamAttribute" />
+        <element api="T:System.Data.Services.Common.DataServiceKeyAttribute" />
+        <element api="T:System.Data.Services.Common.DataServiceProtocolVersion" />
+      </elements>
+      <file name="1fe69d6f-3065-1ae9-256b-374211e7f13d" />
+    </api>
+    <api id="T:System.Data.Services.Common.DataServiceEntityAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Services.Common.DataServiceEntityAttribute" />
+      <apidata name="DataServiceEntityAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Data.Services.Common.DataServiceEntityAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="a915f57b-2ab0-18fe-fe9d-8a4035aa560c" />
+    </api>
+    <api id="AllMembers.T:System.Data.Services.Common.DataServiceEntityAttribute">
+      <topicdata name="DataServiceEntityAttribute" group="list" subgroup="members" typeTopicId="T:System.Data.Services.Common.DataServiceEntityAttribute" />
+      <apidata name="DataServiceEntityAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Data.Services.Common.DataServiceEntityAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.Services.Common.DataServiceEntityAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.DataServiceEntityAttribute" />
+      </containers>
+      <file name="4310d391-be81-b330-9467-6500931d9808" />
+    </api>
+    <api id="Methods.T:System.Data.Services.Common.DataServiceEntityAttribute">
+      <topicdata name="DataServiceEntityAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Data.Services.Common.DataServiceEntityAttribute" />
+      <apidata name="DataServiceEntityAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Data.Services.Common.DataServiceEntityAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.DataServiceEntityAttribute" />
+      </containers>
+      <file name="e7ae5bbb-0d94-5748-fd9d-405cface1094" />
+    </api>
+    <api id="Properties.T:System.Data.Services.Common.DataServiceEntityAttribute">
+      <topicdata name="DataServiceEntityAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Data.Services.Common.DataServiceEntityAttribute" />
+      <apidata name="DataServiceEntityAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Data.Services.Common.DataServiceEntityAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.DataServiceEntityAttribute" />
+      </containers>
+      <file name="cdd304f8-6e09-e323-6a10-782ab49accf7" />
+    </api>
+    <api id="M:System.Data.Services.Common.DataServiceEntityAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.DataServiceEntityAttribute" ref="true" />
+      </containers>
+      <file name="df7110da-d98c-ca97-c487-581fb2bc8446" />
+    </api>
+    <api id="T:System.Data.Services.Common.DataServiceKeyAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Services.Common.DataServiceKeyAttribute" />
+      <apidata name="DataServiceKeyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="30e1819b-8ac4-f585-c47b-a25ab98a761c" />
+    </api>
+    <api id="AllMembers.T:System.Data.Services.Common.DataServiceKeyAttribute">
+      <topicdata name="DataServiceKeyAttribute" group="list" subgroup="members" typeTopicId="T:System.Data.Services.Common.DataServiceKeyAttribute" />
+      <apidata name="DataServiceKeyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Data.Services.Common.DataServiceKeyAttribute.#ctor">
+          <element api="M:System.Data.Services.Common.DataServiceKeyAttribute.#ctor(System.String)" />
+          <element api="M:System.Data.Services.Common.DataServiceKeyAttribute.#ctor(System.String[])" />
+        </element>
+        <element api="P:System.Data.Services.Common.DataServiceKeyAttribute.KeyNames" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.DataServiceKeyAttribute" />
+      </containers>
+      <file name="a22933a5-e9bc-fe9b-9cc9-e4aa8f3f842f" />
+    </api>
+    <api id="Methods.T:System.Data.Services.Common.DataServiceKeyAttribute">
+      <topicdata name="DataServiceKeyAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Data.Services.Common.DataServiceKeyAttribute" />
+      <apidata name="DataServiceKeyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.DataServiceKeyAttribute" />
+      </containers>
+      <file name="1dd3adb6-e884-d5db-94f9-3492fd127c99" />
+    </api>
+    <api id="Properties.T:System.Data.Services.Common.DataServiceKeyAttribute">
+      <topicdata name="DataServiceKeyAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Data.Services.Common.DataServiceKeyAttribute" />
+      <apidata name="DataServiceKeyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Data.Services.Common.DataServiceKeyAttribute.KeyNames" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.DataServiceKeyAttribute" />
+      </containers>
+      <file name="0a067e62-5288-7ffc-1970-3672e96a3f5c" />
+    </api>
+    <api id="Overload:System.Data.Services.Common.DataServiceKeyAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Services.Common.DataServiceKeyAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Data.Services.Common.DataServiceKeyAttribute.#ctor(System.String)" />
+        <element api="M:System.Data.Services.Common.DataServiceKeyAttribute.#ctor(System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.DataServiceKeyAttribute" ref="true" />
+      </containers>
+      <file name="29fc78e5-8086-6b49-bf86-f49964b7a1bf" />
+    </api>
+    <api id="M:System.Data.Services.Common.DataServiceKeyAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Data.Services.Common.DataServiceKeyAttribute.#ctor" />
+      <parameters>
+        <parameter name="keyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.DataServiceKeyAttribute" ref="true" />
+      </containers>
+      <file name="d0f0dd0f-7c77-f9d1-c5ae-ed3d52dac855" />
+    </api>
+    <api id="M:System.Data.Services.Common.DataServiceKeyAttribute.#ctor(System.String[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Data.Services.Common.DataServiceKeyAttribute.#ctor" />
+      <parameters>
+        <parameter name="keyNames" params="true">
+          <arrayOf rank="1">
+            <type api="T:System.String" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.DataServiceKeyAttribute" ref="true" />
+      </containers>
+      <file name="1ca951b4-7a04-efbc-8e5a-e07965fafcaa" />
+    </api>
+    <api id="P:System.Data.Services.Common.DataServiceKeyAttribute.KeyNames">
+      <topicdata group="api" />
+      <apidata name="KeyNames" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_KeyNames" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.DataServiceKeyAttribute" ref="true" />
+      </containers>
+      <file name="e2094519-8f38-3469-3c85-98280398669d" />
+    </api>
+    <api id="T:System.Data.Services.Common.DataServiceProtocolVersion">
+      <topicdata group="api" />
+      <apidata name="DataServiceProtocolVersion" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Data.Services.Common.DataServiceProtocolVersion.V1" />
+        <element api="F:System.Data.Services.Common.DataServiceProtocolVersion.V2" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+      </containers>
+      <file name="53ec6a8a-2971-ab67-54fb-856d28802cfe" />
+    </api>
+    <api id="F:System.Data.Services.Common.DataServiceProtocolVersion.V1">
+      <topicdata group="api" notopic="" />
+      <apidata name="V1" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.DataServiceProtocolVersion" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.DataServiceProtocolVersion" ref="false" />
+      </containers>
+      <file name="c667a7b2-8ca0-eb3c-0e28-2b988c08e8dd" />
+    </api>
+    <api id="F:System.Data.Services.Common.DataServiceProtocolVersion.V2">
+      <topicdata group="api" notopic="" />
+      <apidata name="V2" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.DataServiceProtocolVersion" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.DataServiceProtocolVersion" ref="false" />
+      </containers>
+      <file name="203cac9f-9ee5-1ad3-725b-8848945d7cb0" />
+    </api>
+    <api id="T:System.Data.Services.Common.EntityPropertyMappingAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Services.Common.EntityPropertyMappingAttribute" />
+      <apidata name="EntityPropertyMappingAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="1b2b25d0-d393-2f9c-5c20-37f680902071" />
+    </api>
+    <api id="AllMembers.T:System.Data.Services.Common.EntityPropertyMappingAttribute">
+      <topicdata name="EntityPropertyMappingAttribute" group="list" subgroup="members" typeTopicId="T:System.Data.Services.Common.EntityPropertyMappingAttribute" />
+      <apidata name="EntityPropertyMappingAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Data.Services.Common.EntityPropertyMappingAttribute.#ctor">
+          <element api="M:System.Data.Services.Common.EntityPropertyMappingAttribute.#ctor(System.String,System.Data.Services.Common.SyndicationItemProperty,System.Data.Services.Common.SyndicationTextContentKind,System.Boolean)" />
+          <element api="M:System.Data.Services.Common.EntityPropertyMappingAttribute.#ctor(System.String,System.String,System.String,System.String,System.Boolean)" />
+        </element>
+        <element api="P:System.Data.Services.Common.EntityPropertyMappingAttribute.KeepInContent" />
+        <element api="P:System.Data.Services.Common.EntityPropertyMappingAttribute.SourcePath" />
+        <element api="P:System.Data.Services.Common.EntityPropertyMappingAttribute.TargetNamespacePrefix" />
+        <element api="P:System.Data.Services.Common.EntityPropertyMappingAttribute.TargetNamespaceUri" />
+        <element api="P:System.Data.Services.Common.EntityPropertyMappingAttribute.TargetPath" />
+        <element api="P:System.Data.Services.Common.EntityPropertyMappingAttribute.TargetSyndicationItem" />
+        <element api="P:System.Data.Services.Common.EntityPropertyMappingAttribute.TargetTextContentKind" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntityPropertyMappingAttribute" />
+      </containers>
+      <file name="55da3c0d-4a9a-a404-b990-736a5488b344" />
+    </api>
+    <api id="Methods.T:System.Data.Services.Common.EntityPropertyMappingAttribute">
+      <topicdata name="EntityPropertyMappingAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Data.Services.Common.EntityPropertyMappingAttribute" />
+      <apidata name="EntityPropertyMappingAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntityPropertyMappingAttribute" />
+      </containers>
+      <file name="fe113d44-3ae6-be08-ddc6-6f2492cca0f0" />
+    </api>
+    <api id="Properties.T:System.Data.Services.Common.EntityPropertyMappingAttribute">
+      <topicdata name="EntityPropertyMappingAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Data.Services.Common.EntityPropertyMappingAttribute" />
+      <apidata name="EntityPropertyMappingAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Data.Services.Common.EntityPropertyMappingAttribute.KeepInContent" />
+        <element api="P:System.Data.Services.Common.EntityPropertyMappingAttribute.SourcePath" />
+        <element api="P:System.Data.Services.Common.EntityPropertyMappingAttribute.TargetNamespacePrefix" />
+        <element api="P:System.Data.Services.Common.EntityPropertyMappingAttribute.TargetNamespaceUri" />
+        <element api="P:System.Data.Services.Common.EntityPropertyMappingAttribute.TargetPath" />
+        <element api="P:System.Data.Services.Common.EntityPropertyMappingAttribute.TargetSyndicationItem" />
+        <element api="P:System.Data.Services.Common.EntityPropertyMappingAttribute.TargetTextContentKind" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntityPropertyMappingAttribute" />
+      </containers>
+      <file name="ee645edd-e3af-ec6b-5423-2b39b2a18464" />
+    </api>
+    <api id="Overload:System.Data.Services.Common.EntityPropertyMappingAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Services.Common.EntityPropertyMappingAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Data.Services.Common.EntityPropertyMappingAttribute.#ctor(System.String,System.Data.Services.Common.SyndicationItemProperty,System.Data.Services.Common.SyndicationTextContentKind,System.Boolean)" />
+        <element api="M:System.Data.Services.Common.EntityPropertyMappingAttribute.#ctor(System.String,System.String,System.String,System.String,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntityPropertyMappingAttribute" ref="true" />
+      </containers>
+      <file name="4a09c507-e473-b8f3-f41d-7f514e6b2add" />
+    </api>
+    <api id="M:System.Data.Services.Common.EntityPropertyMappingAttribute.#ctor(System.String,System.Data.Services.Common.SyndicationItemProperty,System.Data.Services.Common.SyndicationTextContentKind,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Data.Services.Common.EntityPropertyMappingAttribute.#ctor" />
+      <parameters>
+        <parameter name="sourcePath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="targetSyndicationItem">
+          <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+        </parameter>
+        <parameter name="targetTextContentKind">
+          <type api="T:System.Data.Services.Common.SyndicationTextContentKind" ref="false" />
+        </parameter>
+        <parameter name="keepInContent">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntityPropertyMappingAttribute" ref="true" />
+      </containers>
+      <file name="69eadce1-a0f4-9385-b81c-67dbf58b8665" />
+    </api>
+    <api id="M:System.Data.Services.Common.EntityPropertyMappingAttribute.#ctor(System.String,System.String,System.String,System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Data.Services.Common.EntityPropertyMappingAttribute.#ctor" />
+      <parameters>
+        <parameter name="sourcePath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="targetPath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="targetNamespacePrefix">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="targetNamespaceUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="keepInContent">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntityPropertyMappingAttribute" ref="true" />
+      </containers>
+      <file name="9762e259-890e-d72c-64a8-8f21cc25ae62" />
+    </api>
+    <api id="P:System.Data.Services.Common.EntityPropertyMappingAttribute.KeepInContent">
+      <topicdata group="api" />
+      <apidata name="KeepInContent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_KeepInContent" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntityPropertyMappingAttribute" ref="true" />
+      </containers>
+      <file name="d99bd4d0-3f87-e117-34c6-3cefa996ccf0" />
+    </api>
+    <api id="P:System.Data.Services.Common.EntityPropertyMappingAttribute.SourcePath">
+      <topicdata group="api" />
+      <apidata name="SourcePath" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SourcePath" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntityPropertyMappingAttribute" ref="true" />
+      </containers>
+      <file name="0bd9ce34-d60c-f771-9cf5-21eb15847cdd" />
+    </api>
+    <api id="P:System.Data.Services.Common.EntityPropertyMappingAttribute.TargetNamespacePrefix">
+      <topicdata group="api" />
+      <apidata name="TargetNamespacePrefix" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TargetNamespacePrefix" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntityPropertyMappingAttribute" ref="true" />
+      </containers>
+      <file name="4bfd4bd6-1c9d-6633-d39d-74d6f0b3d038" />
+    </api>
+    <api id="P:System.Data.Services.Common.EntityPropertyMappingAttribute.TargetNamespaceUri">
+      <topicdata group="api" />
+      <apidata name="TargetNamespaceUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TargetNamespaceUri" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntityPropertyMappingAttribute" ref="true" />
+      </containers>
+      <file name="9c93f327-0260-3cd1-6e7e-0fd5d474d775" />
+    </api>
+    <api id="P:System.Data.Services.Common.EntityPropertyMappingAttribute.TargetPath">
+      <topicdata group="api" />
+      <apidata name="TargetPath" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TargetPath" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntityPropertyMappingAttribute" ref="true" />
+      </containers>
+      <file name="0d6011dc-7865-8e52-f18b-20a97314b541" />
+    </api>
+    <api id="P:System.Data.Services.Common.EntityPropertyMappingAttribute.TargetSyndicationItem">
+      <topicdata group="api" />
+      <apidata name="TargetSyndicationItem" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TargetSyndicationItem" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntityPropertyMappingAttribute" ref="true" />
+      </containers>
+      <file name="b5b727b2-687a-51ce-9937-4e269a3803c3" />
+    </api>
+    <api id="P:System.Data.Services.Common.EntityPropertyMappingAttribute.TargetTextContentKind">
+      <topicdata group="api" />
+      <apidata name="TargetTextContentKind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TargetTextContentKind" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationTextContentKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntityPropertyMappingAttribute" ref="true" />
+      </containers>
+      <file name="6767c397-5edc-f04a-ca60-1b8a29238b89" />
+    </api>
+    <api id="T:System.Data.Services.Common.EntitySetAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Services.Common.EntitySetAttribute" />
+      <apidata name="EntitySetAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="626e065f-f8c8-b2ac-7b42-ead00e99c4a6" />
+    </api>
+    <api id="AllMembers.T:System.Data.Services.Common.EntitySetAttribute">
+      <topicdata name="EntitySetAttribute" group="list" subgroup="members" typeTopicId="T:System.Data.Services.Common.EntitySetAttribute" />
+      <apidata name="EntitySetAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.Services.Common.EntitySetAttribute.#ctor(System.String)" />
+        <element api="P:System.Data.Services.Common.EntitySetAttribute.EntitySet" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntitySetAttribute" />
+      </containers>
+      <file name="f5195a2b-23ed-a5ac-49a6-d5550fe108db" />
+    </api>
+    <api id="Methods.T:System.Data.Services.Common.EntitySetAttribute">
+      <topicdata name="EntitySetAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Data.Services.Common.EntitySetAttribute" />
+      <apidata name="EntitySetAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntitySetAttribute" />
+      </containers>
+      <file name="a304b357-957a-3fc6-c8a8-625f46e52c0b" />
+    </api>
+    <api id="Properties.T:System.Data.Services.Common.EntitySetAttribute">
+      <topicdata name="EntitySetAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Data.Services.Common.EntitySetAttribute" />
+      <apidata name="EntitySetAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Data.Services.Common.EntitySetAttribute.EntitySet" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntitySetAttribute" />
+      </containers>
+      <file name="64283119-67d9-add4-448d-1cde9714d244" />
+    </api>
+    <api id="M:System.Data.Services.Common.EntitySetAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="entitySet">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntitySetAttribute" ref="true" />
+      </containers>
+      <file name="c5003ae8-c150-5977-9b14-f4d126019a29" />
+    </api>
+    <api id="P:System.Data.Services.Common.EntitySetAttribute.EntitySet">
+      <topicdata group="api" />
+      <apidata name="EntitySet" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EntitySet" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.EntitySetAttribute" ref="true" />
+      </containers>
+      <file name="d3833cb7-3617-8803-dba4-b02bc0d58cc0" />
+    </api>
+    <api id="T:System.Data.Services.Common.HasStreamAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Services.Common.HasStreamAttribute" />
+      <apidata name="HasStreamAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Data.Services.Common.HasStreamAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="233b610e-1742-5c01-6518-769b2947fb7c" />
+    </api>
+    <api id="AllMembers.T:System.Data.Services.Common.HasStreamAttribute">
+      <topicdata name="HasStreamAttribute" group="list" subgroup="members" typeTopicId="T:System.Data.Services.Common.HasStreamAttribute" />
+      <apidata name="HasStreamAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Data.Services.Common.HasStreamAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.Services.Common.HasStreamAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.HasStreamAttribute" />
+      </containers>
+      <file name="ce9d65ec-7bab-ac9c-2128-f23befc9eace" />
+    </api>
+    <api id="Methods.T:System.Data.Services.Common.HasStreamAttribute">
+      <topicdata name="HasStreamAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Data.Services.Common.HasStreamAttribute" />
+      <apidata name="HasStreamAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Data.Services.Common.HasStreamAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.HasStreamAttribute" />
+      </containers>
+      <file name="b5fa39d9-6b9c-acac-01d0-93271c831a62" />
+    </api>
+    <api id="Properties.T:System.Data.Services.Common.HasStreamAttribute">
+      <topicdata name="HasStreamAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Data.Services.Common.HasStreamAttribute" />
+      <apidata name="HasStreamAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Data.Services.Common.HasStreamAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.HasStreamAttribute" />
+      </containers>
+      <file name="6f7efe10-5323-a4ad-56d1-0c9cca90f00a" />
+    </api>
+    <api id="M:System.Data.Services.Common.HasStreamAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.HasStreamAttribute" ref="true" />
+      </containers>
+      <file name="aeb61102-279e-3597-47a9-ead736b5b672" />
+    </api>
+    <api id="T:System.Data.Services.Common.SyndicationItemProperty">
+      <topicdata group="api" />
+      <apidata name="SyndicationItemProperty" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Data.Services.Common.SyndicationItemProperty.CustomProperty" />
+        <element api="F:System.Data.Services.Common.SyndicationItemProperty.AuthorEmail" />
+        <element api="F:System.Data.Services.Common.SyndicationItemProperty.AuthorName" />
+        <element api="F:System.Data.Services.Common.SyndicationItemProperty.AuthorUri" />
+        <element api="F:System.Data.Services.Common.SyndicationItemProperty.ContributorEmail" />
+        <element api="F:System.Data.Services.Common.SyndicationItemProperty.ContributorName" />
+        <element api="F:System.Data.Services.Common.SyndicationItemProperty.ContributorUri" />
+        <element api="F:System.Data.Services.Common.SyndicationItemProperty.Updated" />
+        <element api="F:System.Data.Services.Common.SyndicationItemProperty.Published" />
+        <element api="F:System.Data.Services.Common.SyndicationItemProperty.Rights" />
+        <element api="F:System.Data.Services.Common.SyndicationItemProperty.Summary" />
+        <element api="F:System.Data.Services.Common.SyndicationItemProperty.Title" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+      </containers>
+      <file name="773ba617-0c24-1c2d-9a12-553ca25863f7" />
+    </api>
+    <api id="F:System.Data.Services.Common.SyndicationItemProperty.AuthorEmail">
+      <topicdata group="api" notopic="" />
+      <apidata name="AuthorEmail" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </containers>
+      <file name="04366fc1-bef9-d1f3-b305-fd1b9cec895f" />
+    </api>
+    <api id="F:System.Data.Services.Common.SyndicationItemProperty.AuthorName">
+      <topicdata group="api" notopic="" />
+      <apidata name="AuthorName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </containers>
+      <file name="d6d062fc-39d4-b139-ca6f-fd4697ca8577" />
+    </api>
+    <api id="F:System.Data.Services.Common.SyndicationItemProperty.AuthorUri">
+      <topicdata group="api" notopic="" />
+      <apidata name="AuthorUri" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </containers>
+      <file name="72535836-223d-b3b3-4d50-ad54d5539d82" />
+    </api>
+    <api id="F:System.Data.Services.Common.SyndicationItemProperty.ContributorEmail">
+      <topicdata group="api" notopic="" />
+      <apidata name="ContributorEmail" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </containers>
+      <file name="3eb44d1e-b17d-f001-46c5-42da2b226d92" />
+    </api>
+    <api id="F:System.Data.Services.Common.SyndicationItemProperty.ContributorName">
+      <topicdata group="api" notopic="" />
+      <apidata name="ContributorName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </containers>
+      <file name="2d0f20bb-1ba2-c171-f7c5-e4e1faa3fe76" />
+    </api>
+    <api id="F:System.Data.Services.Common.SyndicationItemProperty.ContributorUri">
+      <topicdata group="api" notopic="" />
+      <apidata name="ContributorUri" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </containers>
+      <file name="c528047e-262e-ee63-beef-c5952037b9d1" />
+    </api>
+    <api id="F:System.Data.Services.Common.SyndicationItemProperty.CustomProperty">
+      <topicdata group="api" notopic="" />
+      <apidata name="CustomProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </containers>
+      <file name="2645ee33-bb4d-423a-04a6-759fd0080692" />
+    </api>
+    <api id="F:System.Data.Services.Common.SyndicationItemProperty.Published">
+      <topicdata group="api" notopic="" />
+      <apidata name="Published" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </containers>
+      <file name="9f74dcad-2378-ef87-6874-bc0065414fb0" />
+    </api>
+    <api id="F:System.Data.Services.Common.SyndicationItemProperty.Rights">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rights" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </containers>
+      <file name="e08d513e-fc81-7505-1f40-20474b98e39e" />
+    </api>
+    <api id="F:System.Data.Services.Common.SyndicationItemProperty.Summary">
+      <topicdata group="api" notopic="" />
+      <apidata name="Summary" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </containers>
+      <file name="0df0d05b-7daf-0cdd-f8bc-a42ea0997064" />
+    </api>
+    <api id="F:System.Data.Services.Common.SyndicationItemProperty.Title">
+      <topicdata group="api" notopic="" />
+      <apidata name="Title" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </containers>
+      <file name="32bf492c-e308-5382-79f4-608d926761e0" />
+    </api>
+    <api id="F:System.Data.Services.Common.SyndicationItemProperty.Updated">
+      <topicdata group="api" notopic="" />
+      <apidata name="Updated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.SyndicationItemProperty" ref="false" />
+      </containers>
+      <file name="77f1be3e-f10d-b374-fb3c-f5f1369888bc" />
+    </api>
+    <api id="T:System.Data.Services.Common.SyndicationTextContentKind">
+      <topicdata group="api" />
+      <apidata name="SyndicationTextContentKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Data.Services.Common.SyndicationTextContentKind.Plaintext" />
+        <element api="F:System.Data.Services.Common.SyndicationTextContentKind.Html" />
+        <element api="F:System.Data.Services.Common.SyndicationTextContentKind.Xhtml" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+      </containers>
+      <file name="0de1232f-545d-438b-2c3e-a73cda6e887e" />
+    </api>
+    <api id="F:System.Data.Services.Common.SyndicationTextContentKind.Html">
+      <topicdata group="api" notopic="" />
+      <apidata name="Html" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationTextContentKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.SyndicationTextContentKind" ref="false" />
+      </containers>
+      <file name="14bb7e74-aa96-704a-3616-34822fc4b57e" />
+    </api>
+    <api id="F:System.Data.Services.Common.SyndicationTextContentKind.Plaintext">
+      <topicdata group="api" notopic="" />
+      <apidata name="Plaintext" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationTextContentKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.SyndicationTextContentKind" ref="false" />
+      </containers>
+      <file name="a9e5e7ff-b8fb-fc69-8e38-182be868c32f" />
+    </api>
+    <api id="F:System.Data.Services.Common.SyndicationTextContentKind.Xhtml">
+      <topicdata group="api" notopic="" />
+      <apidata name="Xhtml" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Data.Services.Common.SyndicationTextContentKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Data.Services.Client" module="System.Data.Services.Client" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Services.Common" />
+        <type api="T:System.Data.Services.Common.SyndicationTextContentKind" ref="false" />
+      </containers>
+      <file name="b688c308-99b5-d05d-1faf-acab51e7821f" />
+    </api>
+  </apis>
+</reflection>

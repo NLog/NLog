@@ -1,0 +1,718 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities.Presentation">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Windows.ThemeInfoAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="SourceAssembly" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="SourceAssembly" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Activities.Presentation.View.OutlineView">
+      <topicdata group="api" />
+      <apidata name="System.Activities.Presentation.View.OutlineView" group="namespace" />
+      <elements>
+        <element api="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute" />
+        <element api="T:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute" />
+        <element api="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute" />
+        <element api="T:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute" />
+      </elements>
+      <file name="681aa0fb-9dea-86ab-0f48-cc25ff9799d8" />
+    </api>
+    <api id="T:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute" />
+      <apidata name="HidePropertyInOutlineViewAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Property" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="f04576ea-1bd6-c9ca-9249-c7889dc793f4" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute">
+      <topicdata name="HidePropertyInOutlineViewAttribute" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute" />
+      <apidata name="HidePropertyInOutlineViewAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute" />
+      </containers>
+      <file name="9e77451c-b34c-4ff4-83e0-ca2762209d5c" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute">
+      <topicdata name="HidePropertyInOutlineViewAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute" />
+      <apidata name="HidePropertyInOutlineViewAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute" />
+      </containers>
+      <file name="c1085699-73db-fcea-527b-dee9aac66f2e" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute">
+      <topicdata name="HidePropertyInOutlineViewAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute" />
+      <apidata name="HidePropertyInOutlineViewAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute" />
+      </containers>
+      <file name="7a05f481-8157-4264-0cc9-2c843c8500ee" />
+    </api>
+    <api id="M:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.HidePropertyInOutlineViewAttribute" ref="true" />
+      </containers>
+      <file name="d463647e-f582-f8ed-405b-3decea4f7da5" />
+    </api>
+    <api id="T:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute" />
+      <apidata name="ShowInOutlineViewAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="a297bdbe-f9b2-d26e-132a-1fc3322c7f40" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute">
+      <topicdata name="ShowInOutlineViewAttribute" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute" />
+      <apidata name="ShowInOutlineViewAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute.#ctor" />
+        <element api="P:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute.PromotedProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute" />
+      </containers>
+      <file name="f24cf5c0-9c84-e11f-3c48-c47af0dec0b0" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute">
+      <topicdata name="ShowInOutlineViewAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute" />
+      <apidata name="ShowInOutlineViewAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute" />
+      </containers>
+      <file name="4d7480d9-298c-dfdc-9cb6-bcd431e0e25f" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute">
+      <topicdata name="ShowInOutlineViewAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute" />
+      <apidata name="ShowInOutlineViewAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute.PromotedProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute" />
+      </containers>
+      <file name="72d5e8c1-93e1-577a-7547-2874f2fa3e3e" />
+    </api>
+    <api id="M:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute" ref="true" />
+      </containers>
+      <file name="46b403ca-1672-7874-4178-d78c2513ed51" />
+    </api>
+    <api id="P:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute.PromotedProperty">
+      <topicdata group="api" />
+      <apidata name="PromotedProperty" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PromotedProperty" />
+      <setter name="set_PromotedProperty" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.ShowInOutlineViewAttribute" ref="true" />
+      </containers>
+      <file name="edfd1129-c32c-7c41-84a6-b18fad87480a" />
+    </api>
+    <api id="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute" />
+      <apidata name="ShowPropertyInOutlineViewAsSiblingAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Property" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="77f962af-3641-84dc-c952-a2f50ce65c60" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute">
+      <topicdata name="ShowPropertyInOutlineViewAsSiblingAttribute" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute" />
+      <apidata name="ShowPropertyInOutlineViewAsSiblingAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute" />
+      </containers>
+      <file name="f16442a2-db6d-a87c-96a1-d41b042cc885" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute">
+      <topicdata name="ShowPropertyInOutlineViewAsSiblingAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute" />
+      <apidata name="ShowPropertyInOutlineViewAsSiblingAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute" />
+      </containers>
+      <file name="9d3ee1a0-1e35-aa8d-8489-e290d966492a" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute">
+      <topicdata name="ShowPropertyInOutlineViewAsSiblingAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute" />
+      <apidata name="ShowPropertyInOutlineViewAsSiblingAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute" />
+      </containers>
+      <file name="24797359-f869-99e2-5306-b61cccc4e632" />
+    </api>
+    <api id="M:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAsSiblingAttribute" ref="true" />
+      </containers>
+      <file name="d72dafed-898b-04f7-44fc-9ba4eedca0c2" />
+    </api>
+    <api id="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute" />
+      <apidata name="ShowPropertyInOutlineViewAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Property" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="70abf05c-d4ee-a27d-2f26-24a4e0feebae" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute">
+      <topicdata name="ShowPropertyInOutlineViewAttribute" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute" />
+      <apidata name="ShowPropertyInOutlineViewAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute.#ctor" />
+        <element api="P:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute.ChildNodePrefix" />
+        <element api="P:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute.CurrentPropertyVisible" />
+        <element api="P:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute.DuplicatedChildNodesVisible" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute" />
+      </containers>
+      <file name="06eb0f52-da97-b3cc-1c80-518b37d61039" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute">
+      <topicdata name="ShowPropertyInOutlineViewAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute" />
+      <apidata name="ShowPropertyInOutlineViewAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute" />
+      </containers>
+      <file name="4dd84d6f-d24b-4240-7304-1ff5671435d8" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute">
+      <topicdata name="ShowPropertyInOutlineViewAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute" />
+      <apidata name="ShowPropertyInOutlineViewAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute.ChildNodePrefix" />
+        <element api="P:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute.CurrentPropertyVisible" />
+        <element api="P:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute.DuplicatedChildNodesVisible" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute" />
+      </containers>
+      <file name="add967c3-5c12-b8e2-0972-ba5f76f6650d" />
+    </api>
+    <api id="M:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute" ref="true" />
+      </containers>
+      <file name="98647d82-0402-1d22-2e47-d86524749a18" />
+    </api>
+    <api id="P:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute.ChildNodePrefix">
+      <topicdata group="api" />
+      <apidata name="ChildNodePrefix" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ChildNodePrefix" />
+      <setter name="set_ChildNodePrefix" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute" ref="true" />
+      </containers>
+      <file name="c8d10c95-a8ff-0b8c-3e2f-6dd4197bd601" />
+    </api>
+    <api id="P:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute.CurrentPropertyVisible">
+      <topicdata group="api" />
+      <apidata name="CurrentPropertyVisible" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CurrentPropertyVisible" />
+      <setter name="set_CurrentPropertyVisible" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute" ref="true" />
+      </containers>
+      <file name="33b5e80d-1bc9-1138-35a8-104024c4215f" />
+    </api>
+    <api id="P:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute.DuplicatedChildNodesVisible">
+      <topicdata group="api" />
+      <apidata name="DuplicatedChildNodesVisible" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DuplicatedChildNodesVisible" />
+      <setter name="set_DuplicatedChildNodesVisible" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.View.OutlineView" />
+        <type api="T:System.Activities.Presentation.View.OutlineView.ShowPropertyInOutlineViewAttribute" ref="true" />
+      </containers>
+      <file name="74e18a5e-e550-a4a7-18ce-6c1d0c647efb" />
+    </api>
+  </apis>
+</reflection>

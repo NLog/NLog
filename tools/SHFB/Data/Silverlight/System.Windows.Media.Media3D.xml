@@ -1,0 +1,960 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Media.Media3D">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Media.Media3D" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Media.Media3D.Matrix3D" />
+      </elements>
+      <file name="8e1a7163-a9af-0888-a12d-20458b33814d" />
+    </api>
+    <api id="T:System.Windows.Media.Media3D.Matrix3D">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Media3D.Matrix3D" />
+      <apidata name="Matrix3D" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <implements>
+        <type api="T:System.IFormattable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+      </containers>
+      <file name="22ded890-8b41-a1cc-5c1c-2b8ed216611d" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Media3D.Matrix3D">
+      <topicdata name="Matrix3D" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Media3D.Matrix3D" />
+      <apidata name="Matrix3D" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)" />
+        <element api="Overload:System.Windows.Media.Media3D.Matrix3D.Equals">
+          <element api="M:System.Windows.Media.Media3D.Matrix3D.Equals(System.Windows.Media.Media3D.Matrix3D)" />
+          <element api="M:System.Windows.Media.Media3D.Matrix3D.Equals(System.Object)" />
+        </element>
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.GetHashCode" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.HasInverse" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.Identity" />
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.Invert" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.IsIdentity" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M11" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M12" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M13" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M14" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M21" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M22" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M23" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M24" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M31" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M32" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M33" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M34" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M44" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.OffsetX" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.OffsetY" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.OffsetZ" />
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.op_Equality(System.Windows.Media.Media3D.Matrix3D,System.Windows.Media.Media3D.Matrix3D)" />
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.op_Inequality(System.Windows.Media.Media3D.Matrix3D,System.Windows.Media.Media3D.Matrix3D)" />
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.op_Multiply(System.Windows.Media.Media3D.Matrix3D,System.Windows.Media.Media3D.Matrix3D)" />
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Windows.Media.Media3D.Matrix3D.ToString">
+          <element api="M:System.Windows.Media.Media3D.Matrix3D.ToString" />
+          <element api="M:System.Windows.Media.Media3D.Matrix3D.ToString(System.IFormatProvider)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" />
+      </containers>
+      <file name="ee9a3a8e-5751-1171-b62e-ffcdf9bd0a3d" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Media3D.Matrix3D">
+      <topicdata name="Matrix3D" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Media3D.Matrix3D" />
+      <apidata name="Matrix3D" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:System.Windows.Media.Media3D.Matrix3D.Equals">
+          <element api="M:System.Windows.Media.Media3D.Matrix3D.Equals(System.Windows.Media.Media3D.Matrix3D)" />
+          <element api="M:System.Windows.Media.Media3D.Matrix3D.Equals(System.Object)" />
+        </element>
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.GetHashCode" />
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.Invert" />
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Windows.Media.Media3D.Matrix3D.ToString">
+          <element api="M:System.Windows.Media.Media3D.Matrix3D.ToString" />
+          <element api="M:System.Windows.Media.Media3D.Matrix3D.ToString(System.IFormatProvider)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" />
+      </containers>
+      <file name="1e5a6836-379b-be45-70ad-86ce56977630" />
+    </api>
+    <api id="Operators.T:System.Windows.Media.Media3D.Matrix3D">
+      <topicdata name="Matrix3D" group="list" subgroup="Operators" subsubgroup="Operators" typeTopicId="T:System.Windows.Media.Media3D.Matrix3D" />
+      <apidata name="Matrix3D" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.op_Equality(System.Windows.Media.Media3D.Matrix3D,System.Windows.Media.Media3D.Matrix3D)" />
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.op_Inequality(System.Windows.Media.Media3D.Matrix3D,System.Windows.Media.Media3D.Matrix3D)" />
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.op_Multiply(System.Windows.Media.Media3D.Matrix3D,System.Windows.Media.Media3D.Matrix3D)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" />
+      </containers>
+      <file name="4dba4005-7a71-9a34-a415-5840cb535b2f" />
+    </api>
+    <api id="Properties.T:System.Windows.Media.Media3D.Matrix3D">
+      <topicdata name="Matrix3D" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Media.Media3D.Matrix3D" />
+      <apidata name="Matrix3D" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.HasInverse" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.Identity" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.IsIdentity" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M11" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M12" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M13" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M14" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M21" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M22" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M23" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M24" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M31" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M32" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M33" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M34" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.M44" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.OffsetX" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.OffsetY" />
+        <element api="P:System.Windows.Media.Media3D.Matrix3D.OffsetZ" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" />
+      </containers>
+      <file name="75bb3971-7cd4-eec9-fbc5-4493a712c10b" />
+    </api>
+    <api id="Overload:System.Windows.Media.Media3D.Matrix3D.Equals">
+      <topicdata name="Equals" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Media.Media3D.Matrix3D" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.Equals(System.Windows.Media.Media3D.Matrix3D)" />
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.Equals(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="8b8361bb-f15c-3627-88bc-1fa77416758f" />
+    </api>
+    <api id="Overload:System.Windows.Media.Media3D.Matrix3D.ToString">
+      <topicdata name="ToString" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Media.Media3D.Matrix3D" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.ToString" />
+        <element api="M:System.Windows.Media.Media3D.Matrix3D.ToString(System.IFormatProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="3aeeb766-91be-25e7-e4c3-2bec01756316" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Matrix3D.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="m11">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m12">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m13">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m14">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m21">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m22">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m23">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m24">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m31">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m32">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m33">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m34">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="offsetX">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="offsetY">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="offsetZ">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="m44">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="eb384e6a-c881-d19c-e659-e09d8b79e190" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Matrix3D.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Media.Media3D.Matrix3D.Equals" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.Equals(System.Object)">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="o">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="e87a77fe-cb94-a3ae-fe0c-e161ddb061cc" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Matrix3D.Equals(System.Windows.Media.Media3D.Matrix3D)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Media.Media3D.Matrix3D.Equals" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="e2efb845-6512-fdf4-4cc2-62c587f11ceb" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Matrix3D.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.GetHashCode">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="15ec3ad2-6be9-55b1-b43f-cd11f472c3ef" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.HasInverse">
+      <topicdata group="api" />
+      <apidata name="HasInverse" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_HasInverse" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="d643f861-f9a3-3152-7282-31587463cea1" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.Identity">
+      <topicdata group="api" />
+      <apidata name="Identity" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Identity" />
+      <returns>
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="7cc72531-2c95-536d-5618-2dcf1a03535b" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Matrix3D.Invert">
+      <topicdata group="api" />
+      <apidata name="Invert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="12c8ffe6-57dc-009d-54bd-16bff4bc9fb9" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.IsIdentity">
+      <topicdata group="api" />
+      <apidata name="IsIdentity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsIdentity" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="032dc688-304c-ad81-6a48-a97fc4d6fa15" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.M11">
+      <topicdata group="api" />
+      <apidata name="M11" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_M11" />
+      <setter name="set_M11" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="f1b12da6-4152-5b5f-51cc-ce6506327b62" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.M12">
+      <topicdata group="api" />
+      <apidata name="M12" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_M12" />
+      <setter name="set_M12" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="ac6abbaa-86d6-31d5-39d8-84cf3aed4cc1" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.M13">
+      <topicdata group="api" />
+      <apidata name="M13" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_M13" />
+      <setter name="set_M13" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="49ed4a1e-55e7-15b6-901b-609906281629" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.M14">
+      <topicdata group="api" />
+      <apidata name="M14" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_M14" />
+      <setter name="set_M14" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="9c7ce26f-3070-800d-cde4-0ba2882fc517" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.M21">
+      <topicdata group="api" />
+      <apidata name="M21" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_M21" />
+      <setter name="set_M21" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="3b07e4b2-df51-e514-44d4-18b8d4bca0cc" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.M22">
+      <topicdata group="api" />
+      <apidata name="M22" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_M22" />
+      <setter name="set_M22" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="2918fe73-67c4-3a93-2ae8-dbcd0328b911" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.M23">
+      <topicdata group="api" />
+      <apidata name="M23" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_M23" />
+      <setter name="set_M23" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="37b3fa0a-0101-202f-23b7-12a3add2052c" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.M24">
+      <topicdata group="api" />
+      <apidata name="M24" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_M24" />
+      <setter name="set_M24" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="7a8a21cc-af6d-29c6-49d2-b80b4dbe04c2" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.M31">
+      <topicdata group="api" />
+      <apidata name="M31" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_M31" />
+      <setter name="set_M31" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="a5d09d80-523a-a012-d61c-6d4106990abd" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.M32">
+      <topicdata group="api" />
+      <apidata name="M32" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_M32" />
+      <setter name="set_M32" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="b9a8816e-a9e6-0f0a-2159-476128364ca5" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.M33">
+      <topicdata group="api" />
+      <apidata name="M33" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_M33" />
+      <setter name="set_M33" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="9a12a377-5402-06fe-ab16-a2045a33d34e" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.M34">
+      <topicdata group="api" />
+      <apidata name="M34" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_M34" />
+      <setter name="set_M34" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="f464fd0e-6779-70c0-e233-dbb0213c8a2f" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.M44">
+      <topicdata group="api" />
+      <apidata name="M44" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_M44" />
+      <setter name="set_M44" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="ec00f210-955e-07bd-ee0e-3aff96ec7043" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.OffsetX">
+      <topicdata group="api" />
+      <apidata name="OffsetX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_OffsetX" />
+      <setter name="set_OffsetX" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="4cb74754-706f-df41-a476-00595e2df616" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.OffsetY">
+      <topicdata group="api" />
+      <apidata name="OffsetY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_OffsetY" />
+      <setter name="set_OffsetY" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="af7b991c-fa31-1490-02c2-639a83977cbe" />
+    </api>
+    <api id="P:System.Windows.Media.Media3D.Matrix3D.OffsetZ">
+      <topicdata group="api" />
+      <apidata name="OffsetZ" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_OffsetZ" />
+      <setter name="set_OffsetZ" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="61c7e286-be1f-e900-8575-5cffe47edb1f" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Matrix3D.op_Equality(System.Windows.Media.Media3D.Matrix3D,System.Windows.Media.Media3D.Matrix3D)">
+      <topicdata group="api" />
+      <apidata name="Equality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="matrix1">
+          <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+        </parameter>
+        <parameter name="matrix2">
+          <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="e1dba315-4c19-5c4e-749b-71a25b78cfaa" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Matrix3D.op_Inequality(System.Windows.Media.Media3D.Matrix3D,System.Windows.Media.Media3D.Matrix3D)">
+      <topicdata group="api" />
+      <apidata name="Inequality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="matrix1">
+          <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+        </parameter>
+        <parameter name="matrix2">
+          <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="e1fa21bc-6365-cde2-89b0-d32d4132d1f1" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Matrix3D.op_Multiply(System.Windows.Media.Media3D.Matrix3D,System.Windows.Media.Media3D.Matrix3D)">
+      <topicdata group="api" />
+      <apidata name="Multiply" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="matrix1">
+          <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+        </parameter>
+        <parameter name="matrix2">
+          <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="d2283c83-5876-72e5-4e5a-edc8bc197932" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Matrix3D.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+      <topicdata group="api" eiiName="IFormattable.ToString" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="provider">
+          <type api="T:System.IFormatProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.IFormattable.ToString(System.String,System.IFormatProvider)">
+          <type api="T:System.IFormattable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="1cd6a302-6f1a-07ea-3d2a-310aee39ebdb" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Matrix3D.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Media.Media3D.Matrix3D.ToString" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.ToString">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="abb4ee55-9ab4-d4dc-aa75-7a3ffa8a3172" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Matrix3D.ToString(System.IFormatProvider)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Media.Media3D.Matrix3D.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="provider">
+          <type api="T:System.IFormatProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D" />
+        <type api="T:System.Windows.Media.Media3D.Matrix3D" ref="false" />
+      </containers>
+      <file name="29e6c1a9-74e1-95e0-1f49-10381dc3c049" />
+    </api>
+  </apis>
+</reflection>

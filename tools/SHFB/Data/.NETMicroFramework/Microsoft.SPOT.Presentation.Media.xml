@@ -1,0 +1,3095 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.SPOT.TinyCore">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.SPOT.TinyCore</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="Microsoft.SPOT.Graphics">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.SPOT.Graphics</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.SPOT.Presentation.Media">
+      <topicdata group="api" />
+      <apidata name="Microsoft.SPOT.Presentation.Media" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.SPOT.Presentation.Media.ColorUtility" />
+        <element api="T:Microsoft.SPOT.Presentation.Media.Color" />
+        <element api="T:Microsoft.SPOT.Presentation.Media.Brush" />
+        <element api="T:Microsoft.SPOT.Presentation.Media.BrushMappingMode" />
+        <element api="T:Microsoft.SPOT.Presentation.Media.Colors" />
+        <element api="T:Microsoft.SPOT.Presentation.Media.Constants" />
+        <element api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" />
+        <element api="T:Microsoft.SPOT.Presentation.Media.ImageBrush" />
+        <element api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" />
+        <element api="T:Microsoft.SPOT.Presentation.Media.Pen" />
+        <element api="T:Microsoft.SPOT.Presentation.Media.SolidColorBrush" />
+        <element api="T:Microsoft.SPOT.Presentation.Media.Stretch" />
+        <element api="T:Microsoft.SPOT.Presentation.Media.TextAlignment" />
+        <element api="T:Microsoft.SPOT.Presentation.Media.TextTrimming" />
+      </elements>
+      <file name="2c15ff04-1d13-7d19-5737-dd09bc44ad3a" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Media.Brush">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Media.Brush" />
+      <apidata name="Brush" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.SPOT.Presentation.Media.ImageBrush" ref="true" />
+          <type api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" ref="true" />
+          <type api="T:Microsoft.SPOT.Presentation.Media.SolidColorBrush" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+      </containers>
+      <file name="44c1be1a-e78a-e9fc-0b6c-cf65b19e5bff" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Presentation.Media.Brush">
+      <topicdata name="Brush" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Presentation.Media.Brush" />
+      <apidata name="Brush" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Presentation.Media.Brush.#ctor" />
+        <element api="P:Microsoft.SPOT.Presentation.Media.Brush.Opacity" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.Brush.RenderEllipse(Microsoft.SPOT.Bitmap,Microsoft.SPOT.Presentation.Media.Pen,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.Brush.RenderPolygon(Microsoft.SPOT.Bitmap,Microsoft.SPOT.Presentation.Media.Pen,System.Int32[])" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.Brush.RenderRectangle(Microsoft.SPOT.Bitmap,Microsoft.SPOT.Presentation.Media.Pen,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Brush" />
+      </containers>
+      <file name="525f1f6a-9479-5057-6fa5-5ee3b1f5b49f" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Presentation.Media.Brush">
+      <topicdata name="Brush" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Presentation.Media.Brush" />
+      <apidata name="Brush" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Presentation.Media.Brush.RenderEllipse(Microsoft.SPOT.Bitmap,Microsoft.SPOT.Presentation.Media.Pen,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.Brush.RenderPolygon(Microsoft.SPOT.Bitmap,Microsoft.SPOT.Presentation.Media.Pen,System.Int32[])" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.Brush.RenderRectangle(Microsoft.SPOT.Bitmap,Microsoft.SPOT.Presentation.Media.Pen,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Brush" />
+      </containers>
+      <file name="1a022a98-d67e-1d0d-b8e4-e0fc51c7f090" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Presentation.Media.Brush">
+      <topicdata name="Brush" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Presentation.Media.Brush" />
+      <apidata name="Brush" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Presentation.Media.Brush.Opacity" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Brush" />
+      </containers>
+      <file name="3223e269-7919-2c6e-ebd9-1594aa11f348" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.Brush.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Brush" ref="true" />
+      </containers>
+      <file name="f4ea55f8-9b5e-cea1-c467-f92af544da6f" />
+    </api>
+    <api id="P:Microsoft.SPOT.Presentation.Media.Brush.Opacity">
+      <topicdata group="api" />
+      <apidata name="Opacity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Opacity" />
+      <setter name="set_Opacity" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Brush" ref="true" />
+      </containers>
+      <file name="cc706d5a-e5f6-8bed-5595-db3b7bc98a28" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.Brush.RenderEllipse(Microsoft.SPOT.Bitmap,Microsoft.SPOT.Presentation.Media.Pen,System.Int32,System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="RenderEllipse" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="bmp">
+          <type api="T:Microsoft.SPOT.Bitmap" ref="true" />
+        </parameter>
+        <parameter name="outline">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Pen" ref="true" />
+        </parameter>
+        <parameter name="x">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="xRadius">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="yRadius">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Brush" ref="true" />
+      </containers>
+      <file name="641a898e-497a-e02b-43e8-2a468eb7358c" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.Brush.RenderPolygon(Microsoft.SPOT.Bitmap,Microsoft.SPOT.Presentation.Media.Pen,System.Int32[])">
+      <topicdata group="api" />
+      <apidata name="RenderPolygon" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="bmp">
+          <type api="T:Microsoft.SPOT.Bitmap" ref="true" />
+        </parameter>
+        <parameter name="outline">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Pen" ref="true" />
+        </parameter>
+        <parameter name="pts">
+          <arrayOf rank="1">
+            <type api="T:System.Int32" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Brush" ref="true" />
+      </containers>
+      <file name="a2750ca4-6503-04c8-04d5-88957aaa3268" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.Brush.RenderRectangle(Microsoft.SPOT.Bitmap,Microsoft.SPOT.Presentation.Media.Pen,System.Int32,System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="RenderRectangle" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="bmp">
+          <type api="T:Microsoft.SPOT.Bitmap" ref="true" />
+        </parameter>
+        <parameter name="outline">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Pen" ref="true" />
+        </parameter>
+        <parameter name="x">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="width">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="height">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Brush" ref="true" />
+      </containers>
+      <file name="360ec9eb-5f0b-93f8-c10d-125d0cbd7f2f" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Media.BrushMappingMode">
+      <topicdata group="api" />
+      <apidata name="BrushMappingMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Presentation.Media.BrushMappingMode.Absolute" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.BrushMappingMode.RelativeToBoundingBox" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+      </containers>
+      <file name="716960a8-a5c0-cbb9-1022-22f6e7713293" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.BrushMappingMode.Absolute">
+      <topicdata group="api" notopic="" />
+      <apidata name="Absolute" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.BrushMappingMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.BrushMappingMode" ref="false" />
+      </containers>
+      <file name="794a2a0a-f99a-e3d2-dbd9-409fcf9c8172" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.BrushMappingMode.RelativeToBoundingBox">
+      <topicdata group="api" notopic="" />
+      <apidata name="RelativeToBoundingBox" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.BrushMappingMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.BrushMappingMode" ref="false" />
+      </containers>
+      <file name="df472b41-f60b-ce17-0697-9ddddda197e1" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Media.Color">
+      <topicdata group="api" />
+      <apidata name="Color" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Microsoft.SPOT.Presentation.Media.Color.Black" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Color.White" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Graphics" module="Microsoft.SPOT.Graphics" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+      </containers>
+      <file name="8aab83fe-b8b1-972a-6e6e-1940fbf774a4" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Color.Black">
+      <topicdata group="api" notopic="" />
+      <apidata name="Black" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Graphics" module="Microsoft.SPOT.Graphics" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </containers>
+      <file name="e3a6c5de-1b94-d2f5-857a-0a1d0931ccc1" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Color.White">
+      <topicdata group="api" notopic="" />
+      <apidata name="White" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <value>16777215</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Graphics" module="Microsoft.SPOT.Graphics" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </containers>
+      <file name="bac2d1f3-21da-11f0-4eab-3699bb1bd38d" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Media.Colors">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Media.Colors" />
+      <apidata name="Colors" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+      </containers>
+      <file name="ab96d641-c4b8-d225-9e7f-2f8802dad034" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Presentation.Media.Colors">
+      <topicdata name="Colors" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Presentation.Media.Colors" />
+      <apidata name="Colors" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Presentation.Media.Colors.#ctor" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Black" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Blue" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Brown" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Cyan" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.DarkGray" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Gray" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Green" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.LightGray" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Magenta" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Orange" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Purple" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Red" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.White" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Yellow" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" />
+      </containers>
+      <file name="42c44844-f3df-7a86-b60c-85b7c8a00c82" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Presentation.Media.Colors">
+      <topicdata name="Colors" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Presentation.Media.Colors" />
+      <apidata name="Colors" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" />
+      </containers>
+      <file name="06d49df5-5ce6-90ef-c16a-dd6afb4f47ee" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Presentation.Media.Colors">
+      <topicdata name="Colors" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Presentation.Media.Colors" />
+      <apidata name="Colors" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Black" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Blue" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Brown" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Cyan" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.DarkGray" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Gray" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Green" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.LightGray" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Magenta" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Orange" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Purple" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Red" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.White" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Colors.Yellow" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" />
+      </containers>
+      <file name="cc52ca8a-7c26-b350-4365-4c374d8088e2" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.Colors.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" ref="true" />
+      </containers>
+      <file name="220e8750-609b-20bb-0b53-0be4aec13200" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Colors.Black">
+      <topicdata group="api" />
+      <apidata name="Black" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" ref="true" />
+      </containers>
+      <file name="16aa5617-dade-4d3c-9cac-5f11ae2689ef" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Colors.Blue">
+      <topicdata group="api" />
+      <apidata name="Blue" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" ref="true" />
+      </containers>
+      <file name="0760dcb1-4aad-330e-1826-a439b6bb9f13" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Colors.Brown">
+      <topicdata group="api" />
+      <apidata name="Brown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" ref="true" />
+      </containers>
+      <file name="52cdb141-fb7e-21d1-c28f-148d54a7e9c8" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Colors.Cyan">
+      <topicdata group="api" />
+      <apidata name="Cyan" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" ref="true" />
+      </containers>
+      <file name="09b2d7a3-a4b7-7f16-b142-7d2905940bbb" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Colors.DarkGray">
+      <topicdata group="api" />
+      <apidata name="DarkGray" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" ref="true" />
+      </containers>
+      <file name="bbe706a2-6beb-920b-3630-8bc9e3c4fe18" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Colors.Gray">
+      <topicdata group="api" />
+      <apidata name="Gray" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" ref="true" />
+      </containers>
+      <file name="4ee06ac2-d64d-1bed-b84c-1255a736debe" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Colors.Green">
+      <topicdata group="api" />
+      <apidata name="Green" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" ref="true" />
+      </containers>
+      <file name="d93945f6-d8a2-be26-5b09-5b65b3bf8e3b" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Colors.LightGray">
+      <topicdata group="api" />
+      <apidata name="LightGray" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" ref="true" />
+      </containers>
+      <file name="05bcee63-67a9-6cea-c35a-bae3c41488e4" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Colors.Magenta">
+      <topicdata group="api" />
+      <apidata name="Magenta" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" ref="true" />
+      </containers>
+      <file name="8fbe8025-b0af-619f-f5c0-92ea230563f2" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Colors.Orange">
+      <topicdata group="api" />
+      <apidata name="Orange" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" ref="true" />
+      </containers>
+      <file name="0cded966-8898-c221-e10f-9c92ab79d5e5" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Colors.Purple">
+      <topicdata group="api" />
+      <apidata name="Purple" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" ref="true" />
+      </containers>
+      <file name="2e06ee00-1c9b-1903-865f-76f22e32a207" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Colors.Red">
+      <topicdata group="api" />
+      <apidata name="Red" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" ref="true" />
+      </containers>
+      <file name="9aee3093-ced0-4ebc-b09a-650d0f9fb6df" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Colors.White">
+      <topicdata group="api" />
+      <apidata name="White" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" ref="true" />
+      </containers>
+      <file name="73d14a41-c8bb-5a38-23c2-527f69b99ed6" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Colors.Yellow">
+      <topicdata group="api" />
+      <apidata name="Yellow" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Colors" ref="true" />
+      </containers>
+      <file name="6ac1ed6f-8b98-5033-cafd-395e7f9d670a" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Media.ColorUtility">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Media.ColorUtility" />
+      <apidata name="ColorUtility" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Graphics" module="Microsoft.SPOT.Graphics" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+      </containers>
+      <file name="38d773b4-aa09-1b20-871a-8e5660906a69" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Presentation.Media.ColorUtility">
+      <topicdata name="ColorUtility" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Presentation.Media.ColorUtility" />
+      <apidata name="ColorUtility" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Presentation.Media.ColorUtility.ColorFromRGB(System.Byte,System.Byte,System.Byte)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.ColorUtility.GetBValue(Microsoft.SPOT.Presentation.Media.Color)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.ColorUtility.GetGValue(Microsoft.SPOT.Presentation.Media.Color)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.ColorUtility.GetRValue(Microsoft.SPOT.Presentation.Media.Color)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Graphics" module="Microsoft.SPOT.Graphics" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.ColorUtility" />
+      </containers>
+      <file name="9ea27ea0-3e1a-27e6-adf5-a15aaa1f2288" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Presentation.Media.ColorUtility">
+      <topicdata name="ColorUtility" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Presentation.Media.ColorUtility" />
+      <apidata name="ColorUtility" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Presentation.Media.ColorUtility.ColorFromRGB(System.Byte,System.Byte,System.Byte)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.ColorUtility.GetBValue(Microsoft.SPOT.Presentation.Media.Color)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.ColorUtility.GetGValue(Microsoft.SPOT.Presentation.Media.Color)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.ColorUtility.GetRValue(Microsoft.SPOT.Presentation.Media.Color)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Graphics" module="Microsoft.SPOT.Graphics" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.ColorUtility" />
+      </containers>
+      <file name="29a7baea-849b-e62c-988b-61a30c86a9be" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.ColorUtility.ColorFromRGB(System.Byte,System.Byte,System.Byte)">
+      <topicdata group="api" />
+      <apidata name="ColorFromRGB" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="r">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="g">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="b">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Graphics" module="Microsoft.SPOT.Graphics" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.ColorUtility" ref="true" />
+      </containers>
+      <file name="3eca764d-eeb2-f276-2470-e64407dc65d5" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.ColorUtility.GetBValue(Microsoft.SPOT.Presentation.Media.Color)">
+      <topicdata group="api" />
+      <apidata name="GetBValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="color">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Graphics" module="Microsoft.SPOT.Graphics" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.ColorUtility" ref="true" />
+      </containers>
+      <file name="e95bc86e-c3df-afa8-1954-0fe771a34b07" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.ColorUtility.GetGValue(Microsoft.SPOT.Presentation.Media.Color)">
+      <topicdata group="api" />
+      <apidata name="GetGValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="color">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Graphics" module="Microsoft.SPOT.Graphics" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.ColorUtility" ref="true" />
+      </containers>
+      <file name="9035e841-9410-6bce-760e-b0cec3075034" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.ColorUtility.GetRValue(Microsoft.SPOT.Presentation.Media.Color)">
+      <topicdata group="api" />
+      <apidata name="GetRValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="color">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Graphics" module="Microsoft.SPOT.Graphics" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.ColorUtility" ref="true" />
+      </containers>
+      <file name="b5eaf45b-9b69-dabc-e138-d957edfbf380" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Media.Constants">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Media.Constants" />
+      <apidata name="Constants" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+      </containers>
+      <file name="270f4624-9429-bbbc-d045-53bba9c14fb3" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Presentation.Media.Constants">
+      <topicdata name="Constants" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Presentation.Media.Constants" />
+      <apidata name="Constants" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Presentation.Media.Constants.MaxExtent" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Constants" />
+      </containers>
+      <file name="c8f7e8a8-060d-f38b-69b0-1f1461ac4d91" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Presentation.Media.Constants">
+      <topicdata name="Constants" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Presentation.Media.Constants" />
+      <apidata name="Constants" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Presentation.Media.Constants.MaxExtent" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Constants" />
+      </containers>
+      <file name="5749d837-562e-906d-ec64-8622bae7b6af" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Constants.MaxExtent">
+      <topicdata group="api" />
+      <apidata name="MaxExtent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>524287</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Constants" ref="true" />
+      </containers>
+      <file name="4275dece-b689-955e-04c3-e94591e7a5c5" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Media.DrawingContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Media.DrawingContext" />
+      <apidata name="DrawingContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.DispatcherObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+      </containers>
+      <file name="8eb14949-50c1-d61a-f882-3e5e70f43f1d" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Presentation.Media.DrawingContext">
+      <topicdata name="DrawingContext" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Presentation.Media.DrawingContext" />
+      <apidata name="DrawingContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.DispatcherObject.CheckAccess" />
+        <element api="F:Microsoft.SPOT.DispatcherObject.Dispatcher" />
+        <element api="M:Microsoft.SPOT.DispatcherObject.VerifyAccess" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.#ctor">
+          <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.#ctor(Microsoft.SPOT.Bitmap)" />
+          <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.#ctor(System.Int32,System.Int32)" />
+        </element>
+        <element api="P:Microsoft.SPOT.Presentation.Media.DrawingContext.Bitmap" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.BlendImage(Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.UInt16)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Clear" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.Dispose">
+          <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Dispose" />
+          <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawEllipse(Microsoft.SPOT.Presentation.Media.Brush,Microsoft.SPOT.Presentation.Media.Pen,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawImage">
+          <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawImage(Microsoft.SPOT.Bitmap,System.Int32,System.Int32)" />
+          <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawImage(Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawLine(Microsoft.SPOT.Presentation.Media.Pen,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawPolygon(Microsoft.SPOT.Presentation.Media.Brush,Microsoft.SPOT.Presentation.Media.Pen,System.Int32[])" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawRectangle(Microsoft.SPOT.Presentation.Media.Brush,Microsoft.SPOT.Presentation.Media.Pen,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawText">
+          <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawText(System.String,Microsoft.SPOT.Font,Microsoft.SPOT.Presentation.Media.Color,System.Int32,System.Int32)" />
+          <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawText(System.String@,Microsoft.SPOT.Font,Microsoft.SPOT.Presentation.Media.Color,System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.SPOT.Presentation.Media.TextAlignment,Microsoft.SPOT.Presentation.Media.TextTrimming)" />
+        </element>
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.GetClippingRectangle(System.Int32@,System.Int32@,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.GetTranslation(System.Int32@,System.Int32@)" />
+        <element api="P:Microsoft.SPOT.Presentation.Media.DrawingContext.Height" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.PopClippingRectangle" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.PushClippingRectangle(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.RotateImage(System.Int32,System.Int32,System.Int32,Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.UInt16)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Scale9Image(System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.UInt16)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.SetPixel(Microsoft.SPOT.Presentation.Media.Color,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.StretchImage(System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.UInt16)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.TileImage(System.Int32,System.Int32,Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.UInt16)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Translate(System.Int32,System.Int32)" />
+        <element api="P:Microsoft.SPOT.Presentation.Media.DrawingContext.Width" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" />
+      </containers>
+      <file name="66b44656-ed96-d797-df98-202549aec3f9" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Presentation.Media.DrawingContext">
+      <topicdata name="DrawingContext" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Presentation.Media.DrawingContext" />
+      <apidata name="DrawingContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.DispatcherObject.CheckAccess" />
+        <element api="M:Microsoft.SPOT.DispatcherObject.VerifyAccess" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.BlendImage(Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.UInt16)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Clear" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.Dispose">
+          <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Dispose" />
+          <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawEllipse(Microsoft.SPOT.Presentation.Media.Brush,Microsoft.SPOT.Presentation.Media.Pen,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawImage">
+          <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawImage(Microsoft.SPOT.Bitmap,System.Int32,System.Int32)" />
+          <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawImage(Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawLine(Microsoft.SPOT.Presentation.Media.Pen,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawPolygon(Microsoft.SPOT.Presentation.Media.Brush,Microsoft.SPOT.Presentation.Media.Pen,System.Int32[])" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawRectangle(Microsoft.SPOT.Presentation.Media.Brush,Microsoft.SPOT.Presentation.Media.Pen,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawText">
+          <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawText(System.String,Microsoft.SPOT.Font,Microsoft.SPOT.Presentation.Media.Color,System.Int32,System.Int32)" />
+          <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawText(System.String@,Microsoft.SPOT.Font,Microsoft.SPOT.Presentation.Media.Color,System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.SPOT.Presentation.Media.TextAlignment,Microsoft.SPOT.Presentation.Media.TextTrimming)" />
+        </element>
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.GetClippingRectangle(System.Int32@,System.Int32@,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.GetTranslation(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.PopClippingRectangle" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.PushClippingRectangle(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.RotateImage(System.Int32,System.Int32,System.Int32,Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.UInt16)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Scale9Image(System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.UInt16)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.SetPixel(Microsoft.SPOT.Presentation.Media.Color,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.StretchImage(System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.UInt16)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.TileImage(System.Int32,System.Int32,Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.UInt16)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Translate(System.Int32,System.Int32)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" />
+      </containers>
+      <file name="cd647a21-77fe-0fdd-3fae-8e4159d021e6" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Presentation.Media.DrawingContext">
+      <topicdata name="DrawingContext" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Presentation.Media.DrawingContext" />
+      <apidata name="DrawingContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Presentation.Media.DrawingContext.Bitmap" />
+        <element api="P:Microsoft.SPOT.Presentation.Media.DrawingContext.Height" />
+        <element api="P:Microsoft.SPOT.Presentation.Media.DrawingContext.Width" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" />
+      </containers>
+      <file name="3c8e5c95-6d89-dc69-5f88-fc50b7b8f48c" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Presentation.Media.DrawingContext">
+      <topicdata name="DrawingContext" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Presentation.Media.DrawingContext" />
+      <apidata name="DrawingContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.DispatcherObject.Dispatcher" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" />
+      </containers>
+      <file name="5eecabf4-b2a7-2b65-a0c6-b18ef0ee9769" />
+    </api>
+    <api id="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Media.DrawingContext" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.#ctor(Microsoft.SPOT.Bitmap)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.#ctor(System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="4493fd7b-ebcd-fd2b-2905-9ad3c6e699db" />
+    </api>
+    <api id="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Media.DrawingContext" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Dispose" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="c9715a36-0e43-3d1b-27f9-8914ce4448d0" />
+    </api>
+    <api id="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawImage">
+      <topicdata name="DrawImage" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Media.DrawingContext" />
+      <apidata name="DrawImage" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawImage(Microsoft.SPOT.Bitmap,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawImage(Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="68589a4e-bf08-9060-e00f-efaa72e35500" />
+    </api>
+    <api id="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawText">
+      <topicdata name="DrawText" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Media.DrawingContext" />
+      <apidata name="DrawText" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawText(System.String,Microsoft.SPOT.Font,Microsoft.SPOT.Presentation.Media.Color,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawText(System.String@,Microsoft.SPOT.Font,Microsoft.SPOT.Presentation.Media.Color,System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.SPOT.Presentation.Media.TextAlignment,Microsoft.SPOT.Presentation.Media.TextTrimming)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="e26241cb-8ebb-98b6-785e-f3c8fdb3a205" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.#ctor(Microsoft.SPOT.Bitmap)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.#ctor" />
+      <parameters>
+        <parameter name="bmp">
+          <type api="T:Microsoft.SPOT.Bitmap" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="799147ea-4989-2ebc-849a-8c3bdedd6c25" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.#ctor(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.#ctor" />
+      <parameters>
+        <parameter name="width">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="height">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="05900cf9-7195-44d2-95b5-153ccb1f9fad" />
+    </api>
+    <api id="P:Microsoft.SPOT.Presentation.Media.DrawingContext.Bitmap">
+      <topicdata group="api" />
+      <apidata name="Bitmap" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Bitmap" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Bitmap" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="e33763a4-bffe-77e3-8d05-fbab4099198b" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.BlendImage(Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="BlendImage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:Microsoft.SPOT.Bitmap" ref="true" />
+        </parameter>
+        <parameter name="destinationX">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="destinationY">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sourceX">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sourceY">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sourceWidth">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sourceHeight">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="opacity">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="5ee5e698-7050-eeb2-af5a-f8018d3b2e6f" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="2168ee63-275d-b9e7-fa18-acc62e1b5595" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.Dispose" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="6e9ba155-b9a2-54c1-f624-2c273e70ac47" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.Dispose" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="73cb7b50-99b5-3eb2-3954-7c7fe00afbe2" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawEllipse(Microsoft.SPOT.Presentation.Media.Brush,Microsoft.SPOT.Presentation.Media.Pen,System.Int32,System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="DrawEllipse" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="brush">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Brush" ref="true" />
+        </parameter>
+        <parameter name="pen">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Pen" ref="true" />
+        </parameter>
+        <parameter name="x">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="xRadius">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="yRadius">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="1e07f9cd-ad21-4e0d-53c1-c05a6e6dab2a" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawImage(Microsoft.SPOT.Bitmap,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="DrawImage" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawImage" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:Microsoft.SPOT.Bitmap" ref="true" />
+        </parameter>
+        <parameter name="x">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="e9007ce5-2ad8-2469-70d0-f16e5e606abb" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawImage(Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="DrawImage" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawImage" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:Microsoft.SPOT.Bitmap" ref="true" />
+        </parameter>
+        <parameter name="destinationX">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="destinationY">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sourceX">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sourceY">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sourceWidth">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sourceHeight">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="73fb36ad-0290-68e9-3afc-7e8eef7a2f84" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawLine(Microsoft.SPOT.Presentation.Media.Pen,System.Int32,System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="DrawLine" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="pen">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Pen" ref="true" />
+        </parameter>
+        <parameter name="x0">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="y0">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="x1">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="y1">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="ee3c667a-917b-0d08-8d8d-51390082c84a" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawPolygon(Microsoft.SPOT.Presentation.Media.Brush,Microsoft.SPOT.Presentation.Media.Pen,System.Int32[])">
+      <topicdata group="api" />
+      <apidata name="DrawPolygon" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="brush">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Brush" ref="true" />
+        </parameter>
+        <parameter name="pen">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Pen" ref="true" />
+        </parameter>
+        <parameter name="pts">
+          <arrayOf rank="1">
+            <type api="T:System.Int32" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="d78bfe5e-472b-be61-3975-36506cf3874e" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawRectangle(Microsoft.SPOT.Presentation.Media.Brush,Microsoft.SPOT.Presentation.Media.Pen,System.Int32,System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="DrawRectangle" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="brush">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Brush" ref="true" />
+        </parameter>
+        <parameter name="pen">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Pen" ref="true" />
+        </parameter>
+        <parameter name="x">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="width">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="height">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="4b2eae39-b065-54aa-aad5-1bf367f0fcf2" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawText(System.String,Microsoft.SPOT.Font,Microsoft.SPOT.Presentation.Media.Color,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="DrawText" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawText" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="font">
+          <type api="T:Microsoft.SPOT.Font" ref="true" />
+        </parameter>
+        <parameter name="color">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+        </parameter>
+        <parameter name="x">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="6d09bbde-515a-cc1c-7b3f-7a75c2348b27" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawText(System.String@,Microsoft.SPOT.Font,Microsoft.SPOT.Presentation.Media.Color,System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.SPOT.Presentation.Media.TextAlignment,Microsoft.SPOT.Presentation.Media.TextTrimming)">
+      <topicdata group="api" />
+      <apidata name="DrawText" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.SPOT.Presentation.Media.DrawingContext.DrawText" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="text">
+          <referenceTo>
+            <type api="T:System.String" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="font">
+          <type api="T:Microsoft.SPOT.Font" ref="true" />
+        </parameter>
+        <parameter name="color">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+        </parameter>
+        <parameter name="x">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="width">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="height">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="alignment">
+          <type api="T:Microsoft.SPOT.Presentation.Media.TextAlignment" ref="false" />
+        </parameter>
+        <parameter name="trimming">
+          <type api="T:Microsoft.SPOT.Presentation.Media.TextTrimming" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="093ad59d-eff7-7101-18b8-3004e62f5203" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.GetClippingRectangle(System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+      <topicdata group="api" />
+      <apidata name="GetClippingRectangle" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="x" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="y" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="width" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="height" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="a05f41ac-fc5e-bcd1-0bed-e11879a88dc8" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.GetTranslation(System.Int32@,System.Int32@)">
+      <topicdata group="api" />
+      <apidata name="GetTranslation" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="x" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="y" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="ea52caa0-6943-5180-1fac-abfd666d6573" />
+    </api>
+    <api id="P:Microsoft.SPOT.Presentation.Media.DrawingContext.Height">
+      <topicdata group="api" />
+      <apidata name="Height" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Height" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="bb258f1f-1f98-0ab3-1f87-94af90946f7e" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.PopClippingRectangle">
+      <topicdata group="api" />
+      <apidata name="PopClippingRectangle" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="cd1deedc-aa52-0039-1844-062c8c1f8d31" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.PushClippingRectangle(System.Int32,System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="PushClippingRectangle" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="x">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="width">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="height">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="8fde6112-18e9-68bf-1194-6300f438b042" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.RotateImage(System.Int32,System.Int32,System.Int32,Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="RotateImage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="angle">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="destinationX">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="destinationY">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="bitmap">
+          <type api="T:Microsoft.SPOT.Bitmap" ref="true" />
+        </parameter>
+        <parameter name="sourceX">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sourceY">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sourceWidth">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sourceHeight">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="opacity">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="5d375fe0-202a-a00e-a091-b878963a87e3" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Scale9Image(System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="Scale9Image" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="xDst">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="yDst">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="widthDst">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="heightDst">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="bitmap">
+          <type api="T:Microsoft.SPOT.Bitmap" ref="true" />
+        </parameter>
+        <parameter name="leftBorder">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="topBorder">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="rightBorder">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="bottomBorder">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="opacity">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="44eb821d-e56c-b641-2fc1-ac8adad4afe7" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.SetPixel(Microsoft.SPOT.Presentation.Media.Color,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="SetPixel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="color">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+        </parameter>
+        <parameter name="x">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="a4aace61-3b48-f44d-1368-43aab57b390d" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.StretchImage(System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="StretchImage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="xDst">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="yDst">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="widthDst">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="heightDst">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="bitmap">
+          <type api="T:Microsoft.SPOT.Bitmap" ref="true" />
+        </parameter>
+        <parameter name="xSrc">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="ySrc">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="widthSrc">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="heightSrc">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="opacity">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="ba79e65f-3e60-45a7-1c73-ebab48c3cce4" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.TileImage(System.Int32,System.Int32,Microsoft.SPOT.Bitmap,System.Int32,System.Int32,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="TileImage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="xDst">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="yDst">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="bitmap">
+          <type api="T:Microsoft.SPOT.Bitmap" ref="true" />
+        </parameter>
+        <parameter name="width">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="height">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="opacity">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="2b971de3-cafc-675d-4beb-ea477731ee6f" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.DrawingContext.Translate(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Translate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="dx">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="dy">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="c1ee7ab8-ee0d-935e-fd2a-f35098773f07" />
+    </api>
+    <api id="P:Microsoft.SPOT.Presentation.Media.DrawingContext.Width">
+      <topicdata group="api" />
+      <apidata name="Width" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Width" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+      </containers>
+      <file name="57379005-6ac2-5755-12e5-aa0b8e135a4d" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Media.ImageBrush">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Media.ImageBrush" />
+      <apidata name="ImageBrush" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.Presentation.Media.Brush" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+      </containers>
+      <file name="d6ca14f9-adba-6025-ad25-a929b148028e" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Presentation.Media.ImageBrush">
+      <topicdata name="ImageBrush" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Presentation.Media.ImageBrush" />
+      <apidata name="ImageBrush" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Presentation.Media.Brush.Opacity" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.ImageBrush.#ctor(Microsoft.SPOT.Bitmap)" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.ImageBrush.BitmapSource" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.ImageBrush.Stretch" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.ImageBrush" />
+      </containers>
+      <file name="6d82abc3-35b7-9dc7-416a-1a793bdd2e34" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Presentation.Media.ImageBrush">
+      <topicdata name="ImageBrush" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Presentation.Media.ImageBrush" />
+      <apidata name="ImageBrush" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.ImageBrush" />
+      </containers>
+      <file name="38588623-0193-31e6-9cf8-15d2dcf192dd" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Presentation.Media.ImageBrush">
+      <topicdata name="ImageBrush" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Presentation.Media.ImageBrush" />
+      <apidata name="ImageBrush" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Presentation.Media.Brush.Opacity" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.ImageBrush" />
+      </containers>
+      <file name="05488e44-1633-bed7-e7ff-8f4a83529d0c" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Presentation.Media.ImageBrush">
+      <topicdata name="ImageBrush" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Presentation.Media.ImageBrush" />
+      <apidata name="ImageBrush" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Presentation.Media.ImageBrush.BitmapSource" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.ImageBrush.Stretch" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.ImageBrush" />
+      </containers>
+      <file name="c285b033-0b8b-fd0f-702f-15e7e7a79187" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.ImageBrush.#ctor(Microsoft.SPOT.Bitmap)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="bmp">
+          <type api="T:Microsoft.SPOT.Bitmap" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.ImageBrush" ref="true" />
+      </containers>
+      <file name="ee1eb861-46af-a3c2-ca6c-1bb43a75d559" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.ImageBrush.BitmapSource">
+      <topicdata group="api" />
+      <apidata name="BitmapSource" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Bitmap" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.ImageBrush" ref="true" />
+      </containers>
+      <file name="b4ccd5f0-9e50-2701-0b0d-4942f867d55e" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.ImageBrush.Stretch">
+      <topicdata group="api" />
+      <apidata name="Stretch" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Stretch" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.ImageBrush" ref="true" />
+      </containers>
+      <file name="77d7a751-e916-2586-aa63-1ab707c90c6e" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" />
+      <apidata name="LinearGradientBrush" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.Presentation.Media.Brush" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+      </containers>
+      <file name="642936d2-14ad-86b3-6da2-06145f725f58" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush">
+      <topicdata name="LinearGradientBrush" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" />
+      <apidata name="LinearGradientBrush" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Presentation.Media.Brush.Opacity" />
+        <element api="Overload:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.#ctor">
+          <element api="M:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.#ctor(Microsoft.SPOT.Presentation.Media.Color,Microsoft.SPOT.Presentation.Media.Color)" />
+          <element api="M:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.#ctor(Microsoft.SPOT.Presentation.Media.Color,Microsoft.SPOT.Presentation.Media.Color,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.EndColor" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.EndX" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.EndY" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.MappingMode" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.RelativeBoundingBoxSize" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.StartColor" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.StartX" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.StartY" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" />
+      </containers>
+      <file name="3f940bb7-978d-2ef4-29bc-de243452c794" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush">
+      <topicdata name="LinearGradientBrush" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" />
+      <apidata name="LinearGradientBrush" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" />
+      </containers>
+      <file name="815a1497-305e-e04d-fb3f-808ddff8a075" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush">
+      <topicdata name="LinearGradientBrush" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" />
+      <apidata name="LinearGradientBrush" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Presentation.Media.Brush.Opacity" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" />
+      </containers>
+      <file name="34f8193f-c498-7c74-da06-773d243a9ed6" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush">
+      <topicdata name="LinearGradientBrush" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" />
+      <apidata name="LinearGradientBrush" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.EndColor" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.EndX" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.EndY" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.MappingMode" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.RelativeBoundingBoxSize" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.StartColor" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.StartX" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.StartY" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" />
+      </containers>
+      <file name="da07bc63-43ff-72c7-e4d5-146810547c03" />
+    </api>
+    <api id="Overload:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.#ctor(Microsoft.SPOT.Presentation.Media.Color,Microsoft.SPOT.Presentation.Media.Color)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.#ctor(Microsoft.SPOT.Presentation.Media.Color,Microsoft.SPOT.Presentation.Media.Color,System.Int32,System.Int32,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" ref="true" />
+      </containers>
+      <file name="3bdd610d-cffc-5120-73a2-13ff2c0e3b3a" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.#ctor(Microsoft.SPOT.Presentation.Media.Color,Microsoft.SPOT.Presentation.Media.Color)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.#ctor" />
+      <parameters>
+        <parameter name="startColor">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+        </parameter>
+        <parameter name="endColor">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" ref="true" />
+      </containers>
+      <file name="08f6e9f1-8e33-4f83-25c8-71ba69685372" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.#ctor(Microsoft.SPOT.Presentation.Media.Color,Microsoft.SPOT.Presentation.Media.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.#ctor" />
+      <parameters>
+        <parameter name="startColor">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+        </parameter>
+        <parameter name="endColor">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+        </parameter>
+        <parameter name="startX">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="startY">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="endX">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="endY">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" ref="true" />
+      </containers>
+      <file name="2bbf62ed-73d7-c2ca-b28e-97eff4d34faf" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.EndColor">
+      <topicdata group="api" />
+      <apidata name="EndColor" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" ref="true" />
+      </containers>
+      <file name="03a6a4d5-4721-371c-c273-3427abff9c78" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.EndX">
+      <topicdata group="api" />
+      <apidata name="EndX" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" ref="true" />
+      </containers>
+      <file name="6d58ee4b-2284-c071-6c69-63575f886b9b" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.EndY">
+      <topicdata group="api" />
+      <apidata name="EndY" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" ref="true" />
+      </containers>
+      <file name="702183fe-bdec-62e0-ad52-f9df350ba4a5" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.MappingMode">
+      <topicdata group="api" />
+      <apidata name="MappingMode" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.BrushMappingMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" ref="true" />
+      </containers>
+      <file name="77e3858d-acd6-ce26-b71e-a9ad08617652" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.RelativeBoundingBoxSize">
+      <topicdata group="api" />
+      <apidata name="RelativeBoundingBoxSize" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>1000</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" ref="true" />
+      </containers>
+      <file name="9347b468-fa05-2309-0d5f-34073951749e" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.StartColor">
+      <topicdata group="api" />
+      <apidata name="StartColor" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" ref="true" />
+      </containers>
+      <file name="fb2a4fff-4004-edd6-18b9-04941c839e20" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.StartX">
+      <topicdata group="api" />
+      <apidata name="StartX" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" ref="true" />
+      </containers>
+      <file name="991701a7-c881-a47c-e419-04605be4e0de" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.LinearGradientBrush.StartY">
+      <topicdata group="api" />
+      <apidata name="StartY" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.LinearGradientBrush" ref="true" />
+      </containers>
+      <file name="84ea4888-c648-146d-fb82-ff20f9814833" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Media.Pen">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Media.Pen" />
+      <apidata name="Pen" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+      </containers>
+      <file name="cc6f2d60-8676-1a1c-76f4-624662c35141" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Presentation.Media.Pen">
+      <topicdata name="Pen" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Presentation.Media.Pen" />
+      <apidata name="Pen" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.SPOT.Presentation.Media.Pen.#ctor">
+          <element api="M:Microsoft.SPOT.Presentation.Media.Pen.#ctor(Microsoft.SPOT.Presentation.Media.Color)" />
+          <element api="M:Microsoft.SPOT.Presentation.Media.Pen.#ctor(Microsoft.SPOT.Presentation.Media.Color,System.UInt16)" />
+        </element>
+        <element api="F:Microsoft.SPOT.Presentation.Media.Pen.Color" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Pen.Thickness" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Pen" />
+      </containers>
+      <file name="f183225a-70a0-9aec-de56-f081fc153243" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Presentation.Media.Pen">
+      <topicdata name="Pen" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Presentation.Media.Pen" />
+      <apidata name="Pen" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Pen" />
+      </containers>
+      <file name="e0ef5998-14d8-dbcd-ca9c-f8dd9ece52c3" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Presentation.Media.Pen">
+      <topicdata name="Pen" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Presentation.Media.Pen" />
+      <apidata name="Pen" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Presentation.Media.Pen.Color" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Pen.Thickness" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Pen" />
+      </containers>
+      <file name="294c57d2-6311-d1e3-f040-cf0f48f02797" />
+    </api>
+    <api id="Overload:Microsoft.SPOT.Presentation.Media.Pen.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Media.Pen" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Presentation.Media.Pen.#ctor(Microsoft.SPOT.Presentation.Media.Color)" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.Pen.#ctor(Microsoft.SPOT.Presentation.Media.Color,System.UInt16)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Pen" ref="true" />
+      </containers>
+      <file name="2bf9f469-6bc3-406d-9dcf-79ee8b4fc547" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.Pen.#ctor(Microsoft.SPOT.Presentation.Media.Color)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.SPOT.Presentation.Media.Pen.#ctor" />
+      <parameters>
+        <parameter name="color">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Pen" ref="true" />
+      </containers>
+      <file name="f2627862-3de4-e05c-6ab4-40d0dc1d81b9" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.Pen.#ctor(Microsoft.SPOT.Presentation.Media.Color,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.SPOT.Presentation.Media.Pen.#ctor" />
+      <parameters>
+        <parameter name="color">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+        </parameter>
+        <parameter name="thickness">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Pen" ref="true" />
+      </containers>
+      <file name="8c8ce646-4e1a-9f22-517a-259369366690" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Pen.Color">
+      <topicdata group="api" />
+      <apidata name="Color" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Pen" ref="true" />
+      </containers>
+      <file name="0fbbef7f-f17b-7616-2dbf-5ee27ef465ad" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Pen.Thickness">
+      <topicdata group="api" />
+      <apidata name="Thickness" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Pen" ref="true" />
+      </containers>
+      <file name="dce89610-a0aa-f5cb-e05e-15c92444dc9e" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Media.SolidColorBrush">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Presentation.Media.SolidColorBrush" />
+      <apidata name="SolidColorBrush" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.Presentation.Media.Brush" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+      </containers>
+      <file name="d07763ac-7958-af37-7617-79e689324100" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Presentation.Media.SolidColorBrush">
+      <topicdata name="SolidColorBrush" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Presentation.Media.SolidColorBrush" />
+      <apidata name="SolidColorBrush" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Presentation.Media.Brush.Opacity" />
+        <element api="M:Microsoft.SPOT.Presentation.Media.SolidColorBrush.#ctor(Microsoft.SPOT.Presentation.Media.Color)" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.SolidColorBrush.Color" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.SolidColorBrush" />
+      </containers>
+      <file name="f2be324c-a1e7-0906-218f-7b7bd3d76bd3" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Presentation.Media.SolidColorBrush">
+      <topicdata name="SolidColorBrush" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Presentation.Media.SolidColorBrush" />
+      <apidata name="SolidColorBrush" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.SolidColorBrush" />
+      </containers>
+      <file name="0b70a6b9-7b28-d904-ce11-c5ea5fb9b666" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Presentation.Media.SolidColorBrush">
+      <topicdata name="SolidColorBrush" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Presentation.Media.SolidColorBrush" />
+      <apidata name="SolidColorBrush" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Presentation.Media.Brush.Opacity" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.SolidColorBrush" />
+      </containers>
+      <file name="53d7c0fc-6606-3b96-5d1b-7ab399474c85" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Presentation.Media.SolidColorBrush">
+      <topicdata name="SolidColorBrush" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Presentation.Media.SolidColorBrush" />
+      <apidata name="SolidColorBrush" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Presentation.Media.SolidColorBrush.Color" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.SolidColorBrush" />
+      </containers>
+      <file name="310e6e4d-cdd2-ef09-349f-8eb8ad3487d5" />
+    </api>
+    <api id="M:Microsoft.SPOT.Presentation.Media.SolidColorBrush.#ctor(Microsoft.SPOT.Presentation.Media.Color)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="color">
+          <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.SolidColorBrush" ref="true" />
+      </containers>
+      <file name="de3b08e7-8f1c-ba84-e9be-48be8487a787" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.SolidColorBrush.Color">
+      <topicdata group="api" />
+      <apidata name="Color" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.SolidColorBrush" ref="true" />
+      </containers>
+      <file name="8626e78f-ce47-d7c2-b1f8-568eb4bb273f" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Media.Stretch">
+      <topicdata group="api" />
+      <apidata name="Stretch" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Presentation.Media.Stretch.None" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.Stretch.Fill" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+      </containers>
+      <file name="6e4a57b5-8cfb-a898-3f99-b95112005a2d" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Stretch.Fill">
+      <topicdata group="api" notopic="" />
+      <apidata name="Fill" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Stretch" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Stretch" ref="false" />
+      </containers>
+      <file name="74eb1016-70f8-0d30-97c1-4b8fd4442663" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.Stretch.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Stretch" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.Stretch" ref="false" />
+      </containers>
+      <file name="25a84019-9b40-2e6f-6cf1-def18b62f9de" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Media.TextAlignment">
+      <topicdata group="api" />
+      <apidata name="TextAlignment" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Presentation.Media.TextAlignment.Left" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.TextAlignment.Center" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.TextAlignment.Right" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+      </containers>
+      <file name="06841a13-44ce-620e-0742-eca9aca5eb8c" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.TextAlignment.Center">
+      <topicdata group="api" notopic="" />
+      <apidata name="Center" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.TextAlignment" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.TextAlignment" ref="false" />
+      </containers>
+      <file name="499558a3-6c1b-0578-1ad5-34de830372d0" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.TextAlignment.Left">
+      <topicdata group="api" notopic="" />
+      <apidata name="Left" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.TextAlignment" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.TextAlignment" ref="false" />
+      </containers>
+      <file name="4394c76c-5a87-4a43-8dcb-e8f404649ff2" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.TextAlignment.Right">
+      <topicdata group="api" notopic="" />
+      <apidata name="Right" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.TextAlignment" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.TextAlignment" ref="false" />
+      </containers>
+      <file name="7810862f-dbbb-732d-6add-7a6f12693f5d" />
+    </api>
+    <api id="T:Microsoft.SPOT.Presentation.Media.TextTrimming">
+      <topicdata group="api" />
+      <apidata name="TextTrimming" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Presentation.Media.TextTrimming.CharacterEllipsis" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.TextTrimming.None" />
+        <element api="F:Microsoft.SPOT.Presentation.Media.TextTrimming.WordEllipsis" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+      </containers>
+      <file name="71abfd13-7b83-d04c-799f-a0e1e512d59c" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.TextTrimming.CharacterEllipsis">
+      <topicdata group="api" notopic="" />
+      <apidata name="CharacterEllipsis" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.TextTrimming" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.TextTrimming" ref="false" />
+      </containers>
+      <file name="8ad1b3d4-5ba3-c213-d65c-83b09675e94a" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.TextTrimming.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.TextTrimming" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.TextTrimming" ref="false" />
+      </containers>
+      <file name="6e20d1aa-672c-9734-9bb9-04cdfcb6a923" />
+    </api>
+    <api id="F:Microsoft.SPOT.Presentation.Media.TextTrimming.WordEllipsis">
+      <topicdata group="api" notopic="" />
+      <apidata name="WordEllipsis" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.TextTrimming" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.TinyCore" module="Microsoft.SPOT.TinyCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Presentation.Media" />
+        <type api="T:Microsoft.SPOT.Presentation.Media.TextTrimming" ref="false" />
+      </containers>
+      <file name="36d03cb4-b68f-b00d-c681-0a326abbcfc9" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,2271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>97bdccfe-43bf-4c17-991d-c797c2ef2243</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.Activities.DurableInstancing">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3C5386D5-54BD-49dc-AFCC-A46EAE3545DB</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.DurableInstancing.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.DurableInstancing.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.DurableInstancing.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Activities.DurableInstancing">
+      <topicdata group="api" />
+      <apidata name="System.Activities.DurableInstancing" group="namespace" />
+      <elements>
+        <element api="T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult" />
+        <element api="T:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand" />
+        <element api="T:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand" />
+        <element api="T:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand" />
+        <element api="T:System.Activities.DurableInstancing.HasActivatableWorkflowEvent" />
+        <element api="T:System.Activities.DurableInstancing.HasRunnableWorkflowEvent" />
+        <element api="T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand" />
+        <element api="T:System.Activities.DurableInstancing.LoadWorkflowCommand" />
+        <element api="T:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand" />
+        <element api="T:System.Activities.DurableInstancing.SaveWorkflowCommand" />
+        <element api="T:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand" />
+        <element api="T:System.Activities.DurableInstancing.InstanceLockedExceptionAction" />
+        <element api="T:System.Activities.DurableInstancing.InstanceCompletionAction" />
+        <element api="T:System.Activities.DurableInstancing.InstanceEncodingOption" />
+        <element api="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" />
+      </elements>
+      <file name="fbb6378c-d68b-b24c-a33f-964a4fdc79a0" />
+    </api>
+    <api id="T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult" />
+      <apidata name="ActivatableWorkflowsQueryResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.DurableInstancing.InstanceStoreQueryResult" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+      </containers>
+      <file name="99667fb9-c823-122f-4a44-af0a7b9daccd" />
+    </api>
+    <api id="AllMembers.T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult">
+      <topicdata name="ActivatableWorkflowsQueryResult" group="list" subgroup="members" typeTopicId="T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult" />
+      <apidata name="ActivatableWorkflowsQueryResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor">
+          <element api="M:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor" />
+          <element api="M:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object})" />
+          <element api="M:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}})" />
+        </element>
+        <element api="P:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.ActivationParameters" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult" />
+      </containers>
+      <file name="4af929ff-8299-9346-eca1-98a1d7b91517" />
+    </api>
+    <api id="Methods.T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult">
+      <topicdata name="ActivatableWorkflowsQueryResult" group="list" subgroup="Methods" typeTopicId="T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult" />
+      <apidata name="ActivatableWorkflowsQueryResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult" />
+      </containers>
+      <file name="e91af5a3-4f5c-7e67-f94e-6a6286b7dec5" />
+    </api>
+    <api id="Properties.T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult">
+      <topicdata name="ActivatableWorkflowsQueryResult" group="list" subgroup="Properties" typeTopicId="T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult" />
+      <apidata name="ActivatableWorkflowsQueryResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor" />
+      <elements>
+        <element api="P:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.ActivationParameters" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult" />
+      </containers>
+      <file name="fa4849ee-8ea1-d30d-8dc6-3b3d33348c0a" />
+    </api>
+    <api id="Overload:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor" />
+        <element api="M:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object})" />
+        <element api="M:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}})" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult" ref="true" />
+      </containers>
+      <file name="719b5bdb-4eb3-6861-3f41-1789b02b9c55" />
+    </api>
+    <api id="M:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult" ref="true" />
+      </containers>
+      <file name="45e138bd-e497-a857-adff-cea3b89ec780" />
+    </api>
+    <api id="M:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor(System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object})">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor" />
+      <parameters>
+        <parameter name="parameters">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.Xml.Linq.XName" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult" ref="true" />
+      </containers>
+      <file name="6852f69e-3410-69d7-6f94-fe36357b8c3e" />
+    </api>
+    <api id="M:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.IDictionary{System.Xml.Linq.XName,System.Object}})">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.#ctor" />
+      <parameters>
+        <parameter name="parameters">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+                <specialization>
+                  <type api="T:System.Xml.Linq.XName" ref="true" />
+                  <type api="T:System.Object" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult" ref="true" />
+      </containers>
+      <file name="bdbe5a2a-e881-589f-7b42-8a621fbeabcb" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult.ActivationParameters">
+      <topicdata group="api" />
+      <apidata name="ActivationParameters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ActivationParameters" />
+      <returns>
+        <type api="T:System.Collections.Generic.List`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+              <specialization>
+                <type api="T:System.Xml.Linq.XName" ref="true" />
+                <type api="T:System.Object" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.ActivatableWorkflowsQueryResult" ref="true" />
+      </containers>
+      <file name="e11c0dda-c175-fd2d-2936-92a5a3303160" />
+    </api>
+    <api id="T:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand" />
+      <apidata name="CreateWorkflowOwnerCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.DurableInstancing.InstancePersistenceCommand" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+      </containers>
+      <file name="70c1f3c4-6e7d-cd06-28d5-e98500e1bd0f" />
+    </api>
+    <api id="AllMembers.T:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand">
+      <topicdata name="CreateWorkflowOwnerCommand" group="list" subgroup="members" typeTopicId="T:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand" />
+      <apidata name="CreateWorkflowOwnerCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand.#ctor" />
+        <element api="P:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand.InstanceOwnerMetadata" />
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceCommand.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand" />
+      </containers>
+      <file name="312b321f-617f-272c-6d02-ba3256fafc28" />
+    </api>
+    <api id="Methods.T:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand">
+      <topicdata name="CreateWorkflowOwnerCommand" group="list" subgroup="Methods" typeTopicId="T:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand" />
+      <apidata name="CreateWorkflowOwnerCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand" />
+      </containers>
+      <file name="54184d5e-f164-b294-edda-c2e2d246c8a6" />
+    </api>
+    <api id="Properties.T:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand">
+      <topicdata name="CreateWorkflowOwnerCommand" group="list" subgroup="Properties" typeTopicId="T:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand" />
+      <apidata name="CreateWorkflowOwnerCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand.#ctor" />
+      <elements>
+        <element api="P:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand.InstanceOwnerMetadata" />
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceCommand.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand" />
+      </containers>
+      <file name="6c279d5c-dd5f-e377-7de2-78eaed4a93f3" />
+    </api>
+    <api id="M:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand" ref="true" />
+      </containers>
+      <file name="f552e454-dbcb-2cab-0525-1386e350003a" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand.InstanceOwnerMetadata">
+      <topicdata group="api" />
+      <apidata name="InstanceOwnerMetadata" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InstanceOwnerMetadata" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.Xml.Linq.XName" ref="true" />
+            <type api="T:System.Runtime.DurableInstancing.InstanceValue" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.CreateWorkflowOwnerCommand" ref="true" />
+      </containers>
+      <file name="94cf53b3-1d3b-1b89-8e3f-aab4c81b9465" />
+    </api>
+    <api id="T:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand" />
+      <apidata name="CreateWorkflowOwnerWithIdentityCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.DurableInstancing.InstancePersistenceCommand" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+      </containers>
+      <file name="37d22193-cd25-1335-4ef9-873ed0098341" />
+    </api>
+    <api id="AllMembers.T:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand">
+      <topicdata name="CreateWorkflowOwnerWithIdentityCommand" group="list" subgroup="members" typeTopicId="T:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand" />
+      <apidata name="CreateWorkflowOwnerWithIdentityCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand.#ctor" />
+        <element api="P:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand.InstanceOwnerMetadata" />
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceCommand.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand" />
+      </containers>
+      <file name="de2a8501-9302-6bec-acb6-a0d2bbae6744" />
+    </api>
+    <api id="Methods.T:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand">
+      <topicdata name="CreateWorkflowOwnerWithIdentityCommand" group="list" subgroup="Methods" typeTopicId="T:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand" />
+      <apidata name="CreateWorkflowOwnerWithIdentityCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand" />
+      </containers>
+      <file name="3eb9bc39-073d-daed-9849-26effd615fb7" />
+    </api>
+    <api id="Properties.T:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand">
+      <topicdata name="CreateWorkflowOwnerWithIdentityCommand" group="list" subgroup="Properties" typeTopicId="T:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand" />
+      <apidata name="CreateWorkflowOwnerWithIdentityCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand.#ctor" />
+      <elements>
+        <element api="P:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand.InstanceOwnerMetadata" />
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceCommand.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand" />
+      </containers>
+      <file name="6046d43b-760b-1fe7-b937-663a29fa1518" />
+    </api>
+    <api id="M:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand" ref="true" />
+      </containers>
+      <file name="646761cc-7f41-2b13-9801-4bf8b85e09ae" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand.InstanceOwnerMetadata">
+      <topicdata group="api" />
+      <apidata name="InstanceOwnerMetadata" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InstanceOwnerMetadata" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.Xml.Linq.XName" ref="true" />
+            <type api="T:System.Runtime.DurableInstancing.InstanceValue" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.CreateWorkflowOwnerWithIdentityCommand" ref="true" />
+      </containers>
+      <file name="ba5ea277-05f4-f3da-4743-639ad821e585" />
+    </api>
+    <api id="T:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand" />
+      <apidata name="DeleteWorkflowOwnerCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.DurableInstancing.InstancePersistenceCommand" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+      </containers>
+      <file name="26bd3f77-67a6-ba77-086c-18f0584301fa" />
+    </api>
+    <api id="AllMembers.T:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand">
+      <topicdata name="DeleteWorkflowOwnerCommand" group="list" subgroup="members" typeTopicId="T:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand" />
+      <apidata name="DeleteWorkflowOwnerCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand.#ctor" />
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceCommand.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand" />
+      </containers>
+      <file name="9afed0d9-42e8-b7b7-6f1b-5a9189081245" />
+    </api>
+    <api id="Methods.T:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand">
+      <topicdata name="DeleteWorkflowOwnerCommand" group="list" subgroup="Methods" typeTopicId="T:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand" />
+      <apidata name="DeleteWorkflowOwnerCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand" />
+      </containers>
+      <file name="31578e9d-ace3-c6d3-14bd-f9bd7faec6ca" />
+    </api>
+    <api id="Properties.T:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand">
+      <topicdata name="DeleteWorkflowOwnerCommand" group="list" subgroup="Properties" typeTopicId="T:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand" />
+      <apidata name="DeleteWorkflowOwnerCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceCommand.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand" />
+      </containers>
+      <file name="2cb82213-6a0d-6b09-b30e-20d236a682e1" />
+    </api>
+    <api id="M:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.DeleteWorkflowOwnerCommand" ref="true" />
+      </containers>
+      <file name="28968004-93e4-5869-4c8e-07716ec12269" />
+    </api>
+    <api id="T:System.Activities.DurableInstancing.HasActivatableWorkflowEvent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.DurableInstancing.HasActivatableWorkflowEvent" />
+      <apidata name="HasActivatableWorkflowEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.HasActivatableWorkflowEvent.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.DurableInstancing.InstancePersistenceEvent`1" ref="true">
+            <specialization>
+              <type api="T:System.Activities.DurableInstancing.HasActivatableWorkflowEvent" ref="true" />
+            </specialization>
+          </type>
+          <type api="T:System.Runtime.DurableInstancing.InstancePersistenceEvent" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+      </containers>
+      <file name="09ff3353-362a-43af-8f85-1ae51f46f0f9" />
+    </api>
+    <api id="AllMembers.T:System.Activities.DurableInstancing.HasActivatableWorkflowEvent">
+      <topicdata name="HasActivatableWorkflowEvent" group="list" subgroup="members" typeTopicId="T:System.Activities.DurableInstancing.HasActivatableWorkflowEvent" />
+      <apidata name="HasActivatableWorkflowEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.HasActivatableWorkflowEvent.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.DurableInstancing.HasActivatableWorkflowEvent.#ctor" />
+        <element api="Overload:System.Activities.DurableInstancing.HasActivatableWorkflowEvent.Equals">
+          <element api="M:System.Runtime.DurableInstancing.InstancePersistenceEvent.Equals(System.Runtime.DurableInstancing.InstancePersistenceEvent)" />
+          <element api="M:System.Runtime.DurableInstancing.InstancePersistenceEvent.Equals(System.Object)" />
+        </element>
+        <element api="M:System.Runtime.DurableInstancing.InstancePersistenceEvent.GetHashCode" />
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceEvent.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.HasActivatableWorkflowEvent" />
+      </containers>
+      <file name="dbd59870-00cc-39c4-91c4-ac7ac71f0500" />
+    </api>
+    <api id="Methods.T:System.Activities.DurableInstancing.HasActivatableWorkflowEvent">
+      <topicdata name="HasActivatableWorkflowEvent" group="list" subgroup="Methods" typeTopicId="T:System.Activities.DurableInstancing.HasActivatableWorkflowEvent" />
+      <apidata name="HasActivatableWorkflowEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.HasActivatableWorkflowEvent.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Activities.DurableInstancing.HasActivatableWorkflowEvent.Equals">
+          <element api="M:System.Runtime.DurableInstancing.InstancePersistenceEvent.Equals(System.Runtime.DurableInstancing.InstancePersistenceEvent)" />
+          <element api="M:System.Runtime.DurableInstancing.InstancePersistenceEvent.Equals(System.Object)" />
+        </element>
+        <element api="M:System.Runtime.DurableInstancing.InstancePersistenceEvent.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.HasActivatableWorkflowEvent" />
+      </containers>
+      <file name="11359012-b097-7216-5bb6-f034df787810" />
+    </api>
+    <api id="Properties.T:System.Activities.DurableInstancing.HasActivatableWorkflowEvent">
+      <topicdata name="HasActivatableWorkflowEvent" group="list" subgroup="Properties" typeTopicId="T:System.Activities.DurableInstancing.HasActivatableWorkflowEvent" />
+      <apidata name="HasActivatableWorkflowEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.HasActivatableWorkflowEvent.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceEvent.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.HasActivatableWorkflowEvent" />
+      </containers>
+      <file name="13061b78-260b-ca40-bf6f-dc76f27a6219" />
+    </api>
+    <api id="M:System.Activities.DurableInstancing.HasActivatableWorkflowEvent.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.HasActivatableWorkflowEvent" ref="true" />
+      </containers>
+      <file name="a103f3af-b12a-c678-3e2b-c1753d1925ae" />
+    </api>
+    <api id="T:System.Activities.DurableInstancing.HasRunnableWorkflowEvent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.DurableInstancing.HasRunnableWorkflowEvent" />
+      <apidata name="HasRunnableWorkflowEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.HasRunnableWorkflowEvent.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.DurableInstancing.InstancePersistenceEvent`1" ref="true">
+            <specialization>
+              <type api="T:System.Activities.DurableInstancing.HasRunnableWorkflowEvent" ref="true" />
+            </specialization>
+          </type>
+          <type api="T:System.Runtime.DurableInstancing.InstancePersistenceEvent" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+      </containers>
+      <file name="baed35e9-a7a0-6d43-07d9-b2df094e11ec" />
+    </api>
+    <api id="AllMembers.T:System.Activities.DurableInstancing.HasRunnableWorkflowEvent">
+      <topicdata name="HasRunnableWorkflowEvent" group="list" subgroup="members" typeTopicId="T:System.Activities.DurableInstancing.HasRunnableWorkflowEvent" />
+      <apidata name="HasRunnableWorkflowEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.HasRunnableWorkflowEvent.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.DurableInstancing.HasRunnableWorkflowEvent.#ctor" />
+        <element api="Overload:System.Activities.DurableInstancing.HasRunnableWorkflowEvent.Equals">
+          <element api="M:System.Runtime.DurableInstancing.InstancePersistenceEvent.Equals(System.Runtime.DurableInstancing.InstancePersistenceEvent)" />
+          <element api="M:System.Runtime.DurableInstancing.InstancePersistenceEvent.Equals(System.Object)" />
+        </element>
+        <element api="M:System.Runtime.DurableInstancing.InstancePersistenceEvent.GetHashCode" />
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceEvent.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.HasRunnableWorkflowEvent" />
+      </containers>
+      <file name="ecbc182d-1ed9-1c58-8069-40c87b6b26bf" />
+    </api>
+    <api id="Methods.T:System.Activities.DurableInstancing.HasRunnableWorkflowEvent">
+      <topicdata name="HasRunnableWorkflowEvent" group="list" subgroup="Methods" typeTopicId="T:System.Activities.DurableInstancing.HasRunnableWorkflowEvent" />
+      <apidata name="HasRunnableWorkflowEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.HasRunnableWorkflowEvent.#ctor" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Activities.DurableInstancing.HasRunnableWorkflowEvent.Equals">
+          <element api="M:System.Runtime.DurableInstancing.InstancePersistenceEvent.Equals(System.Runtime.DurableInstancing.InstancePersistenceEvent)" />
+          <element api="M:System.Runtime.DurableInstancing.InstancePersistenceEvent.Equals(System.Object)" />
+        </element>
+        <element api="M:System.Runtime.DurableInstancing.InstancePersistenceEvent.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.HasRunnableWorkflowEvent" />
+      </containers>
+      <file name="2558639d-762c-759d-249c-f5b82bfcbdd1" />
+    </api>
+    <api id="Properties.T:System.Activities.DurableInstancing.HasRunnableWorkflowEvent">
+      <topicdata name="HasRunnableWorkflowEvent" group="list" subgroup="Properties" typeTopicId="T:System.Activities.DurableInstancing.HasRunnableWorkflowEvent" />
+      <apidata name="HasRunnableWorkflowEvent" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.HasRunnableWorkflowEvent.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceEvent.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.HasRunnableWorkflowEvent" />
+      </containers>
+      <file name="53b4c2d7-f97f-f3b0-9902-16fc5ab95b70" />
+    </api>
+    <api id="M:System.Activities.DurableInstancing.HasRunnableWorkflowEvent.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.HasRunnableWorkflowEvent" ref="true" />
+      </containers>
+      <file name="8394be63-008f-01b5-c483-006baf694184" />
+    </api>
+    <api id="T:System.Activities.DurableInstancing.InstanceCompletionAction">
+      <topicdata group="api" />
+      <apidata name="InstanceCompletionAction" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Activities.DurableInstancing.InstanceCompletionAction.DeleteNothing" />
+        <element api="F:System.Activities.DurableInstancing.InstanceCompletionAction.DeleteAll" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+      </containers>
+      <file name="3a2262b6-fce9-22a4-b915-39a47d877e99" />
+    </api>
+    <api id="F:System.Activities.DurableInstancing.InstanceCompletionAction.DeleteAll">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeleteAll" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.DurableInstancing.InstanceCompletionAction" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.InstanceCompletionAction" ref="false" />
+      </containers>
+      <file name="15955c85-490b-f4f9-c102-ec8b8014bcef" />
+    </api>
+    <api id="F:System.Activities.DurableInstancing.InstanceCompletionAction.DeleteNothing">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeleteNothing" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.DurableInstancing.InstanceCompletionAction" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.InstanceCompletionAction" ref="false" />
+      </containers>
+      <file name="a69883d8-90f2-7ccd-5a88-1bc738228f60" />
+    </api>
+    <api id="T:System.Activities.DurableInstancing.InstanceEncodingOption">
+      <topicdata group="api" />
+      <apidata name="InstanceEncodingOption" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Activities.DurableInstancing.InstanceEncodingOption.None" />
+        <element api="F:System.Activities.DurableInstancing.InstanceEncodingOption.GZip" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+      </containers>
+      <file name="159f68b5-02d7-842c-9d93-e976971d41f7" />
+    </api>
+    <api id="F:System.Activities.DurableInstancing.InstanceEncodingOption.GZip">
+      <topicdata group="api" notopic="" />
+      <apidata name="GZip" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.DurableInstancing.InstanceEncodingOption" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.InstanceEncodingOption" ref="false" />
+      </containers>
+      <file name="8bcfa48c-5ac4-4716-ec56-5be3357a9c6a" />
+    </api>
+    <api id="F:System.Activities.DurableInstancing.InstanceEncodingOption.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.DurableInstancing.InstanceEncodingOption" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.InstanceEncodingOption" ref="false" />
+      </containers>
+      <file name="f081be09-20db-c830-8084-c5d6edf05ca3" />
+    </api>
+    <api id="T:System.Activities.DurableInstancing.InstanceLockedExceptionAction">
+      <topicdata group="api" />
+      <apidata name="InstanceLockedExceptionAction" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Activities.DurableInstancing.InstanceLockedExceptionAction.NoRetry" />
+        <element api="F:System.Activities.DurableInstancing.InstanceLockedExceptionAction.BasicRetry" />
+        <element api="F:System.Activities.DurableInstancing.InstanceLockedExceptionAction.AggressiveRetry" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+      </containers>
+      <file name="9d9b1b76-d4a1-9af3-7af8-26907b7d3745" />
+    </api>
+    <api id="F:System.Activities.DurableInstancing.InstanceLockedExceptionAction.AggressiveRetry">
+      <topicdata group="api" notopic="" />
+      <apidata name="AggressiveRetry" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.DurableInstancing.InstanceLockedExceptionAction" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.InstanceLockedExceptionAction" ref="false" />
+      </containers>
+      <file name="c056b530-aedb-f3c6-0d23-157e1aed101c" />
+    </api>
+    <api id="F:System.Activities.DurableInstancing.InstanceLockedExceptionAction.BasicRetry">
+      <topicdata group="api" notopic="" />
+      <apidata name="BasicRetry" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.DurableInstancing.InstanceLockedExceptionAction" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.InstanceLockedExceptionAction" ref="false" />
+      </containers>
+      <file name="a6f3380e-dc5d-6fd2-0443-dd25110ff933" />
+    </api>
+    <api id="F:System.Activities.DurableInstancing.InstanceLockedExceptionAction.NoRetry">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoRetry" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.DurableInstancing.InstanceLockedExceptionAction" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.InstanceLockedExceptionAction" ref="false" />
+      </containers>
+      <file name="9df4e546-40dd-81a7-899b-2c5edb191530" />
+    </api>
+    <api id="T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand" />
+      <apidata name="LoadWorkflowByInstanceKeyCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.DurableInstancing.InstancePersistenceCommand" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+      </containers>
+      <file name="f6ed9725-51ef-1eef-2d05-07f3197235a4" />
+    </api>
+    <api id="AllMembers.T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand">
+      <topicdata name="LoadWorkflowByInstanceKeyCommand" group="list" subgroup="members" typeTopicId="T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand" />
+      <apidata name="LoadWorkflowByInstanceKeyCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.#ctor" />
+        <element api="P:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.AcceptUninitializedInstance" />
+        <element api="P:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.AssociateInstanceKeyToInstanceId" />
+        <element api="P:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.InstanceKeysToAssociate" />
+        <element api="P:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.LookupInstanceKey" />
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceCommand.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand" />
+      </containers>
+      <file name="4e361d79-f28d-ce2c-81be-e12ca832b719" />
+    </api>
+    <api id="Methods.T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand">
+      <topicdata name="LoadWorkflowByInstanceKeyCommand" group="list" subgroup="Methods" typeTopicId="T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand" />
+      <apidata name="LoadWorkflowByInstanceKeyCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand" />
+      </containers>
+      <file name="983743d5-1e46-d3c5-8ec2-db0a7ef5a754" />
+    </api>
+    <api id="Properties.T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand">
+      <topicdata name="LoadWorkflowByInstanceKeyCommand" group="list" subgroup="Properties" typeTopicId="T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand" />
+      <apidata name="LoadWorkflowByInstanceKeyCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.#ctor" />
+      <elements>
+        <element api="P:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.AcceptUninitializedInstance" />
+        <element api="P:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.AssociateInstanceKeyToInstanceId" />
+        <element api="P:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.InstanceKeysToAssociate" />
+        <element api="P:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.LookupInstanceKey" />
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceCommand.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand" />
+      </containers>
+      <file name="ddabb2f8-c0fe-2bb4-22e7-c6e31769c955" />
+    </api>
+    <api id="M:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand" ref="true" />
+      </containers>
+      <file name="89ecb6cb-0dea-b2b3-811c-9774721085db" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.AcceptUninitializedInstance">
+      <topicdata group="api" />
+      <apidata name="AcceptUninitializedInstance" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AcceptUninitializedInstance" />
+      <setter name="set_AcceptUninitializedInstance" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand" ref="true" />
+      </containers>
+      <file name="ad91922b-a15e-214b-b7fb-dec7a9be2fa3" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.AssociateInstanceKeyToInstanceId">
+      <topicdata group="api" />
+      <apidata name="AssociateInstanceKeyToInstanceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AssociateInstanceKeyToInstanceId" />
+      <setter name="set_AssociateInstanceKeyToInstanceId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand" ref="true" />
+      </containers>
+      <file name="5f5d56aa-ee0e-29a1-0d3a-a08f7ad4f73d" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.InstanceKeysToAssociate">
+      <topicdata group="api" />
+      <apidata name="InstanceKeysToAssociate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InstanceKeysToAssociate" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.Guid" ref="false" />
+            <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+              <specialization>
+                <type api="T:System.Xml.Linq.XName" ref="true" />
+                <type api="T:System.Runtime.DurableInstancing.InstanceValue" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand" ref="true" />
+      </containers>
+      <file name="235114db-d32c-ace2-3b31-f3a38a3325fd" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand.LookupInstanceKey">
+      <topicdata group="api" />
+      <apidata name="LookupInstanceKey" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_LookupInstanceKey" />
+      <setter name="set_LookupInstanceKey" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.LoadWorkflowByInstanceKeyCommand" ref="true" />
+      </containers>
+      <file name="71f04ab3-5be0-0ce3-1b3a-2f78ab5721ee" />
+    </api>
+    <api id="T:System.Activities.DurableInstancing.LoadWorkflowCommand">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.DurableInstancing.LoadWorkflowCommand" />
+      <apidata name="LoadWorkflowCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.LoadWorkflowCommand.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.DurableInstancing.InstancePersistenceCommand" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+      </containers>
+      <file name="a54366b1-fe43-d627-7a90-b766030030e1" />
+    </api>
+    <api id="AllMembers.T:System.Activities.DurableInstancing.LoadWorkflowCommand">
+      <topicdata name="LoadWorkflowCommand" group="list" subgroup="members" typeTopicId="T:System.Activities.DurableInstancing.LoadWorkflowCommand" />
+      <apidata name="LoadWorkflowCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.LoadWorkflowCommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.DurableInstancing.LoadWorkflowCommand.#ctor" />
+        <element api="P:System.Activities.DurableInstancing.LoadWorkflowCommand.AcceptUninitializedInstance" />
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceCommand.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.LoadWorkflowCommand" />
+      </containers>
+      <file name="bbdffc91-f9bc-1256-5676-9d7d30485afd" />
+    </api>
+    <api id="Methods.T:System.Activities.DurableInstancing.LoadWorkflowCommand">
+      <topicdata name="LoadWorkflowCommand" group="list" subgroup="Methods" typeTopicId="T:System.Activities.DurableInstancing.LoadWorkflowCommand" />
+      <apidata name="LoadWorkflowCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.LoadWorkflowCommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.LoadWorkflowCommand" />
+      </containers>
+      <file name="6f89bb79-74ad-67d9-193d-243a5d804d60" />
+    </api>
+    <api id="Properties.T:System.Activities.DurableInstancing.LoadWorkflowCommand">
+      <topicdata name="LoadWorkflowCommand" group="list" subgroup="Properties" typeTopicId="T:System.Activities.DurableInstancing.LoadWorkflowCommand" />
+      <apidata name="LoadWorkflowCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.LoadWorkflowCommand.#ctor" />
+      <elements>
+        <element api="P:System.Activities.DurableInstancing.LoadWorkflowCommand.AcceptUninitializedInstance" />
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceCommand.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.LoadWorkflowCommand" />
+      </containers>
+      <file name="b31beda6-1aa4-d2bd-277c-aafa0a7df58e" />
+    </api>
+    <api id="M:System.Activities.DurableInstancing.LoadWorkflowCommand.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.LoadWorkflowCommand" ref="true" />
+      </containers>
+      <file name="c34a99d8-6547-0a45-1963-67a9a16fa084" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.LoadWorkflowCommand.AcceptUninitializedInstance">
+      <topicdata group="api" />
+      <apidata name="AcceptUninitializedInstance" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AcceptUninitializedInstance" />
+      <setter name="set_AcceptUninitializedInstance" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.LoadWorkflowCommand" ref="true" />
+      </containers>
+      <file name="0395a175-c289-2f76-0ea3-283f89aefaab" />
+    </api>
+    <api id="T:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand" />
+      <apidata name="QueryActivatableWorkflowsCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.DurableInstancing.InstancePersistenceCommand" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+      </containers>
+      <file name="8f2aaef9-9904-438b-62de-c2bbb7fa01b2" />
+    </api>
+    <api id="AllMembers.T:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand">
+      <topicdata name="QueryActivatableWorkflowsCommand" group="list" subgroup="members" typeTopicId="T:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand" />
+      <apidata name="QueryActivatableWorkflowsCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand.#ctor" />
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceCommand.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand" />
+      </containers>
+      <file name="d89259e4-2bcd-fce7-afe1-89c88a24c31e" />
+    </api>
+    <api id="Methods.T:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand">
+      <topicdata name="QueryActivatableWorkflowsCommand" group="list" subgroup="Methods" typeTopicId="T:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand" />
+      <apidata name="QueryActivatableWorkflowsCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand" />
+      </containers>
+      <file name="89262eb1-4f68-140d-0571-8f40fd8b2214" />
+    </api>
+    <api id="Properties.T:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand">
+      <topicdata name="QueryActivatableWorkflowsCommand" group="list" subgroup="Properties" typeTopicId="T:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand" />
+      <apidata name="QueryActivatableWorkflowsCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceCommand.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand" />
+      </containers>
+      <file name="06d8072b-d1f6-51e1-2e87-6395410af199" />
+    </api>
+    <api id="M:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.QueryActivatableWorkflowsCommand" ref="true" />
+      </containers>
+      <file name="8f5d1296-632b-e884-e2e0-f6e13669ae01" />
+    </api>
+    <api id="T:System.Activities.DurableInstancing.SaveWorkflowCommand">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.DurableInstancing.SaveWorkflowCommand" />
+      <apidata name="SaveWorkflowCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.SaveWorkflowCommand.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.DurableInstancing.InstancePersistenceCommand" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+      </containers>
+      <file name="0f20fe02-9440-9c37-da54-2d3791adc236" />
+    </api>
+    <api id="AllMembers.T:System.Activities.DurableInstancing.SaveWorkflowCommand">
+      <topicdata name="SaveWorkflowCommand" group="list" subgroup="members" typeTopicId="T:System.Activities.DurableInstancing.SaveWorkflowCommand" />
+      <apidata name="SaveWorkflowCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.SaveWorkflowCommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.DurableInstancing.SaveWorkflowCommand.#ctor" />
+        <element api="P:System.Activities.DurableInstancing.SaveWorkflowCommand.CompleteInstance" />
+        <element api="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceData" />
+        <element api="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceKeyMetadataChanges" />
+        <element api="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceKeysToAssociate" />
+        <element api="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceKeysToComplete" />
+        <element api="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceKeysToFree" />
+        <element api="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceMetadataChanges" />
+        <element api="P:System.Activities.DurableInstancing.SaveWorkflowCommand.UnlockInstance" />
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceCommand.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SaveWorkflowCommand" />
+      </containers>
+      <file name="0392b005-31ea-f656-0e6d-beecc2485ada" />
+    </api>
+    <api id="Methods.T:System.Activities.DurableInstancing.SaveWorkflowCommand">
+      <topicdata name="SaveWorkflowCommand" group="list" subgroup="Methods" typeTopicId="T:System.Activities.DurableInstancing.SaveWorkflowCommand" />
+      <apidata name="SaveWorkflowCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.SaveWorkflowCommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SaveWorkflowCommand" />
+      </containers>
+      <file name="9d3bdfb3-be28-db96-9b18-0e478b82dcef" />
+    </api>
+    <api id="Properties.T:System.Activities.DurableInstancing.SaveWorkflowCommand">
+      <topicdata name="SaveWorkflowCommand" group="list" subgroup="Properties" typeTopicId="T:System.Activities.DurableInstancing.SaveWorkflowCommand" />
+      <apidata name="SaveWorkflowCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.SaveWorkflowCommand.#ctor" />
+      <elements>
+        <element api="P:System.Activities.DurableInstancing.SaveWorkflowCommand.CompleteInstance" />
+        <element api="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceData" />
+        <element api="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceKeyMetadataChanges" />
+        <element api="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceKeysToAssociate" />
+        <element api="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceKeysToComplete" />
+        <element api="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceKeysToFree" />
+        <element api="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceMetadataChanges" />
+        <element api="P:System.Activities.DurableInstancing.SaveWorkflowCommand.UnlockInstance" />
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceCommand.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SaveWorkflowCommand" />
+      </containers>
+      <file name="98b8d1b1-9de2-1969-19a0-0603af52d723" />
+    </api>
+    <api id="M:System.Activities.DurableInstancing.SaveWorkflowCommand.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SaveWorkflowCommand" ref="true" />
+      </containers>
+      <file name="c6356ac4-72e2-80c1-04fb-ac7f051d07d5" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.SaveWorkflowCommand.CompleteInstance">
+      <topicdata group="api" />
+      <apidata name="CompleteInstance" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CompleteInstance" />
+      <setter name="set_CompleteInstance" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SaveWorkflowCommand" ref="true" />
+      </containers>
+      <file name="40868940-76b7-f8ee-deec-115f96cb276a" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceData">
+      <topicdata group="api" />
+      <apidata name="InstanceData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InstanceData" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.Xml.Linq.XName" ref="true" />
+            <type api="T:System.Runtime.DurableInstancing.InstanceValue" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SaveWorkflowCommand" ref="true" />
+      </containers>
+      <file name="b88e3d29-7d8d-d3f7-68f2-45212e485829" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceKeyMetadataChanges">
+      <topicdata group="api" />
+      <apidata name="InstanceKeyMetadataChanges" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InstanceKeyMetadataChanges" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.Guid" ref="false" />
+            <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+              <specialization>
+                <type api="T:System.Xml.Linq.XName" ref="true" />
+                <type api="T:System.Runtime.DurableInstancing.InstanceValue" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SaveWorkflowCommand" ref="true" />
+      </containers>
+      <file name="25d32d21-6fd0-7f0a-a9f5-530fd831be68" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceKeysToAssociate">
+      <topicdata group="api" />
+      <apidata name="InstanceKeysToAssociate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InstanceKeysToAssociate" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.Guid" ref="false" />
+            <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+              <specialization>
+                <type api="T:System.Xml.Linq.XName" ref="true" />
+                <type api="T:System.Runtime.DurableInstancing.InstanceValue" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SaveWorkflowCommand" ref="true" />
+      </containers>
+      <file name="5608414f-308d-a9b4-110f-f159328e6c81" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceKeysToComplete">
+      <topicdata group="api" />
+      <apidata name="InstanceKeysToComplete" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InstanceKeysToComplete" />
+      <returns>
+        <type api="T:System.Collections.Generic.ICollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Guid" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SaveWorkflowCommand" ref="true" />
+      </containers>
+      <file name="7cd35776-6e39-5982-879b-e3eea4d5f27d" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceKeysToFree">
+      <topicdata group="api" />
+      <apidata name="InstanceKeysToFree" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InstanceKeysToFree" />
+      <returns>
+        <type api="T:System.Collections.Generic.ICollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Guid" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SaveWorkflowCommand" ref="true" />
+      </containers>
+      <file name="9223aa97-5836-4af5-3bf4-f973c192c109" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.SaveWorkflowCommand.InstanceMetadataChanges">
+      <topicdata group="api" />
+      <apidata name="InstanceMetadataChanges" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InstanceMetadataChanges" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.Xml.Linq.XName" ref="true" />
+            <type api="T:System.Runtime.DurableInstancing.InstanceValue" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SaveWorkflowCommand" ref="true" />
+      </containers>
+      <file name="21cd5828-5adc-d0e7-5e3b-fdf9d79cc980" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.SaveWorkflowCommand.UnlockInstance">
+      <topicdata group="api" />
+      <apidata name="UnlockInstance" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UnlockInstance" />
+      <setter name="set_UnlockInstance" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SaveWorkflowCommand" ref="true" />
+      </containers>
+      <file name="1ece8272-3e66-3b46-c054-5de728665705" />
+    </api>
+    <api id="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" />
+      <apidata name="SqlWorkflowInstanceStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.DurableInstancing.InstanceStore" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+      </containers>
+      <file name="4c3e7430-8ea2-59fe-7d6d-e8ddfd7df7d5" />
+    </api>
+    <api id="AllMembers.T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore">
+      <topicdata name="SqlWorkflowInstanceStore" group="list" subgroup="members" typeTopicId="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" />
+      <apidata name="SqlWorkflowInstanceStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.#ctor">
+          <element api="M:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.#ctor" />
+          <element api="M:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.#ctor(System.String)" />
+        </element>
+        <element api="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.ConnectionString" />
+        <element api="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.EnqueueRunCommands" />
+        <element api="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.HostLockRenewalPeriod" />
+        <element api="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.InstanceCompletionAction" />
+        <element api="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.InstanceEncodingOption" />
+        <element api="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.InstanceLockedExceptionAction" />
+        <element api="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.MaxConnectionRetries" />
+        <element api="M:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.Promote(System.String,System.Collections.Generic.IEnumerable{System.Xml.Linq.XName},System.Collections.Generic.IEnumerable{System.Xml.Linq.XName})" />
+        <element api="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.RunnableInstancesDetectionPeriod" />
+        <element api="M:System.Runtime.DurableInstancing.InstanceStore.BeginExecute(System.Runtime.DurableInstancing.InstanceHandle,System.Runtime.DurableInstancing.InstancePersistenceCommand,System.TimeSpan,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Runtime.DurableInstancing.InstanceStore.BeginWaitForEvents(System.Runtime.DurableInstancing.InstanceHandle,System.TimeSpan,System.AsyncCallback,System.Object)" />
+        <element api="Overload:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.CreateInstanceHandle">
+          <element api="M:System.Runtime.DurableInstancing.InstanceStore.CreateInstanceHandle" />
+          <element api="M:System.Runtime.DurableInstancing.InstanceStore.CreateInstanceHandle(System.Guid)" />
+          <element api="M:System.Runtime.DurableInstancing.InstanceStore.CreateInstanceHandle(System.Runtime.DurableInstancing.InstanceOwner)" />
+          <element api="M:System.Runtime.DurableInstancing.InstanceStore.CreateInstanceHandle(System.Runtime.DurableInstancing.InstanceOwner,System.Guid)" />
+        </element>
+        <element api="P:System.Runtime.DurableInstancing.InstanceStore.DefaultInstanceOwner" />
+        <element api="M:System.Runtime.DurableInstancing.InstanceStore.EndExecute(System.IAsyncResult)" />
+        <element api="M:System.Runtime.DurableInstancing.InstanceStore.EndWaitForEvents(System.IAsyncResult)" />
+        <element api="M:System.Runtime.DurableInstancing.InstanceStore.Execute(System.Runtime.DurableInstancing.InstanceHandle,System.Runtime.DurableInstancing.InstancePersistenceCommand,System.TimeSpan)" />
+        <element api="M:System.Runtime.DurableInstancing.InstanceStore.WaitForEvents(System.Runtime.DurableInstancing.InstanceHandle,System.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" />
+      </containers>
+      <file name="b571b7f4-0e43-8a4f-44ab-79e0b96bf787" />
+    </api>
+    <api id="Methods.T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore">
+      <topicdata name="SqlWorkflowInstanceStore" group="list" subgroup="Methods" typeTopicId="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" />
+      <apidata name="SqlWorkflowInstanceStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.Promote(System.String,System.Collections.Generic.IEnumerable{System.Xml.Linq.XName},System.Collections.Generic.IEnumerable{System.Xml.Linq.XName})" />
+        <element api="M:System.Runtime.DurableInstancing.InstanceStore.BeginExecute(System.Runtime.DurableInstancing.InstanceHandle,System.Runtime.DurableInstancing.InstancePersistenceCommand,System.TimeSpan,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Runtime.DurableInstancing.InstanceStore.BeginWaitForEvents(System.Runtime.DurableInstancing.InstanceHandle,System.TimeSpan,System.AsyncCallback,System.Object)" />
+        <element api="Overload:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.CreateInstanceHandle">
+          <element api="M:System.Runtime.DurableInstancing.InstanceStore.CreateInstanceHandle" />
+          <element api="M:System.Runtime.DurableInstancing.InstanceStore.CreateInstanceHandle(System.Guid)" />
+          <element api="M:System.Runtime.DurableInstancing.InstanceStore.CreateInstanceHandle(System.Runtime.DurableInstancing.InstanceOwner)" />
+          <element api="M:System.Runtime.DurableInstancing.InstanceStore.CreateInstanceHandle(System.Runtime.DurableInstancing.InstanceOwner,System.Guid)" />
+        </element>
+        <element api="M:System.Runtime.DurableInstancing.InstanceStore.EndExecute(System.IAsyncResult)" />
+        <element api="M:System.Runtime.DurableInstancing.InstanceStore.EndWaitForEvents(System.IAsyncResult)" />
+        <element api="M:System.Runtime.DurableInstancing.InstanceStore.Execute(System.Runtime.DurableInstancing.InstanceHandle,System.Runtime.DurableInstancing.InstancePersistenceCommand,System.TimeSpan)" />
+        <element api="M:System.Runtime.DurableInstancing.InstanceStore.WaitForEvents(System.Runtime.DurableInstancing.InstanceHandle,System.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" />
+      </containers>
+      <file name="72f4a51c-7adb-88ca-e0c9-ad984dd79b2f" />
+    </api>
+    <api id="Properties.T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore">
+      <topicdata name="SqlWorkflowInstanceStore" group="list" subgroup="Properties" typeTopicId="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" />
+      <apidata name="SqlWorkflowInstanceStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.#ctor" />
+      <elements>
+        <element api="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.ConnectionString" />
+        <element api="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.EnqueueRunCommands" />
+        <element api="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.HostLockRenewalPeriod" />
+        <element api="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.InstanceCompletionAction" />
+        <element api="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.InstanceEncodingOption" />
+        <element api="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.InstanceLockedExceptionAction" />
+        <element api="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.MaxConnectionRetries" />
+        <element api="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.RunnableInstancesDetectionPeriod" />
+        <element api="P:System.Runtime.DurableInstancing.InstanceStore.DefaultInstanceOwner" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" />
+      </containers>
+      <file name="283c7129-016d-1d1d-9833-ec513c6daa73" />
+    </api>
+    <api id="Overload:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.#ctor" />
+        <element api="M:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" ref="true" />
+      </containers>
+      <file name="5dd5dcd7-9897-45bc-779d-5bfb526d1bd2" />
+    </api>
+    <api id="M:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.#ctor" />
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" ref="true" />
+      </containers>
+      <file name="8567dee2-e6a6-7012-89a3-e0c18020b9a7" />
+    </api>
+    <api id="M:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.#ctor" />
+      <parameters>
+        <parameter name="connectionString">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" ref="true" />
+      </containers>
+      <file name="32beb031-cbdb-e2c8-eee5-49c261a60bf5" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.ConnectionString">
+      <topicdata group="api" />
+      <apidata name="ConnectionString" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ConnectionString" />
+      <setter name="set_ConnectionString" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" ref="true" />
+      </containers>
+      <file name="cc676c5f-bb1c-4ed3-d489-f72e751ca704" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.EnqueueRunCommands">
+      <topicdata group="api" />
+      <apidata name="EnqueueRunCommands" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EnqueueRunCommands" />
+      <setter name="set_EnqueueRunCommands" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" ref="true" />
+      </containers>
+      <file name="c94a6c98-37ff-65d7-e32f-f6ce9a7854ba" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.HostLockRenewalPeriod">
+      <topicdata group="api" />
+      <apidata name="HostLockRenewalPeriod" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_HostLockRenewalPeriod" />
+      <setter name="set_HostLockRenewalPeriod" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" ref="true" />
+      </containers>
+      <file name="ec3af708-b230-024d-0844-3bd0dc7e4d53" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.InstanceCompletionAction">
+      <topicdata group="api" />
+      <apidata name="InstanceCompletionAction" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InstanceCompletionAction" />
+      <setter name="set_InstanceCompletionAction" />
+      <returns>
+        <type api="T:System.Activities.DurableInstancing.InstanceCompletionAction" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" ref="true" />
+      </containers>
+      <file name="f4cddd8e-eaa6-a671-1430-dcabbd1ee25f" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.InstanceEncodingOption">
+      <topicdata group="api" />
+      <apidata name="InstanceEncodingOption" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InstanceEncodingOption" />
+      <setter name="set_InstanceEncodingOption" />
+      <returns>
+        <type api="T:System.Activities.DurableInstancing.InstanceEncodingOption" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" ref="true" />
+      </containers>
+      <file name="f91c4b16-40a5-6b48-b8b4-fa02721464a8" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.InstanceLockedExceptionAction">
+      <topicdata group="api" />
+      <apidata name="InstanceLockedExceptionAction" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InstanceLockedExceptionAction" />
+      <setter name="set_InstanceLockedExceptionAction" />
+      <returns>
+        <type api="T:System.Activities.DurableInstancing.InstanceLockedExceptionAction" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" ref="true" />
+      </containers>
+      <file name="40660255-936e-03c4-5359-a582bd44450f" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.MaxConnectionRetries">
+      <topicdata group="api" />
+      <apidata name="MaxConnectionRetries" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxConnectionRetries" />
+      <setter name="set_MaxConnectionRetries" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" ref="true" />
+      </containers>
+      <file name="14716c91-7847-9f43-6e71-25768d762f98" />
+    </api>
+    <api id="M:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.Promote(System.String,System.Collections.Generic.IEnumerable{System.Xml.Linq.XName},System.Collections.Generic.IEnumerable{System.Xml.Linq.XName})">
+      <topicdata group="api" />
+      <apidata name="Promote" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="promoteAsVariant">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Xml.Linq.XName" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="promoteAsBinary">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Xml.Linq.XName" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" ref="true" />
+      </containers>
+      <file name="2e586dab-4830-5b4d-c621-e5938bc0de57" />
+    </api>
+    <api id="P:System.Activities.DurableInstancing.SqlWorkflowInstanceStore.RunnableInstancesDetectionPeriod">
+      <topicdata group="api" />
+      <apidata name="RunnableInstancesDetectionPeriod" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RunnableInstancesDetectionPeriod" />
+      <setter name="set_RunnableInstancesDetectionPeriod" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.DurableInstancing" module="System.Activities.DurableInstancing" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.SqlWorkflowInstanceStore" ref="true" />
+      </containers>
+      <file name="07e8fe02-11c0-94a6-04e9-2084a21cbbe0" />
+    </api>
+    <api id="T:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand" />
+      <apidata name="TryLoadRunnableWorkflowCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.DurableInstancing.InstancePersistenceCommand" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+      </containers>
+      <file name="38710211-ec7a-3c04-ab19-8f55d863a8f2" />
+    </api>
+    <api id="AllMembers.T:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand">
+      <topicdata name="TryLoadRunnableWorkflowCommand" group="list" subgroup="members" typeTopicId="T:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand" />
+      <apidata name="TryLoadRunnableWorkflowCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand.#ctor" />
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceCommand.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand" />
+      </containers>
+      <file name="b94b3e51-f1d3-ccea-59b9-485988e6a74d" />
+    </api>
+    <api id="Methods.T:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand">
+      <topicdata name="TryLoadRunnableWorkflowCommand" group="list" subgroup="Methods" typeTopicId="T:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand" />
+      <apidata name="TryLoadRunnableWorkflowCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand" />
+      </containers>
+      <file name="e5b1de6b-443b-d648-b819-057dec0df759" />
+    </api>
+    <api id="Properties.T:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand">
+      <topicdata name="TryLoadRunnableWorkflowCommand" group="list" subgroup="Properties" typeTopicId="T:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand" />
+      <apidata name="TryLoadRunnableWorkflowCommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.DurableInstancing.InstancePersistenceCommand.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand" />
+      </containers>
+      <file name="9dfb0532-bab5-1b06-4ad6-feb5970089cb" />
+    </api>
+    <api id="M:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.DurableInstancing" />
+        <type api="T:System.Activities.DurableInstancing.TryLoadRunnableWorkflowCommand" ref="true" />
+      </containers>
+      <file name="d96fe2d8-7343-f7c0-f622-20577f98f2db" />
+    </api>
+  </apis>
+</reflection>

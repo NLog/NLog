@@ -1,0 +1,1956 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.UI.WebUI.Core">
+      <topicdata group="api" />
+      <apidata name="Windows.UI.WebUI.Core" group="namespace" />
+      <elements>
+        <element api="T:Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode" />
+        <element api="T:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs" />
+        <element api="T:Windows.UI.WebUI.Core.IWebUICommandBarElement" />
+        <element api="T:Windows.UI.WebUI.Core.IWebUICommandBarIcon" />
+        <element api="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" />
+        <element api="T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton" />
+        <element api="T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon" />
+        <element api="T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon" />
+        <element api="T:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs" />
+        <element api="T:Windows.UI.WebUI.Core.MenuOpenedEventHandler" />
+        <element api="T:Windows.UI.WebUI.Core.MenuClosedEventHandler" />
+        <element api="T:Windows.UI.WebUI.Core.SizeChangedEventHandler" />
+        <element api="T:Windows.UI.WebUI.Core.WebUICommandBar" />
+      </elements>
+      <file name="b96a1b40-67da-132f-f6f0-512ef940c7d9" />
+    </api>
+    <api id="T:Windows.UI.WebUI.Core.IWebUICommandBarElement">
+      <topicdata group="api" />
+      <apidata name="IWebUICommandBarElement" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" ref="true" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3372654274</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>10314</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17971</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>138</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>173</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>99</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>122</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>39</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>226</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>130</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>195</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="aa31791f-36ae-f563-7807-8777321b8d6e" />
+    </api>
+    <api id="T:Windows.UI.WebUI.Core.IWebUICommandBarIcon">
+      <topicdata group="api" />
+      <apidata name="IWebUICommandBarIcon" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon" ref="true" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3582420317</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>8212</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17086</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>150</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>154</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>125</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>20</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>202</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>108</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>138</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>73</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="aa34bff7-e9d7-975f-eba8-cb71e7e35595" />
+    </api>
+    <api id="T:Windows.UI.WebUI.Core.MenuClosedEventHandler">
+      <topicdata group="api" />
+      <apidata name="MenuClosedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1129547720</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19920</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19538</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>148</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>137</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>211</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>144</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>206</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>119</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>33</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>210</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c0717a00-e914-bf1d-fb1e-35191833ede6" />
+    </api>
+    <api id="T:Windows.UI.WebUI.Core.MenuOpenedEventHandler">
+      <topicdata group="api" />
+      <apidata name="MenuOpenedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>417073875</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>26511</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19481</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>137</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>99</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>204</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>28</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>73</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>165</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>239</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>158</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ea25d6ab-ee84-1f08-5e9f-44643de3477c" />
+    </api>
+    <api id="T:Windows.UI.WebUI.Core.SizeChangedEventHandler">
+      <topicdata group="api" />
+      <apidata name="SizeChangedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="eventArgs" in="true">
+          <type api="T:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3567058492</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>56622</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19496</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>182</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>39</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>48</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>58</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>127</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>145</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>26</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>245</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bb68c487-5b9e-24bd-4571-2ec53cc369c8" />
+    </api>
+    <api id="T:Windows.UI.WebUI.Core.WebUICommandBar">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.WebUI.Core.WebUICommandBar" />
+      <apidata name="WebUICommandBar" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.WebUI.Core.IWebUICommandBar" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e3d46268-f69f-bc5a-3873-892dcf776d2e" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.WebUI.Core.WebUICommandBar">
+      <topicdata name="WebUICommandBar" group="list" subgroup="members" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBar" />
+      <apidata name="WebUICommandBar" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.BackgroundColor" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.ClosedDisplayMode" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.ForegroundColor" />
+        <element api="M:Windows.UI.WebUI.Core.WebUICommandBar.GetForCurrentView" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.IsOpen" />
+        <element api="E:Windows.UI.WebUI.Core.WebUICommandBar.MenuClosed" />
+        <element api="E:Windows.UI.WebUI.Core.WebUICommandBar.MenuOpened" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.Opacity" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.PrimaryCommands" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.SecondaryCommands" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.Size" />
+        <element api="E:Windows.UI.WebUI.Core.WebUICommandBar.SizeChanged" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.Visible" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" />
+      </containers>
+      <file name="42a236a7-e7e5-08b7-6e22-f8788119d9c9" />
+    </api>
+    <api id="Methods.T:Windows.UI.WebUI.Core.WebUICommandBar">
+      <topicdata name="WebUICommandBar" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBar" />
+      <apidata name="WebUICommandBar" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.WebUI.Core.WebUICommandBar.GetForCurrentView" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" />
+      </containers>
+      <file name="9af261fd-8fde-810d-8fcb-84b24966f5e4" />
+    </api>
+    <api id="Properties.T:Windows.UI.WebUI.Core.WebUICommandBar">
+      <topicdata name="WebUICommandBar" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBar" />
+      <apidata name="WebUICommandBar" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.BackgroundColor" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.ClosedDisplayMode" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.ForegroundColor" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.IsOpen" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.Opacity" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.PrimaryCommands" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.SecondaryCommands" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.Size" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBar.Visible" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" />
+      </containers>
+      <file name="f8787bfe-042c-ff29-e79a-f0e21658aed1" />
+    </api>
+    <api id="Events.T:Windows.UI.WebUI.Core.WebUICommandBar">
+      <topicdata name="WebUICommandBar" group="list" subgroup="Events" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBar" />
+      <apidata name="WebUICommandBar" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.UI.WebUI.Core.WebUICommandBar.MenuClosed" />
+        <element api="E:Windows.UI.WebUI.Core.WebUICommandBar.MenuOpened" />
+        <element api="E:Windows.UI.WebUI.Core.WebUICommandBar.SizeChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" />
+      </containers>
+      <file name="636941ff-1b01-a585-f2de-2778480e873f" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBar.BackgroundColor">
+      <topicdata group="api" />
+      <apidata name="BackgroundColor" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BackgroundColor" />
+      <setter name="set_BackgroundColor" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" ref="true" />
+      </containers>
+      <file name="38428141-7394-1dec-4bee-9bb5ae8bafe4" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBar.ClosedDisplayMode">
+      <topicdata group="api" />
+      <apidata name="ClosedDisplayMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ClosedDisplayMode" />
+      <setter name="set_ClosedDisplayMode" />
+      <returns>
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" ref="true" />
+      </containers>
+      <file name="e981784d-37d5-c62b-f5eb-1cce16b248b3" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBar.ForegroundColor">
+      <topicdata group="api" />
+      <apidata name="ForegroundColor" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ForegroundColor" />
+      <setter name="set_ForegroundColor" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" ref="true" />
+      </containers>
+      <file name="1c5e1df5-20c0-63e7-a32c-9ebd33cb5641" />
+    </api>
+    <api id="M:Windows.UI.WebUI.Core.WebUICommandBar.GetForCurrentView">
+      <topicdata group="api" />
+      <apidata name="GetForCurrentView" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" ref="true" />
+      </containers>
+      <file name="e380421d-8078-8054-e418-f95c29f89eb5" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBar.IsOpen">
+      <topicdata group="api" />
+      <apidata name="IsOpen" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsOpen" />
+      <setter name="set_IsOpen" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" ref="true" />
+      </containers>
+      <file name="536df725-3cff-acdf-0851-ff15f761736f" />
+    </api>
+    <api id="E:Windows.UI.WebUI.Core.WebUICommandBar.MenuClosed">
+      <topicdata group="api" />
+      <apidata name="MenuClosed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_MenuClosed" />
+      <remover name="remove_MenuClosed" />
+      <eventhandler>
+        <type api="T:Windows.UI.WebUI.Core.MenuClosedEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" ref="true" />
+      </containers>
+      <file name="3198d391-5a53-c547-ba17-95157a3a5377" />
+    </api>
+    <api id="E:Windows.UI.WebUI.Core.WebUICommandBar.MenuOpened">
+      <topicdata group="api" />
+      <apidata name="MenuOpened" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_MenuOpened" />
+      <remover name="remove_MenuOpened" />
+      <eventhandler>
+        <type api="T:Windows.UI.WebUI.Core.MenuOpenedEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" ref="true" />
+      </containers>
+      <file name="b9bfdfd1-fe42-e8ca-92d4-7af90f1b0e2a" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBar.Opacity">
+      <topicdata group="api" />
+      <apidata name="Opacity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Opacity" />
+      <setter name="set_Opacity" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" ref="true" />
+      </containers>
+      <file name="6d50b036-589b-e24b-a630-9c74e7fbb02c" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBar.PrimaryCommands">
+      <topicdata group="api" />
+      <apidata name="PrimaryCommands" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PrimaryCommands" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IObservableVector`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.WebUI.Core.IWebUICommandBarElement" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" ref="true" />
+      </containers>
+      <file name="2373b78b-ef6d-c950-2cda-1f8f1a3c3c10" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBar.SecondaryCommands">
+      <topicdata group="api" />
+      <apidata name="SecondaryCommands" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SecondaryCommands" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IObservableVector`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.WebUI.Core.IWebUICommandBarElement" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" ref="true" />
+      </containers>
+      <file name="38898952-db65-302e-576b-3e832ee73895" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBar.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:Windows.Foundation.Size" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" ref="true" />
+      </containers>
+      <file name="434542d5-b75b-2a50-d17c-5c770f865046" />
+    </api>
+    <api id="E:Windows.UI.WebUI.Core.WebUICommandBar.SizeChanged">
+      <topicdata group="api" />
+      <apidata name="SizeChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_SizeChanged" />
+      <remover name="remove_SizeChanged" />
+      <eventhandler>
+        <type api="T:Windows.UI.WebUI.Core.SizeChangedEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" ref="true" />
+      </containers>
+      <file name="2e780f1d-cb8f-a0f3-4534-e1c0655c20e1" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBar.Visible">
+      <topicdata group="api" />
+      <apidata name="Visible" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Visible" />
+      <setter name="set_Visible" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBar" ref="true" />
+      </containers>
+      <file name="98053c48-a37b-f69c-c8e3-dfc19617b231" />
+    </api>
+    <api id="T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon" />
+      <apidata name="WebUICommandBarBitmapIcon" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.WebUI.Core.IWebUICommandBarBitmapIcon" ref="true" />
+        <type api="T:Windows.UI.WebUI.Core.IWebUICommandBarIcon" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="28e74bbe-daa9-8d95-8ca8-a0090f54b90f" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon">
+      <topicdata name="WebUICommandBarBitmapIcon" group="list" subgroup="members" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon" />
+      <apidata name="WebUICommandBarBitmapIcon" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.#ctor">
+          <element api="M:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.#ctor" />
+          <element api="M:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.#ctor(Windows.Foundation.Uri)" />
+        </element>
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.Uri" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon" />
+      </containers>
+      <file name="80b51802-42a5-d118-7e40-5b7d8c3aa841" />
+    </api>
+    <api id="Methods.T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon">
+      <topicdata name="WebUICommandBarBitmapIcon" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon" />
+      <apidata name="WebUICommandBarBitmapIcon" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon" />
+      </containers>
+      <file name="ddc7911a-9cc2-052a-9c43-8b32a093de5a" />
+    </api>
+    <api id="Properties.T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon">
+      <topicdata name="WebUICommandBarBitmapIcon" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon" />
+      <apidata name="WebUICommandBarBitmapIcon" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.Uri" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon" />
+      </containers>
+      <file name="336ebc59-13c2-a681-dc95-c82e415e4837" />
+    </api>
+    <api id="Overload:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.#ctor" />
+        <element api="M:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.#ctor(Windows.Foundation.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon" ref="true" />
+      </containers>
+      <file name="c1cd0d32-8d56-45e8-8a45-f6b22308ff06" />
+    </api>
+    <api id="M:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.#ctor" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon" ref="true" />
+      </containers>
+      <file name="63caac60-fb78-cc90-0c14-725bd733b066" />
+    </api>
+    <api id="M:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.#ctor(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.#ctor" />
+      <parameters>
+        <parameter name="uri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon" ref="true" />
+      </containers>
+      <file name="76b7c35b-94fe-3356-a579-3d9cdf86308d" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon.Uri">
+      <topicdata group="api" />
+      <apidata name="Uri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Uri" />
+      <setter name="set_Uri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarBitmapIcon" ref="true" />
+      </containers>
+      <file name="723f7c2c-445e-5d64-f992-e726459566e6" />
+    </api>
+    <api id="T:Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode">
+      <topicdata group="api" />
+      <apidata name="WebUICommandBarClosedDisplayMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode.Default" />
+        <element api="F:Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode.Minimal" />
+        <element api="F:Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode.Compact" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="644c55e7-c748-a969-980b-7f3251d1fdeb" />
+    </api>
+    <api id="F:Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode.Compact">
+      <topicdata group="api" notopic="" />
+      <apidata name="Compact" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode" ref="false" />
+      </containers>
+      <file name="5baf4565-055e-6d32-a2c7-2c815a1cca73" />
+    </api>
+    <api id="F:Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode" ref="false" />
+      </containers>
+      <file name="2acd058e-195c-fd4b-a1cd-f3a4a6086034" />
+    </api>
+    <api id="F:Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode.Minimal">
+      <topicdata group="api" notopic="" />
+      <apidata name="Minimal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarClosedDisplayMode" ref="false" />
+      </containers>
+      <file name="280b33a7-37f5-3339-3d76-c941064c0544" />
+    </api>
+    <api id="T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton" />
+      <apidata name="WebUICommandBarConfirmationButton" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.WebUI.Core.IWebUICommandBarConfirmationButton" ref="true" />
+        <type api="T:Windows.UI.WebUI.Core.IWebUICommandBarElement" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7471f4a2-3b37-380c-6cb6-970781c6e86e" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton">
+      <topicdata name="WebUICommandBarConfirmationButton" group="list" subgroup="members" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton" />
+      <apidata name="WebUICommandBarConfirmationButton" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton.#ctor" />
+        <element api="E:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton.ItemInvoked" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton.Text" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton" />
+      </containers>
+      <file name="43903934-e481-69c9-0774-653eb4ea49f5" />
+    </api>
+    <api id="Methods.T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton">
+      <topicdata name="WebUICommandBarConfirmationButton" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton" />
+      <apidata name="WebUICommandBarConfirmationButton" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton" />
+      </containers>
+      <file name="ac33299a-1d26-5761-0dd1-8122961d24e0" />
+    </api>
+    <api id="Properties.T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton">
+      <topicdata name="WebUICommandBarConfirmationButton" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton" />
+      <apidata name="WebUICommandBarConfirmationButton" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton.Text" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton" />
+      </containers>
+      <file name="d41d239e-328d-f6ff-a5b6-1825e77ddff5" />
+    </api>
+    <api id="Events.T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton">
+      <topicdata name="WebUICommandBarConfirmationButton" group="list" subgroup="Events" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton" />
+      <apidata name="WebUICommandBarConfirmationButton" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton.#ctor" />
+      <elements>
+        <element api="E:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton.ItemInvoked" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton" />
+      </containers>
+      <file name="a0b8deb8-8e8e-3944-059a-456b186f6fb9" />
+    </api>
+    <api id="M:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton" ref="true" />
+      </containers>
+      <file name="4e1eebe0-1d1d-fea9-6ef8-9f165b1f09c8" />
+    </api>
+    <api id="E:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton.ItemInvoked">
+      <topicdata group="api" />
+      <apidata name="ItemInvoked" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ItemInvoked" />
+      <remover name="remove_ItemInvoked" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton" ref="true" />
+            <type api="T:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton" ref="true" />
+      </containers>
+      <file name="bed67eef-2a34-490a-d4f6-d8df88e5bb64" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton.Text">
+      <topicdata group="api" />
+      <apidata name="Text" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Text" />
+      <setter name="set_Text" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarConfirmationButton" ref="true" />
+      </containers>
+      <file name="150b312d-eb9c-48c0-0554-e830ad650106" />
+    </api>
+    <api id="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" />
+      <apidata name="WebUICommandBarIconButton" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarIconButton.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.WebUI.Core.IWebUICommandBarIconButton" ref="true" />
+        <type api="T:Windows.UI.WebUI.Core.IWebUICommandBarElement" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="209904a6-87a4-56bf-4256-8f683ff8407b" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.WebUI.Core.WebUICommandBarIconButton">
+      <topicdata name="WebUICommandBarIconButton" group="list" subgroup="members" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" />
+      <apidata name="WebUICommandBarIconButton" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarIconButton.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.WebUI.Core.WebUICommandBarIconButton.#ctor" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarIconButton.Enabled" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarIconButton.Icon" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarIconButton.IsChecked" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarIconButton.IsToggleButton" />
+        <element api="E:Windows.UI.WebUI.Core.WebUICommandBarIconButton.ItemInvoked" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarIconButton.Label" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" />
+      </containers>
+      <file name="d34acf87-6ab4-0bc1-99f6-a5f18d684f12" />
+    </api>
+    <api id="Methods.T:Windows.UI.WebUI.Core.WebUICommandBarIconButton">
+      <topicdata name="WebUICommandBarIconButton" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" />
+      <apidata name="WebUICommandBarIconButton" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarIconButton.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" />
+      </containers>
+      <file name="ad1bc1b5-32c1-99f9-eaab-9aacbca40ae0" />
+    </api>
+    <api id="Properties.T:Windows.UI.WebUI.Core.WebUICommandBarIconButton">
+      <topicdata name="WebUICommandBarIconButton" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" />
+      <apidata name="WebUICommandBarIconButton" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarIconButton.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarIconButton.Enabled" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarIconButton.Icon" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarIconButton.IsChecked" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarIconButton.IsToggleButton" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarIconButton.Label" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" />
+      </containers>
+      <file name="43a59048-fc67-7d35-927e-16c300deb01a" />
+    </api>
+    <api id="Events.T:Windows.UI.WebUI.Core.WebUICommandBarIconButton">
+      <topicdata name="WebUICommandBarIconButton" group="list" subgroup="Events" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" />
+      <apidata name="WebUICommandBarIconButton" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarIconButton.#ctor" />
+      <elements>
+        <element api="E:Windows.UI.WebUI.Core.WebUICommandBarIconButton.ItemInvoked" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" />
+      </containers>
+      <file name="deb2a08d-30aa-96f4-2f57-6bd67c32c8b1" />
+    </api>
+    <api id="M:Windows.UI.WebUI.Core.WebUICommandBarIconButton.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" ref="true" />
+      </containers>
+      <file name="4533fc3d-c32b-bbff-a3f0-0ce859e8ba8a" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBarIconButton.Enabled">
+      <topicdata group="api" />
+      <apidata name="Enabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Enabled" />
+      <setter name="set_Enabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" ref="true" />
+      </containers>
+      <file name="8e220d8f-fe1c-9b49-01bb-519927dc092d" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBarIconButton.Icon">
+      <topicdata group="api" />
+      <apidata name="Icon" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Icon" />
+      <setter name="set_Icon" />
+      <returns>
+        <type api="T:Windows.UI.WebUI.Core.IWebUICommandBarIcon" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" ref="true" />
+      </containers>
+      <file name="fc38911a-8195-a171-0c96-817d1589f5a4" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBarIconButton.IsChecked">
+      <topicdata group="api" />
+      <apidata name="IsChecked" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsChecked" />
+      <setter name="set_IsChecked" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" ref="true" />
+      </containers>
+      <file name="c6a76ec9-4451-c56f-f2bf-bd233bfb5b3a" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBarIconButton.IsToggleButton">
+      <topicdata group="api" />
+      <apidata name="IsToggleButton" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsToggleButton" />
+      <setter name="set_IsToggleButton" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" ref="true" />
+      </containers>
+      <file name="29d31ae5-8d85-f574-a47f-46cbc7298ae0" />
+    </api>
+    <api id="E:Windows.UI.WebUI.Core.WebUICommandBarIconButton.ItemInvoked">
+      <topicdata group="api" />
+      <apidata name="ItemInvoked" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ItemInvoked" />
+      <remover name="remove_ItemInvoked" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" ref="true" />
+            <type api="T:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" ref="true" />
+      </containers>
+      <file name="26203bde-71db-530b-1816-dc64e156dea5" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBarIconButton.Label">
+      <topicdata group="api" />
+      <apidata name="Label" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Label" />
+      <setter name="set_Label" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarIconButton" ref="true" />
+      </containers>
+      <file name="b65f3302-58e8-2357-9f90-24e1e552ea03" />
+    </api>
+    <api id="T:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs" />
+      <apidata name="WebUICommandBarItemInvokedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.WebUI.Core.IWebUICommandBarItemInvokedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="08ed42f9-6563-63fb-ec09-2c5bba1e7f0c" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs">
+      <topicdata name="WebUICommandBarItemInvokedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs" />
+      <apidata name="WebUICommandBarItemInvokedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs.#ctor" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs.IsPrimaryCommand" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs" />
+      </containers>
+      <file name="03d4d4dc-a880-5391-e95b-4f689212157c" />
+    </api>
+    <api id="Methods.T:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs">
+      <topicdata name="WebUICommandBarItemInvokedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs" />
+      <apidata name="WebUICommandBarItemInvokedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs" />
+      </containers>
+      <file name="ff447db5-57e6-73ad-df5b-e7e5c47a4665" />
+    </api>
+    <api id="Properties.T:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs">
+      <topicdata name="WebUICommandBarItemInvokedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs" />
+      <apidata name="WebUICommandBarItemInvokedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs.IsPrimaryCommand" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs" />
+      </containers>
+      <file name="12b2b697-8505-ebe5-257a-f1781c8c0abe" />
+    </api>
+    <api id="M:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs" ref="true" />
+      </containers>
+      <file name="e0671cc2-20e1-e86e-85cb-7c354c820440" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs.IsPrimaryCommand">
+      <topicdata group="api" />
+      <apidata name="IsPrimaryCommand" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsPrimaryCommand" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarItemInvokedEventArgs" ref="true" />
+      </containers>
+      <file name="42e991d1-3dd2-ceee-c9f7-829975a400e5" />
+    </api>
+    <api id="T:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs" />
+      <apidata name="WebUICommandBarSizeChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.WebUI.Core.IWebUICommandBarSizeChangedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="850176d9-3d98-8abe-f9d5-791dd1f11345" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs">
+      <topicdata name="WebUICommandBarSizeChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs" />
+      <apidata name="WebUICommandBarSizeChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs.#ctor" />
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs" />
+      </containers>
+      <file name="9982441b-c0e7-bc35-9e5f-cac3a6f7fbbc" />
+    </api>
+    <api id="Methods.T:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs">
+      <topicdata name="WebUICommandBarSizeChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs" />
+      <apidata name="WebUICommandBarSizeChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs" />
+      </containers>
+      <file name="30f88888-6b9f-8ba9-b146-a937d3a724ef" />
+    </api>
+    <api id="Properties.T:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs">
+      <topicdata name="WebUICommandBarSizeChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs" />
+      <apidata name="WebUICommandBarSizeChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs" />
+      </containers>
+      <file name="499e9a6b-74a4-41dd-4593-ccf4cde6496e" />
+    </api>
+    <api id="M:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs" ref="true" />
+      </containers>
+      <file name="8504955a-1d8c-832c-97a0-966492232120" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:Windows.Foundation.Size" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarSizeChangedEventArgs" ref="true" />
+      </containers>
+      <file name="a2fb9b4e-573f-0099-661c-c7eb29f71293" />
+    </api>
+    <api id="T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon" />
+      <apidata name="WebUICommandBarSymbolIcon" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.WebUI.Core.IWebUICommandBarSymbolIcon" ref="true" />
+        <type api="T:Windows.UI.WebUI.Core.IWebUICommandBarIcon" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="053c678e-bf32-ad0a-80f0-0d21d61dd4b8" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon">
+      <topicdata name="WebUICommandBarSymbolIcon" group="list" subgroup="members" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon" />
+      <apidata name="WebUICommandBarSymbolIcon" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.#ctor">
+          <element api="M:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.#ctor" />
+          <element api="M:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.#ctor(System.String)" />
+        </element>
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.Symbol" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon" />
+      </containers>
+      <file name="acef1e55-9e7f-bbdc-9248-e9c0e3982124" />
+    </api>
+    <api id="Methods.T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon">
+      <topicdata name="WebUICommandBarSymbolIcon" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon" />
+      <apidata name="WebUICommandBarSymbolIcon" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon" />
+      </containers>
+      <file name="3cb4b8dd-fad3-4e28-311d-5ce8b59323a0" />
+    </api>
+    <api id="Properties.T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon">
+      <topicdata name="WebUICommandBarSymbolIcon" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon" />
+      <apidata name="WebUICommandBarSymbolIcon" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.Symbol" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon" />
+      </containers>
+      <file name="53c2ac2b-6ff3-ce7d-cfdf-0904077f2f3a" />
+    </api>
+    <api id="Overload:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.#ctor" />
+        <element api="M:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon" ref="true" />
+      </containers>
+      <file name="082b16e6-f180-e9e8-f9bb-8c3d0db53c66" />
+    </api>
+    <api id="M:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.#ctor" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon" ref="true" />
+      </containers>
+      <file name="fdd640f0-6018-18ba-2903-95ee6623b801" />
+    </api>
+    <api id="M:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.#ctor" />
+      <parameters>
+        <parameter name="symbol" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon" ref="true" />
+      </containers>
+      <file name="ce7ada71-60a9-5ed0-8803-3430b7e6fa23" />
+    </api>
+    <api id="P:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon.Symbol">
+      <topicdata group="api" />
+      <apidata name="Symbol" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Symbol" />
+      <setter name="set_Symbol" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.WebUI.Core" />
+        <type api="T:Windows.UI.WebUI.Core.WebUICommandBarSymbolIcon" ref="true" />
+      </containers>
+      <file name="97ed3391-1cdb-5a25-6ee6-13977ecfd8b4" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,2738 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Win32.Registry">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Win32.Registry</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Win32.Registry</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Win32.Registry</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="Microsoft.Win32.Registry.AccessControl">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Win32.Registry.AccessControl</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Win32.Registry.AccessControl</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Win32.Registry.AccessControl</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Win32">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Win32" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Win32.Registry" />
+        <element api="T:Microsoft.Win32.RegistryHive" />
+        <element api="T:Microsoft.Win32.RegistryKey" />
+        <element api="T:Microsoft.Win32.RegistryOptions" />
+        <element api="T:Microsoft.Win32.RegistryValueKind" />
+        <element api="T:Microsoft.Win32.RegistryValueOptions" />
+        <element api="T:Microsoft.Win32.RegistryView" />
+        <element api="T:Microsoft.Win32.RegistryAclExtensions" />
+      </elements>
+      <file name="a5507020-3cda-8f62-0599-2f5f17962318" />
+    </api>
+    <api id="T:Microsoft.Win32.Registry">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.Registry" />
+      <apidata name="Registry" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+      </containers>
+      <file name="21921d1b-8117-605d-1e76-94acb46d4da5" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.Registry">
+      <topicdata name="Registry" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.Registry" />
+      <apidata name="Registry" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Win32.Registry.ClassesRoot" />
+        <element api="F:Microsoft.Win32.Registry.CurrentConfig" />
+        <element api="F:Microsoft.Win32.Registry.CurrentUser" />
+        <element api="M:Microsoft.Win32.Registry.GetValue(System.String,System.String,System.Object)" />
+        <element api="F:Microsoft.Win32.Registry.LocalMachine" />
+        <element api="F:Microsoft.Win32.Registry.PerformanceData" />
+        <element api="Overload:Microsoft.Win32.Registry.SetValue">
+          <element api="M:Microsoft.Win32.Registry.SetValue(System.String,System.String,System.Object)" />
+          <element api="M:Microsoft.Win32.Registry.SetValue(System.String,System.String,System.Object,Microsoft.Win32.RegistryValueKind)" />
+        </element>
+        <element api="F:Microsoft.Win32.Registry.Users" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.Registry" />
+      </containers>
+      <file name="3eca9c42-98dd-d377-9500-dfdf55f963e5" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.Registry">
+      <topicdata name="Registry" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.Registry" />
+      <apidata name="Registry" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Win32.Registry.GetValue(System.String,System.String,System.Object)" />
+        <element api="Overload:Microsoft.Win32.Registry.SetValue">
+          <element api="M:Microsoft.Win32.Registry.SetValue(System.String,System.String,System.Object)" />
+          <element api="M:Microsoft.Win32.Registry.SetValue(System.String,System.String,System.Object,Microsoft.Win32.RegistryValueKind)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.Registry" />
+      </containers>
+      <file name="c94d7745-2639-5b4c-899c-f2400e711514" />
+    </api>
+    <api id="Fields.T:Microsoft.Win32.Registry">
+      <topicdata name="Registry" group="list" subgroup="Fields" typeTopicId="T:Microsoft.Win32.Registry" />
+      <apidata name="Registry" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Win32.Registry.ClassesRoot" />
+        <element api="F:Microsoft.Win32.Registry.CurrentConfig" />
+        <element api="F:Microsoft.Win32.Registry.CurrentUser" />
+        <element api="F:Microsoft.Win32.Registry.LocalMachine" />
+        <element api="F:Microsoft.Win32.Registry.PerformanceData" />
+        <element api="F:Microsoft.Win32.Registry.Users" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.Registry" />
+      </containers>
+      <file name="ff7fcabd-b3b6-83d1-1a2b-5f3a4f1fd79d" />
+    </api>
+    <api id="Overload:Microsoft.Win32.Registry.SetValue">
+      <topicdata name="SetValue" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Win32.Registry" />
+      <apidata name="SetValue" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Win32.Registry.SetValue(System.String,System.String,System.Object)" />
+        <element api="M:Microsoft.Win32.Registry.SetValue(System.String,System.String,System.Object,Microsoft.Win32.RegistryValueKind)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.Registry" ref="true" />
+      </containers>
+      <file name="bd253c92-8173-08a5-2a68-1b5b63165030" />
+    </api>
+    <api id="F:Microsoft.Win32.Registry.ClassesRoot">
+      <topicdata group="api" />
+      <apidata name="ClassesRoot" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.Registry" ref="true" />
+      </containers>
+      <file name="c96cc74b-c45c-d421-c1b8-0bf6400adae6" />
+    </api>
+    <api id="F:Microsoft.Win32.Registry.CurrentConfig">
+      <topicdata group="api" />
+      <apidata name="CurrentConfig" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.Registry" ref="true" />
+      </containers>
+      <file name="cb898dea-23a9-27e0-18ed-7f55498f7fa9" />
+    </api>
+    <api id="F:Microsoft.Win32.Registry.CurrentUser">
+      <topicdata group="api" />
+      <apidata name="CurrentUser" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.Registry" ref="true" />
+      </containers>
+      <file name="16a8d70d-908e-84c5-d8e0-654a039cfb6c" />
+    </api>
+    <api id="M:Microsoft.Win32.Registry.GetValue(System.String,System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="keyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="valueName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="defaultValue">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.Registry" ref="true" />
+      </containers>
+      <file name="ac2df652-380e-b341-ee3f-95a7a96ec880" />
+    </api>
+    <api id="F:Microsoft.Win32.Registry.LocalMachine">
+      <topicdata group="api" />
+      <apidata name="LocalMachine" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.Registry" ref="true" />
+      </containers>
+      <file name="60d23e3c-9594-e690-c9a2-3a04e10ea51a" />
+    </api>
+    <api id="F:Microsoft.Win32.Registry.PerformanceData">
+      <topicdata group="api" />
+      <apidata name="PerformanceData" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.Registry" ref="true" />
+      </containers>
+      <file name="4df42d8e-7a91-8d70-7b2d-7bbe5b6a0020" />
+    </api>
+    <api id="M:Microsoft.Win32.Registry.SetValue(System.String,System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Microsoft.Win32.Registry.SetValue" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="keyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="valueName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.Registry" ref="true" />
+      </containers>
+      <file name="5b76dc44-007a-cf5e-c433-b4314f7cdf16" />
+    </api>
+    <api id="M:Microsoft.Win32.Registry.SetValue(System.String,System.String,System.Object,Microsoft.Win32.RegistryValueKind)">
+      <topicdata group="api" />
+      <apidata name="SetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Microsoft.Win32.Registry.SetValue" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="keyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="valueName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="valueKind">
+          <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.Registry" ref="true" />
+      </containers>
+      <file name="cfc9e450-222f-b70d-19e2-60efcb781fa1" />
+    </api>
+    <api id="F:Microsoft.Win32.Registry.Users">
+      <topicdata group="api" />
+      <apidata name="Users" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.Registry" ref="true" />
+      </containers>
+      <file name="15a640ce-ed88-f528-908b-f913c4de12ab" />
+    </api>
+    <api id="T:Microsoft.Win32.RegistryAclExtensions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.RegistryAclExtensions" />
+      <apidata name="RegistryAclExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry.AccessControl" module="Microsoft.Win32.Registry.AccessControl" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="521b612c-68ce-e9f7-ae7e-f11832c40a54" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.RegistryAclExtensions">
+      <topicdata name="RegistryAclExtensions" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.RegistryAclExtensions" />
+      <apidata name="RegistryAclExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Win32.RegistryAclExtensions.GetAccessControl">
+          <element api="M:Microsoft.Win32.RegistryAclExtensions.GetAccessControl(Microsoft.Win32.RegistryKey)" />
+          <element api="M:Microsoft.Win32.RegistryAclExtensions.GetAccessControl(Microsoft.Win32.RegistryKey,System.Security.AccessControl.AccessControlSections)" />
+        </element>
+        <element api="M:Microsoft.Win32.RegistryAclExtensions.SetAccessControl(Microsoft.Win32.RegistryKey,System.Security.AccessControl.RegistrySecurity)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry.AccessControl" module="Microsoft.Win32.Registry.AccessControl" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryAclExtensions" />
+      </containers>
+      <file name="0c527c43-51c7-76a4-3aee-ed6e1d80d3d6" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.RegistryAclExtensions">
+      <topicdata name="RegistryAclExtensions" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.RegistryAclExtensions" />
+      <apidata name="RegistryAclExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Win32.RegistryAclExtensions.GetAccessControl">
+          <element api="M:Microsoft.Win32.RegistryAclExtensions.GetAccessControl(Microsoft.Win32.RegistryKey)" />
+          <element api="M:Microsoft.Win32.RegistryAclExtensions.GetAccessControl(Microsoft.Win32.RegistryKey,System.Security.AccessControl.AccessControlSections)" />
+        </element>
+        <element api="M:Microsoft.Win32.RegistryAclExtensions.SetAccessControl(Microsoft.Win32.RegistryKey,System.Security.AccessControl.RegistrySecurity)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry.AccessControl" module="Microsoft.Win32.Registry.AccessControl" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryAclExtensions" />
+      </containers>
+      <file name="e9ad0476-2725-de9e-b70e-ef5e3438d448" />
+    </api>
+    <api id="Overload:Microsoft.Win32.RegistryAclExtensions.GetAccessControl">
+      <topicdata name="GetAccessControl" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Win32.RegistryAclExtensions" />
+      <apidata name="GetAccessControl" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Win32.RegistryAclExtensions.GetAccessControl(Microsoft.Win32.RegistryKey)" />
+        <element api="M:Microsoft.Win32.RegistryAclExtensions.GetAccessControl(Microsoft.Win32.RegistryKey,System.Security.AccessControl.AccessControlSections)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry.AccessControl" module="Microsoft.Win32.Registry.AccessControl" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryAclExtensions" ref="true" />
+      </containers>
+      <file name="a4756c03-51c3-e65d-22ca-ba2a3409287d" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryAclExtensions.GetAccessControl(Microsoft.Win32.RegistryKey)">
+      <topicdata group="api" />
+      <apidata name="GetAccessControl" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Microsoft.Win32.RegistryAclExtensions.GetAccessControl" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Security.AccessControl.RegistrySecurity" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry.AccessControl" module="Microsoft.Win32.Registry.AccessControl" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryAclExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="5519e36c-7894-da2e-fc43-ff82e4ea06a4" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryAclExtensions.GetAccessControl(Microsoft.Win32.RegistryKey,System.Security.AccessControl.AccessControlSections)">
+      <topicdata group="api" />
+      <apidata name="GetAccessControl" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Microsoft.Win32.RegistryAclExtensions.GetAccessControl" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+        </parameter>
+        <parameter name="includeSections">
+          <type api="T:System.Security.AccessControl.AccessControlSections" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Security.AccessControl.RegistrySecurity" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry.AccessControl" module="Microsoft.Win32.Registry.AccessControl" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryAclExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="30799ba9-e53e-8b23-c5f2-f52d268cbfdb" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryAclExtensions.SetAccessControl(Microsoft.Win32.RegistryKey,System.Security.AccessControl.RegistrySecurity)">
+      <topicdata group="api" />
+      <apidata name="SetAccessControl" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+        </parameter>
+        <parameter name="registrySecurity">
+          <type api="T:System.Security.AccessControl.RegistrySecurity" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry.AccessControl" module="Microsoft.Win32.Registry.AccessControl" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryAclExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8aea33a9-85d3-9ea4-fa07-346a88fa4897" />
+    </api>
+    <api id="T:Microsoft.Win32.RegistryHive">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.RegistryHive" />
+      <apidata name="RegistryHive" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+      </containers>
+      <file name="3a6223b2-814f-5f0c-c58c-f1978e53296f" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.RegistryHive">
+      <topicdata name="RegistryHive" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.RegistryHive" />
+      <apidata name="RegistryHive" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Win32.RegistryHive.ClassesRoot" />
+        <element api="F:Microsoft.Win32.RegistryHive.CurrentConfig" />
+        <element api="F:Microsoft.Win32.RegistryHive.CurrentUser" />
+        <element api="F:Microsoft.Win32.RegistryHive.LocalMachine" />
+        <element api="F:Microsoft.Win32.RegistryHive.PerformanceData" />
+        <element api="F:Microsoft.Win32.RegistryHive.Users" />
+        <element api="F:Microsoft.Win32.RegistryHive.value__" />
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:Microsoft.Win32.RegistryHive.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryHive" />
+      </containers>
+      <file name="de1d4f40-a422-a450-27c1-5c5441287c2b" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.RegistryHive">
+      <topicdata name="RegistryHive" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.RegistryHive" />
+      <apidata name="RegistryHive" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:Microsoft.Win32.RegistryHive.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryHive" />
+      </containers>
+      <file name="04adc986-a2c1-d4c3-a40d-2012c7d2e71a" />
+    </api>
+    <api id="Fields.T:Microsoft.Win32.RegistryHive">
+      <topicdata name="RegistryHive" group="list" subgroup="Fields" typeTopicId="T:Microsoft.Win32.RegistryHive" />
+      <apidata name="RegistryHive" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Win32.RegistryHive.ClassesRoot" />
+        <element api="F:Microsoft.Win32.RegistryHive.CurrentConfig" />
+        <element api="F:Microsoft.Win32.RegistryHive.CurrentUser" />
+        <element api="F:Microsoft.Win32.RegistryHive.LocalMachine" />
+        <element api="F:Microsoft.Win32.RegistryHive.PerformanceData" />
+        <element api="F:Microsoft.Win32.RegistryHive.Users" />
+        <element api="F:Microsoft.Win32.RegistryHive.value__" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryHive" />
+      </containers>
+      <file name="f6422e52-3060-bb49-7618-0226c5032145" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryHive.ClassesRoot">
+      <topicdata group="api" />
+      <apidata name="ClassesRoot" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryHive" ref="true" />
+      </returns>
+      <value>-2147483648</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryHive" ref="true" />
+      </containers>
+      <file name="20fd803d-906a-fc08-d560-aed2cd17eb31" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryHive.CurrentConfig">
+      <topicdata group="api" />
+      <apidata name="CurrentConfig" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryHive" ref="true" />
+      </returns>
+      <value>-2147483643</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryHive" ref="true" />
+      </containers>
+      <file name="6fcd7f7e-d637-8c0f-c296-c56e14cd8ce7" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryHive.CurrentUser">
+      <topicdata group="api" />
+      <apidata name="CurrentUser" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryHive" ref="true" />
+      </returns>
+      <value>-2147483647</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryHive" ref="true" />
+      </containers>
+      <file name="1beeaf01-a495-3dbd-d282-09205b2a2fee" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryHive.LocalMachine">
+      <topicdata group="api" />
+      <apidata name="LocalMachine" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryHive" ref="true" />
+      </returns>
+      <value>-2147483646</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryHive" ref="true" />
+      </containers>
+      <file name="e8743ead-59ec-94df-30f3-e17a704f3b0c" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryHive.PerformanceData">
+      <topicdata group="api" />
+      <apidata name="PerformanceData" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryHive" ref="true" />
+      </returns>
+      <value>-2147483644</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryHive" ref="true" />
+      </containers>
+      <file name="00e079ee-224c-acde-bd46-c83456d5de56" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryHive.Users">
+      <topicdata group="api" />
+      <apidata name="Users" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryHive" ref="true" />
+      </returns>
+      <value>-2147483645</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryHive" ref="true" />
+      </containers>
+      <file name="3a6f18cf-df8e-5ac7-3a54-8bf2094f5126" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryHive.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryHive" ref="true" />
+      </containers>
+      <file name="f8396562-b0a8-6191-4d6a-ecce5fba0990" />
+    </api>
+    <api id="T:Microsoft.Win32.RegistryKey">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.RegistryKey" />
+      <apidata name="RegistryKey" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+      </containers>
+      <file name="f3e01688-0bc4-1302-df79-0eba96750f58" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.RegistryKey">
+      <topicdata name="RegistryKey" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.RegistryKey" />
+      <apidata name="RegistryKey" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Win32.RegistryKey.CreateSubKey">
+          <element api="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String)" />
+          <element api="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,System.Boolean)" />
+          <element api="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,System.Boolean,Microsoft.Win32.RegistryOptions)" />
+        </element>
+        <element api="Overload:Microsoft.Win32.RegistryKey.DeleteSubKey">
+          <element api="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)" />
+          <element api="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String,System.Boolean)" />
+        </element>
+        <element api="Overload:Microsoft.Win32.RegistryKey.DeleteSubKeyTree">
+          <element api="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String)" />
+          <element api="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String,System.Boolean)" />
+        </element>
+        <element api="Overload:Microsoft.Win32.RegistryKey.DeleteValue">
+          <element api="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String)" />
+          <element api="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String,System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.Win32.RegistryKey.Dispose" />
+        <element api="M:Microsoft.Win32.RegistryKey.Flush" />
+        <element api="Overload:Microsoft.Win32.RegistryKey.FromHandle">
+          <element api="M:Microsoft.Win32.RegistryKey.FromHandle(Microsoft.Win32.SafeHandles.SafeRegistryHandle)" />
+          <element api="M:Microsoft.Win32.RegistryKey.FromHandle(Microsoft.Win32.SafeHandles.SafeRegistryHandle,Microsoft.Win32.RegistryView)" />
+        </element>
+        <element api="M:Microsoft.Win32.RegistryKey.GetSubKeyNames" />
+        <element api="Overload:Microsoft.Win32.RegistryKey.GetValue">
+          <element api="M:Microsoft.Win32.RegistryKey.GetValue(System.String)" />
+          <element api="M:Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object)" />
+          <element api="M:Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object,Microsoft.Win32.RegistryValueOptions)" />
+        </element>
+        <element api="M:Microsoft.Win32.RegistryKey.GetValueKind(System.String)" />
+        <element api="M:Microsoft.Win32.RegistryKey.GetValueNames" />
+        <element api="P:Microsoft.Win32.RegistryKey.Handle" />
+        <element api="P:Microsoft.Win32.RegistryKey.Name" />
+        <element api="M:Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive,Microsoft.Win32.RegistryView)" />
+        <element api="Overload:Microsoft.Win32.RegistryKey.OpenSubKey">
+          <element api="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String)" />
+          <element api="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Boolean)" />
+          <element api="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Security.AccessControl.RegistryRights)" />
+        </element>
+        <element api="Overload:Microsoft.Win32.RegistryKey.SetValue">
+          <element api="M:Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object)" />
+          <element api="M:Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object,Microsoft.Win32.RegistryValueKind)" />
+        </element>
+        <element api="P:Microsoft.Win32.RegistryKey.SubKeyCount" />
+        <element api="M:Microsoft.Win32.RegistryKey.ToString" />
+        <element api="P:Microsoft.Win32.RegistryKey.ValueCount" />
+        <element api="P:Microsoft.Win32.RegistryKey.View" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" />
+      </containers>
+      <file name="2760f739-4031-153e-db33-60fcc64c43e4" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.RegistryKey">
+      <topicdata name="RegistryKey" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.RegistryKey" />
+      <apidata name="RegistryKey" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Win32.RegistryKey.CreateSubKey">
+          <element api="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String)" />
+          <element api="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,System.Boolean)" />
+          <element api="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,System.Boolean,Microsoft.Win32.RegistryOptions)" />
+        </element>
+        <element api="Overload:Microsoft.Win32.RegistryKey.DeleteSubKey">
+          <element api="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)" />
+          <element api="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String,System.Boolean)" />
+        </element>
+        <element api="Overload:Microsoft.Win32.RegistryKey.DeleteSubKeyTree">
+          <element api="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String)" />
+          <element api="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String,System.Boolean)" />
+        </element>
+        <element api="Overload:Microsoft.Win32.RegistryKey.DeleteValue">
+          <element api="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String)" />
+          <element api="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String,System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.Win32.RegistryKey.Dispose" />
+        <element api="M:Microsoft.Win32.RegistryKey.Flush" />
+        <element api="Overload:Microsoft.Win32.RegistryKey.FromHandle">
+          <element api="M:Microsoft.Win32.RegistryKey.FromHandle(Microsoft.Win32.SafeHandles.SafeRegistryHandle)" />
+          <element api="M:Microsoft.Win32.RegistryKey.FromHandle(Microsoft.Win32.SafeHandles.SafeRegistryHandle,Microsoft.Win32.RegistryView)" />
+        </element>
+        <element api="M:Microsoft.Win32.RegistryKey.GetSubKeyNames" />
+        <element api="Overload:Microsoft.Win32.RegistryKey.GetValue">
+          <element api="M:Microsoft.Win32.RegistryKey.GetValue(System.String)" />
+          <element api="M:Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object)" />
+          <element api="M:Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object,Microsoft.Win32.RegistryValueOptions)" />
+        </element>
+        <element api="M:Microsoft.Win32.RegistryKey.GetValueKind(System.String)" />
+        <element api="M:Microsoft.Win32.RegistryKey.GetValueNames" />
+        <element api="M:Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive,Microsoft.Win32.RegistryView)" />
+        <element api="Overload:Microsoft.Win32.RegistryKey.OpenSubKey">
+          <element api="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String)" />
+          <element api="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Boolean)" />
+          <element api="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Security.AccessControl.RegistryRights)" />
+        </element>
+        <element api="Overload:Microsoft.Win32.RegistryKey.SetValue">
+          <element api="M:Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object)" />
+          <element api="M:Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object,Microsoft.Win32.RegistryValueKind)" />
+        </element>
+        <element api="M:Microsoft.Win32.RegistryKey.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" />
+      </containers>
+      <file name="3ce8f17e-5e68-3193-d648-0c09f782cf93" />
+    </api>
+    <api id="Properties.T:Microsoft.Win32.RegistryKey">
+      <topicdata name="RegistryKey" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Win32.RegistryKey" />
+      <apidata name="RegistryKey" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Win32.RegistryKey.Handle" />
+        <element api="P:Microsoft.Win32.RegistryKey.Name" />
+        <element api="P:Microsoft.Win32.RegistryKey.SubKeyCount" />
+        <element api="P:Microsoft.Win32.RegistryKey.ValueCount" />
+        <element api="P:Microsoft.Win32.RegistryKey.View" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" />
+      </containers>
+      <file name="59e04121-f636-3635-da8a-b91850a61659" />
+    </api>
+    <api id="Overload:Microsoft.Win32.RegistryKey.CreateSubKey">
+      <topicdata name="CreateSubKey" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Win32.RegistryKey" />
+      <apidata name="CreateSubKey" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String)" />
+        <element api="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,System.Boolean)" />
+        <element api="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,System.Boolean,Microsoft.Win32.RegistryOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="ddd3a2b5-2093-168b-0e36-eff12ab361fe" />
+    </api>
+    <api id="Overload:Microsoft.Win32.RegistryKey.DeleteSubKey">
+      <topicdata name="DeleteSubKey" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Win32.RegistryKey" />
+      <apidata name="DeleteSubKey" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)" />
+        <element api="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="187332c9-5806-cd18-0ee7-cea9bdbb32c1" />
+    </api>
+    <api id="Overload:Microsoft.Win32.RegistryKey.DeleteSubKeyTree">
+      <topicdata name="DeleteSubKeyTree" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Win32.RegistryKey" />
+      <apidata name="DeleteSubKeyTree" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String)" />
+        <element api="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="ecaf7575-caee-fb94-9f12-4513f03f3edd" />
+    </api>
+    <api id="Overload:Microsoft.Win32.RegistryKey.DeleteValue">
+      <topicdata name="DeleteValue" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Win32.RegistryKey" />
+      <apidata name="DeleteValue" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String)" />
+        <element api="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="d1ab50fa-147c-70f3-f6a4-a36ae2821d44" />
+    </api>
+    <api id="Overload:Microsoft.Win32.RegistryKey.FromHandle">
+      <topicdata name="FromHandle" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Win32.RegistryKey" />
+      <apidata name="FromHandle" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Win32.RegistryKey.FromHandle(Microsoft.Win32.SafeHandles.SafeRegistryHandle)" />
+        <element api="M:Microsoft.Win32.RegistryKey.FromHandle(Microsoft.Win32.SafeHandles.SafeRegistryHandle,Microsoft.Win32.RegistryView)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="43d0299a-fca8-33a2-6d5d-197747bd173e" />
+    </api>
+    <api id="Overload:Microsoft.Win32.RegistryKey.GetValue">
+      <topicdata name="GetValue" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Win32.RegistryKey" />
+      <apidata name="GetValue" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Win32.RegistryKey.GetValue(System.String)" />
+        <element api="M:Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object)" />
+        <element api="M:Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object,Microsoft.Win32.RegistryValueOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="eda3e01c-f96a-8c01-c6ac-e6eb188702ff" />
+    </api>
+    <api id="Overload:Microsoft.Win32.RegistryKey.OpenSubKey">
+      <topicdata name="OpenSubKey" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Win32.RegistryKey" />
+      <apidata name="OpenSubKey" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String)" />
+        <element api="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Boolean)" />
+        <element api="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Security.AccessControl.RegistryRights)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="3c5cdb8f-bc58-d599-324c-222ceea451c7" />
+    </api>
+    <api id="Overload:Microsoft.Win32.RegistryKey.SetValue">
+      <topicdata name="SetValue" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Win32.RegistryKey" />
+      <apidata name="SetValue" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object)" />
+        <element api="M:Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object,Microsoft.Win32.RegistryValueKind)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="303a57e6-c529-3508-03dc-499a0a76c808" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateSubKey" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.CreateSubKey" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="subkey">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="c43a0a06-2350-962e-6f5c-0cba7ee1ea2c" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="CreateSubKey" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.CreateSubKey" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="subkey">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="writable">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="a6363301-a036-5b37-fa14-a4c9cafd37d0" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,System.Boolean,Microsoft.Win32.RegistryOptions)">
+      <topicdata group="api" />
+      <apidata name="CreateSubKey" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.CreateSubKey" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="subkey">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="writable">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="options">
+          <type api="T:Microsoft.Win32.RegistryOptions" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="01014cc3-fde7-0888-6701-791f7458d6c4" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)">
+      <topicdata group="api" />
+      <apidata name="DeleteSubKey" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.DeleteSubKey" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="subkey">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="a348cb19-3e41-9b30-863e-0af60500791c" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="DeleteSubKey" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.DeleteSubKey" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="subkey">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="throwOnMissingSubKey">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="90cc5787-23ff-249c-de30-e0f750902634" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String)">
+      <topicdata group="api" />
+      <apidata name="DeleteSubKeyTree" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.DeleteSubKeyTree" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="subkey">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="33eb8946-2f4e-0b5d-a190-41afbdae9cda" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="DeleteSubKeyTree" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.DeleteSubKeyTree" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="subkey">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="throwOnMissingSubKey">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="7d169827-519e-0bf6-d187-b60da3dc3d10" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String)">
+      <topicdata group="api" />
+      <apidata name="DeleteValue" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.DeleteValue" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="ce3d79ab-2983-050b-e73c-5785060d279b" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="DeleteValue" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.DeleteValue" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="throwOnMissingValue">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="ba7b8d94-ff2f-1a89-9f6a-eff45e6def78" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="19b5d17f-92e6-a53c-9c47-ee016aacdef8" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.Flush">
+      <topicdata group="api" />
+      <apidata name="Flush" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="ce4ed1a4-5101-a11c-c465-18b5027914f5" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.FromHandle(Microsoft.Win32.SafeHandles.SafeRegistryHandle)">
+      <topicdata group="api" />
+      <apidata name="FromHandle" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Microsoft.Win32.RegistryKey.FromHandle" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handle">
+          <type api="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="16c1e185-f646-7296-305c-32521d16cb72" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.FromHandle(Microsoft.Win32.SafeHandles.SafeRegistryHandle,Microsoft.Win32.RegistryView)">
+      <topicdata group="api" />
+      <apidata name="FromHandle" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Microsoft.Win32.RegistryKey.FromHandle" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handle">
+          <type api="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" ref="true" />
+        </parameter>
+        <parameter name="view">
+          <type api="T:Microsoft.Win32.RegistryView" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8cde3f1b-4001-7153-d594-567ea46a6d3e" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.GetSubKeyNames">
+      <topicdata group="api" />
+      <apidata name="GetSubKeyNames" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="de50e687-e937-0e75-4aed-0396bd24c4fa" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.GetValue(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.GetValue" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="818ab129-ca39-6439-7911-b19ce6b461dd" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.GetValue" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="defaultValue">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="0cc43287-171c-7445-6b98-76cc5be46256" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object,Microsoft.Win32.RegistryValueOptions)">
+      <topicdata group="api" />
+      <apidata name="GetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.GetValue" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="defaultValue">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="options">
+          <type api="T:Microsoft.Win32.RegistryValueOptions" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="0c1183d2-bda2-fda5-5c5f-30ebb0cc0658" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.GetValueKind(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetValueKind" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="1ec27897-1734-423a-0774-37d447cbb24a" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.GetValueNames">
+      <topicdata group="api" />
+      <apidata name="GetValueNames" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="4312a548-4511-7ddd-fd04-8cd99eb91c91" />
+    </api>
+    <api id="P:Microsoft.Win32.RegistryKey.Handle">
+      <topicdata group="api" />
+      <apidata name="Handle" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Handle">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="1c9a678b-205c-5b4e-79e9-71f001bf6d2d" />
+    </api>
+    <api id="P:Microsoft.Win32.RegistryKey.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="5b584127-0412-73b3-632b-da87553b8d4c" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive,Microsoft.Win32.RegistryView)">
+      <topicdata group="api" />
+      <apidata name="OpenBaseKey" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="hKey">
+          <type api="T:Microsoft.Win32.RegistryHive" ref="true" />
+        </parameter>
+        <parameter name="view">
+          <type api="T:Microsoft.Win32.RegistryView" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="7dbdbf0d-36d3-9041-1cbe-e4793d7dc64c" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String)">
+      <topicdata group="api" />
+      <apidata name="OpenSubKey" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.OpenSubKey" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="fc1a7f53-c6d9-9de8-d7e6-803efb2ae0b6" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="OpenSubKey" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.OpenSubKey" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="writable">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="9c23150f-fa46-b02f-1bbb-c6ea1688f3c3" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Security.AccessControl.RegistryRights)">
+      <topicdata group="api" />
+      <apidata name="OpenSubKey" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.OpenSubKey" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="rights">
+          <type api="T:System.Security.AccessControl.RegistryRights" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="1d030ec0-ee29-8a4e-1104-22a03a466e24" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.SetValue" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="572761c2-764e-c7a5-9968-ce8e7ffd027c" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object,Microsoft.Win32.RegistryValueKind)">
+      <topicdata group="api" />
+      <apidata name="SetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Win32.RegistryKey.SetValue" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="valueKind">
+          <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="b0cdc1da-6501-cde5-8fa6-ae6256bd266f" />
+    </api>
+    <api id="P:Microsoft.Win32.RegistryKey.SubKeyCount">
+      <topicdata group="api" />
+      <apidata name="SubKeyCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SubKeyCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="1ba706da-96f0-bbbb-01cd-9cd025e82124" />
+    </api>
+    <api id="M:Microsoft.Win32.RegistryKey.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="e2205b3e-cb69-9c35-1e0d-3989858cf454" />
+    </api>
+    <api id="P:Microsoft.Win32.RegistryKey.ValueCount">
+      <topicdata group="api" />
+      <apidata name="ValueCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ValueCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="d6be9149-37ec-04df-2c38-6bec04b57af1" />
+    </api>
+    <api id="P:Microsoft.Win32.RegistryKey.View">
+      <topicdata group="api" />
+      <apidata name="View" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_View" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryView" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+      </containers>
+      <file name="5e03e0ba-7e59-c37d-42c8-f56f0bde87d1" />
+    </api>
+    <api id="T:Microsoft.Win32.RegistryOptions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.RegistryOptions" />
+      <apidata name="RegistryOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c515634c-b6a3-1ea3-5d54-9fc96559d78d" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.RegistryOptions">
+      <topicdata name="RegistryOptions" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.RegistryOptions" />
+      <apidata name="RegistryOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Win32.RegistryOptions.None" />
+        <element api="F:Microsoft.Win32.RegistryOptions.value__" />
+        <element api="F:Microsoft.Win32.RegistryOptions.Volatile" />
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:Microsoft.Win32.RegistryOptions.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryOptions" />
+      </containers>
+      <file name="039231eb-1621-02e5-598b-28eb76f0071e" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.RegistryOptions">
+      <topicdata name="RegistryOptions" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.RegistryOptions" />
+      <apidata name="RegistryOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:Microsoft.Win32.RegistryOptions.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryOptions" />
+      </containers>
+      <file name="e05281a5-77cc-13c3-d401-da4437b0bda4" />
+    </api>
+    <api id="Fields.T:Microsoft.Win32.RegistryOptions">
+      <topicdata name="RegistryOptions" group="list" subgroup="Fields" typeTopicId="T:Microsoft.Win32.RegistryOptions" />
+      <apidata name="RegistryOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Win32.RegistryOptions.None" />
+        <element api="F:Microsoft.Win32.RegistryOptions.value__" />
+        <element api="F:Microsoft.Win32.RegistryOptions.Volatile" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryOptions" />
+      </containers>
+      <file name="799fdee3-ea28-7349-eee0-84d8839c989c" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryOptions.None">
+      <topicdata group="api" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryOptions" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryOptions" ref="true" />
+      </containers>
+      <file name="45803820-ca20-de38-a72e-c08f04212623" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryOptions.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryOptions" ref="true" />
+      </containers>
+      <file name="9cf43dd4-0783-69b0-120b-8528bc75005f" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryOptions.Volatile">
+      <topicdata group="api" />
+      <apidata name="Volatile" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryOptions" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryOptions" ref="true" />
+      </containers>
+      <file name="bca8f624-f2fc-9966-3c54-f230dbc2755f" />
+    </api>
+    <api id="T:Microsoft.Win32.RegistryValueKind">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.RegistryValueKind" />
+      <apidata name="RegistryValueKind" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+      </containers>
+      <file name="7c8b5393-e92e-00b8-601d-de9d23f42b32" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.RegistryValueKind">
+      <topicdata name="RegistryValueKind" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.RegistryValueKind" />
+      <apidata name="RegistryValueKind" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Win32.RegistryValueKind.Binary" />
+        <element api="F:Microsoft.Win32.RegistryValueKind.DWord" />
+        <element api="F:Microsoft.Win32.RegistryValueKind.ExpandString" />
+        <element api="F:Microsoft.Win32.RegistryValueKind.MultiString" />
+        <element api="F:Microsoft.Win32.RegistryValueKind.None" />
+        <element api="F:Microsoft.Win32.RegistryValueKind.QWord" />
+        <element api="F:Microsoft.Win32.RegistryValueKind.String" />
+        <element api="F:Microsoft.Win32.RegistryValueKind.Unknown" />
+        <element api="F:Microsoft.Win32.RegistryValueKind.value__" />
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:Microsoft.Win32.RegistryValueKind.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueKind" />
+      </containers>
+      <file name="638d35c8-4574-24b6-d96a-652a879725fd" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.RegistryValueKind">
+      <topicdata name="RegistryValueKind" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.RegistryValueKind" />
+      <apidata name="RegistryValueKind" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:Microsoft.Win32.RegistryValueKind.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueKind" />
+      </containers>
+      <file name="4bbd9d58-c449-807c-69af-9ca07a694777" />
+    </api>
+    <api id="Fields.T:Microsoft.Win32.RegistryValueKind">
+      <topicdata name="RegistryValueKind" group="list" subgroup="Fields" typeTopicId="T:Microsoft.Win32.RegistryValueKind" />
+      <apidata name="RegistryValueKind" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Win32.RegistryValueKind.Binary" />
+        <element api="F:Microsoft.Win32.RegistryValueKind.DWord" />
+        <element api="F:Microsoft.Win32.RegistryValueKind.ExpandString" />
+        <element api="F:Microsoft.Win32.RegistryValueKind.MultiString" />
+        <element api="F:Microsoft.Win32.RegistryValueKind.None" />
+        <element api="F:Microsoft.Win32.RegistryValueKind.QWord" />
+        <element api="F:Microsoft.Win32.RegistryValueKind.String" />
+        <element api="F:Microsoft.Win32.RegistryValueKind.Unknown" />
+        <element api="F:Microsoft.Win32.RegistryValueKind.value__" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueKind" />
+      </containers>
+      <file name="afe90b82-4186-2de0-b2a8-f03d3a5a738d" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryValueKind.Binary">
+      <topicdata group="api" />
+      <apidata name="Binary" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </containers>
+      <file name="e12479ac-399d-e82b-c34d-539b3383bb9a" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryValueKind.DWord">
+      <topicdata group="api" />
+      <apidata name="DWord" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </containers>
+      <file name="eba5ef0e-1558-a708-0e1f-4121b9c429cc" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryValueKind.ExpandString">
+      <topicdata group="api" />
+      <apidata name="ExpandString" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </containers>
+      <file name="e9cfe27b-9158-fbb1-2fe1-779be1ab708c" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryValueKind.MultiString">
+      <topicdata group="api" />
+      <apidata name="MultiString" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </containers>
+      <file name="56275b08-61db-71f8-72d4-e46f91c1f187" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryValueKind.None">
+      <topicdata group="api" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </returns>
+      <value>-1</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </containers>
+      <file name="3c68c095-e0c9-6a9a-3da4-857ac96e8fe7" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryValueKind.QWord">
+      <topicdata group="api" />
+      <apidata name="QWord" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </containers>
+      <file name="2990c4d8-9efe-9ca1-e578-920c31987871" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryValueKind.String">
+      <topicdata group="api" />
+      <apidata name="String" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </containers>
+      <file name="14d1b62f-de43-d719-5d5b-e0883781d4d6" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryValueKind.Unknown">
+      <topicdata group="api" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </containers>
+      <file name="e40cd0dd-e74b-e481-513f-fe4ac103cd4b" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryValueKind.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueKind" ref="true" />
+      </containers>
+      <file name="2da3dc89-5e2a-b377-4be9-1fcfb340e7a7" />
+    </api>
+    <api id="T:Microsoft.Win32.RegistryValueOptions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.RegistryValueOptions" />
+      <apidata name="RegistryValueOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4eeb2c20-003c-8a38-f0bf-d03b99e9ed67" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.RegistryValueOptions">
+      <topicdata name="RegistryValueOptions" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.RegistryValueOptions" />
+      <apidata name="RegistryValueOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Win32.RegistryValueOptions.DoNotExpandEnvironmentNames" />
+        <element api="F:Microsoft.Win32.RegistryValueOptions.None" />
+        <element api="F:Microsoft.Win32.RegistryValueOptions.value__" />
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:Microsoft.Win32.RegistryValueOptions.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueOptions" />
+      </containers>
+      <file name="784ff2f2-a915-d4a0-b7ad-a3aae5efc3cb" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.RegistryValueOptions">
+      <topicdata name="RegistryValueOptions" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.RegistryValueOptions" />
+      <apidata name="RegistryValueOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:Microsoft.Win32.RegistryValueOptions.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueOptions" />
+      </containers>
+      <file name="42b7524f-1e78-534e-428c-9368f5445f08" />
+    </api>
+    <api id="Fields.T:Microsoft.Win32.RegistryValueOptions">
+      <topicdata name="RegistryValueOptions" group="list" subgroup="Fields" typeTopicId="T:Microsoft.Win32.RegistryValueOptions" />
+      <apidata name="RegistryValueOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Win32.RegistryValueOptions.DoNotExpandEnvironmentNames" />
+        <element api="F:Microsoft.Win32.RegistryValueOptions.None" />
+        <element api="F:Microsoft.Win32.RegistryValueOptions.value__" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueOptions" />
+      </containers>
+      <file name="7c0194a0-26a3-64cf-e833-b04f5b81df58" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryValueOptions.DoNotExpandEnvironmentNames">
+      <topicdata group="api" />
+      <apidata name="DoNotExpandEnvironmentNames" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryValueOptions" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueOptions" ref="true" />
+      </containers>
+      <file name="50b2391a-2386-6f44-bf7b-476c8181269a" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryValueOptions.None">
+      <topicdata group="api" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryValueOptions" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueOptions" ref="true" />
+      </containers>
+      <file name="c2bd981a-6162-6e74-f698-9390b7875c27" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryValueOptions.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryValueOptions" ref="true" />
+      </containers>
+      <file name="7cb47357-5c40-5bc9-6fb7-2bc114a4652a" />
+    </api>
+    <api id="T:Microsoft.Win32.RegistryView">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Win32.RegistryView" />
+      <apidata name="RegistryView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+      </containers>
+      <file name="df1972b5-ef42-394a-ab9c-fcd775b17b53" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Win32.RegistryView">
+      <topicdata name="RegistryView" group="list" subgroup="members" typeTopicId="T:Microsoft.Win32.RegistryView" />
+      <apidata name="RegistryView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Win32.RegistryView.Default" />
+        <element api="F:Microsoft.Win32.RegistryView.Registry32" />
+        <element api="F:Microsoft.Win32.RegistryView.Registry64" />
+        <element api="F:Microsoft.Win32.RegistryView.value__" />
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:Microsoft.Win32.RegistryView.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryView" />
+      </containers>
+      <file name="c6eac5be-f71b-0b52-d6e7-e9c55b6c57b3" />
+    </api>
+    <api id="Methods.T:Microsoft.Win32.RegistryView">
+      <topicdata name="RegistryView" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Win32.RegistryView" />
+      <apidata name="RegistryView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:Microsoft.Win32.RegistryView.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryView" />
+      </containers>
+      <file name="8038c6b7-5e5a-a977-b8c1-08d94f978c9c" />
+    </api>
+    <api id="Fields.T:Microsoft.Win32.RegistryView">
+      <topicdata name="RegistryView" group="list" subgroup="Fields" typeTopicId="T:Microsoft.Win32.RegistryView" />
+      <apidata name="RegistryView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Win32.RegistryView.Default" />
+        <element api="F:Microsoft.Win32.RegistryView.Registry32" />
+        <element api="F:Microsoft.Win32.RegistryView.Registry64" />
+        <element api="F:Microsoft.Win32.RegistryView.value__" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryView" />
+      </containers>
+      <file name="a50dfa07-13ca-44d9-0182-a722569c5e77" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryView.Default">
+      <topicdata group="api" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryView" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryView" ref="true" />
+      </containers>
+      <file name="abd2dfc3-1772-730c-62ba-06e282611b2f" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryView.Registry32">
+      <topicdata group="api" />
+      <apidata name="Registry32" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryView" ref="true" />
+      </returns>
+      <value>512</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryView" ref="true" />
+      </containers>
+      <file name="4a7b054e-4bfb-1221-c735-52bb44036a9b" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryView.Registry64">
+      <topicdata group="api" />
+      <apidata name="Registry64" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Win32.RegistryView" ref="true" />
+      </returns>
+      <value>256</value>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryView" ref="true" />
+      </containers>
+      <file name="2b72e5ad-aeee-7284-66fc-2640d2b7f5b0" />
+    </api>
+    <api id="F:Microsoft.Win32.RegistryView.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Win32.Registry" module="Microsoft.Win32.Registry" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:Microsoft.Win32" />
+        <type api="T:Microsoft.Win32.RegistryView" ref="true" />
+      </containers>
+      <file name="9e218802-253f-0ac6-c9e1-3b4c4e27ec8d" />
+    </api>
+  </apis>
+</reflection>

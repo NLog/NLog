@@ -1,0 +1,1590 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.UI.Popups">
+      <topicdata group="api" />
+      <apidata name="Windows.UI.Popups" group="namespace" />
+      <elements>
+        <element api="T:Windows.UI.Popups.MessageDialogOptions" />
+        <element api="T:Windows.UI.Popups.MessageDialog" />
+        <element api="T:Windows.UI.Popups.Placement" />
+        <element api="T:Windows.UI.Popups.UICommandInvokedHandler" />
+        <element api="T:Windows.UI.Popups.IUICommand" />
+        <element api="T:Windows.UI.Popups.UICommand" />
+        <element api="T:Windows.UI.Popups.UICommandSeparator" />
+        <element api="T:Windows.UI.Popups.PopupMenu" />
+      </elements>
+      <file name="89f4ea73-462f-275d-e679-3a88c913a037" />
+    </api>
+    <api id="T:Windows.UI.Popups.IUICommand">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Popups.IUICommand" />
+      <apidata name="IUICommand" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.UI.Popups.UICommand" ref="true" />
+        <type api="T:Windows.UI.Popups.UICommandSeparator" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1341733493</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>16709</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18431</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>172</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>127</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>223</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>241</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>193</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>250</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>91</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>15</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fa8bf8ff-c091-5c8a-6c10-d2d7de473007" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Popups.IUICommand">
+      <topicdata name="IUICommand" group="list" subgroup="members" typeTopicId="T:Windows.UI.Popups.IUICommand" />
+      <apidata name="IUICommand" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Popups.IUICommand.Id" />
+        <element api="P:Windows.UI.Popups.IUICommand.Invoked" />
+        <element api="P:Windows.UI.Popups.IUICommand.Label" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.IUICommand" />
+      </containers>
+      <file name="1191afd0-4764-a1ce-8a34-f451fbdd5fbf" />
+    </api>
+    <api id="Properties.T:Windows.UI.Popups.IUICommand">
+      <topicdata name="IUICommand" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Popups.IUICommand" />
+      <apidata name="IUICommand" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Popups.IUICommand.Id" />
+        <element api="P:Windows.UI.Popups.IUICommand.Invoked" />
+        <element api="P:Windows.UI.Popups.IUICommand.Label" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.IUICommand" />
+      </containers>
+      <file name="1a54cffc-51ed-74d6-95db-81f3695661e8" />
+    </api>
+    <api id="P:Windows.UI.Popups.IUICommand.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Id" />
+      <setter name="set_Id" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+      </containers>
+      <file name="ac2c1ea3-1fcd-d4b1-e007-45d974d1288b" />
+    </api>
+    <api id="P:Windows.UI.Popups.IUICommand.Invoked">
+      <topicdata group="api" />
+      <apidata name="Invoked" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Invoked" />
+      <setter name="set_Invoked" />
+      <returns>
+        <type api="T:Windows.UI.Popups.UICommandInvokedHandler" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+      </containers>
+      <file name="68750552-d97e-1698-57b3-82dd409c2cf3" />
+    </api>
+    <api id="P:Windows.UI.Popups.IUICommand.Label">
+      <topicdata group="api" />
+      <apidata name="Label" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Label" />
+      <setter name="set_Label" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+      </containers>
+      <file name="a80e679c-8cd8-beb0-4138-47bfa4fd03de" />
+    </api>
+    <api id="T:Windows.UI.Popups.MessageDialog">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Popups.MessageDialog" />
+      <apidata name="MessageDialog" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Popups.IMessageDialog" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="05471c5b-f2c3-2177-8bce-7684eb334953" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Popups.MessageDialog">
+      <topicdata name="MessageDialog" group="list" subgroup="members" typeTopicId="T:Windows.UI.Popups.MessageDialog" />
+      <apidata name="MessageDialog" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.UI.Popups.MessageDialog.#ctor">
+          <element api="M:Windows.UI.Popups.MessageDialog.#ctor(System.String)" />
+          <element api="M:Windows.UI.Popups.MessageDialog.#ctor(System.String,System.String)" />
+        </element>
+        <element api="P:Windows.UI.Popups.MessageDialog.CancelCommandIndex" />
+        <element api="P:Windows.UI.Popups.MessageDialog.Commands" />
+        <element api="P:Windows.UI.Popups.MessageDialog.Content" />
+        <element api="P:Windows.UI.Popups.MessageDialog.DefaultCommandIndex" />
+        <element api="P:Windows.UI.Popups.MessageDialog.Options" />
+        <element api="M:Windows.UI.Popups.MessageDialog.ShowAsync" />
+        <element api="P:Windows.UI.Popups.MessageDialog.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.MessageDialog" />
+      </containers>
+      <file name="735da00e-20a4-c86e-dc31-349e22c20b0b" />
+    </api>
+    <api id="Methods.T:Windows.UI.Popups.MessageDialog">
+      <topicdata name="MessageDialog" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Popups.MessageDialog" />
+      <apidata name="MessageDialog" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Popups.MessageDialog.ShowAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.MessageDialog" />
+      </containers>
+      <file name="54591253-937c-8f11-90af-ce60c43169ff" />
+    </api>
+    <api id="Properties.T:Windows.UI.Popups.MessageDialog">
+      <topicdata name="MessageDialog" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Popups.MessageDialog" />
+      <apidata name="MessageDialog" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Popups.MessageDialog.CancelCommandIndex" />
+        <element api="P:Windows.UI.Popups.MessageDialog.Commands" />
+        <element api="P:Windows.UI.Popups.MessageDialog.Content" />
+        <element api="P:Windows.UI.Popups.MessageDialog.DefaultCommandIndex" />
+        <element api="P:Windows.UI.Popups.MessageDialog.Options" />
+        <element api="P:Windows.UI.Popups.MessageDialog.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.MessageDialog" />
+      </containers>
+      <file name="fb09f3de-9b4b-132c-fae9-a39473855f78" />
+    </api>
+    <api id="Overload:Windows.UI.Popups.MessageDialog.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.Popups.MessageDialog" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.UI.Popups.MessageDialog.#ctor(System.String)" />
+        <element api="M:Windows.UI.Popups.MessageDialog.#ctor(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.MessageDialog" ref="true" />
+      </containers>
+      <file name="cc6384eb-ac80-29db-51bf-4412d1fdfc65" />
+    </api>
+    <api id="M:Windows.UI.Popups.MessageDialog.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.Popups.MessageDialog.#ctor" />
+      <parameters>
+        <parameter name="content" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.MessageDialog" ref="true" />
+      </containers>
+      <file name="cc8538a0-b117-c9a0-5fe3-7255919edbed" />
+    </api>
+    <api id="M:Windows.UI.Popups.MessageDialog.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.Popups.MessageDialog.#ctor" />
+      <parameters>
+        <parameter name="content" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="title" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.MessageDialog" ref="true" />
+      </containers>
+      <file name="2758bb04-ff3e-7d86-f857-ebba6cc2ca0e" />
+    </api>
+    <api id="P:Windows.UI.Popups.MessageDialog.CancelCommandIndex">
+      <topicdata group="api" />
+      <apidata name="CancelCommandIndex" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CancelCommandIndex" />
+      <setter name="set_CancelCommandIndex" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.MessageDialog" ref="true" />
+      </containers>
+      <file name="ed06e5b1-304d-3bc0-fd04-1d04fba06d17" />
+    </api>
+    <api id="P:Windows.UI.Popups.MessageDialog.Commands">
+      <topicdata group="api" />
+      <apidata name="Commands" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Commands" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.MessageDialog" ref="true" />
+      </containers>
+      <file name="3a67f286-5d4d-be41-7b8c-1a0d1f327b59" />
+    </api>
+    <api id="P:Windows.UI.Popups.MessageDialog.Content">
+      <topicdata group="api" />
+      <apidata name="Content" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Content" />
+      <setter name="set_Content" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.MessageDialog" ref="true" />
+      </containers>
+      <file name="30d9a642-24ba-1eaf-9a9f-964c2a6219a2" />
+    </api>
+    <api id="P:Windows.UI.Popups.MessageDialog.DefaultCommandIndex">
+      <topicdata group="api" />
+      <apidata name="DefaultCommandIndex" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DefaultCommandIndex" />
+      <setter name="set_DefaultCommandIndex" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.MessageDialog" ref="true" />
+      </containers>
+      <file name="9b154fcb-8afc-695a-1d5a-c984a81f9f19" />
+    </api>
+    <api id="P:Windows.UI.Popups.MessageDialog.Options">
+      <topicdata group="api" />
+      <apidata name="Options" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Options" />
+      <setter name="set_Options" />
+      <returns>
+        <type api="T:Windows.UI.Popups.MessageDialogOptions" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.MessageDialog" ref="true" />
+      </containers>
+      <file name="3c69de9d-7aa7-ea08-8e5d-53748b8296f6" />
+    </api>
+    <api id="M:Windows.UI.Popups.MessageDialog.ShowAsync">
+      <topicdata group="api" />
+      <apidata name="ShowAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.MessageDialog" ref="true" />
+      </containers>
+      <file name="c344cc72-817e-2fe3-6f30-c97d218332e7" />
+    </api>
+    <api id="P:Windows.UI.Popups.MessageDialog.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Title" />
+      <setter name="set_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.MessageDialog" ref="true" />
+      </containers>
+      <file name="480a3351-19ea-f3f6-cb22-e75e08d184c8" />
+    </api>
+    <api id="T:Windows.UI.Popups.MessageDialogOptions">
+      <topicdata group="api" />
+      <apidata name="MessageDialogOptions" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.UI.Popups.MessageDialogOptions.None" />
+        <element api="F:Windows.UI.Popups.MessageDialogOptions.AcceptUserInputAfterDelay" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ee90e2b4-1a5c-66e4-f732-f824ee4f81ed" />
+    </api>
+    <api id="F:Windows.UI.Popups.MessageDialogOptions.AcceptUserInputAfterDelay">
+      <topicdata group="api" notopic="" />
+      <apidata name="AcceptUserInputAfterDelay" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Popups.MessageDialogOptions" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.MessageDialogOptions" ref="false" />
+      </containers>
+      <file name="29bc68f8-032e-d828-9f2d-82d4a53a9386" />
+    </api>
+    <api id="F:Windows.UI.Popups.MessageDialogOptions.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Popups.MessageDialogOptions" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.MessageDialogOptions" ref="false" />
+      </containers>
+      <file name="d8e52772-3043-9a97-fd2c-09a86c8f8139" />
+    </api>
+    <api id="T:Windows.UI.Popups.Placement">
+      <topicdata group="api" />
+      <apidata name="Placement" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.Popups.Placement.Default" />
+        <element api="F:Windows.UI.Popups.Placement.Above" />
+        <element api="F:Windows.UI.Popups.Placement.Below" />
+        <element api="F:Windows.UI.Popups.Placement.Left" />
+        <element api="F:Windows.UI.Popups.Placement.Right" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="10032018-6448-da88-fa71-47958dd6724f" />
+    </api>
+    <api id="F:Windows.UI.Popups.Placement.Above">
+      <topicdata group="api" notopic="" />
+      <apidata name="Above" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Popups.Placement" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.Placement" ref="false" />
+      </containers>
+      <file name="7b834441-1715-2d24-805b-41fd0b309eec" />
+    </api>
+    <api id="F:Windows.UI.Popups.Placement.Below">
+      <topicdata group="api" notopic="" />
+      <apidata name="Below" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Popups.Placement" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.Placement" ref="false" />
+      </containers>
+      <file name="b8baa4a5-9409-df2d-bbbe-3cebd29edb9f" />
+    </api>
+    <api id="F:Windows.UI.Popups.Placement.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Popups.Placement" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.Placement" ref="false" />
+      </containers>
+      <file name="1b457320-2109-09e3-1b10-12ba69fe35cf" />
+    </api>
+    <api id="F:Windows.UI.Popups.Placement.Left">
+      <topicdata group="api" notopic="" />
+      <apidata name="Left" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Popups.Placement" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.Placement" ref="false" />
+      </containers>
+      <file name="68e58b58-0b49-f9a9-112a-269324abfacf" />
+    </api>
+    <api id="F:Windows.UI.Popups.Placement.Right">
+      <topicdata group="api" notopic="" />
+      <apidata name="Right" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Popups.Placement" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.Placement" ref="false" />
+      </containers>
+      <file name="eb116f14-95e6-c4a1-8233-710f539c2c8a" />
+    </api>
+    <api id="T:Windows.UI.Popups.PopupMenu">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Popups.PopupMenu" />
+      <apidata name="PopupMenu" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Popups.PopupMenu.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Popups.IPopupMenu" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="58f6b15f-0281-b07f-5319-327b354fe8ce" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Popups.PopupMenu">
+      <topicdata name="PopupMenu" group="list" subgroup="members" typeTopicId="T:Windows.UI.Popups.PopupMenu" />
+      <apidata name="PopupMenu" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Popups.PopupMenu.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Popups.PopupMenu.#ctor" />
+        <element api="P:Windows.UI.Popups.PopupMenu.Commands" />
+        <element api="M:Windows.UI.Popups.PopupMenu.ShowAsync(Windows.Foundation.Point)" />
+        <element api="Overload:Windows.UI.Popups.PopupMenu.ShowForSelectionAsync">
+          <element api="M:Windows.UI.Popups.PopupMenu.ShowForSelectionAsync(Windows.Foundation.Rect)" />
+          <element api="M:Windows.UI.Popups.PopupMenu.ShowForSelectionAsync(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.PopupMenu" />
+      </containers>
+      <file name="ba771a16-fda5-f211-d4f0-74e2cc9d4ab0" />
+    </api>
+    <api id="Methods.T:Windows.UI.Popups.PopupMenu">
+      <topicdata name="PopupMenu" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Popups.PopupMenu" />
+      <apidata name="PopupMenu" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Popups.PopupMenu.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Popups.PopupMenu.ShowAsync(Windows.Foundation.Point)" />
+        <element api="Overload:Windows.UI.Popups.PopupMenu.ShowForSelectionAsync">
+          <element api="M:Windows.UI.Popups.PopupMenu.ShowForSelectionAsync(Windows.Foundation.Rect)" />
+          <element api="M:Windows.UI.Popups.PopupMenu.ShowForSelectionAsync(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.PopupMenu" />
+      </containers>
+      <file name="6747b4ad-2f77-5f45-0151-09508da36176" />
+    </api>
+    <api id="Properties.T:Windows.UI.Popups.PopupMenu">
+      <topicdata name="PopupMenu" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Popups.PopupMenu" />
+      <apidata name="PopupMenu" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Popups.PopupMenu.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.Popups.PopupMenu.Commands" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.PopupMenu" />
+      </containers>
+      <file name="5c3b2ac9-5b7b-788c-397f-44f149e261c9" />
+    </api>
+    <api id="Overload:Windows.UI.Popups.PopupMenu.ShowForSelectionAsync">
+      <topicdata name="ShowForSelectionAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.Popups.PopupMenu" />
+      <apidata name="ShowForSelectionAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.UI.Popups.PopupMenu.ShowForSelectionAsync(Windows.Foundation.Rect)" />
+        <element api="M:Windows.UI.Popups.PopupMenu.ShowForSelectionAsync(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.PopupMenu" ref="true" />
+      </containers>
+      <file name="453f62c7-699a-8f6e-c319-96a959911928" />
+    </api>
+    <api id="M:Windows.UI.Popups.PopupMenu.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.PopupMenu" ref="true" />
+      </containers>
+      <file name="20a9b83a-b5f8-3343-4e6e-9e2214f279a6" />
+    </api>
+    <api id="P:Windows.UI.Popups.PopupMenu.Commands">
+      <topicdata group="api" />
+      <apidata name="Commands" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Commands" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.PopupMenu" ref="true" />
+      </containers>
+      <file name="3ffcdbae-4764-0e40-89e5-875fcd8748ff" />
+    </api>
+    <api id="M:Windows.UI.Popups.PopupMenu.ShowAsync(Windows.Foundation.Point)">
+      <topicdata group="api" />
+      <apidata name="ShowAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="invocationPoint" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.PopupMenu" ref="true" />
+      </containers>
+      <file name="0b92dc63-634d-da6a-2118-de5a2fbf26df" />
+    </api>
+    <api id="M:Windows.UI.Popups.PopupMenu.ShowForSelectionAsync(Windows.Foundation.Rect)">
+      <topicdata group="api" />
+      <apidata name="ShowForSelectionAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.Popups.PopupMenu.ShowForSelectionAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.PopupMenu" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ShowAsyncWithRect</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="09c86311-2464-3f67-f5c6-18e49bd8df00" />
+    </api>
+    <api id="M:Windows.UI.Popups.PopupMenu.ShowForSelectionAsync(Windows.Foundation.Rect,Windows.UI.Popups.Placement)">
+      <topicdata group="api" />
+      <apidata name="ShowForSelectionAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.Popups.PopupMenu.ShowForSelectionAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+        <parameter name="preferredPlacement" in="true">
+          <type api="T:Windows.UI.Popups.Placement" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.PopupMenu" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ShowAsyncWithRectAndPlacement</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7343e431-3e84-2d0f-59f5-6c9f74cf9a32" />
+    </api>
+    <api id="T:Windows.UI.Popups.UICommand">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Popups.UICommand" />
+      <apidata name="UICommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Popups.UICommand.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="88d7ebe3-b91d-99c1-b090-4aa1aaff578f" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Popups.UICommand">
+      <topicdata name="UICommand" group="list" subgroup="members" typeTopicId="T:Windows.UI.Popups.UICommand" />
+      <apidata name="UICommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Popups.UICommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.UI.Popups.UICommand.#ctor">
+          <element api="M:Windows.UI.Popups.UICommand.#ctor" />
+          <element api="M:Windows.UI.Popups.UICommand.#ctor(System.String)" />
+          <element api="M:Windows.UI.Popups.UICommand.#ctor(System.String,Windows.UI.Popups.UICommandInvokedHandler)" />
+          <element api="M:Windows.UI.Popups.UICommand.#ctor(System.String,Windows.UI.Popups.UICommandInvokedHandler,System.Object)" />
+        </element>
+        <element api="P:Windows.UI.Popups.UICommand.Id" />
+        <element api="P:Windows.UI.Popups.UICommand.Invoked" />
+        <element api="P:Windows.UI.Popups.UICommand.Label" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommand" />
+      </containers>
+      <file name="2024e094-d80e-7c4c-e7a2-5ba8099cbf73" />
+    </api>
+    <api id="Methods.T:Windows.UI.Popups.UICommand">
+      <topicdata name="UICommand" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Popups.UICommand" />
+      <apidata name="UICommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Popups.UICommand.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommand" />
+      </containers>
+      <file name="29cba2bc-80ca-d126-8c1a-cefb87c0ca23" />
+    </api>
+    <api id="Properties.T:Windows.UI.Popups.UICommand">
+      <topicdata name="UICommand" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Popups.UICommand" />
+      <apidata name="UICommand" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Popups.UICommand.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.Popups.UICommand.Id" />
+        <element api="P:Windows.UI.Popups.UICommand.Invoked" />
+        <element api="P:Windows.UI.Popups.UICommand.Label" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommand" />
+      </containers>
+      <file name="a9b87581-16d2-f58a-6489-e8328688e202" />
+    </api>
+    <api id="Overload:Windows.UI.Popups.UICommand.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.Popups.UICommand" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.UI.Popups.UICommand.#ctor" />
+        <element api="M:Windows.UI.Popups.UICommand.#ctor(System.String)" />
+        <element api="M:Windows.UI.Popups.UICommand.#ctor(System.String,Windows.UI.Popups.UICommandInvokedHandler)" />
+        <element api="M:Windows.UI.Popups.UICommand.#ctor(System.String,Windows.UI.Popups.UICommandInvokedHandler,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommand" ref="true" />
+      </containers>
+      <file name="9ecc5c8c-ac50-716b-44c8-2876e928f38d" />
+    </api>
+    <api id="M:Windows.UI.Popups.UICommand.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.Popups.UICommand.#ctor" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommand" ref="true" />
+      </containers>
+      <file name="5105423e-aca5-8c2e-1da3-ece0fa2d5992" />
+    </api>
+    <api id="M:Windows.UI.Popups.UICommand.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.Popups.UICommand.#ctor" />
+      <parameters>
+        <parameter name="label" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommand" ref="true" />
+      </containers>
+      <file name="553d718b-bb81-4725-52dc-27cb1d42f8ad" />
+    </api>
+    <api id="M:Windows.UI.Popups.UICommand.#ctor(System.String,Windows.UI.Popups.UICommandInvokedHandler)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.Popups.UICommand.#ctor" />
+      <parameters>
+        <parameter name="label" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="action" in="true">
+          <type api="T:Windows.UI.Popups.UICommandInvokedHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommand" ref="true" />
+      </containers>
+      <file name="c7361380-ed51-a61d-bab3-5af81958ed9a" />
+    </api>
+    <api id="M:Windows.UI.Popups.UICommand.#ctor(System.String,Windows.UI.Popups.UICommandInvokedHandler,System.Object)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.Popups.UICommand.#ctor" />
+      <parameters>
+        <parameter name="label" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="action" in="true">
+          <type api="T:Windows.UI.Popups.UICommandInvokedHandler" ref="true" />
+        </parameter>
+        <parameter name="commandId" in="true">
+          <type api="T:System.Object" ref="true" />
+          <attributes>
+            <attribute>
+              <type api="T:Windows.Foundation.Metadata.VariantAttribute" ref="true" />
+            </attribute>
+          </attributes>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommand" ref="true" />
+      </containers>
+      <file name="7e6be206-6f40-60c5-8dab-33f1c93615ab" />
+    </api>
+    <api id="P:Windows.UI.Popups.UICommand.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Id" />
+      <setter name="set_Id" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Popups.IUICommand.Id">
+          <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommand" ref="true" />
+      </containers>
+      <file name="0cceff0f-d3d3-0bb9-71ec-56219f045802" />
+    </api>
+    <api id="P:Windows.UI.Popups.UICommand.Invoked">
+      <topicdata group="api" />
+      <apidata name="Invoked" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Invoked" />
+      <setter name="set_Invoked" />
+      <returns>
+        <type api="T:Windows.UI.Popups.UICommandInvokedHandler" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Popups.IUICommand.Invoked">
+          <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommand" ref="true" />
+      </containers>
+      <file name="3f9ea83f-964c-956d-576e-8890cc9dfc6d" />
+    </api>
+    <api id="P:Windows.UI.Popups.UICommand.Label">
+      <topicdata group="api" />
+      <apidata name="Label" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Label" />
+      <setter name="set_Label" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Popups.IUICommand.Label">
+          <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommand" ref="true" />
+      </containers>
+      <file name="07f137ea-55b8-c773-7f4d-cb2d04200033" />
+    </api>
+    <api id="T:Windows.UI.Popups.UICommandInvokedHandler">
+      <topicdata group="api" />
+      <apidata name="UICommandInvokedHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="command" in="true">
+          <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3673651791</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>49786</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17048</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>154</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>198</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>41</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>34</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>196</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>94</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>125</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>166</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0e57fa74-ba24-7d6b-5dce-f87e0afdcac4" />
+    </api>
+    <api id="T:Windows.UI.Popups.UICommandSeparator">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Popups.UICommandSeparator" />
+      <apidata name="UICommandSeparator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Popups.UICommandSeparator.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="0d191940-58ec-1261-00f4-5882eb053602" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Popups.UICommandSeparator">
+      <topicdata name="UICommandSeparator" group="list" subgroup="members" typeTopicId="T:Windows.UI.Popups.UICommandSeparator" />
+      <apidata name="UICommandSeparator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Popups.UICommandSeparator.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Popups.UICommandSeparator.#ctor" />
+        <element api="P:Windows.UI.Popups.UICommandSeparator.Id" />
+        <element api="P:Windows.UI.Popups.UICommandSeparator.Invoked" />
+        <element api="P:Windows.UI.Popups.UICommandSeparator.Label" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommandSeparator" />
+      </containers>
+      <file name="155a0442-830f-5b77-586c-c1f1a0080ed6" />
+    </api>
+    <api id="Methods.T:Windows.UI.Popups.UICommandSeparator">
+      <topicdata name="UICommandSeparator" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Popups.UICommandSeparator" />
+      <apidata name="UICommandSeparator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Popups.UICommandSeparator.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommandSeparator" />
+      </containers>
+      <file name="41af2469-9344-12ab-6822-8256ecbb3422" />
+    </api>
+    <api id="Properties.T:Windows.UI.Popups.UICommandSeparator">
+      <topicdata name="UICommandSeparator" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Popups.UICommandSeparator" />
+      <apidata name="UICommandSeparator" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Popups.UICommandSeparator.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.Popups.UICommandSeparator.Id" />
+        <element api="P:Windows.UI.Popups.UICommandSeparator.Invoked" />
+        <element api="P:Windows.UI.Popups.UICommandSeparator.Label" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommandSeparator" />
+      </containers>
+      <file name="086ad78c-2adf-45b1-fc23-1311abe5b8f7" />
+    </api>
+    <api id="M:Windows.UI.Popups.UICommandSeparator.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommandSeparator" ref="true" />
+      </containers>
+      <file name="9b19f279-2828-0355-52e5-e6bdb3ed024b" />
+    </api>
+    <api id="P:Windows.UI.Popups.UICommandSeparator.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Id" />
+      <setter name="set_Id" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Popups.IUICommand.Id">
+          <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommandSeparator" ref="true" />
+      </containers>
+      <file name="fc7b3894-a828-3160-386e-10a7b9298b90" />
+    </api>
+    <api id="P:Windows.UI.Popups.UICommandSeparator.Invoked">
+      <topicdata group="api" />
+      <apidata name="Invoked" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Invoked" />
+      <setter name="set_Invoked" />
+      <returns>
+        <type api="T:Windows.UI.Popups.UICommandInvokedHandler" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Popups.IUICommand.Invoked">
+          <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommandSeparator" ref="true" />
+      </containers>
+      <file name="e1d76911-c293-b77e-03ba-542f20bdc51a" />
+    </api>
+    <api id="P:Windows.UI.Popups.UICommandSeparator.Label">
+      <topicdata group="api" />
+      <apidata name="Label" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Label" />
+      <setter name="set_Label" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Popups.IUICommand.Label">
+          <type api="T:Windows.UI.Popups.IUICommand" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Popups" />
+        <type api="T:Windows.UI.Popups.UICommandSeparator" ref="true" />
+      </containers>
+      <file name="8bac9ef7-e3fd-85b6-b9da-46835eb0d3e7" />
+    </api>
+  </apis>
+</reflection>

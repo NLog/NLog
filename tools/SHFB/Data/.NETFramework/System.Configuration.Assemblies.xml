@@ -1,0 +1,722 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>BED7F4EA-1A96-11d2-8F08-00A0C9A6186D</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Configuration.Assemblies">
+      <topicdata group="api" />
+      <apidata name="System.Configuration.Assemblies" group="namespace" />
+      <elements>
+        <element api="T:System.Configuration.Assemblies.AssemblyHash" />
+        <element api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" />
+        <element api="T:System.Configuration.Assemblies.AssemblyVersionCompatibility" />
+      </elements>
+      <file name="5cbc71eb-6d2c-e5ef-9a44-566f74f43210" />
+    </api>
+    <api id="T:System.Configuration.Assemblies.AssemblyHash">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Configuration.Assemblies.AssemblyHash" />
+      <apidata name="AssemblyHash" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <implements>
+        <type api="T:System.ICloneable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The AssemblyHash class has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="87831006-b3fc-bd52-2070-68b75970bad1" />
+    </api>
+    <api id="AllMembers.T:System.Configuration.Assemblies.AssemblyHash">
+      <topicdata name="AssemblyHash" group="list" subgroup="members" typeTopicId="T:System.Configuration.Assemblies.AssemblyHash" />
+      <apidata name="AssemblyHash" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="Overload:System.Configuration.Assemblies.AssemblyHash.#ctor">
+          <element api="M:System.Configuration.Assemblies.AssemblyHash.#ctor(System.Byte[])" />
+          <element api="M:System.Configuration.Assemblies.AssemblyHash.#ctor(System.Configuration.Assemblies.AssemblyHashAlgorithm,System.Byte[])" />
+        </element>
+        <element api="P:System.Configuration.Assemblies.AssemblyHash.Algorithm" />
+        <element api="M:System.Configuration.Assemblies.AssemblyHash.Clone" />
+        <element api="F:System.Configuration.Assemblies.AssemblyHash.Empty" />
+        <element api="M:System.Configuration.Assemblies.AssemblyHash.GetValue" />
+        <element api="M:System.Configuration.Assemblies.AssemblyHash.SetValue(System.Byte[])" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHash" />
+      </containers>
+      <file name="ad4f9582-4fa1-9e01-2de2-c047cdd1276d" />
+    </api>
+    <api id="Methods.T:System.Configuration.Assemblies.AssemblyHash">
+      <topicdata name="AssemblyHash" group="list" subgroup="Methods" typeTopicId="T:System.Configuration.Assemblies.AssemblyHash" />
+      <apidata name="AssemblyHash" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="M:System.Configuration.Assemblies.AssemblyHash.Clone" />
+        <element api="M:System.Configuration.Assemblies.AssemblyHash.GetValue" />
+        <element api="M:System.Configuration.Assemblies.AssemblyHash.SetValue(System.Byte[])" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHash" />
+      </containers>
+      <file name="b2de9d79-53e7-0e3e-fc90-3b271c1b5f86" />
+    </api>
+    <api id="Properties.T:System.Configuration.Assemblies.AssemblyHash">
+      <topicdata name="AssemblyHash" group="list" subgroup="Properties" typeTopicId="T:System.Configuration.Assemblies.AssemblyHash" />
+      <apidata name="AssemblyHash" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="P:System.Configuration.Assemblies.AssemblyHash.Algorithm" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHash" />
+      </containers>
+      <file name="4adf6b63-910c-534f-ebed-a95479d5e4c5" />
+    </api>
+    <api id="Fields.T:System.Configuration.Assemblies.AssemblyHash">
+      <topicdata name="AssemblyHash" group="list" subgroup="Fields" typeTopicId="T:System.Configuration.Assemblies.AssemblyHash" />
+      <apidata name="AssemblyHash" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="F:System.Configuration.Assemblies.AssemblyHash.Empty" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHash" />
+      </containers>
+      <file name="6f58a942-1437-cd3a-3eab-2a64cc7e065e" />
+    </api>
+    <api id="Overload:System.Configuration.Assemblies.AssemblyHash.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Configuration.Assemblies.AssemblyHash" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Configuration.Assemblies.AssemblyHash.#ctor(System.Byte[])" />
+        <element api="M:System.Configuration.Assemblies.AssemblyHash.#ctor(System.Configuration.Assemblies.AssemblyHashAlgorithm,System.Byte[])" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHash" ref="false" />
+      </containers>
+      <file name="c07713bd-d9db-f394-ced4-41f3175f9601" />
+    </api>
+    <api id="M:System.Configuration.Assemblies.AssemblyHash.#ctor(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Configuration.Assemblies.AssemblyHash.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHash" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The AssemblyHash class has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fb255dcd-7de9-d118-9e0d-3f01ffabf64b" />
+    </api>
+    <api id="M:System.Configuration.Assemblies.AssemblyHash.#ctor(System.Configuration.Assemblies.AssemblyHashAlgorithm,System.Byte[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Configuration.Assemblies.AssemblyHash.#ctor" />
+      <parameters>
+        <parameter name="algorithm">
+          <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+        </parameter>
+        <parameter name="value">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHash" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The AssemblyHash class has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8fc699ec-51f9-ba8b-1e50-ebe86ac4db4e" />
+    </api>
+    <api id="P:System.Configuration.Assemblies.AssemblyHash.Algorithm">
+      <topicdata group="api" />
+      <apidata name="Algorithm" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Algorithm" />
+      <setter name="set_Algorithm" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHash" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The AssemblyHash class has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8a8f9967-9124-1aad-b329-57a62aa058a8" />
+    </api>
+    <api id="M:System.Configuration.Assemblies.AssemblyHash.Clone">
+      <topicdata group="api" />
+      <apidata name="Clone" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.ICloneable.Clone">
+          <type api="T:System.ICloneable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHash" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The AssemblyHash class has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="aced0439-c659-7f04-7554-57ab1fe0056b" />
+    </api>
+    <api id="F:System.Configuration.Assemblies.AssemblyHash.Empty">
+      <topicdata group="api" />
+      <apidata name="Empty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyHash" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHash" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The AssemblyHash class has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="83fbf748-2035-ded6-8e2f-311f9ecd1f28" />
+    </api>
+    <api id="M:System.Configuration.Assemblies.AssemblyHash.GetValue">
+      <topicdata group="api" />
+      <apidata name="GetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHash" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The AssemblyHash class has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e8991c3f-0991-7f34-b489-913345004c7b" />
+    </api>
+    <api id="M:System.Configuration.Assemblies.AssemblyHash.SetValue(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="SetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHash" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The AssemblyHash class has been deprecated. http://go.microsoft.com/fwlink/?linkid=14202</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7755aafd-9632-1b2f-1e9e-cb1ec759005f" />
+    </api>
+    <api id="T:System.Configuration.Assemblies.AssemblyHashAlgorithm">
+      <topicdata group="api" />
+      <apidata name="AssemblyHashAlgorithm" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.None" />
+        <element api="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.MD5" />
+        <element api="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.SHA1" />
+        <element api="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.SHA256" />
+        <element api="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.SHA384" />
+        <element api="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.SHA512" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7d1dcd80-1fb2-2c5b-f4e7-c44b609e3492" />
+    </api>
+    <api id="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.MD5">
+      <topicdata group="api" notopic="" />
+      <apidata name="MD5" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </returns>
+      <value>32771</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </containers>
+      <file name="3578a9d2-582e-7a78-5faa-ad5c625e022a" />
+    </api>
+    <api id="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </containers>
+      <file name="f3617697-7bfe-7c2b-4038-050385ce6197" />
+    </api>
+    <api id="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.SHA1">
+      <topicdata group="api" notopic="" />
+      <apidata name="SHA1" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </returns>
+      <value>32772</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </containers>
+      <file name="839d793b-8e93-33eb-0a12-714188d82a58" />
+    </api>
+    <api id="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.SHA256">
+      <topicdata group="api" notopic="" />
+      <apidata name="SHA256" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </returns>
+      <value>32780</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="79b3b4d3-5e00-9738-0b27-295572baadda" />
+    </api>
+    <api id="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.SHA384">
+      <topicdata group="api" notopic="" />
+      <apidata name="SHA384" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </returns>
+      <value>32781</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2e7b273a-d501-7d71-2591-0bdf48f4805b" />
+    </api>
+    <api id="F:System.Configuration.Assemblies.AssemblyHashAlgorithm.SHA512">
+      <topicdata group="api" notopic="" />
+      <apidata name="SHA512" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </returns>
+      <value>32782</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyHashAlgorithm" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7e82331b-bf7d-c426-cba6-4b469f71849f" />
+    </api>
+    <api id="T:System.Configuration.Assemblies.AssemblyVersionCompatibility">
+      <topicdata group="api" />
+      <apidata name="AssemblyVersionCompatibility" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="true" />
+      <elements>
+        <element api="F:System.Configuration.Assemblies.AssemblyVersionCompatibility.SameMachine" />
+        <element api="F:System.Configuration.Assemblies.AssemblyVersionCompatibility.SameProcess" />
+        <element api="F:System.Configuration.Assemblies.AssemblyVersionCompatibility.SameDomain" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="21bc5c5e-4692-ac77-f896-873735c9068d" />
+    </api>
+    <api id="F:System.Configuration.Assemblies.AssemblyVersionCompatibility.SameDomain">
+      <topicdata group="api" notopic="" />
+      <apidata name="SameDomain" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyVersionCompatibility" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyVersionCompatibility" ref="false" />
+      </containers>
+      <file name="4bdce21f-0ee1-11ef-fe2f-16c0402ceeae" />
+    </api>
+    <api id="F:System.Configuration.Assemblies.AssemblyVersionCompatibility.SameMachine">
+      <topicdata group="api" notopic="" />
+      <apidata name="SameMachine" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyVersionCompatibility" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyVersionCompatibility" ref="false" />
+      </containers>
+      <file name="0095e6a0-a432-0b44-5404-0ab810b4de31" />
+    </api>
+    <api id="F:System.Configuration.Assemblies.AssemblyVersionCompatibility.SameProcess">
+      <topicdata group="api" notopic="" />
+      <apidata name="SameProcess" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Configuration.Assemblies.AssemblyVersionCompatibility" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Assemblies" />
+        <type api="T:System.Configuration.Assemblies.AssemblyVersionCompatibility" ref="false" />
+      </containers>
+      <file name="bceffa8b-4b56-5727-993c-c2a3cbc6d72a" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Security.Cryptography">
+      <topicdata group="api" />
+      <apidata name="Windows.Security.Cryptography" group="namespace" />
+      <elements>
+        <element api="T:Windows.Security.Cryptography.BinaryStringEncoding" />
+        <element api="T:Windows.Security.Cryptography.CryptographicBuffer" />
+      </elements>
+      <file name="10ac507a-ca19-aab9-02fc-6ac2fff42a82" />
+    </api>
+    <api id="T:Windows.Security.Cryptography.BinaryStringEncoding">
+      <topicdata group="api" />
+      <apidata name="BinaryStringEncoding" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Security.Cryptography.BinaryStringEncoding.Utf8" />
+        <element api="F:Windows.Security.Cryptography.BinaryStringEncoding.Utf16LE" />
+        <element api="F:Windows.Security.Cryptography.BinaryStringEncoding.Utf16BE" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a30d5180-67e1-3f09-5d89-6a4e3c0dbbd4" />
+    </api>
+    <api id="F:Windows.Security.Cryptography.BinaryStringEncoding.Utf16BE">
+      <topicdata group="api" notopic="" />
+      <apidata name="Utf16BE" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Cryptography.BinaryStringEncoding" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+        <type api="T:Windows.Security.Cryptography.BinaryStringEncoding" ref="false" />
+      </containers>
+      <file name="c5530f86-8ba3-8892-3a01-99aa89ce7aef" />
+    </api>
+    <api id="F:Windows.Security.Cryptography.BinaryStringEncoding.Utf16LE">
+      <topicdata group="api" notopic="" />
+      <apidata name="Utf16LE" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Cryptography.BinaryStringEncoding" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+        <type api="T:Windows.Security.Cryptography.BinaryStringEncoding" ref="false" />
+      </containers>
+      <file name="2150b6aa-8e82-6f72-3201-dd32f9c19362" />
+    </api>
+    <api id="F:Windows.Security.Cryptography.BinaryStringEncoding.Utf8">
+      <topicdata group="api" notopic="" />
+      <apidata name="Utf8" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Cryptography.BinaryStringEncoding" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+        <type api="T:Windows.Security.Cryptography.BinaryStringEncoding" ref="false" />
+      </containers>
+      <file name="0c9a57f2-fb4c-d15c-ab08-c871aeac3553" />
+    </api>
+    <api id="T:Windows.Security.Cryptography.CryptographicBuffer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.Cryptography.CryptographicBuffer" />
+      <apidata name="CryptographicBuffer" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="625797ee-da4e-04e9-4d56-17a56e186e86" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.Cryptography.CryptographicBuffer">
+      <topicdata name="CryptographicBuffer" group="list" subgroup="members" typeTopicId="T:Windows.Security.Cryptography.CryptographicBuffer" />
+      <apidata name="CryptographicBuffer" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.Compare(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.ConvertBinaryToString(Windows.Security.Cryptography.BinaryStringEncoding,Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.ConvertStringToBinary(System.String,Windows.Security.Cryptography.BinaryStringEncoding)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.CopyToByteArray(Windows.Storage.Streams.IBuffer,System.Byte[]@)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.CreateFromByteArray(System.Byte[])" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.DecodeFromBase64String(System.String)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.DecodeFromHexString(System.String)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.EncodeToBase64String(Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.EncodeToHexString(Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.GenerateRandom(System.UInt32)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.GenerateRandomNumber" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+        <type api="T:Windows.Security.Cryptography.CryptographicBuffer" />
+      </containers>
+      <file name="767c061a-2f0c-8848-16a1-0e5291a1c30c" />
+    </api>
+    <api id="Methods.T:Windows.Security.Cryptography.CryptographicBuffer">
+      <topicdata name="CryptographicBuffer" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.Cryptography.CryptographicBuffer" />
+      <apidata name="CryptographicBuffer" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.Compare(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.ConvertBinaryToString(Windows.Security.Cryptography.BinaryStringEncoding,Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.ConvertStringToBinary(System.String,Windows.Security.Cryptography.BinaryStringEncoding)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.CopyToByteArray(Windows.Storage.Streams.IBuffer,System.Byte[]@)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.CreateFromByteArray(System.Byte[])" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.DecodeFromBase64String(System.String)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.DecodeFromHexString(System.String)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.EncodeToBase64String(Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.EncodeToHexString(Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.GenerateRandom(System.UInt32)" />
+        <element api="M:Windows.Security.Cryptography.CryptographicBuffer.GenerateRandomNumber" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+        <type api="T:Windows.Security.Cryptography.CryptographicBuffer" />
+      </containers>
+      <file name="5941b8ce-8b99-34a3-dca7-65d06f153e56" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.CryptographicBuffer.Compare(Windows.Storage.Streams.IBuffer,Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="Compare" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="object1" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="object2" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+        <type api="T:Windows.Security.Cryptography.CryptographicBuffer" ref="true" />
+      </containers>
+      <file name="70ea9f0f-bfdc-6c05-7f70-52a4a6703734" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.CryptographicBuffer.ConvertBinaryToString(Windows.Security.Cryptography.BinaryStringEncoding,Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="ConvertBinaryToString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="encoding" in="true">
+          <type api="T:Windows.Security.Cryptography.BinaryStringEncoding" ref="false" />
+        </parameter>
+        <parameter name="buffer" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+        <type api="T:Windows.Security.Cryptography.CryptographicBuffer" ref="true" />
+      </containers>
+      <file name="1adee570-bdad-099e-a93c-0a48c0d35c29" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.CryptographicBuffer.ConvertStringToBinary(System.String,Windows.Security.Cryptography.BinaryStringEncoding)">
+      <topicdata group="api" />
+      <apidata name="ConvertStringToBinary" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="encoding" in="true">
+          <type api="T:Windows.Security.Cryptography.BinaryStringEncoding" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+        <type api="T:Windows.Security.Cryptography.CryptographicBuffer" ref="true" />
+      </containers>
+      <file name="94383c22-9b3b-d2dd-50e8-42838148d514" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.CryptographicBuffer.CopyToByteArray(Windows.Storage.Streams.IBuffer,System.Byte[]@)">
+      <topicdata group="api" />
+      <apidata name="CopyToByteArray" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+        <parameter name="value" out="true">
+          <referenceTo>
+            <arrayOf rank="1">
+              <type api="T:System.Byte" ref="false" />
+            </arrayOf>
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+        <type api="T:Windows.Security.Cryptography.CryptographicBuffer" ref="true" />
+      </containers>
+      <file name="314eed7d-7022-42d0-70e5-456e26c83edc" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.CryptographicBuffer.CreateFromByteArray(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="CreateFromByteArray" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value" in="true">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+        <type api="T:Windows.Security.Cryptography.CryptographicBuffer" ref="true" />
+      </containers>
+      <file name="02879779-9596-600a-60e3-77426a0f7f55" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.CryptographicBuffer.DecodeFromBase64String(System.String)">
+      <topicdata group="api" />
+      <apidata name="DecodeFromBase64String" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+        <type api="T:Windows.Security.Cryptography.CryptographicBuffer" ref="true" />
+      </containers>
+      <file name="de60ecb5-cf9d-f704-c98c-4591a3131fc7" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.CryptographicBuffer.DecodeFromHexString(System.String)">
+      <topicdata group="api" />
+      <apidata name="DecodeFromHexString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+        <type api="T:Windows.Security.Cryptography.CryptographicBuffer" ref="true" />
+      </containers>
+      <file name="5372a6a2-2b87-a626-cbb5-f380cf33b6a8" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.CryptographicBuffer.EncodeToBase64String(Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="EncodeToBase64String" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+        <type api="T:Windows.Security.Cryptography.CryptographicBuffer" ref="true" />
+      </containers>
+      <file name="63bcf18f-dcd0-630b-11ee-a49c4135df63" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.CryptographicBuffer.EncodeToHexString(Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="EncodeToHexString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+        <type api="T:Windows.Security.Cryptography.CryptographicBuffer" ref="true" />
+      </containers>
+      <file name="06b35023-3386-057a-a6ed-3018e2724d06" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.CryptographicBuffer.GenerateRandom(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GenerateRandom" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="length" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+        <type api="T:Windows.Security.Cryptography.CryptographicBuffer" ref="true" />
+      </containers>
+      <file name="02db92b0-4f7a-cf7c-eab5-a64e96b0f9f7" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.CryptographicBuffer.GenerateRandomNumber">
+      <topicdata group="api" />
+      <apidata name="GenerateRandomNumber" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography" />
+        <type api="T:Windows.Security.Cryptography.CryptographicBuffer" ref="true" />
+      </containers>
+      <file name="fd7c939c-e5aa-8208-9b7b-db472383ab3f" />
+    </api>
+  </apis>
+</reflection>

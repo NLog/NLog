@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ComponentModel.Annotations">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ComponentModel.Annotations.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ComponentModel.Annotations.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ComponentModel.Annotations.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ComponentModel.DataAnnotations.Schema">
+      <topicdata group="api" />
+      <apidata name="System.ComponentModel.DataAnnotations.Schema" group="namespace" />
+      <elements>
+        <element api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" />
+        <element api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" />
+      </elements>
+      <file name="bb6c254f-6057-b5aa-3f25-5c11487d1004" />
+    </api>
+    <api id="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" />
+      <apidata name="DatabaseGeneratedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ComponentModel.Annotations" module="System.ComponentModel.Annotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Field" />
+              <field name="Property" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="90f5353c-e187-b667-22ae-46da38b84ec6" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute">
+      <topicdata name="DatabaseGeneratedAttribute" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" />
+      <apidata name="DatabaseGeneratedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute.#ctor(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption)" />
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute.DatabaseGeneratedOption" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Annotations" module="System.ComponentModel.Annotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" />
+      </containers>
+      <file name="fbde0dc3-8725-e5b8-e5b1-337725c162b4" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute">
+      <topicdata name="DatabaseGeneratedAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" />
+      <apidata name="DatabaseGeneratedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Annotations" module="System.ComponentModel.Annotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" />
+      </containers>
+      <file name="99d3bd84-771e-9cf1-8057-63b1ff03d592" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute">
+      <topicdata name="DatabaseGeneratedAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" />
+      <apidata name="DatabaseGeneratedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute.DatabaseGeneratedOption" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Annotations" module="System.ComponentModel.Annotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" />
+      </containers>
+      <file name="a0a0ad76-0ffb-a36a-0c95-2ba8e3c3f182" />
+    </api>
+    <api id="M:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute.#ctor(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="databaseGeneratedOption">
+          <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ComponentModel.Annotations" module="System.ComponentModel.Annotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" ref="true" />
+      </containers>
+      <file name="518d16d5-71bf-ea4c-cf90-75fdf772fd8d" />
+    </api>
+    <api id="P:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute.DatabaseGeneratedOption">
+      <topicdata group="api" />
+      <apidata name="DatabaseGeneratedOption" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DatabaseGeneratedOption" />
+      <returns>
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.Annotations" module="System.ComponentModel.Annotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" ref="true" />
+      </containers>
+      <file name="381ca8a2-f062-919b-3270-c0c49a4187b3" />
+    </api>
+    <api id="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption">
+      <topicdata group="api" />
+      <apidata name="DatabaseGeneratedOption" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Computed" />
+        <element api="F:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity" />
+        <element api="F:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.Annotations" module="System.ComponentModel.Annotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+      </containers>
+      <file name="89c55e95-b350-b7a4-7d01-b59b2f2e5720" />
+    </api>
+    <api id="F:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Computed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Computed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.ComponentModel.Annotations" module="System.ComponentModel.Annotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" ref="false" />
+      </containers>
+      <file name="dadb2c0b-80cc-ee7e-44d9-fff265ce4114" />
+    </api>
+    <api id="F:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity">
+      <topicdata group="api" notopic="" />
+      <apidata name="Identity" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.ComponentModel.Annotations" module="System.ComponentModel.Annotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" ref="false" />
+      </containers>
+      <file name="7a071bbd-2e6b-50d3-1ea7-06057d4648f3" />
+    </api>
+    <api id="F:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.ComponentModel.Annotations" module="System.ComponentModel.Annotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" ref="false" />
+      </containers>
+      <file name="022d19fc-bc96-9e92-aac2-d869f6289ccf" />
+    </api>
+  </apis>
+</reflection>

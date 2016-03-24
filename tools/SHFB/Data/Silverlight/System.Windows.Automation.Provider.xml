@@ -1,0 +1,3283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Automation.Provider">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Automation.Provider" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Automation.Provider.IInvokeProvider" />
+        <element api="T:System.Windows.Automation.Provider.IToggleProvider" />
+        <element api="T:System.Windows.Automation.Provider.ISelectionProvider" />
+        <element api="T:System.Windows.Automation.Provider.IValueProvider" />
+        <element api="T:System.Windows.Automation.Provider.IExpandCollapseProvider" />
+        <element api="T:System.Windows.Automation.Provider.ISelectionItemProvider" />
+        <element api="T:System.Windows.Automation.Provider.IScrollItemProvider" />
+        <element api="T:System.Windows.Automation.Provider.IRangeValueProvider" />
+        <element api="T:System.Windows.Automation.Provider.IScrollProvider" />
+        <element api="T:System.Windows.Automation.Provider.IDockProvider" />
+        <element api="T:System.Windows.Automation.Provider.IGridItemProvider" />
+        <element api="T:System.Windows.Automation.Provider.IGridProvider" />
+        <element api="T:System.Windows.Automation.Provider.IMultipleViewProvider" />
+        <element api="T:System.Windows.Automation.Provider.ITableItemProvider" />
+        <element api="T:System.Windows.Automation.Provider.ITableProvider" />
+        <element api="T:System.Windows.Automation.Provider.ITransformProvider" />
+        <element api="T:System.Windows.Automation.Provider.IWindowProvider" />
+        <element api="T:System.Windows.Automation.Provider.IRawElementProviderSimple" />
+        <element api="T:System.Windows.Automation.Provider.ITextProvider" />
+        <element api="T:System.Windows.Automation.Provider.ITextRangeProvider" />
+      </elements>
+      <file name="23c64c50-2212-6506-ad72-4d332a4bfb6e" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.IDockProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.IDockProvider" />
+      <apidata name="IDockProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="3ae3e574-ff14-7342-a434-889a24fb80bf" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.IDockProvider">
+      <topicdata name="IDockProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.IDockProvider" />
+      <apidata name="IDockProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IDockProvider.DockPosition" />
+        <element api="M:System.Windows.Automation.Provider.IDockProvider.SetDockPosition(System.Windows.Automation.DockPosition)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IDockProvider" />
+      </containers>
+      <file name="2aff1eb0-8743-686d-89e4-6f338a106a7e" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.IDockProvider">
+      <topicdata name="IDockProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.IDockProvider" />
+      <apidata name="IDockProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IDockProvider.SetDockPosition(System.Windows.Automation.DockPosition)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IDockProvider" />
+      </containers>
+      <file name="5eae7611-20fe-ce0f-147a-1ed6f6ea611d" />
+    </api>
+    <api id="Properties.T:System.Windows.Automation.Provider.IDockProvider">
+      <topicdata name="IDockProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Automation.Provider.IDockProvider" />
+      <apidata name="IDockProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IDockProvider.DockPosition" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IDockProvider" />
+      </containers>
+      <file name="3d85536c-f0e9-9e4d-183b-2a603142c2ff" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IDockProvider.DockPosition">
+      <topicdata group="api" />
+      <apidata name="DockPosition" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_DockPosition" />
+      <returns>
+        <type api="T:System.Windows.Automation.DockPosition" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IDockProvider" ref="true" />
+      </containers>
+      <file name="49ef4d8c-72de-bf9b-189c-9bdcfa855224" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IDockProvider.SetDockPosition(System.Windows.Automation.DockPosition)">
+      <topicdata group="api" />
+      <apidata name="SetDockPosition" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="dockPosition">
+          <type api="T:System.Windows.Automation.DockPosition" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IDockProvider" ref="true" />
+      </containers>
+      <file name="e51bde37-7bf7-7bae-03bf-fe777669bfe7" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.IExpandCollapseProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.IExpandCollapseProvider" />
+      <apidata name="IExpandCollapseProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Automation.Peers.ComboBoxAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DatePickerAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.TreeViewItemAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridGroupItemAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.AutoCompleteBoxAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.PickerAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.AccordionItemAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.ExpanderAutomationPeer" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="be6b098c-ebbd-fa54-4fb5-6fa8502e3e49" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.IExpandCollapseProvider">
+      <topicdata name="IExpandCollapseProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.IExpandCollapseProvider" />
+      <apidata name="IExpandCollapseProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IExpandCollapseProvider.Collapse" />
+        <element api="M:System.Windows.Automation.Provider.IExpandCollapseProvider.Expand" />
+        <element api="P:System.Windows.Automation.Provider.IExpandCollapseProvider.ExpandCollapseState" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IExpandCollapseProvider" />
+      </containers>
+      <file name="4604209b-bfc9-32e3-be42-324a06878bcb" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.IExpandCollapseProvider">
+      <topicdata name="IExpandCollapseProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.IExpandCollapseProvider" />
+      <apidata name="IExpandCollapseProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IExpandCollapseProvider.Collapse" />
+        <element api="M:System.Windows.Automation.Provider.IExpandCollapseProvider.Expand" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IExpandCollapseProvider" />
+      </containers>
+      <file name="e4e4e910-39f8-4477-72a7-74a95c524573" />
+    </api>
+    <api id="Properties.T:System.Windows.Automation.Provider.IExpandCollapseProvider">
+      <topicdata name="IExpandCollapseProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Automation.Provider.IExpandCollapseProvider" />
+      <apidata name="IExpandCollapseProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IExpandCollapseProvider.ExpandCollapseState" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IExpandCollapseProvider" />
+      </containers>
+      <file name="dce19287-6c83-ef75-2ef0-851b7693bc67" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IExpandCollapseProvider.Collapse">
+      <topicdata group="api" />
+      <apidata name="Collapse" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IExpandCollapseProvider" ref="true" />
+      </containers>
+      <file name="3be8a163-5fe5-4348-cbd5-4b784130e2de" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IExpandCollapseProvider.Expand">
+      <topicdata group="api" />
+      <apidata name="Expand" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IExpandCollapseProvider" ref="true" />
+      </containers>
+      <file name="c4e5f5ba-cf40-3af6-6c14-d09daa2c1109" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IExpandCollapseProvider.ExpandCollapseState">
+      <topicdata group="api" />
+      <apidata name="ExpandCollapseState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ExpandCollapseState" />
+      <returns>
+        <type api="T:System.Windows.Automation.ExpandCollapseState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IExpandCollapseProvider" ref="true" />
+      </containers>
+      <file name="202655f9-25ea-96e5-11c5-6a8d7a16f905" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.IGridItemProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.IGridItemProvider" />
+      <apidata name="IGridItemProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Automation.Peers.CalendarButtonAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.CalendarDayButtonAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridCellAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.GlobalCalendarButtonAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.GlobalCalendarDayButtonAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Provider.ITableItemProvider" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="bd3998c4-e72d-25cc-4fbf-f29c7c3676a0" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.IGridItemProvider">
+      <topicdata name="IGridItemProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.IGridItemProvider" />
+      <apidata name="IGridItemProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.Column" />
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.ColumnSpan" />
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.ContainingGrid" />
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.Row" />
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.RowSpan" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IGridItemProvider" />
+      </containers>
+      <file name="563f5af5-95b2-6548-6b68-3e0cd32f8d36" />
+    </api>
+    <api id="Properties.T:System.Windows.Automation.Provider.IGridItemProvider">
+      <topicdata name="IGridItemProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Automation.Provider.IGridItemProvider" />
+      <apidata name="IGridItemProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.Column" />
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.ColumnSpan" />
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.ContainingGrid" />
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.Row" />
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.RowSpan" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IGridItemProvider" />
+      </containers>
+      <file name="3f9eb3a2-9d0e-41ea-3a7c-60b3a686bebb" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IGridItemProvider.Column">
+      <topicdata group="api" />
+      <apidata name="Column" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Column" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IGridItemProvider" ref="true" />
+      </containers>
+      <file name="9879d629-8488-d736-c7b1-b4b1f50e7c5a" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IGridItemProvider.ColumnSpan">
+      <topicdata group="api" />
+      <apidata name="ColumnSpan" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ColumnSpan" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IGridItemProvider" ref="true" />
+      </containers>
+      <file name="b6f1341b-1bf9-6ee0-1558-ae91f8dc1098" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IGridItemProvider.ContainingGrid">
+      <topicdata group="api" />
+      <apidata name="ContainingGrid" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ContainingGrid" />
+      <returns>
+        <type api="T:System.Windows.Automation.Provider.IRawElementProviderSimple" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IGridItemProvider" ref="true" />
+      </containers>
+      <file name="c11eaabe-cdf6-8791-1ec3-1e005c404cf7" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IGridItemProvider.Row">
+      <topicdata group="api" />
+      <apidata name="Row" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Row" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IGridItemProvider" ref="true" />
+      </containers>
+      <file name="694236e5-f3ac-e3e0-1e56-ccdd69f1b380" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IGridItemProvider.RowSpan">
+      <topicdata group="api" />
+      <apidata name="RowSpan" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_RowSpan" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IGridItemProvider" ref="true" />
+      </containers>
+      <file name="96d64ee6-5318-e39b-0929-010e8f0565de" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.IGridProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.IGridProvider" />
+      <apidata name="IGridProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Automation.Peers.CalendarAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridGroupItemAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.GlobalCalendarAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Provider.ITableProvider" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="e6753fa3-a1d6-e6c7-ec3e-1e0c8b7e0d0b" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.IGridProvider">
+      <topicdata name="IGridProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.IGridProvider" />
+      <apidata name="IGridProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IGridProvider.ColumnCount" />
+        <element api="M:System.Windows.Automation.Provider.IGridProvider.GetItem(System.Int32,System.Int32)" />
+        <element api="P:System.Windows.Automation.Provider.IGridProvider.RowCount" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IGridProvider" />
+      </containers>
+      <file name="0ba4bf6d-a547-1bcc-8d0c-6be4bb6770e1" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.IGridProvider">
+      <topicdata name="IGridProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.IGridProvider" />
+      <apidata name="IGridProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IGridProvider.GetItem(System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IGridProvider" />
+      </containers>
+      <file name="ab102345-bfea-4e45-913d-3983bb5e2342" />
+    </api>
+    <api id="Properties.T:System.Windows.Automation.Provider.IGridProvider">
+      <topicdata name="IGridProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Automation.Provider.IGridProvider" />
+      <apidata name="IGridProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IGridProvider.ColumnCount" />
+        <element api="P:System.Windows.Automation.Provider.IGridProvider.RowCount" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IGridProvider" />
+      </containers>
+      <file name="f87243f8-7cf8-6d0a-8cb2-f8b2e17326c8" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IGridProvider.ColumnCount">
+      <topicdata group="api" />
+      <apidata name="ColumnCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ColumnCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IGridProvider" ref="true" />
+      </containers>
+      <file name="803069f7-bfde-6cf0-5639-4b782a4c7f36" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IGridProvider.GetItem(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetItem" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="row">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="column">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Automation.Provider.IRawElementProviderSimple" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IGridProvider" ref="true" />
+      </containers>
+      <file name="bce56620-38e5-d14b-cd87-36b9a62d8e81" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IGridProvider.RowCount">
+      <topicdata group="api" />
+      <apidata name="RowCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_RowCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IGridProvider" ref="true" />
+      </containers>
+      <file name="e852b02c-c7c1-507b-b2d1-2106df1b404d" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.IInvokeProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.IInvokeProvider" />
+      <apidata name="IInvokeProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Automation.Peers.ButtonAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.HyperlinkButtonAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.RepeatButtonAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.CalendarButtonAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.CalendarDayButtonAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridCellAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridColumnHeaderAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridItemAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.ValidationSummaryAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.GlobalCalendarButtonAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.GlobalCalendarDayButtonAutomationPeer" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="18ea9340-74d9-c691-e22e-45e1545cdfae" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.IInvokeProvider">
+      <topicdata name="IInvokeProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.IInvokeProvider" />
+      <apidata name="IInvokeProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IInvokeProvider.Invoke" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IInvokeProvider" />
+      </containers>
+      <file name="541694b5-e7de-12c3-16ab-aee49e8c1c5f" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.IInvokeProvider">
+      <topicdata name="IInvokeProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.IInvokeProvider" />
+      <apidata name="IInvokeProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IInvokeProvider.Invoke" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IInvokeProvider" />
+      </containers>
+      <file name="b628c37e-2603-3e09-2dd2-16a756b74e8f" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IInvokeProvider.Invoke">
+      <topicdata group="api" />
+      <apidata name="Invoke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IInvokeProvider" ref="true" />
+      </containers>
+      <file name="9d25d3a4-1dd9-4a30-a73e-5315767c75a8" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.IMultipleViewProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.IMultipleViewProvider" />
+      <apidata name="IMultipleViewProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Automation.Peers.CalendarAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.GlobalCalendarAutomationPeer" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="160c38be-720b-bc12-4ab9-08ba5dcf19e5" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.IMultipleViewProvider">
+      <topicdata name="IMultipleViewProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.IMultipleViewProvider" />
+      <apidata name="IMultipleViewProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IMultipleViewProvider.CurrentView" />
+        <element api="M:System.Windows.Automation.Provider.IMultipleViewProvider.GetSupportedViews" />
+        <element api="M:System.Windows.Automation.Provider.IMultipleViewProvider.GetViewName(System.Int32)" />
+        <element api="M:System.Windows.Automation.Provider.IMultipleViewProvider.SetCurrentView(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IMultipleViewProvider" />
+      </containers>
+      <file name="af8068cd-3578-2187-d436-24a427bd8ac4" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.IMultipleViewProvider">
+      <topicdata name="IMultipleViewProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.IMultipleViewProvider" />
+      <apidata name="IMultipleViewProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IMultipleViewProvider.GetSupportedViews" />
+        <element api="M:System.Windows.Automation.Provider.IMultipleViewProvider.GetViewName(System.Int32)" />
+        <element api="M:System.Windows.Automation.Provider.IMultipleViewProvider.SetCurrentView(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IMultipleViewProvider" />
+      </containers>
+      <file name="121e7f15-9030-a3fa-17ef-e2bc874b4cca" />
+    </api>
+    <api id="Properties.T:System.Windows.Automation.Provider.IMultipleViewProvider">
+      <topicdata name="IMultipleViewProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Automation.Provider.IMultipleViewProvider" />
+      <apidata name="IMultipleViewProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IMultipleViewProvider.CurrentView" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IMultipleViewProvider" />
+      </containers>
+      <file name="ca09332c-cc5a-c44d-757f-b262d059de6c" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IMultipleViewProvider.CurrentView">
+      <topicdata group="api" />
+      <apidata name="CurrentView" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CurrentView" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IMultipleViewProvider" ref="true" />
+      </containers>
+      <file name="278f2061-e810-3c4e-0ffe-acf75b054748" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IMultipleViewProvider.GetSupportedViews">
+      <topicdata group="api" />
+      <apidata name="GetSupportedViews" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Int32" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IMultipleViewProvider" ref="true" />
+      </containers>
+      <file name="3036a04e-a557-145b-0076-02c223a0cc57" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IMultipleViewProvider.GetViewName(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetViewName" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="viewId">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IMultipleViewProvider" ref="true" />
+      </containers>
+      <file name="51073a79-b2eb-30dd-54ab-e93f89b1de08" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IMultipleViewProvider.SetCurrentView(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="SetCurrentView" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="viewId">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IMultipleViewProvider" ref="true" />
+      </containers>
+      <file name="2a4d20f5-f167-2936-1275-d9102ab8ba21" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.IRangeValueProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.IRangeValueProvider" />
+      <apidata name="IRangeValueProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Automation.Peers.RangeBaseAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.ProgressBarAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataPagerAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.NumericUpDownAutomationPeer" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="704da0ce-6fc5-0a74-e458-c412752fc640" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.IRangeValueProvider">
+      <topicdata name="IRangeValueProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.IRangeValueProvider" />
+      <apidata name="IRangeValueProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IRangeValueProvider.IsReadOnly" />
+        <element api="P:System.Windows.Automation.Provider.IRangeValueProvider.LargeChange" />
+        <element api="P:System.Windows.Automation.Provider.IRangeValueProvider.Maximum" />
+        <element api="P:System.Windows.Automation.Provider.IRangeValueProvider.Minimum" />
+        <element api="M:System.Windows.Automation.Provider.IRangeValueProvider.SetValue(System.Double)" />
+        <element api="P:System.Windows.Automation.Provider.IRangeValueProvider.SmallChange" />
+        <element api="P:System.Windows.Automation.Provider.IRangeValueProvider.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IRangeValueProvider" />
+      </containers>
+      <file name="703fb1a0-9cb4-da03-4e08-84654ad011c4" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.IRangeValueProvider">
+      <topicdata name="IRangeValueProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.IRangeValueProvider" />
+      <apidata name="IRangeValueProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IRangeValueProvider.SetValue(System.Double)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IRangeValueProvider" />
+      </containers>
+      <file name="4f2492c6-449c-9650-9d5e-4bb67e268975" />
+    </api>
+    <api id="Properties.T:System.Windows.Automation.Provider.IRangeValueProvider">
+      <topicdata name="IRangeValueProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Automation.Provider.IRangeValueProvider" />
+      <apidata name="IRangeValueProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IRangeValueProvider.IsReadOnly" />
+        <element api="P:System.Windows.Automation.Provider.IRangeValueProvider.LargeChange" />
+        <element api="P:System.Windows.Automation.Provider.IRangeValueProvider.Maximum" />
+        <element api="P:System.Windows.Automation.Provider.IRangeValueProvider.Minimum" />
+        <element api="P:System.Windows.Automation.Provider.IRangeValueProvider.SmallChange" />
+        <element api="P:System.Windows.Automation.Provider.IRangeValueProvider.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IRangeValueProvider" />
+      </containers>
+      <file name="2be3ab14-f663-0bd8-acf3-4fd18f29e99d" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IRangeValueProvider.IsReadOnly">
+      <topicdata group="api" />
+      <apidata name="IsReadOnly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsReadOnly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IRangeValueProvider" ref="true" />
+      </containers>
+      <file name="0c2b17bf-157a-5ef3-f8b1-564906c7f7e5" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IRangeValueProvider.LargeChange">
+      <topicdata group="api" />
+      <apidata name="LargeChange" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_LargeChange" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IRangeValueProvider" ref="true" />
+      </containers>
+      <file name="c113b4a4-f779-517e-2e88-b5be170a2b83" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IRangeValueProvider.Maximum">
+      <topicdata group="api" />
+      <apidata name="Maximum" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Maximum" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IRangeValueProvider" ref="true" />
+      </containers>
+      <file name="0205aef3-4726-109d-6acc-85fd414aae35" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IRangeValueProvider.Minimum">
+      <topicdata group="api" />
+      <apidata name="Minimum" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Minimum" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IRangeValueProvider" ref="true" />
+      </containers>
+      <file name="e38e3017-fcd2-d0c2-04de-d91dceec51d7" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IRangeValueProvider.SetValue(System.Double)">
+      <topicdata group="api" />
+      <apidata name="SetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IRangeValueProvider" ref="true" />
+      </containers>
+      <file name="8d2147e9-8eb1-b838-0c1f-749cceb06f6c" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IRangeValueProvider.SmallChange">
+      <topicdata group="api" />
+      <apidata name="SmallChange" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_SmallChange" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IRangeValueProvider" ref="true" />
+      </containers>
+      <file name="e7a426e4-8922-5a02-078a-07c5711df8a1" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IRangeValueProvider.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IRangeValueProvider" ref="true" />
+      </containers>
+      <file name="7f2bd7a4-76d7-ad1f-7222-a0ded17e3e69" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.IRawElementProviderSimple">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.IRawElementProviderSimple" />
+      <apidata name="IRawElementProviderSimple" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="89637a06-8b1d-60c1-890b-96a38eab7eaf" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.IRawElementProviderSimple">
+      <topicdata name="IRawElementProviderSimple" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.IRawElementProviderSimple" />
+      <apidata name="IRawElementProviderSimple" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IRawElementProviderSimple" />
+      </containers>
+      <file name="fa1207d0-4f4d-1709-4c94-78eddbd33f9a" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.IRawElementProviderSimple">
+      <topicdata name="IRawElementProviderSimple" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.IRawElementProviderSimple" />
+      <apidata name="IRawElementProviderSimple" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IRawElementProviderSimple" />
+      </containers>
+      <file name="ed2079c6-f279-b047-5a5e-767a3d0a344c" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.IScrollItemProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.IScrollItemProvider" />
+      <apidata name="IScrollItemProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Automation.Peers.ListBoxItemAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.TreeViewItemAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridCellAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridColumnHeaderAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridGroupItemAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridItemAutomationPeer" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="093e0900-58ab-fdd9-0660-4cec6be4b9c7" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.IScrollItemProvider">
+      <topicdata name="IScrollItemProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.IScrollItemProvider" />
+      <apidata name="IScrollItemProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IScrollItemProvider.ScrollIntoView" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IScrollItemProvider" />
+      </containers>
+      <file name="366ed1d3-f144-d66e-ed7a-8242eba8b5c2" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.IScrollItemProvider">
+      <topicdata name="IScrollItemProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.IScrollItemProvider" />
+      <apidata name="IScrollItemProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IScrollItemProvider.ScrollIntoView" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IScrollItemProvider" />
+      </containers>
+      <file name="9c13c670-366d-588b-babc-2ed116bcfe85" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IScrollItemProvider.ScrollIntoView">
+      <topicdata group="api" />
+      <apidata name="ScrollIntoView" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IScrollItemProvider" ref="true" />
+      </containers>
+      <file name="ef110baa-1249-631d-1546-9b0bf9ec1cf1" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.IScrollProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.IScrollProvider" />
+      <apidata name="IScrollProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Automation.Peers.ScrollViewerAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridAutomationPeer" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="89e3aaeb-8930-465f-600d-812f3acd3840" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.IScrollProvider">
+      <topicdata name="IScrollProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.IScrollProvider" />
+      <apidata name="IScrollProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IScrollProvider.HorizontallyScrollable" />
+        <element api="P:System.Windows.Automation.Provider.IScrollProvider.HorizontalScrollPercent" />
+        <element api="P:System.Windows.Automation.Provider.IScrollProvider.HorizontalViewSize" />
+        <element api="M:System.Windows.Automation.Provider.IScrollProvider.Scroll(System.Windows.Automation.ScrollAmount,System.Windows.Automation.ScrollAmount)" />
+        <element api="M:System.Windows.Automation.Provider.IScrollProvider.SetScrollPercent(System.Double,System.Double)" />
+        <element api="P:System.Windows.Automation.Provider.IScrollProvider.VerticallyScrollable" />
+        <element api="P:System.Windows.Automation.Provider.IScrollProvider.VerticalScrollPercent" />
+        <element api="P:System.Windows.Automation.Provider.IScrollProvider.VerticalViewSize" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IScrollProvider" />
+      </containers>
+      <file name="42df0c62-aa0d-ef8d-c828-1f2f631de5d2" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.IScrollProvider">
+      <topicdata name="IScrollProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.IScrollProvider" />
+      <apidata name="IScrollProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IScrollProvider.Scroll(System.Windows.Automation.ScrollAmount,System.Windows.Automation.ScrollAmount)" />
+        <element api="M:System.Windows.Automation.Provider.IScrollProvider.SetScrollPercent(System.Double,System.Double)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IScrollProvider" />
+      </containers>
+      <file name="57f67747-7d08-cf1c-ba77-a5a256677225" />
+    </api>
+    <api id="Properties.T:System.Windows.Automation.Provider.IScrollProvider">
+      <topicdata name="IScrollProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Automation.Provider.IScrollProvider" />
+      <apidata name="IScrollProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IScrollProvider.HorizontallyScrollable" />
+        <element api="P:System.Windows.Automation.Provider.IScrollProvider.HorizontalScrollPercent" />
+        <element api="P:System.Windows.Automation.Provider.IScrollProvider.HorizontalViewSize" />
+        <element api="P:System.Windows.Automation.Provider.IScrollProvider.VerticallyScrollable" />
+        <element api="P:System.Windows.Automation.Provider.IScrollProvider.VerticalScrollPercent" />
+        <element api="P:System.Windows.Automation.Provider.IScrollProvider.VerticalViewSize" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IScrollProvider" />
+      </containers>
+      <file name="2612e17f-5c6e-a443-809b-1571f2004da3" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IScrollProvider.HorizontallyScrollable">
+      <topicdata group="api" />
+      <apidata name="HorizontallyScrollable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_HorizontallyScrollable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IScrollProvider" ref="true" />
+      </containers>
+      <file name="d8f8e645-2b11-803d-937e-cd5f02897288" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IScrollProvider.HorizontalScrollPercent">
+      <topicdata group="api" />
+      <apidata name="HorizontalScrollPercent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_HorizontalScrollPercent" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IScrollProvider" ref="true" />
+      </containers>
+      <file name="89b580f1-6359-51b8-cff5-4a6dd7623d5d" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IScrollProvider.HorizontalViewSize">
+      <topicdata group="api" />
+      <apidata name="HorizontalViewSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_HorizontalViewSize" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IScrollProvider" ref="true" />
+      </containers>
+      <file name="a41cacd8-e1bb-aa3e-12ab-69a498373986" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IScrollProvider.Scroll(System.Windows.Automation.ScrollAmount,System.Windows.Automation.ScrollAmount)">
+      <topicdata group="api" />
+      <apidata name="Scroll" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="horizontalAmount">
+          <type api="T:System.Windows.Automation.ScrollAmount" ref="false" />
+        </parameter>
+        <parameter name="verticalAmount">
+          <type api="T:System.Windows.Automation.ScrollAmount" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IScrollProvider" ref="true" />
+      </containers>
+      <file name="69861a59-f101-1810-e036-f92e1cc40219" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IScrollProvider.SetScrollPercent(System.Double,System.Double)">
+      <topicdata group="api" />
+      <apidata name="SetScrollPercent" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="horizontalPercent">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="verticalPercent">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IScrollProvider" ref="true" />
+      </containers>
+      <file name="80664778-8b8e-e4b5-f1d4-15c748b3343b" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IScrollProvider.VerticallyScrollable">
+      <topicdata group="api" />
+      <apidata name="VerticallyScrollable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_VerticallyScrollable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IScrollProvider" ref="true" />
+      </containers>
+      <file name="8ed3ad76-8bcf-2f34-1aa6-50ba26bf2293" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IScrollProvider.VerticalScrollPercent">
+      <topicdata group="api" />
+      <apidata name="VerticalScrollPercent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_VerticalScrollPercent" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IScrollProvider" ref="true" />
+      </containers>
+      <file name="8ceffc44-baeb-72c8-4937-d97e390321fc" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IScrollProvider.VerticalViewSize">
+      <topicdata group="api" />
+      <apidata name="VerticalViewSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_VerticalViewSize" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IScrollProvider" ref="true" />
+      </containers>
+      <file name="836fadbf-73fd-bf0f-63e6-fe257b7fffc2" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.ISelectionItemProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.ISelectionItemProvider" />
+      <apidata name="ISelectionItemProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Automation.Peers.SelectorItemAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.RadioButtonAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.CalendarButtonAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.CalendarDayButtonAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.TabItemAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.TreeViewItemAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridCellAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridItemAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.RatingItemAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.AccordionItemAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.GlobalCalendarButtonAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.GlobalCalendarDayButtonAutomationPeer" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="a74e4608-37f8-596a-30c4-044adeb1f501" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.ISelectionItemProvider">
+      <topicdata name="ISelectionItemProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.ISelectionItemProvider" />
+      <apidata name="ISelectionItemProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.ISelectionItemProvider.AddToSelection" />
+        <element api="P:System.Windows.Automation.Provider.ISelectionItemProvider.IsSelected" />
+        <element api="M:System.Windows.Automation.Provider.ISelectionItemProvider.RemoveFromSelection" />
+        <element api="M:System.Windows.Automation.Provider.ISelectionItemProvider.Select" />
+        <element api="P:System.Windows.Automation.Provider.ISelectionItemProvider.SelectionContainer" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ISelectionItemProvider" />
+      </containers>
+      <file name="1ac2351d-ea52-6281-efcd-811febb5e00d" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.ISelectionItemProvider">
+      <topicdata name="ISelectionItemProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.ISelectionItemProvider" />
+      <apidata name="ISelectionItemProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.ISelectionItemProvider.AddToSelection" />
+        <element api="M:System.Windows.Automation.Provider.ISelectionItemProvider.RemoveFromSelection" />
+        <element api="M:System.Windows.Automation.Provider.ISelectionItemProvider.Select" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ISelectionItemProvider" />
+      </containers>
+      <file name="6920d67d-58e8-020e-ec28-5c4aa8a26ddf" />
+    </api>
+    <api id="Properties.T:System.Windows.Automation.Provider.ISelectionItemProvider">
+      <topicdata name="ISelectionItemProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Automation.Provider.ISelectionItemProvider" />
+      <apidata name="ISelectionItemProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.ISelectionItemProvider.IsSelected" />
+        <element api="P:System.Windows.Automation.Provider.ISelectionItemProvider.SelectionContainer" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ISelectionItemProvider" />
+      </containers>
+      <file name="c359c00f-dc7f-05f3-3da2-d9e66bf3d7cf" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ISelectionItemProvider.AddToSelection">
+      <topicdata group="api" />
+      <apidata name="AddToSelection" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ISelectionItemProvider" ref="true" />
+      </containers>
+      <file name="23098c8b-34ee-c916-6e5d-7c4189278b7e" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.ISelectionItemProvider.IsSelected">
+      <topicdata group="api" />
+      <apidata name="IsSelected" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsSelected" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ISelectionItemProvider" ref="true" />
+      </containers>
+      <file name="81345d37-138c-f95d-c6af-76b81b86ab35" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ISelectionItemProvider.RemoveFromSelection">
+      <topicdata group="api" />
+      <apidata name="RemoveFromSelection" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ISelectionItemProvider" ref="true" />
+      </containers>
+      <file name="37ab943c-946f-60d5-b9d1-4457130be782" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ISelectionItemProvider.Select">
+      <topicdata group="api" />
+      <apidata name="Select" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ISelectionItemProvider" ref="true" />
+      </containers>
+      <file name="955fa9f7-f1b0-71a1-9580-a2433fd6b406" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.ISelectionItemProvider.SelectionContainer">
+      <topicdata group="api" />
+      <apidata name="SelectionContainer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_SelectionContainer" />
+      <returns>
+        <type api="T:System.Windows.Automation.Provider.IRawElementProviderSimple" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ISelectionItemProvider" ref="true" />
+      </containers>
+      <file name="ce5d3004-3310-bfa1-f3c2-16630f644c37" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.ISelectionProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.ISelectionProvider" />
+      <apidata name="ISelectionProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Controls.ListTimePickerPopupAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.SelectorAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.CalendarAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.TabControlAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.TreeViewAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridGroupItemAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridItemAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.AutoCompleteBoxAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.RatingAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.AccordionAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.GlobalCalendarAutomationPeer" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="6414d4e4-1166-54c8-5334-9983b7d0d25a" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.ISelectionProvider">
+      <topicdata name="ISelectionProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.ISelectionProvider" />
+      <apidata name="ISelectionProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.ISelectionProvider.CanSelectMultiple" />
+        <element api="M:System.Windows.Automation.Provider.ISelectionProvider.GetSelection" />
+        <element api="P:System.Windows.Automation.Provider.ISelectionProvider.IsSelectionRequired" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ISelectionProvider" />
+      </containers>
+      <file name="d80ba864-c37f-e12b-7977-ce70ecbcba4a" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.ISelectionProvider">
+      <topicdata name="ISelectionProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.ISelectionProvider" />
+      <apidata name="ISelectionProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.ISelectionProvider.GetSelection" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ISelectionProvider" />
+      </containers>
+      <file name="567de5a2-fba6-b669-6642-a195c786778e" />
+    </api>
+    <api id="Properties.T:System.Windows.Automation.Provider.ISelectionProvider">
+      <topicdata name="ISelectionProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Automation.Provider.ISelectionProvider" />
+      <apidata name="ISelectionProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.ISelectionProvider.CanSelectMultiple" />
+        <element api="P:System.Windows.Automation.Provider.ISelectionProvider.IsSelectionRequired" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ISelectionProvider" />
+      </containers>
+      <file name="d5f22c91-85f3-8b26-04cf-ddcac6571a78" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.ISelectionProvider.CanSelectMultiple">
+      <topicdata group="api" />
+      <apidata name="CanSelectMultiple" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CanSelectMultiple" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ISelectionProvider" ref="true" />
+      </containers>
+      <file name="2310f04b-a10f-c88b-da73-58db651cd506" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ISelectionProvider.GetSelection">
+      <topicdata group="api" />
+      <apidata name="GetSelection" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Windows.Automation.Provider.IRawElementProviderSimple" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ISelectionProvider" ref="true" />
+      </containers>
+      <file name="553a491b-d141-d4f2-3db7-4ca5d0adcc3e" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.ISelectionProvider.IsSelectionRequired">
+      <topicdata group="api" />
+      <apidata name="IsSelectionRequired" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsSelectionRequired" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ISelectionProvider" ref="true" />
+      </containers>
+      <file name="7d0ef3e8-fc72-116a-8b00-82172c432614" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.ITableItemProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.ITableItemProvider" />
+      <apidata name="ITableItemProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:System.Windows.Automation.Provider.IGridItemProvider" ref="true" />
+      </implements>
+      <implementors>
+        <type api="T:System.Windows.Automation.Peers.CalendarDayButtonAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridCellAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.GlobalCalendarDayButtonAutomationPeer" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="57648200-a15d-e45a-9860-d058aa4f9df2" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.ITableItemProvider">
+      <topicdata name="ITableItemProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.ITableItemProvider" />
+      <apidata name="ITableItemProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.Column" />
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.ColumnSpan" />
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.ContainingGrid" />
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.Row" />
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.RowSpan" />
+        <element api="M:System.Windows.Automation.Provider.ITableItemProvider.GetColumnHeaderItems" />
+        <element api="M:System.Windows.Automation.Provider.ITableItemProvider.GetRowHeaderItems" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITableItemProvider" />
+      </containers>
+      <file name="4b157df2-a718-1cf3-7176-94ee6918cc97" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.ITableItemProvider">
+      <topicdata name="ITableItemProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.ITableItemProvider" />
+      <apidata name="ITableItemProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.ITableItemProvider.GetColumnHeaderItems" />
+        <element api="M:System.Windows.Automation.Provider.ITableItemProvider.GetRowHeaderItems" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITableItemProvider" />
+      </containers>
+      <file name="6812a5e9-d49b-e181-7632-758fd35e87c5" />
+    </api>
+    <api id="Properties.T:System.Windows.Automation.Provider.ITableItemProvider">
+      <topicdata name="ITableItemProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Automation.Provider.ITableItemProvider" />
+      <apidata name="ITableItemProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.Column" />
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.ColumnSpan" />
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.ContainingGrid" />
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.Row" />
+        <element api="P:System.Windows.Automation.Provider.IGridItemProvider.RowSpan" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITableItemProvider" />
+      </containers>
+      <file name="8437c643-376f-0528-d9b6-2eeeb0145abf" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITableItemProvider.GetColumnHeaderItems">
+      <topicdata group="api" />
+      <apidata name="GetColumnHeaderItems" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Windows.Automation.Provider.IRawElementProviderSimple" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITableItemProvider" ref="true" />
+      </containers>
+      <file name="eb4f70fb-f58f-262a-6846-68e94758dfb3" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITableItemProvider.GetRowHeaderItems">
+      <topicdata group="api" />
+      <apidata name="GetRowHeaderItems" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Windows.Automation.Provider.IRawElementProviderSimple" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITableItemProvider" ref="true" />
+      </containers>
+      <file name="8a67d76b-fc9a-d17f-9f1d-64abdd982ed3" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.ITableProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.ITableProvider" />
+      <apidata name="ITableProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:System.Windows.Automation.Provider.IGridProvider" ref="true" />
+      </implements>
+      <implementors>
+        <type api="T:System.Windows.Automation.Peers.CalendarAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.GlobalCalendarAutomationPeer" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="95d2c427-953b-40f4-5b03-cb84b1e5779b" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.ITableProvider">
+      <topicdata name="ITableProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.ITableProvider" />
+      <apidata name="ITableProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IGridProvider.ColumnCount" />
+        <element api="M:System.Windows.Automation.Provider.IGridProvider.GetItem(System.Int32,System.Int32)" />
+        <element api="P:System.Windows.Automation.Provider.IGridProvider.RowCount" />
+        <element api="M:System.Windows.Automation.Provider.ITableProvider.GetColumnHeaders" />
+        <element api="M:System.Windows.Automation.Provider.ITableProvider.GetRowHeaders" />
+        <element api="P:System.Windows.Automation.Provider.ITableProvider.RowOrColumnMajor" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITableProvider" />
+      </containers>
+      <file name="c31a438c-39cb-b467-60e7-4e256e5821b1" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.ITableProvider">
+      <topicdata name="ITableProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.ITableProvider" />
+      <apidata name="ITableProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IGridProvider.GetItem(System.Int32,System.Int32)" />
+        <element api="M:System.Windows.Automation.Provider.ITableProvider.GetColumnHeaders" />
+        <element api="M:System.Windows.Automation.Provider.ITableProvider.GetRowHeaders" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITableProvider" />
+      </containers>
+      <file name="6be286bb-a367-e67a-3a71-2fed1a8390c2" />
+    </api>
+    <api id="Properties.T:System.Windows.Automation.Provider.ITableProvider">
+      <topicdata name="ITableProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Automation.Provider.ITableProvider" />
+      <apidata name="ITableProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IGridProvider.ColumnCount" />
+        <element api="P:System.Windows.Automation.Provider.IGridProvider.RowCount" />
+        <element api="P:System.Windows.Automation.Provider.ITableProvider.RowOrColumnMajor" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITableProvider" />
+      </containers>
+      <file name="51e59fa1-0fc3-b418-ce08-c57367a6c162" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITableProvider.GetColumnHeaders">
+      <topicdata group="api" />
+      <apidata name="GetColumnHeaders" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Windows.Automation.Provider.IRawElementProviderSimple" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITableProvider" ref="true" />
+      </containers>
+      <file name="37a6fff5-dd92-ce95-63a8-15a2dafa73f7" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITableProvider.GetRowHeaders">
+      <topicdata group="api" />
+      <apidata name="GetRowHeaders" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Windows.Automation.Provider.IRawElementProviderSimple" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITableProvider" ref="true" />
+      </containers>
+      <file name="25f3fd1c-d4c9-3510-2a37-bdbfe436d1b3" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.ITableProvider.RowOrColumnMajor">
+      <topicdata group="api" />
+      <apidata name="RowOrColumnMajor" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_RowOrColumnMajor" />
+      <returns>
+        <type api="T:System.Windows.Automation.RowOrColumnMajor" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITableProvider" ref="true" />
+      </containers>
+      <file name="7d73cb07-4f38-5fe1-dcc6-7fb2397f1f51" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.ITextProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.ITextProvider" />
+      <apidata name="ITextProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="23c64aba-3245-f6c4-5b6d-9dc16f8802d4" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.ITextProvider">
+      <topicdata name="ITextProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.ITextProvider" />
+      <apidata name="ITextProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.ITextProvider.DocumentRange" />
+        <element api="M:System.Windows.Automation.Provider.ITextProvider.GetSelection" />
+        <element api="M:System.Windows.Automation.Provider.ITextProvider.GetVisibleRanges" />
+        <element api="M:System.Windows.Automation.Provider.ITextProvider.RangeFromChild(System.Windows.Automation.Provider.IRawElementProviderSimple)" />
+        <element api="M:System.Windows.Automation.Provider.ITextProvider.RangeFromPoint(System.Windows.Point)" />
+        <element api="P:System.Windows.Automation.Provider.ITextProvider.SupportedTextSelection" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextProvider" />
+      </containers>
+      <file name="2e810ac7-7514-a8f2-7812-2db06cca76d0" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.ITextProvider">
+      <topicdata name="ITextProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.ITextProvider" />
+      <apidata name="ITextProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.ITextProvider.GetSelection" />
+        <element api="M:System.Windows.Automation.Provider.ITextProvider.GetVisibleRanges" />
+        <element api="M:System.Windows.Automation.Provider.ITextProvider.RangeFromChild(System.Windows.Automation.Provider.IRawElementProviderSimple)" />
+        <element api="M:System.Windows.Automation.Provider.ITextProvider.RangeFromPoint(System.Windows.Point)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextProvider" />
+      </containers>
+      <file name="e20de584-f5fe-b7e6-5f6d-5b1f3dc8893b" />
+    </api>
+    <api id="Properties.T:System.Windows.Automation.Provider.ITextProvider">
+      <topicdata name="ITextProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Automation.Provider.ITextProvider" />
+      <apidata name="ITextProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.ITextProvider.DocumentRange" />
+        <element api="P:System.Windows.Automation.Provider.ITextProvider.SupportedTextSelection" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextProvider" />
+      </containers>
+      <file name="a72201e1-3ee3-4435-c913-8553049e64a0" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.ITextProvider.DocumentRange">
+      <topicdata group="api" />
+      <apidata name="DocumentRange" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_DocumentRange" />
+      <returns>
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextProvider" ref="true" />
+      </containers>
+      <file name="2d59c881-fda9-5a0a-28a8-76d394a710c4" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextProvider.GetSelection">
+      <topicdata group="api" />
+      <apidata name="GetSelection" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextProvider" ref="true" />
+      </containers>
+      <file name="2b2d4364-2ac9-93ff-67cf-f9d70a9ba9b3" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextProvider.GetVisibleRanges">
+      <topicdata group="api" />
+      <apidata name="GetVisibleRanges" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextProvider" ref="true" />
+      </containers>
+      <file name="b829ee90-6aa3-a772-4b55-c9ceb56db61c" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextProvider.RangeFromChild(System.Windows.Automation.Provider.IRawElementProviderSimple)">
+      <topicdata group="api" />
+      <apidata name="RangeFromChild" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="childElement">
+          <type api="T:System.Windows.Automation.Provider.IRawElementProviderSimple" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextProvider" ref="true" />
+      </containers>
+      <file name="f22072bb-2b13-1727-a024-3361f820fafc" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextProvider.RangeFromPoint(System.Windows.Point)">
+      <topicdata group="api" />
+      <apidata name="RangeFromPoint" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="screenLocation">
+          <type api="T:System.Windows.Point" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextProvider" ref="true" />
+      </containers>
+      <file name="4585583d-9e02-650f-febd-56c08dd5a868" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.ITextProvider.SupportedTextSelection">
+      <topicdata group="api" />
+      <apidata name="SupportedTextSelection" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_SupportedTextSelection" />
+      <returns>
+        <type api="T:System.Windows.Automation.SupportedTextSelection" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextProvider" ref="true" />
+      </containers>
+      <file name="d1a1c28f-a27c-58fb-dee4-85dff3f2ff4d" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.ITextRangeProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.ITextRangeProvider" />
+      <apidata name="ITextRangeProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="d0594d74-9cbe-0878-0c13-ffea5e709e01" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.ITextRangeProvider">
+      <topicdata name="ITextRangeProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.ITextRangeProvider" />
+      <apidata name="ITextRangeProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.AddToSelection" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.Clone" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.Compare(System.Windows.Automation.Provider.ITextRangeProvider)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.CompareEndpoints(System.Windows.Automation.Text.TextPatternRangeEndpoint,System.Windows.Automation.Provider.ITextRangeProvider,System.Windows.Automation.Text.TextPatternRangeEndpoint)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.ExpandToEnclosingUnit(System.Windows.Automation.Text.TextUnit)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.FindAttribute(System.Int32,System.Object,System.Boolean)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.FindText(System.String,System.Boolean,System.Boolean)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.GetAttributeValue(System.Int32)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.GetBoundingRectangles" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.GetChildren" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.GetEnclosingElement" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.GetText(System.Int32)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.Move(System.Windows.Automation.Text.TextUnit,System.Int32)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.MoveEndpointByRange(System.Windows.Automation.Text.TextPatternRangeEndpoint,System.Windows.Automation.Provider.ITextRangeProvider,System.Windows.Automation.Text.TextPatternRangeEndpoint)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.MoveEndpointByUnit(System.Windows.Automation.Text.TextPatternRangeEndpoint,System.Windows.Automation.Text.TextUnit,System.Int32)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.RemoveFromSelection" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.ScrollIntoView(System.Boolean)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.Select" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" />
+      </containers>
+      <file name="06cca458-d7e1-f36c-2300-1e2d2fe27edb" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.ITextRangeProvider">
+      <topicdata name="ITextRangeProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.ITextRangeProvider" />
+      <apidata name="ITextRangeProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.AddToSelection" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.Clone" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.Compare(System.Windows.Automation.Provider.ITextRangeProvider)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.CompareEndpoints(System.Windows.Automation.Text.TextPatternRangeEndpoint,System.Windows.Automation.Provider.ITextRangeProvider,System.Windows.Automation.Text.TextPatternRangeEndpoint)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.ExpandToEnclosingUnit(System.Windows.Automation.Text.TextUnit)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.FindAttribute(System.Int32,System.Object,System.Boolean)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.FindText(System.String,System.Boolean,System.Boolean)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.GetAttributeValue(System.Int32)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.GetBoundingRectangles" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.GetChildren" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.GetEnclosingElement" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.GetText(System.Int32)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.Move(System.Windows.Automation.Text.TextUnit,System.Int32)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.MoveEndpointByRange(System.Windows.Automation.Text.TextPatternRangeEndpoint,System.Windows.Automation.Provider.ITextRangeProvider,System.Windows.Automation.Text.TextPatternRangeEndpoint)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.MoveEndpointByUnit(System.Windows.Automation.Text.TextPatternRangeEndpoint,System.Windows.Automation.Text.TextUnit,System.Int32)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.RemoveFromSelection" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.ScrollIntoView(System.Boolean)" />
+        <element api="M:System.Windows.Automation.Provider.ITextRangeProvider.Select" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" />
+      </containers>
+      <file name="a48997b9-1801-cd28-3415-f1b2a51d64a8" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.AddToSelection">
+      <topicdata group="api" />
+      <apidata name="AddToSelection" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="a3c2c869-3af1-be14-bd67-c03b8c92b860" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.Clone">
+      <topicdata group="api" />
+      <apidata name="Clone" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="46f38f00-440b-bc65-4cea-2fa1c5b48711" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.Compare(System.Windows.Automation.Provider.ITextRangeProvider)">
+      <topicdata group="api" />
+      <apidata name="Compare" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="range">
+          <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="7a8784ca-cf1b-a37c-7fde-2008e6b9460f" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.CompareEndpoints(System.Windows.Automation.Text.TextPatternRangeEndpoint,System.Windows.Automation.Provider.ITextRangeProvider,System.Windows.Automation.Text.TextPatternRangeEndpoint)">
+      <topicdata group="api" />
+      <apidata name="CompareEndpoints" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="endpoint">
+          <type api="T:System.Windows.Automation.Text.TextPatternRangeEndpoint" ref="false" />
+        </parameter>
+        <parameter name="targetRange">
+          <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+        </parameter>
+        <parameter name="targetEndpoint">
+          <type api="T:System.Windows.Automation.Text.TextPatternRangeEndpoint" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="a694e049-bd6a-738a-78b2-e0478fe40be4" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.ExpandToEnclosingUnit(System.Windows.Automation.Text.TextUnit)">
+      <topicdata group="api" />
+      <apidata name="ExpandToEnclosingUnit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="unit">
+          <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="b5c5eaf9-d912-4c04-16a7-7a678342ac11" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.FindAttribute(System.Int32,System.Object,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="FindAttribute" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="attributeId">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="backward">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="0a3ebbcb-4cc0-d4b0-a00d-9af8e81d5c1b" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.FindText(System.String,System.Boolean,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="FindText" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="backward">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="ignoreCase">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="1443cc8b-2a3e-5d59-110b-f1891c1ba161" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.GetAttributeValue(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetAttributeValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="attributeId">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="1b572031-2e40-c6f6-33ee-4b4fe013141d" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.GetBoundingRectangles">
+      <topicdata group="api" />
+      <apidata name="GetBoundingRectangles" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Double" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="acb47cea-6615-b377-bf58-5ee8b0611fe4" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.GetChildren">
+      <topicdata group="api" />
+      <apidata name="GetChildren" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Windows.Automation.Provider.IRawElementProviderSimple" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="9f6f8a0a-4024-b923-3f33-834864ff312f" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.GetEnclosingElement">
+      <topicdata group="api" />
+      <apidata name="GetEnclosingElement" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Windows.Automation.Provider.IRawElementProviderSimple" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="20843bca-5444-e003-f62f-72877148b742" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.GetText(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetText" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="maxLength">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="101cb26e-1786-ab5b-0ab9-b766a40dd4fb" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.Move(System.Windows.Automation.Text.TextUnit,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Move" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="unit">
+          <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="62c44871-548e-6fb1-f813-7ff701f62568" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.MoveEndpointByRange(System.Windows.Automation.Text.TextPatternRangeEndpoint,System.Windows.Automation.Provider.ITextRangeProvider,System.Windows.Automation.Text.TextPatternRangeEndpoint)">
+      <topicdata group="api" />
+      <apidata name="MoveEndpointByRange" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="endpoint">
+          <type api="T:System.Windows.Automation.Text.TextPatternRangeEndpoint" ref="false" />
+        </parameter>
+        <parameter name="targetRange">
+          <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+        </parameter>
+        <parameter name="targetEndpoint">
+          <type api="T:System.Windows.Automation.Text.TextPatternRangeEndpoint" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="3ef73a33-44ce-f01a-e207-45720530a637" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.MoveEndpointByUnit(System.Windows.Automation.Text.TextPatternRangeEndpoint,System.Windows.Automation.Text.TextUnit,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="MoveEndpointByUnit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="endpoint">
+          <type api="T:System.Windows.Automation.Text.TextPatternRangeEndpoint" ref="false" />
+        </parameter>
+        <parameter name="unit">
+          <type api="T:System.Windows.Automation.Text.TextUnit" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="14f992f8-010f-5223-5fea-5081761011b0" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.RemoveFromSelection">
+      <topicdata group="api" />
+      <apidata name="RemoveFromSelection" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="bcfd9e2e-db27-2129-4e2c-c840747af62a" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.ScrollIntoView(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="ScrollIntoView" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="alignToTop">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="d2706c29-e434-79d9-90a6-34b9d0d2858f" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITextRangeProvider.Select">
+      <topicdata group="api" />
+      <apidata name="Select" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITextRangeProvider" ref="true" />
+      </containers>
+      <file name="272f9fca-adb2-1ee2-975c-cd80444c0f91" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.IToggleProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.IToggleProvider" />
+      <apidata name="IToggleProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Automation.Peers.ToggleButtonAutomationPeer" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="0f040baa-c926-dfeb-f2c9-ff56a7341b9f" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.IToggleProvider">
+      <topicdata name="IToggleProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.IToggleProvider" />
+      <apidata name="IToggleProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IToggleProvider.Toggle" />
+        <element api="P:System.Windows.Automation.Provider.IToggleProvider.ToggleState" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IToggleProvider" />
+      </containers>
+      <file name="6a806f2d-002b-df5f-bf0c-5c783c550b03" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.IToggleProvider">
+      <topicdata name="IToggleProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.IToggleProvider" />
+      <apidata name="IToggleProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IToggleProvider.Toggle" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IToggleProvider" />
+      </containers>
+      <file name="387fca4f-85bc-153b-c7e5-c617300b1607" />
+    </api>
+    <api id="Properties.T:System.Windows.Automation.Provider.IToggleProvider">
+      <topicdata name="IToggleProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Automation.Provider.IToggleProvider" />
+      <apidata name="IToggleProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IToggleProvider.ToggleState" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IToggleProvider" />
+      </containers>
+      <file name="d9af0100-c2a7-9dce-d331-c781494b35de" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IToggleProvider.Toggle">
+      <topicdata group="api" />
+      <apidata name="Toggle" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IToggleProvider" ref="true" />
+      </containers>
+      <file name="771cb8c0-e125-4b84-556d-fe7742669fd1" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IToggleProvider.ToggleState">
+      <topicdata group="api" />
+      <apidata name="ToggleState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ToggleState" />
+      <returns>
+        <type api="T:System.Windows.Automation.ToggleState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IToggleProvider" ref="true" />
+      </containers>
+      <file name="ff2d4707-5e19-0794-adf1-46dab39e3026" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.ITransformProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.ITransformProvider" />
+      <apidata name="ITransformProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Automation.Peers.ChildWindowAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.GridSplitterAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DataGridColumnHeaderAutomationPeer" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="59746d43-4d1a-7a85-6e17-d3009fd3881a" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.ITransformProvider">
+      <topicdata name="ITransformProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.ITransformProvider" />
+      <apidata name="ITransformProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.ITransformProvider.CanMove" />
+        <element api="P:System.Windows.Automation.Provider.ITransformProvider.CanResize" />
+        <element api="P:System.Windows.Automation.Provider.ITransformProvider.CanRotate" />
+        <element api="M:System.Windows.Automation.Provider.ITransformProvider.Move(System.Double,System.Double)" />
+        <element api="M:System.Windows.Automation.Provider.ITransformProvider.Resize(System.Double,System.Double)" />
+        <element api="M:System.Windows.Automation.Provider.ITransformProvider.Rotate(System.Double)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITransformProvider" />
+      </containers>
+      <file name="be044dda-4619-7d43-045f-d3caa21f7468" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.ITransformProvider">
+      <topicdata name="ITransformProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.ITransformProvider" />
+      <apidata name="ITransformProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.ITransformProvider.Move(System.Double,System.Double)" />
+        <element api="M:System.Windows.Automation.Provider.ITransformProvider.Resize(System.Double,System.Double)" />
+        <element api="M:System.Windows.Automation.Provider.ITransformProvider.Rotate(System.Double)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITransformProvider" />
+      </containers>
+      <file name="e6a5a1fa-4241-1cf0-ef37-b153b8cd59e8" />
+    </api>
+    <api id="Properties.T:System.Windows.Automation.Provider.ITransformProvider">
+      <topicdata name="ITransformProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Automation.Provider.ITransformProvider" />
+      <apidata name="ITransformProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.ITransformProvider.CanMove" />
+        <element api="P:System.Windows.Automation.Provider.ITransformProvider.CanResize" />
+        <element api="P:System.Windows.Automation.Provider.ITransformProvider.CanRotate" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITransformProvider" />
+      </containers>
+      <file name="df0103f5-da2b-48ea-f1ba-bf7ef60e0a1b" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.ITransformProvider.CanMove">
+      <topicdata group="api" />
+      <apidata name="CanMove" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CanMove" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITransformProvider" ref="true" />
+      </containers>
+      <file name="eadb69f2-116f-cb6b-a040-8cd78fdb8839" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.ITransformProvider.CanResize">
+      <topicdata group="api" />
+      <apidata name="CanResize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CanResize" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITransformProvider" ref="true" />
+      </containers>
+      <file name="231d8af3-03c4-1b94-18b8-e6d56fae5113" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.ITransformProvider.CanRotate">
+      <topicdata group="api" />
+      <apidata name="CanRotate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CanRotate" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITransformProvider" ref="true" />
+      </containers>
+      <file name="87b50ebf-9060-fbeb-8133-74f7608c921b" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITransformProvider.Move(System.Double,System.Double)">
+      <topicdata group="api" />
+      <apidata name="Move" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="x">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITransformProvider" ref="true" />
+      </containers>
+      <file name="5f631a67-6934-92ea-81a4-91ecde510716" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITransformProvider.Resize(System.Double,System.Double)">
+      <topicdata group="api" />
+      <apidata name="Resize" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="width">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="height">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITransformProvider" ref="true" />
+      </containers>
+      <file name="955ba408-2950-7409-892d-2e43fd86a300" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.ITransformProvider.Rotate(System.Double)">
+      <topicdata group="api" />
+      <apidata name="Rotate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="degrees">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.ITransformProvider" ref="true" />
+      </containers>
+      <file name="be7efa1c-ab96-5273-10d1-349b1bd87175" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.IValueProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.IValueProvider" />
+      <apidata name="IValueProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Automation.Peers.ComboBoxAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.PasswordBoxAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.TextBoxAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.DatePickerAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.AutoCompleteBoxAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.UpDownBaseAutomationPeer`1" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.RatingAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.TimePickerPopupAutomationPeer" ref="true" />
+        <type api="T:System.Windows.Automation.Peers.TimePickerAutomationPeer" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="860a2960-9b56-fc73-86a8-bfe86a4ed751" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.IValueProvider">
+      <topicdata name="IValueProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.IValueProvider" />
+      <apidata name="IValueProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IValueProvider.IsReadOnly" />
+        <element api="M:System.Windows.Automation.Provider.IValueProvider.SetValue(System.String)" />
+        <element api="P:System.Windows.Automation.Provider.IValueProvider.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IValueProvider" />
+      </containers>
+      <file name="4268a847-a8ab-d28b-5272-e5b167b2dabf" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.IValueProvider">
+      <topicdata name="IValueProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.IValueProvider" />
+      <apidata name="IValueProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IValueProvider.SetValue(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IValueProvider" />
+      </containers>
+      <file name="ac2148e5-9113-e652-63c2-0a17926b1294" />
+    </api>
+    <api id="Properties.T:System.Windows.Automation.Provider.IValueProvider">
+      <topicdata name="IValueProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Automation.Provider.IValueProvider" />
+      <apidata name="IValueProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IValueProvider.IsReadOnly" />
+        <element api="P:System.Windows.Automation.Provider.IValueProvider.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IValueProvider" />
+      </containers>
+      <file name="9800facf-294b-6f31-8e06-0fe0927a2553" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IValueProvider.IsReadOnly">
+      <topicdata group="api" />
+      <apidata name="IsReadOnly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsReadOnly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IValueProvider" ref="true" />
+      </containers>
+      <file name="e883797e-ca41-5e4e-5304-ee4fbe2ab912" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IValueProvider.SetValue(System.String)">
+      <topicdata group="api" />
+      <apidata name="SetValue" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IValueProvider" ref="true" />
+      </containers>
+      <file name="79c665a4-6b36-bc31-e789-44dbfca33312" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IValueProvider.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IValueProvider" ref="true" />
+      </containers>
+      <file name="8a87b343-e7f1-c5b3-e3de-fb25cc4bdeb4" />
+    </api>
+    <api id="T:System.Windows.Automation.Provider.IWindowProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Automation.Provider.IWindowProvider" />
+      <apidata name="IWindowProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Automation.Peers.ChildWindowAutomationPeer" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+      </containers>
+      <file name="4d36a2e1-5ae4-f2f6-4081-34444ef74298" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Automation.Provider.IWindowProvider">
+      <topicdata name="IWindowProvider" group="list" subgroup="members" typeTopicId="T:System.Windows.Automation.Provider.IWindowProvider" />
+      <apidata name="IWindowProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IWindowProvider.Close" />
+        <element api="P:System.Windows.Automation.Provider.IWindowProvider.InteractionState" />
+        <element api="P:System.Windows.Automation.Provider.IWindowProvider.IsModal" />
+        <element api="P:System.Windows.Automation.Provider.IWindowProvider.IsTopmost" />
+        <element api="P:System.Windows.Automation.Provider.IWindowProvider.Maximizable" />
+        <element api="P:System.Windows.Automation.Provider.IWindowProvider.Minimizable" />
+        <element api="M:System.Windows.Automation.Provider.IWindowProvider.SetVisualState(System.Windows.Automation.WindowVisualState)" />
+        <element api="P:System.Windows.Automation.Provider.IWindowProvider.VisualState" />
+        <element api="M:System.Windows.Automation.Provider.IWindowProvider.WaitForInputIdle(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IWindowProvider" />
+      </containers>
+      <file name="50e6fd86-ee2c-5348-e7b4-a81241d37059" />
+    </api>
+    <api id="Methods.T:System.Windows.Automation.Provider.IWindowProvider">
+      <topicdata name="IWindowProvider" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Automation.Provider.IWindowProvider" />
+      <apidata name="IWindowProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Automation.Provider.IWindowProvider.Close" />
+        <element api="M:System.Windows.Automation.Provider.IWindowProvider.SetVisualState(System.Windows.Automation.WindowVisualState)" />
+        <element api="M:System.Windows.Automation.Provider.IWindowProvider.WaitForInputIdle(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IWindowProvider" />
+      </containers>
+      <file name="22595799-1bf3-68bd-d04f-fdda509c84a0" />
+    </api>
+    <api id="Properties.T:System.Windows.Automation.Provider.IWindowProvider">
+      <topicdata name="IWindowProvider" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Automation.Provider.IWindowProvider" />
+      <apidata name="IWindowProvider" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Automation.Provider.IWindowProvider.InteractionState" />
+        <element api="P:System.Windows.Automation.Provider.IWindowProvider.IsModal" />
+        <element api="P:System.Windows.Automation.Provider.IWindowProvider.IsTopmost" />
+        <element api="P:System.Windows.Automation.Provider.IWindowProvider.Maximizable" />
+        <element api="P:System.Windows.Automation.Provider.IWindowProvider.Minimizable" />
+        <element api="P:System.Windows.Automation.Provider.IWindowProvider.VisualState" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IWindowProvider" />
+      </containers>
+      <file name="0c01359d-21ab-84bd-ea8b-376eab34e687" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IWindowProvider.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IWindowProvider" ref="true" />
+      </containers>
+      <file name="0f187e4b-d760-24ca-1303-5d8dfb7992af" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IWindowProvider.InteractionState">
+      <topicdata group="api" />
+      <apidata name="InteractionState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_InteractionState" />
+      <returns>
+        <type api="T:System.Windows.Automation.WindowInteractionState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IWindowProvider" ref="true" />
+      </containers>
+      <file name="5835647a-f528-c2d4-04c1-7aef41989531" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IWindowProvider.IsModal">
+      <topicdata group="api" />
+      <apidata name="IsModal" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsModal" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IWindowProvider" ref="true" />
+      </containers>
+      <file name="464468e4-223f-aa05-4861-c741dff253f8" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IWindowProvider.IsTopmost">
+      <topicdata group="api" />
+      <apidata name="IsTopmost" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsTopmost" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IWindowProvider" ref="true" />
+      </containers>
+      <file name="aef3d892-59c1-adcb-99a6-105a53176122" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IWindowProvider.Maximizable">
+      <topicdata group="api" />
+      <apidata name="Maximizable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Maximizable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IWindowProvider" ref="true" />
+      </containers>
+      <file name="36a8f958-9f64-660f-dcc6-88bcf485a731" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IWindowProvider.Minimizable">
+      <topicdata group="api" />
+      <apidata name="Minimizable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Minimizable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IWindowProvider" ref="true" />
+      </containers>
+      <file name="1ddc8961-ecc6-4eca-8346-c085cf82288e" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IWindowProvider.SetVisualState(System.Windows.Automation.WindowVisualState)">
+      <topicdata group="api" />
+      <apidata name="SetVisualState" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="state">
+          <type api="T:System.Windows.Automation.WindowVisualState" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IWindowProvider" ref="true" />
+      </containers>
+      <file name="e967eada-d877-500b-e1e3-d54f98d29cae" />
+    </api>
+    <api id="P:System.Windows.Automation.Provider.IWindowProvider.VisualState">
+      <topicdata group="api" />
+      <apidata name="VisualState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_VisualState" />
+      <returns>
+        <type api="T:System.Windows.Automation.WindowVisualState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IWindowProvider" ref="true" />
+      </containers>
+      <file name="ed34e79f-3fe4-b00f-f008-f0f9e1343e69" />
+    </api>
+    <api id="M:System.Windows.Automation.Provider.IWindowProvider.WaitForInputIdle(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="WaitForInputIdle" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="milliseconds">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Automation.Provider" />
+        <type api="T:System.Windows.Automation.Provider.IWindowProvider" ref="true" />
+      </containers>
+      <file name="a4587b25-b0bd-ee23-1869-56d3fb22a93e" />
+    </api>
+  </apis>
+</reflection>

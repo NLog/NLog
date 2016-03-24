@@ -1,0 +1,1801 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Data.Linq">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Linq.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System Linq to Sql Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Windows Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Data.Linq.SqlClient">
+      <topicdata group="api" />
+      <apidata name="System.Data.Linq.SqlClient" group="namespace" />
+      <elements>
+        <element api="T:System.Data.Linq.SqlClient.SqlMethods" />
+        <element api="T:System.Data.Linq.SqlClient.SqlHelpers" />
+      </elements>
+      <file name="434f7037-5d3d-35c2-6ec9-c50b3a97f465" />
+    </api>
+    <api id="T:System.Data.Linq.SqlClient.SqlHelpers">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Linq.SqlClient.SqlHelpers" />
+      <apidata name="SqlHelpers" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+      </containers>
+      <file name="47f6a2e0-c89a-8b2e-aeff-927730dd988e" />
+    </api>
+    <api id="AllMembers.T:System.Data.Linq.SqlClient.SqlHelpers">
+      <topicdata name="SqlHelpers" group="list" subgroup="members" typeTopicId="T:System.Data.Linq.SqlClient.SqlHelpers" />
+      <apidata name="SqlHelpers" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Data.Linq.SqlClient.SqlHelpers.GetStringContainsPattern(System.String,System.Char)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlHelpers.GetStringEndsWithPattern(System.String,System.Char)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlHelpers.GetStringStartsWithPattern(System.String,System.Char)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlHelpers.TranslateVBLikePattern(System.String,System.Char)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlHelpers" />
+      </containers>
+      <file name="e824fe42-3501-1734-df3a-151e54db5bfe" />
+    </api>
+    <api id="Methods.T:System.Data.Linq.SqlClient.SqlHelpers">
+      <topicdata name="SqlHelpers" group="list" subgroup="Methods" typeTopicId="T:System.Data.Linq.SqlClient.SqlHelpers" />
+      <apidata name="SqlHelpers" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Data.Linq.SqlClient.SqlHelpers.GetStringContainsPattern(System.String,System.Char)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlHelpers.GetStringEndsWithPattern(System.String,System.Char)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlHelpers.GetStringStartsWithPattern(System.String,System.Char)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlHelpers.TranslateVBLikePattern(System.String,System.Char)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlHelpers" />
+      </containers>
+      <file name="818a48de-b392-bee4-e5c0-87f300c2290d" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlHelpers.GetStringContainsPattern(System.String,System.Char)">
+      <topicdata group="api" />
+      <apidata name="GetStringContainsPattern" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="escape">
+          <type api="T:System.Char" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlHelpers" ref="true" />
+      </containers>
+      <file name="9e61c280-dcc1-146c-ac47-75dfec602638" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlHelpers.GetStringEndsWithPattern(System.String,System.Char)">
+      <topicdata group="api" />
+      <apidata name="GetStringEndsWithPattern" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="escape">
+          <type api="T:System.Char" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlHelpers" ref="true" />
+      </containers>
+      <file name="295ee7d0-960d-3b58-690d-4dc78fd99af5" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlHelpers.GetStringStartsWithPattern(System.String,System.Char)">
+      <topicdata group="api" />
+      <apidata name="GetStringStartsWithPattern" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="escape">
+          <type api="T:System.Char" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlHelpers" ref="true" />
+      </containers>
+      <file name="f28c1eaf-aeac-5601-bc4d-4f2043473f24" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlHelpers.TranslateVBLikePattern(System.String,System.Char)">
+      <topicdata group="api" />
+      <apidata name="TranslateVBLikePattern" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="pattern">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="escape">
+          <type api="T:System.Char" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlHelpers" ref="true" />
+      </containers>
+      <file name="844cb7bd-0ffe-47f7-2c5c-c4a5cba86cbd" />
+    </api>
+    <api id="T:System.Data.Linq.SqlClient.SqlMethods">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Linq.SqlClient.SqlMethods" />
+      <apidata name="SqlMethods" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+      </containers>
+      <file name="cb961e5a-6fe6-f15b-2e67-b44f42e137ee" />
+    </api>
+    <api id="AllMembers.T:System.Data.Linq.SqlClient.SqlMethods">
+      <topicdata name="SqlMethods" group="list" subgroup="members" typeTopicId="T:System.Data.Linq.SqlClient.SqlMethods" />
+      <apidata name="SqlMethods" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.Like">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.Like(System.String,System.String)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.Like(System.String,System.String,System.Char)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" />
+      </containers>
+      <file name="5fc08ca0-664f-1314-c981-b4b3e9594028" />
+    </api>
+    <api id="Methods.T:System.Data.Linq.SqlClient.SqlMethods">
+      <topicdata name="SqlMethods" group="list" subgroup="Methods" typeTopicId="T:System.Data.Linq.SqlClient.SqlMethods" />
+      <apidata name="SqlMethods" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear(System.DateTime,System.DateTime)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear(System.DateTimeOffset,System.DateTimeOffset)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+        </element>
+        <element api="Overload:System.Data.Linq.SqlClient.SqlMethods.Like">
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.Like(System.String,System.String)" />
+          <element api="M:System.Data.Linq.SqlClient.SqlMethods.Like(System.String,System.String,System.Char)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" />
+      </containers>
+      <file name="a8b7bf1e-6f46-20a2-e03f-fe800069309e" />
+    </api>
+    <api id="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay">
+      <topicdata name="DateDiffDay" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Linq.SqlClient.SqlMethods" />
+      <apidata name="DateDiffDay" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay(System.DateTime,System.DateTime)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay(System.DateTimeOffset,System.DateTimeOffset)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="6e227aaa-044b-e243-52d6-a5f26d9f833b" />
+    </api>
+    <api id="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour">
+      <topicdata name="DateDiffHour" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Linq.SqlClient.SqlMethods" />
+      <apidata name="DateDiffHour" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour(System.DateTime,System.DateTime)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour(System.DateTimeOffset,System.DateTimeOffset)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="da81e4bf-f22f-90d4-a699-db13a436cb76" />
+    </api>
+    <api id="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond">
+      <topicdata name="DateDiffMicrosecond" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Linq.SqlClient.SqlMethods" />
+      <apidata name="DateDiffMicrosecond" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond(System.DateTime,System.DateTime)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond(System.DateTimeOffset,System.DateTimeOffset)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="3afe4c7d-a5ca-ed0e-669a-e7b09710ecac" />
+    </api>
+    <api id="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond">
+      <topicdata name="DateDiffMillisecond" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Linq.SqlClient.SqlMethods" />
+      <apidata name="DateDiffMillisecond" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond(System.DateTime,System.DateTime)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond(System.DateTimeOffset,System.DateTimeOffset)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="42c7e908-0d2b-ed3f-90b8-c15a567f0572" />
+    </api>
+    <api id="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute">
+      <topicdata name="DateDiffMinute" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Linq.SqlClient.SqlMethods" />
+      <apidata name="DateDiffMinute" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute(System.DateTime,System.DateTime)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute(System.DateTimeOffset,System.DateTimeOffset)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="7ab004e4-af7e-890c-4ef2-e100e32959f0" />
+    </api>
+    <api id="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth">
+      <topicdata name="DateDiffMonth" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Linq.SqlClient.SqlMethods" />
+      <apidata name="DateDiffMonth" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth(System.DateTime,System.DateTime)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth(System.DateTimeOffset,System.DateTimeOffset)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="c3d40097-ca5f-e3f9-0c1c-eb225f49bb73" />
+    </api>
+    <api id="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond">
+      <topicdata name="DateDiffNanosecond" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Linq.SqlClient.SqlMethods" />
+      <apidata name="DateDiffNanosecond" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond(System.DateTime,System.DateTime)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond(System.DateTimeOffset,System.DateTimeOffset)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="8aa7d12b-b612-b14d-18b6-153eca396bf0" />
+    </api>
+    <api id="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond">
+      <topicdata name="DateDiffSecond" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Linq.SqlClient.SqlMethods" />
+      <apidata name="DateDiffSecond" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond(System.DateTime,System.DateTime)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond(System.DateTimeOffset,System.DateTimeOffset)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="2fc89dc7-9bd5-a6c3-57ca-a024b831c8f3" />
+    </api>
+    <api id="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear">
+      <topicdata name="DateDiffYear" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Linq.SqlClient.SqlMethods" />
+      <apidata name="DateDiffYear" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear(System.DateTime,System.DateTime)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear(System.Nullable{System.DateTime},System.Nullable{System.DateTime})" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear(System.DateTimeOffset,System.DateTimeOffset)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="4d08a505-ae54-5c68-0df1-4576d77c7ac6" />
+    </api>
+    <api id="Overload:System.Data.Linq.SqlClient.SqlMethods.Like">
+      <topicdata name="Like" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Data.Linq.SqlClient.SqlMethods" />
+      <apidata name="Like" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.Like(System.String,System.String)" />
+        <element api="M:System.Data.Linq.SqlClient.SqlMethods.Like(System.String,System.String,System.Char)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="1544228d-926e-9590-7369-08f96be1f88d" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay(System.DateTime,System.DateTime)">
+      <topicdata group="api" />
+      <apidata name="DateDiffDay" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="21fc9dbe-58fc-6d7c-c65a-3015bb1d57f4" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay(System.DateTimeOffset,System.DateTimeOffset)">
+      <topicdata group="api" />
+      <apidata name="DateDiffDay" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="0e2fab5e-9062-b957-09be-26568f40eb19" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay(System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+      <topicdata group="api" />
+      <apidata name="DateDiffDay" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="0d90d5f8-334a-4e39-8531-3d21ba7ee018" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})">
+      <topicdata group="api" />
+      <apidata name="DateDiffDay" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffDay" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="2876de70-e665-9abf-8e06-be621652f21b" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour(System.DateTime,System.DateTime)">
+      <topicdata group="api" />
+      <apidata name="DateDiffHour" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="d65f47e9-ab6b-0568-043f-7c6190a07215" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour(System.DateTimeOffset,System.DateTimeOffset)">
+      <topicdata group="api" />
+      <apidata name="DateDiffHour" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="11ec65d0-bcca-6e3b-801f-bfcb16836b48" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour(System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+      <topicdata group="api" />
+      <apidata name="DateDiffHour" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="d41812c8-8437-5c6a-33f2-0264ffcf7043" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})">
+      <topicdata group="api" />
+      <apidata name="DateDiffHour" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffHour" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="da3981ed-51c5-d33e-a313-26cb7bbc67ac" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond(System.DateTime,System.DateTime)">
+      <topicdata group="api" />
+      <apidata name="DateDiffMicrosecond" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="7b55d1c1-eaad-fdea-724d-df6f313ed970" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond(System.DateTimeOffset,System.DateTimeOffset)">
+      <topicdata group="api" />
+      <apidata name="DateDiffMicrosecond" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="34ff8aba-645c-3784-f76d-2909ec0a4850" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond(System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+      <topicdata group="api" />
+      <apidata name="DateDiffMicrosecond" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="576198a9-ec86-24d9-4f73-b1f571dd2079" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})">
+      <topicdata group="api" />
+      <apidata name="DateDiffMicrosecond" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMicrosecond" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="78a3d5d4-61c8-a93c-70f7-f71ed2f6dd1c" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond(System.DateTime,System.DateTime)">
+      <topicdata group="api" />
+      <apidata name="DateDiffMillisecond" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="209368e2-34f8-c48f-4cc8-978bc7483bd9" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond(System.DateTimeOffset,System.DateTimeOffset)">
+      <topicdata group="api" />
+      <apidata name="DateDiffMillisecond" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="5f4ec9bd-703f-941e-5372-f09d6ba27dd3" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond(System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+      <topicdata group="api" />
+      <apidata name="DateDiffMillisecond" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="cf74d83c-58a3-6264-1712-383936f2eb6b" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})">
+      <topicdata group="api" />
+      <apidata name="DateDiffMillisecond" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMillisecond" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="c265e31b-e418-979c-5922-8033ba21234b" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute(System.DateTime,System.DateTime)">
+      <topicdata group="api" />
+      <apidata name="DateDiffMinute" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="8df453b5-c413-d822-cd76-5577f095970f" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute(System.DateTimeOffset,System.DateTimeOffset)">
+      <topicdata group="api" />
+      <apidata name="DateDiffMinute" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="a2dc1870-953a-80c6-c633-332995bf5915" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute(System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+      <topicdata group="api" />
+      <apidata name="DateDiffMinute" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="5e7c554a-5a19-7a25-f6a6-30b002ae7a7f" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})">
+      <topicdata group="api" />
+      <apidata name="DateDiffMinute" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMinute" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="c12aa35a-2341-52e5-17d8-dd26962a925b" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth(System.DateTime,System.DateTime)">
+      <topicdata group="api" />
+      <apidata name="DateDiffMonth" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="b2cae984-e477-abb2-69ba-cc80c2b2c5a3" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth(System.DateTimeOffset,System.DateTimeOffset)">
+      <topicdata group="api" />
+      <apidata name="DateDiffMonth" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="f74f2bad-98cc-efdc-c0c5-fe763be96242" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth(System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+      <topicdata group="api" />
+      <apidata name="DateDiffMonth" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="52209158-7650-4396-0c5d-2fee4acabf4b" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})">
+      <topicdata group="api" />
+      <apidata name="DateDiffMonth" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffMonth" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="d03633b9-21c1-41ff-bb9c-ccdc51a30a02" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond(System.DateTime,System.DateTime)">
+      <topicdata group="api" />
+      <apidata name="DateDiffNanosecond" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="03cbdedb-08e0-6d95-ce01-d09eeaaba625" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond(System.DateTimeOffset,System.DateTimeOffset)">
+      <topicdata group="api" />
+      <apidata name="DateDiffNanosecond" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="d381f90e-5c8d-e93f-c5e4-72c405c87ce4" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond(System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+      <topicdata group="api" />
+      <apidata name="DateDiffNanosecond" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="d68b4bd1-acec-ea2c-eae3-a6d75fe014cf" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})">
+      <topicdata group="api" />
+      <apidata name="DateDiffNanosecond" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffNanosecond" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="8dca1b3b-20b6-477d-a680-d720e1aa082b" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond(System.DateTime,System.DateTime)">
+      <topicdata group="api" />
+      <apidata name="DateDiffSecond" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="12cd5289-9da9-bf36-2b80-81f3264b1eaf" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond(System.DateTimeOffset,System.DateTimeOffset)">
+      <topicdata group="api" />
+      <apidata name="DateDiffSecond" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="ffa0cdc3-2744-f904-c69c-ca46f1739c37" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond(System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+      <topicdata group="api" />
+      <apidata name="DateDiffSecond" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="fc5daa8c-ecea-b57e-1bf4-69b345fb9df5" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})">
+      <topicdata group="api" />
+      <apidata name="DateDiffSecond" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffSecond" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="484cfc2e-3eaa-7005-9c2f-abe864849dd8" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear(System.DateTime,System.DateTime)">
+      <topicdata group="api" />
+      <apidata name="DateDiffYear" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="e4592aa1-3481-4d4f-435f-3c956c1ea7ff" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear(System.DateTimeOffset,System.DateTimeOffset)">
+      <topicdata group="api" />
+      <apidata name="DateDiffYear" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="5f12e3a9-86e4-15db-2cf7-49fa563c84c1" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear(System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+      <topicdata group="api" />
+      <apidata name="DateDiffYear" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTime" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="b51b0b8d-80b6-0d67-bf6b-dd60f5314951" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})">
+      <topicdata group="api" />
+      <apidata name="DateDiffYear" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.DateDiffYear" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="startDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="endDate">
+          <type api="T:System.Nullable`1" ref="false">
+            <specialization>
+              <type api="T:System.DateTimeOffset" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="edeff24f-193d-77a0-f55f-7a55e909bf3e" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.Like(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="Like" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.Like" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="matchExpression">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="pattern">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="85d78a84-1ef2-70da-3e71-97d780484505" />
+    </api>
+    <api id="M:System.Data.Linq.SqlClient.SqlMethods.Like(System.String,System.String,System.Char)">
+      <topicdata group="api" />
+      <apidata name="Like" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Data.Linq.SqlClient.SqlMethods.Like" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="matchExpression">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="pattern">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="escapeCharacter">
+          <type api="T:System.Char" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Data.Linq.SqlClient" />
+        <type api="T:System.Data.Linq.SqlClient.SqlMethods" ref="true" />
+      </containers>
+      <file name="6d5e122f-80d3-6b9b-4919-5a72850902d8" />
+    </api>
+  </apis>
+</reflection>

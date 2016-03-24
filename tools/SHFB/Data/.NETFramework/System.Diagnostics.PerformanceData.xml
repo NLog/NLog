@@ -1,0 +1,1856 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Core">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Diagnostics.PerformanceData">
+      <topicdata group="api" />
+      <apidata name="System.Diagnostics.PerformanceData" group="namespace" />
+      <elements>
+        <element api="T:System.Diagnostics.PerformanceData.CounterData" />
+        <element api="T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet" />
+        <element api="T:System.Diagnostics.PerformanceData.CounterSet" />
+        <element api="T:System.Diagnostics.PerformanceData.CounterSetInstance" />
+        <element api="T:System.Diagnostics.PerformanceData.CounterSetInstanceType" />
+        <element api="T:System.Diagnostics.PerformanceData.CounterType" />
+      </elements>
+      <file name="2340c064-0151-105b-b86c-7c44f636dca5" />
+    </api>
+    <api id="T:System.Diagnostics.PerformanceData.CounterData">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.PerformanceData.CounterData" />
+      <apidata name="CounterData" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="MayLeakOnAbort">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="d7cd7fcf-900e-e8c4-4cb8-f172dffbe287" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.PerformanceData.CounterData">
+      <topicdata name="CounterData" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.PerformanceData.CounterData" />
+      <apidata name="CounterData" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterData.Decrement" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterData.Increment" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterData.IncrementBy(System.Int64)" />
+        <element api="P:System.Diagnostics.PerformanceData.CounterData.RawValue" />
+        <element api="P:System.Diagnostics.PerformanceData.CounterData.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterData" />
+      </containers>
+      <file name="4df20dd2-509e-dce5-795a-64ba84b8c015" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.PerformanceData.CounterData">
+      <topicdata name="CounterData" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.PerformanceData.CounterData" />
+      <apidata name="CounterData" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterData.Decrement" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterData.Increment" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterData.IncrementBy(System.Int64)" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterData" />
+      </containers>
+      <file name="e22aa513-c7d2-a916-735b-2cbe795a6a88" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.PerformanceData.CounterData">
+      <topicdata name="CounterData" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.PerformanceData.CounterData" />
+      <apidata name="CounterData" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Diagnostics.PerformanceData.CounterData.RawValue" />
+        <element api="P:System.Diagnostics.PerformanceData.CounterData.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterData" />
+      </containers>
+      <file name="411d3082-471a-0a9f-c530-4965db7ca927" />
+    </api>
+    <api id="M:System.Diagnostics.PerformanceData.CounterData.Decrement">
+      <topicdata group="api" />
+      <apidata name="Decrement" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterData" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="147bd9ee-b0c0-e6d7-2125-ef3391ef297e" />
+    </api>
+    <api id="M:System.Diagnostics.PerformanceData.CounterData.Increment">
+      <topicdata group="api" />
+      <apidata name="Increment" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterData" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="aa421236-24f6-6301-3d0c-68362ed83e57" />
+    </api>
+    <api id="M:System.Diagnostics.PerformanceData.CounterData.IncrementBy(System.Int64)">
+      <topicdata group="api" />
+      <apidata name="IncrementBy" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterData" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="52efa88a-71bf-75dc-a46d-070c43abd23b" />
+    </api>
+    <api id="P:System.Diagnostics.PerformanceData.CounterData.RawValue">
+      <topicdata group="api" />
+      <apidata name="RawValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RawValue">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <setter name="set_RawValue">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterData" ref="true" />
+      </containers>
+      <file name="32a00cfa-4371-d0a9-7663-84bc6676159f" />
+    </api>
+    <api id="P:System.Diagnostics.PerformanceData.CounterData.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Value">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <setter name="set_Value">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterData" ref="true" />
+      </containers>
+      <file name="a8bfc4a7-89ad-1c58-640d-4fe9f0390a1a" />
+    </api>
+    <api id="T:System.Diagnostics.PerformanceData.CounterSet">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.PerformanceData.CounterSet" />
+      <apidata name="CounterSet" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="MayLeakOnAbort">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="04ee6acb-98fe-5164-e333-fedeec102dcc" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.PerformanceData.CounterSet">
+      <topicdata name="CounterSet" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.PerformanceData.CounterSet" />
+      <apidata name="CounterSet" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterSet.#ctor(System.Guid,System.Guid,System.Diagnostics.PerformanceData.CounterSetInstanceType)" />
+        <element api="Overload:System.Diagnostics.PerformanceData.CounterSet.AddCounter">
+          <element api="M:System.Diagnostics.PerformanceData.CounterSet.AddCounter(System.Int32,System.Diagnostics.PerformanceData.CounterType)" />
+          <element api="M:System.Diagnostics.PerformanceData.CounterSet.AddCounter(System.Int32,System.Diagnostics.PerformanceData.CounterType,System.String)" />
+        </element>
+        <element api="M:System.Diagnostics.PerformanceData.CounterSet.CreateCounterSetInstance(System.String)" />
+        <element api="Overload:System.Diagnostics.PerformanceData.CounterSet.Dispose">
+          <element api="M:System.Diagnostics.PerformanceData.CounterSet.Dispose" />
+          <element api="M:System.Diagnostics.PerformanceData.CounterSet.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Diagnostics.PerformanceData.CounterSet.Finalize" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSet" />
+      </containers>
+      <file name="52e583a3-e229-b3b5-eda2-1ad2e98b0240" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.PerformanceData.CounterSet">
+      <topicdata name="CounterSet" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.PerformanceData.CounterSet" />
+      <apidata name="CounterSet" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Diagnostics.PerformanceData.CounterSet.AddCounter">
+          <element api="M:System.Diagnostics.PerformanceData.CounterSet.AddCounter(System.Int32,System.Diagnostics.PerformanceData.CounterType)" />
+          <element api="M:System.Diagnostics.PerformanceData.CounterSet.AddCounter(System.Int32,System.Diagnostics.PerformanceData.CounterType,System.String)" />
+        </element>
+        <element api="M:System.Diagnostics.PerformanceData.CounterSet.CreateCounterSetInstance(System.String)" />
+        <element api="Overload:System.Diagnostics.PerformanceData.CounterSet.Dispose">
+          <element api="M:System.Diagnostics.PerformanceData.CounterSet.Dispose" />
+          <element api="M:System.Diagnostics.PerformanceData.CounterSet.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Diagnostics.PerformanceData.CounterSet.Finalize" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSet" />
+      </containers>
+      <file name="55a1070d-7b33-39eb-a4fd-c7c9ae220e42" />
+    </api>
+    <api id="Overload:System.Diagnostics.PerformanceData.CounterSet.AddCounter">
+      <topicdata name="AddCounter" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.PerformanceData.CounterSet" />
+      <apidata name="AddCounter" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.PerformanceData.CounterSet.AddCounter(System.Int32,System.Diagnostics.PerformanceData.CounterType)" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterSet.AddCounter(System.Int32,System.Diagnostics.PerformanceData.CounterType,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSet" ref="true" />
+      </containers>
+      <file name="1011e9a3-9265-a067-9cbb-f728bb821664" />
+    </api>
+    <api id="Overload:System.Diagnostics.PerformanceData.CounterSet.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.PerformanceData.CounterSet" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.PerformanceData.CounterSet.Dispose" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterSet.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSet" ref="true" />
+      </containers>
+      <file name="b4690fc2-5eca-08ad-c42b-73006d61bbc4" />
+    </api>
+    <api id="M:System.Diagnostics.PerformanceData.CounterSet.#ctor(System.Guid,System.Guid,System.Diagnostics.PerformanceData.CounterSetInstanceType)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="providerGuid">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="counterSetGuid">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="instanceType">
+          <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceType" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSet" ref="true" />
+      </containers>
+      <file name="e0cfb74a-f9c3-3f7d-9c87-a373fb7880a7" />
+    </api>
+    <api id="M:System.Diagnostics.PerformanceData.CounterSet.AddCounter(System.Int32,System.Diagnostics.PerformanceData.CounterType)">
+      <topicdata group="api" />
+      <apidata name="AddCounter" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.PerformanceData.CounterSet.AddCounter" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="counterId">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="counterType">
+          <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSet" ref="true" />
+      </containers>
+      <file name="4bb2d7e6-40c4-de00-74b4-68933a0ddd21" />
+    </api>
+    <api id="M:System.Diagnostics.PerformanceData.CounterSet.AddCounter(System.Int32,System.Diagnostics.PerformanceData.CounterType,System.String)">
+      <topicdata group="api" />
+      <apidata name="AddCounter" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.PerformanceData.CounterSet.AddCounter" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="counterId">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="counterType">
+          <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+        </parameter>
+        <parameter name="counterName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSet" ref="true" />
+      </containers>
+      <file name="f234793e-f3ae-2f4a-f604-93abf5906678" />
+    </api>
+    <api id="M:System.Diagnostics.PerformanceData.CounterSet.CreateCounterSetInstance(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateCounterSetInstance" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instanceName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstance" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSet" ref="true" />
+      </containers>
+      <file name="933de337-9af5-9fb4-0da7-d9511a4b4480" />
+    </api>
+    <api id="M:System.Diagnostics.PerformanceData.CounterSet.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.PerformanceData.CounterSet.Dispose" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSet" ref="true" />
+      </containers>
+      <file name="e5cc9cac-800c-e073-dd6a-776537ed898e" />
+    </api>
+    <api id="M:System.Diagnostics.PerformanceData.CounterSet.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Diagnostics.PerformanceData.CounterSet.Dispose" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSet" ref="true" />
+      </containers>
+      <file name="c3e954ce-daf1-395a-44dd-dbadcd0c3b26" />
+    </api>
+    <api id="M:System.Diagnostics.PerformanceData.CounterSet.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <implements>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSet" ref="true" />
+      </containers>
+      <file name="bb5aebf5-9762-2add-dbfd-1582b8d99cbd" />
+    </api>
+    <api id="T:System.Diagnostics.PerformanceData.CounterSetInstance">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.PerformanceData.CounterSetInstance" />
+      <apidata name="CounterSetInstance" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="MayLeakOnAbort">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="2e9d58bc-952e-3062-35fe-5fa93b470403" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.PerformanceData.CounterSetInstance">
+      <topicdata name="CounterSetInstance" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.PerformanceData.CounterSetInstance" />
+      <apidata name="CounterSetInstance" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Diagnostics.PerformanceData.CounterSetInstance.Counters" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterSetInstance.Dispose" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterSetInstance.Finalize" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstance" />
+      </containers>
+      <file name="d45cdecb-c2fe-e6d9-538b-4605b92eec93" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.PerformanceData.CounterSetInstance">
+      <topicdata name="CounterSetInstance" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.PerformanceData.CounterSetInstance" />
+      <apidata name="CounterSetInstance" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterSetInstance.Dispose" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterSetInstance.Finalize" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstance" />
+      </containers>
+      <file name="9662a77b-2eb4-b440-9b9d-158a09304c30" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.PerformanceData.CounterSetInstance">
+      <topicdata name="CounterSetInstance" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.PerformanceData.CounterSetInstance" />
+      <apidata name="CounterSetInstance" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Diagnostics.PerformanceData.CounterSetInstance.Counters" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstance" />
+      </containers>
+      <file name="81870894-56db-16b6-37c6-7188291bb88a" />
+    </api>
+    <api id="P:System.Diagnostics.PerformanceData.CounterSetInstance.Counters">
+      <topicdata group="api" />
+      <apidata name="Counters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Counters" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstance" ref="true" />
+      </containers>
+      <file name="6e2d62d8-6d8b-9cef-b061-5a34af6aec12" />
+    </api>
+    <api id="M:System.Diagnostics.PerformanceData.CounterSetInstance.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstance" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4ea06025-1a8c-1fe1-53f6-b1b79988f5d2" />
+    </api>
+    <api id="M:System.Diagnostics.PerformanceData.CounterSetInstance.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <implements>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstance" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8cbccd4f-b71a-cbee-4540-aa10f7526e76" />
+    </api>
+    <api id="T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet" />
+      <apidata name="CounterSetInstanceCounterDataSet" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="MayLeakOnAbort">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="94fb5e7c-44a3-14b1-cf00-45379a738837" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet">
+      <topicdata name="CounterSetInstanceCounterDataSet" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet" />
+      <apidata name="CounterSetInstanceCounterDataSet" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Dispose" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Finalize" />
+        <element api="Overload:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Item">
+          <element api="P:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Item(System.Int32)" />
+          <element api="P:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Item(System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet" />
+      </containers>
+      <file name="d1292089-f41c-8f05-c974-03a7eaf60fc8" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet">
+      <topicdata name="CounterSetInstanceCounterDataSet" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet" />
+      <apidata name="CounterSetInstanceCounterDataSet" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Dispose" />
+        <element api="M:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Finalize" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet" />
+      </containers>
+      <file name="084808f0-cb0d-c0b2-13eb-a72bc82bee20" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet">
+      <topicdata name="CounterSetInstanceCounterDataSet" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet" />
+      <apidata name="CounterSetInstanceCounterDataSet" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Item">
+          <element api="P:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Item(System.Int32)" />
+          <element api="P:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Item(System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet" />
+      </containers>
+      <file name="b34f6da8-b686-1d80-5624-d2ad8d256e88" />
+    </api>
+    <api id="Overload:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Item">
+      <topicdata name="Item" group="list" subgroup="overload" memberSubgroup="property" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <elements>
+        <element api="P:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Item(System.Int32)" />
+        <element api="P:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Item(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet" ref="true" />
+      </containers>
+      <file name="377a778f-586a-f651-be71-6971d3dcbdfd" />
+    </api>
+    <api id="M:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="5b5a9be9-165b-6c2b-4fae-11b28b7edb6c" />
+    </api>
+    <api id="M:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <implements>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="74b206cf-77d9-7356-9dc5-50223ca23029" />
+    </api>
+    <api id="P:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="counterId">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterData" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet" ref="true" />
+      </containers>
+      <file name="30a64862-a471-344a-122b-4e312accc61f" />
+    </api>
+    <api id="P:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Item(System.String)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="counterName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterData" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceCounterDataSet" ref="true" />
+      </containers>
+      <file name="5475e24c-1c83-6782-ad6c-88967da328ec" />
+    </api>
+    <api id="T:System.Diagnostics.PerformanceData.CounterSetInstanceType">
+      <topicdata group="api" />
+      <apidata name="CounterSetInstanceType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Diagnostics.PerformanceData.CounterSetInstanceType.Single" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterSetInstanceType.Multiple" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterSetInstanceType.GlobalAggregate" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterSetInstanceType.GlobalAggregateWithHistory" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterSetInstanceType.MultipleAggregate" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterSetInstanceType.InstanceAggregate" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+      </containers>
+      <file name="e9d488dc-74c9-d22b-4022-8c3d0cd65571" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterSetInstanceType.GlobalAggregate">
+      <topicdata group="api" notopic="" />
+      <apidata name="GlobalAggregate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceType" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceType" ref="false" />
+      </containers>
+      <file name="4d034b8d-92bf-b548-704e-8a5509c738ff" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterSetInstanceType.GlobalAggregateWithHistory">
+      <topicdata group="api" notopic="" />
+      <apidata name="GlobalAggregateWithHistory" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceType" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceType" ref="false" />
+      </containers>
+      <file name="6733a9c6-88c6-9f33-0632-743dd8616ce3" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterSetInstanceType.InstanceAggregate">
+      <topicdata group="api" notopic="" />
+      <apidata name="InstanceAggregate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceType" ref="false" />
+      </returns>
+      <value>22</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceType" ref="false" />
+      </containers>
+      <file name="ce1d09d8-7877-75c0-88bd-168876f8b18c" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterSetInstanceType.Multiple">
+      <topicdata group="api" notopic="" />
+      <apidata name="Multiple" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceType" ref="false" />
+      </containers>
+      <file name="93013c84-a03e-636c-a61f-12e2728a37e1" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterSetInstanceType.MultipleAggregate">
+      <topicdata group="api" notopic="" />
+      <apidata name="MultipleAggregate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceType" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceType" ref="false" />
+      </containers>
+      <file name="3d3adc2f-872b-7615-3b04-af7bff01ad67" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterSetInstanceType.Single">
+      <topicdata group="api" notopic="" />
+      <apidata name="Single" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterSetInstanceType" ref="false" />
+      </containers>
+      <file name="0f7599cf-dd4f-20bf-25be-6c05f40fe68c" />
+    </api>
+    <api id="T:System.Diagnostics.PerformanceData.CounterType">
+      <topicdata group="api" />
+      <apidata name="CounterType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.QueueLength" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.LargeQueueLength" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.QueueLength100Ns" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.QueueLengthObjectTime" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.RawData32" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.RawData64" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.RawDataHex32" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.RawDataHex64" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.RateOfCountPerSecond32" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.RateOfCountPerSecond64" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.RawFraction32" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.RawFraction64" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.RawBase32" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.RawBase64" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.SampleFraction" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.SampleCounter" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.SampleBase" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.AverageTimer32" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.AverageBase" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.AverageCount64" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.PercentageActive" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.PercentageNotActive" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.PercentageActive100Ns" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.PercentageNotActive100Ns" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.ElapsedTime" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.MultiTimerPercentageActive" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.MultiTimerPercentageNotActive" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.MultiTimerPercentageActive100Ns" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.MultiTimerPercentageNotActive100Ns" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.MultiTimerBase" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.Delta32" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.Delta64" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.ObjectSpecificTimer" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.PrecisionSystemTimer" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.PrecisionTimer100Ns" />
+        <element api="F:System.Diagnostics.PerformanceData.CounterType.PrecisionObjectSpecificTimer" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+      </containers>
+      <file name="9e4cbc10-1e86-036e-2d00-211e3fdb6bcb" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.AverageBase">
+      <topicdata group="api" notopic="" />
+      <apidata name="AverageBase" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>1073939458</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="6d5c2800-9fb5-a301-5b36-67d32c63a49d" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.AverageCount64">
+      <topicdata group="api" notopic="" />
+      <apidata name="AverageCount64" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>1073874176</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="715a95d4-010e-3456-b42b-c75fec3e50b4" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.AverageTimer32">
+      <topicdata group="api" notopic="" />
+      <apidata name="AverageTimer32" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>805438464</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="95fa5e85-fb4d-f4e4-601f-7e8c7611affa" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.Delta32">
+      <topicdata group="api" notopic="" />
+      <apidata name="Delta32" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>4195328</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="e7de47c9-166e-6906-40c3-07f405bcda33" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.Delta64">
+      <topicdata group="api" notopic="" />
+      <apidata name="Delta64" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>4195584</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="d3250c0f-d5f4-340f-4420-5cafb4f0f1b7" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.ElapsedTime">
+      <topicdata group="api" notopic="" />
+      <apidata name="ElapsedTime" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>807666944</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="5e028eb0-8a34-aa8e-9f26-e62ef35688be" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.LargeQueueLength">
+      <topicdata group="api" notopic="" />
+      <apidata name="LargeQueueLength" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>4523264</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="67d03bf5-8cf6-15ae-44ea-731a322c3bc0" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.MultiTimerBase">
+      <topicdata group="api" notopic="" />
+      <apidata name="MultiTimerBase" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>1107494144</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="740d983e-4d17-5be1-a135-2b275a889127" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.MultiTimerPercentageActive">
+      <topicdata group="api" notopic="" />
+      <apidata name="MultiTimerPercentageActive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>574686464</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="36524f71-b008-83b6-44f6-6c245ae9cd22" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.MultiTimerPercentageActive100Ns">
+      <topicdata group="api" notopic="" />
+      <apidata name="MultiTimerPercentageActive100Ns" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>575735040</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="d065509d-13e0-9c06-cbcf-f536514f3f1c" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.MultiTimerPercentageNotActive">
+      <topicdata group="api" notopic="" />
+      <apidata name="MultiTimerPercentageNotActive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>591463680</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="73b52351-36c4-8350-6d01-6467e6b1aa98" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.MultiTimerPercentageNotActive100Ns">
+      <topicdata group="api" notopic="" />
+      <apidata name="MultiTimerPercentageNotActive100Ns" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>592512256</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="31281ab9-42dd-e649-eab9-bfeed4ea801b" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.ObjectSpecificTimer">
+      <topicdata group="api" notopic="" />
+      <apidata name="ObjectSpecificTimer" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>543229184</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="af6f7245-2a36-7e65-432b-cfb42cdb1b63" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.PercentageActive">
+      <topicdata group="api" notopic="" />
+      <apidata name="PercentageActive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>541132032</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="c128f211-3717-bba9-8a98-b9520d8567f4" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.PercentageActive100Ns">
+      <topicdata group="api" notopic="" />
+      <apidata name="PercentageActive100Ns" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>542180608</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="3ffec61f-478f-126e-a5af-abf171fa360b" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.PercentageNotActive">
+      <topicdata group="api" notopic="" />
+      <apidata name="PercentageNotActive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>557909248</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="976a0bd0-dfc1-c7b2-2c2d-ca97c3cebce0" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.PercentageNotActive100Ns">
+      <topicdata group="api" notopic="" />
+      <apidata name="PercentageNotActive100Ns" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>558957824</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="6f5aeddb-6845-33cc-a76a-089e8ed91d8d" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.PrecisionObjectSpecificTimer">
+      <topicdata group="api" notopic="" />
+      <apidata name="PrecisionObjectSpecificTimer" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>543622400</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="4acffc7b-841e-be7f-07e5-00fa9bd263ad" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.PrecisionSystemTimer">
+      <topicdata group="api" notopic="" />
+      <apidata name="PrecisionSystemTimer" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>541525248</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="31121bd0-34ee-9f71-167f-285e1c6ef6fe" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.PrecisionTimer100Ns">
+      <topicdata group="api" notopic="" />
+      <apidata name="PrecisionTimer100Ns" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>542573824</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="1f06230c-a29d-c8a6-5ded-39c94561ee1d" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.QueueLength">
+      <topicdata group="api" notopic="" />
+      <apidata name="QueueLength" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>4523008</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="148b16b8-1efd-fd53-3dae-ba2b9ad41dc1" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.QueueLength100Ns">
+      <topicdata group="api" notopic="" />
+      <apidata name="QueueLength100Ns" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>5571840</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="52d43a2f-aaf2-1d48-5f88-c1c715605db4" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.QueueLengthObjectTime">
+      <topicdata group="api" notopic="" />
+      <apidata name="QueueLengthObjectTime" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>6620416</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="19334a93-e9e6-0361-953a-0b42acc4c300" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.RateOfCountPerSecond32">
+      <topicdata group="api" notopic="" />
+      <apidata name="RateOfCountPerSecond32" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>272696320</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="7bc3e6d1-e092-d40b-2c48-b2c6576a81a4" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.RateOfCountPerSecond64">
+      <topicdata group="api" notopic="" />
+      <apidata name="RateOfCountPerSecond64" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>272696576</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="c9a931d2-1751-deff-0a89-edce5ed5dcb9" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.RawBase32">
+      <topicdata group="api" notopic="" />
+      <apidata name="RawBase32" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>1073939459</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="e1e539b7-719e-755b-129d-16bc76dd0863" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.RawBase64">
+      <topicdata group="api" notopic="" />
+      <apidata name="RawBase64" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>1073939712</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="235af9a2-9482-0efd-a111-2ebbbd69bb39" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.RawData32">
+      <topicdata group="api" notopic="" />
+      <apidata name="RawData32" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>65536</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="5bbb08cd-4bf6-19df-7bbe-212ad5b8b01c" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.RawData64">
+      <topicdata group="api" notopic="" />
+      <apidata name="RawData64" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>65792</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="20f5ec9c-69b3-1e65-2538-8ed77012df82" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.RawDataHex32">
+      <topicdata group="api" notopic="" />
+      <apidata name="RawDataHex32" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="2f619d75-94f4-ca69-f28c-5f16f16d844b" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.RawDataHex64">
+      <topicdata group="api" notopic="" />
+      <apidata name="RawDataHex64" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>256</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="b462611a-fe60-ccda-737e-c10162c89f78" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.RawFraction32">
+      <topicdata group="api" notopic="" />
+      <apidata name="RawFraction32" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>537003008</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="b0c17440-18ac-299a-5e07-03bd51f8aba6" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.RawFraction64">
+      <topicdata group="api" notopic="" />
+      <apidata name="RawFraction64" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>537003264</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="72d15686-3816-8f6f-f498-c7d08e6be8d7" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.SampleBase">
+      <topicdata group="api" notopic="" />
+      <apidata name="SampleBase" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>1073939457</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="e71955d2-adf4-2155-2a79-6ca13b92cf42" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.SampleCounter">
+      <topicdata group="api" notopic="" />
+      <apidata name="SampleCounter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>4260864</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="a67301b4-c027-c802-66f4-b9558fc11567" />
+    </api>
+    <api id="F:System.Diagnostics.PerformanceData.CounterType.SampleFraction">
+      <topicdata group="api" notopic="" />
+      <apidata name="SampleFraction" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </returns>
+      <value>549585920</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.PerformanceData" />
+        <type api="T:System.Diagnostics.PerformanceData.CounterType" ref="false" />
+      </containers>
+      <file name="0f136d1c-50e7-de9a-4ba9-a7cbca3069df" />
+    </api>
+  </apis>
+</reflection>

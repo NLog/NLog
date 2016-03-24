@@ -1,0 +1,739 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.IdentityModel">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IdentityModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IdentityModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IdentityModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.IdentityModel.Policy">
+      <topicdata group="api" />
+      <apidata name="System.IdentityModel.Policy" group="namespace" />
+      <elements>
+        <element api="T:System.IdentityModel.Policy.AuthorizationContext" />
+        <element api="T:System.IdentityModel.Policy.EvaluationContext" />
+        <element api="T:System.IdentityModel.Policy.IAuthorizationComponent" />
+        <element api="T:System.IdentityModel.Policy.IAuthorizationPolicy" />
+      </elements>
+      <file name="8537dd41-36ee-76dc-f165-abf5305e152e" />
+    </api>
+    <api id="T:System.IdentityModel.Policy.AuthorizationContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IdentityModel.Policy.AuthorizationContext" />
+      <apidata name="AuthorizationContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IdentityModel.Policy.IAuthorizationComponent" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+      </containers>
+      <file name="0e90854b-fbad-daaf-e6ba-0dab09d1c289" />
+    </api>
+    <api id="AllMembers.T:System.IdentityModel.Policy.AuthorizationContext">
+      <topicdata name="AuthorizationContext" group="list" subgroup="members" typeTopicId="T:System.IdentityModel.Policy.AuthorizationContext" />
+      <apidata name="AuthorizationContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.IdentityModel.Policy.AuthorizationContext.#ctor" />
+        <element api="P:System.IdentityModel.Policy.AuthorizationContext.ClaimSets" />
+        <element api="M:System.IdentityModel.Policy.AuthorizationContext.CreateDefaultAuthorizationContext(System.Collections.Generic.IList{System.IdentityModel.Policy.IAuthorizationPolicy})" />
+        <element api="P:System.IdentityModel.Policy.AuthorizationContext.ExpirationTime" />
+        <element api="P:System.IdentityModel.Policy.AuthorizationContext.Id" />
+        <element api="P:System.IdentityModel.Policy.AuthorizationContext.Properties" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.AuthorizationContext" />
+      </containers>
+      <file name="7e2c264f-3093-70b8-cf70-526a8872ca3f" />
+    </api>
+    <api id="Methods.T:System.IdentityModel.Policy.AuthorizationContext">
+      <topicdata name="AuthorizationContext" group="list" subgroup="Methods" typeTopicId="T:System.IdentityModel.Policy.AuthorizationContext" />
+      <apidata name="AuthorizationContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.IdentityModel.Policy.AuthorizationContext.CreateDefaultAuthorizationContext(System.Collections.Generic.IList{System.IdentityModel.Policy.IAuthorizationPolicy})" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.AuthorizationContext" />
+      </containers>
+      <file name="e7096b31-2805-a0e3-3ca1-478acf4db9b5" />
+    </api>
+    <api id="Properties.T:System.IdentityModel.Policy.AuthorizationContext">
+      <topicdata name="AuthorizationContext" group="list" subgroup="Properties" typeTopicId="T:System.IdentityModel.Policy.AuthorizationContext" />
+      <apidata name="AuthorizationContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.IdentityModel.Policy.AuthorizationContext.ClaimSets" />
+        <element api="P:System.IdentityModel.Policy.AuthorizationContext.ExpirationTime" />
+        <element api="P:System.IdentityModel.Policy.AuthorizationContext.Id" />
+        <element api="P:System.IdentityModel.Policy.AuthorizationContext.Properties" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.AuthorizationContext" />
+      </containers>
+      <file name="7f0ed060-c1d0-c10b-e5f3-3399526c8403" />
+    </api>
+    <api id="M:System.IdentityModel.Policy.AuthorizationContext.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.AuthorizationContext" ref="true" />
+      </containers>
+      <file name="fe05c8b2-c8fd-556f-29eb-ee1ca9613978" />
+    </api>
+    <api id="P:System.IdentityModel.Policy.AuthorizationContext.ClaimSets">
+      <topicdata group="api" />
+      <apidata name="ClaimSets" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ClaimSets" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.IdentityModel.Claims.ClaimSet" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.AuthorizationContext" ref="true" />
+      </containers>
+      <file name="6ccf4d76-b77e-4f5d-15a6-ff96bfef0568" />
+    </api>
+    <api id="M:System.IdentityModel.Policy.AuthorizationContext.CreateDefaultAuthorizationContext(System.Collections.Generic.IList{System.IdentityModel.Policy.IAuthorizationPolicy})">
+      <topicdata group="api" />
+      <apidata name="CreateDefaultAuthorizationContext" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="authorizationPolicies">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <type api="T:System.IdentityModel.Policy.IAuthorizationPolicy" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IdentityModel.Policy.AuthorizationContext" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.AuthorizationContext" ref="true" />
+      </containers>
+      <file name="12e3fd5b-f5a8-5702-dd70-d0db909f7a81" />
+    </api>
+    <api id="P:System.IdentityModel.Policy.AuthorizationContext.ExpirationTime">
+      <topicdata group="api" />
+      <apidata name="ExpirationTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ExpirationTime" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.AuthorizationContext" ref="true" />
+      </containers>
+      <file name="490f5b69-1ebc-d255-76be-b0e34232a108" />
+    </api>
+    <api id="P:System.IdentityModel.Policy.AuthorizationContext.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.IdentityModel.Policy.IAuthorizationComponent.Id">
+          <type api="T:System.IdentityModel.Policy.IAuthorizationComponent" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.AuthorizationContext" ref="true" />
+      </containers>
+      <file name="0066093c-cc7a-79b6-81b3-fc1d5f43b827" />
+    </api>
+    <api id="P:System.IdentityModel.Policy.AuthorizationContext.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.AuthorizationContext" ref="true" />
+      </containers>
+      <file name="95b8a7fa-9e90-bcd7-d1c6-8f8c2a8de9c6" />
+    </api>
+    <api id="T:System.IdentityModel.Policy.EvaluationContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IdentityModel.Policy.EvaluationContext" />
+      <apidata name="EvaluationContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+      </containers>
+      <file name="92276db3-c5c9-bd2c-9025-30628df9cc2c" />
+    </api>
+    <api id="AllMembers.T:System.IdentityModel.Policy.EvaluationContext">
+      <topicdata name="EvaluationContext" group="list" subgroup="members" typeTopicId="T:System.IdentityModel.Policy.EvaluationContext" />
+      <apidata name="EvaluationContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.IdentityModel.Policy.EvaluationContext.#ctor" />
+        <element api="M:System.IdentityModel.Policy.EvaluationContext.AddClaimSet(System.IdentityModel.Policy.IAuthorizationPolicy,System.IdentityModel.Claims.ClaimSet)" />
+        <element api="P:System.IdentityModel.Policy.EvaluationContext.ClaimSets" />
+        <element api="P:System.IdentityModel.Policy.EvaluationContext.Generation" />
+        <element api="P:System.IdentityModel.Policy.EvaluationContext.Properties" />
+        <element api="M:System.IdentityModel.Policy.EvaluationContext.RecordExpirationTime(System.DateTime)" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.EvaluationContext" />
+      </containers>
+      <file name="3fd0e3b6-541f-0236-a79f-fed4485b4890" />
+    </api>
+    <api id="Methods.T:System.IdentityModel.Policy.EvaluationContext">
+      <topicdata name="EvaluationContext" group="list" subgroup="Methods" typeTopicId="T:System.IdentityModel.Policy.EvaluationContext" />
+      <apidata name="EvaluationContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.IdentityModel.Policy.EvaluationContext.AddClaimSet(System.IdentityModel.Policy.IAuthorizationPolicy,System.IdentityModel.Claims.ClaimSet)" />
+        <element api="M:System.IdentityModel.Policy.EvaluationContext.RecordExpirationTime(System.DateTime)" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.EvaluationContext" />
+      </containers>
+      <file name="fe8e741c-23e9-93dd-cef5-83266c070384" />
+    </api>
+    <api id="Properties.T:System.IdentityModel.Policy.EvaluationContext">
+      <topicdata name="EvaluationContext" group="list" subgroup="Properties" typeTopicId="T:System.IdentityModel.Policy.EvaluationContext" />
+      <apidata name="EvaluationContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.IdentityModel.Policy.EvaluationContext.ClaimSets" />
+        <element api="P:System.IdentityModel.Policy.EvaluationContext.Generation" />
+        <element api="P:System.IdentityModel.Policy.EvaluationContext.Properties" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.EvaluationContext" />
+      </containers>
+      <file name="6c197dfe-b958-d12b-ceb2-188c1c88f855" />
+    </api>
+    <api id="M:System.IdentityModel.Policy.EvaluationContext.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.EvaluationContext" ref="true" />
+      </containers>
+      <file name="2fe129d2-09cc-366d-7a28-47d9a6f2f23d" />
+    </api>
+    <api id="M:System.IdentityModel.Policy.EvaluationContext.AddClaimSet(System.IdentityModel.Policy.IAuthorizationPolicy,System.IdentityModel.Claims.ClaimSet)">
+      <topicdata group="api" />
+      <apidata name="AddClaimSet" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="policy">
+          <type api="T:System.IdentityModel.Policy.IAuthorizationPolicy" ref="true" />
+        </parameter>
+        <parameter name="claimSet">
+          <type api="T:System.IdentityModel.Claims.ClaimSet" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.EvaluationContext" ref="true" />
+      </containers>
+      <file name="e2c9bca9-07a7-a725-a1e0-330a0390f9a4" />
+    </api>
+    <api id="P:System.IdentityModel.Policy.EvaluationContext.ClaimSets">
+      <topicdata group="api" />
+      <apidata name="ClaimSets" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ClaimSets" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.IdentityModel.Claims.ClaimSet" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.EvaluationContext" ref="true" />
+      </containers>
+      <file name="5fdff84d-4de3-2795-bec1-b0160507b37c" />
+    </api>
+    <api id="P:System.IdentityModel.Policy.EvaluationContext.Generation">
+      <topicdata group="api" />
+      <apidata name="Generation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Generation" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.EvaluationContext" ref="true" />
+      </containers>
+      <file name="4d9ab797-c213-d0bb-9a29-71f9481eb78e" />
+    </api>
+    <api id="P:System.IdentityModel.Policy.EvaluationContext.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.EvaluationContext" ref="true" />
+      </containers>
+      <file name="5429e7c4-3f1c-7f61-c1b6-ba43ec0dd302" />
+    </api>
+    <api id="M:System.IdentityModel.Policy.EvaluationContext.RecordExpirationTime(System.DateTime)">
+      <topicdata group="api" />
+      <apidata name="RecordExpirationTime" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="expirationTime">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.EvaluationContext" ref="true" />
+      </containers>
+      <file name="0326c4dc-002a-a390-dd84-c9cb14fe2a90" />
+    </api>
+    <api id="T:System.IdentityModel.Policy.IAuthorizationComponent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IdentityModel.Policy.IAuthorizationComponent" />
+      <apidata name="IAuthorizationComponent" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.IdentityModel.Policy.AuthorizationContext" ref="true" />
+        <type api="T:System.IdentityModel.Policy.IAuthorizationPolicy" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+      </containers>
+      <file name="19e2ba50-2ff6-f669-62b3-7de238ad75be" />
+    </api>
+    <api id="AllMembers.T:System.IdentityModel.Policy.IAuthorizationComponent">
+      <topicdata name="IAuthorizationComponent" group="list" subgroup="members" typeTopicId="T:System.IdentityModel.Policy.IAuthorizationComponent" />
+      <apidata name="IAuthorizationComponent" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.IdentityModel.Policy.IAuthorizationComponent.Id" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.IAuthorizationComponent" />
+      </containers>
+      <file name="32a6bfab-ede8-ad9d-b729-5e61994c7b40" />
+    </api>
+    <api id="Properties.T:System.IdentityModel.Policy.IAuthorizationComponent">
+      <topicdata name="IAuthorizationComponent" group="list" subgroup="Properties" typeTopicId="T:System.IdentityModel.Policy.IAuthorizationComponent" />
+      <apidata name="IAuthorizationComponent" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.IdentityModel.Policy.IAuthorizationComponent.Id" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.IAuthorizationComponent" />
+      </containers>
+      <file name="ad2d4493-cfad-a0c8-c7c0-9c3a73cde622" />
+    </api>
+    <api id="P:System.IdentityModel.Policy.IAuthorizationComponent.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.IAuthorizationComponent" ref="true" />
+      </containers>
+      <file name="e5c7ad7c-dde4-efb1-b4f2-f8455802c2ac" />
+    </api>
+    <api id="T:System.IdentityModel.Policy.IAuthorizationPolicy">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IdentityModel.Policy.IAuthorizationPolicy" />
+      <apidata name="IAuthorizationPolicy" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:System.IdentityModel.Policy.IAuthorizationComponent" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+      </containers>
+      <file name="ac52fe7f-1119-a4c2-7b96-250899053d91" />
+    </api>
+    <api id="AllMembers.T:System.IdentityModel.Policy.IAuthorizationPolicy">
+      <topicdata name="IAuthorizationPolicy" group="list" subgroup="members" typeTopicId="T:System.IdentityModel.Policy.IAuthorizationPolicy" />
+      <apidata name="IAuthorizationPolicy" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.IdentityModel.Policy.IAuthorizationComponent.Id" />
+        <element api="M:System.IdentityModel.Policy.IAuthorizationPolicy.Evaluate(System.IdentityModel.Policy.EvaluationContext,System.Object@)" />
+        <element api="P:System.IdentityModel.Policy.IAuthorizationPolicy.Issuer" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.IAuthorizationPolicy" />
+      </containers>
+      <file name="b6b7ea34-96f5-757b-c702-5b118c767f5e" />
+    </api>
+    <api id="Methods.T:System.IdentityModel.Policy.IAuthorizationPolicy">
+      <topicdata name="IAuthorizationPolicy" group="list" subgroup="Methods" typeTopicId="T:System.IdentityModel.Policy.IAuthorizationPolicy" />
+      <apidata name="IAuthorizationPolicy" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.IdentityModel.Policy.IAuthorizationPolicy.Evaluate(System.IdentityModel.Policy.EvaluationContext,System.Object@)" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.IAuthorizationPolicy" />
+      </containers>
+      <file name="db7484f7-3f23-91ac-34fa-0c806824409d" />
+    </api>
+    <api id="Properties.T:System.IdentityModel.Policy.IAuthorizationPolicy">
+      <topicdata name="IAuthorizationPolicy" group="list" subgroup="Properties" typeTopicId="T:System.IdentityModel.Policy.IAuthorizationPolicy" />
+      <apidata name="IAuthorizationPolicy" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.IdentityModel.Policy.IAuthorizationComponent.Id" />
+        <element api="P:System.IdentityModel.Policy.IAuthorizationPolicy.Issuer" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.IAuthorizationPolicy" />
+      </containers>
+      <file name="ca12a409-7690-7941-a433-eaf1e5e1828e" />
+    </api>
+    <api id="M:System.IdentityModel.Policy.IAuthorizationPolicy.Evaluate(System.IdentityModel.Policy.EvaluationContext,System.Object@)">
+      <topicdata group="api" />
+      <apidata name="Evaluate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="evaluationContext">
+          <type api="T:System.IdentityModel.Policy.EvaluationContext" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <referenceTo>
+            <type api="T:System.Object" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.IAuthorizationPolicy" ref="true" />
+      </containers>
+      <file name="8e6ace21-1bee-e829-766d-399ee5f2d94f" />
+    </api>
+    <api id="P:System.IdentityModel.Policy.IAuthorizationPolicy.Issuer">
+      <topicdata group="api" />
+      <apidata name="Issuer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Issuer" />
+      <returns>
+        <type api="T:System.IdentityModel.Claims.ClaimSet" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel" module="System.IdentityModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Policy" />
+        <type api="T:System.IdentityModel.Policy.IAuthorizationPolicy" ref="true" />
+      </containers>
+      <file name="eab572ce-e760-52fc-113a-b37dd4361d6e" />
+    </api>
+  </apis>
+</reflection>

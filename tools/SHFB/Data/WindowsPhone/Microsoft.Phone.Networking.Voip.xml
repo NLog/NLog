@@ -1,0 +1,799 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.Networking.Voip">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.Networking.Voip" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask" />
+        <element api="T:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask" />
+        <element api="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgentLaunchReason" />
+        <element api="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent" />
+        <element api="T:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess" />
+        <element api="T:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent" />
+      </elements>
+      <file name="b8a01cc5-bd06-3ebc-3b86-47f46b3f6420" />
+    </api>
+    <api id="T:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess" />
+      <apidata name="VoipBackgroundProcess" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+      </containers>
+      <file name="74dd485c-4713-e656-7601-ff6813bf7ea2" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess">
+      <topicdata name="VoipBackgroundProcess" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess" />
+      <apidata name="VoipBackgroundProcess" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess.Launch">
+          <element api="M:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess.Launch" />
+          <element api="M:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess.Launch(System.Int32@)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess" />
+      </containers>
+      <file name="160bc356-69fd-9bcb-05fb-b51ce883040e" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess">
+      <topicdata name="VoipBackgroundProcess" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess" />
+      <apidata name="VoipBackgroundProcess" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess.Launch">
+          <element api="M:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess.Launch" />
+          <element api="M:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess.Launch(System.Int32@)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess" />
+      </containers>
+      <file name="5c44017e-d5e0-f90e-82c9-c910fab7f418" />
+    </api>
+    <api id="Overload:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess.Launch">
+      <topicdata name="Launch" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess" />
+      <apidata name="Launch" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess.Launch" />
+        <element api="M:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess.Launch(System.Int32@)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess" ref="true" />
+      </containers>
+      <file name="54f7b698-abf4-71d5-76d1-cdaca9babc49" />
+    </api>
+    <api id="M:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess.Launch">
+      <topicdata group="api" />
+      <apidata name="Launch" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess.Launch" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess" ref="true" />
+      </containers>
+      <file name="035be96a-6985-c6d4-8bfb-a9e54a731089" />
+    </api>
+    <api id="M:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess.Launch(System.Int32@)">
+      <topicdata group="api" />
+      <apidata name="Launch" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess.Launch" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="backgroundProcessId" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipBackgroundProcess" ref="true" />
+      </containers>
+      <file name="95041b71-464a-4d19-bf17-77dba8104b9e" />
+    </api>
+    <api id="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent" />
+      <apidata name="VoipCallInProgressAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.BackgroundAgent" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+      </containers>
+      <file name="8044fbe1-455d-e44c-6780-af16bd4fbae3" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent">
+      <topicdata name="VoipCallInProgressAgent" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent" />
+      <apidata name="VoipCallInProgressAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAgent.Abort" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyComplete" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.OnCancel" />
+        <element api="M:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent.#ctor" />
+        <element api="P:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent.LaunchReason" />
+        <element api="M:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent.OnFirstCallStarting" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent" />
+      </containers>
+      <file name="664ed82a-4aac-7fd2-545d-95581e06e6e5" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent">
+      <topicdata name="VoipCallInProgressAgent" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent" />
+      <apidata name="VoipCallInProgressAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAgent.Abort" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyComplete" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.OnCancel" />
+        <element api="M:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent.OnFirstCallStarting" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent" />
+      </containers>
+      <file name="053c08d8-98c4-fa67-fd51-427d0825c05a" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent">
+      <topicdata name="VoipCallInProgressAgent" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent" />
+      <apidata name="VoipCallInProgressAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent.LaunchReason" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent" />
+      </containers>
+      <file name="56f5fd0f-5961-ebbd-be8c-3c3e18edcf9c" />
+    </api>
+    <api id="M:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent" ref="true" />
+      </containers>
+      <file name="13bd55bd-4482-774f-f777-b9442960bea5" />
+    </api>
+    <api id="P:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent.LaunchReason">
+      <topicdata group="api" />
+      <apidata name="LaunchReason" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LaunchReason" />
+      <returns>
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgentLaunchReason" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent" ref="true" />
+      </containers>
+      <file name="4d6dd187-f859-3143-571f-c0e690df5037" />
+    </api>
+    <api id="M:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent.OnFirstCallStarting">
+      <topicdata group="api" />
+      <apidata name="OnFirstCallStarting" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent" ref="true" />
+      </containers>
+      <file name="5d3b0b6c-ef03-5516-e066-8d39e277ea2b" />
+    </api>
+    <api id="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgentLaunchReason">
+      <topicdata group="api" />
+      <apidata name="VoipCallInProgressAgentLaunchReason" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgentLaunchReason.CallStart" />
+        <element api="F:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgentLaunchReason.CallQuery" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+      </containers>
+      <file name="040d4b66-7740-a2d6-218d-9e7ef1819b91" />
+    </api>
+    <api id="F:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgentLaunchReason.CallQuery">
+      <topicdata group="api" notopic="" />
+      <apidata name="CallQuery" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgentLaunchReason" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgentLaunchReason" ref="false" />
+      </containers>
+      <file name="57d75b62-e5a1-848e-ce3b-2f7dafa1e0a0" />
+    </api>
+    <api id="F:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgentLaunchReason.CallStart">
+      <topicdata group="api" notopic="" />
+      <apidata name="CallStart" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgentLaunchReason" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgentLaunchReason" ref="false" />
+      </containers>
+      <file name="4371b470-69ad-f1b7-d3eb-93044b6820e3" />
+    </api>
+    <api id="T:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent" />
+      <apidata name="VoipForegroundLifetimeAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.BackgroundAgent" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+      </containers>
+      <file name="1bd39206-b139-46ee-c43a-601a7c113794" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent">
+      <topicdata name="VoipForegroundLifetimeAgent" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent" />
+      <apidata name="VoipForegroundLifetimeAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAgent.Abort" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyComplete" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.OnCancel" />
+        <element api="M:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent.#ctor" />
+        <element api="M:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent.OnLaunched" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent" />
+      </containers>
+      <file name="5227d282-cdfe-ad09-ecac-636bc9d896eb" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent">
+      <topicdata name="VoipForegroundLifetimeAgent" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent" />
+      <apidata name="VoipForegroundLifetimeAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAgent.Abort" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyComplete" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.OnCancel" />
+        <element api="M:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent.OnLaunched" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent" />
+      </containers>
+      <file name="4e329898-6b6a-117e-6db1-052033cc6402" />
+    </api>
+    <api id="M:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent" ref="true" />
+      </containers>
+      <file name="ed7d3f2a-5be0-b245-65f5-cdbb8031d205" />
+    </api>
+    <api id="M:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent.OnLaunched">
+      <topicdata group="api" />
+      <apidata name="OnLaunched" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent" ref="true" />
+      </containers>
+      <file name="edcb3a29-9fa0-5346-66b8-60704a3f9d02" />
+    </api>
+    <api id="T:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask" />
+      <apidata name="VoipHttpIncomingCallTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledTask" ref="true" />
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+      </containers>
+      <file name="ee8d1918-263b-171b-df20-4e9a288ae876" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask">
+      <topicdata name="VoipHttpIncomingCallTask" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask" />
+      <apidata name="VoipHttpIncomingCallTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask.#ctor(System.String,System.String)" />
+        <element api="P:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask.ChannelName" />
+        <element api="P:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask.MessageBody" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.Description" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastExitReason" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastScheduledTime" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask" />
+      </containers>
+      <file name="a38e8659-5a7b-964c-c091-dad4b42ece98" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask">
+      <topicdata name="VoipHttpIncomingCallTask" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask" />
+      <apidata name="VoipHttpIncomingCallTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask" />
+      </containers>
+      <file name="e343ddfb-50c5-3cdc-b237-dd65e0f8e45e" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask">
+      <topicdata name="VoipHttpIncomingCallTask" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask" />
+      <apidata name="VoipHttpIncomingCallTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask.ChannelName" />
+        <element api="P:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask.MessageBody" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.Description" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastExitReason" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastScheduledTime" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask" />
+      </containers>
+      <file name="7f4456af-d20f-71ee-f644-d5ed51b4959e" />
+    </api>
+    <api id="M:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="channelName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask" ref="true" />
+      </containers>
+      <file name="cce3b152-ee9d-5fec-ce39-6282d04417b7" />
+    </api>
+    <api id="P:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask.ChannelName">
+      <topicdata group="api" />
+      <apidata name="ChannelName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ChannelName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask" ref="true" />
+      </containers>
+      <file name="221e7792-7c32-46db-8913-1f9324233232" />
+    </api>
+    <api id="P:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask.MessageBody">
+      <topicdata group="api" />
+      <apidata name="MessageBody" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MessageBody" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipHttpIncomingCallTask" ref="true" />
+      </containers>
+      <file name="745d7f3e-02bc-50d9-0e6a-b0f540a5f3f3" />
+    </api>
+    <api id="T:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask" />
+      <apidata name="VoipKeepAliveTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledTask" ref="true" />
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledAction" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+      </containers>
+      <file name="bf97fe40-1745-ede3-908c-d0302d1d1d1d" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask">
+      <topicdata name="VoipKeepAliveTask" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask" />
+      <apidata name="VoipKeepAliveTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask.#ctor(System.String)" />
+        <element api="P:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask.Interval" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.Description" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastExitReason" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastScheduledTime" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask" />
+      </containers>
+      <file name="fa79bff2-5d3c-c463-f10f-05a57cfa8571" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask">
+      <topicdata name="VoipKeepAliveTask" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask" />
+      <apidata name="VoipKeepAliveTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask" />
+      </containers>
+      <file name="dec0bb78-4a9e-c29e-ab43-191a9ddbec71" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask">
+      <topicdata name="VoipKeepAliveTask" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask" />
+      <apidata name="VoipKeepAliveTask" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask.Interval" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.ExpirationTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsEnabled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.IsScheduled" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledAction.Name" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.BeginTime" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.Description" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastExitReason" />
+        <element api="P:Microsoft.Phone.Scheduler.ScheduledTask.LastScheduledTime" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask" />
+      </containers>
+      <file name="25e94d47-6d73-cfbf-cd7c-3be2af4f05ac" />
+    </api>
+    <api id="M:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask" ref="true" />
+      </containers>
+      <file name="383e319a-7fea-ae34-a068-d92ce2261462" />
+    </api>
+    <api id="P:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask.Interval">
+      <topicdata group="api" />
+      <apidata name="Interval" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Interval" />
+      <setter name="set_Interval" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Networking.Voip" />
+        <type api="T:Microsoft.Phone.Networking.Voip.VoipKeepAliveTask" ref="true" />
+      </containers>
+      <file name="986e33c2-a1df-f638-c273-8455e3d51edd" />
+    </api>
+  </apis>
+</reflection>

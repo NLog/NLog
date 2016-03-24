@@ -1,0 +1,2455 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel.Activities">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.WorkflowServices">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.WorkflowServices.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.WorkflowServices.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.WorkflowServices.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceModel.Activities.Description">
+      <topicdata group="api" />
+      <apidata name="System.ServiceModel.Activities.Description" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior" />
+        <element api="T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute" />
+        <element api="T:System.ServiceModel.Activities.Description.EtwTrackingBehavior" />
+        <element api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" />
+        <element api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction" />
+        <element api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior" />
+        <element api="T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior" />
+        <element api="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" />
+        <element api="T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" />
+      </elements>
+      <file name="573df897-c983-7947-7a6c-f3f3f79570c5" />
+    </api>
+    <api id="T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior" />
+      <apidata name="BufferedReceiveServiceBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+      </containers>
+      <file name="fa69c1e1-1990-4d6d-33c0-7f5ea6af3fe8" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior">
+      <topicdata name="BufferedReceiveServiceBehavior" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior" />
+      <apidata name="BufferedReceiveServiceBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.#ctor" />
+        <element api="M:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="P:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.MaxPendingMessagesPerChannel" />
+        <element api="M:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior" />
+      </containers>
+      <file name="070f87b1-0f4f-39ea-50da-9c353b99ee8e" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior">
+      <topicdata name="BufferedReceiveServiceBehavior" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior" />
+      <apidata name="BufferedReceiveServiceBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="M:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior" />
+      </containers>
+      <file name="3ea8889d-4481-c603-7862-4d30ada17361" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior">
+      <topicdata name="BufferedReceiveServiceBehavior" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior" />
+      <apidata name="BufferedReceiveServiceBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.MaxPendingMessagesPerChannel" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior" />
+      </containers>
+      <file name="7b2f955e-7be1-ca69-0f81-098fdd7f4f03" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior" ref="true" />
+      </containers>
+      <file name="2bfecab5-a545-12de-a765-47a2c13c0d8f" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+      <topicdata group="api" />
+      <apidata name="AddBindingParameters" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+        <parameter name="endpoints">
+          <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+            <specialization>
+              <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="bindingParameters">
+          <type api="T:System.ServiceModel.Channels.BindingParameterCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior" ref="true" />
+      </containers>
+      <file name="023b7181-74ec-a2a1-e9fd-1115865997d9" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" />
+      <apidata name="ApplyDispatchBehavior" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior" ref="true" />
+      </containers>
+      <file name="ab4affef-096d-1c8f-bd60-833ca52beab2" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.MaxPendingMessagesPerChannel">
+      <topicdata group="api" />
+      <apidata name="MaxPendingMessagesPerChannel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxPendingMessagesPerChannel" />
+      <setter name="set_MaxPendingMessagesPerChannel" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior" ref="true" />
+      </containers>
+      <file name="8bb19f0f-4311-8fd7-0bc8-c1e970738739" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" />
+      <apidata name="Validate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.BufferedReceiveServiceBehavior" ref="true" />
+      </containers>
+      <file name="79a74880-1729-4c88-29a0-d8a3c22bd862" />
+    </api>
+    <api id="T:System.ServiceModel.Activities.Description.EtwTrackingBehavior">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activities.Description.EtwTrackingBehavior" />
+      <apidata name="EtwTrackingBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.EtwTrackingBehavior.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+      </containers>
+      <file name="fcf0a21e-f8dc-54cc-8eb5-81fa8b0c618a" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activities.Description.EtwTrackingBehavior">
+      <topicdata name="EtwTrackingBehavior" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activities.Description.EtwTrackingBehavior" />
+      <apidata name="EtwTrackingBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.EtwTrackingBehavior.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activities.Description.EtwTrackingBehavior.#ctor" />
+        <element api="M:System.ServiceModel.Activities.Description.EtwTrackingBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Activities.Description.EtwTrackingBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="P:System.ServiceModel.Activities.Description.EtwTrackingBehavior.ProfileName" />
+        <element api="M:System.ServiceModel.Activities.Description.EtwTrackingBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.EtwTrackingBehavior" />
+      </containers>
+      <file name="665a31ef-e316-2312-311d-bc793835d113" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activities.Description.EtwTrackingBehavior">
+      <topicdata name="EtwTrackingBehavior" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activities.Description.EtwTrackingBehavior" />
+      <apidata name="EtwTrackingBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.EtwTrackingBehavior.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activities.Description.EtwTrackingBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Activities.Description.EtwTrackingBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="M:System.ServiceModel.Activities.Description.EtwTrackingBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.EtwTrackingBehavior" />
+      </containers>
+      <file name="9340d1fe-5021-3471-7ff8-6b5f450afafe" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activities.Description.EtwTrackingBehavior">
+      <topicdata name="EtwTrackingBehavior" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activities.Description.EtwTrackingBehavior" />
+      <apidata name="EtwTrackingBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.EtwTrackingBehavior.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.Activities.Description.EtwTrackingBehavior.ProfileName" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.EtwTrackingBehavior" />
+      </containers>
+      <file name="97c3d522-03dd-27f1-7ae3-60a2b0eed689" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.EtwTrackingBehavior.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.EtwTrackingBehavior" ref="true" />
+      </containers>
+      <file name="864debda-28c9-8474-6a0f-a86c4fd0fe16" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.EtwTrackingBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+      <topicdata group="api" />
+      <apidata name="AddBindingParameters" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+        <parameter name="endpoints">
+          <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+            <specialization>
+              <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="bindingParameters">
+          <type api="T:System.ServiceModel.Channels.BindingParameterCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.EtwTrackingBehavior" ref="true" />
+      </containers>
+      <file name="e52fb247-3f4f-80b2-8de6-54d902a55ea1" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.EtwTrackingBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" />
+      <apidata name="ApplyDispatchBehavior" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.EtwTrackingBehavior" ref="true" />
+      </containers>
+      <file name="5b9875c7-05bc-8801-855f-c0e38f763997" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Description.EtwTrackingBehavior.ProfileName">
+      <topicdata group="api" />
+      <apidata name="ProfileName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ProfileName" />
+      <setter name="set_ProfileName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.EtwTrackingBehavior" ref="true" />
+      </containers>
+      <file name="553c9dd8-b1ff-d1f8-1205-f449b7708aed" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.EtwTrackingBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" />
+      <apidata name="Validate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.EtwTrackingBehavior" ref="true" />
+      </containers>
+      <file name="51cc7eb1-bf0e-2fa4-86cd-9a286fb2f382" />
+    </api>
+    <api id="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" />
+      <apidata name="SqlWorkflowInstanceStoreBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+      </containers>
+      <file name="c2525c7d-fa32-d9ef-3e17-cfbf7ddabbed" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior">
+      <topicdata name="SqlWorkflowInstanceStoreBehavior" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" />
+      <apidata name="SqlWorkflowInstanceStoreBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.#ctor">
+          <element api="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.#ctor" />
+          <element api="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.#ctor(System.String)" />
+        </element>
+        <element api="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.ConnectionString" />
+        <element api="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.HostLockRenewalPeriod" />
+        <element api="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.InstanceCompletionAction" />
+        <element api="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.InstanceEncodingOption" />
+        <element api="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.InstanceLockedExceptionAction" />
+        <element api="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.MaxConnectionRetries" />
+        <element api="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.Promote(System.String,System.Collections.Generic.IEnumerable{System.Xml.Linq.XName},System.Collections.Generic.IEnumerable{System.Xml.Linq.XName})" />
+        <element api="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.RunnableInstancesDetectionPeriod" />
+        <element api="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" />
+      </containers>
+      <file name="3dd4198b-576d-7737-871c-f4717e863959" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior">
+      <topicdata name="SqlWorkflowInstanceStoreBehavior" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" />
+      <apidata name="SqlWorkflowInstanceStoreBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.Promote(System.String,System.Collections.Generic.IEnumerable{System.Xml.Linq.XName},System.Collections.Generic.IEnumerable{System.Xml.Linq.XName})" />
+        <element api="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" />
+      </containers>
+      <file name="1fe1452c-1699-1800-f00c-df375c4e04f8" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior">
+      <topicdata name="SqlWorkflowInstanceStoreBehavior" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" />
+      <apidata name="SqlWorkflowInstanceStoreBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.ConnectionString" />
+        <element api="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.HostLockRenewalPeriod" />
+        <element api="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.InstanceCompletionAction" />
+        <element api="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.InstanceEncodingOption" />
+        <element api="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.InstanceLockedExceptionAction" />
+        <element api="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.MaxConnectionRetries" />
+        <element api="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.RunnableInstancesDetectionPeriod" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" />
+      </containers>
+      <file name="95107ccb-2d0c-b197-02a7-0b3c069d0447" />
+    </api>
+    <api id="Overload:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.#ctor" />
+        <element api="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" ref="true" />
+      </containers>
+      <file name="9f2231c8-d9ee-ef7b-f721-a173beb640d1" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" ref="true" />
+      </containers>
+      <file name="1aab7a09-9213-d696-b00f-725d1dcbf910" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.#ctor" />
+      <parameters>
+        <parameter name="connectionString">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" ref="true" />
+      </containers>
+      <file name="2cd4ef31-2676-3ab0-a18b-edf2dc33c801" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+      <topicdata group="api" />
+      <apidata name="AddBindingParameters" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+        <parameter name="endpoints">
+          <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+            <specialization>
+              <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="bindingParameters">
+          <type api="T:System.ServiceModel.Channels.BindingParameterCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" ref="true" />
+      </containers>
+      <file name="72da1c8c-1f44-a413-cb5e-7a9561b142df" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" />
+      <apidata name="ApplyDispatchBehavior" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" ref="true" />
+      </containers>
+      <file name="89c9df87-9b2b-6883-63dc-3d3595609593" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.ConnectionString">
+      <topicdata group="api" />
+      <apidata name="ConnectionString" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ConnectionString" />
+      <setter name="set_ConnectionString" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" ref="true" />
+      </containers>
+      <file name="6af8f2d3-dcac-6589-f266-e007422ee5cb" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.HostLockRenewalPeriod">
+      <topicdata group="api" />
+      <apidata name="HostLockRenewalPeriod" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_HostLockRenewalPeriod" />
+      <setter name="set_HostLockRenewalPeriod" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" ref="true" />
+      </containers>
+      <file name="36cff341-285f-b730-1e3f-afe4de246513" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.InstanceCompletionAction">
+      <topicdata group="api" />
+      <apidata name="InstanceCompletionAction" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InstanceCompletionAction" />
+      <setter name="set_InstanceCompletionAction" />
+      <returns>
+        <type api="T:System.Activities.DurableInstancing.InstanceCompletionAction" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" ref="true" />
+      </containers>
+      <file name="1671f5ac-7ddd-7d6d-d564-bee02315cb86" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.InstanceEncodingOption">
+      <topicdata group="api" />
+      <apidata name="InstanceEncodingOption" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InstanceEncodingOption" />
+      <setter name="set_InstanceEncodingOption" />
+      <returns>
+        <type api="T:System.Activities.DurableInstancing.InstanceEncodingOption" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" ref="true" />
+      </containers>
+      <file name="d32940fb-4e12-a55b-1ad8-2e8dce16ea8a" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.InstanceLockedExceptionAction">
+      <topicdata group="api" />
+      <apidata name="InstanceLockedExceptionAction" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InstanceLockedExceptionAction" />
+      <setter name="set_InstanceLockedExceptionAction" />
+      <returns>
+        <type api="T:System.Activities.DurableInstancing.InstanceLockedExceptionAction" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" ref="true" />
+      </containers>
+      <file name="87102d19-a200-00a0-3ac5-0dc264f85519" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.MaxConnectionRetries">
+      <topicdata group="api" />
+      <apidata name="MaxConnectionRetries" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxConnectionRetries" />
+      <setter name="set_MaxConnectionRetries" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" ref="true" />
+      </containers>
+      <file name="a8d43824-2c1a-593b-0e38-f3a2d714ad21" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.Promote(System.String,System.Collections.Generic.IEnumerable{System.Xml.Linq.XName},System.Collections.Generic.IEnumerable{System.Xml.Linq.XName})">
+      <topicdata group="api" />
+      <apidata name="Promote" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="promoteAsSqlVariant">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Xml.Linq.XName" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="promoteAsBinary">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Xml.Linq.XName" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" ref="true" />
+      </containers>
+      <file name="f18a7c2e-f292-20ce-79a4-96ae3a3a3151" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.RunnableInstancesDetectionPeriod">
+      <topicdata group="api" />
+      <apidata name="RunnableInstancesDetectionPeriod" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RunnableInstancesDetectionPeriod" />
+      <setter name="set_RunnableInstancesDetectionPeriod" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" ref="true" />
+      </containers>
+      <file name="cafd4ec8-4c7d-d499-6a34-c7e01fbb17f9" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" />
+      <apidata name="Validate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.SqlWorkflowInstanceStoreBehavior" ref="true" />
+      </containers>
+      <file name="a1236ff8-2b00-7f63-7d0a-35d978ff496f" />
+    </api>
+    <api id="T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute" />
+      <apidata name="WorkflowContractBehaviorAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.Description.IContractBehavior" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Interface" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="5ef039c4-296d-81ec-8c39-16d118755574" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute">
+      <topicdata name="WorkflowContractBehaviorAttribute" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute" />
+      <apidata name="WorkflowContractBehaviorAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.#ctor" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.AddBindingParameters(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.ApplyClientBehavior(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.ApplyDispatchBehavior(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.DispatchRuntime)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.Validate(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute" />
+      </containers>
+      <file name="98d680e4-1763-5d97-dd56-96d4c5a5d8f3" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute">
+      <topicdata name="WorkflowContractBehaviorAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute" />
+      <apidata name="WorkflowContractBehaviorAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.AddBindingParameters(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.ApplyClientBehavior(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.ApplyDispatchBehavior(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.DispatchRuntime)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.Validate(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute" />
+      </containers>
+      <file name="c5da0a58-7584-7f47-8357-67c5a080f36b" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute">
+      <topicdata name="WorkflowContractBehaviorAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute" />
+      <apidata name="WorkflowContractBehaviorAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute" />
+      </containers>
+      <file name="c3994791-0ccc-d940-e7ff-d9fc850d3b38" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute" ref="true" />
+      </containers>
+      <file name="92d6ef0a-995f-edde-d80c-fa1a95eb6080" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.AddBindingParameters(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)">
+      <topicdata group="api" />
+      <apidata name="AddBindingParameters" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="contractDescription">
+          <type api="T:System.ServiceModel.Description.ContractDescription" ref="true" />
+        </parameter>
+        <parameter name="endpoint">
+          <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+        </parameter>
+        <parameter name="bindingParameters">
+          <type api="T:System.ServiceModel.Channels.BindingParameterCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IContractBehavior.AddBindingParameters(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)">
+          <type api="T:System.ServiceModel.Description.IContractBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute" ref="true" />
+      </containers>
+      <file name="4a8eb3ef-d076-bc1b-6b78-8c774731f488" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.ApplyClientBehavior(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)">
+      <topicdata group="api" />
+      <apidata name="ApplyClientBehavior" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="contractDescription">
+          <type api="T:System.ServiceModel.Description.ContractDescription" ref="true" />
+        </parameter>
+        <parameter name="endpoint">
+          <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+        </parameter>
+        <parameter name="clientRuntime">
+          <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IContractBehavior.ApplyClientBehavior(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)">
+          <type api="T:System.ServiceModel.Description.IContractBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute" ref="true" />
+      </containers>
+      <file name="d14feaac-14bd-4b22-c5c5-410f2fad8095" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.ApplyDispatchBehavior(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.DispatchRuntime)">
+      <topicdata group="api" />
+      <apidata name="ApplyDispatchBehavior" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="contractDescription">
+          <type api="T:System.ServiceModel.Description.ContractDescription" ref="true" />
+        </parameter>
+        <parameter name="endpoint">
+          <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+        </parameter>
+        <parameter name="dispatchRuntime">
+          <type api="T:System.ServiceModel.Dispatcher.DispatchRuntime" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IContractBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.DispatchRuntime)">
+          <type api="T:System.ServiceModel.Description.IContractBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute" ref="true" />
+      </containers>
+      <file name="41cb0f1e-0db6-3d2b-8211-cc5edcd79d42" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute.Validate(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint)">
+      <topicdata group="api" />
+      <apidata name="Validate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="contractDescription">
+          <type api="T:System.ServiceModel.Description.ContractDescription" ref="true" />
+        </parameter>
+        <parameter name="endpoint">
+          <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IContractBehavior.Validate(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint)">
+          <type api="T:System.ServiceModel.Description.IContractBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowContractBehaviorAttribute" ref="true" />
+      </containers>
+      <file name="1c5e3587-d384-4bdf-3f41-c39c5ca7397b" />
+    </api>
+    <api id="T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior" />
+      <apidata name="WorkflowIdleBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+      </containers>
+      <file name="a13e2336-5985-5c44-b955-312f8e8efbcc" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior">
+      <topicdata name="WorkflowIdleBehavior" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior" />
+      <apidata name="WorkflowIdleBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.#ctor" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="P:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.TimeToPersist" />
+        <element api="P:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.TimeToUnload" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior" />
+      </containers>
+      <file name="1ad6adef-c2c0-6d8d-dbdb-cf950eadda6a" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior">
+      <topicdata name="WorkflowIdleBehavior" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior" />
+      <apidata name="WorkflowIdleBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior" />
+      </containers>
+      <file name="04205cbc-a851-adb6-f7e4-f49af41e2d91" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior">
+      <topicdata name="WorkflowIdleBehavior" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior" />
+      <apidata name="WorkflowIdleBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.TimeToPersist" />
+        <element api="P:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.TimeToUnload" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior" />
+      </containers>
+      <file name="4c5c0037-db03-f8fb-a4d7-be0010f5d9ce" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior" ref="true" />
+      </containers>
+      <file name="ffaa0078-d1da-23d2-cf15-ae67ca1711c5" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+      <topicdata group="api" />
+      <apidata name="AddBindingParameters" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+        <parameter name="endpoints">
+          <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+            <specialization>
+              <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="bindingParameters">
+          <type api="T:System.ServiceModel.Channels.BindingParameterCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior" ref="true" />
+      </containers>
+      <file name="0effb808-64a0-021f-b44c-183f9a7512ed" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" />
+      <apidata name="ApplyDispatchBehavior" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior" ref="true" />
+      </containers>
+      <file name="ba57308a-3dbb-6749-cd55-10ad46cc3373" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.TimeToPersist">
+      <topicdata group="api" />
+      <apidata name="TimeToPersist" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TimeToPersist" />
+      <setter name="set_TimeToPersist" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior" ref="true" />
+      </containers>
+      <file name="f340d72f-4ab5-d991-5def-3128ef8f85a8" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.TimeToUnload">
+      <topicdata group="api" />
+      <apidata name="TimeToUnload" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TimeToUnload" />
+      <setter name="set_TimeToUnload" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior" ref="true" />
+      </containers>
+      <file name="0a6e904a-d4c5-9c12-2b02-a23d3e8f97cc" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowIdleBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" />
+      <apidata name="Validate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowIdleBehavior" ref="true" />
+      </containers>
+      <file name="f7c41989-edf4-0959-9ecd-1bb53baa42e4" />
+    </api>
+    <api id="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" />
+      <apidata name="WorkflowInstanceManagementBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+      </containers>
+      <file name="2217aa65-ab32-88c4-6ed3-a79a1c4e08dd" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior">
+      <topicdata name="WorkflowInstanceManagementBehavior" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" />
+      <apidata name="WorkflowInstanceManagementBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.#ctor" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="F:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.ControlEndpointAddress" />
+        <element api="P:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.HttpControlEndpointBinding" />
+        <element api="P:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.NamedPipeControlEndpointBinding" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="P:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.WindowsGroup" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" />
+      </containers>
+      <file name="b1a24c79-91a1-b0ab-22e0-f7f2a538e920" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior">
+      <topicdata name="WorkflowInstanceManagementBehavior" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" />
+      <apidata name="WorkflowInstanceManagementBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" />
+      </containers>
+      <file name="c7a6a3f0-c405-caed-953d-fe6fc2ce0863" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior">
+      <topicdata name="WorkflowInstanceManagementBehavior" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" />
+      <apidata name="WorkflowInstanceManagementBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.HttpControlEndpointBinding" />
+        <element api="P:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.NamedPipeControlEndpointBinding" />
+        <element api="P:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.WindowsGroup" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" />
+      </containers>
+      <file name="f0869d70-8d95-fc01-cb04-c0fe5c73343e" />
+    </api>
+    <api id="Fields.T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior">
+      <topicdata name="WorkflowInstanceManagementBehavior" group="list" subgroup="Fields" typeTopicId="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" />
+      <apidata name="WorkflowInstanceManagementBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.#ctor" />
+      <elements>
+        <element api="F:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.ControlEndpointAddress" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" />
+      </containers>
+      <file name="59c4f5c0-4b09-3bf8-008d-9e4f6d3bec04" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" ref="true" />
+      </containers>
+      <file name="d9dd4282-9e81-e4ae-833f-fe786b6b6a87" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+      <topicdata group="api" />
+      <apidata name="AddBindingParameters" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+        <parameter name="endpoints">
+          <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+            <specialization>
+              <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="bindingParameters">
+          <type api="T:System.ServiceModel.Channels.BindingParameterCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" ref="true" />
+      </containers>
+      <file name="2a1cdb05-e751-befc-6a7f-bd8177eae84a" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" />
+      <apidata name="ApplyDispatchBehavior" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" ref="true" />
+      </containers>
+      <file name="7fbead90-73d2-98ee-a133-b28c490372e1" />
+    </api>
+    <api id="F:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.ControlEndpointAddress">
+      <topicdata group="api" />
+      <apidata name="ControlEndpointAddress" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>System.ServiceModel.Activities_IWorkflowInstanceManagement</value>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" ref="true" />
+      </containers>
+      <file name="17432206-3b72-dd5c-97b1-72d04a5b313d" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.HttpControlEndpointBinding">
+      <topicdata group="api" />
+      <apidata name="HttpControlEndpointBinding" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_HttpControlEndpointBinding" />
+      <returns>
+        <type api="T:System.ServiceModel.Channels.Binding" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" ref="true" />
+      </containers>
+      <file name="dbaba2d6-8aff-c1c3-e41f-1f5ffe0ec205" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.NamedPipeControlEndpointBinding">
+      <topicdata group="api" />
+      <apidata name="NamedPipeControlEndpointBinding" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NamedPipeControlEndpointBinding" />
+      <returns>
+        <type api="T:System.ServiceModel.Channels.Binding" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" ref="true" />
+      </containers>
+      <file name="1e3f70d6-fe8c-0c05-5b12-3e82683476b3" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" />
+      <apidata name="Validate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" ref="true" />
+      </containers>
+      <file name="4832249a-e008-d5af-d22e-dc87fd3ec45e" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior.WindowsGroup">
+      <topicdata group="api" />
+      <apidata name="WindowsGroup" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_WindowsGroup" />
+      <setter name="set_WindowsGroup" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowInstanceManagementBehavior" ref="true" />
+      </containers>
+      <file name="2d61279a-c6f8-3b17-9384-3d8ae5e989d4" />
+    </api>
+    <api id="T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" />
+      <apidata name="WorkflowRuntimeEndpoint" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ServiceModel.Activities.WorkflowHostingEndpoint" ref="true" />
+          <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>The WF3 types are deprecated.  Instead, please use the new WF4 types from System.Activities.*</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1cc4d92f-5787-7b58-d2cd-3bbf6e5ad32d" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint">
+      <topicdata name="WorkflowRuntimeEndpoint" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" />
+      <apidata name="WorkflowRuntimeEndpoint" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ServiceModel.Activities.WorkflowHostingEndpoint.CorrelationQueries" />
+        <element api="M:System.ServiceModel.Activities.WorkflowHostingEndpoint.OnGetCreationContext(System.Object[],System.ServiceModel.OperationContext,System.Guid,System.ServiceModel.Activities.WorkflowHostingResponseContext)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.#ctor" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.AddService(System.Object)" />
+        <element api="Overload:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.GetService">
+          <element api="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.GetService``1" />
+          <element api="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.GetService(System.Type)" />
+        </element>
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.OnGetInstanceId(System.Object[],System.ServiceModel.OperationContext)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.OnResolveBookmark(System.Object[],System.ServiceModel.OperationContext,System.ServiceModel.Activities.WorkflowHostingResponseContext,System.Object@)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.RemoveService(System.Object)" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.Address" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.Behaviors" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.Binding" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.Contract" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.EndpointBehaviors" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.IsSystemEndpoint" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.ListenUri" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.ListenUriMode" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" />
+      </containers>
+      <file name="6464d8f7-6cad-c9b6-6d07-7cad9335a0a4" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint">
+      <topicdata name="WorkflowRuntimeEndpoint" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" />
+      <apidata name="WorkflowRuntimeEndpoint" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activities.WorkflowHostingEndpoint.OnGetCreationContext(System.Object[],System.ServiceModel.OperationContext,System.Guid,System.ServiceModel.Activities.WorkflowHostingResponseContext)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.AddService(System.Object)" />
+        <element api="Overload:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.GetService">
+          <element api="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.GetService``1" />
+          <element api="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.GetService(System.Type)" />
+        </element>
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.OnGetInstanceId(System.Object[],System.ServiceModel.OperationContext)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.OnResolveBookmark(System.Object[],System.ServiceModel.OperationContext,System.ServiceModel.Activities.WorkflowHostingResponseContext,System.Object@)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.RemoveService(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" />
+      </containers>
+      <file name="d01baf02-4833-046d-6392-718b123d6682" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint">
+      <topicdata name="WorkflowRuntimeEndpoint" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" />
+      <apidata name="WorkflowRuntimeEndpoint" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.Activities.WorkflowHostingEndpoint.CorrelationQueries" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.Address" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.Behaviors" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.Binding" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.Contract" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.EndpointBehaviors" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.IsSystemEndpoint" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.ListenUri" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.ListenUriMode" />
+        <element api="P:System.ServiceModel.Description.ServiceEndpoint.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" />
+      </containers>
+      <file name="d284621f-d6ad-5704-a54d-fb168301a928" />
+    </api>
+    <api id="Overload:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.GetService">
+      <topicdata name="GetService" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" />
+      <apidata name="GetService" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.GetService``1" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.GetService(System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" ref="true" />
+      </containers>
+      <file name="27dfa3e7-4c3d-3e9e-d6f0-a8ce2ffd239d" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" ref="true" />
+      </containers>
+      <file name="1165294a-bcfb-5772-1f15-0e1c218b2c0f" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.AddService(System.Object)">
+      <topicdata group="api" />
+      <apidata name="AddService" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="service">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" ref="true" />
+      </containers>
+      <file name="de60eaf0-5cab-6296-8212-0507fbed6342" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.GetService``1">
+      <topicdata group="api" />
+      <apidata name="GetService" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.GetService" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <returns>
+        <template name="T" index="0" api="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.GetService``1" />
+      </returns>
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" ref="true" />
+      </containers>
+      <file name="f1dd47a9-6a1d-4fa8-48e2-52add4e78ff9" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.GetService(System.Type)">
+      <topicdata group="api" />
+      <apidata name="GetService" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.GetService" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="serviceType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" ref="true" />
+      </containers>
+      <file name="7f13598e-6b8d-dfa3-5012-7feee9cf2a90" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.OnGetInstanceId(System.Object[],System.ServiceModel.OperationContext)">
+      <topicdata group="api" />
+      <apidata name="OnGetInstanceId" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ServiceModel.Activities.WorkflowHostingEndpoint.OnGetInstanceId(System.Object[],System.ServiceModel.OperationContext)">
+          <type api="T:System.ServiceModel.Activities.WorkflowHostingEndpoint" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="inputs">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="operationContext">
+          <type api="T:System.ServiceModel.OperationContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" ref="true" />
+      </containers>
+      <file name="a22ddab4-16ee-1361-8d63-cc6c1d65b56c" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.OnResolveBookmark(System.Object[],System.ServiceModel.OperationContext,System.ServiceModel.Activities.WorkflowHostingResponseContext,System.Object@)">
+      <topicdata group="api" />
+      <apidata name="OnResolveBookmark" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ServiceModel.Activities.WorkflowHostingEndpoint.OnResolveBookmark(System.Object[],System.ServiceModel.OperationContext,System.ServiceModel.Activities.WorkflowHostingResponseContext,System.Object@)">
+          <type api="T:System.ServiceModel.Activities.WorkflowHostingEndpoint" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="inputs">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="operationContext">
+          <type api="T:System.ServiceModel.OperationContext" ref="true" />
+        </parameter>
+        <parameter name="responseContext">
+          <type api="T:System.ServiceModel.Activities.WorkflowHostingResponseContext" ref="true" />
+        </parameter>
+        <parameter name="value" out="true">
+          <referenceTo>
+            <type api="T:System.Object" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Bookmark" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" ref="true" />
+      </containers>
+      <file name="f72ea8e2-b365-253d-9776-0fb2cbba3d12" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint.RemoveService(System.Object)">
+      <topicdata group="api" />
+      <apidata name="RemoveService" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="service">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.WorkflowServices" module="System.WorkflowServices" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowRuntimeEndpoint" ref="true" />
+      </containers>
+      <file name="0ca00da9-82a4-73ec-b6c1-a506181f2649" />
+    </api>
+    <api id="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction">
+      <topicdata group="api" />
+      <apidata name="WorkflowUnhandledExceptionAction" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction.Abandon" />
+        <element api="F:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction.Cancel" />
+        <element api="F:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction.Terminate" />
+        <element api="F:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction.AbandonAndSuspend" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+      </containers>
+      <file name="3829bda5-0da0-f753-bc9a-1b4fac8435b1" />
+    </api>
+    <api id="F:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction.Abandon">
+      <topicdata group="api" notopic="" />
+      <apidata name="Abandon" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction" ref="false" />
+      </containers>
+      <file name="575c0c09-d26c-aada-3ce4-48877dd27494" />
+    </api>
+    <api id="F:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction.AbandonAndSuspend">
+      <topicdata group="api" notopic="" />
+      <apidata name="AbandonAndSuspend" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction" ref="false" />
+      </containers>
+      <file name="89860501-80ea-946b-8494-2047b13dc8eb" />
+    </api>
+    <api id="F:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction.Cancel">
+      <topicdata group="api" notopic="" />
+      <apidata name="Cancel" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction" ref="false" />
+      </containers>
+      <file name="52d87162-44e2-258c-d46f-b1ec9f228730" />
+    </api>
+    <api id="F:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction.Terminate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Terminate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction" ref="false" />
+      </containers>
+      <file name="8a7fdabe-3470-3fa0-354e-cbd19ef2501b" />
+    </api>
+    <api id="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior" />
+      <apidata name="WorkflowUnhandledExceptionBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+      </containers>
+      <file name="4a37df84-d4a3-0505-ab3a-46ce0e6f115b" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior">
+      <topicdata name="WorkflowUnhandledExceptionBehavior" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior" />
+      <apidata name="WorkflowUnhandledExceptionBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.#ctor" />
+        <element api="P:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.Action" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior" />
+      </containers>
+      <file name="5eff6781-54db-d6bc-4a6d-8fcbd1712249" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior">
+      <topicdata name="WorkflowUnhandledExceptionBehavior" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior" />
+      <apidata name="WorkflowUnhandledExceptionBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+        <element api="M:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior" />
+      </containers>
+      <file name="4f37c7ef-a74c-16cf-9c0c-8144e50d9f5d" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior">
+      <topicdata name="WorkflowUnhandledExceptionBehavior" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior" />
+      <apidata name="WorkflowUnhandledExceptionBehavior" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.Action" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior" />
+      </containers>
+      <file name="658796cc-9841-380a-9428-b9a546dae6fa" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior" ref="true" />
+      </containers>
+      <file name="9f27cb14-2d9c-153b-7fcb-4a93f39dc3e4" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.Action">
+      <topicdata group="api" />
+      <apidata name="Action" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Action" />
+      <setter name="set_Action" />
+      <returns>
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionAction" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior" ref="true" />
+      </containers>
+      <file name="e38a00b5-4e8b-50b4-3fd8-8067e32e6dbb" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+      <topicdata group="api" />
+      <apidata name="AddBindingParameters" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+        <parameter name="endpoints">
+          <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+            <specialization>
+              <type api="T:System.ServiceModel.Description.ServiceEndpoint" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="bindingParameters">
+          <type api="T:System.ServiceModel.Channels.BindingParameterCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior" ref="true" />
+      </containers>
+      <file name="dcfe16f4-2dc1-6bd2-0396-304570f5acad" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" />
+      <apidata name="ApplyDispatchBehavior" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior" ref="true" />
+      </containers>
+      <file name="18e7d78f-0f2f-71d4-e8d7-2aac4c55fa93" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+      <topicdata group="api" />
+      <apidata name="Validate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="serviceDescription">
+          <type api="T:System.ServiceModel.Description.ServiceDescription" ref="true" />
+        </parameter>
+        <parameter name="serviceHostBase">
+          <type api="T:System.ServiceModel.ServiceHostBase" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IServiceBehavior.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+          <type api="T:System.ServiceModel.Description.IServiceBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Description" />
+        <type api="T:System.ServiceModel.Activities.Description.WorkflowUnhandledExceptionBehavior" ref="true" />
+      </containers>
+      <file name="fd759e23-8e63-4ca6-b319-671dc03e3a88" />
+    </api>
+  </apis>
+</reflection>

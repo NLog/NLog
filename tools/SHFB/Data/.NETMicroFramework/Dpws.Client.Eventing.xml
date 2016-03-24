@@ -1,0 +1,772 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="MFDpwsClient">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MFDpwsClient</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Dpws.Client.Eventing">
+      <topicdata group="api" />
+      <apidata name="Dpws.Client.Eventing" group="namespace" />
+      <elements>
+        <element api="T:Dpws.Client.Eventing.DpwsSubscribeRequest" />
+        <element api="T:Dpws.Client.Eventing.DpwsEventSubscription" />
+        <element api="T:Dpws.Client.Eventing.DpwsEventingClient" />
+        <element api="T:Dpws.Client.Eventing.SubscriptionEndEventArgs" />
+        <element api="T:Dpws.Client.Eventing.SubscriptionEndEventHandler" />
+      </elements>
+      <file name="3f9772b6-33a7-b216-99fc-7b21c7a89a9b" />
+    </api>
+    <api id="T:Dpws.Client.Eventing.DpwsEventingClient">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Dpws.Client.Eventing.DpwsEventingClient" />
+      <apidata name="DpwsEventingClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+      </containers>
+      <file name="a40c262c-7526-cd53-5e09-852af8307ec3" />
+    </api>
+    <api id="AllMembers.T:Dpws.Client.Eventing.DpwsEventingClient">
+      <topicdata name="DpwsEventingClient" group="list" subgroup="members" typeTopicId="T:Dpws.Client.Eventing.DpwsEventingClient" />
+      <apidata name="DpwsEventingClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Dpws.Client.Eventing.DpwsEventingClient.#ctor(Ws.Services.ProtocolVersion)" />
+        <element api="M:Dpws.Client.Eventing.DpwsEventingClient.GetStatus(System.Uri,System.String)" />
+        <element api="M:Dpws.Client.Eventing.DpwsEventingClient.Renew(System.Uri,System.String,Ws.Services.Utilities.WsDuration)" />
+        <element api="M:Dpws.Client.Eventing.DpwsEventingClient.Subscribe(Dpws.Client.Eventing.DpwsSubscribeRequest)" />
+        <element api="M:Dpws.Client.Eventing.DpwsEventingClient.Unsubscribe(System.Uri,Dpws.Client.Eventing.DpwsEventSubscription)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsEventingClient" />
+      </containers>
+      <file name="d058e060-3ff8-34fe-3b8d-26794c02b746" />
+    </api>
+    <api id="Methods.T:Dpws.Client.Eventing.DpwsEventingClient">
+      <topicdata name="DpwsEventingClient" group="list" subgroup="Methods" typeTopicId="T:Dpws.Client.Eventing.DpwsEventingClient" />
+      <apidata name="DpwsEventingClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Dpws.Client.Eventing.DpwsEventingClient.GetStatus(System.Uri,System.String)" />
+        <element api="M:Dpws.Client.Eventing.DpwsEventingClient.Renew(System.Uri,System.String,Ws.Services.Utilities.WsDuration)" />
+        <element api="M:Dpws.Client.Eventing.DpwsEventingClient.Subscribe(Dpws.Client.Eventing.DpwsSubscribeRequest)" />
+        <element api="M:Dpws.Client.Eventing.DpwsEventingClient.Unsubscribe(System.Uri,Dpws.Client.Eventing.DpwsEventSubscription)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsEventingClient" />
+      </containers>
+      <file name="91f74454-0927-33ad-748d-73685764d548" />
+    </api>
+    <api id="M:Dpws.Client.Eventing.DpwsEventingClient.#ctor(Ws.Services.ProtocolVersion)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="version">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsEventingClient" ref="true" />
+      </containers>
+      <file name="3e6bd7f0-e373-f785-036a-68a0b161d825" />
+    </api>
+    <api id="M:Dpws.Client.Eventing.DpwsEventingClient.GetStatus(System.Uri,System.String)">
+      <topicdata group="api" />
+      <apidata name="GetStatus" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="endpointAddress">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="subscriptionID">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Utilities.WsDuration" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsEventingClient" ref="true" />
+      </containers>
+      <file name="a2a7b99f-9aab-4cb4-98d9-fec1748e3d4a" />
+    </api>
+    <api id="M:Dpws.Client.Eventing.DpwsEventingClient.Renew(System.Uri,System.String,Ws.Services.Utilities.WsDuration)">
+      <topicdata group="api" />
+      <apidata name="Renew" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="endpointAddress">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="subscriptionID">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="expires">
+          <type api="T:Ws.Services.Utilities.WsDuration" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Utilities.WsDuration" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsEventingClient" ref="true" />
+      </containers>
+      <file name="e5f356ce-3779-f32e-9062-dae274fef263" />
+    </api>
+    <api id="M:Dpws.Client.Eventing.DpwsEventingClient.Subscribe(Dpws.Client.Eventing.DpwsSubscribeRequest)">
+      <topicdata group="api" />
+      <apidata name="Subscribe" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="subscriptionRequest">
+          <type api="T:Dpws.Client.Eventing.DpwsSubscribeRequest" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Dpws.Client.Eventing.DpwsEventSubscription" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsEventingClient" ref="true" />
+      </containers>
+      <file name="24e82c94-02ce-0a01-84c9-2aeaf550710c" />
+    </api>
+    <api id="M:Dpws.Client.Eventing.DpwsEventingClient.Unsubscribe(System.Uri,Dpws.Client.Eventing.DpwsEventSubscription)">
+      <topicdata group="api" />
+      <apidata name="Unsubscribe" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="endpointAddress">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="subscription">
+          <type api="T:Dpws.Client.Eventing.DpwsEventSubscription" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsEventingClient" ref="true" />
+      </containers>
+      <file name="96b4e64a-5b96-ea66-4f38-f20a3220bf3c" />
+    </api>
+    <api id="T:Dpws.Client.Eventing.DpwsEventSubscription">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Dpws.Client.Eventing.DpwsEventSubscription" />
+      <apidata name="DpwsEventSubscription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+      </containers>
+      <file name="a7a3583a-e662-a93d-0121-c0eeea00532f" />
+    </api>
+    <api id="AllMembers.T:Dpws.Client.Eventing.DpwsEventSubscription">
+      <topicdata name="DpwsEventSubscription" group="list" subgroup="members" typeTopicId="T:Dpws.Client.Eventing.DpwsEventSubscription" />
+      <apidata name="DpwsEventSubscription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Dpws.Client.Eventing.DpwsEventSubscription.Expires" />
+        <element api="F:Dpws.Client.Eventing.DpwsEventSubscription.SubscriptionID" />
+        <element api="F:Dpws.Client.Eventing.DpwsEventSubscription.SubscriptionManager" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsEventSubscription" />
+      </containers>
+      <file name="e9b2ac79-f759-5c1c-3794-b0ede106078f" />
+    </api>
+    <api id="Methods.T:Dpws.Client.Eventing.DpwsEventSubscription">
+      <topicdata name="DpwsEventSubscription" group="list" subgroup="Methods" typeTopicId="T:Dpws.Client.Eventing.DpwsEventSubscription" />
+      <apidata name="DpwsEventSubscription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsEventSubscription" />
+      </containers>
+      <file name="b50ad1eb-82fb-98da-6431-2553443e9be4" />
+    </api>
+    <api id="Fields.T:Dpws.Client.Eventing.DpwsEventSubscription">
+      <topicdata name="DpwsEventSubscription" group="list" subgroup="Fields" typeTopicId="T:Dpws.Client.Eventing.DpwsEventSubscription" />
+      <apidata name="DpwsEventSubscription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Dpws.Client.Eventing.DpwsEventSubscription.Expires" />
+        <element api="F:Dpws.Client.Eventing.DpwsEventSubscription.SubscriptionID" />
+        <element api="F:Dpws.Client.Eventing.DpwsEventSubscription.SubscriptionManager" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsEventSubscription" />
+      </containers>
+      <file name="c24ac3c7-eab5-a3d3-4742-3b6f6997cb50" />
+    </api>
+    <api id="F:Dpws.Client.Eventing.DpwsEventSubscription.Expires">
+      <topicdata group="api" />
+      <apidata name="Expires" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Utilities.WsDuration" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsEventSubscription" ref="true" />
+      </containers>
+      <file name="3b2ec08d-5097-e5d1-c662-0e1903c225a4" />
+    </api>
+    <api id="F:Dpws.Client.Eventing.DpwsEventSubscription.SubscriptionID">
+      <topicdata group="api" />
+      <apidata name="SubscriptionID" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsEventSubscription" ref="true" />
+      </containers>
+      <file name="95c3fb9c-9593-3a6f-ead9-bb26c9e22c1e" />
+    </api>
+    <api id="F:Dpws.Client.Eventing.DpwsEventSubscription.SubscriptionManager">
+      <topicdata group="api" />
+      <apidata name="SubscriptionManager" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.WsaAddressing.WsWsaEndpointRef" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsEventSubscription" ref="true" />
+      </containers>
+      <file name="a604b302-bcc5-e089-a130-81c94a353b0a" />
+    </api>
+    <api id="T:Dpws.Client.Eventing.DpwsSubscribeRequest">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Dpws.Client.Eventing.DpwsSubscribeRequest" />
+      <apidata name="DpwsSubscribeRequest" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+      </containers>
+      <file name="2a7f932e-b452-3074-ab0f-61842bed9fb7" />
+    </api>
+    <api id="AllMembers.T:Dpws.Client.Eventing.DpwsSubscribeRequest">
+      <topicdata name="DpwsSubscribeRequest" group="list" subgroup="members" typeTopicId="T:Dpws.Client.Eventing.DpwsSubscribeRequest" />
+      <apidata name="DpwsSubscribeRequest" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Dpws.Client.Eventing.DpwsSubscribeRequest.#ctor(Dpws.Client.DpwsServiceType,System.String,System.String,System.String,Ws.Services.Xml.WsXmlNode)" />
+        <element api="F:Dpws.Client.Eventing.DpwsSubscribeRequest.EndpointAddress" />
+        <element api="F:Dpws.Client.Eventing.DpwsSubscribeRequest.EndTo" />
+        <element api="F:Dpws.Client.Eventing.DpwsSubscribeRequest.Expires" />
+        <element api="F:Dpws.Client.Eventing.DpwsSubscribeRequest.NotifyTo" />
+        <element api="F:Dpws.Client.Eventing.DpwsSubscribeRequest.SubscriptionType" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsSubscribeRequest" />
+      </containers>
+      <file name="31ac2a45-3081-ecdf-5ae5-2bf3e6fd86e5" />
+    </api>
+    <api id="Methods.T:Dpws.Client.Eventing.DpwsSubscribeRequest">
+      <topicdata name="DpwsSubscribeRequest" group="list" subgroup="Methods" typeTopicId="T:Dpws.Client.Eventing.DpwsSubscribeRequest" />
+      <apidata name="DpwsSubscribeRequest" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsSubscribeRequest" />
+      </containers>
+      <file name="841c9edf-b91a-10bf-cd1c-31ade346b3de" />
+    </api>
+    <api id="Fields.T:Dpws.Client.Eventing.DpwsSubscribeRequest">
+      <topicdata name="DpwsSubscribeRequest" group="list" subgroup="Fields" typeTopicId="T:Dpws.Client.Eventing.DpwsSubscribeRequest" />
+      <apidata name="DpwsSubscribeRequest" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Dpws.Client.Eventing.DpwsSubscribeRequest.EndpointAddress" />
+        <element api="F:Dpws.Client.Eventing.DpwsSubscribeRequest.EndTo" />
+        <element api="F:Dpws.Client.Eventing.DpwsSubscribeRequest.Expires" />
+        <element api="F:Dpws.Client.Eventing.DpwsSubscribeRequest.NotifyTo" />
+        <element api="F:Dpws.Client.Eventing.DpwsSubscribeRequest.SubscriptionType" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsSubscribeRequest" />
+      </containers>
+      <file name="fb4477a8-9876-5b1d-b39f-94e7fb12502f" />
+    </api>
+    <api id="M:Dpws.Client.Eventing.DpwsSubscribeRequest.#ctor(Dpws.Client.DpwsServiceType,System.String,System.String,System.String,Ws.Services.Xml.WsXmlNode)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="subscriptionType">
+          <type api="T:Dpws.Client.DpwsServiceType" ref="true" />
+        </parameter>
+        <parameter name="endpointAddress">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="notifyToAddress">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="expires">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="identifier">
+          <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsSubscribeRequest" ref="true" />
+      </containers>
+      <file name="dcff6d71-c45e-2a1e-ac44-63c042c03713" />
+    </api>
+    <api id="F:Dpws.Client.Eventing.DpwsSubscribeRequest.EndpointAddress">
+      <topicdata group="api" />
+      <apidata name="EndpointAddress" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsSubscribeRequest" ref="true" />
+      </containers>
+      <file name="e032f42c-e59a-dcbe-6768-6e1c8356ad3c" />
+    </api>
+    <api id="F:Dpws.Client.Eventing.DpwsSubscribeRequest.EndTo">
+      <topicdata group="api" />
+      <apidata name="EndTo" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.WsaAddressing.WsWsaEndpointRef" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsSubscribeRequest" ref="true" />
+      </containers>
+      <file name="a9b18848-db2f-e562-781c-a57164b7972d" />
+    </api>
+    <api id="F:Dpws.Client.Eventing.DpwsSubscribeRequest.Expires">
+      <topicdata group="api" />
+      <apidata name="Expires" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Utilities.WsDuration" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsSubscribeRequest" ref="true" />
+      </containers>
+      <file name="f005ada5-69fa-7caa-5e87-f54362305a3b" />
+    </api>
+    <api id="F:Dpws.Client.Eventing.DpwsSubscribeRequest.NotifyTo">
+      <topicdata group="api" />
+      <apidata name="NotifyTo" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.WsaAddressing.WsWsaEndpointRef" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsSubscribeRequest" ref="true" />
+      </containers>
+      <file name="62ae3f2a-6710-a2df-9a89-c56ff9c1bdb7" />
+    </api>
+    <api id="F:Dpws.Client.Eventing.DpwsSubscribeRequest.SubscriptionType">
+      <topicdata group="api" />
+      <apidata name="SubscriptionType" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Dpws.Client.DpwsServiceType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.DpwsSubscribeRequest" ref="true" />
+      </containers>
+      <file name="0debcab8-cb3f-d296-0f00-704c9a52758b" />
+    </api>
+    <api id="T:Dpws.Client.Eventing.SubscriptionEndEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Dpws.Client.Eventing.SubscriptionEndEventArgs" />
+      <apidata name="SubscriptionEndEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+      </containers>
+      <file name="a72b3c67-b3c4-29b4-95fd-e7ac8f940109" />
+    </api>
+    <api id="AllMembers.T:Dpws.Client.Eventing.SubscriptionEndEventArgs">
+      <topicdata name="SubscriptionEndEventArgs" group="list" subgroup="members" typeTopicId="T:Dpws.Client.Eventing.SubscriptionEndEventArgs" />
+      <apidata name="SubscriptionEndEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Dpws.Client.Eventing.SubscriptionEndEventArgs.Identifier" />
+        <element api="F:Dpws.Client.Eventing.SubscriptionEndEventArgs.SubscriptionID" />
+        <element api="F:Dpws.Client.Eventing.SubscriptionEndEventArgs.SubscriptionManager" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.SubscriptionEndEventArgs" />
+      </containers>
+      <file name="d06fce3a-6b44-f9c5-63a6-95b9ce7cf4c3" />
+    </api>
+    <api id="Methods.T:Dpws.Client.Eventing.SubscriptionEndEventArgs">
+      <topicdata name="SubscriptionEndEventArgs" group="list" subgroup="Methods" typeTopicId="T:Dpws.Client.Eventing.SubscriptionEndEventArgs" />
+      <apidata name="SubscriptionEndEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.SubscriptionEndEventArgs" />
+      </containers>
+      <file name="f1b7e1e4-42ac-0bab-2983-4aa450c5e685" />
+    </api>
+    <api id="Fields.T:Dpws.Client.Eventing.SubscriptionEndEventArgs">
+      <topicdata name="SubscriptionEndEventArgs" group="list" subgroup="Fields" typeTopicId="T:Dpws.Client.Eventing.SubscriptionEndEventArgs" />
+      <apidata name="SubscriptionEndEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Dpws.Client.Eventing.SubscriptionEndEventArgs.Identifier" />
+        <element api="F:Dpws.Client.Eventing.SubscriptionEndEventArgs.SubscriptionID" />
+        <element api="F:Dpws.Client.Eventing.SubscriptionEndEventArgs.SubscriptionManager" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.SubscriptionEndEventArgs" />
+      </containers>
+      <file name="65b6ec07-a2c1-6946-ebec-f6cb543fc158" />
+    </api>
+    <api id="F:Dpws.Client.Eventing.SubscriptionEndEventArgs.Identifier">
+      <topicdata group="api" />
+      <apidata name="Identifier" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.SubscriptionEndEventArgs" ref="true" />
+      </containers>
+      <file name="8b18d9bb-d203-7b92-c025-eed30715114e" />
+    </api>
+    <api id="F:Dpws.Client.Eventing.SubscriptionEndEventArgs.SubscriptionID">
+      <topicdata group="api" />
+      <apidata name="SubscriptionID" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.SubscriptionEndEventArgs" ref="true" />
+      </containers>
+      <file name="ecedc6a5-0064-6b9e-d113-418e217b6f2e" />
+    </api>
+    <api id="F:Dpws.Client.Eventing.SubscriptionEndEventArgs.SubscriptionManager">
+      <topicdata group="api" />
+      <apidata name="SubscriptionManager" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.WsaAddressing.WsWsaEndpointRef" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+        <type api="T:Dpws.Client.Eventing.SubscriptionEndEventArgs" ref="true" />
+      </containers>
+      <file name="936d9e9f-17f2-d81a-250c-7a4ed7d9f62f" />
+    </api>
+    <api id="T:Dpws.Client.Eventing.SubscriptionEndEventHandler">
+      <topicdata group="api" />
+      <apidata name="SubscriptionEndEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="SubscriptionEndEventArgs">
+          <type api="T:Dpws.Client.Eventing.SubscriptionEndEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client.Eventing" />
+      </containers>
+      <file name="063756ec-2d30-b5c8-58cc-12d4fe86096f" />
+    </api>
+  </apis>
+</reflection>

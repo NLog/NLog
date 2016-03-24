@@ -1,0 +1,1259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ComponentModel.DataAnnotations">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ComponentModel.DataAnnotations.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ComponentModel.DataAnnotations.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ComponentModel.DataAnnotations.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ComponentModel.DataAnnotations.Schema">
+      <topicdata group="api" />
+      <apidata name="System.ComponentModel.DataAnnotations.Schema" group="namespace" />
+      <elements>
+        <element api="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute" />
+        <element api="T:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute" />
+        <element api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" />
+        <element api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" />
+        <element api="T:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute" />
+        <element api="T:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute" />
+        <element api="T:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute" />
+        <element api="T:System.ComponentModel.DataAnnotations.Schema.TableAttribute" />
+      </elements>
+      <file name="bb6c254f-6057-b5aa-3f25-5c11487d1004" />
+    </api>
+    <api id="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute" />
+      <apidata name="ColumnAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Property" />
+              <field name="Field" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="4dc23474-4e1d-4781-ec97-ffc6b4685996" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute">
+      <topicdata name="ColumnAttribute" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute" />
+      <apidata name="ColumnAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.#ctor">
+          <element api="M:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.#ctor" />
+          <element api="M:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.#ctor(System.String)" />
+        </element>
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.Name" />
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.Order" />
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.TypeName" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute" />
+      </containers>
+      <file name="8f0d9f39-8e59-71ed-c8c5-d9f52a0464ab" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute">
+      <topicdata name="ColumnAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute" />
+      <apidata name="ColumnAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute" />
+      </containers>
+      <file name="aa24a23a-a47a-86da-8a20-8af5df5e56d0" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute">
+      <topicdata name="ColumnAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute" />
+      <apidata name="ColumnAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.Name" />
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.Order" />
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.TypeName" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute" />
+      </containers>
+      <file name="434a920d-3c5c-8226-a87a-c158b5733a2c" />
+    </api>
+    <api id="Overload:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.#ctor" />
+        <element api="M:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute" ref="true" />
+      </containers>
+      <file name="b9ad99ce-f6ca-0140-70a1-be4cf199513f" />
+    </api>
+    <api id="M:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.#ctor" />
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute" ref="true" />
+      </containers>
+      <file name="da739bc1-9e23-cb94-9de0-3d0e69468aa5" />
+    </api>
+    <api id="M:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute" ref="true" />
+      </containers>
+      <file name="1bb334d6-d9ba-3c6c-fd44-0c76b1b5e07c" />
+    </api>
+    <api id="P:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute" ref="true" />
+      </containers>
+      <file name="4724ba3e-0a79-2eae-60da-76de90c8dadb" />
+    </api>
+    <api id="P:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.Order">
+      <topicdata group="api" />
+      <apidata name="Order" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Order" />
+      <setter name="set_Order" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute" ref="true" />
+      </containers>
+      <file name="4e1e069a-1dca-9c91-d257-f7bba3ab2988" />
+    </api>
+    <api id="P:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute.TypeName">
+      <topicdata group="api" />
+      <apidata name="TypeName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TypeName" />
+      <setter name="set_TypeName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute" ref="true" />
+      </containers>
+      <file name="8d04826b-7b6e-2350-e68d-8d5af4b19c1a" />
+    </api>
+    <api id="T:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute" />
+      <apidata name="ComplexTypeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="724f883e-d858-8269-7e3d-6e0625fb9446" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute">
+      <topicdata name="ComplexTypeAttribute" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute" />
+      <apidata name="ComplexTypeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute" />
+      </containers>
+      <file name="5b8b3ea9-9ebf-d5cd-1ef1-4c1a131f8c6c" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute">
+      <topicdata name="ComplexTypeAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute" />
+      <apidata name="ComplexTypeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute" />
+      </containers>
+      <file name="b51849bc-37af-81a8-befd-702475f7840f" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute">
+      <topicdata name="ComplexTypeAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute" />
+      <apidata name="ComplexTypeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute" />
+      </containers>
+      <file name="bbfbaebb-27c6-ac90-65c5-21ba96172674" />
+    </api>
+    <api id="M:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ComplexTypeAttribute" ref="true" />
+      </containers>
+      <file name="916603c3-b774-13cc-3bc6-715836f9406c" />
+    </api>
+    <api id="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" />
+      <apidata name="DatabaseGeneratedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Property" />
+              <field name="Field" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="90f5353c-e187-b667-22ae-46da38b84ec6" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute">
+      <topicdata name="DatabaseGeneratedAttribute" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" />
+      <apidata name="DatabaseGeneratedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute.#ctor(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption)" />
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute.DatabaseGeneratedOption" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" />
+      </containers>
+      <file name="fbde0dc3-8725-e5b8-e5b1-337725c162b4" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute">
+      <topicdata name="DatabaseGeneratedAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" />
+      <apidata name="DatabaseGeneratedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" />
+      </containers>
+      <file name="99d3bd84-771e-9cf1-8057-63b1ff03d592" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute">
+      <topicdata name="DatabaseGeneratedAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" />
+      <apidata name="DatabaseGeneratedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute.DatabaseGeneratedOption" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" />
+      </containers>
+      <file name="a0a0ad76-0ffb-a36a-0c95-2ba8e3c3f182" />
+    </api>
+    <api id="M:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute.#ctor(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="databaseGeneratedOption">
+          <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" ref="true" />
+      </containers>
+      <file name="518d16d5-71bf-ea4c-cf90-75fdf772fd8d" />
+    </api>
+    <api id="P:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute.DatabaseGeneratedOption">
+      <topicdata group="api" />
+      <apidata name="DatabaseGeneratedOption" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DatabaseGeneratedOption" />
+      <returns>
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedAttribute" ref="true" />
+      </containers>
+      <file name="381ca8a2-f062-919b-3270-c0c49a4187b3" />
+    </api>
+    <api id="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption">
+      <topicdata group="api" />
+      <apidata name="DatabaseGeneratedOption" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None" />
+        <element api="F:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity" />
+        <element api="F:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Computed" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+      </containers>
+      <file name="89c55e95-b350-b7a4-7d01-b59b2f2e5720" />
+    </api>
+    <api id="F:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Computed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Computed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" ref="false" />
+      </containers>
+      <file name="dadb2c0b-80cc-ee7e-44d9-fff265ce4114" />
+    </api>
+    <api id="F:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity">
+      <topicdata group="api" notopic="" />
+      <apidata name="Identity" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" ref="false" />
+      </containers>
+      <file name="7a071bbd-2e6b-50d3-1ea7-06057d4648f3" />
+    </api>
+    <api id="F:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption" ref="false" />
+      </containers>
+      <file name="022d19fc-bc96-9e92-aac2-d869f6289ccf" />
+    </api>
+    <api id="T:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute" />
+      <apidata name="ForeignKeyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Property" />
+              <field name="Field" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="48f05f69-7d17-8da9-b5a3-44d4b234e790" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute">
+      <topicdata name="ForeignKeyAttribute" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute" />
+      <apidata name="ForeignKeyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute.#ctor(System.String)" />
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute" />
+      </containers>
+      <file name="64e70c6b-740f-e361-25ae-a17f524dd3ce" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute">
+      <topicdata name="ForeignKeyAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute" />
+      <apidata name="ForeignKeyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute" />
+      </containers>
+      <file name="aaa2c3b2-9e74-3f35-0b45-856a6249559b" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute">
+      <topicdata name="ForeignKeyAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute" />
+      <apidata name="ForeignKeyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute" />
+      </containers>
+      <file name="f25df6c9-bda2-2b09-ca8a-ded88eb14ba8" />
+    </api>
+    <api id="M:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute" ref="true" />
+      </containers>
+      <file name="2645503c-a79d-b91c-8473-b2d41caa1a20" />
+    </api>
+    <api id="P:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.ForeignKeyAttribute" ref="true" />
+      </containers>
+      <file name="e3db2f3e-0611-a308-39a0-ad3e1946e496" />
+    </api>
+    <api id="T:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute" />
+      <apidata name="InversePropertyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Property" />
+              <field name="Field" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="92727ebc-c52e-0224-bc2e-a12395b2b3fc" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute">
+      <topicdata name="InversePropertyAttribute" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute" />
+      <apidata name="InversePropertyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute.#ctor(System.String)" />
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute.Property" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute" />
+      </containers>
+      <file name="04b79bcf-f601-aea1-d8fa-4d2a7bc07b6c" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute">
+      <topicdata name="InversePropertyAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute" />
+      <apidata name="InversePropertyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute" />
+      </containers>
+      <file name="d4b49871-aa03-9cf5-27d4-c3a7bdbe17ed" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute">
+      <topicdata name="InversePropertyAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute" />
+      <apidata name="InversePropertyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute.Property" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute" />
+      </containers>
+      <file name="c8cf670a-0cda-bb25-593f-6ce6c682021f" />
+    </api>
+    <api id="M:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="property">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute" ref="true" />
+      </containers>
+      <file name="1a68db01-d927-7a4d-078c-357e49fc3d35" />
+    </api>
+    <api id="P:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute.Property">
+      <topicdata group="api" />
+      <apidata name="Property" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Property" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute" ref="true" />
+      </containers>
+      <file name="733ab913-7677-9543-21b4-15ffc1f2edaf" />
+    </api>
+    <api id="T:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute" />
+      <apidata name="NotMappedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Property" />
+              <field name="Field" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="cc4bee32-6cd5-e2b7-362a-39cc72a9369d" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute">
+      <topicdata name="NotMappedAttribute" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute" />
+      <apidata name="NotMappedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute" />
+      </containers>
+      <file name="bcef79c3-3aa6-4530-1311-7e2b887f3742" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute">
+      <topicdata name="NotMappedAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute" />
+      <apidata name="NotMappedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute" />
+      </containers>
+      <file name="05ed85ac-2ba1-7d3a-2957-3cd12e7dec9e" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute">
+      <topicdata name="NotMappedAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute" />
+      <apidata name="NotMappedAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute" />
+      </containers>
+      <file name="33321ac3-baf7-b5a2-39a8-1c986e0b423f" />
+    </api>
+    <api id="M:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute" ref="true" />
+      </containers>
+      <file name="1357130d-bcfa-8a46-8c23-99b9b5361faa" />
+    </api>
+    <api id="T:System.ComponentModel.DataAnnotations.Schema.TableAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.TableAttribute" />
+      <apidata name="TableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="8dee0b0d-86a1-de72-910b-ace8b494e955" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.DataAnnotations.Schema.TableAttribute">
+      <topicdata name="TableAttribute" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.TableAttribute" />
+      <apidata name="TableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.DataAnnotations.Schema.TableAttribute.#ctor(System.String)" />
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.TableAttribute.Name" />
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.TableAttribute.Schema" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.TableAttribute" />
+      </containers>
+      <file name="0d31b8ca-a1da-3467-cc3b-a2e3876fad84" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.DataAnnotations.Schema.TableAttribute">
+      <topicdata name="TableAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.TableAttribute" />
+      <apidata name="TableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.TableAttribute" />
+      </containers>
+      <file name="8a1daadc-0164-9847-6cbc-911887598714" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.DataAnnotations.Schema.TableAttribute">
+      <topicdata name="TableAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.DataAnnotations.Schema.TableAttribute" />
+      <apidata name="TableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.TableAttribute.Name" />
+        <element api="P:System.ComponentModel.DataAnnotations.Schema.TableAttribute.Schema" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.TableAttribute" />
+      </containers>
+      <file name="ab512ed8-41f1-8bfc-b661-73d8ba8989e6" />
+    </api>
+    <api id="M:System.ComponentModel.DataAnnotations.Schema.TableAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.TableAttribute" ref="true" />
+      </containers>
+      <file name="f6533f0d-4738-0e63-5d19-9d122e257f77" />
+    </api>
+    <api id="P:System.ComponentModel.DataAnnotations.Schema.TableAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.TableAttribute" ref="true" />
+      </containers>
+      <file name="56e63f02-409e-ca89-19b2-fc663f47a19f" />
+    </api>
+    <api id="P:System.ComponentModel.DataAnnotations.Schema.TableAttribute.Schema">
+      <topicdata group="api" />
+      <apidata name="Schema" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Schema" />
+      <setter name="set_Schema" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.DataAnnotations" module="System.ComponentModel.DataAnnotations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ComponentModel.DataAnnotations.Schema" />
+        <type api="T:System.ComponentModel.DataAnnotations.Schema.TableAttribute" ref="true" />
+      </containers>
+      <file name="a86241f1-ae3b-10f4-282b-7407ee178bba" />
+    </api>
+  </apis>
+</reflection>

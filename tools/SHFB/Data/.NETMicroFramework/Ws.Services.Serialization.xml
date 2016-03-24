@@ -1,0 +1,1626 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="MFWsStack">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MFWsStack</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Ws.Services.Serialization">
+      <topicdata group="api" />
+      <apidata name="Ws.Services.Serialization" group="namespace" />
+      <elements>
+        <element api="T:Ws.Services.Serialization.DataContractSerializer" />
+        <element api="T:Ws.Services.Serialization.DataContractSerializer.WildcardValidationType" />
+        <element api="T:Ws.Services.Serialization.WsXmlConvert" />
+      </elements>
+      <file name="4d73cd30-065a-9ddb-a5b4-d1e9935fade0" />
+    </api>
+    <api id="T:Ws.Services.Serialization.DataContractSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Serialization.DataContractSerializer" />
+      <apidata name="DataContractSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+      </containers>
+      <file name="0c5cb256-d213-b07c-a0a9-2fb4ee881a73" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Serialization.DataContractSerializer">
+      <topicdata name="DataContractSerializer" group="list" subgroup="members" typeTopicId="T:Ws.Services.Serialization.DataContractSerializer" />
+      <apidata name="DataContractSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Ws.Services.Serialization.DataContractSerializer.#ctor">
+          <element api="M:Ws.Services.Serialization.DataContractSerializer.#ctor(System.String,System.String)" />
+          <element api="M:Ws.Services.Serialization.DataContractSerializer.#ctor(System.String,System.String,System.String)" />
+        </element>
+        <element api="F:Ws.Services.Serialization.DataContractSerializer._CompressByteArrays" />
+        <element api="F:Ws.Services.Serialization.DataContractSerializer._localNamespace" />
+        <element api="F:Ws.Services.Serialization.DataContractSerializer._NamespaceIsDefined" />
+        <element api="F:Ws.Services.Serialization.DataContractSerializer._prefix" />
+        <element api="F:Ws.Services.Serialization.DataContractSerializer._rootName" />
+        <element api="F:Ws.Services.Serialization.DataContractSerializer._rootNamespace" />
+        <element api="F:Ws.Services.Serialization.DataContractSerializer.BodyParts" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.CreateNewBodyPart(System.Byte[],System.String)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.GetBodyPartContent(System.String,Ws.Services.Mtom.WsMtomBodyParts)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.IsAttribute(System.Xml.XmlReader,System.String)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.IsChildStartElement(System.Xml.XmlReader,System.String,System.Boolean,System.Boolean)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.IsParentStartElement(System.Xml.XmlReader,System.Boolean,System.Boolean)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.ReadAnyAttribute(System.Xml.XmlReader)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.ReadAnyElement(System.Xml.XmlReader,System.Boolean)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.ReadObject(System.Xml.XmlReader)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.WriteAnyAttribute(System.Ext.Xml.XmlWriter,Ws.Services.Xml.WsXmlAttribute[])" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.WriteAnyElement(System.Ext.Xml.XmlWriter,Ws.Services.Xml.WsXmlNode[],System.Boolean)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.WriteAttribute(System.Ext.Xml.XmlWriter,System.String,System.Boolean,System.Object)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.WriteChildElement(System.Ext.Xml.XmlWriter,System.String,System.Boolean,System.Boolean,System.Object)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.WriteObject(System.Ext.Xml.XmlWriter,System.Object)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.WriteParentElement(System.Ext.Xml.XmlWriter,System.Boolean,System.Boolean,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" />
+      </containers>
+      <file name="73d1cea5-db8f-df96-ca9a-92eec18c6f52" />
+    </api>
+    <api id="Methods.T:Ws.Services.Serialization.DataContractSerializer">
+      <topicdata name="DataContractSerializer" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Serialization.DataContractSerializer" />
+      <apidata name="DataContractSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.CreateNewBodyPart(System.Byte[],System.String)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.GetBodyPartContent(System.String,Ws.Services.Mtom.WsMtomBodyParts)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.IsAttribute(System.Xml.XmlReader,System.String)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.IsChildStartElement(System.Xml.XmlReader,System.String,System.Boolean,System.Boolean)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.IsParentStartElement(System.Xml.XmlReader,System.Boolean,System.Boolean)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.ReadAnyAttribute(System.Xml.XmlReader)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.ReadAnyElement(System.Xml.XmlReader,System.Boolean)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.ReadObject(System.Xml.XmlReader)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.WriteAnyAttribute(System.Ext.Xml.XmlWriter,Ws.Services.Xml.WsXmlAttribute[])" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.WriteAnyElement(System.Ext.Xml.XmlWriter,Ws.Services.Xml.WsXmlNode[],System.Boolean)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.WriteAttribute(System.Ext.Xml.XmlWriter,System.String,System.Boolean,System.Object)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.WriteChildElement(System.Ext.Xml.XmlWriter,System.String,System.Boolean,System.Boolean,System.Object)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.WriteObject(System.Ext.Xml.XmlWriter,System.Object)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.WriteParentElement(System.Ext.Xml.XmlWriter,System.Boolean,System.Boolean,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" />
+      </containers>
+      <file name="ebaf428a-44b3-b795-2f28-957f5d95e181" />
+    </api>
+    <api id="Fields.T:Ws.Services.Serialization.DataContractSerializer">
+      <topicdata name="DataContractSerializer" group="list" subgroup="Fields" typeTopicId="T:Ws.Services.Serialization.DataContractSerializer" />
+      <apidata name="DataContractSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="F:Ws.Services.Serialization.DataContractSerializer._CompressByteArrays" />
+        <element api="F:Ws.Services.Serialization.DataContractSerializer._localNamespace" />
+        <element api="F:Ws.Services.Serialization.DataContractSerializer._NamespaceIsDefined" />
+        <element api="F:Ws.Services.Serialization.DataContractSerializer._prefix" />
+        <element api="F:Ws.Services.Serialization.DataContractSerializer._rootName" />
+        <element api="F:Ws.Services.Serialization.DataContractSerializer._rootNamespace" />
+        <element api="F:Ws.Services.Serialization.DataContractSerializer.BodyParts" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" />
+      </containers>
+      <file name="9da9a56c-ec7c-a205-e092-1b1184f21ce6" />
+    </api>
+    <api id="Overload:Ws.Services.Serialization.DataContractSerializer.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Ws.Services.Serialization.DataContractSerializer" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.#ctor(System.String,System.String)" />
+        <element api="M:Ws.Services.Serialization.DataContractSerializer.#ctor(System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="fae49020-24b0-6015-55c2-09d2974160c3" />
+    </api>
+    <api id="M:Ws.Services.Serialization.DataContractSerializer.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:Ws.Services.Serialization.DataContractSerializer.#ctor" />
+      <parameters>
+        <parameter name="rootName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="rootNamespace">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="a151d0e5-997e-0ff4-e775-ecc16db6cf89" />
+    </api>
+    <api id="M:Ws.Services.Serialization.DataContractSerializer.#ctor(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:Ws.Services.Serialization.DataContractSerializer.#ctor" />
+      <parameters>
+        <parameter name="rootName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="rootNamespace">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="localNamespace">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="d482c333-6f49-2836-da03-b7ae66765b50" />
+    </api>
+    <api id="F:Ws.Services.Serialization.DataContractSerializer._CompressByteArrays">
+      <topicdata group="api" />
+      <apidata name="_CompressByteArrays" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="3418aae5-9eb6-47ee-8c47-961792b0d309" />
+    </api>
+    <api id="F:Ws.Services.Serialization.DataContractSerializer._localNamespace">
+      <topicdata group="api" />
+      <apidata name="_localNamespace" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="7f81e661-3c90-b441-c863-a4d58dab3e16" />
+    </api>
+    <api id="F:Ws.Services.Serialization.DataContractSerializer._NamespaceIsDefined">
+      <topicdata group="api" />
+      <apidata name="_NamespaceIsDefined" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="1f18328d-6de3-89f5-1cb1-b1f9ffb6f0c5" />
+    </api>
+    <api id="F:Ws.Services.Serialization.DataContractSerializer._prefix">
+      <topicdata group="api" />
+      <apidata name="_prefix" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="c49d28e5-d607-f653-e46f-0ad20ac76a9b" />
+    </api>
+    <api id="F:Ws.Services.Serialization.DataContractSerializer._rootName">
+      <topicdata group="api" />
+      <apidata name="_rootName" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="c29236a0-981c-8070-824e-622a960dda79" />
+    </api>
+    <api id="F:Ws.Services.Serialization.DataContractSerializer._rootNamespace">
+      <topicdata group="api" />
+      <apidata name="_rootNamespace" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="4c448a62-cb2f-0a66-38f5-320da0a04ee7" />
+    </api>
+    <api id="F:Ws.Services.Serialization.DataContractSerializer.BodyParts">
+      <topicdata group="api" />
+      <apidata name="BodyParts" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Mtom.WsMtomBodyParts" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="674bf7d7-8390-f63a-9c69-111705627517" />
+    </api>
+    <api id="M:Ws.Services.Serialization.DataContractSerializer.CreateNewBodyPart(System.Byte[],System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateNewBodyPart" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="content">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="contentID">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Mtom.WsMtomBodyPart" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="9fc5e72d-286c-3064-6260-5d797489e5ed" />
+    </api>
+    <api id="M:Ws.Services.Serialization.DataContractSerializer.GetBodyPartContent(System.String,Ws.Services.Mtom.WsMtomBodyParts)">
+      <topicdata group="api" />
+      <apidata name="GetBodyPartContent" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="contentID">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="bodyParts">
+          <type api="T:Ws.Services.Mtom.WsMtomBodyParts" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="9be781f1-b107-21cc-cd26-522f5e96296c" />
+    </api>
+    <api id="M:Ws.Services.Serialization.DataContractSerializer.IsAttribute(System.Xml.XmlReader,System.String)">
+      <topicdata group="api" />
+      <apidata name="IsAttribute" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="reader">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+        <parameter name="attributeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="64aaa508-c63e-2ab3-b791-8bd883303a7c" />
+    </api>
+    <api id="M:Ws.Services.Serialization.DataContractSerializer.IsChildStartElement(System.Xml.XmlReader,System.String,System.Boolean,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="IsChildStartElement" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="reader">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+        <parameter name="typeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="nillable">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="isRequired">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="a454af99-c699-3fce-d932-6d6bbd2b962a" />
+    </api>
+    <api id="M:Ws.Services.Serialization.DataContractSerializer.IsParentStartElement(System.Xml.XmlReader,System.Boolean,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="IsParentStartElement" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="reader">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+        <parameter name="nillable">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="isRequired">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="20a03b52-78f3-08ce-20f9-70b12dc9b2bf" />
+    </api>
+    <api id="M:Ws.Services.Serialization.DataContractSerializer.ReadAnyAttribute(System.Xml.XmlReader)">
+      <topicdata group="api" />
+      <apidata name="ReadAnyAttribute" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="reader">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:Ws.Services.Xml.WsXmlAttribute" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="3f754bbe-c767-7bfb-10f5-2a2a8060a471" />
+    </api>
+    <api id="M:Ws.Services.Serialization.DataContractSerializer.ReadAnyElement(System.Xml.XmlReader,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="ReadAnyElement" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="reader">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+        <parameter name="isRequired">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="ad28ebfe-fcf0-1d83-03a1-4d21fb5b4acf" />
+    </api>
+    <api id="M:Ws.Services.Serialization.DataContractSerializer.ReadObject(System.Xml.XmlReader)">
+      <topicdata group="api" />
+      <apidata name="ReadObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="reader">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="244f8bba-1354-d3b4-a60c-bb69912782e5" />
+    </api>
+    <api id="M:Ws.Services.Serialization.DataContractSerializer.WriteAnyAttribute(System.Ext.Xml.XmlWriter,Ws.Services.Xml.WsXmlAttribute[])">
+      <topicdata group="api" />
+      <apidata name="WriteAnyAttribute" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+        </parameter>
+        <parameter name="attributes">
+          <arrayOf rank="1">
+            <type api="T:Ws.Services.Xml.WsXmlAttribute" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="b8d4a1b3-42eb-e310-c984-00880614890e" />
+    </api>
+    <api id="M:Ws.Services.Serialization.DataContractSerializer.WriteAnyElement(System.Ext.Xml.XmlWriter,Ws.Services.Xml.WsXmlNode[],System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="WriteAnyElement" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+        </parameter>
+        <parameter name="elements">
+          <arrayOf rank="1">
+            <type api="T:Ws.Services.Xml.WsXmlNode" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="isRequired">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="1ed33bca-f515-0ab0-e704-26f746056b6f" />
+    </api>
+    <api id="M:Ws.Services.Serialization.DataContractSerializer.WriteAttribute(System.Ext.Xml.XmlWriter,System.String,System.Boolean,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteAttribute" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+        </parameter>
+        <parameter name="localName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="isRequired">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="7b5e5588-99ac-f8cb-54e8-b16cfeb280fd" />
+    </api>
+    <api id="M:Ws.Services.Serialization.DataContractSerializer.WriteChildElement(System.Ext.Xml.XmlWriter,System.String,System.Boolean,System.Boolean,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteChildElement" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+        </parameter>
+        <parameter name="typeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="nillable">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="isRequired">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="af717c83-5fee-2ea9-e5f0-87658e9f0562" />
+    </api>
+    <api id="M:Ws.Services.Serialization.DataContractSerializer.WriteObject(System.Ext.Xml.XmlWriter,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+        </parameter>
+        <parameter name="graph">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="c227be7b-35a2-cb59-4fe2-08e58d9704a0" />
+    </api>
+    <api id="M:Ws.Services.Serialization.DataContractSerializer.WriteParentElement(System.Ext.Xml.XmlWriter,System.Boolean,System.Boolean,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteParentElement" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Ext.Xml.XmlWriter" ref="true" />
+        </parameter>
+        <parameter name="nillable">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="isRequired">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="cd938b49-1851-23bc-3df9-89a0c02ada71" />
+    </api>
+    <api id="T:Ws.Services.Serialization.DataContractSerializer.WildcardValidationType">
+      <topicdata group="api" />
+      <apidata name="WildcardValidationType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Ws.Services.Serialization.DataContractSerializer.WildcardValidationType.Any" />
+        <element api="F:Ws.Services.Serialization.DataContractSerializer.WildcardValidationType.Local" />
+        <element api="F:Ws.Services.Serialization.DataContractSerializer.WildcardValidationType.Other" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+      </containers>
+      <file name="67caf1f9-0c6e-6a1b-c416-330c9ce29105" />
+    </api>
+    <api id="F:Ws.Services.Serialization.DataContractSerializer.WildcardValidationType.Any">
+      <topicdata group="api" notopic="" />
+      <apidata name="Any" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Serialization.DataContractSerializer.WildcardValidationType" ref="false">
+          <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+        </type>
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer.WildcardValidationType" ref="false">
+          <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+        </type>
+      </containers>
+      <file name="4d1684f4-76de-ed2f-b7c0-5ac5fb0d11a7" />
+    </api>
+    <api id="F:Ws.Services.Serialization.DataContractSerializer.WildcardValidationType.Local">
+      <topicdata group="api" notopic="" />
+      <apidata name="Local" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Serialization.DataContractSerializer.WildcardValidationType" ref="false">
+          <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+        </type>
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer.WildcardValidationType" ref="false">
+          <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+        </type>
+      </containers>
+      <file name="7dc30a26-8e4d-dced-dae0-e3dcd1fe196a" />
+    </api>
+    <api id="F:Ws.Services.Serialization.DataContractSerializer.WildcardValidationType.Other">
+      <topicdata group="api" notopic="" />
+      <apidata name="Other" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Serialization.DataContractSerializer.WildcardValidationType" ref="false">
+          <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+        </type>
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.DataContractSerializer.WildcardValidationType" ref="false">
+          <type api="T:Ws.Services.Serialization.DataContractSerializer" ref="true" />
+        </type>
+      </containers>
+      <file name="72eba15f-69e3-2f76-1127-e6e6325af93f" />
+    </api>
+    <api id="T:Ws.Services.Serialization.WsXmlConvert">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Serialization.WsXmlConvert" />
+      <apidata name="WsXmlConvert" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+      </containers>
+      <file name="c3b031a6-46db-fbd3-a8fb-0578341d3b95" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Serialization.WsXmlConvert">
+      <topicdata name="WsXmlConvert" group="list" subgroup="members" typeTopicId="T:Ws.Services.Serialization.WsXmlConvert" />
+      <apidata name="WsXmlConvert" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToBoolean(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToByte(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToDateTime(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToDouble(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToInt16(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToInt32(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToInt64(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToSByte(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToSingle(System.String)" />
+        <element api="Overload:Ws.Services.Serialization.WsXmlConvert.ToString">
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Boolean)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Byte)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.DateTime)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Double)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Int16)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Int32)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Int64)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.SByte)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Single)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.TimeSpan)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.UInt16)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.UInt32)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.UInt64)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Uri)" />
+        </element>
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToTimeSpan(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToUInt16(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToUInt32(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToUInt64(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" />
+      </containers>
+      <file name="1cc49ea9-a0ed-77a5-b38a-80817b0d04de" />
+    </api>
+    <api id="Methods.T:Ws.Services.Serialization.WsXmlConvert">
+      <topicdata name="WsXmlConvert" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Serialization.WsXmlConvert" />
+      <apidata name="WsXmlConvert" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToBoolean(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToByte(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToDateTime(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToDouble(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToInt16(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToInt32(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToInt64(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToSByte(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToSingle(System.String)" />
+        <element api="Overload:Ws.Services.Serialization.WsXmlConvert.ToString">
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Boolean)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Byte)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.DateTime)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Double)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Int16)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Int32)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Int64)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.SByte)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Single)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.TimeSpan)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.UInt16)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.UInt32)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.UInt64)" />
+          <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Uri)" />
+        </element>
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToTimeSpan(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToUInt16(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToUInt32(System.String)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToUInt64(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" />
+      </containers>
+      <file name="04087ad4-c7cf-9562-a396-7ca11791b955" />
+    </api>
+    <api id="Overload:Ws.Services.Serialization.WsXmlConvert.ToString">
+      <topicdata name="ToString" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Ws.Services.Serialization.WsXmlConvert" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Boolean)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Byte)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.DateTime)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Double)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Int16)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Int32)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Int64)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.SByte)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Single)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.TimeSpan)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.UInt16)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.UInt32)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.UInt64)" />
+        <element api="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="cbe449b9-5d8f-3229-970a-f28d16885fe5" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToBoolean(System.String)">
+      <topicdata group="api" />
+      <apidata name="ToBoolean" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="boolean">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="fa9944e8-e248-3e5c-1177-11825547f702" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToByte(System.String)">
+      <topicdata group="api" />
+      <apidata name="ToByte" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="ce8ffcf9-7036-70b1-7fc9-5a63a9085547" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToDateTime(System.String)">
+      <topicdata group="api" />
+      <apidata name="ToDateTime" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="6ebbe0a3-6c15-c118-9395-f0c5ce9b2790" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToDouble(System.String)">
+      <topicdata group="api" />
+      <apidata name="ToDouble" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="ff3d7012-b682-5de9-2399-348e19f7cce9" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToInt16(System.String)">
+      <topicdata group="api" />
+      <apidata name="ToInt16" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="0136fdf1-1253-31ab-72ac-15a031338281" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToInt32(System.String)">
+      <topicdata group="api" />
+      <apidata name="ToInt32" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="5290eaaf-1025-2a07-9350-f931dc7787f0" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToInt64(System.String)">
+      <topicdata group="api" />
+      <apidata name="ToInt64" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="d2d5e7c9-ac1d-42d2-12f1-a3607bb1ff38" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToSByte(System.String)">
+      <topicdata group="api" />
+      <apidata name="ToSByte" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.SByte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="52865a16-bd7a-0cd3-d739-38d3633d85aa" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToSingle(System.String)">
+      <topicdata group="api" />
+      <apidata name="ToSingle" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="dcd6a742-e8e2-6575-1993-ae05ccf60808" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Ws.Services.Serialization.WsXmlConvert.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="bda2e204-0e08-84ed-353e-6e11725fc22b" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Byte)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Ws.Services.Serialization.WsXmlConvert.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="3af10afc-8ff5-5cdd-ea50-4f31137290a5" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.DateTime)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Ws.Services.Serialization.WsXmlConvert.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="6a9503f2-68df-dff8-a372-0b5940002680" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Double)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Ws.Services.Serialization.WsXmlConvert.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="b28c29db-14d3-26b7-896d-56211a8d6d7b" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Int16)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Ws.Services.Serialization.WsXmlConvert.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="17b46356-6973-5420-d2d9-e9e3a0fca69e" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Ws.Services.Serialization.WsXmlConvert.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="fc8abef8-21e9-6a27-97ce-b36662dc1b08" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Int64)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Ws.Services.Serialization.WsXmlConvert.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="ef72f341-44e7-2a6e-8891-5469ed381742" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.SByte)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Ws.Services.Serialization.WsXmlConvert.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.SByte" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="885fe1e7-5511-42ec-1bc2-0116459b7c34" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Single)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Ws.Services.Serialization.WsXmlConvert.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Single" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="65bb0cd3-c0d0-9129-e0a9-5aac4bad1669" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Ws.Services.Serialization.WsXmlConvert.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="98e360ce-d3ab-e176-c93e-b5fadb39c4e4" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Ws.Services.Serialization.WsXmlConvert.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="0f2170e3-4e9b-5344-3062-22aff367d78e" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Ws.Services.Serialization.WsXmlConvert.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="42c67e1f-ab88-5766-8ec8-c52aed1939dc" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.UInt64)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Ws.Services.Serialization.WsXmlConvert.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.UInt64" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="6161ff16-bb7b-d0f8-7617-9ac96b16d4aa" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToString(System.Uri)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Ws.Services.Serialization.WsXmlConvert.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="23ec98b3-d5f4-f0f9-d288-b67936d0b15b" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToTimeSpan(System.String)">
+      <topicdata group="api" />
+      <apidata name="ToTimeSpan" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="31294ba6-cb28-d978-0b66-157a01383f4e" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToUInt16(System.String)">
+      <topicdata group="api" />
+      <apidata name="ToUInt16" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="7aacdf6b-963c-918d-2d66-63227194ae01" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToUInt32(System.String)">
+      <topicdata group="api" />
+      <apidata name="ToUInt32" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="97921915-5831-e57e-4146-2b7916e28116" />
+    </api>
+    <api id="M:Ws.Services.Serialization.WsXmlConvert.ToUInt64(System.String)">
+      <topicdata group="api" />
+      <apidata name="ToUInt64" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="s">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Serialization" />
+        <type api="T:Ws.Services.Serialization.WsXmlConvert" ref="true" />
+      </containers>
+      <file name="7eaa1b99-6fb3-957d-6ed3-33476b6767da" />
+    </api>
+  </apis>
+</reflection>

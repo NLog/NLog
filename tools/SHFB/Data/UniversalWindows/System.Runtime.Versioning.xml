@@ -1,0 +1,761 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Runtime.Extensions">
+      <assemblydata version="4.0.10.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Extensions</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Extensions</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Extensions</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.Runtime">
+      <assemblydata version="4.0.20.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.Versioning">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.Versioning" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.Versioning.TargetFrameworkAttribute" />
+        <element api="T:System.Runtime.Versioning.FrameworkName" />
+      </elements>
+      <file name="67f12e98-05fb-4b2e-ea0a-2079122550c3" />
+    </api>
+    <api id="T:System.Runtime.Versioning.FrameworkName">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Versioning.FrameworkName" />
+      <apidata name="FrameworkName" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IEquatable`1" ref="true">
+          <specialization>
+            <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+          </specialization>
+        </type>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+      </containers>
+      <file name="10c4e52f-9801-a435-93c7-208f14791bb8" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Versioning.FrameworkName">
+      <topicdata name="FrameworkName" group="list" subgroup="members" typeTopicId="T:System.Runtime.Versioning.FrameworkName" />
+      <apidata name="FrameworkName" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:System.Runtime.Versioning.FrameworkName.#ctor">
+          <element api="M:System.Runtime.Versioning.FrameworkName.#ctor(System.String)" />
+          <element api="M:System.Runtime.Versioning.FrameworkName.#ctor(System.String,System.Version)" />
+          <element api="M:System.Runtime.Versioning.FrameworkName.#ctor(System.String,System.Version,System.String)" />
+        </element>
+        <element api="Overload:System.Runtime.Versioning.FrameworkName.Equals">
+          <element api="M:System.Runtime.Versioning.FrameworkName.Equals(System.Runtime.Versioning.FrameworkName)" />
+          <element api="M:System.Runtime.Versioning.FrameworkName.Equals(System.Object)" />
+        </element>
+        <element api="P:System.Runtime.Versioning.FrameworkName.FullName" />
+        <element api="M:System.Runtime.Versioning.FrameworkName.GetHashCode" />
+        <element api="P:System.Runtime.Versioning.FrameworkName.Identifier" />
+        <element api="M:System.Runtime.Versioning.FrameworkName.op_Equality(System.Runtime.Versioning.FrameworkName,System.Runtime.Versioning.FrameworkName)" />
+        <element api="M:System.Runtime.Versioning.FrameworkName.op_Inequality(System.Runtime.Versioning.FrameworkName,System.Runtime.Versioning.FrameworkName)" />
+        <element api="P:System.Runtime.Versioning.FrameworkName.Profile" />
+        <element api="M:System.Runtime.Versioning.FrameworkName.ToString" />
+        <element api="P:System.Runtime.Versioning.FrameworkName.Version" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" />
+      </containers>
+      <file name="ecd0143e-35e1-e32b-90e9-beff4a43a51a" />
+    </api>
+    <api id="Methods.T:System.Runtime.Versioning.FrameworkName">
+      <topicdata name="FrameworkName" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Versioning.FrameworkName" />
+      <apidata name="FrameworkName" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:System.Runtime.Versioning.FrameworkName.Equals">
+          <element api="M:System.Runtime.Versioning.FrameworkName.Equals(System.Runtime.Versioning.FrameworkName)" />
+          <element api="M:System.Runtime.Versioning.FrameworkName.Equals(System.Object)" />
+        </element>
+        <element api="M:System.Runtime.Versioning.FrameworkName.GetHashCode" />
+        <element api="M:System.Runtime.Versioning.FrameworkName.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" />
+      </containers>
+      <file name="e928fc6a-5e1e-e3b0-9258-dc1c20ad0d9d" />
+    </api>
+    <api id="Operators.T:System.Runtime.Versioning.FrameworkName">
+      <topicdata name="FrameworkName" group="list" subgroup="Operators" subsubgroup="Operators" typeTopicId="T:System.Runtime.Versioning.FrameworkName" />
+      <apidata name="FrameworkName" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Versioning.FrameworkName.op_Equality(System.Runtime.Versioning.FrameworkName,System.Runtime.Versioning.FrameworkName)" />
+        <element api="M:System.Runtime.Versioning.FrameworkName.op_Inequality(System.Runtime.Versioning.FrameworkName,System.Runtime.Versioning.FrameworkName)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" />
+      </containers>
+      <file name="b9ae69a3-2cdd-0f39-2ce4-248a382f978f" />
+    </api>
+    <api id="Properties.T:System.Runtime.Versioning.FrameworkName">
+      <topicdata name="FrameworkName" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Versioning.FrameworkName" />
+      <apidata name="FrameworkName" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.Versioning.FrameworkName.FullName" />
+        <element api="P:System.Runtime.Versioning.FrameworkName.Identifier" />
+        <element api="P:System.Runtime.Versioning.FrameworkName.Profile" />
+        <element api="P:System.Runtime.Versioning.FrameworkName.Version" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" />
+      </containers>
+      <file name="28e1a14a-45ce-0880-a68c-42fae89c041a" />
+    </api>
+    <api id="Overload:System.Runtime.Versioning.FrameworkName.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Versioning.FrameworkName" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Versioning.FrameworkName.#ctor(System.String)" />
+        <element api="M:System.Runtime.Versioning.FrameworkName.#ctor(System.String,System.Version)" />
+        <element api="M:System.Runtime.Versioning.FrameworkName.#ctor(System.String,System.Version,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+      </containers>
+      <file name="3b309f21-09d9-cde6-296f-2d9d96e34f78" />
+    </api>
+    <api id="Overload:System.Runtime.Versioning.FrameworkName.Equals">
+      <topicdata name="Equals" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Versioning.FrameworkName" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Runtime.Versioning.FrameworkName.Equals(System.Runtime.Versioning.FrameworkName)" />
+        <element api="M:System.Runtime.Versioning.FrameworkName.Equals(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+      </containers>
+      <file name="fdd19d59-a8f3-16a1-b9b6-a1e2014337a9" />
+    </api>
+    <api id="M:System.Runtime.Versioning.FrameworkName.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Versioning.FrameworkName.#ctor" />
+      <parameters>
+        <parameter name="frameworkName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+      </containers>
+      <file name="e9036b65-b058-451c-a910-8713944db0af" />
+    </api>
+    <api id="M:System.Runtime.Versioning.FrameworkName.#ctor(System.String,System.Version)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Versioning.FrameworkName.#ctor" />
+      <parameters>
+        <parameter name="identifier">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="version">
+          <type api="T:System.Version" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+      </containers>
+      <file name="9bac08bd-be00-e3ae-422d-54ccdc91da34" />
+    </api>
+    <api id="M:System.Runtime.Versioning.FrameworkName.#ctor(System.String,System.Version,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Versioning.FrameworkName.#ctor" />
+      <parameters>
+        <parameter name="identifier">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="version">
+          <type api="T:System.Version" ref="true" />
+        </parameter>
+        <parameter name="profile">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+      </containers>
+      <file name="8e4f5847-2729-2d75-e7de-9b8e31bfdcc3" />
+    </api>
+    <api id="M:System.Runtime.Versioning.FrameworkName.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Runtime.Versioning.FrameworkName.Equals" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Equals(System.Object)">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+      </containers>
+      <file name="4674ac59-6ab7-ce78-92cd-39f8ecf22552" />
+    </api>
+    <api id="M:System.Runtime.Versioning.FrameworkName.Equals(System.Runtime.Versioning.FrameworkName)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Runtime.Versioning.FrameworkName.Equals" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="other">
+          <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.IEquatable`1.Equals(`0)">
+          <type api="T:System.IEquatable`1" ref="true">
+            <specialization>
+              <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+      </containers>
+      <file name="ec7c9958-e3b1-8f68-b882-300b14c9d9b3" />
+    </api>
+    <api id="P:System.Runtime.Versioning.FrameworkName.FullName">
+      <topicdata group="api" />
+      <apidata name="FullName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FullName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+      </containers>
+      <file name="eb565025-2375-0bce-f534-938b3375fa8d" />
+    </api>
+    <api id="M:System.Runtime.Versioning.FrameworkName.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.GetHashCode">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+      </containers>
+      <file name="87b57cc7-2e5e-c169-967f-c1fa98afc17f" />
+    </api>
+    <api id="P:System.Runtime.Versioning.FrameworkName.Identifier">
+      <topicdata group="api" />
+      <apidata name="Identifier" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Identifier" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+      </containers>
+      <file name="3dc93f1e-b22a-bac2-612c-045c4ff6d323" />
+    </api>
+    <api id="M:System.Runtime.Versioning.FrameworkName.op_Equality(System.Runtime.Versioning.FrameworkName,System.Runtime.Versioning.FrameworkName)">
+      <topicdata group="api" />
+      <apidata name="Equality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="left">
+          <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+        </parameter>
+        <parameter name="right">
+          <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+      </containers>
+      <file name="2faa1c3a-79bc-c5d2-d560-f6a0686d7356" />
+    </api>
+    <api id="M:System.Runtime.Versioning.FrameworkName.op_Inequality(System.Runtime.Versioning.FrameworkName,System.Runtime.Versioning.FrameworkName)">
+      <topicdata group="api" />
+      <apidata name="Inequality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="left">
+          <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+        </parameter>
+        <parameter name="right">
+          <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+      </containers>
+      <file name="9d713485-ef2b-38b5-a62a-4e619be130ac" />
+    </api>
+    <api id="P:System.Runtime.Versioning.FrameworkName.Profile">
+      <topicdata group="api" />
+      <apidata name="Profile" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Profile" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+      </containers>
+      <file name="ce507c2b-653c-ec86-9387-4e4a3edf6530" />
+    </api>
+    <api id="M:System.Runtime.Versioning.FrameworkName.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+      </containers>
+      <file name="34ee0e65-7f0e-1168-386e-3f56c9b22587" />
+    </api>
+    <api id="P:System.Runtime.Versioning.FrameworkName.Version">
+      <topicdata group="api" />
+      <apidata name="Version" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Version" />
+      <returns>
+        <type api="T:System.Version" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Extensions" module="System.Runtime.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.FrameworkName" ref="true" />
+      </containers>
+      <file name="604d392a-71cc-3d5a-70b4-be04b91c885e" />
+    </api>
+    <api id="T:System.Runtime.Versioning.TargetFrameworkAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Versioning.TargetFrameworkAttribute" />
+      <apidata name="TargetFrameworkAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="14753c6a-d944-652d-9f95-54c8e2b5c744" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Versioning.TargetFrameworkAttribute">
+      <topicdata name="TargetFrameworkAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.Versioning.TargetFrameworkAttribute" />
+      <apidata name="TargetFrameworkAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Versioning.TargetFrameworkAttribute.#ctor(System.String)" />
+        <element api="P:System.Runtime.Versioning.TargetFrameworkAttribute.FrameworkDisplayName" />
+        <element api="P:System.Runtime.Versioning.TargetFrameworkAttribute.FrameworkName" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.TargetFrameworkAttribute" />
+      </containers>
+      <file name="4db73d13-6525-e839-1858-1253603b538a" />
+    </api>
+    <api id="Methods.T:System.Runtime.Versioning.TargetFrameworkAttribute">
+      <topicdata name="TargetFrameworkAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Versioning.TargetFrameworkAttribute" />
+      <apidata name="TargetFrameworkAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.TargetFrameworkAttribute" />
+      </containers>
+      <file name="c5e7e4e4-8055-6373-7a37-28f93c9edabe" />
+    </api>
+    <api id="Properties.T:System.Runtime.Versioning.TargetFrameworkAttribute">
+      <topicdata name="TargetFrameworkAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Versioning.TargetFrameworkAttribute" />
+      <apidata name="TargetFrameworkAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.Versioning.TargetFrameworkAttribute.FrameworkDisplayName" />
+        <element api="P:System.Runtime.Versioning.TargetFrameworkAttribute.FrameworkName" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.TargetFrameworkAttribute" />
+      </containers>
+      <file name="7ef5d5e2-e318-0b8b-e64d-a284fcf4331c" />
+    </api>
+    <api id="M:System.Runtime.Versioning.TargetFrameworkAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="frameworkName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.TargetFrameworkAttribute" ref="true" />
+      </containers>
+      <file name="cde477b2-90fe-6dca-d6ff-e5f544bfd0d6" />
+    </api>
+    <api id="P:System.Runtime.Versioning.TargetFrameworkAttribute.FrameworkDisplayName">
+      <topicdata group="api" />
+      <apidata name="FrameworkDisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FrameworkDisplayName" />
+      <setter name="set_FrameworkDisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.TargetFrameworkAttribute" ref="true" />
+      </containers>
+      <file name="75d024a1-19cb-a082-7380-92e892c0f85f" />
+    </api>
+    <api id="P:System.Runtime.Versioning.TargetFrameworkAttribute.FrameworkName">
+      <topicdata group="api" />
+      <apidata name="FrameworkName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FrameworkName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Runtime.Versioning" />
+        <type api="T:System.Runtime.Versioning.TargetFrameworkAttribute" ref="true" />
+      </containers>
+      <file name="086d7c31-ca35-6bc0-211a-94222a4f8c87" />
+    </api>
+  </apis>
+</reflection>

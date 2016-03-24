@@ -1,0 +1,2070 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.AddIn">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.AddIn.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.AddIn.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.AddIn.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.AddIn.Contract">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.AddIn.Contract.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.AddIn.Contract.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.AddIn.Contract.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.Windows.Presentation">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.AddIn.Pipeline">
+      <topicdata group="api" />
+      <apidata name="System.AddIn.Pipeline" group="namespace" />
+      <elements>
+        <element api="T:System.AddIn.Pipeline.HostAdapterAttribute" />
+        <element api="T:System.AddIn.Pipeline.AddInAdapterAttribute" />
+        <element api="T:System.AddIn.Pipeline.AddInBaseAttribute" />
+        <element api="T:System.AddIn.Pipeline.CollectionAdapters" />
+        <element api="T:System.AddIn.Pipeline.ContractAdapter" />
+        <element api="T:System.AddIn.Pipeline.ContractBase" />
+        <element api="T:System.AddIn.Pipeline.ContractHandle" />
+        <element api="T:System.AddIn.Pipeline.AddInContractAttribute" />
+        <element api="T:System.AddIn.Pipeline.QualificationDataAttribute" />
+        <element api="T:System.AddIn.Pipeline.FrameworkElementAdapters" />
+      </elements>
+      <file name="c5c470e7-2c7b-28a0-66fd-213c17805757" />
+    </api>
+    <api id="T:System.AddIn.Pipeline.AddInAdapterAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Pipeline.AddInAdapterAttribute" />
+      <apidata name="AddInAdapterAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.AddInAdapterAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ef6e2ad7-01b5-0ddc-772f-2174d1a78280" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Pipeline.AddInAdapterAttribute">
+      <topicdata name="AddInAdapterAttribute" group="list" subgroup="members" typeTopicId="T:System.AddIn.Pipeline.AddInAdapterAttribute" />
+      <apidata name="AddInAdapterAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.AddInAdapterAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.AddIn.Pipeline.AddInAdapterAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.AddInAdapterAttribute" />
+      </containers>
+      <file name="ab041e81-2d2c-9bea-321b-60e36dfe1004" />
+    </api>
+    <api id="Methods.T:System.AddIn.Pipeline.AddInAdapterAttribute">
+      <topicdata name="AddInAdapterAttribute" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Pipeline.AddInAdapterAttribute" />
+      <apidata name="AddInAdapterAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.AddInAdapterAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.AddInAdapterAttribute" />
+      </containers>
+      <file name="859a1121-71db-1975-6820-b8145e84f5d4" />
+    </api>
+    <api id="Properties.T:System.AddIn.Pipeline.AddInAdapterAttribute">
+      <topicdata name="AddInAdapterAttribute" group="list" subgroup="Properties" typeTopicId="T:System.AddIn.Pipeline.AddInAdapterAttribute" />
+      <apidata name="AddInAdapterAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.AddInAdapterAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.AddInAdapterAttribute" />
+      </containers>
+      <file name="4bfd1320-267d-8d04-67ab-c5d15d899e1c" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.AddInAdapterAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.AddInAdapterAttribute" ref="true" />
+      </containers>
+      <file name="5786b735-bd25-f63a-44f8-9bde25c0a4fb" />
+    </api>
+    <api id="T:System.AddIn.Pipeline.AddInBaseAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Pipeline.AddInBaseAttribute" />
+      <apidata name="AddInBaseAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.AddInBaseAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Interface" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2ee0a212-60b5-55b9-a870-30a57e70c8d2" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Pipeline.AddInBaseAttribute">
+      <topicdata name="AddInBaseAttribute" group="list" subgroup="members" typeTopicId="T:System.AddIn.Pipeline.AddInBaseAttribute" />
+      <apidata name="AddInBaseAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.AddInBaseAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.AddIn.Pipeline.AddInBaseAttribute.#ctor" />
+        <element api="P:System.AddIn.Pipeline.AddInBaseAttribute.ActivatableAs" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.AddInBaseAttribute" />
+      </containers>
+      <file name="af5afcca-fb03-9d9e-e576-1ae84031c6d9" />
+    </api>
+    <api id="Methods.T:System.AddIn.Pipeline.AddInBaseAttribute">
+      <topicdata name="AddInBaseAttribute" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Pipeline.AddInBaseAttribute" />
+      <apidata name="AddInBaseAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.AddInBaseAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.AddInBaseAttribute" />
+      </containers>
+      <file name="9e857077-f641-a969-f173-67ee82065a95" />
+    </api>
+    <api id="Properties.T:System.AddIn.Pipeline.AddInBaseAttribute">
+      <topicdata name="AddInBaseAttribute" group="list" subgroup="Properties" typeTopicId="T:System.AddIn.Pipeline.AddInBaseAttribute" />
+      <apidata name="AddInBaseAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.AddInBaseAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.AddIn.Pipeline.AddInBaseAttribute.ActivatableAs" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.AddInBaseAttribute" />
+      </containers>
+      <file name="bd6604cc-4444-6fb6-c40f-53fbaefaa38d" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.AddInBaseAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.AddInBaseAttribute" ref="true" />
+      </containers>
+      <file name="29b9f03e-da7c-678b-d016-a6ba05225199" />
+    </api>
+    <api id="P:System.AddIn.Pipeline.AddInBaseAttribute.ActivatableAs">
+      <topicdata group="api" />
+      <apidata name="ActivatableAs" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ActivatableAs" />
+      <setter name="set_ActivatableAs" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Type" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.AddInBaseAttribute" ref="true" />
+      </containers>
+      <file name="3a6194e1-050b-24af-9e1d-d9d350b9c35b" />
+    </api>
+    <api id="T:System.AddIn.Pipeline.AddInContractAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Pipeline.AddInContractAttribute" />
+      <apidata name="AddInContractAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.AddInContractAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Interface" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f97800f4-da92-1474-f349-c581ac2dd134" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Pipeline.AddInContractAttribute">
+      <topicdata name="AddInContractAttribute" group="list" subgroup="members" typeTopicId="T:System.AddIn.Pipeline.AddInContractAttribute" />
+      <apidata name="AddInContractAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.AddInContractAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.AddIn.Pipeline.AddInContractAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.AddInContractAttribute" />
+      </containers>
+      <file name="5618c4b4-564d-18ac-1360-8df551c47053" />
+    </api>
+    <api id="Methods.T:System.AddIn.Pipeline.AddInContractAttribute">
+      <topicdata name="AddInContractAttribute" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Pipeline.AddInContractAttribute" />
+      <apidata name="AddInContractAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.AddInContractAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.AddInContractAttribute" />
+      </containers>
+      <file name="1ac7d174-50b5-c6e1-4c72-00bf964d6a71" />
+    </api>
+    <api id="Properties.T:System.AddIn.Pipeline.AddInContractAttribute">
+      <topicdata name="AddInContractAttribute" group="list" subgroup="Properties" typeTopicId="T:System.AddIn.Pipeline.AddInContractAttribute" />
+      <apidata name="AddInContractAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.AddInContractAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.AddInContractAttribute" />
+      </containers>
+      <file name="bd157200-f229-7794-49bd-fd9d48829f67" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.AddInContractAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.AddInContractAttribute" ref="true" />
+      </containers>
+      <file name="5626640e-1f91-2318-9c10-73b1c6a38971" />
+    </api>
+    <api id="T:System.AddIn.Pipeline.CollectionAdapters">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Pipeline.CollectionAdapters" />
+      <apidata name="CollectionAdapters" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+      </containers>
+      <file name="1931c6ba-8f38-5fc9-1e16-7e2102902390" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Pipeline.CollectionAdapters">
+      <topicdata name="CollectionAdapters" group="list" subgroup="members" typeTopicId="T:System.AddIn.Pipeline.CollectionAdapters" />
+      <apidata name="CollectionAdapters" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.AddIn.Pipeline.CollectionAdapters.ToIList">
+          <element api="M:System.AddIn.Pipeline.CollectionAdapters.ToIList``1(System.AddIn.Contract.IListContract{``0})" />
+          <element api="M:System.AddIn.Pipeline.CollectionAdapters.ToIList``2(System.AddIn.Contract.IListContract{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+        </element>
+        <element api="Overload:System.AddIn.Pipeline.CollectionAdapters.ToIListContract">
+          <element api="M:System.AddIn.Pipeline.CollectionAdapters.ToIListContract``1(System.Collections.Generic.IList{``0})" />
+          <element api="M:System.AddIn.Pipeline.CollectionAdapters.ToIListContract``2(System.Collections.Generic.IList{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.CollectionAdapters" />
+      </containers>
+      <file name="b0548e7a-da03-4417-9874-83dfcb39c39f" />
+    </api>
+    <api id="Methods.T:System.AddIn.Pipeline.CollectionAdapters">
+      <topicdata name="CollectionAdapters" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Pipeline.CollectionAdapters" />
+      <apidata name="CollectionAdapters" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.AddIn.Pipeline.CollectionAdapters.ToIList">
+          <element api="M:System.AddIn.Pipeline.CollectionAdapters.ToIList``1(System.AddIn.Contract.IListContract{``0})" />
+          <element api="M:System.AddIn.Pipeline.CollectionAdapters.ToIList``2(System.AddIn.Contract.IListContract{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+        </element>
+        <element api="Overload:System.AddIn.Pipeline.CollectionAdapters.ToIListContract">
+          <element api="M:System.AddIn.Pipeline.CollectionAdapters.ToIListContract``1(System.Collections.Generic.IList{``0})" />
+          <element api="M:System.AddIn.Pipeline.CollectionAdapters.ToIListContract``2(System.Collections.Generic.IList{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.CollectionAdapters" />
+      </containers>
+      <file name="253926e7-de1e-fc00-f69b-2521d74dca9c" />
+    </api>
+    <api id="Overload:System.AddIn.Pipeline.CollectionAdapters.ToIList">
+      <topicdata name="ToIList" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.AddIn.Pipeline.CollectionAdapters" />
+      <apidata name="ToIList" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.AddIn.Pipeline.CollectionAdapters.ToIList``1(System.AddIn.Contract.IListContract{``0})" />
+        <element api="M:System.AddIn.Pipeline.CollectionAdapters.ToIList``2(System.AddIn.Contract.IListContract{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.CollectionAdapters" ref="true" />
+      </containers>
+      <file name="5f65e07a-771f-5d86-3e18-d010ff54832f" />
+    </api>
+    <api id="Overload:System.AddIn.Pipeline.CollectionAdapters.ToIListContract">
+      <topicdata name="ToIListContract" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.AddIn.Pipeline.CollectionAdapters" />
+      <apidata name="ToIListContract" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.AddIn.Pipeline.CollectionAdapters.ToIListContract``1(System.Collections.Generic.IList{``0})" />
+        <element api="M:System.AddIn.Pipeline.CollectionAdapters.ToIListContract``2(System.Collections.Generic.IList{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.CollectionAdapters" ref="true" />
+      </containers>
+      <file name="1b01c2e1-c72b-7e1a-8844-fdf875b024f6" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.CollectionAdapters.ToIList``1(System.AddIn.Contract.IListContract{``0})">
+      <topicdata group="api" />
+      <apidata name="ToIList" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.AddIn.Pipeline.CollectionAdapters.ToIList" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="collection">
+          <type api="T:System.AddIn.Contract.IListContract`1" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:System.AddIn.Pipeline.CollectionAdapters.ToIList``1(System.AddIn.Contract.IListContract{``0})" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="M:System.AddIn.Pipeline.CollectionAdapters.ToIList``1(System.AddIn.Contract.IListContract{``0})" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.CollectionAdapters" ref="true" />
+      </containers>
+      <file name="cea20eaf-2f6b-50fd-1200-54d763c4b0f4" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.CollectionAdapters.ToIList``2(System.AddIn.Contract.IListContract{``0},System.Converter{``0,``1},System.Converter{``1,``0})">
+      <topicdata group="api" />
+      <apidata name="ToIList" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.AddIn.Pipeline.CollectionAdapters.ToIList" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TContract" />
+        <template name="TView" />
+      </templates>
+      <parameters>
+        <parameter name="collection">
+          <type api="T:System.AddIn.Contract.IListContract`1" ref="true">
+            <specialization>
+              <template name="TContract" index="0" api="M:System.AddIn.Pipeline.CollectionAdapters.ToIList``2(System.AddIn.Contract.IListContract{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="contractViewAdapter">
+          <type api="T:System.Converter`2" ref="true">
+            <specialization>
+              <template name="TContract" index="0" api="M:System.AddIn.Pipeline.CollectionAdapters.ToIList``2(System.AddIn.Contract.IListContract{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+              <template name="TView" index="1" api="M:System.AddIn.Pipeline.CollectionAdapters.ToIList``2(System.AddIn.Contract.IListContract{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="viewContractAdapter">
+          <type api="T:System.Converter`2" ref="true">
+            <specialization>
+              <template name="TView" index="1" api="M:System.AddIn.Pipeline.CollectionAdapters.ToIList``2(System.AddIn.Contract.IListContract{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+              <template name="TContract" index="0" api="M:System.AddIn.Pipeline.CollectionAdapters.ToIList``2(System.AddIn.Contract.IListContract{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <template name="TView" index="1" api="M:System.AddIn.Pipeline.CollectionAdapters.ToIList``2(System.AddIn.Contract.IListContract{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.CollectionAdapters" ref="true" />
+      </containers>
+      <file name="dac9238c-fc84-b99a-1d85-c3a3d068c68d" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.CollectionAdapters.ToIListContract``1(System.Collections.Generic.IList{``0})">
+      <topicdata group="api" />
+      <apidata name="ToIListContract" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.AddIn.Pipeline.CollectionAdapters.ToIListContract" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="collection">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:System.AddIn.Pipeline.CollectionAdapters.ToIListContract``1(System.Collections.Generic.IList{``0})" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.AddIn.Contract.IListContract`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="M:System.AddIn.Pipeline.CollectionAdapters.ToIListContract``1(System.Collections.Generic.IList{``0})" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.CollectionAdapters" ref="true" />
+      </containers>
+      <file name="bf286687-b8dc-bd7d-1306-69157029bdbb" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.CollectionAdapters.ToIListContract``2(System.Collections.Generic.IList{``0},System.Converter{``0,``1},System.Converter{``1,``0})">
+      <topicdata group="api" />
+      <apidata name="ToIListContract" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.AddIn.Pipeline.CollectionAdapters.ToIListContract" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TView" />
+        <template name="TContract" />
+      </templates>
+      <parameters>
+        <parameter name="collection">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <template name="TView" index="0" api="M:System.AddIn.Pipeline.CollectionAdapters.ToIListContract``2(System.Collections.Generic.IList{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="viewContractAdapter">
+          <type api="T:System.Converter`2" ref="true">
+            <specialization>
+              <template name="TView" index="0" api="M:System.AddIn.Pipeline.CollectionAdapters.ToIListContract``2(System.Collections.Generic.IList{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+              <template name="TContract" index="1" api="M:System.AddIn.Pipeline.CollectionAdapters.ToIListContract``2(System.Collections.Generic.IList{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="contractViewAdapter">
+          <type api="T:System.Converter`2" ref="true">
+            <specialization>
+              <template name="TContract" index="1" api="M:System.AddIn.Pipeline.CollectionAdapters.ToIListContract``2(System.Collections.Generic.IList{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+              <template name="TView" index="0" api="M:System.AddIn.Pipeline.CollectionAdapters.ToIListContract``2(System.Collections.Generic.IList{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.AddIn.Contract.IListContract`1" ref="true">
+          <specialization>
+            <template name="TContract" index="1" api="M:System.AddIn.Pipeline.CollectionAdapters.ToIListContract``2(System.Collections.Generic.IList{``0},System.Converter{``0,``1},System.Converter{``1,``0})" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.CollectionAdapters" ref="true" />
+      </containers>
+      <file name="c8d604c7-755b-989e-cba6-2eb4473cfdbc" />
+    </api>
+    <api id="T:System.AddIn.Pipeline.ContractAdapter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Pipeline.ContractAdapter" />
+      <apidata name="ContractAdapter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+      </containers>
+      <file name="eda23d06-77c0-cbac-bd6e-b258f3013494" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Pipeline.ContractAdapter">
+      <topicdata name="ContractAdapter" group="list" subgroup="members" typeTopicId="T:System.AddIn.Pipeline.ContractAdapter" />
+      <apidata name="ContractAdapter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.AddIn.Pipeline.ContractAdapter.ContractToViewAdapter">
+          <element api="M:System.AddIn.Pipeline.ContractAdapter.ContractToViewAdapter``1(System.AddIn.Pipeline.ContractHandle,System.AddIn.Hosting.PipelineStoreLocation)" />
+          <element api="M:System.AddIn.Pipeline.ContractAdapter.ContractToViewAdapter``1(System.AddIn.Pipeline.ContractHandle,System.String)" />
+        </element>
+        <element api="M:System.AddIn.Pipeline.ContractAdapter.ViewToContractAdapter(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractAdapter" />
+      </containers>
+      <file name="abd2b481-205b-4ad5-4d61-fd9c36bbe745" />
+    </api>
+    <api id="Methods.T:System.AddIn.Pipeline.ContractAdapter">
+      <topicdata name="ContractAdapter" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Pipeline.ContractAdapter" />
+      <apidata name="ContractAdapter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.AddIn.Pipeline.ContractAdapter.ContractToViewAdapter">
+          <element api="M:System.AddIn.Pipeline.ContractAdapter.ContractToViewAdapter``1(System.AddIn.Pipeline.ContractHandle,System.AddIn.Hosting.PipelineStoreLocation)" />
+          <element api="M:System.AddIn.Pipeline.ContractAdapter.ContractToViewAdapter``1(System.AddIn.Pipeline.ContractHandle,System.String)" />
+        </element>
+        <element api="M:System.AddIn.Pipeline.ContractAdapter.ViewToContractAdapter(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractAdapter" />
+      </containers>
+      <file name="fe57fc18-e33e-9c5a-d608-c63c9bdd9d72" />
+    </api>
+    <api id="Overload:System.AddIn.Pipeline.ContractAdapter.ContractToViewAdapter">
+      <topicdata name="ContractToViewAdapter" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.AddIn.Pipeline.ContractAdapter" />
+      <apidata name="ContractToViewAdapter" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.AddIn.Pipeline.ContractAdapter.ContractToViewAdapter``1(System.AddIn.Pipeline.ContractHandle,System.AddIn.Hosting.PipelineStoreLocation)" />
+        <element api="M:System.AddIn.Pipeline.ContractAdapter.ContractToViewAdapter``1(System.AddIn.Pipeline.ContractHandle,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractAdapter" ref="true" />
+      </containers>
+      <file name="49b56ad5-06cb-d7d4-092e-ecfc8855b48a" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractAdapter.ContractToViewAdapter``1(System.AddIn.Pipeline.ContractHandle,System.AddIn.Hosting.PipelineStoreLocation)">
+      <topicdata group="api" />
+      <apidata name="ContractToViewAdapter" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.AddIn.Pipeline.ContractAdapter.ContractToViewAdapter" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TView" />
+      </templates>
+      <parameters>
+        <parameter name="contract">
+          <type api="T:System.AddIn.Pipeline.ContractHandle" ref="true" />
+        </parameter>
+        <parameter name="location">
+          <type api="T:System.AddIn.Hosting.PipelineStoreLocation" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="TView" index="0" api="M:System.AddIn.Pipeline.ContractAdapter.ContractToViewAdapter``1(System.AddIn.Pipeline.ContractHandle,System.AddIn.Hosting.PipelineStoreLocation)" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractAdapter" ref="true" />
+      </containers>
+      <file name="1fbca70e-0899-2b39-1bcd-5db04d8494d9" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractAdapter.ContractToViewAdapter``1(System.AddIn.Pipeline.ContractHandle,System.String)">
+      <topicdata group="api" />
+      <apidata name="ContractToViewAdapter" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.AddIn.Pipeline.ContractAdapter.ContractToViewAdapter" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TView" />
+      </templates>
+      <parameters>
+        <parameter name="contract">
+          <type api="T:System.AddIn.Pipeline.ContractHandle" ref="true" />
+        </parameter>
+        <parameter name="pipelineRoot">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="TView" index="0" api="M:System.AddIn.Pipeline.ContractAdapter.ContractToViewAdapter``1(System.AddIn.Pipeline.ContractHandle,System.String)" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractAdapter" ref="true" />
+      </containers>
+      <file name="e47b1894-3153-4508-56e5-9d1c05935c9b" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractAdapter.ViewToContractAdapter(System.Object)">
+      <topicdata group="api" />
+      <apidata name="ViewToContractAdapter" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="view">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.AddIn.Pipeline.ContractHandle" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractAdapter" ref="true" />
+      </containers>
+      <file name="fe56ecef-0d89-2475-d7ab-c4c03f4076ac" />
+    </api>
+    <api id="T:System.AddIn.Pipeline.ContractBase">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Pipeline.ContractBase" />
+      <apidata name="ContractBase" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.ContractBase.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+        <type api="T:System.Runtime.Remoting.Lifetime.ISponsor" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+      </containers>
+      <file name="df6cdc34-51fd-8e2f-97f0-78f196c3744c" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Pipeline.ContractBase">
+      <topicdata name="ContractBase" group="list" subgroup="members" typeTopicId="T:System.AddIn.Pipeline.ContractBase" />
+      <apidata name="ContractBase" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.ContractBase.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.AddIn.Pipeline.ContractBase.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.#ctor" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.AcquireLifetimeToken" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.GetRemoteHashCode" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.OnFinalRevoke" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.QueryContract(System.String)" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.RemoteEquals(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.RemoteToString" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.Renewal(System.Runtime.Remoting.Lifetime.ILease)" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.RevokeLifetimeToken(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractBase" />
+      </containers>
+      <file name="8cf3332f-0249-df76-0df5-4d25eb2dc218" />
+    </api>
+    <api id="Methods.T:System.AddIn.Pipeline.ContractBase">
+      <topicdata name="ContractBase" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Pipeline.ContractBase" />
+      <apidata name="ContractBase" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.ContractBase.#ctor" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.AddIn.Pipeline.ContractBase.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.AcquireLifetimeToken" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.GetRemoteHashCode" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.OnFinalRevoke" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.QueryContract(System.String)" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.RemoteEquals(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.RemoteToString" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.Renewal(System.Runtime.Remoting.Lifetime.ILease)" />
+        <element api="M:System.AddIn.Pipeline.ContractBase.RevokeLifetimeToken(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractBase" />
+      </containers>
+      <file name="e9ef9280-b563-3fe8-7546-4e91a479e52d" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractBase.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractBase" ref="true" />
+      </containers>
+      <file name="c7380daf-6b55-7ab7-034a-db0f1b6ed3b8" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractBase.AcquireLifetimeToken">
+      <topicdata group="api" />
+      <apidata name="AcquireLifetimeToken" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.AddIn.Contract.IContract.AcquireLifetimeToken">
+          <type api="T:System.AddIn.Contract.IContract" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractBase" ref="true" />
+      </containers>
+      <file name="f6c3c013-847c-94e5-71cf-31faa62271da" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractBase.GetRemoteHashCode">
+      <topicdata group="api" />
+      <apidata name="GetRemoteHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.AddIn.Contract.IContract.GetRemoteHashCode">
+          <type api="T:System.AddIn.Contract.IContract" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractBase" ref="true" />
+      </containers>
+      <file name="78d07548-a072-78e0-fa6a-18374bb48d61" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractBase.OnFinalRevoke">
+      <topicdata group="api" />
+      <apidata name="OnFinalRevoke" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractBase" ref="true" />
+      </containers>
+      <file name="07d4361b-8fec-e18f-b0b3-1566a294ba2f" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractBase.QueryContract(System.String)">
+      <topicdata group="api" />
+      <apidata name="QueryContract" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="contractIdentifier">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.AddIn.Contract.IContract.QueryContract(System.String)">
+          <type api="T:System.AddIn.Contract.IContract" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractBase" ref="true" />
+      </containers>
+      <file name="6056f116-a8f8-3753-c71b-3cea79663dd5" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractBase.RemoteEquals(System.AddIn.Contract.IContract)">
+      <topicdata group="api" />
+      <apidata name="RemoteEquals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="contract">
+          <type api="T:System.AddIn.Contract.IContract" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.AddIn.Contract.IContract.RemoteEquals(System.AddIn.Contract.IContract)">
+          <type api="T:System.AddIn.Contract.IContract" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractBase" ref="true" />
+      </containers>
+      <file name="2f3b01bc-b9f2-a3c1-20e5-1e6eee4589cc" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractBase.RemoteToString">
+      <topicdata group="api" />
+      <apidata name="RemoteToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.AddIn.Contract.IContract.RemoteToString">
+          <type api="T:System.AddIn.Contract.IContract" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractBase" ref="true" />
+      </containers>
+      <file name="522322fa-d25f-8b5f-cde9-2ac0a2ec2583" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractBase.Renewal(System.Runtime.Remoting.Lifetime.ILease)">
+      <topicdata group="api" />
+      <apidata name="Renewal" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="lease">
+          <type api="T:System.Runtime.Remoting.Lifetime.ILease" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Lifetime.ISponsor.Renewal(System.Runtime.Remoting.Lifetime.ILease)">
+          <type api="T:System.Runtime.Remoting.Lifetime.ISponsor" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractBase" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="b9a4d437-53e5-6145-c4c2-1b03dbda1457" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractBase.RevokeLifetimeToken(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="RevokeLifetimeToken" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="token">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.AddIn.Contract.IContract.RevokeLifetimeToken(System.Int32)">
+          <type api="T:System.AddIn.Contract.IContract" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractBase" ref="true" />
+      </containers>
+      <file name="184d009f-490a-6bf6-6edd-f6bb6aa6f687" />
+    </api>
+    <api id="T:System.AddIn.Pipeline.ContractHandle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Pipeline.ContractHandle" />
+      <apidata name="ContractHandle" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+      </containers>
+      <file name="b5bd5332-3efb-e24d-6ee8-22e8058b67f7" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Pipeline.ContractHandle">
+      <topicdata name="ContractHandle" group="list" subgroup="members" typeTopicId="T:System.AddIn.Pipeline.ContractHandle" />
+      <apidata name="ContractHandle" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.AddIn.Pipeline.ContractHandle.#ctor(System.AddIn.Contract.IContract)" />
+        <element api="M:System.AddIn.Pipeline.ContractHandle.AppDomainOwner(System.AppDomain)" />
+        <element api="P:System.AddIn.Pipeline.ContractHandle.Contract" />
+        <element api="M:System.AddIn.Pipeline.ContractHandle.ContractOwnsAppDomain(System.AddIn.Contract.IContract,System.AppDomain)" />
+        <element api="Overload:System.AddIn.Pipeline.ContractHandle.Dispose">
+          <element api="M:System.AddIn.Pipeline.ContractHandle.Dispose" />
+          <element api="M:System.AddIn.Pipeline.ContractHandle.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.AddIn.Pipeline.ContractHandle.Finalize" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractHandle" />
+      </containers>
+      <file name="7120f0fe-80b3-4137-9e2e-7c4da217b768" />
+    </api>
+    <api id="Methods.T:System.AddIn.Pipeline.ContractHandle">
+      <topicdata name="ContractHandle" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Pipeline.ContractHandle" />
+      <apidata name="ContractHandle" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.AddIn.Pipeline.ContractHandle.AppDomainOwner(System.AppDomain)" />
+        <element api="M:System.AddIn.Pipeline.ContractHandle.ContractOwnsAppDomain(System.AddIn.Contract.IContract,System.AppDomain)" />
+        <element api="Overload:System.AddIn.Pipeline.ContractHandle.Dispose">
+          <element api="M:System.AddIn.Pipeline.ContractHandle.Dispose" />
+          <element api="M:System.AddIn.Pipeline.ContractHandle.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.AddIn.Pipeline.ContractHandle.Finalize" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractHandle" />
+      </containers>
+      <file name="3d2eeb57-720d-2906-b89a-584f5ef0fbcc" />
+    </api>
+    <api id="Properties.T:System.AddIn.Pipeline.ContractHandle">
+      <topicdata name="ContractHandle" group="list" subgroup="Properties" typeTopicId="T:System.AddIn.Pipeline.ContractHandle" />
+      <apidata name="ContractHandle" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.AddIn.Pipeline.ContractHandle.Contract" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractHandle" />
+      </containers>
+      <file name="cd7f818c-a150-d55a-de4a-152af89a59eb" />
+    </api>
+    <api id="Overload:System.AddIn.Pipeline.ContractHandle.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.AddIn.Pipeline.ContractHandle" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.AddIn.Pipeline.ContractHandle.Dispose" />
+        <element api="M:System.AddIn.Pipeline.ContractHandle.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractHandle" ref="true" />
+      </containers>
+      <file name="955f4ee3-b60c-b361-120a-6989783d5510" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractHandle.#ctor(System.AddIn.Contract.IContract)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="contract">
+          <type api="T:System.AddIn.Contract.IContract" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractHandle" ref="true" />
+      </containers>
+      <file name="76e61c34-1416-fed2-ad31-ff9f0dc439ce" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractHandle.AppDomainOwner(System.AppDomain)">
+      <topicdata group="api" />
+      <apidata name="AppDomainOwner" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="domain">
+          <type api="T:System.AppDomain" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractHandle" ref="true" />
+      </containers>
+      <file name="e2058b44-8348-81ba-4ae1-4b689e5e6481" />
+    </api>
+    <api id="P:System.AddIn.Pipeline.ContractHandle.Contract">
+      <topicdata group="api" />
+      <apidata name="Contract" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Contract" />
+      <returns>
+        <type api="T:System.AddIn.Contract.IContract" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractHandle" ref="true" />
+      </containers>
+      <file name="b9c11120-28a5-56d9-bcff-7575d2782010" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractHandle.ContractOwnsAppDomain(System.AddIn.Contract.IContract,System.AppDomain)">
+      <topicdata group="api" />
+      <apidata name="ContractOwnsAppDomain" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="contract">
+          <type api="T:System.AddIn.Contract.IContract" ref="true" />
+        </parameter>
+        <parameter name="domain">
+          <type api="T:System.AppDomain" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractHandle" ref="true" />
+      </containers>
+      <file name="8a3691c4-1726-5093-a77a-c1b993b895b2" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractHandle.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.AddIn.Pipeline.ContractHandle.Dispose" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractHandle" ref="true" />
+      </containers>
+      <file name="18d80717-522d-b19c-a6bf-53138b98b138" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractHandle.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.AddIn.Pipeline.ContractHandle.Dispose" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractHandle" ref="true" />
+      </containers>
+      <file name="bb79a373-d03f-f939-ce43-05ed2a7d54e6" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.ContractHandle.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <implements>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.ContractHandle" ref="true" />
+      </containers>
+      <file name="9feebf30-12fb-2e15-66ee-0a30a9ceee5e" />
+    </api>
+    <api id="T:System.AddIn.Pipeline.FrameworkElementAdapters">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Pipeline.FrameworkElementAdapters" />
+      <apidata name="FrameworkElementAdapters" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Presentation" module="System.Windows.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+      </containers>
+      <file name="c3786743-c247-7a01-0fb2-9cc62e71f314" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Pipeline.FrameworkElementAdapters">
+      <topicdata name="FrameworkElementAdapters" group="list" subgroup="members" typeTopicId="T:System.AddIn.Pipeline.FrameworkElementAdapters" />
+      <apidata name="FrameworkElementAdapters" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.AddIn.Pipeline.FrameworkElementAdapters.ContractToViewAdapter(System.AddIn.Contract.INativeHandleContract)" />
+        <element api="M:System.AddIn.Pipeline.FrameworkElementAdapters.ViewToContractAdapter(System.Windows.FrameworkElement)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Presentation" module="System.Windows.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.FrameworkElementAdapters" />
+      </containers>
+      <file name="887eba7c-2594-563f-8ae7-268528a18540" />
+    </api>
+    <api id="Methods.T:System.AddIn.Pipeline.FrameworkElementAdapters">
+      <topicdata name="FrameworkElementAdapters" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Pipeline.FrameworkElementAdapters" />
+      <apidata name="FrameworkElementAdapters" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.AddIn.Pipeline.FrameworkElementAdapters.ContractToViewAdapter(System.AddIn.Contract.INativeHandleContract)" />
+        <element api="M:System.AddIn.Pipeline.FrameworkElementAdapters.ViewToContractAdapter(System.Windows.FrameworkElement)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Presentation" module="System.Windows.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.FrameworkElementAdapters" />
+      </containers>
+      <file name="4bdf6105-14a6-0042-6373-8c1b6778477e" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.FrameworkElementAdapters.ContractToViewAdapter(System.AddIn.Contract.INativeHandleContract)">
+      <topicdata group="api" />
+      <apidata name="ContractToViewAdapter" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="nativeHandleContract">
+          <type api="T:System.AddIn.Contract.INativeHandleContract" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.FrameworkElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Presentation" module="System.Windows.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.FrameworkElementAdapters" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8a922f2d-8423-f2e5-d88f-a3d6bb4c4574" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.FrameworkElementAdapters.ViewToContractAdapter(System.Windows.FrameworkElement)">
+      <topicdata group="api" />
+      <apidata name="ViewToContractAdapter" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="root">
+          <type api="T:System.Windows.FrameworkElement" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.AddIn.Contract.INativeHandleContract" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Presentation" module="System.Windows.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.FrameworkElementAdapters" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="870db899-f72e-0ef1-ae88-2fbfbbffe0ee" />
+    </api>
+    <api id="T:System.AddIn.Pipeline.HostAdapterAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Pipeline.HostAdapterAttribute" />
+      <apidata name="HostAdapterAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.HostAdapterAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="27b4b996-706e-42fb-0537-8a26eda13cc6" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Pipeline.HostAdapterAttribute">
+      <topicdata name="HostAdapterAttribute" group="list" subgroup="members" typeTopicId="T:System.AddIn.Pipeline.HostAdapterAttribute" />
+      <apidata name="HostAdapterAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.HostAdapterAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.AddIn.Pipeline.HostAdapterAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.HostAdapterAttribute" />
+      </containers>
+      <file name="1991d4f7-1828-ea43-f174-7320810bb742" />
+    </api>
+    <api id="Methods.T:System.AddIn.Pipeline.HostAdapterAttribute">
+      <topicdata name="HostAdapterAttribute" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Pipeline.HostAdapterAttribute" />
+      <apidata name="HostAdapterAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.HostAdapterAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.HostAdapterAttribute" />
+      </containers>
+      <file name="0099d978-d44c-64da-7a9a-e3faf03d008c" />
+    </api>
+    <api id="Properties.T:System.AddIn.Pipeline.HostAdapterAttribute">
+      <topicdata name="HostAdapterAttribute" group="list" subgroup="Properties" typeTopicId="T:System.AddIn.Pipeline.HostAdapterAttribute" />
+      <apidata name="HostAdapterAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.AddIn.Pipeline.HostAdapterAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.HostAdapterAttribute" />
+      </containers>
+      <file name="1221f89b-e925-c318-01cd-017985ef6471" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.HostAdapterAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.AddIn" module="System.AddIn" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.HostAdapterAttribute" ref="true" />
+      </containers>
+      <file name="6a37535e-4046-d58c-46c3-60dcc41e9e9e" />
+    </api>
+    <api id="T:System.AddIn.Pipeline.QualificationDataAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.AddIn.Pipeline.QualificationDataAttribute" />
+      <apidata name="QualificationDataAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Interface" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="7a6ec240-621c-fa8c-d46b-fa2c932e607e" />
+    </api>
+    <api id="AllMembers.T:System.AddIn.Pipeline.QualificationDataAttribute">
+      <topicdata name="QualificationDataAttribute" group="list" subgroup="members" typeTopicId="T:System.AddIn.Pipeline.QualificationDataAttribute" />
+      <apidata name="QualificationDataAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.AddIn.Pipeline.QualificationDataAttribute.#ctor(System.String,System.String)" />
+        <element api="P:System.AddIn.Pipeline.QualificationDataAttribute.Name" />
+        <element api="P:System.AddIn.Pipeline.QualificationDataAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.QualificationDataAttribute" />
+      </containers>
+      <file name="26fd8fc2-0c3e-64cb-900d-5d267a1aec6e" />
+    </api>
+    <api id="Methods.T:System.AddIn.Pipeline.QualificationDataAttribute">
+      <topicdata name="QualificationDataAttribute" group="list" subgroup="Methods" typeTopicId="T:System.AddIn.Pipeline.QualificationDataAttribute" />
+      <apidata name="QualificationDataAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.QualificationDataAttribute" />
+      </containers>
+      <file name="d81975dc-3934-078e-b52b-d94da764ede1" />
+    </api>
+    <api id="Properties.T:System.AddIn.Pipeline.QualificationDataAttribute">
+      <topicdata name="QualificationDataAttribute" group="list" subgroup="Properties" typeTopicId="T:System.AddIn.Pipeline.QualificationDataAttribute" />
+      <apidata name="QualificationDataAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.AddIn.Pipeline.QualificationDataAttribute.Name" />
+        <element api="P:System.AddIn.Pipeline.QualificationDataAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.QualificationDataAttribute" />
+      </containers>
+      <file name="62da9d89-d596-52f2-02f8-8cc62dc6c402" />
+    </api>
+    <api id="M:System.AddIn.Pipeline.QualificationDataAttribute.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.QualificationDataAttribute" ref="true" />
+      </containers>
+      <file name="32a6d622-684c-de1c-7f7a-cfa4aaf72a1b" />
+    </api>
+    <api id="P:System.AddIn.Pipeline.QualificationDataAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.QualificationDataAttribute" ref="true" />
+      </containers>
+      <file name="aa42e6f1-90bb-6bbc-9131-282f00c959a0" />
+    </api>
+    <api id="P:System.AddIn.Pipeline.QualificationDataAttribute.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.AddIn.Contract" module="System.AddIn.Contract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.AddIn.Pipeline" />
+        <type api="T:System.AddIn.Pipeline.QualificationDataAttribute" ref="true" />
+      </containers>
+      <file name="bdff53e4-5997-c587-5aae-caacf6b0fc00" />
+    </api>
+  </apis>
+</reflection>

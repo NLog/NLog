@@ -1,0 +1,715 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>97bdccfe-43bf-4c17-991d-c797c2ef2243</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Activities.Debugger.Symbol">
+      <topicdata group="api" />
+      <apidata name="System.Activities.Debugger.Symbol" group="namespace" />
+      <elements>
+        <element api="T:System.Activities.Debugger.Symbol.ActivitySymbol" />
+        <element api="T:System.Activities.Debugger.Symbol.DebugSymbol" />
+        <element api="T:System.Activities.Debugger.Symbol.WorkflowSymbol" />
+      </elements>
+      <file name="1b1d647d-1366-fc36-58f0-ffff6e59a812" />
+    </api>
+    <api id="T:System.Activities.Debugger.Symbol.ActivitySymbol">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Debugger.Symbol.ActivitySymbol" />
+      <apidata name="ActivitySymbol" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+      </containers>
+      <file name="54bd18eb-9118-ec13-5e68-c14302d81324" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Debugger.Symbol.ActivitySymbol">
+      <topicdata name="ActivitySymbol" group="list" subgroup="members" typeTopicId="T:System.Activities.Debugger.Symbol.ActivitySymbol" />
+      <apidata name="ActivitySymbol" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="P:System.Activities.Debugger.Symbol.ActivitySymbol.EndColumn" />
+        <element api="P:System.Activities.Debugger.Symbol.ActivitySymbol.EndLine" />
+        <element api="P:System.Activities.Debugger.Symbol.ActivitySymbol.Id" />
+        <element api="P:System.Activities.Debugger.Symbol.ActivitySymbol.StartColumn" />
+        <element api="P:System.Activities.Debugger.Symbol.ActivitySymbol.StartLine" />
+        <element api="M:System.Activities.Debugger.Symbol.ActivitySymbol.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.ActivitySymbol" />
+      </containers>
+      <file name="90c681d6-4cfe-7a64-705f-7bf958b13bb0" />
+    </api>
+    <api id="Methods.T:System.Activities.Debugger.Symbol.ActivitySymbol">
+      <topicdata name="ActivitySymbol" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Debugger.Symbol.ActivitySymbol" />
+      <apidata name="ActivitySymbol" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Activities.Debugger.Symbol.ActivitySymbol.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.ActivitySymbol" />
+      </containers>
+      <file name="213e9a4c-183f-9638-f3ef-999b3d32ee2f" />
+    </api>
+    <api id="Properties.T:System.Activities.Debugger.Symbol.ActivitySymbol">
+      <topicdata name="ActivitySymbol" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Debugger.Symbol.ActivitySymbol" />
+      <apidata name="ActivitySymbol" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Debugger.Symbol.ActivitySymbol.EndColumn" />
+        <element api="P:System.Activities.Debugger.Symbol.ActivitySymbol.EndLine" />
+        <element api="P:System.Activities.Debugger.Symbol.ActivitySymbol.Id" />
+        <element api="P:System.Activities.Debugger.Symbol.ActivitySymbol.StartColumn" />
+        <element api="P:System.Activities.Debugger.Symbol.ActivitySymbol.StartLine" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.ActivitySymbol" />
+      </containers>
+      <file name="89655b8f-80da-5652-3967-5b6a51bf4e16" />
+    </api>
+    <api id="P:System.Activities.Debugger.Symbol.ActivitySymbol.EndColumn">
+      <topicdata group="api" />
+      <apidata name="EndColumn" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EndColumn" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.ActivitySymbol" ref="true" />
+      </containers>
+      <file name="113d8593-7695-cae3-9038-7c7d351a0878" />
+    </api>
+    <api id="P:System.Activities.Debugger.Symbol.ActivitySymbol.EndLine">
+      <topicdata group="api" />
+      <apidata name="EndLine" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EndLine" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.ActivitySymbol" ref="true" />
+      </containers>
+      <file name="82afe5c2-b566-d855-3948-87032cd9f168" />
+    </api>
+    <api id="P:System.Activities.Debugger.Symbol.ActivitySymbol.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.ActivitySymbol" ref="true" />
+      </containers>
+      <file name="55641b96-71f1-c8de-6c04-f3c5ba0ab8d2" />
+    </api>
+    <api id="P:System.Activities.Debugger.Symbol.ActivitySymbol.StartColumn">
+      <topicdata group="api" />
+      <apidata name="StartColumn" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_StartColumn" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.ActivitySymbol" ref="true" />
+      </containers>
+      <file name="cbdd1d5d-89fa-a494-1ec0-aeeb44f363de" />
+    </api>
+    <api id="P:System.Activities.Debugger.Symbol.ActivitySymbol.StartLine">
+      <topicdata group="api" />
+      <apidata name="StartLine" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_StartLine" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.ActivitySymbol" ref="true" />
+      </containers>
+      <file name="70feb384-efd7-9f7f-67e5-076b4a3329ab" />
+    </api>
+    <api id="M:System.Activities.Debugger.Symbol.ActivitySymbol.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.ActivitySymbol" ref="true" />
+      </containers>
+      <file name="3bac789f-7f05-2396-79ea-4875340ceace" />
+    </api>
+    <api id="T:System.Activities.Debugger.Symbol.DebugSymbol">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Debugger.Symbol.DebugSymbol" />
+      <apidata name="DebugSymbol" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+      </containers>
+      <file name="437d49a7-d8ac-5394-f2ab-40ec84210acb" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Debugger.Symbol.DebugSymbol">
+      <topicdata name="DebugSymbol" group="list" subgroup="members" typeTopicId="T:System.Activities.Debugger.Symbol.DebugSymbol" />
+      <apidata name="DebugSymbol" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Debugger.Symbol.DebugSymbol.GetSymbol(System.Object)" />
+        <element api="M:System.Activities.Debugger.Symbol.DebugSymbol.SetSymbol(System.Object,System.Object)" />
+        <element api="F:System.Activities.Debugger.Symbol.DebugSymbol.SymbolName" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.DebugSymbol" />
+      </containers>
+      <file name="c661b367-3de9-e203-eb17-ae66b0ab51e1" />
+    </api>
+    <api id="Methods.T:System.Activities.Debugger.Symbol.DebugSymbol">
+      <topicdata name="DebugSymbol" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Debugger.Symbol.DebugSymbol" />
+      <apidata name="DebugSymbol" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Debugger.Symbol.DebugSymbol.GetSymbol(System.Object)" />
+        <element api="M:System.Activities.Debugger.Symbol.DebugSymbol.SetSymbol(System.Object,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.DebugSymbol" />
+      </containers>
+      <file name="fa0e41a6-24e1-25c7-8b18-224e5873bc7d" />
+    </api>
+    <api id="Fields.T:System.Activities.Debugger.Symbol.DebugSymbol">
+      <topicdata name="DebugSymbol" group="list" subgroup="Fields" typeTopicId="T:System.Activities.Debugger.Symbol.DebugSymbol" />
+      <apidata name="DebugSymbol" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Activities.Debugger.Symbol.DebugSymbol.SymbolName" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.DebugSymbol" />
+      </containers>
+      <file name="8849892e-98f5-c059-d089-bcde5ce95a72" />
+    </api>
+    <api id="M:System.Activities.Debugger.Symbol.DebugSymbol.GetSymbol(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetSymbol" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.DebugSymbol" ref="true" />
+      </containers>
+      <file name="ed8aed02-f9b9-7b5f-be71-8c1bd6e9b283" />
+    </api>
+    <api id="M:System.Activities.Debugger.Symbol.DebugSymbol.SetSymbol(System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetSymbol" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.DebugSymbol" ref="true" />
+      </containers>
+      <file name="152c3f25-9c96-2fb2-696f-dacf28c58289" />
+    </api>
+    <api id="F:System.Activities.Debugger.Symbol.DebugSymbol.SymbolName">
+      <topicdata group="api" />
+      <apidata name="SymbolName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Xaml.AttachableMemberIdentifier" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.DebugSymbol" ref="true" />
+      </containers>
+      <file name="549fc7a4-8f67-9329-f3c8-7af91940a328" />
+    </api>
+    <api id="T:System.Activities.Debugger.Symbol.WorkflowSymbol">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Debugger.Symbol.WorkflowSymbol" />
+      <apidata name="WorkflowSymbol" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Debugger.Symbol.WorkflowSymbol.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+      </containers>
+      <file name="97541ca7-7057-56e6-157e-794a01a67812" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Debugger.Symbol.WorkflowSymbol">
+      <topicdata name="WorkflowSymbol" group="list" subgroup="members" typeTopicId="T:System.Activities.Debugger.Symbol.WorkflowSymbol" />
+      <apidata name="WorkflowSymbol" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Debugger.Symbol.WorkflowSymbol.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Activities.Debugger.Symbol.WorkflowSymbol.#ctor" />
+        <element api="M:System.Activities.Debugger.Symbol.WorkflowSymbol.CalculateChecksum" />
+        <element api="M:System.Activities.Debugger.Symbol.WorkflowSymbol.Decode(System.String)" />
+        <element api="M:System.Activities.Debugger.Symbol.WorkflowSymbol.Encode" />
+        <element api="P:System.Activities.Debugger.Symbol.WorkflowSymbol.FileName" />
+        <element api="M:System.Activities.Debugger.Symbol.WorkflowSymbol.GetChecksum" />
+        <element api="P:System.Activities.Debugger.Symbol.WorkflowSymbol.Symbols" />
+        <element api="M:System.Activities.Debugger.Symbol.WorkflowSymbol.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.WorkflowSymbol" />
+      </containers>
+      <file name="dbb177ba-0aba-b92c-25aa-b59edf3f9898" />
+    </api>
+    <api id="Methods.T:System.Activities.Debugger.Symbol.WorkflowSymbol">
+      <topicdata name="WorkflowSymbol" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Debugger.Symbol.WorkflowSymbol" />
+      <apidata name="WorkflowSymbol" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Debugger.Symbol.WorkflowSymbol.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Activities.Debugger.Symbol.WorkflowSymbol.CalculateChecksum" />
+        <element api="M:System.Activities.Debugger.Symbol.WorkflowSymbol.Decode(System.String)" />
+        <element api="M:System.Activities.Debugger.Symbol.WorkflowSymbol.Encode" />
+        <element api="M:System.Activities.Debugger.Symbol.WorkflowSymbol.GetChecksum" />
+        <element api="M:System.Activities.Debugger.Symbol.WorkflowSymbol.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.WorkflowSymbol" />
+      </containers>
+      <file name="b9eb6ad3-e319-3681-8fc7-1757ecbe5d68" />
+    </api>
+    <api id="Properties.T:System.Activities.Debugger.Symbol.WorkflowSymbol">
+      <topicdata name="WorkflowSymbol" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Debugger.Symbol.WorkflowSymbol" />
+      <apidata name="WorkflowSymbol" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Debugger.Symbol.WorkflowSymbol.#ctor" />
+      <elements>
+        <element api="P:System.Activities.Debugger.Symbol.WorkflowSymbol.FileName" />
+        <element api="P:System.Activities.Debugger.Symbol.WorkflowSymbol.Symbols" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.WorkflowSymbol" />
+      </containers>
+      <file name="767d840a-8614-9e9a-d04a-dcab12f004ff" />
+    </api>
+    <api id="M:System.Activities.Debugger.Symbol.WorkflowSymbol.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.WorkflowSymbol" ref="true" />
+      </containers>
+      <file name="dde5c248-da00-a24f-e017-92cf04c70377" />
+    </api>
+    <api id="M:System.Activities.Debugger.Symbol.WorkflowSymbol.CalculateChecksum">
+      <topicdata group="api" />
+      <apidata name="CalculateChecksum" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.WorkflowSymbol" ref="true" />
+      </containers>
+      <file name="f2d06a82-042e-6114-ebcf-d34245f4a158" />
+    </api>
+    <api id="M:System.Activities.Debugger.Symbol.WorkflowSymbol.Decode(System.String)">
+      <topicdata group="api" />
+      <apidata name="Decode" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="symbolString">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Debugger.Symbol.WorkflowSymbol" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.WorkflowSymbol" ref="true" />
+      </containers>
+      <file name="9c6edc1d-8a9b-3411-7713-cd4ae3bdcb8c" />
+    </api>
+    <api id="M:System.Activities.Debugger.Symbol.WorkflowSymbol.Encode">
+      <topicdata group="api" />
+      <apidata name="Encode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.WorkflowSymbol" ref="true" />
+      </containers>
+      <file name="ccab84e3-fad8-470b-fee8-c7e55380c340" />
+    </api>
+    <api id="P:System.Activities.Debugger.Symbol.WorkflowSymbol.FileName">
+      <topicdata group="api" />
+      <apidata name="FileName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FileName" />
+      <setter name="set_FileName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.WorkflowSymbol" ref="true" />
+      </containers>
+      <file name="a9d1793d-54d7-cb72-a6c6-0ee0eb51679e" />
+    </api>
+    <api id="M:System.Activities.Debugger.Symbol.WorkflowSymbol.GetChecksum">
+      <topicdata group="api" />
+      <apidata name="GetChecksum" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.WorkflowSymbol" ref="true" />
+      </containers>
+      <file name="db11a291-7ac3-83d9-8310-ed278c77ab84" />
+    </api>
+    <api id="P:System.Activities.Debugger.Symbol.WorkflowSymbol.Symbols">
+      <topicdata group="api" />
+      <apidata name="Symbols" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Symbols" />
+      <setter name="set_Symbols" />
+      <returns>
+        <type api="T:System.Collections.Generic.ICollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Debugger.Symbol.ActivitySymbol" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.WorkflowSymbol" ref="true" />
+      </containers>
+      <file name="f2b9afe4-bbba-1b62-97dd-a7e44b9c986f" />
+    </api>
+    <api id="M:System.Activities.Debugger.Symbol.WorkflowSymbol.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Debugger.Symbol" />
+        <type api="T:System.Activities.Debugger.Symbol.WorkflowSymbol" ref="true" />
+      </containers>
+      <file name="601729fb-4112-5ff7-ae2d-b084998e294f" />
+    </api>
+  </apis>
+</reflection>

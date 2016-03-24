@@ -1,0 +1,1701 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel.Web.Extensions">
+      <assemblydata version="5.0.5.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Web.Extensions.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Web.Extensions.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Web.Extensions.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\Tools\devdiv\silverlightpublickey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceModel.Web">
+      <topicdata group="api" />
+      <apidata name="System.ServiceModel.Web" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceModel.Web.WebGetAttribute" />
+        <element api="T:System.ServiceModel.Web.WebInvokeAttribute" />
+        <element api="T:System.ServiceModel.Web.WebMessageFormat" />
+        <element api="T:System.ServiceModel.Web.WebOperationContext" />
+        <element api="T:System.ServiceModel.Web.IncomingWebResponseContext" />
+        <element api="T:System.ServiceModel.Web.OutgoingWebRequestContext" />
+        <element api="T:System.ServiceModel.Web.WebMessageBodyStyle" />
+      </elements>
+      <file name="887434a8-e424-8451-556c-8f43f026d783" />
+    </api>
+    <api id="T:System.ServiceModel.Web.IncomingWebResponseContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Web.IncomingWebResponseContext" />
+      <apidata name="IncomingWebResponseContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+      </containers>
+      <file name="ea3a85c8-6d1c-a718-6903-2dbf4de27d41" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Web.IncomingWebResponseContext">
+      <topicdata name="IncomingWebResponseContext" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Web.IncomingWebResponseContext" />
+      <apidata name="IncomingWebResponseContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ServiceModel.Web.IncomingWebResponseContext.Headers" />
+        <element api="P:System.ServiceModel.Web.IncomingWebResponseContext.StatusCode" />
+        <element api="P:System.ServiceModel.Web.IncomingWebResponseContext.StatusDescription" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.IncomingWebResponseContext" />
+      </containers>
+      <file name="69a21e3f-908b-06d3-04f9-14d2f9069a7e" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Web.IncomingWebResponseContext">
+      <topicdata name="IncomingWebResponseContext" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Web.IncomingWebResponseContext" />
+      <apidata name="IncomingWebResponseContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.IncomingWebResponseContext" />
+      </containers>
+      <file name="569ec036-4fe5-eade-ca29-4d1d0948103c" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Web.IncomingWebResponseContext">
+      <topicdata name="IncomingWebResponseContext" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Web.IncomingWebResponseContext" />
+      <apidata name="IncomingWebResponseContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.ServiceModel.Web.IncomingWebResponseContext.Headers" />
+        <element api="P:System.ServiceModel.Web.IncomingWebResponseContext.StatusCode" />
+        <element api="P:System.ServiceModel.Web.IncomingWebResponseContext.StatusDescription" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.IncomingWebResponseContext" />
+      </containers>
+      <file name="bcdc0ae7-7eae-8697-2bb1-70458bb835e6" />
+    </api>
+    <api id="P:System.ServiceModel.Web.IncomingWebResponseContext.Headers">
+      <topicdata group="api" />
+      <apidata name="Headers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Headers" />
+      <returns>
+        <type api="T:System.Net.WebHeaderCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.IncomingWebResponseContext" ref="true" />
+      </containers>
+      <file name="af4f3000-871f-9a10-2d8b-de2fea020726" />
+    </api>
+    <api id="P:System.ServiceModel.Web.IncomingWebResponseContext.StatusCode">
+      <topicdata group="api" />
+      <apidata name="StatusCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_StatusCode" />
+      <returns>
+        <type api="T:System.Net.HttpStatusCode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.IncomingWebResponseContext" ref="true" />
+      </containers>
+      <file name="d532b0b6-86a3-1f23-b37f-75bb09d2658f" />
+    </api>
+    <api id="P:System.ServiceModel.Web.IncomingWebResponseContext.StatusDescription">
+      <topicdata group="api" />
+      <apidata name="StatusDescription" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_StatusDescription" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.IncomingWebResponseContext" ref="true" />
+      </containers>
+      <file name="fd5d4ade-a5b4-946a-35ad-12f365d590d9" />
+    </api>
+    <api id="T:System.ServiceModel.Web.OutgoingWebRequestContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Web.OutgoingWebRequestContext" />
+      <apidata name="OutgoingWebRequestContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+      </containers>
+      <file name="2925b317-0b7f-f6a3-0d77-b784ae873f8b" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Web.OutgoingWebRequestContext">
+      <topicdata name="OutgoingWebRequestContext" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Web.OutgoingWebRequestContext" />
+      <apidata name="OutgoingWebRequestContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.Accept" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.ContentLength" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.ContentType" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.Headers" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.IfMatch" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.IfNoneMatch" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.IfUnmodifiedSince" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.Method" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.SuppressEntityBody" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.OutgoingWebRequestContext" />
+      </containers>
+      <file name="d5d528f9-e8b4-5c94-62bb-c1265ebed22a" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Web.OutgoingWebRequestContext">
+      <topicdata name="OutgoingWebRequestContext" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Web.OutgoingWebRequestContext" />
+      <apidata name="OutgoingWebRequestContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.OutgoingWebRequestContext" />
+      </containers>
+      <file name="ab1a9409-bb63-a717-63b9-ad29d04b7a98" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Web.OutgoingWebRequestContext">
+      <topicdata name="OutgoingWebRequestContext" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Web.OutgoingWebRequestContext" />
+      <apidata name="OutgoingWebRequestContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.Accept" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.ContentLength" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.ContentType" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.Headers" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.IfMatch" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.IfNoneMatch" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.IfUnmodifiedSince" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.Method" />
+        <element api="P:System.ServiceModel.Web.OutgoingWebRequestContext.SuppressEntityBody" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.OutgoingWebRequestContext" />
+      </containers>
+      <file name="422114e7-ed1e-b57f-c9c7-235746a19be0" />
+    </api>
+    <api id="P:System.ServiceModel.Web.OutgoingWebRequestContext.Accept">
+      <topicdata group="api" />
+      <apidata name="Accept" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Accept" />
+      <setter name="set_Accept" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.OutgoingWebRequestContext" ref="true" />
+      </containers>
+      <file name="557bae45-af8c-86a2-84c3-075a5826f492" />
+    </api>
+    <api id="P:System.ServiceModel.Web.OutgoingWebRequestContext.ContentLength">
+      <topicdata group="api" />
+      <apidata name="ContentLength" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ContentLength" />
+      <setter name="set_ContentLength" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.OutgoingWebRequestContext" ref="true" />
+      </containers>
+      <file name="91f4e6ae-5b91-9809-1a0d-2ffe66e245ab" />
+    </api>
+    <api id="P:System.ServiceModel.Web.OutgoingWebRequestContext.ContentType">
+      <topicdata group="api" />
+      <apidata name="ContentType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ContentType" />
+      <setter name="set_ContentType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.OutgoingWebRequestContext" ref="true" />
+      </containers>
+      <file name="19029190-4770-531e-a9b9-5152bdf57e6d" />
+    </api>
+    <api id="P:System.ServiceModel.Web.OutgoingWebRequestContext.Headers">
+      <topicdata group="api" />
+      <apidata name="Headers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Headers" />
+      <returns>
+        <type api="T:System.Net.WebHeaderCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.OutgoingWebRequestContext" ref="true" />
+      </containers>
+      <file name="18fc0701-6284-01e6-5f0c-8543239c9636" />
+    </api>
+    <api id="P:System.ServiceModel.Web.OutgoingWebRequestContext.IfMatch">
+      <topicdata group="api" />
+      <apidata name="IfMatch" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IfMatch" />
+      <setter name="set_IfMatch" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.OutgoingWebRequestContext" ref="true" />
+      </containers>
+      <file name="c6adbed7-b51d-f328-4baf-4149e20c72db" />
+    </api>
+    <api id="P:System.ServiceModel.Web.OutgoingWebRequestContext.IfNoneMatch">
+      <topicdata group="api" />
+      <apidata name="IfNoneMatch" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IfNoneMatch" />
+      <setter name="set_IfNoneMatch" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.OutgoingWebRequestContext" ref="true" />
+      </containers>
+      <file name="6f5982f1-e730-32c9-6a76-ff661308133c" />
+    </api>
+    <api id="P:System.ServiceModel.Web.OutgoingWebRequestContext.IfUnmodifiedSince">
+      <topicdata group="api" />
+      <apidata name="IfUnmodifiedSince" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IfUnmodifiedSince" />
+      <setter name="set_IfUnmodifiedSince" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.OutgoingWebRequestContext" ref="true" />
+      </containers>
+      <file name="0aee72ca-763a-27b2-5992-e91a53a66430" />
+    </api>
+    <api id="P:System.ServiceModel.Web.OutgoingWebRequestContext.Method">
+      <topicdata group="api" />
+      <apidata name="Method" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Method" />
+      <setter name="set_Method" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.OutgoingWebRequestContext" ref="true" />
+      </containers>
+      <file name="7da56247-73ca-12a7-730f-a6d523662249" />
+    </api>
+    <api id="P:System.ServiceModel.Web.OutgoingWebRequestContext.SuppressEntityBody">
+      <topicdata group="api" />
+      <apidata name="SuppressEntityBody" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SuppressEntityBody" />
+      <setter name="set_SuppressEntityBody" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.OutgoingWebRequestContext" ref="true" />
+      </containers>
+      <file name="01b39da0-b57b-c3eb-46ba-6a8c065923a6" />
+    </api>
+    <api id="T:System.ServiceModel.Web.WebGetAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Web.WebGetAttribute" />
+      <apidata name="WebGetAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Web.WebGetAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.Description.IOperationBehavior" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Method" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0b205c03-3394-f908-97ab-afc4631bad44" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Web.WebGetAttribute">
+      <topicdata name="WebGetAttribute" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Web.WebGetAttribute" />
+      <apidata name="WebGetAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Web.WebGetAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Web.WebGetAttribute.#ctor" />
+        <element api="P:System.ServiceModel.Web.WebGetAttribute.BodyStyle" />
+        <element api="P:System.ServiceModel.Web.WebGetAttribute.IsBodyStyleSetExplicitly" />
+        <element api="P:System.ServiceModel.Web.WebGetAttribute.IsRequestFormatSetExplicitly" />
+        <element api="P:System.ServiceModel.Web.WebGetAttribute.IsResponseFormatSetExplicitly" />
+        <element api="P:System.ServiceModel.Web.WebGetAttribute.RequestFormat" />
+        <element api="P:System.ServiceModel.Web.WebGetAttribute.ResponseFormat" />
+        <element api="M:System.ServiceModel.Web.WebGetAttribute.System#ServiceModel#Description#IOperationBehavior#AddBindingParameters(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Web.WebGetAttribute.System#ServiceModel#Description#IOperationBehavior#ApplyClientBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.ClientOperation)" />
+        <element api="M:System.ServiceModel.Web.WebGetAttribute.System#ServiceModel#Description#IOperationBehavior#ApplyDispatchBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.DispatchOperation)" />
+        <element api="M:System.ServiceModel.Web.WebGetAttribute.System#ServiceModel#Description#IOperationBehavior#Validate(System.ServiceModel.Description.OperationDescription)" />
+        <element api="P:System.ServiceModel.Web.WebGetAttribute.UriTemplate" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebGetAttribute" />
+      </containers>
+      <file name="98e676fd-9a22-1aa0-cb00-0bb41d439fd3" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Web.WebGetAttribute">
+      <topicdata name="WebGetAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Web.WebGetAttribute" />
+      <apidata name="WebGetAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Web.WebGetAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Web.WebGetAttribute.System#ServiceModel#Description#IOperationBehavior#AddBindingParameters(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Web.WebGetAttribute.System#ServiceModel#Description#IOperationBehavior#ApplyClientBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.ClientOperation)" />
+        <element api="M:System.ServiceModel.Web.WebGetAttribute.System#ServiceModel#Description#IOperationBehavior#ApplyDispatchBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.DispatchOperation)" />
+        <element api="M:System.ServiceModel.Web.WebGetAttribute.System#ServiceModel#Description#IOperationBehavior#Validate(System.ServiceModel.Description.OperationDescription)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebGetAttribute" />
+      </containers>
+      <file name="0e90c71e-8df9-e032-0228-22b1774272c7" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Web.WebGetAttribute">
+      <topicdata name="WebGetAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Web.WebGetAttribute" />
+      <apidata name="WebGetAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Web.WebGetAttribute.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.Web.WebGetAttribute.BodyStyle" />
+        <element api="P:System.ServiceModel.Web.WebGetAttribute.IsBodyStyleSetExplicitly" />
+        <element api="P:System.ServiceModel.Web.WebGetAttribute.IsRequestFormatSetExplicitly" />
+        <element api="P:System.ServiceModel.Web.WebGetAttribute.IsResponseFormatSetExplicitly" />
+        <element api="P:System.ServiceModel.Web.WebGetAttribute.RequestFormat" />
+        <element api="P:System.ServiceModel.Web.WebGetAttribute.ResponseFormat" />
+        <element api="P:System.ServiceModel.Web.WebGetAttribute.UriTemplate" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebGetAttribute" />
+      </containers>
+      <file name="e9527bcf-beed-1321-d778-212c15f66f0f" />
+    </api>
+    <api id="M:System.ServiceModel.Web.WebGetAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebGetAttribute" ref="true" />
+      </containers>
+      <file name="242fa0ef-b801-9efa-5845-389777c41048" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebGetAttribute.BodyStyle">
+      <topicdata group="api" />
+      <apidata name="BodyStyle" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BodyStyle" />
+      <setter name="set_BodyStyle" />
+      <returns>
+        <type api="T:System.ServiceModel.Web.WebMessageBodyStyle" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebGetAttribute" ref="true" />
+      </containers>
+      <file name="b3a5e304-7263-c6dc-fafb-ade5068f1554" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebGetAttribute.IsBodyStyleSetExplicitly">
+      <topicdata group="api" />
+      <apidata name="IsBodyStyleSetExplicitly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsBodyStyleSetExplicitly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebGetAttribute" ref="true" />
+      </containers>
+      <file name="fc3176f1-7ccb-b180-90e8-625e7ab34906" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebGetAttribute.IsRequestFormatSetExplicitly">
+      <topicdata group="api" />
+      <apidata name="IsRequestFormatSetExplicitly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsRequestFormatSetExplicitly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebGetAttribute" ref="true" />
+      </containers>
+      <file name="d5057cff-fee8-cf56-1ac5-0ba4fecc033d" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebGetAttribute.IsResponseFormatSetExplicitly">
+      <topicdata group="api" />
+      <apidata name="IsResponseFormatSetExplicitly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsResponseFormatSetExplicitly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebGetAttribute" ref="true" />
+      </containers>
+      <file name="dc525e36-2a2c-1de4-ed32-df7b1a2605b9" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebGetAttribute.RequestFormat">
+      <topicdata group="api" />
+      <apidata name="RequestFormat" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RequestFormat" />
+      <setter name="set_RequestFormat" />
+      <returns>
+        <type api="T:System.ServiceModel.Web.WebMessageFormat" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebGetAttribute" ref="true" />
+      </containers>
+      <file name="b5d42cc4-b605-f62a-7412-5ec1a6726f8d" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebGetAttribute.ResponseFormat">
+      <topicdata group="api" />
+      <apidata name="ResponseFormat" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ResponseFormat" />
+      <setter name="set_ResponseFormat" />
+      <returns>
+        <type api="T:System.ServiceModel.Web.WebMessageFormat" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebGetAttribute" ref="true" />
+      </containers>
+      <file name="900fdda2-575b-12e0-57b5-513c07e6c19a" />
+    </api>
+    <api id="M:System.ServiceModel.Web.WebGetAttribute.System#ServiceModel#Description#IOperationBehavior#AddBindingParameters(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Channels.BindingParameterCollection)">
+      <topicdata group="api" eiiName="IOperationBehavior.AddBindingParameters" />
+      <apidata name="AddBindingParameters" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="operationDescription">
+          <type api="T:System.ServiceModel.Description.OperationDescription" ref="true" />
+        </parameter>
+        <parameter name="bindingParameters">
+          <type api="T:System.ServiceModel.Channels.BindingParameterCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IOperationBehavior.AddBindingParameters(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Channels.BindingParameterCollection)">
+          <type api="T:System.ServiceModel.Description.IOperationBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebGetAttribute" ref="true" />
+      </containers>
+      <file name="67e0ab45-6a20-1dcf-e62b-91565f44dcd8" />
+    </api>
+    <api id="M:System.ServiceModel.Web.WebGetAttribute.System#ServiceModel#Description#IOperationBehavior#ApplyClientBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.ClientOperation)">
+      <topicdata group="api" eiiName="IOperationBehavior.ApplyClientBehavior" />
+      <apidata name="ApplyClientBehavior" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="operationDescription">
+          <type api="T:System.ServiceModel.Description.OperationDescription" ref="true" />
+        </parameter>
+        <parameter name="clientOperation">
+          <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IOperationBehavior.ApplyClientBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.ClientOperation)">
+          <type api="T:System.ServiceModel.Description.IOperationBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebGetAttribute" ref="true" />
+      </containers>
+      <file name="82c78091-6cd1-0c5c-ea5f-9f8cd4dd6bb5" />
+    </api>
+    <api id="M:System.ServiceModel.Web.WebGetAttribute.System#ServiceModel#Description#IOperationBehavior#ApplyDispatchBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.DispatchOperation)">
+      <topicdata group="api" eiiName="IOperationBehavior.ApplyDispatchBehavior" />
+      <apidata name="ApplyDispatchBehavior" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="operationDescription">
+          <type api="T:System.ServiceModel.Description.OperationDescription" ref="true" />
+        </parameter>
+        <parameter name="dispatchOperation">
+          <type api="T:System.ServiceModel.Dispatcher.DispatchOperation" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IOperationBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.DispatchOperation)">
+          <type api="T:System.ServiceModel.Description.IOperationBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebGetAttribute" ref="true" />
+      </containers>
+      <file name="e34b445a-d5af-ce28-5ef9-e280d69ac1fc" />
+    </api>
+    <api id="M:System.ServiceModel.Web.WebGetAttribute.System#ServiceModel#Description#IOperationBehavior#Validate(System.ServiceModel.Description.OperationDescription)">
+      <topicdata group="api" eiiName="IOperationBehavior.Validate" />
+      <apidata name="Validate" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="operationDescription">
+          <type api="T:System.ServiceModel.Description.OperationDescription" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IOperationBehavior.Validate(System.ServiceModel.Description.OperationDescription)">
+          <type api="T:System.ServiceModel.Description.IOperationBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebGetAttribute" ref="true" />
+      </containers>
+      <file name="6ddfc8e2-d72b-6e94-a574-e684f0558676" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebGetAttribute.UriTemplate">
+      <topicdata group="api" />
+      <apidata name="UriTemplate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UriTemplate" />
+      <setter name="set_UriTemplate" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebGetAttribute" ref="true" />
+      </containers>
+      <file name="594db67a-0fe1-ef91-77ec-8dfd1a1d1506" />
+    </api>
+    <api id="T:System.ServiceModel.Web.WebInvokeAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Web.WebInvokeAttribute" />
+      <apidata name="WebInvokeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Web.WebInvokeAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.Description.IOperationBehavior" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Method" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="433fa431-752e-1a37-aaf5-fa14279d2c33" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Web.WebInvokeAttribute">
+      <topicdata name="WebInvokeAttribute" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Web.WebInvokeAttribute" />
+      <apidata name="WebInvokeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Web.WebInvokeAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Web.WebInvokeAttribute.#ctor" />
+        <element api="P:System.ServiceModel.Web.WebInvokeAttribute.BodyStyle" />
+        <element api="P:System.ServiceModel.Web.WebInvokeAttribute.IsBodyStyleSetExplicitly" />
+        <element api="P:System.ServiceModel.Web.WebInvokeAttribute.IsRequestFormatSetExplicitly" />
+        <element api="P:System.ServiceModel.Web.WebInvokeAttribute.IsResponseFormatSetExplicitly" />
+        <element api="P:System.ServiceModel.Web.WebInvokeAttribute.Method" />
+        <element api="P:System.ServiceModel.Web.WebInvokeAttribute.RequestFormat" />
+        <element api="P:System.ServiceModel.Web.WebInvokeAttribute.ResponseFormat" />
+        <element api="M:System.ServiceModel.Web.WebInvokeAttribute.System#ServiceModel#Description#IOperationBehavior#AddBindingParameters(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Web.WebInvokeAttribute.System#ServiceModel#Description#IOperationBehavior#ApplyClientBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.ClientOperation)" />
+        <element api="M:System.ServiceModel.Web.WebInvokeAttribute.System#ServiceModel#Description#IOperationBehavior#ApplyDispatchBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.DispatchOperation)" />
+        <element api="M:System.ServiceModel.Web.WebInvokeAttribute.System#ServiceModel#Description#IOperationBehavior#Validate(System.ServiceModel.Description.OperationDescription)" />
+        <element api="P:System.ServiceModel.Web.WebInvokeAttribute.UriTemplate" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebInvokeAttribute" />
+      </containers>
+      <file name="f7fafdee-c02d-9a8c-f4ba-abddd896bf10" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Web.WebInvokeAttribute">
+      <topicdata name="WebInvokeAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Web.WebInvokeAttribute" />
+      <apidata name="WebInvokeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Web.WebInvokeAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Web.WebInvokeAttribute.System#ServiceModel#Description#IOperationBehavior#AddBindingParameters(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Channels.BindingParameterCollection)" />
+        <element api="M:System.ServiceModel.Web.WebInvokeAttribute.System#ServiceModel#Description#IOperationBehavior#ApplyClientBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.ClientOperation)" />
+        <element api="M:System.ServiceModel.Web.WebInvokeAttribute.System#ServiceModel#Description#IOperationBehavior#ApplyDispatchBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.DispatchOperation)" />
+        <element api="M:System.ServiceModel.Web.WebInvokeAttribute.System#ServiceModel#Description#IOperationBehavior#Validate(System.ServiceModel.Description.OperationDescription)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebInvokeAttribute" />
+      </containers>
+      <file name="8d4e7bf1-16c9-9921-cb49-ee9b3ac522fb" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Web.WebInvokeAttribute">
+      <topicdata name="WebInvokeAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Web.WebInvokeAttribute" />
+      <apidata name="WebInvokeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.ServiceModel.Web.WebInvokeAttribute.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.Web.WebInvokeAttribute.BodyStyle" />
+        <element api="P:System.ServiceModel.Web.WebInvokeAttribute.IsBodyStyleSetExplicitly" />
+        <element api="P:System.ServiceModel.Web.WebInvokeAttribute.IsRequestFormatSetExplicitly" />
+        <element api="P:System.ServiceModel.Web.WebInvokeAttribute.IsResponseFormatSetExplicitly" />
+        <element api="P:System.ServiceModel.Web.WebInvokeAttribute.Method" />
+        <element api="P:System.ServiceModel.Web.WebInvokeAttribute.RequestFormat" />
+        <element api="P:System.ServiceModel.Web.WebInvokeAttribute.ResponseFormat" />
+        <element api="P:System.ServiceModel.Web.WebInvokeAttribute.UriTemplate" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebInvokeAttribute" />
+      </containers>
+      <file name="f6ab52fe-212f-4508-1f4c-5e919239220c" />
+    </api>
+    <api id="M:System.ServiceModel.Web.WebInvokeAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebInvokeAttribute" ref="true" />
+      </containers>
+      <file name="35ebd7ec-b81a-f691-b067-e670faf12f2f" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebInvokeAttribute.BodyStyle">
+      <topicdata group="api" />
+      <apidata name="BodyStyle" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BodyStyle" />
+      <setter name="set_BodyStyle" />
+      <returns>
+        <type api="T:System.ServiceModel.Web.WebMessageBodyStyle" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebInvokeAttribute" ref="true" />
+      </containers>
+      <file name="5c2c6aeb-9d5d-f2db-29ee-41b49bde5120" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebInvokeAttribute.IsBodyStyleSetExplicitly">
+      <topicdata group="api" />
+      <apidata name="IsBodyStyleSetExplicitly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsBodyStyleSetExplicitly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebInvokeAttribute" ref="true" />
+      </containers>
+      <file name="a65576b3-93e6-9dd4-1613-a7dfef13b8d4" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebInvokeAttribute.IsRequestFormatSetExplicitly">
+      <topicdata group="api" />
+      <apidata name="IsRequestFormatSetExplicitly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsRequestFormatSetExplicitly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebInvokeAttribute" ref="true" />
+      </containers>
+      <file name="d4ec15e6-ae00-b4bb-a732-4c1f4e5b5eb3" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebInvokeAttribute.IsResponseFormatSetExplicitly">
+      <topicdata group="api" />
+      <apidata name="IsResponseFormatSetExplicitly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsResponseFormatSetExplicitly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebInvokeAttribute" ref="true" />
+      </containers>
+      <file name="948ec38d-7a97-0531-b666-23d766a02728" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebInvokeAttribute.Method">
+      <topicdata group="api" />
+      <apidata name="Method" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Method" />
+      <setter name="set_Method" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebInvokeAttribute" ref="true" />
+      </containers>
+      <file name="5b997cbd-c106-6d8c-5f14-89fc05843b3c" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebInvokeAttribute.RequestFormat">
+      <topicdata group="api" />
+      <apidata name="RequestFormat" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RequestFormat" />
+      <setter name="set_RequestFormat" />
+      <returns>
+        <type api="T:System.ServiceModel.Web.WebMessageFormat" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebInvokeAttribute" ref="true" />
+      </containers>
+      <file name="ad8b483d-94de-b76e-1d1a-1daa72769121" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebInvokeAttribute.ResponseFormat">
+      <topicdata group="api" />
+      <apidata name="ResponseFormat" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ResponseFormat" />
+      <setter name="set_ResponseFormat" />
+      <returns>
+        <type api="T:System.ServiceModel.Web.WebMessageFormat" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebInvokeAttribute" ref="true" />
+      </containers>
+      <file name="cd800535-5bd0-907c-edc7-14f060ea44a3" />
+    </api>
+    <api id="M:System.ServiceModel.Web.WebInvokeAttribute.System#ServiceModel#Description#IOperationBehavior#AddBindingParameters(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Channels.BindingParameterCollection)">
+      <topicdata group="api" eiiName="IOperationBehavior.AddBindingParameters" />
+      <apidata name="AddBindingParameters" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="operationDescription">
+          <type api="T:System.ServiceModel.Description.OperationDescription" ref="true" />
+        </parameter>
+        <parameter name="bindingParameters">
+          <type api="T:System.ServiceModel.Channels.BindingParameterCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IOperationBehavior.AddBindingParameters(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Channels.BindingParameterCollection)">
+          <type api="T:System.ServiceModel.Description.IOperationBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebInvokeAttribute" ref="true" />
+      </containers>
+      <file name="f5dec258-7b96-5705-baeb-9f6023e98588" />
+    </api>
+    <api id="M:System.ServiceModel.Web.WebInvokeAttribute.System#ServiceModel#Description#IOperationBehavior#ApplyClientBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.ClientOperation)">
+      <topicdata group="api" eiiName="IOperationBehavior.ApplyClientBehavior" />
+      <apidata name="ApplyClientBehavior" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="operationDescription">
+          <type api="T:System.ServiceModel.Description.OperationDescription" ref="true" />
+        </parameter>
+        <parameter name="clientOperation">
+          <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IOperationBehavior.ApplyClientBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.ClientOperation)">
+          <type api="T:System.ServiceModel.Description.IOperationBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebInvokeAttribute" ref="true" />
+      </containers>
+      <file name="c5b11b38-283f-c5f7-cdbc-f54aa2119b2b" />
+    </api>
+    <api id="M:System.ServiceModel.Web.WebInvokeAttribute.System#ServiceModel#Description#IOperationBehavior#ApplyDispatchBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.DispatchOperation)">
+      <topicdata group="api" eiiName="IOperationBehavior.ApplyDispatchBehavior" />
+      <apidata name="ApplyDispatchBehavior" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="operationDescription">
+          <type api="T:System.ServiceModel.Description.OperationDescription" ref="true" />
+        </parameter>
+        <parameter name="dispatchOperation">
+          <type api="T:System.ServiceModel.Dispatcher.DispatchOperation" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IOperationBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.DispatchOperation)">
+          <type api="T:System.ServiceModel.Description.IOperationBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebInvokeAttribute" ref="true" />
+      </containers>
+      <file name="1e7cd1cd-b40a-addc-88e0-c328fe05ccb1" />
+    </api>
+    <api id="M:System.ServiceModel.Web.WebInvokeAttribute.System#ServiceModel#Description#IOperationBehavior#Validate(System.ServiceModel.Description.OperationDescription)">
+      <topicdata group="api" eiiName="IOperationBehavior.Validate" />
+      <apidata name="Validate" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="operationDescription">
+          <type api="T:System.ServiceModel.Description.OperationDescription" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.Description.IOperationBehavior.Validate(System.ServiceModel.Description.OperationDescription)">
+          <type api="T:System.ServiceModel.Description.IOperationBehavior" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebInvokeAttribute" ref="true" />
+      </containers>
+      <file name="7d5c80b0-caea-c83a-32f1-87170d27c2b2" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebInvokeAttribute.UriTemplate">
+      <topicdata group="api" />
+      <apidata name="UriTemplate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UriTemplate" />
+      <setter name="set_UriTemplate" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebInvokeAttribute" ref="true" />
+      </containers>
+      <file name="90737db5-29b3-aa92-f63d-a37f3cebbb9f" />
+    </api>
+    <api id="T:System.ServiceModel.Web.WebMessageBodyStyle">
+      <topicdata group="api" />
+      <apidata name="WebMessageBodyStyle" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.ServiceModel.Web.WebMessageBodyStyle.Bare" />
+        <element api="F:System.ServiceModel.Web.WebMessageBodyStyle.Wrapped" />
+        <element api="F:System.ServiceModel.Web.WebMessageBodyStyle.WrappedRequest" />
+        <element api="F:System.ServiceModel.Web.WebMessageBodyStyle.WrappedResponse" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+      </containers>
+      <file name="1b068372-7249-a06b-b2d3-5b45f004bbc5" />
+    </api>
+    <api id="F:System.ServiceModel.Web.WebMessageBodyStyle.Bare">
+      <topicdata group="api" notopic="" />
+      <apidata name="Bare" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.Web.WebMessageBodyStyle" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebMessageBodyStyle" ref="false" />
+      </containers>
+      <file name="6a86d6ce-c574-e89e-d587-5b7b76184757" />
+    </api>
+    <api id="F:System.ServiceModel.Web.WebMessageBodyStyle.Wrapped">
+      <topicdata group="api" notopic="" />
+      <apidata name="Wrapped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.Web.WebMessageBodyStyle" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebMessageBodyStyle" ref="false" />
+      </containers>
+      <file name="ff05c064-338b-d670-3d83-e5f27f7480f8" />
+    </api>
+    <api id="F:System.ServiceModel.Web.WebMessageBodyStyle.WrappedRequest">
+      <topicdata group="api" notopic="" />
+      <apidata name="WrappedRequest" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.Web.WebMessageBodyStyle" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebMessageBodyStyle" ref="false" />
+      </containers>
+      <file name="42b75b9f-d761-70f8-255c-d8b62cb4c1e9" />
+    </api>
+    <api id="F:System.ServiceModel.Web.WebMessageBodyStyle.WrappedResponse">
+      <topicdata group="api" notopic="" />
+      <apidata name="WrappedResponse" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.Web.WebMessageBodyStyle" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebMessageBodyStyle" ref="false" />
+      </containers>
+      <file name="cda19869-b71d-6d33-74b6-67bdf0136239" />
+    </api>
+    <api id="T:System.ServiceModel.Web.WebMessageFormat">
+      <topicdata group="api" />
+      <apidata name="WebMessageFormat" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.ServiceModel.Web.WebMessageFormat.Xml" />
+        <element api="F:System.ServiceModel.Web.WebMessageFormat.Json" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+      </containers>
+      <file name="d69f54e1-5ca9-2f4b-1ff8-4da65eabc822" />
+    </api>
+    <api id="F:System.ServiceModel.Web.WebMessageFormat.Json">
+      <topicdata group="api" notopic="" />
+      <apidata name="Json" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.Web.WebMessageFormat" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebMessageFormat" ref="false" />
+      </containers>
+      <file name="e9f62979-1d44-6ded-874b-a10863c3b136" />
+    </api>
+    <api id="F:System.ServiceModel.Web.WebMessageFormat.Xml">
+      <topicdata group="api" notopic="" />
+      <apidata name="Xml" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.Web.WebMessageFormat" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebMessageFormat" ref="false" />
+      </containers>
+      <file name="f5ba1596-d1d8-b4b1-af14-2072bad0895d" />
+    </api>
+    <api id="T:System.ServiceModel.Web.WebOperationContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Web.WebOperationContext" />
+      <apidata name="WebOperationContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.IExtension`1" ref="true">
+          <specialization>
+            <type api="T:System.ServiceModel.OperationContext" ref="true" />
+          </specialization>
+        </type>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+      </containers>
+      <file name="7d605b18-8080-a081-b9be-9c686143432f" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Web.WebOperationContext">
+      <topicdata name="WebOperationContext" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Web.WebOperationContext" />
+      <apidata name="WebOperationContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Web.WebOperationContext.#ctor(System.ServiceModel.OperationContext)" />
+        <element api="M:System.ServiceModel.Web.WebOperationContext.Attach(System.ServiceModel.OperationContext)" />
+        <element api="P:System.ServiceModel.Web.WebOperationContext.Current" />
+        <element api="M:System.ServiceModel.Web.WebOperationContext.Detach(System.ServiceModel.OperationContext)" />
+        <element api="P:System.ServiceModel.Web.WebOperationContext.IncomingResponse" />
+        <element api="P:System.ServiceModel.Web.WebOperationContext.OutgoingRequest" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebOperationContext" />
+      </containers>
+      <file name="60f0f73b-2c5b-cf64-7928-e2695adc9e35" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Web.WebOperationContext">
+      <topicdata name="WebOperationContext" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Web.WebOperationContext" />
+      <apidata name="WebOperationContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Web.WebOperationContext.Attach(System.ServiceModel.OperationContext)" />
+        <element api="M:System.ServiceModel.Web.WebOperationContext.Detach(System.ServiceModel.OperationContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebOperationContext" />
+      </containers>
+      <file name="684a5d3c-ae50-a272-33d8-c4eb43da8f67" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Web.WebOperationContext">
+      <topicdata name="WebOperationContext" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Web.WebOperationContext" />
+      <apidata name="WebOperationContext" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.ServiceModel.Web.WebOperationContext.Current" />
+        <element api="P:System.ServiceModel.Web.WebOperationContext.IncomingResponse" />
+        <element api="P:System.ServiceModel.Web.WebOperationContext.OutgoingRequest" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebOperationContext" />
+      </containers>
+      <file name="4694d955-a191-df74-04a2-90eb331f4fc4" />
+    </api>
+    <api id="M:System.ServiceModel.Web.WebOperationContext.#ctor(System.ServiceModel.OperationContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="operationContext">
+          <type api="T:System.ServiceModel.OperationContext" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebOperationContext" ref="true" />
+      </containers>
+      <file name="eaa7adc6-2063-a21d-bdb5-060471d7838b" />
+    </api>
+    <api id="M:System.ServiceModel.Web.WebOperationContext.Attach(System.ServiceModel.OperationContext)">
+      <topicdata group="api" />
+      <apidata name="Attach" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="owner">
+          <type api="T:System.ServiceModel.OperationContext" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.IExtension`1.Attach(`0)">
+          <type api="T:System.ServiceModel.IExtension`1" ref="true">
+            <specialization>
+              <type api="T:System.ServiceModel.OperationContext" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebOperationContext" ref="true" />
+      </containers>
+      <file name="332f4da3-ded1-a13c-f15b-9e0070e42c89" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebOperationContext.Current">
+      <topicdata group="api" />
+      <apidata name="Current" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Current" />
+      <returns>
+        <type api="T:System.ServiceModel.Web.WebOperationContext" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebOperationContext" ref="true" />
+      </containers>
+      <file name="52512fd9-f92c-04d9-95f4-27d1a2af5ade" />
+    </api>
+    <api id="M:System.ServiceModel.Web.WebOperationContext.Detach(System.ServiceModel.OperationContext)">
+      <topicdata group="api" />
+      <apidata name="Detach" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="owner">
+          <type api="T:System.ServiceModel.OperationContext" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.IExtension`1.Detach(`0)">
+          <type api="T:System.ServiceModel.IExtension`1" ref="true">
+            <specialization>
+              <type api="T:System.ServiceModel.OperationContext" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebOperationContext" ref="true" />
+      </containers>
+      <file name="f812dec9-a72f-a9d5-e1fb-c26634276b66" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebOperationContext.IncomingResponse">
+      <topicdata group="api" />
+      <apidata name="IncomingResponse" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IncomingResponse" />
+      <returns>
+        <type api="T:System.ServiceModel.Web.IncomingWebResponseContext" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebOperationContext" ref="true" />
+      </containers>
+      <file name="f928997a-c737-a4a8-ed3d-0983d96f3b0f" />
+    </api>
+    <api id="P:System.ServiceModel.Web.WebOperationContext.OutgoingRequest">
+      <topicdata group="api" />
+      <apidata name="OutgoingRequest" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OutgoingRequest" />
+      <returns>
+        <type api="T:System.ServiceModel.Web.OutgoingWebRequestContext" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web.Extensions" module="System.ServiceModel.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Web" />
+        <type api="T:System.ServiceModel.Web.WebOperationContext" ref="true" />
+      </containers>
+      <file name="d317e3c3-347f-fea2-9f1d-f20a17c70877" />
+    </api>
+  </apis>
+</reflection>

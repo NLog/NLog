@@ -1,0 +1,568 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel.Security">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Security.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Security.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Security.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceModel.Security.Tokens">
+      <topicdata group="api" />
+      <apidata name="System.ServiceModel.Security.Tokens" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceModel.Security.Tokens.SecurityTokenParameters" />
+        <element api="T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters" />
+        <element api="T:System.ServiceModel.Security.Tokens.SupportingTokenParameters" />
+        <element api="T:System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters" />
+      </elements>
+      <file name="f0308305-dc31-ee6d-6b90-f2c017b99d14" />
+    </api>
+    <api id="T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters" />
+      <apidata name="SecureConversationSecurityTokenParameters" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ServiceModel.Security.Tokens.SecurityTokenParameters" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+      </containers>
+      <file name="28dd1407-8d05-fea8-40ed-875d4fb1b470" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters">
+      <topicdata name="SecureConversationSecurityTokenParameters" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters" />
+      <apidata name="SecureConversationSecurityTokenParameters" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.#ctor">
+          <element api="M:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.#ctor" />
+          <element api="M:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.#ctor(System.ServiceModel.Channels.SecurityBindingElement)" />
+        </element>
+        <element api="P:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.BootstrapSecurityBindingElement" />
+        <element api="M:System.ServiceModel.Security.Tokens.SecurityTokenParameters.Clone" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters" />
+      </containers>
+      <file name="d69c2b26-d5f7-14e8-e472-8f2dc402d87d" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters">
+      <topicdata name="SecureConversationSecurityTokenParameters" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters" />
+      <apidata name="SecureConversationSecurityTokenParameters" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Security.Tokens.SecurityTokenParameters.Clone" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters" />
+      </containers>
+      <file name="fb3b96ac-3468-e0c4-3b84-ca19ba0ef521" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters">
+      <topicdata name="SecureConversationSecurityTokenParameters" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters" />
+      <apidata name="SecureConversationSecurityTokenParameters" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.BootstrapSecurityBindingElement" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters" />
+      </containers>
+      <file name="593d2a27-1994-024b-5fb6-90ec283d49d6" />
+    </api>
+    <api id="Overload:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.#ctor" />
+        <element api="M:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.#ctor(System.ServiceModel.Channels.SecurityBindingElement)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters" ref="true" />
+      </containers>
+      <file name="a37c84dc-2220-b104-bd68-dcde79708464" />
+    </api>
+    <api id="M:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters" ref="true" />
+      </containers>
+      <file name="5d8dfb38-eb06-b356-7161-4118bf2fb6b8" />
+    </api>
+    <api id="M:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.#ctor(System.ServiceModel.Channels.SecurityBindingElement)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.#ctor" />
+      <parameters>
+        <parameter name="bootstrapSecurityBindingElement">
+          <type api="T:System.ServiceModel.Channels.SecurityBindingElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters" ref="true" />
+      </containers>
+      <file name="afbd854b-15fb-4a50-77fe-a82f60f381d3" />
+    </api>
+    <api id="P:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters.BootstrapSecurityBindingElement">
+      <topicdata group="api" />
+      <apidata name="BootstrapSecurityBindingElement" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BootstrapSecurityBindingElement" />
+      <setter name="set_BootstrapSecurityBindingElement" />
+      <returns>
+        <type api="T:System.ServiceModel.Channels.SecurityBindingElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters" ref="true" />
+      </containers>
+      <file name="9a543239-1b0f-e47e-a470-9a053c4d6f91" />
+    </api>
+    <api id="T:System.ServiceModel.Security.Tokens.SecurityTokenParameters">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Security.Tokens.SecurityTokenParameters" />
+      <apidata name="SecurityTokenParameters" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.ServiceModel.Security.Tokens.SecureConversationSecurityTokenParameters" ref="true" />
+          <type api="T:System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+      </containers>
+      <file name="229ec5e2-4930-6a85-a393-0bca3848930c" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Security.Tokens.SecurityTokenParameters">
+      <topicdata name="SecurityTokenParameters" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Security.Tokens.SecurityTokenParameters" />
+      <apidata name="SecurityTokenParameters" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Security.Tokens.SecurityTokenParameters.Clone" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SecurityTokenParameters" />
+      </containers>
+      <file name="79448dd4-5f7e-3add-bf05-db2c03102f0d" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Security.Tokens.SecurityTokenParameters">
+      <topicdata name="SecurityTokenParameters" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Security.Tokens.SecurityTokenParameters" />
+      <apidata name="SecurityTokenParameters" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Security.Tokens.SecurityTokenParameters.Clone" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SecurityTokenParameters" />
+      </containers>
+      <file name="2d48a4be-d05c-2a88-1cef-f95765f483b0" />
+    </api>
+    <api id="M:System.ServiceModel.Security.Tokens.SecurityTokenParameters.Clone">
+      <topicdata group="api" />
+      <apidata name="Clone" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.ServiceModel.Security.Tokens.SecurityTokenParameters" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SecurityTokenParameters" ref="true" />
+      </containers>
+      <file name="227d62c1-e955-6dbb-4563-e0e32b80f50b" />
+    </api>
+    <api id="T:System.ServiceModel.Security.Tokens.SupportingTokenParameters">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Security.Tokens.SupportingTokenParameters" />
+      <apidata name="SupportingTokenParameters" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Security.Tokens.SupportingTokenParameters.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+      </containers>
+      <file name="c7698131-450a-996a-0b0d-4d3cf69b4b77" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Security.Tokens.SupportingTokenParameters">
+      <topicdata name="SupportingTokenParameters" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Security.Tokens.SupportingTokenParameters" />
+      <apidata name="SupportingTokenParameters" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Security.Tokens.SupportingTokenParameters.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Security.Tokens.SupportingTokenParameters.#ctor" />
+        <element api="M:System.ServiceModel.Security.Tokens.SupportingTokenParameters.Clone" />
+        <element api="P:System.ServiceModel.Security.Tokens.SupportingTokenParameters.Endorsing" />
+        <element api="P:System.ServiceModel.Security.Tokens.SupportingTokenParameters.SignedEncrypted" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SupportingTokenParameters" />
+      </containers>
+      <file name="dc6ef572-9e48-beb1-5002-a7f65983075e" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Security.Tokens.SupportingTokenParameters">
+      <topicdata name="SupportingTokenParameters" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Security.Tokens.SupportingTokenParameters" />
+      <apidata name="SupportingTokenParameters" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Security.Tokens.SupportingTokenParameters.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Security.Tokens.SupportingTokenParameters.Clone" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SupportingTokenParameters" />
+      </containers>
+      <file name="0b542415-ee94-c482-06e6-c17f29c6d520" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Security.Tokens.SupportingTokenParameters">
+      <topicdata name="SupportingTokenParameters" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Security.Tokens.SupportingTokenParameters" />
+      <apidata name="SupportingTokenParameters" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Security.Tokens.SupportingTokenParameters.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.Security.Tokens.SupportingTokenParameters.Endorsing" />
+        <element api="P:System.ServiceModel.Security.Tokens.SupportingTokenParameters.SignedEncrypted" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SupportingTokenParameters" />
+      </containers>
+      <file name="de6aa6bc-e462-2447-3719-c35289e574d6" />
+    </api>
+    <api id="M:System.ServiceModel.Security.Tokens.SupportingTokenParameters.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SupportingTokenParameters" ref="true" />
+      </containers>
+      <file name="713c2256-d626-9471-94e3-8421bbb85fd6" />
+    </api>
+    <api id="M:System.ServiceModel.Security.Tokens.SupportingTokenParameters.Clone">
+      <topicdata group="api" />
+      <apidata name="Clone" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.ServiceModel.Security.Tokens.SupportingTokenParameters" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SupportingTokenParameters" ref="true" />
+      </containers>
+      <file name="0763fda3-6143-c2ba-4b20-e9849d50abfc" />
+    </api>
+    <api id="P:System.ServiceModel.Security.Tokens.SupportingTokenParameters.Endorsing">
+      <topicdata group="api" />
+      <apidata name="Endorsing" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Endorsing" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+          <specialization>
+            <type api="T:System.ServiceModel.Security.Tokens.SecurityTokenParameters" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SupportingTokenParameters" ref="true" />
+      </containers>
+      <file name="98bb35d4-a8ed-cb44-179f-b9751dfdd096" />
+    </api>
+    <api id="P:System.ServiceModel.Security.Tokens.SupportingTokenParameters.SignedEncrypted">
+      <topicdata group="api" />
+      <apidata name="SignedEncrypted" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SignedEncrypted" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+          <specialization>
+            <type api="T:System.ServiceModel.Security.Tokens.SecurityTokenParameters" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.SupportingTokenParameters" ref="true" />
+      </containers>
+      <file name="7beef44c-2df1-ec59-8709-e10dac188ec9" />
+    </api>
+    <api id="T:System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters" />
+      <apidata name="UserNameSecurityTokenParameters" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ServiceModel.Security.Tokens.SecurityTokenParameters" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+      </containers>
+      <file name="fe31b096-eafb-deb1-83b6-c86500987630" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters">
+      <topicdata name="UserNameSecurityTokenParameters" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters" />
+      <apidata name="UserNameSecurityTokenParameters" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Security.Tokens.SecurityTokenParameters.Clone" />
+        <element api="M:System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters" />
+      </containers>
+      <file name="7f8ef63a-dab5-56cd-aca9-3de54ec5b51f" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters">
+      <topicdata name="UserNameSecurityTokenParameters" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters" />
+      <apidata name="UserNameSecurityTokenParameters" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Security.Tokens.SecurityTokenParameters.Clone" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters" />
+      </containers>
+      <file name="65eaec54-ee44-2c8d-719d-b0908f2318eb" />
+    </api>
+    <api id="M:System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Security" module="System.ServiceModel.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Security.Tokens" />
+        <type api="T:System.ServiceModel.Security.Tokens.UserNameSecurityTokenParameters" ref="true" />
+      </containers>
+      <file name="c302cbc1-ae42-7dd4-8ff3-8778c1155051" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,860 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Security.Authentication.Web">
+      <topicdata group="api" />
+      <apidata name="Windows.Security.Authentication.Web" group="namespace" />
+      <elements>
+        <element api="T:Windows.Security.Authentication.Web.WebAuthenticationStatus" />
+        <element api="T:Windows.Security.Authentication.Web.WebAuthenticationOptions" />
+        <element api="T:Windows.Security.Authentication.Web.WebAuthenticationResult" />
+        <element api="T:Windows.Security.Authentication.Web.WebAuthenticationBroker" />
+      </elements>
+      <file name="eb483699-d902-e0bf-6309-fc5bba6c988e" />
+    </api>
+    <api id="T:Windows.Security.Authentication.Web.WebAuthenticationBroker">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.Web.WebAuthenticationBroker" />
+      <apidata name="WebAuthenticationBroker" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="09ce6f0e-f1d3-cd86-c34b-05d7d1bb4a71" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.Authentication.Web.WebAuthenticationBroker">
+      <topicdata name="WebAuthenticationBroker" group="list" subgroup="members" typeTopicId="T:Windows.Security.Authentication.Web.WebAuthenticationBroker" />
+      <apidata name="WebAuthenticationBroker" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue">
+          <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue(Windows.Foundation.Uri)" />
+          <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue(Windows.Foundation.Uri,Windows.Foundation.Uri)" />
+          <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue(Windows.Foundation.Uri,Windows.Foundation.Uri,Windows.Foundation.Collections.ValueSet,Windows.Security.Authentication.Web.WebAuthenticationOptions)" />
+        </element>
+        <element api="Overload:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAsync">
+          <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAsync(Windows.Security.Authentication.Web.WebAuthenticationOptions,Windows.Foundation.Uri)" />
+          <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAsync(Windows.Security.Authentication.Web.WebAuthenticationOptions,Windows.Foundation.Uri,Windows.Foundation.Uri)" />
+        </element>
+        <element api="Overload:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateSilentlyAsync">
+          <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateSilentlyAsync(Windows.Foundation.Uri)" />
+          <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateSilentlyAsync(Windows.Foundation.Uri,Windows.Security.Authentication.Web.WebAuthenticationOptions)" />
+        </element>
+        <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.GetCurrentApplicationCallbackUri" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationBroker" />
+      </containers>
+      <file name="86192b72-6bd7-d96c-c14a-c9c3401c4987" />
+    </api>
+    <api id="Methods.T:Windows.Security.Authentication.Web.WebAuthenticationBroker">
+      <topicdata name="WebAuthenticationBroker" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.Authentication.Web.WebAuthenticationBroker" />
+      <apidata name="WebAuthenticationBroker" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue">
+          <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue(Windows.Foundation.Uri)" />
+          <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue(Windows.Foundation.Uri,Windows.Foundation.Uri)" />
+          <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue(Windows.Foundation.Uri,Windows.Foundation.Uri,Windows.Foundation.Collections.ValueSet,Windows.Security.Authentication.Web.WebAuthenticationOptions)" />
+        </element>
+        <element api="Overload:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAsync">
+          <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAsync(Windows.Security.Authentication.Web.WebAuthenticationOptions,Windows.Foundation.Uri)" />
+          <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAsync(Windows.Security.Authentication.Web.WebAuthenticationOptions,Windows.Foundation.Uri,Windows.Foundation.Uri)" />
+        </element>
+        <element api="Overload:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateSilentlyAsync">
+          <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateSilentlyAsync(Windows.Foundation.Uri)" />
+          <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateSilentlyAsync(Windows.Foundation.Uri,Windows.Security.Authentication.Web.WebAuthenticationOptions)" />
+        </element>
+        <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.GetCurrentApplicationCallbackUri" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationBroker" />
+      </containers>
+      <file name="33561137-3843-9a62-3da9-ef8fa0746cef" />
+    </api>
+    <api id="Overload:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue">
+      <topicdata name="AuthenticateAndContinue" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.Web.WebAuthenticationBroker" />
+      <apidata name="AuthenticateAndContinue" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue(Windows.Foundation.Uri,Windows.Foundation.Uri)" />
+        <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue(Windows.Foundation.Uri,Windows.Foundation.Uri,Windows.Foundation.Collections.ValueSet,Windows.Security.Authentication.Web.WebAuthenticationOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationBroker" ref="true" />
+      </containers>
+      <file name="e5ad5969-4951-7c05-f39f-c768b216713f" />
+    </api>
+    <api id="Overload:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAsync">
+      <topicdata name="AuthenticateAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.Web.WebAuthenticationBroker" />
+      <apidata name="AuthenticateAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAsync(Windows.Security.Authentication.Web.WebAuthenticationOptions,Windows.Foundation.Uri)" />
+        <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAsync(Windows.Security.Authentication.Web.WebAuthenticationOptions,Windows.Foundation.Uri,Windows.Foundation.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationBroker" ref="true" />
+      </containers>
+      <file name="32904e58-2f2d-ffdc-b6b2-ef620e1fa4e5" />
+    </api>
+    <api id="Overload:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateSilentlyAsync">
+      <topicdata name="AuthenticateSilentlyAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.Web.WebAuthenticationBroker" />
+      <apidata name="AuthenticateSilentlyAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateSilentlyAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateSilentlyAsync(Windows.Foundation.Uri,Windows.Security.Authentication.Web.WebAuthenticationOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationBroker" ref="true" />
+      </containers>
+      <file name="5200ab66-b938-ba0a-1fb6-fd0ff8d4d06e" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAndContinue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="requestUri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationBroker" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AuthenticateAndContinue</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5d7344fd-89c8-405c-8617-14068bd6ff7d" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue(Windows.Foundation.Uri,Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAndContinue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="requestUri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="callbackUri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationBroker" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AuthenticateWithCallbackUriAndContinue</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="42e38dff-e511-ef84-cf82-246026db4adb" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue(Windows.Foundation.Uri,Windows.Foundation.Uri,Windows.Foundation.Collections.ValueSet,Windows.Security.Authentication.Web.WebAuthenticationOptions)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAndContinue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAndContinue" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="requestUri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="callbackUri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="continuationData" in="true">
+          <type api="T:Windows.Foundation.Collections.ValueSet" ref="true" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Security.Authentication.Web.WebAuthenticationOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationBroker" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AuthenticateWithCallbackUriContinuationDataAndOptionsAndContinue</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="853f5e99-ffef-a66b-f7cb-80fa269f11a1" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAsync(Windows.Security.Authentication.Web.WebAuthenticationOptions,Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Security.Authentication.Web.WebAuthenticationOptions" ref="false" />
+        </parameter>
+        <parameter name="requestUri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Authentication.Web.WebAuthenticationResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationBroker" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AuthenticateAsync is unavailable for releases beginning with Windows Phone 8.1. Instead, use AuthenticateAndContinue or AuthenticateSilentlyAsync</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AuthenticateWithoutCallbackUriAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9868f15a-c2a4-f99b-f2b3-6847aabf35d7" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAsync(Windows.Security.Authentication.Web.WebAuthenticationOptions,Windows.Foundation.Uri,Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Security.Authentication.Web.WebAuthenticationOptions" ref="false" />
+        </parameter>
+        <parameter name="requestUri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="callbackUri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Authentication.Web.WebAuthenticationResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationBroker" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AuthenticateAsync is unavailable for releases beginning with Windows Phone 8.1. Instead, use AuthenticateAndContinue or AuthenticateSilentlyAsync</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AuthenticateWithCallbackUriAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="66e1bfbe-1c8b-eee9-3f7a-c01bd911505c" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateSilentlyAsync(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateSilentlyAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateSilentlyAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="requestUri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Authentication.Web.WebAuthenticationResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationBroker" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AuthenticateSilentlyAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d87642e7-4b3c-155e-67dd-416a80d17132" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateSilentlyAsync(Windows.Foundation.Uri,Windows.Security.Authentication.Web.WebAuthenticationOptions)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateSilentlyAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Security.Authentication.Web.WebAuthenticationBroker.AuthenticateSilentlyAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="requestUri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Security.Authentication.Web.WebAuthenticationOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Security.Authentication.Web.WebAuthenticationResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationBroker" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AuthenticateSilentlyWithOptionsAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cc6eedbc-9c80-9de6-9a82-9d591f0a609d" />
+    </api>
+    <api id="M:Windows.Security.Authentication.Web.WebAuthenticationBroker.GetCurrentApplicationCallbackUri">
+      <topicdata group="api" />
+      <apidata name="GetCurrentApplicationCallbackUri" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationBroker" ref="true" />
+      </containers>
+      <file name="88aacce7-5f00-41aa-cf0a-f37c6a8cdfa5" />
+    </api>
+    <api id="T:Windows.Security.Authentication.Web.WebAuthenticationOptions">
+      <topicdata group="api" />
+      <apidata name="WebAuthenticationOptions" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Security.Authentication.Web.WebAuthenticationOptions.None" />
+        <element api="F:Windows.Security.Authentication.Web.WebAuthenticationOptions.SilentMode" />
+        <element api="F:Windows.Security.Authentication.Web.WebAuthenticationOptions.UseTitle" />
+        <element api="F:Windows.Security.Authentication.Web.WebAuthenticationOptions.UseHttpPost" />
+        <element api="F:Windows.Security.Authentication.Web.WebAuthenticationOptions.UseCorporateNetwork" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7872070a-5970-de8d-c4f0-8bde9e7dc2b7" />
+    </api>
+    <api id="F:Windows.Security.Authentication.Web.WebAuthenticationOptions.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationOptions" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationOptions" ref="false" />
+      </containers>
+      <file name="81d208fe-fad9-4397-998e-c12cc7ceaa85" />
+    </api>
+    <api id="F:Windows.Security.Authentication.Web.WebAuthenticationOptions.SilentMode">
+      <topicdata group="api" notopic="" />
+      <apidata name="SilentMode" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationOptions" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationOptions" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SilentMode is unavailable for releases beginning with Windows Phone 8.1. Instead, use AuthenticateSilentlyAsync.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="789ac224-2993-1533-a2ad-25b1cd24b920" />
+    </api>
+    <api id="F:Windows.Security.Authentication.Web.WebAuthenticationOptions.UseCorporateNetwork">
+      <topicdata group="api" notopic="" />
+      <apidata name="UseCorporateNetwork" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationOptions" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationOptions" ref="false" />
+      </containers>
+      <file name="55999d8a-adff-de18-2d21-6ce1938a8388" />
+    </api>
+    <api id="F:Windows.Security.Authentication.Web.WebAuthenticationOptions.UseHttpPost">
+      <topicdata group="api" notopic="" />
+      <apidata name="UseHttpPost" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationOptions" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationOptions" ref="false" />
+      </containers>
+      <file name="260bb93d-59cd-28f5-da79-6079a40f3990" />
+    </api>
+    <api id="F:Windows.Security.Authentication.Web.WebAuthenticationOptions.UseTitle">
+      <topicdata group="api" notopic="" />
+      <apidata name="UseTitle" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationOptions" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationOptions" ref="false" />
+      </containers>
+      <file name="e46de59a-acad-c59d-0c7a-3eb3762a0f6d" />
+    </api>
+    <api id="T:Windows.Security.Authentication.Web.WebAuthenticationResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.Authentication.Web.WebAuthenticationResult" />
+      <apidata name="WebAuthenticationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Security.Authentication.Web.IWebAuthenticationResult" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="98311a36-b618-2950-76a7-d113621804ac" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.Authentication.Web.WebAuthenticationResult">
+      <topicdata name="WebAuthenticationResult" group="list" subgroup="members" typeTopicId="T:Windows.Security.Authentication.Web.WebAuthenticationResult" />
+      <apidata name="WebAuthenticationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Security.Authentication.Web.WebAuthenticationResult.ResponseData" />
+        <element api="P:Windows.Security.Authentication.Web.WebAuthenticationResult.ResponseErrorDetail" />
+        <element api="P:Windows.Security.Authentication.Web.WebAuthenticationResult.ResponseStatus" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationResult" />
+      </containers>
+      <file name="a4fab12b-8bf2-cbe0-f0c2-2a6dc31ddfd1" />
+    </api>
+    <api id="Methods.T:Windows.Security.Authentication.Web.WebAuthenticationResult">
+      <topicdata name="WebAuthenticationResult" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.Authentication.Web.WebAuthenticationResult" />
+      <apidata name="WebAuthenticationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationResult" />
+      </containers>
+      <file name="12e7be0f-7c8d-faa0-c570-e9f67aecc0aa" />
+    </api>
+    <api id="Properties.T:Windows.Security.Authentication.Web.WebAuthenticationResult">
+      <topicdata name="WebAuthenticationResult" group="list" subgroup="Properties" typeTopicId="T:Windows.Security.Authentication.Web.WebAuthenticationResult" />
+      <apidata name="WebAuthenticationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Security.Authentication.Web.WebAuthenticationResult.ResponseData" />
+        <element api="P:Windows.Security.Authentication.Web.WebAuthenticationResult.ResponseErrorDetail" />
+        <element api="P:Windows.Security.Authentication.Web.WebAuthenticationResult.ResponseStatus" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationResult" />
+      </containers>
+      <file name="bb5a05bf-a789-acc5-0813-02689c4f572f" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.WebAuthenticationResult.ResponseData">
+      <topicdata group="api" />
+      <apidata name="ResponseData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResponseData" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationResult" ref="true" />
+      </containers>
+      <file name="4b491e67-589c-d5a2-79b5-e979060ffbed" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.WebAuthenticationResult.ResponseErrorDetail">
+      <topicdata group="api" />
+      <apidata name="ResponseErrorDetail" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResponseErrorDetail" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationResult" ref="true" />
+      </containers>
+      <file name="375866e0-db26-61fe-530e-b1e4495f0ed0" />
+    </api>
+    <api id="P:Windows.Security.Authentication.Web.WebAuthenticationResult.ResponseStatus">
+      <topicdata group="api" />
+      <apidata name="ResponseStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResponseStatus" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationResult" ref="true" />
+      </containers>
+      <file name="4eaab1bc-57a3-4bcb-fd1c-79db2d9aa665" />
+    </api>
+    <api id="T:Windows.Security.Authentication.Web.WebAuthenticationStatus">
+      <topicdata group="api" />
+      <apidata name="WebAuthenticationStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Security.Authentication.Web.WebAuthenticationStatus.Success" />
+        <element api="F:Windows.Security.Authentication.Web.WebAuthenticationStatus.UserCancel" />
+        <element api="F:Windows.Security.Authentication.Web.WebAuthenticationStatus.ErrorHttp" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="07e93a0b-2e56-ecf6-c031-91e19f1a0dfc" />
+    </api>
+    <api id="F:Windows.Security.Authentication.Web.WebAuthenticationStatus.ErrorHttp">
+      <topicdata group="api" notopic="" />
+      <apidata name="ErrorHttp" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationStatus" ref="false" />
+      </containers>
+      <file name="496567a7-761f-e1bd-f49f-d2ac8d6bf854" />
+    </api>
+    <api id="F:Windows.Security.Authentication.Web.WebAuthenticationStatus.Success">
+      <topicdata group="api" notopic="" />
+      <apidata name="Success" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationStatus" ref="false" />
+      </containers>
+      <file name="3683a1e1-9643-9200-431a-287a90bce4dc" />
+    </api>
+    <api id="F:Windows.Security.Authentication.Web.WebAuthenticationStatus.UserCancel">
+      <topicdata group="api" notopic="" />
+      <apidata name="UserCancel" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Authentication.Web" />
+        <type api="T:Windows.Security.Authentication.Web.WebAuthenticationStatus" ref="false" />
+      </containers>
+      <file name="81f4f1ac-8058-f390-3ebb-38e9ff429677" />
+    </api>
+  </apis>
+</reflection>

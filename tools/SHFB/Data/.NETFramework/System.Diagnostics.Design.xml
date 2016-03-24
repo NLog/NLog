@@ -1,0 +1,1098 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Design">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Drawing.BitmapSuffixInSatelliteAssemblyAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Design.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Design.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Design.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Diagnostics.Design">
+      <topicdata group="api" />
+      <apidata name="System.Diagnostics.Design" group="namespace" />
+      <elements>
+        <element api="T:System.Diagnostics.Design.LogConverter" />
+        <element api="T:System.Diagnostics.Design.ProcessDesigner" />
+        <element api="T:System.Diagnostics.Design.ProcessModuleDesigner" />
+        <element api="T:System.Diagnostics.Design.ProcessThreadDesigner" />
+      </elements>
+      <file name="0f517951-0bba-302f-cef7-4fc3a4a22482" />
+    </api>
+    <api id="T:System.Diagnostics.Design.LogConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Design.LogConverter" />
+      <apidata name="LogConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Diagnostics.Design.LogConverter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+      </containers>
+      <file name="4658a8ab-0e39-dace-6132-4e7bc7a2cc9f" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Design.LogConverter">
+      <topicdata name="LogConverter" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Design.LogConverter" />
+      <apidata name="LogConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Diagnostics.Design.LogConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Diagnostics.Design.LogConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:System.Diagnostics.Design.LogConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:System.Diagnostics.Design.LogConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)" />
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)" />
+        <element api="Overload:System.Diagnostics.Design.LogConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.Diagnostics.Design.LogConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.Diagnostics.Design.LogConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection,System.String[])" />
+        <element api="M:System.Diagnostics.Design.LogConverter.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.LogConverter" />
+      </containers>
+      <file name="82d754eb-6430-bfe4-8dac-130f6f849a78" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Design.LogConverter">
+      <topicdata name="LogConverter" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Design.LogConverter" />
+      <apidata name="LogConverter" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Diagnostics.Design.LogConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Diagnostics.Design.LogConverter.CanConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+          <element api="M:System.Diagnostics.Design.LogConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.CanConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.ConvertFrom">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+          <element api="M:System.Diagnostics.Design.LogConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.ConvertFromInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.ConvertFromString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.String)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertFromString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.ConvertTo">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.ConvertToInvariantString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToInvariantString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.ConvertToString">
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.ConvertToString(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.CreateInstance">
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.Collections.IDictionary)" />
+          <element api="M:System.ComponentModel.TypeConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)" />
+        <element api="M:System.ComponentModel.TypeConverter.GetConvertToException(System.Object,System.Type)" />
+        <element api="Overload:System.Diagnostics.Design.LogConverter.GetCreateInstanceSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.GetProperties">
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.GetPropertiesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported" />
+          <element api="M:System.ComponentModel.TypeConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.GetStandardValues">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+          <element api="M:System.Diagnostics.Design.LogConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.GetStandardValuesExclusive">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive" />
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.GetStandardValuesSupported">
+          <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+          <element api="M:System.Diagnostics.Design.LogConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Design.LogConverter.IsValid">
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.Object)" />
+          <element api="M:System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)" />
+        </element>
+        <element api="M:System.ComponentModel.TypeConverter.SortProperties(System.ComponentModel.PropertyDescriptorCollection,System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.LogConverter" />
+      </containers>
+      <file name="d98429e1-23e0-acaf-e217-0478259fbf44" />
+    </api>
+    <api id="Overload:System.Diagnostics.Design.LogConverter.CanConvertFrom">
+      <topicdata name="CanConvertFrom" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Design.LogConverter" />
+      <apidata name="CanConvertFrom" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.Type)" />
+        <element api="M:System.Diagnostics.Design.LogConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.LogConverter" ref="true" />
+      </containers>
+      <file name="473d2061-e83b-5ebf-1049-9b72257cceb5" />
+    </api>
+    <api id="Overload:System.Diagnostics.Design.LogConverter.ConvertFrom">
+      <topicdata name="ConvertFrom" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Design.LogConverter" />
+      <apidata name="ConvertFrom" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.Object)" />
+        <element api="M:System.Diagnostics.Design.LogConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.LogConverter" ref="true" />
+      </containers>
+      <file name="86cff32b-94b1-2ea3-62f3-0b44ea52d49a" />
+    </api>
+    <api id="Overload:System.Diagnostics.Design.LogConverter.GetStandardValues">
+      <topicdata name="GetStandardValues" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Design.LogConverter" />
+      <apidata name="GetStandardValues" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.GetStandardValues" />
+        <element api="M:System.Diagnostics.Design.LogConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.LogConverter" ref="true" />
+      </containers>
+      <file name="bc6de3e3-a647-8543-afb0-717850fcdfbb" />
+    </api>
+    <api id="Overload:System.Diagnostics.Design.LogConverter.GetStandardValuesSupported">
+      <topicdata name="GetStandardValuesSupported" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Design.LogConverter" />
+      <apidata name="GetStandardValuesSupported" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported" />
+        <element api="M:System.Diagnostics.Design.LogConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.LogConverter" ref="true" />
+      </containers>
+      <file name="aa3887fd-5859-e2be-ce01-4298a7b8ec4f" />
+    </api>
+    <api id="M:System.Diagnostics.Design.LogConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.LogConverter" ref="true" />
+      </containers>
+      <file name="1d453a98-77fa-5d7d-29fc-4ef6a7e24c32" />
+    </api>
+    <api id="M:System.Diagnostics.Design.LogConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Design.LogConverter.CanConvertFrom" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="sourceType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.LogConverter" ref="true" />
+      </containers>
+      <file name="b1354caa-cf9e-b471-d4e1-ae1f86d097c3" />
+    </api>
+    <api id="M:System.Diagnostics.Design.LogConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+      <topicdata group="api" />
+      <apidata name="ConvertFrom" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Design.LogConverter.ConvertFrom" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.LogConverter" ref="true" />
+      </containers>
+      <file name="ab3d9fe0-9acd-c686-38ba-b066e6687ae4" />
+    </api>
+    <api id="M:System.Diagnostics.Design.LogConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)">
+      <topicdata group="api" />
+      <apidata name="GetStandardValues" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Design.LogConverter.GetStandardValues" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.TypeConverter.StandardValuesCollection" ref="true">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.LogConverter" ref="true" />
+      </containers>
+      <file name="56713695-6642-80b0-883a-a5527c6ebe6a" />
+    </api>
+    <api id="M:System.Diagnostics.Design.LogConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)">
+      <topicdata group="api" />
+      <apidata name="GetStandardValuesSupported" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Design.LogConverter.GetStandardValuesSupported" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)">
+          <type api="T:System.ComponentModel.TypeConverter" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.LogConverter" ref="true" />
+      </containers>
+      <file name="d2c97520-b4dd-5c1a-2a80-9f586b295287" />
+    </api>
+    <api id="T:System.Diagnostics.Design.ProcessDesigner">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Design.ProcessDesigner" />
+      <apidata name="ProcessDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Diagnostics.Design.ProcessDesigner.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.Design.ComponentDesigner" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+      </containers>
+      <file name="94967f9c-4f53-a1e1-36e6-9848fa754021" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Design.ProcessDesigner">
+      <topicdata name="ProcessDesigner" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Design.ProcessDesigner" />
+      <apidata name="ProcessDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Diagnostics.Design.ProcessDesigner.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ActionLists" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.AssociatedComponents" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Component" />
+        <element api="Overload:System.Diagnostics.Design.ProcessDesigner.Dispose">
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose" />
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.DoDefaultAction" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Finalize" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.GetService(System.Type)" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.InheritanceAttribute" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Inherited" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Initialize(System.ComponentModel.IComponent)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeExistingComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNewComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNonDefault" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InvokeGetInheritanceAttribute(System.ComponentModel.Design.ComponentDesigner)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.OnSetComponentDefaults" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ParentComponent" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanged(System.ComponentModel.MemberDescriptor,System.Object,System.Object)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanging(System.ComponentModel.MemberDescriptor)" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ShadowProperties" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterProperties(System.Collections.IDictionary)" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Children" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Parent" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Verbs" />
+        <element api="M:System.Diagnostics.Design.ProcessDesigner.#ctor" />
+        <element api="M:System.Diagnostics.Design.ProcessDesigner.PreFilterProperties(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.ProcessDesigner" />
+      </containers>
+      <file name="d3302b32-dfbf-1d3b-4110-0a50ca07a80d" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Design.ProcessDesigner">
+      <topicdata name="ProcessDesigner" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Design.ProcessDesigner" />
+      <apidata name="ProcessDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Diagnostics.Design.ProcessDesigner.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Diagnostics.Design.ProcessDesigner.Dispose">
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose" />
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.DoDefaultAction" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Finalize" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.GetService(System.Type)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Initialize(System.ComponentModel.IComponent)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeExistingComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNewComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNonDefault" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InvokeGetInheritanceAttribute(System.ComponentModel.Design.ComponentDesigner)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.OnSetComponentDefaults" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanged(System.ComponentModel.MemberDescriptor,System.Object,System.Object)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanging(System.ComponentModel.MemberDescriptor)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.Diagnostics.Design.ProcessDesigner.PreFilterProperties(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.ProcessDesigner" />
+      </containers>
+      <file name="798ec127-79e0-0ed2-2229-823d61ad7ba8" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.Design.ProcessDesigner">
+      <topicdata name="ProcessDesigner" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.Design.ProcessDesigner" />
+      <apidata name="ProcessDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Diagnostics.Design.ProcessDesigner.#ctor" />
+      <elements>
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ActionLists" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.AssociatedComponents" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Component" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.InheritanceAttribute" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Inherited" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ParentComponent" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ShadowProperties" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Children" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Parent" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Verbs" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.ProcessDesigner" />
+      </containers>
+      <file name="8bc25c48-ad8a-c4d1-54ed-4443e8222e00" />
+    </api>
+    <api id="M:System.Diagnostics.Design.ProcessDesigner.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.ProcessDesigner" ref="true" />
+      </containers>
+      <file name="a19018f1-dd81-44bc-325b-df87d695b024" />
+    </api>
+    <api id="M:System.Diagnostics.Design.ProcessDesigner.PreFilterProperties(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="PreFilterProperties" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterProperties(System.Collections.IDictionary)">
+          <type api="T:System.ComponentModel.Design.ComponentDesigner" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="properties">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.ProcessDesigner" ref="true" />
+      </containers>
+      <file name="db4aff10-cbe9-a042-aaab-60a59e9cbb93" />
+    </api>
+    <api id="T:System.Diagnostics.Design.ProcessModuleDesigner">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Design.ProcessModuleDesigner" />
+      <apidata name="ProcessModuleDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Diagnostics.Design.ProcessModuleDesigner.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.Design.ComponentDesigner" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+      </containers>
+      <file name="149b7116-4800-2648-3b01-be5c17399704" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Design.ProcessModuleDesigner">
+      <topicdata name="ProcessModuleDesigner" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Design.ProcessModuleDesigner" />
+      <apidata name="ProcessModuleDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Diagnostics.Design.ProcessModuleDesigner.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ActionLists" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.AssociatedComponents" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Component" />
+        <element api="Overload:System.Diagnostics.Design.ProcessModuleDesigner.Dispose">
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose" />
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.DoDefaultAction" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Finalize" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.GetService(System.Type)" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.InheritanceAttribute" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Inherited" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Initialize(System.ComponentModel.IComponent)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeExistingComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNewComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNonDefault" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InvokeGetInheritanceAttribute(System.ComponentModel.Design.ComponentDesigner)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.OnSetComponentDefaults" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ParentComponent" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanged(System.ComponentModel.MemberDescriptor,System.Object,System.Object)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanging(System.ComponentModel.MemberDescriptor)" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ShadowProperties" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterProperties(System.Collections.IDictionary)" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Children" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Parent" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Verbs" />
+        <element api="M:System.Diagnostics.Design.ProcessModuleDesigner.#ctor" />
+        <element api="M:System.Diagnostics.Design.ProcessModuleDesigner.PreFilterProperties(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.ProcessModuleDesigner" />
+      </containers>
+      <file name="a47d8fb8-0992-9955-9ad3-5c0cd6e86f78" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Design.ProcessModuleDesigner">
+      <topicdata name="ProcessModuleDesigner" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Design.ProcessModuleDesigner" />
+      <apidata name="ProcessModuleDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Diagnostics.Design.ProcessModuleDesigner.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Diagnostics.Design.ProcessModuleDesigner.Dispose">
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose" />
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.DoDefaultAction" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Finalize" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.GetService(System.Type)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Initialize(System.ComponentModel.IComponent)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeExistingComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNewComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNonDefault" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InvokeGetInheritanceAttribute(System.ComponentModel.Design.ComponentDesigner)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.OnSetComponentDefaults" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanged(System.ComponentModel.MemberDescriptor,System.Object,System.Object)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanging(System.ComponentModel.MemberDescriptor)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.Diagnostics.Design.ProcessModuleDesigner.PreFilterProperties(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.ProcessModuleDesigner" />
+      </containers>
+      <file name="06bff314-060f-0407-cfa7-dc5bf5dbf333" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.Design.ProcessModuleDesigner">
+      <topicdata name="ProcessModuleDesigner" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.Design.ProcessModuleDesigner" />
+      <apidata name="ProcessModuleDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Diagnostics.Design.ProcessModuleDesigner.#ctor" />
+      <elements>
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ActionLists" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.AssociatedComponents" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Component" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.InheritanceAttribute" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Inherited" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ParentComponent" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ShadowProperties" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Children" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Parent" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Verbs" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.ProcessModuleDesigner" />
+      </containers>
+      <file name="15d26859-34d7-f9cd-a72e-1bb061ce361e" />
+    </api>
+    <api id="M:System.Diagnostics.Design.ProcessModuleDesigner.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.ProcessModuleDesigner" ref="true" />
+      </containers>
+      <file name="05165a1a-e166-018a-aca4-d5aa81e8920c" />
+    </api>
+    <api id="M:System.Diagnostics.Design.ProcessModuleDesigner.PreFilterProperties(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="PreFilterProperties" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterProperties(System.Collections.IDictionary)">
+          <type api="T:System.ComponentModel.Design.ComponentDesigner" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="properties">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.ProcessModuleDesigner" ref="true" />
+      </containers>
+      <file name="2777476c-8450-a27c-c010-699d906b0005" />
+    </api>
+    <api id="T:System.Diagnostics.Design.ProcessThreadDesigner">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Design.ProcessThreadDesigner" />
+      <apidata name="ProcessThreadDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Diagnostics.Design.ProcessThreadDesigner.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.Design.ComponentDesigner" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+      </containers>
+      <file name="963fafb3-e59b-c06b-2a49-bdade26d80a7" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Design.ProcessThreadDesigner">
+      <topicdata name="ProcessThreadDesigner" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Design.ProcessThreadDesigner" />
+      <apidata name="ProcessThreadDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Diagnostics.Design.ProcessThreadDesigner.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ActionLists" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.AssociatedComponents" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Component" />
+        <element api="Overload:System.Diagnostics.Design.ProcessThreadDesigner.Dispose">
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose" />
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.DoDefaultAction" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Finalize" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.GetService(System.Type)" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.InheritanceAttribute" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Inherited" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Initialize(System.ComponentModel.IComponent)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeExistingComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNewComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNonDefault" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InvokeGetInheritanceAttribute(System.ComponentModel.Design.ComponentDesigner)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.OnSetComponentDefaults" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ParentComponent" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanged(System.ComponentModel.MemberDescriptor,System.Object,System.Object)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanging(System.ComponentModel.MemberDescriptor)" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ShadowProperties" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterProperties(System.Collections.IDictionary)" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Children" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Parent" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Verbs" />
+        <element api="M:System.Diagnostics.Design.ProcessThreadDesigner.#ctor" />
+        <element api="M:System.Diagnostics.Design.ProcessThreadDesigner.PreFilterProperties(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.ProcessThreadDesigner" />
+      </containers>
+      <file name="e71f6b67-8892-f9ed-1bb5-c5ff2e8e2ab5" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Design.ProcessThreadDesigner">
+      <topicdata name="ProcessThreadDesigner" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Design.ProcessThreadDesigner" />
+      <apidata name="ProcessThreadDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Diagnostics.Design.ProcessThreadDesigner.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Diagnostics.Design.ProcessThreadDesigner.Dispose">
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose" />
+          <element api="M:System.ComponentModel.Design.ComponentDesigner.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.DoDefaultAction" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Finalize" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.GetService(System.Type)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.Initialize(System.ComponentModel.IComponent)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeExistingComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNewComponent(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InitializeNonDefault" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.InvokeGetInheritanceAttribute(System.ComponentModel.Design.ComponentDesigner)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.OnSetComponentDefaults" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanged(System.ComponentModel.MemberDescriptor,System.Object,System.Object)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.RaiseComponentChanging(System.ComponentModel.MemberDescriptor)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PostFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterAttributes(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterEvents(System.Collections.IDictionary)" />
+        <element api="M:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#IDesignerFilter#PreFilterProperties(System.Collections.IDictionary)" />
+        <element api="M:System.Diagnostics.Design.ProcessThreadDesigner.PreFilterProperties(System.Collections.IDictionary)" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.ProcessThreadDesigner" />
+      </containers>
+      <file name="ec6506d4-f0ed-aaed-fb62-355cfe8d7f62" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.Design.ProcessThreadDesigner">
+      <topicdata name="ProcessThreadDesigner" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.Design.ProcessThreadDesigner" />
+      <apidata name="ProcessThreadDesigner" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Diagnostics.Design.ProcessThreadDesigner.#ctor" />
+      <elements>
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ActionLists" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.AssociatedComponents" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Component" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.InheritanceAttribute" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Inherited" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ParentComponent" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.ShadowProperties" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Children" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.System#ComponentModel#Design#ITreeDesigner#Parent" />
+        <element api="P:System.ComponentModel.Design.ComponentDesigner.Verbs" />
+      </elements>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.ProcessThreadDesigner" />
+      </containers>
+      <file name="d01e1b3c-b745-df7a-57e1-ddf43816461b" />
+    </api>
+    <api id="M:System.Diagnostics.Design.ProcessThreadDesigner.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.ProcessThreadDesigner" ref="true" />
+      </containers>
+      <file name="200c4b4f-4fb9-e0c7-eae2-31c03e88f810" />
+    </api>
+    <api id="M:System.Diagnostics.Design.ProcessThreadDesigner.PreFilterProperties(System.Collections.IDictionary)">
+      <topicdata group="api" />
+      <apidata name="PreFilterProperties" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ComponentModel.Design.ComponentDesigner.PreFilterProperties(System.Collections.IDictionary)">
+          <type api="T:System.ComponentModel.Design.ComponentDesigner" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="properties">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Design" module="System.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Diagnostics.Design" />
+        <type api="T:System.Diagnostics.Design.ProcessThreadDesigner" ref="true" />
+      </containers>
+      <file name="babb1385-69e5-dade-747f-26664a02e72b" />
+    </api>
+  </apis>
+</reflection>

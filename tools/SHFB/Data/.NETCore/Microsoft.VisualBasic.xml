@@ -1,0 +1,709 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.VisualBasic">
+      <assemblydata version="10.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualBasic.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualBasic.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.VisualBasic.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Visual Studio® 11 Beta</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation. All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>11.0.50709.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>11.0.50709.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.VisualBasic">
+      <topicdata group="api" />
+      <apidata name="Microsoft.VisualBasic" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.VisualBasic.CallType" />
+        <element api="T:Microsoft.VisualBasic.Constants" />
+        <element api="T:Microsoft.VisualBasic.HideModuleNameAttribute" />
+        <element api="T:Microsoft.VisualBasic.Strings" />
+      </elements>
+      <file name="0dfc9cc6-c5a1-0c6e-570d-02dd4b25526d" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.CallType">
+      <topicdata group="api" />
+      <apidata name="CallType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.VisualBasic.CallType.Get" />
+        <element api="F:Microsoft.VisualBasic.CallType.Let" />
+        <element api="F:Microsoft.VisualBasic.CallType.Method" />
+        <element api="F:Microsoft.VisualBasic.CallType.Set" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+      </containers>
+      <file name="714b18a9-e0db-500d-8a7e-b139e87d6423" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.CallType.Get">
+      <topicdata group="api" notopic="" />
+      <apidata name="Get" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.CallType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.CallType" ref="false" />
+      </containers>
+      <file name="2ec3ff1a-c748-20e5-89d7-a0044adb5e30" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.CallType.Let">
+      <topicdata group="api" notopic="" />
+      <apidata name="Let" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.CallType" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.CallType" ref="false" />
+      </containers>
+      <file name="0c7fa197-480c-663b-0e41-af44f051cb2a" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.CallType.Method">
+      <topicdata group="api" notopic="" />
+      <apidata name="Method" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.CallType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.CallType" ref="false" />
+      </containers>
+      <file name="721f27dd-77a4-cea0-5a99-2aefd2a8590b" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.CallType.Set">
+      <topicdata group="api" notopic="" />
+      <apidata name="Set" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.VisualBasic.CallType" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.CallType" ref="false" />
+      </containers>
+      <file name="7eab317c-2bc2-9277-5e11-26234a0470fe" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Constants">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Constants" />
+      <apidata name="Constants" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.VisualBasic.CompilerServices.StandardModuleAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="94a0f1a6-0437-9aca-f820-8ea74e9867fe" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Constants">
+      <topicdata name="Constants" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Constants" />
+      <apidata name="Constants" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.VisualBasic.Constants.vbBack" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbCr" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbCrLf" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbFormFeed" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbLf" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbNewLine" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbNullChar" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbNullString" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbTab" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbVerticalTab" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Constants" />
+      </containers>
+      <file name="8b4f6431-f872-e4a9-83f5-fa3681175a26" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Constants">
+      <topicdata name="Constants" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Constants" />
+      <apidata name="Constants" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Constants" />
+      </containers>
+      <file name="94cc8ae9-866b-cf70-6b3a-0b12e7efee89" />
+    </api>
+    <api id="Fields.T:Microsoft.VisualBasic.Constants">
+      <topicdata name="Constants" group="list" subgroup="Fields" typeTopicId="T:Microsoft.VisualBasic.Constants" />
+      <apidata name="Constants" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.VisualBasic.Constants.vbBack" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbCr" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbCrLf" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbFormFeed" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbLf" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbNewLine" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbNullChar" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbNullString" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbTab" />
+        <element api="F:Microsoft.VisualBasic.Constants.vbVerticalTab" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Constants" />
+      </containers>
+      <file name="fb9acde4-0975-7712-6fce-7e51b7548aff" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Constants.vbBack">
+      <topicdata group="api" />
+      <apidata name="vbBack" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Constants" ref="true" />
+      </containers>
+      <file name="38e7c425-9975-9527-38ba-bee4080d571e" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Constants.vbCr">
+      <topicdata group="api" />
+      <apidata name="vbCr" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Constants" ref="true" />
+      </containers>
+      <file name="2f31b50a-3db7-0000-58e5-bdd77c8f70bd" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Constants.vbCrLf">
+      <topicdata group="api" />
+      <apidata name="vbCrLf" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Constants" ref="true" />
+      </containers>
+      <file name="8aa1c99a-e9db-3fdc-d7a9-294f6994c574" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Constants.vbFormFeed">
+      <topicdata group="api" />
+      <apidata name="vbFormFeed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Constants" ref="true" />
+      </containers>
+      <file name="50480b1c-52fb-74f0-43b3-cb9024da37cc" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Constants.vbLf">
+      <topicdata group="api" />
+      <apidata name="vbLf" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Constants" ref="true" />
+      </containers>
+      <file name="6525244f-efb3-54f5-4f80-d1ac857c6c9c" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Constants.vbNewLine">
+      <topicdata group="api" />
+      <apidata name="vbNewLine" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Constants" ref="true" />
+      </containers>
+      <file name="595aac07-bd84-dac9-99ab-f14c53dfdfe3" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Constants.vbNullChar">
+      <topicdata group="api" />
+      <apidata name="vbNullChar" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Constants" ref="true" />
+      </containers>
+      <file name="782e935a-c5e3-cda2-3c23-931dfa56bb97" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Constants.vbNullString">
+      <topicdata group="api" />
+      <apidata name="vbNullString" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <nullValue />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Constants" ref="true" />
+      </containers>
+      <file name="5a2a3bd6-ea29-436c-e496-ef3b822c4cb7" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Constants.vbTab">
+      <topicdata group="api" />
+      <apidata name="vbTab" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Constants" ref="true" />
+      </containers>
+      <file name="b6e4a070-13cb-b04f-9197-8560275fe7cd" />
+    </api>
+    <api id="F:Microsoft.VisualBasic.Constants.vbVerticalTab">
+      <topicdata group="api" />
+      <apidata name="vbVerticalTab" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Constants" ref="true" />
+      </containers>
+      <file name="4a163c75-7c53-e3ec-8aa1-4338bb3cda65" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.HideModuleNameAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.HideModuleNameAttribute" />
+      <apidata name="HideModuleNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.HideModuleNameAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="88b0a03a-481e-a563-c2db-7884fd23fe1f" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.HideModuleNameAttribute">
+      <topicdata name="HideModuleNameAttribute" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.HideModuleNameAttribute" />
+      <apidata name="HideModuleNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.HideModuleNameAttribute.#ctor" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.HideModuleNameAttribute.#ctor" />
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.HideModuleNameAttribute" />
+      </containers>
+      <file name="b60721a9-5016-21d4-50f2-748eae6695af" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.HideModuleNameAttribute">
+      <topicdata name="HideModuleNameAttribute" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.HideModuleNameAttribute" />
+      <apidata name="HideModuleNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.VisualBasic.HideModuleNameAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.HideModuleNameAttribute" />
+      </containers>
+      <file name="abb879e4-410b-8a90-7ae9-278785e721cc" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.HideModuleNameAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.HideModuleNameAttribute" ref="true" />
+      </containers>
+      <file name="cfe54741-1b3b-c8a5-a182-19c469b367f8" />
+    </api>
+    <api id="T:Microsoft.VisualBasic.Strings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Strings" />
+      <apidata name="Strings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Microsoft.VisualBasic.CompilerServices.StandardModuleAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="132fbdaa-09d7-c26f-7eb4-b8dc13494e62" />
+    </api>
+    <api id="AllMembers.T:Microsoft.VisualBasic.Strings">
+      <topicdata name="Strings" group="list" subgroup="members" typeTopicId="T:Microsoft.VisualBasic.Strings" />
+      <apidata name="Strings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.VisualBasic.Strings.AscW">
+          <element api="M:Microsoft.VisualBasic.Strings.AscW(System.Char)" />
+          <element api="M:Microsoft.VisualBasic.Strings.AscW(System.String)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.Strings.ChrW(System.Int32)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Strings" />
+      </containers>
+      <file name="0ae1cbd8-716b-61f6-7b07-29a7fdef41b6" />
+    </api>
+    <api id="Methods.T:Microsoft.VisualBasic.Strings">
+      <topicdata name="Strings" group="list" subgroup="Methods" typeTopicId="T:Microsoft.VisualBasic.Strings" />
+      <apidata name="Strings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.VisualBasic.Strings.AscW">
+          <element api="M:Microsoft.VisualBasic.Strings.AscW(System.Char)" />
+          <element api="M:Microsoft.VisualBasic.Strings.AscW(System.String)" />
+        </element>
+        <element api="M:Microsoft.VisualBasic.Strings.ChrW(System.Int32)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Strings" />
+      </containers>
+      <file name="ce68113f-500e-9aec-0cb5-d27fab20a249" />
+    </api>
+    <api id="Overload:Microsoft.VisualBasic.Strings.AscW">
+      <topicdata name="AscW" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.VisualBasic.Strings" />
+      <apidata name="AscW" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.VisualBasic.Strings.AscW(System.Char)" />
+        <element api="M:Microsoft.VisualBasic.Strings.AscW(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Strings" ref="true" />
+      </containers>
+      <file name="1cf0d560-fa5e-a5cc-c906-139746bde06d" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Strings.AscW(System.Char)">
+      <topicdata group="api" />
+      <apidata name="AscW" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Microsoft.VisualBasic.Strings.AscW" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="String">
+          <type api="T:System.Char" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Strings" ref="true" />
+      </containers>
+      <file name="28ecab84-dec6-ace5-504b-0014524a4cd1" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Strings.AscW(System.String)">
+      <topicdata group="api" />
+      <apidata name="AscW" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Microsoft.VisualBasic.Strings.AscW" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="String">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Strings" ref="true" />
+      </containers>
+      <file name="5279f8ca-aba4-d496-feaf-90b69ca400f5" />
+    </api>
+    <api id="M:Microsoft.VisualBasic.Strings.ChrW(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ChrW" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="CharCode">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Char" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.VisualBasic" module="Microsoft.VisualBasic" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="11.0.50709.17929" />
+        </library>
+        <namespace api="N:Microsoft.VisualBasic" />
+        <type api="T:Microsoft.VisualBasic.Strings" ref="true" />
+      </containers>
+      <file name="3fa88362-fb3a-a9fb-f698-c6746e085379" />
+    </api>
+  </apis>
+</reflection>

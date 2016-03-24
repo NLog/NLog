@@ -1,0 +1,1657 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Storage.Pickers.Provider">
+      <topicdata group="api" />
+      <apidata name="Windows.Storage.Pickers.Provider" group="namespace" />
+      <elements>
+        <element api="T:Windows.Storage.Pickers.Provider.FileRemovedEventArgs" />
+        <element api="T:Windows.Storage.Pickers.Provider.AddFileResult" />
+        <element api="T:Windows.Storage.Pickers.Provider.FileSelectionMode" />
+        <element api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" />
+        <element api="T:Windows.Storage.Pickers.Provider.PickerClosingEventArgs" />
+        <element api="T:Windows.Storage.Pickers.Provider.PickerClosingOperation" />
+        <element api="T:Windows.Storage.Pickers.Provider.PickerClosingDeferral" />
+        <element api="T:Windows.Storage.Pickers.Provider.SetFileNameResult" />
+        <element api="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" />
+        <element api="T:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs" />
+        <element api="T:Windows.Storage.Pickers.Provider.TargetFileRequest" />
+        <element api="T:Windows.Storage.Pickers.Provider.TargetFileRequestDeferral" />
+      </elements>
+      <file name="3bada36f-bf97-5486-46fd-b90535e14ee9" />
+    </api>
+    <api id="T:Windows.Storage.Pickers.Provider.AddFileResult">
+      <topicdata group="api" />
+      <apidata name="AddFileResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Storage.Pickers.Provider.AddFileResult.Added" />
+        <element api="F:Windows.Storage.Pickers.Provider.AddFileResult.AlreadyAdded" />
+        <element api="F:Windows.Storage.Pickers.Provider.AddFileResult.NotAllowed" />
+        <element api="F:Windows.Storage.Pickers.Provider.AddFileResult.Unavailable" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="780ed14d-e19a-bf2b-e9c2-773eb67d7b81" />
+    </api>
+    <api id="F:Windows.Storage.Pickers.Provider.AddFileResult.Added">
+      <topicdata group="api" notopic="" />
+      <apidata name="Added" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Pickers.Provider.AddFileResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.AddFileResult" ref="false" />
+      </containers>
+      <file name="287f21a6-6d7e-0050-662f-b77e5a99a4c6" />
+    </api>
+    <api id="F:Windows.Storage.Pickers.Provider.AddFileResult.AlreadyAdded">
+      <topicdata group="api" notopic="" />
+      <apidata name="AlreadyAdded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Pickers.Provider.AddFileResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.AddFileResult" ref="false" />
+      </containers>
+      <file name="1a891f3c-a761-e39a-9c2f-863f71641e43" />
+    </api>
+    <api id="F:Windows.Storage.Pickers.Provider.AddFileResult.NotAllowed">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotAllowed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Pickers.Provider.AddFileResult" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.AddFileResult" ref="false" />
+      </containers>
+      <file name="b00d1986-58cf-ee43-b6c7-00e6ec6d25ec" />
+    </api>
+    <api id="F:Windows.Storage.Pickers.Provider.AddFileResult.Unavailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unavailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Pickers.Provider.AddFileResult" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.AddFileResult" ref="false" />
+      </containers>
+      <file name="ec2d9f18-82d0-fbcc-b5de-b5e8a67ec1c9" />
+    </api>
+    <api id="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" />
+      <apidata name="FileOpenPickerUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.Pickers.Provider.IFileOpenPickerUI" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e3dada45-136c-6231-f039-56f4c2f7ef9c" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.Pickers.Provider.FileOpenPickerUI">
+      <topicdata name="FileOpenPickerUI" group="list" subgroup="members" typeTopicId="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" />
+      <apidata name="FileOpenPickerUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Storage.Pickers.Provider.FileOpenPickerUI.AddFile(System.String,Windows.Storage.IStorageFile)" />
+        <element api="P:Windows.Storage.Pickers.Provider.FileOpenPickerUI.AllowedFileTypes" />
+        <element api="M:Windows.Storage.Pickers.Provider.FileOpenPickerUI.CanAddFile(Windows.Storage.IStorageFile)" />
+        <element api="E:Windows.Storage.Pickers.Provider.FileOpenPickerUI.Closing" />
+        <element api="M:Windows.Storage.Pickers.Provider.FileOpenPickerUI.ContainsFile(System.String)" />
+        <element api="E:Windows.Storage.Pickers.Provider.FileOpenPickerUI.FileRemoved" />
+        <element api="M:Windows.Storage.Pickers.Provider.FileOpenPickerUI.RemoveFile(System.String)" />
+        <element api="P:Windows.Storage.Pickers.Provider.FileOpenPickerUI.SelectionMode" />
+        <element api="P:Windows.Storage.Pickers.Provider.FileOpenPickerUI.SettingsIdentifier" />
+        <element api="P:Windows.Storage.Pickers.Provider.FileOpenPickerUI.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" />
+      </containers>
+      <file name="9d78378c-4241-c68b-b5bb-59636aae8361" />
+    </api>
+    <api id="Methods.T:Windows.Storage.Pickers.Provider.FileOpenPickerUI">
+      <topicdata name="FileOpenPickerUI" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" />
+      <apidata name="FileOpenPickerUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Storage.Pickers.Provider.FileOpenPickerUI.AddFile(System.String,Windows.Storage.IStorageFile)" />
+        <element api="M:Windows.Storage.Pickers.Provider.FileOpenPickerUI.CanAddFile(Windows.Storage.IStorageFile)" />
+        <element api="M:Windows.Storage.Pickers.Provider.FileOpenPickerUI.ContainsFile(System.String)" />
+        <element api="M:Windows.Storage.Pickers.Provider.FileOpenPickerUI.RemoveFile(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" />
+      </containers>
+      <file name="9307ba44-31d4-7a04-f71d-350ba5844207" />
+    </api>
+    <api id="Properties.T:Windows.Storage.Pickers.Provider.FileOpenPickerUI">
+      <topicdata name="FileOpenPickerUI" group="list" subgroup="Properties" typeTopicId="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" />
+      <apidata name="FileOpenPickerUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.Pickers.Provider.FileOpenPickerUI.AllowedFileTypes" />
+        <element api="P:Windows.Storage.Pickers.Provider.FileOpenPickerUI.SelectionMode" />
+        <element api="P:Windows.Storage.Pickers.Provider.FileOpenPickerUI.SettingsIdentifier" />
+        <element api="P:Windows.Storage.Pickers.Provider.FileOpenPickerUI.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" />
+      </containers>
+      <file name="1e745c92-25da-5568-8f33-3fae5e9ad49c" />
+    </api>
+    <api id="Events.T:Windows.Storage.Pickers.Provider.FileOpenPickerUI">
+      <topicdata name="FileOpenPickerUI" group="list" subgroup="Events" typeTopicId="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" />
+      <apidata name="FileOpenPickerUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Storage.Pickers.Provider.FileOpenPickerUI.Closing" />
+        <element api="E:Windows.Storage.Pickers.Provider.FileOpenPickerUI.FileRemoved" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" />
+      </containers>
+      <file name="bd54f96f-5e1f-b13f-1fe3-b9dd6b35c838" />
+    </api>
+    <api id="M:Windows.Storage.Pickers.Provider.FileOpenPickerUI.AddFile(System.String,Windows.Storage.IStorageFile)">
+      <topicdata group="api" />
+      <apidata name="AddFile" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="id" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Pickers.Provider.AddFileResult" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" ref="true" />
+      </containers>
+      <file name="d6f918cd-45b7-adf6-ffb3-4f3bec5ae5c9" />
+    </api>
+    <api id="P:Windows.Storage.Pickers.Provider.FileOpenPickerUI.AllowedFileTypes">
+      <topicdata group="api" />
+      <apidata name="AllowedFileTypes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AllowedFileTypes" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" ref="true" />
+      </containers>
+      <file name="98b55c58-52b5-050a-b899-649fe6a27437" />
+    </api>
+    <api id="M:Windows.Storage.Pickers.Provider.FileOpenPickerUI.CanAddFile(Windows.Storage.IStorageFile)">
+      <topicdata group="api" />
+      <apidata name="CanAddFile" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" ref="true" />
+      </containers>
+      <file name="2f548a0f-550f-0547-e555-b927a941ea6b" />
+    </api>
+    <api id="E:Windows.Storage.Pickers.Provider.FileOpenPickerUI.Closing">
+      <topicdata group="api" />
+      <apidata name="Closing" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Closing" />
+      <remover name="remove_Closing" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" ref="true" />
+            <type api="T:Windows.Storage.Pickers.Provider.PickerClosingEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" ref="true" />
+      </containers>
+      <file name="24a1a639-4bef-99fb-2fce-48f79d633ec4" />
+    </api>
+    <api id="M:Windows.Storage.Pickers.Provider.FileOpenPickerUI.ContainsFile(System.String)">
+      <topicdata group="api" />
+      <apidata name="ContainsFile" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="id" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" ref="true" />
+      </containers>
+      <file name="97ff5da1-9dfa-2e31-ea85-ac95ad4a00a1" />
+    </api>
+    <api id="E:Windows.Storage.Pickers.Provider.FileOpenPickerUI.FileRemoved">
+      <topicdata group="api" />
+      <apidata name="FileRemoved" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_FileRemoved" />
+      <remover name="remove_FileRemoved" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" ref="true" />
+            <type api="T:Windows.Storage.Pickers.Provider.FileRemovedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" ref="true" />
+      </containers>
+      <file name="104d0189-7165-137f-3503-4233e82a68a7" />
+    </api>
+    <api id="M:Windows.Storage.Pickers.Provider.FileOpenPickerUI.RemoveFile(System.String)">
+      <topicdata group="api" />
+      <apidata name="RemoveFile" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="id" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" ref="true" />
+      </containers>
+      <file name="1c502bf2-5452-63ff-00ef-d39b93c193cc" />
+    </api>
+    <api id="P:Windows.Storage.Pickers.Provider.FileOpenPickerUI.SelectionMode">
+      <topicdata group="api" />
+      <apidata name="SelectionMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SelectionMode" />
+      <returns>
+        <type api="T:Windows.Storage.Pickers.Provider.FileSelectionMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" ref="true" />
+      </containers>
+      <file name="c5022a02-cbf5-6899-fcac-ffe6f4f8f227" />
+    </api>
+    <api id="P:Windows.Storage.Pickers.Provider.FileOpenPickerUI.SettingsIdentifier">
+      <topicdata group="api" />
+      <apidata name="SettingsIdentifier" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SettingsIdentifier" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" ref="true" />
+      </containers>
+      <file name="3c91f3b6-8695-3982-dc0c-939fa6d3f4d3" />
+    </api>
+    <api id="P:Windows.Storage.Pickers.Provider.FileOpenPickerUI.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Title" />
+      <setter name="set_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileOpenPickerUI" ref="true" />
+      </containers>
+      <file name="ef5aeecd-0745-70c7-8391-14db7ff0d39d" />
+    </api>
+    <api id="T:Windows.Storage.Pickers.Provider.FileRemovedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.Pickers.Provider.FileRemovedEventArgs" />
+      <apidata name="FileRemovedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.Pickers.Provider.IFileRemovedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="aa018f82-4d9f-a4dd-bc3a-204982feafca" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.Pickers.Provider.FileRemovedEventArgs">
+      <topicdata name="FileRemovedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Storage.Pickers.Provider.FileRemovedEventArgs" />
+      <apidata name="FileRemovedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Storage.Pickers.Provider.FileRemovedEventArgs.Id" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileRemovedEventArgs" />
+      </containers>
+      <file name="a5d7b9fa-6160-c2c6-b1f6-ba7c66ae3d3d" />
+    </api>
+    <api id="Methods.T:Windows.Storage.Pickers.Provider.FileRemovedEventArgs">
+      <topicdata name="FileRemovedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.Pickers.Provider.FileRemovedEventArgs" />
+      <apidata name="FileRemovedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileRemovedEventArgs" />
+      </containers>
+      <file name="aeb0b83a-dfbb-bb7f-17ce-898351707d2d" />
+    </api>
+    <api id="Properties.T:Windows.Storage.Pickers.Provider.FileRemovedEventArgs">
+      <topicdata name="FileRemovedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Storage.Pickers.Provider.FileRemovedEventArgs" />
+      <apidata name="FileRemovedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.Pickers.Provider.FileRemovedEventArgs.Id" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileRemovedEventArgs" />
+      </containers>
+      <file name="1ae4c512-f0e0-8060-1fdf-d2727e02fb71" />
+    </api>
+    <api id="P:Windows.Storage.Pickers.Provider.FileRemovedEventArgs.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileRemovedEventArgs" ref="true" />
+      </containers>
+      <file name="fdf40847-61ae-c635-d3df-157d76564991" />
+    </api>
+    <api id="T:Windows.Storage.Pickers.Provider.FileSavePickerUI">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.Pickers.Provider.FileSavePickerUI" />
+      <apidata name="FileSavePickerUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.Pickers.Provider.IFileSavePickerUI" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="87e950bf-813d-7720-f03d-b330961dd799" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.Pickers.Provider.FileSavePickerUI">
+      <topicdata name="FileSavePickerUI" group="list" subgroup="members" typeTopicId="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" />
+      <apidata name="FileSavePickerUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Storage.Pickers.Provider.FileSavePickerUI.AllowedFileTypes" />
+        <element api="P:Windows.Storage.Pickers.Provider.FileSavePickerUI.FileName" />
+        <element api="E:Windows.Storage.Pickers.Provider.FileSavePickerUI.FileNameChanged" />
+        <element api="P:Windows.Storage.Pickers.Provider.FileSavePickerUI.SettingsIdentifier" />
+        <element api="E:Windows.Storage.Pickers.Provider.FileSavePickerUI.TargetFileRequested" />
+        <element api="P:Windows.Storage.Pickers.Provider.FileSavePickerUI.Title" />
+        <element api="M:Windows.Storage.Pickers.Provider.FileSavePickerUI.TrySetFileName(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" />
+      </containers>
+      <file name="46141ab0-df9d-c84f-7d4b-a17fe7163bcc" />
+    </api>
+    <api id="Methods.T:Windows.Storage.Pickers.Provider.FileSavePickerUI">
+      <topicdata name="FileSavePickerUI" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" />
+      <apidata name="FileSavePickerUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Storage.Pickers.Provider.FileSavePickerUI.TrySetFileName(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" />
+      </containers>
+      <file name="d8a24b32-a295-91da-db98-a8fd4cc954d8" />
+    </api>
+    <api id="Properties.T:Windows.Storage.Pickers.Provider.FileSavePickerUI">
+      <topicdata name="FileSavePickerUI" group="list" subgroup="Properties" typeTopicId="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" />
+      <apidata name="FileSavePickerUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.Pickers.Provider.FileSavePickerUI.AllowedFileTypes" />
+        <element api="P:Windows.Storage.Pickers.Provider.FileSavePickerUI.FileName" />
+        <element api="P:Windows.Storage.Pickers.Provider.FileSavePickerUI.SettingsIdentifier" />
+        <element api="P:Windows.Storage.Pickers.Provider.FileSavePickerUI.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" />
+      </containers>
+      <file name="d4557a1c-b6d3-9a9a-296e-7b6d03d5b999" />
+    </api>
+    <api id="Events.T:Windows.Storage.Pickers.Provider.FileSavePickerUI">
+      <topicdata name="FileSavePickerUI" group="list" subgroup="Events" typeTopicId="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" />
+      <apidata name="FileSavePickerUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Storage.Pickers.Provider.FileSavePickerUI.FileNameChanged" />
+        <element api="E:Windows.Storage.Pickers.Provider.FileSavePickerUI.TargetFileRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" />
+      </containers>
+      <file name="9fe5af74-be60-4d1c-9470-6000af518ace" />
+    </api>
+    <api id="P:Windows.Storage.Pickers.Provider.FileSavePickerUI.AllowedFileTypes">
+      <topicdata group="api" />
+      <apidata name="AllowedFileTypes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AllowedFileTypes" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" ref="true" />
+      </containers>
+      <file name="4bbcae29-7abd-2ba8-9c17-4b61099be05f" />
+    </api>
+    <api id="P:Windows.Storage.Pickers.Provider.FileSavePickerUI.FileName">
+      <topicdata group="api" />
+      <apidata name="FileName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FileName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" ref="true" />
+      </containers>
+      <file name="8072c6fd-04ea-0c92-b417-9245f7c9418e" />
+    </api>
+    <api id="E:Windows.Storage.Pickers.Provider.FileSavePickerUI.FileNameChanged">
+      <topicdata group="api" />
+      <apidata name="FileNameChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_FileNameChanged" />
+      <remover name="remove_FileNameChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" ref="true" />
+      </containers>
+      <file name="62cfa627-3a40-a08a-ff2e-9f4df73a122a" />
+    </api>
+    <api id="P:Windows.Storage.Pickers.Provider.FileSavePickerUI.SettingsIdentifier">
+      <topicdata group="api" />
+      <apidata name="SettingsIdentifier" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SettingsIdentifier" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" ref="true" />
+      </containers>
+      <file name="5636cc51-d1d8-592e-a429-578243572d3d" />
+    </api>
+    <api id="E:Windows.Storage.Pickers.Provider.FileSavePickerUI.TargetFileRequested">
+      <topicdata group="api" />
+      <apidata name="TargetFileRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_TargetFileRequested" />
+      <remover name="remove_TargetFileRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" ref="true" />
+            <type api="T:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" ref="true" />
+      </containers>
+      <file name="6fb8bb71-d6b4-eb18-7c66-b3424e30bce6" />
+    </api>
+    <api id="P:Windows.Storage.Pickers.Provider.FileSavePickerUI.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Title" />
+      <setter name="set_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" ref="true" />
+      </containers>
+      <file name="f2837533-9e9b-cb67-25be-47f3e35cd369" />
+    </api>
+    <api id="M:Windows.Storage.Pickers.Provider.FileSavePickerUI.TrySetFileName(System.String)">
+      <topicdata group="api" />
+      <apidata name="TrySetFileName" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Pickers.Provider.SetFileNameResult" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileSavePickerUI" ref="true" />
+      </containers>
+      <file name="d0c6991f-40cf-a19f-ccf0-ef553cbfaf99" />
+    </api>
+    <api id="T:Windows.Storage.Pickers.Provider.FileSelectionMode">
+      <topicdata group="api" />
+      <apidata name="FileSelectionMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Storage.Pickers.Provider.FileSelectionMode.Single" />
+        <element api="F:Windows.Storage.Pickers.Provider.FileSelectionMode.Multiple" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="09116b75-3f80-8c21-b100-5d3ba7dc423e" />
+    </api>
+    <api id="F:Windows.Storage.Pickers.Provider.FileSelectionMode.Multiple">
+      <topicdata group="api" notopic="" />
+      <apidata name="Multiple" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Pickers.Provider.FileSelectionMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileSelectionMode" ref="false" />
+      </containers>
+      <file name="1b4e2a9d-3500-7736-6800-6b1abbd48203" />
+    </api>
+    <api id="F:Windows.Storage.Pickers.Provider.FileSelectionMode.Single">
+      <topicdata group="api" notopic="" />
+      <apidata name="Single" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Pickers.Provider.FileSelectionMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.FileSelectionMode" ref="false" />
+      </containers>
+      <file name="9721b48a-193e-ec39-800b-7db30f775f89" />
+    </api>
+    <api id="T:Windows.Storage.Pickers.Provider.PickerClosingDeferral">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.Pickers.Provider.PickerClosingDeferral" />
+      <apidata name="PickerClosingDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.Pickers.Provider.IPickerClosingDeferral" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b81e7ad5-d979-dc96-2c6f-aa0ea4d25d10" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.Pickers.Provider.PickerClosingDeferral">
+      <topicdata name="PickerClosingDeferral" group="list" subgroup="members" typeTopicId="T:Windows.Storage.Pickers.Provider.PickerClosingDeferral" />
+      <apidata name="PickerClosingDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Storage.Pickers.Provider.PickerClosingDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.PickerClosingDeferral" />
+      </containers>
+      <file name="b98108b8-9045-38ab-8c41-21024e211c9d" />
+    </api>
+    <api id="Methods.T:Windows.Storage.Pickers.Provider.PickerClosingDeferral">
+      <topicdata name="PickerClosingDeferral" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.Pickers.Provider.PickerClosingDeferral" />
+      <apidata name="PickerClosingDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Storage.Pickers.Provider.PickerClosingDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.PickerClosingDeferral" />
+      </containers>
+      <file name="f288e223-e903-b586-8362-e757108747bd" />
+    </api>
+    <api id="M:Windows.Storage.Pickers.Provider.PickerClosingDeferral.Complete">
+      <topicdata group="api" />
+      <apidata name="Complete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.PickerClosingDeferral" ref="true" />
+      </containers>
+      <file name="ffe215d6-ad56-cab2-2f74-eaffa86ccf8e" />
+    </api>
+    <api id="T:Windows.Storage.Pickers.Provider.PickerClosingEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.Pickers.Provider.PickerClosingEventArgs" />
+      <apidata name="PickerClosingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.Pickers.Provider.IPickerClosingEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3e0c6d5c-4db3-2347-91fd-858bdc9d1fa4" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.Pickers.Provider.PickerClosingEventArgs">
+      <topicdata name="PickerClosingEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Storage.Pickers.Provider.PickerClosingEventArgs" />
+      <apidata name="PickerClosingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Storage.Pickers.Provider.PickerClosingEventArgs.ClosingOperation" />
+        <element api="P:Windows.Storage.Pickers.Provider.PickerClosingEventArgs.IsCanceled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.PickerClosingEventArgs" />
+      </containers>
+      <file name="eeaf8753-e06f-471c-eebf-ec3da59f2391" />
+    </api>
+    <api id="Methods.T:Windows.Storage.Pickers.Provider.PickerClosingEventArgs">
+      <topicdata name="PickerClosingEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.Pickers.Provider.PickerClosingEventArgs" />
+      <apidata name="PickerClosingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.PickerClosingEventArgs" />
+      </containers>
+      <file name="dc97dd41-74f8-e5bb-3333-edb433a694d5" />
+    </api>
+    <api id="Properties.T:Windows.Storage.Pickers.Provider.PickerClosingEventArgs">
+      <topicdata name="PickerClosingEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Storage.Pickers.Provider.PickerClosingEventArgs" />
+      <apidata name="PickerClosingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.Pickers.Provider.PickerClosingEventArgs.ClosingOperation" />
+        <element api="P:Windows.Storage.Pickers.Provider.PickerClosingEventArgs.IsCanceled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.PickerClosingEventArgs" />
+      </containers>
+      <file name="62e18b74-97fa-5334-e755-5b9d5f8bf6e7" />
+    </api>
+    <api id="P:Windows.Storage.Pickers.Provider.PickerClosingEventArgs.ClosingOperation">
+      <topicdata group="api" />
+      <apidata name="ClosingOperation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ClosingOperation" />
+      <returns>
+        <type api="T:Windows.Storage.Pickers.Provider.PickerClosingOperation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.PickerClosingEventArgs" ref="true" />
+      </containers>
+      <file name="be6da4da-b8c6-decc-5028-c5798297706f" />
+    </api>
+    <api id="P:Windows.Storage.Pickers.Provider.PickerClosingEventArgs.IsCanceled">
+      <topicdata group="api" />
+      <apidata name="IsCanceled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsCanceled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.PickerClosingEventArgs" ref="true" />
+      </containers>
+      <file name="3e9f6a72-2ceb-0fd8-37a8-7ea7ec14afcc" />
+    </api>
+    <api id="T:Windows.Storage.Pickers.Provider.PickerClosingOperation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.Pickers.Provider.PickerClosingOperation" />
+      <apidata name="PickerClosingOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.Pickers.Provider.IPickerClosingOperation" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a4767aa6-b6a4-9da2-8c56-e62007c6406a" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.Pickers.Provider.PickerClosingOperation">
+      <topicdata name="PickerClosingOperation" group="list" subgroup="members" typeTopicId="T:Windows.Storage.Pickers.Provider.PickerClosingOperation" />
+      <apidata name="PickerClosingOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Storage.Pickers.Provider.PickerClosingOperation.Deadline" />
+        <element api="M:Windows.Storage.Pickers.Provider.PickerClosingOperation.GetDeferral" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.PickerClosingOperation" />
+      </containers>
+      <file name="b291e76f-412e-d1ed-bb50-78829c0df919" />
+    </api>
+    <api id="Methods.T:Windows.Storage.Pickers.Provider.PickerClosingOperation">
+      <topicdata name="PickerClosingOperation" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.Pickers.Provider.PickerClosingOperation" />
+      <apidata name="PickerClosingOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Storage.Pickers.Provider.PickerClosingOperation.GetDeferral" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.PickerClosingOperation" />
+      </containers>
+      <file name="feaac6a3-2d34-1b91-8245-6d78f04d8081" />
+    </api>
+    <api id="Properties.T:Windows.Storage.Pickers.Provider.PickerClosingOperation">
+      <topicdata name="PickerClosingOperation" group="list" subgroup="Properties" typeTopicId="T:Windows.Storage.Pickers.Provider.PickerClosingOperation" />
+      <apidata name="PickerClosingOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.Pickers.Provider.PickerClosingOperation.Deadline" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.PickerClosingOperation" />
+      </containers>
+      <file name="6bf5fae1-2bbd-7350-1791-983780f8ea73" />
+    </api>
+    <api id="P:Windows.Storage.Pickers.Provider.PickerClosingOperation.Deadline">
+      <topicdata group="api" />
+      <apidata name="Deadline" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Deadline" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.PickerClosingOperation" ref="true" />
+      </containers>
+      <file name="de3889cd-aaa7-8b35-0d8f-aa46418568d8" />
+    </api>
+    <api id="M:Windows.Storage.Pickers.Provider.PickerClosingOperation.GetDeferral">
+      <topicdata group="api" />
+      <apidata name="GetDeferral" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Storage.Pickers.Provider.PickerClosingDeferral" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.PickerClosingOperation" ref="true" />
+      </containers>
+      <file name="f12b1966-3a28-6375-2c9c-526752c06311" />
+    </api>
+    <api id="T:Windows.Storage.Pickers.Provider.SetFileNameResult">
+      <topicdata group="api" />
+      <apidata name="SetFileNameResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Storage.Pickers.Provider.SetFileNameResult.Succeeded" />
+        <element api="F:Windows.Storage.Pickers.Provider.SetFileNameResult.NotAllowed" />
+        <element api="F:Windows.Storage.Pickers.Provider.SetFileNameResult.Unavailable" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8c195d45-68a1-e0e7-86c2-b16010730dec" />
+    </api>
+    <api id="F:Windows.Storage.Pickers.Provider.SetFileNameResult.NotAllowed">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotAllowed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Pickers.Provider.SetFileNameResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.SetFileNameResult" ref="false" />
+      </containers>
+      <file name="e6ffc4d5-7a43-7a1e-84cb-f9e192450c34" />
+    </api>
+    <api id="F:Windows.Storage.Pickers.Provider.SetFileNameResult.Succeeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="Succeeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Pickers.Provider.SetFileNameResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.SetFileNameResult" ref="false" />
+      </containers>
+      <file name="d8ede96a-e26c-f573-916f-c7207291b7e4" />
+    </api>
+    <api id="F:Windows.Storage.Pickers.Provider.SetFileNameResult.Unavailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unavailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Pickers.Provider.SetFileNameResult" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.SetFileNameResult" ref="false" />
+      </containers>
+      <file name="bb92c64a-3448-aa70-c8bf-b1620f7998b0" />
+    </api>
+    <api id="T:Windows.Storage.Pickers.Provider.TargetFileRequest">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.Pickers.Provider.TargetFileRequest" />
+      <apidata name="TargetFileRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.Pickers.Provider.ITargetFileRequest" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1fab2fa5-b226-d383-2177-44180de3b3e0" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.Pickers.Provider.TargetFileRequest">
+      <topicdata name="TargetFileRequest" group="list" subgroup="members" typeTopicId="T:Windows.Storage.Pickers.Provider.TargetFileRequest" />
+      <apidata name="TargetFileRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Storage.Pickers.Provider.TargetFileRequest.GetDeferral" />
+        <element api="P:Windows.Storage.Pickers.Provider.TargetFileRequest.TargetFile" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.TargetFileRequest" />
+      </containers>
+      <file name="0e283e6b-7fb1-f0b8-8bdd-8b88f2d0ca3d" />
+    </api>
+    <api id="Methods.T:Windows.Storage.Pickers.Provider.TargetFileRequest">
+      <topicdata name="TargetFileRequest" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.Pickers.Provider.TargetFileRequest" />
+      <apidata name="TargetFileRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Storage.Pickers.Provider.TargetFileRequest.GetDeferral" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.TargetFileRequest" />
+      </containers>
+      <file name="d58668de-6661-c577-0fd4-780304cc5513" />
+    </api>
+    <api id="Properties.T:Windows.Storage.Pickers.Provider.TargetFileRequest">
+      <topicdata name="TargetFileRequest" group="list" subgroup="Properties" typeTopicId="T:Windows.Storage.Pickers.Provider.TargetFileRequest" />
+      <apidata name="TargetFileRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.Pickers.Provider.TargetFileRequest.TargetFile" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.TargetFileRequest" />
+      </containers>
+      <file name="7a49dae4-b7b0-75ec-da17-7691188ee1c4" />
+    </api>
+    <api id="M:Windows.Storage.Pickers.Provider.TargetFileRequest.GetDeferral">
+      <topicdata group="api" />
+      <apidata name="GetDeferral" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Storage.Pickers.Provider.TargetFileRequestDeferral" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.TargetFileRequest" ref="true" />
+      </containers>
+      <file name="f69db9da-162e-3ef7-40b3-0dec4617a135" />
+    </api>
+    <api id="P:Windows.Storage.Pickers.Provider.TargetFileRequest.TargetFile">
+      <topicdata group="api" />
+      <apidata name="TargetFile" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TargetFile" />
+      <setter name="set_TargetFile" />
+      <returns>
+        <type api="T:Windows.Storage.IStorageFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.TargetFileRequest" ref="true" />
+      </containers>
+      <file name="078261d7-5915-0338-a98c-eec908c57fa8" />
+    </api>
+    <api id="T:Windows.Storage.Pickers.Provider.TargetFileRequestDeferral">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.Pickers.Provider.TargetFileRequestDeferral" />
+      <apidata name="TargetFileRequestDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.Pickers.Provider.ITargetFileRequestDeferral" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b54f8114-aa1b-27e6-9cea-b8386a77f9f6" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.Pickers.Provider.TargetFileRequestDeferral">
+      <topicdata name="TargetFileRequestDeferral" group="list" subgroup="members" typeTopicId="T:Windows.Storage.Pickers.Provider.TargetFileRequestDeferral" />
+      <apidata name="TargetFileRequestDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Storage.Pickers.Provider.TargetFileRequestDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.TargetFileRequestDeferral" />
+      </containers>
+      <file name="c505facd-8e54-7cab-11d0-e5e0b2eb9616" />
+    </api>
+    <api id="Methods.T:Windows.Storage.Pickers.Provider.TargetFileRequestDeferral">
+      <topicdata name="TargetFileRequestDeferral" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.Pickers.Provider.TargetFileRequestDeferral" />
+      <apidata name="TargetFileRequestDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Storage.Pickers.Provider.TargetFileRequestDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.TargetFileRequestDeferral" />
+      </containers>
+      <file name="22140084-dbb5-f682-19e6-b299f98d2c0b" />
+    </api>
+    <api id="M:Windows.Storage.Pickers.Provider.TargetFileRequestDeferral.Complete">
+      <topicdata group="api" />
+      <apidata name="Complete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.TargetFileRequestDeferral" ref="true" />
+      </containers>
+      <file name="f371ee17-cce6-eb6b-9372-62b7297715be" />
+    </api>
+    <api id="T:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs" />
+      <apidata name="TargetFileRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.Pickers.Provider.ITargetFileRequestedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c6ecb151-ba84-3605-a799-f134b89870a5" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs">
+      <topicdata name="TargetFileRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs" />
+      <apidata name="TargetFileRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs.Request" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs" />
+      </containers>
+      <file name="3dbf3b59-a8a6-48b4-b308-30041f8380af" />
+    </api>
+    <api id="Methods.T:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs">
+      <topicdata name="TargetFileRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs" />
+      <apidata name="TargetFileRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs" />
+      </containers>
+      <file name="52291955-7897-369b-2fa6-1d9fcd01f729" />
+    </api>
+    <api id="Properties.T:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs">
+      <topicdata name="TargetFileRequestedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs" />
+      <apidata name="TargetFileRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs.Request" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs" />
+      </containers>
+      <file name="02c2df62-cb70-f2d9-253d-b7c28092f766" />
+    </api>
+    <api id="P:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs.Request">
+      <topicdata group="api" />
+      <apidata name="Request" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Request" />
+      <returns>
+        <type api="T:Windows.Storage.Pickers.Provider.TargetFileRequest" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Pickers.Provider" />
+        <type api="T:Windows.Storage.Pickers.Provider.TargetFileRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="25313221-5154-5d89-5722-81d7a25b2fe0" />
+    </api>
+  </apis>
+</reflection>

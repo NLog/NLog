@@ -1,0 +1,51 @@
+<SchemaCatalog xmlns="http://schemas.microsoft.com/xsd/catalog">
+  <!-- Schemas for MAML -->
+
+  <!-- 1. Place the MAML schemas and this file (catalog.xml) in a subfolder named .\MAML
+          in Visual Studio's .\Xml\Schemas folder. -->
+  <!-- 2. Update Visual Studio's root catalog.xml file by adding
+       <Catalog href="%InstallRoot%/xml/schemas/MAML/catalog.xml"/>. -->
+
+  <Schema href="%InstallRoot%/xml/schemas/MAML/base.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/baseConditional.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/block.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/blockCommon.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/blockSoftware.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/conditionSet.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/developer.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/developerReference.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/developerStructure.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/glossary.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/hierarchy.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/inline.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/inlineCommon.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/inlineLinking.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/inlineSoftware.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/inlineUi.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/structure.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/structureList.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/structureMedia.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/structureProcedure.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+  <Schema href="%InstallRoot%/xml/schemas/MAML/structureTable.xsd"
+          targetNamespace="http://ddue.schemas.microsoft.com/authoring/2003/5"/>
+</SchemaCatalog>

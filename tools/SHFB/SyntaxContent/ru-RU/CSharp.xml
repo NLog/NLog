@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Translations provided by Alex Sherman, verifications Sergey Zhurikhin -->
+
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+	<item id="devlang_C#">C#</item>
+	<item id="devlang_CSharp">C#</item>
+	<item id="devlang_cs">C#</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+	<item id="metaLang_C#">CSharp</item>
+	<item id="metaLang_CSharp">CSharp</item>
+	<item id="metaLang_cs">CSharp</item>
+
+	<!-- C# syntax section messages -->
+	<item id="UnsupportedOperator_CSharp">C# не поддерживает этот оператор.</item>
+	<item id="UnsupportedVarargs_CSharp">C# не поддерживает методы, использующие аргументы переменной длины
+(<span class="code">varargs</span>).  Компилятор автоматически разрешает вызовы этого метода в такой же метод,
+использующий массив параметров.</item>
+
+</content>

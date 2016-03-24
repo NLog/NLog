@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+  <item id="devlang_Visual Basic Usage">VB Usage</item>
+  <item id="devlang_VisualBasicUsage">VB Usage</item>
+  <item id="devlang_vbusage">VB Usage</item>
+  <item id="devlang_vbnetusage">VB Usage</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+  <item id="metaLang_Visual Basic Usage">VB</item>
+  <item id="metaLang_VisualBasicUsage">VB</item>
+  <item id="metaLang_vbusage">VB</item>
+  <item id="metaLang_vbnetusage">VB</item>
+
+	<!-- VB usage syntax section messages -->
+	<item id="UnsupportedUnsafe_VisualBasicUsage">Visual Basic does not support APIs that consume or return unsafe types.</item>
+	<item id="UnsupportedOperator_VisualBasicUsage">Visual Basic does not support this operator.</item>
+	<item id="UnsupportedStaticClass_VisualBasicUsage">You do not need to declare an instance of a static class in order to access its members.</item>
+	<item id="UnsupportedVarargs_VisualBasicUsage">Visual Basic does not support methods that use variable length arguments
+(<span class="code">varargs</span>).  The compiler automatically resolves calls to this method to the same method
+that uses a parameter array.</item>
+
+</content>

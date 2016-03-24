@@ -1,0 +1,616 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Bluetooth.Background">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Bluetooth.Background" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation" />
+        <element api="T:Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation" />
+        <element api="T:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails" />
+        <element api="T:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails" />
+      </elements>
+      <file name="2bafe86a-d537-fd6e-58f5-dc2d885ae8f9" />
+    </api>
+    <api id="T:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails" />
+      <apidata name="GattCharacteristicNotificationTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Bluetooth.Background.IGattCharacteristicNotificationTriggerDetails" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0b854091-dea1-afc5-ac9f-db874671122c" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails">
+      <topicdata name="GattCharacteristicNotificationTriggerDetails" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails" />
+      <apidata name="GattCharacteristicNotificationTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails.Characteristic" />
+        <element api="P:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails" />
+      </containers>
+      <file name="584ca2f2-a866-f58b-6031-1d39513d732d" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails">
+      <topicdata name="GattCharacteristicNotificationTriggerDetails" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails" />
+      <apidata name="GattCharacteristicNotificationTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails" />
+      </containers>
+      <file name="4ab0d245-2e94-37a7-b00b-fa3316b663e8" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails">
+      <topicdata name="GattCharacteristicNotificationTriggerDetails" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails" />
+      <apidata name="GattCharacteristicNotificationTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails.Characteristic" />
+        <element api="P:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails" />
+      </containers>
+      <file name="a0046614-ac7c-8a7d-cffd-f6ee7218c0ec" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails.Characteristic">
+      <topicdata group="api" />
+      <apidata name="Characteristic" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Characteristic" />
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.GenericAttributeProfile.GattCharacteristic" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails" ref="true" />
+      </containers>
+      <file name="be67c7cb-1ea3-02af-efd3-01b720d7067f" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.GattCharacteristicNotificationTriggerDetails" ref="true" />
+      </containers>
+      <file name="8407a401-0579-7148-151f-272f8bbd2f5e" />
+    </api>
+    <api id="T:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails" />
+      <apidata name="RfcommConnectionTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Bluetooth.Background.IRfcommConnectionTriggerDetails" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c0af8e53-b15b-3d0e-1f1a-792782512d65" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails">
+      <topicdata name="RfcommConnectionTriggerDetails" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails" />
+      <apidata name="RfcommConnectionTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails.Incoming" />
+        <element api="P:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails.RemoteDevice" />
+        <element api="P:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails.Socket" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails" />
+      </containers>
+      <file name="d67112ee-bb12-523b-403b-f4c05b18d555" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails">
+      <topicdata name="RfcommConnectionTriggerDetails" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails" />
+      <apidata name="RfcommConnectionTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails" />
+      </containers>
+      <file name="4b93008b-502b-10bf-f65f-c82daddd9d0c" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails">
+      <topicdata name="RfcommConnectionTriggerDetails" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails" />
+      <apidata name="RfcommConnectionTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails.Incoming" />
+        <element api="P:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails.RemoteDevice" />
+        <element api="P:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails.Socket" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails" />
+      </containers>
+      <file name="7a8be95e-326c-8125-35e1-c27462d43207" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails.Incoming">
+      <topicdata group="api" />
+      <apidata name="Incoming" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Incoming" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails" ref="true" />
+      </containers>
+      <file name="3157a9cf-6c01-48b8-0bdd-03ca7afc20a0" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails.RemoteDevice">
+      <topicdata group="api" />
+      <apidata name="RemoteDevice" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RemoteDevice" />
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.BluetoothDevice" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails" ref="true" />
+      </containers>
+      <file name="1d5985e4-a740-c978-41a1-bf19dc49562f" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails.Socket">
+      <topicdata group="api" />
+      <apidata name="Socket" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Socket" />
+      <returns>
+        <type api="T:Windows.Networking.Sockets.StreamSocket" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.RfcommConnectionTriggerDetails" ref="true" />
+      </containers>
+      <file name="0ee36c97-ab1c-50e4-f211-b626f2f3e60c" />
+    </api>
+    <api id="T:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation" />
+      <apidata name="RfcommInboundConnectionInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Bluetooth.Background.IRfcommInboundConnectionInformation" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="83b1d816-9dbf-e17e-9097-ce462be9e58a" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation">
+      <topicdata name="RfcommInboundConnectionInformation" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation" />
+      <apidata name="RfcommInboundConnectionInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation.LocalServiceId" />
+        <element api="P:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation.SdpRecord" />
+        <element api="P:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation.ServiceCapabilities" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation" />
+      </containers>
+      <file name="937f9985-29b5-2aa9-63c0-703e74f63000" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation">
+      <topicdata name="RfcommInboundConnectionInformation" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation" />
+      <apidata name="RfcommInboundConnectionInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation" />
+      </containers>
+      <file name="5e005404-e7f4-4917-356c-730f93419603" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation">
+      <topicdata name="RfcommInboundConnectionInformation" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation" />
+      <apidata name="RfcommInboundConnectionInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation.LocalServiceId" />
+        <element api="P:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation.SdpRecord" />
+        <element api="P:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation.ServiceCapabilities" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation" />
+      </containers>
+      <file name="cba5a4ec-831f-a905-d0e7-7658ee1d492d" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation.LocalServiceId">
+      <topicdata group="api" />
+      <apidata name="LocalServiceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_LocalServiceId" />
+      <setter name="set_LocalServiceId" />
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation" ref="true" />
+      </containers>
+      <file name="4797ad1e-a625-9700-53ab-00c3c35d84ba" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation.SdpRecord">
+      <topicdata group="api" />
+      <apidata name="SdpRecord" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SdpRecord" />
+      <setter name="set_SdpRecord" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation" ref="true" />
+      </containers>
+      <file name="ebeec520-0e37-7dae-88e6-1e3a7c46ec67" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation.ServiceCapabilities">
+      <topicdata group="api" />
+      <apidata name="ServiceCapabilities" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ServiceCapabilities" />
+      <setter name="set_ServiceCapabilities" />
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.BluetoothServiceCapabilities" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.RfcommInboundConnectionInformation" ref="true" />
+      </containers>
+      <file name="ea099615-1c8e-b302-eba0-3036c0748ed8" />
+    </api>
+    <api id="T:Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation" />
+      <apidata name="RfcommOutboundConnectionInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Bluetooth.Background.IRfcommOutboundConnectionInformation" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="117d2725-e1da-9609-e1ce-4d54c0c3cfd7" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation">
+      <topicdata name="RfcommOutboundConnectionInformation" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation" />
+      <apidata name="RfcommOutboundConnectionInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation.RemoteServiceId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation" />
+      </containers>
+      <file name="d4a14b4e-26be-beae-f5fd-2e030aec53d1" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation">
+      <topicdata name="RfcommOutboundConnectionInformation" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation" />
+      <apidata name="RfcommOutboundConnectionInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation" />
+      </containers>
+      <file name="bd63842b-939c-b198-66ba-4254de8107be" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation">
+      <topicdata name="RfcommOutboundConnectionInformation" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation" />
+      <apidata name="RfcommOutboundConnectionInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation.RemoteServiceId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation" />
+      </containers>
+      <file name="05cbf8a6-2c3e-197b-c370-f49c83b47bb8" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation.RemoteServiceId">
+      <topicdata group="api" />
+      <apidata name="RemoteServiceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RemoteServiceId" />
+      <setter name="set_RemoteServiceId" />
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Background" />
+        <type api="T:Windows.Devices.Bluetooth.Background.RfcommOutboundConnectionInformation" ref="true" />
+      </containers>
+      <file name="de39f006-3962-593f-7fe1-36ede01fce5f" />
+    </api>
+  </apis>
+</reflection>

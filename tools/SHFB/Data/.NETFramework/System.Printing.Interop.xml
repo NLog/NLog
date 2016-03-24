@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="ReachFramework">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ReachFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ReachFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ReachFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\wpf\src\windows.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Printing.Interop">
+      <topicdata group="api" />
+      <apidata name="System.Printing.Interop" group="namespace" />
+      <elements>
+        <element api="T:System.Printing.Interop.BaseDevModeType" />
+        <element api="T:System.Printing.Interop.PrintTicketConverter" />
+      </elements>
+      <file name="c87c9952-62d7-ee3b-020f-167f0496a65e" />
+    </api>
+    <api id="T:System.Printing.Interop.BaseDevModeType">
+      <topicdata group="api" />
+      <apidata name="BaseDevModeType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Printing.Interop.BaseDevModeType.UserDefault" />
+        <element api="F:System.Printing.Interop.BaseDevModeType.PrinterDefault" />
+      </elements>
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ebcbfbff-81d9-61e8-f0ab-88640cee5d09" />
+    </api>
+    <api id="F:System.Printing.Interop.BaseDevModeType.PrinterDefault">
+      <topicdata group="api" notopic="" />
+      <apidata name="PrinterDefault" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Printing.Interop.BaseDevModeType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+        <type api="T:System.Printing.Interop.BaseDevModeType" ref="false" />
+      </containers>
+      <file name="28b8052c-37c8-de94-5cf4-037f31f65e9e" />
+    </api>
+    <api id="F:System.Printing.Interop.BaseDevModeType.UserDefault">
+      <topicdata group="api" notopic="" />
+      <apidata name="UserDefault" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Printing.Interop.BaseDevModeType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+        <type api="T:System.Printing.Interop.BaseDevModeType" ref="false" />
+      </containers>
+      <file name="a582fec4-6adf-48d3-2499-ec1d32f81b67" />
+    </api>
+    <api id="T:System.Printing.Interop.PrintTicketConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Printing.Interop.PrintTicketConverter" />
+      <apidata name="PrintTicketConverter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c95af687-675c-f00b-a0fa-b7460cef8e1f" />
+    </api>
+    <api id="AllMembers.T:System.Printing.Interop.PrintTicketConverter">
+      <topicdata name="PrintTicketConverter" group="list" subgroup="members" typeTopicId="T:System.Printing.Interop.PrintTicketConverter" />
+      <apidata name="PrintTicketConverter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Printing.Interop.PrintTicketConverter.#ctor(System.String,System.Int32)" />
+        <element api="Overload:System.Printing.Interop.PrintTicketConverter.ConvertDevModeToPrintTicket">
+          <element api="M:System.Printing.Interop.PrintTicketConverter.ConvertDevModeToPrintTicket(System.Byte[])" />
+          <element api="M:System.Printing.Interop.PrintTicketConverter.ConvertDevModeToPrintTicket(System.Byte[],System.Printing.PrintTicketScope)" />
+        </element>
+        <element api="Overload:System.Printing.Interop.PrintTicketConverter.ConvertPrintTicketToDevMode">
+          <element api="M:System.Printing.Interop.PrintTicketConverter.ConvertPrintTicketToDevMode(System.Printing.PrintTicket,System.Printing.Interop.BaseDevModeType)" />
+          <element api="M:System.Printing.Interop.PrintTicketConverter.ConvertPrintTicketToDevMode(System.Printing.PrintTicket,System.Printing.Interop.BaseDevModeType,System.Printing.PrintTicketScope)" />
+        </element>
+        <element api="M:System.Printing.Interop.PrintTicketConverter.Dispose" />
+        <element api="P:System.Printing.Interop.PrintTicketConverter.MaxPrintSchemaVersion" />
+        <element api="M:System.Printing.Interop.PrintTicketConverter.System#IDisposable#Dispose" />
+      </elements>
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+        <type api="T:System.Printing.Interop.PrintTicketConverter" />
+      </containers>
+      <file name="0170646c-e01f-7dc9-9107-28dd057e5d12" />
+    </api>
+    <api id="Methods.T:System.Printing.Interop.PrintTicketConverter">
+      <topicdata name="PrintTicketConverter" group="list" subgroup="Methods" typeTopicId="T:System.Printing.Interop.PrintTicketConverter" />
+      <apidata name="PrintTicketConverter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Printing.Interop.PrintTicketConverter.ConvertDevModeToPrintTicket">
+          <element api="M:System.Printing.Interop.PrintTicketConverter.ConvertDevModeToPrintTicket(System.Byte[])" />
+          <element api="M:System.Printing.Interop.PrintTicketConverter.ConvertDevModeToPrintTicket(System.Byte[],System.Printing.PrintTicketScope)" />
+        </element>
+        <element api="Overload:System.Printing.Interop.PrintTicketConverter.ConvertPrintTicketToDevMode">
+          <element api="M:System.Printing.Interop.PrintTicketConverter.ConvertPrintTicketToDevMode(System.Printing.PrintTicket,System.Printing.Interop.BaseDevModeType)" />
+          <element api="M:System.Printing.Interop.PrintTicketConverter.ConvertPrintTicketToDevMode(System.Printing.PrintTicket,System.Printing.Interop.BaseDevModeType,System.Printing.PrintTicketScope)" />
+        </element>
+        <element api="M:System.Printing.Interop.PrintTicketConverter.Dispose" />
+        <element api="M:System.Printing.Interop.PrintTicketConverter.System#IDisposable#Dispose" />
+      </elements>
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+        <type api="T:System.Printing.Interop.PrintTicketConverter" />
+      </containers>
+      <file name="8dc9d322-97f2-ab18-4f61-4f26049dc1e4" />
+    </api>
+    <api id="Properties.T:System.Printing.Interop.PrintTicketConverter">
+      <topicdata name="PrintTicketConverter" group="list" subgroup="Properties" typeTopicId="T:System.Printing.Interop.PrintTicketConverter" />
+      <apidata name="PrintTicketConverter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Printing.Interop.PrintTicketConverter.MaxPrintSchemaVersion" />
+      </elements>
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+        <type api="T:System.Printing.Interop.PrintTicketConverter" />
+      </containers>
+      <file name="01d6cdb7-7566-8b96-d304-578074e95c20" />
+    </api>
+    <api id="Overload:System.Printing.Interop.PrintTicketConverter.ConvertDevModeToPrintTicket">
+      <topicdata name="ConvertDevModeToPrintTicket" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Printing.Interop.PrintTicketConverter" />
+      <apidata name="ConvertDevModeToPrintTicket" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Printing.Interop.PrintTicketConverter.ConvertDevModeToPrintTicket(System.Byte[])" />
+        <element api="M:System.Printing.Interop.PrintTicketConverter.ConvertDevModeToPrintTicket(System.Byte[],System.Printing.PrintTicketScope)" />
+      </elements>
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+        <type api="T:System.Printing.Interop.PrintTicketConverter" ref="true" />
+      </containers>
+      <file name="9d6afd0f-01e6-0c3e-550b-1481e3a3db68" />
+    </api>
+    <api id="Overload:System.Printing.Interop.PrintTicketConverter.ConvertPrintTicketToDevMode">
+      <topicdata name="ConvertPrintTicketToDevMode" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Printing.Interop.PrintTicketConverter" />
+      <apidata name="ConvertPrintTicketToDevMode" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Printing.Interop.PrintTicketConverter.ConvertPrintTicketToDevMode(System.Printing.PrintTicket,System.Printing.Interop.BaseDevModeType)" />
+        <element api="M:System.Printing.Interop.PrintTicketConverter.ConvertPrintTicketToDevMode(System.Printing.PrintTicket,System.Printing.Interop.BaseDevModeType,System.Printing.PrintTicketScope)" />
+      </elements>
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+        <type api="T:System.Printing.Interop.PrintTicketConverter" ref="true" />
+      </containers>
+      <file name="d6c7cfec-2244-3b58-480a-b1a11da1ce72" />
+    </api>
+    <api id="M:System.Printing.Interop.PrintTicketConverter.#ctor(System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="deviceName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="clientPrintSchemaVersion">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+        <type api="T:System.Printing.Interop.PrintTicketConverter" ref="true" />
+      </containers>
+      <file name="c346f5f1-41cf-796d-3987-08d78e2682dd" />
+    </api>
+    <api id="M:System.Printing.Interop.PrintTicketConverter.ConvertDevModeToPrintTicket(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="ConvertDevModeToPrintTicket" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Printing.Interop.PrintTicketConverter.ConvertDevModeToPrintTicket" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="devMode">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Printing.PrintTicket" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+        <type api="T:System.Printing.Interop.PrintTicketConverter" ref="true" />
+      </containers>
+      <file name="a8d534db-6d82-2585-b0fb-e74d13292dea" />
+    </api>
+    <api id="M:System.Printing.Interop.PrintTicketConverter.ConvertDevModeToPrintTicket(System.Byte[],System.Printing.PrintTicketScope)">
+      <topicdata group="api" />
+      <apidata name="ConvertDevModeToPrintTicket" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Printing.Interop.PrintTicketConverter.ConvertDevModeToPrintTicket" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="devMode">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="scope">
+          <type api="T:System.Printing.PrintTicketScope" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Printing.PrintTicket" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+        <type api="T:System.Printing.Interop.PrintTicketConverter" ref="true" />
+      </containers>
+      <file name="df766c78-2e97-0e71-4f9b-313ba2bb2ac0" />
+    </api>
+    <api id="M:System.Printing.Interop.PrintTicketConverter.ConvertPrintTicketToDevMode(System.Printing.PrintTicket,System.Printing.Interop.BaseDevModeType)">
+      <topicdata group="api" />
+      <apidata name="ConvertPrintTicketToDevMode" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Printing.Interop.PrintTicketConverter.ConvertPrintTicketToDevMode" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+        <parameter name="baseType">
+          <type api="T:System.Printing.Interop.BaseDevModeType" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+        <type api="T:System.Printing.Interop.PrintTicketConverter" ref="true" />
+      </containers>
+      <file name="c10bae84-8be7-67fb-ccc3-ef53c6095c99" />
+    </api>
+    <api id="M:System.Printing.Interop.PrintTicketConverter.ConvertPrintTicketToDevMode(System.Printing.PrintTicket,System.Printing.Interop.BaseDevModeType,System.Printing.PrintTicketScope)">
+      <topicdata group="api" />
+      <apidata name="ConvertPrintTicketToDevMode" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Printing.Interop.PrintTicketConverter.ConvertPrintTicketToDevMode" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="printTicket">
+          <type api="T:System.Printing.PrintTicket" ref="true" />
+        </parameter>
+        <parameter name="baseType">
+          <type api="T:System.Printing.Interop.BaseDevModeType" ref="false" />
+        </parameter>
+        <parameter name="scope">
+          <type api="T:System.Printing.PrintTicketScope" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+        <type api="T:System.Printing.Interop.PrintTicketConverter" ref="true" />
+      </containers>
+      <file name="8737d3b6-986e-0c3f-e585-47ae83d918bf" />
+    </api>
+    <api id="M:System.Printing.Interop.PrintTicketConverter.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+        <type api="T:System.Printing.Interop.PrintTicketConverter" ref="true" />
+      </containers>
+      <file name="1341464d-38b4-9fea-18b2-edbcd92c649e" />
+    </api>
+    <api id="P:System.Printing.Interop.PrintTicketConverter.MaxPrintSchemaVersion">
+      <topicdata group="api" />
+      <apidata name="MaxPrintSchemaVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MaxPrintSchemaVersion" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+        <type api="T:System.Printing.Interop.PrintTicketConverter" ref="true" />
+      </containers>
+      <file name="682f7f13-1d92-80c3-cc93-f87ad663d2c5" />
+    </api>
+    <api id="M:System.Printing.Interop.PrintTicketConverter.System#IDisposable#Dispose">
+      <topicdata group="api" eiiName="IDisposable.Dispose" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="ReachFramework" module="ReachFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Printing.Interop" />
+        <type api="T:System.Printing.Interop.PrintTicketConverter" ref="true" />
+      </containers>
+      <file name="6e605ac5-f832-10fc-8f09-bdea885a0ae7" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,579 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities.Presentation">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Windows.ThemeInfoAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="SourceAssembly" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="SourceAssembly" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Activities.Presentation.ViewState">
+      <topicdata group="api" />
+      <apidata name="System.Activities.Presentation.ViewState" group="namespace" />
+      <elements>
+        <element api="T:System.Activities.Presentation.ViewState.ViewStateData" />
+        <element api="T:System.Activities.Presentation.ViewState.ViewStateManager" />
+        <element api="T:System.Activities.Presentation.ViewState.WorkflowViewState" />
+      </elements>
+      <file name="d85ea22b-a05d-1178-074a-9f6bef2ed3b1" />
+    </api>
+    <api id="T:System.Activities.Presentation.ViewState.ViewStateData">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.ViewState.ViewStateData" />
+      <apidata name="ViewStateData" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.ViewState.ViewStateData.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+      </containers>
+      <file name="5f153b84-87f9-69ca-83f9-c567ae0d68b2" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.ViewState.ViewStateData">
+      <topicdata name="ViewStateData" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.ViewState.ViewStateData" />
+      <apidata name="ViewStateData" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.ViewState.ViewStateData.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.ViewState.ViewStateData.#ctor" />
+        <element api="P:System.Activities.Presentation.ViewState.ViewStateData.Id" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.ViewStateData" />
+      </containers>
+      <file name="d98ee79b-18f4-e8fa-be75-b94c80508178" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.ViewState.ViewStateData">
+      <topicdata name="ViewStateData" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.ViewState.ViewStateData" />
+      <apidata name="ViewStateData" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.ViewState.ViewStateData.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.ViewStateData" />
+      </containers>
+      <file name="bbc9d46b-1150-036f-40c9-5a86e263e086" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.ViewState.ViewStateData">
+      <topicdata name="ViewStateData" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.ViewState.ViewStateData" />
+      <apidata name="ViewStateData" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.ViewState.ViewStateData.#ctor" />
+      <elements>
+        <element api="P:System.Activities.Presentation.ViewState.ViewStateData.Id" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.ViewStateData" />
+      </containers>
+      <file name="e62f37ac-cb28-2a80-c9a7-92ca79067b71" />
+    </api>
+    <api id="M:System.Activities.Presentation.ViewState.ViewStateData.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.ViewStateData" ref="true" />
+      </containers>
+      <file name="38f5002b-0c30-378b-71ef-188b9836f279" />
+    </api>
+    <api id="P:System.Activities.Presentation.ViewState.ViewStateData.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Id" />
+      <setter name="set_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.ViewStateData" ref="true" />
+      </containers>
+      <file name="7695aa9d-0ddb-1477-67da-852533609086" />
+    </api>
+    <api id="T:System.Activities.Presentation.ViewState.ViewStateManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.ViewState.ViewStateManager" />
+      <apidata name="ViewStateManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.ViewState.ViewStateManager.#ctor" contentProperty="P:System.Activities.Presentation.ViewState.ViewStateManager.ViewStateData" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Windows.Markup.ContentPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ViewStateData</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="03b4e9b0-8e85-d8d2-c1ab-a15983feedc0" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.ViewState.ViewStateManager">
+      <topicdata name="ViewStateManager" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.ViewState.ViewStateManager" />
+      <apidata name="ViewStateManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.ViewState.ViewStateManager.#ctor" contentProperty="P:System.Activities.Presentation.ViewState.ViewStateManager.ViewStateData" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.ViewState.ViewStateManager.#ctor" />
+        <element api="P:System.Activities.Presentation.ViewState.ViewStateManager.ViewStateData" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.ViewStateManager" />
+      </containers>
+      <file name="eededf76-398e-0316-4a02-814d3b376f86" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.ViewState.ViewStateManager">
+      <topicdata name="ViewStateManager" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.ViewState.ViewStateManager" />
+      <apidata name="ViewStateManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.ViewState.ViewStateManager.#ctor" contentProperty="P:System.Activities.Presentation.ViewState.ViewStateManager.ViewStateData" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.ViewStateManager" />
+      </containers>
+      <file name="04fbda9b-606d-ebed-83aa-f88d5d37e3e8" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.ViewState.ViewStateManager">
+      <topicdata name="ViewStateManager" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.ViewState.ViewStateManager" />
+      <apidata name="ViewStateManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Presentation.ViewState.ViewStateManager.#ctor" contentProperty="P:System.Activities.Presentation.ViewState.ViewStateManager.ViewStateData" />
+      <elements>
+        <element api="P:System.Activities.Presentation.ViewState.ViewStateManager.ViewStateData" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.ViewStateManager" />
+      </containers>
+      <file name="57d6b991-187a-816d-f11c-f1542903e522" />
+    </api>
+    <api id="M:System.Activities.Presentation.ViewState.ViewStateManager.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.ViewStateManager" ref="true" />
+      </containers>
+      <file name="7fbff86d-eb80-6e9d-dd77-cf2f78365767" />
+    </api>
+    <api id="P:System.Activities.Presentation.ViewState.ViewStateManager.ViewStateData">
+      <topicdata group="api" />
+      <apidata name="ViewStateData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ViewStateData" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Presentation.ViewState.ViewStateData" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.ViewStateManager" ref="true" />
+      </containers>
+      <file name="edc4c1e6-be7a-43d2-c833-79b168efa29e" />
+    </api>
+    <api id="T:System.Activities.Presentation.ViewState.WorkflowViewState">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.ViewState.WorkflowViewState" />
+      <apidata name="WorkflowViewState" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+      </containers>
+      <file name="ca29afda-c6c8-d6ea-1591-7cd761c393b7" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.ViewState.WorkflowViewState">
+      <topicdata name="WorkflowViewState" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.ViewState.WorkflowViewState" />
+      <apidata name="WorkflowViewState" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Presentation.ViewState.WorkflowViewState.GetIdRef(System.Object)" />
+        <element api="M:System.Activities.Presentation.ViewState.WorkflowViewState.GetViewStateManager(System.Object)" />
+        <element api="F:System.Activities.Presentation.ViewState.WorkflowViewState.IdRefProperty" />
+        <element api="M:System.Activities.Presentation.ViewState.WorkflowViewState.SetIdRef(System.Object,System.String)" />
+        <element api="M:System.Activities.Presentation.ViewState.WorkflowViewState.SetViewStateManager(System.Object,System.Activities.Presentation.ViewState.ViewStateManager)" />
+        <element api="F:System.Activities.Presentation.ViewState.WorkflowViewState.ViewStateManagerProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.WorkflowViewState" />
+      </containers>
+      <file name="e7a81ec7-6855-40e6-5f3d-f374170d5d70" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.ViewState.WorkflowViewState">
+      <topicdata name="WorkflowViewState" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.ViewState.WorkflowViewState" />
+      <apidata name="WorkflowViewState" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Presentation.ViewState.WorkflowViewState.GetIdRef(System.Object)" />
+        <element api="M:System.Activities.Presentation.ViewState.WorkflowViewState.GetViewStateManager(System.Object)" />
+        <element api="M:System.Activities.Presentation.ViewState.WorkflowViewState.SetIdRef(System.Object,System.String)" />
+        <element api="M:System.Activities.Presentation.ViewState.WorkflowViewState.SetViewStateManager(System.Object,System.Activities.Presentation.ViewState.ViewStateManager)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.WorkflowViewState" />
+      </containers>
+      <file name="0f96d7e3-6439-4ff6-4152-8d01d9bd6a56" />
+    </api>
+    <api id="Fields.T:System.Activities.Presentation.ViewState.WorkflowViewState">
+      <topicdata name="WorkflowViewState" group="list" subgroup="Fields" typeTopicId="T:System.Activities.Presentation.ViewState.WorkflowViewState" />
+      <apidata name="WorkflowViewState" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Activities.Presentation.ViewState.WorkflowViewState.IdRefProperty" />
+        <element api="F:System.Activities.Presentation.ViewState.WorkflowViewState.ViewStateManagerProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.WorkflowViewState" />
+      </containers>
+      <file name="67481da6-373b-a915-0f65-4f0516c23928" />
+    </api>
+    <api id="M:System.Activities.Presentation.ViewState.WorkflowViewState.GetIdRef(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetIdRef" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.WorkflowViewState" ref="true" />
+      </containers>
+      <file name="45d44329-a1db-b432-4fd0-bfa5ec42b7f6" />
+    </api>
+    <api id="M:System.Activities.Presentation.ViewState.WorkflowViewState.GetViewStateManager(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetViewStateManager" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Presentation.ViewState.ViewStateManager" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.WorkflowViewState" ref="true" />
+      </containers>
+      <file name="5cd5f061-79d5-096a-fea8-6267dd93353b" />
+    </api>
+    <api id="F:System.Activities.Presentation.ViewState.WorkflowViewState.IdRefProperty">
+      <topicdata group="api" />
+      <apidata name="IdRefProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Xaml.AttachableMemberIdentifier" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.WorkflowViewState" ref="true" />
+      </containers>
+      <file name="2b31aeae-beff-a934-d8fb-4d9b0cdfdd17" />
+    </api>
+    <api id="M:System.Activities.Presentation.ViewState.WorkflowViewState.SetIdRef(System.Object,System.String)">
+      <topicdata group="api" />
+      <apidata name="SetIdRef" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="idRef">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.WorkflowViewState" ref="true" />
+      </containers>
+      <file name="bca0fa90-2f84-ad1d-257f-2df1c8ba55ac" />
+    </api>
+    <api id="M:System.Activities.Presentation.ViewState.WorkflowViewState.SetViewStateManager(System.Object,System.Activities.Presentation.ViewState.ViewStateManager)">
+      <topicdata group="api" />
+      <apidata name="SetViewStateManager" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="viewStateManager">
+          <type api="T:System.Activities.Presentation.ViewState.ViewStateManager" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.WorkflowViewState" ref="true" />
+      </containers>
+      <file name="d77bfb79-bbd5-7181-db6d-cd85a84da587" />
+    </api>
+    <api id="F:System.Activities.Presentation.ViewState.WorkflowViewState.ViewStateManagerProperty">
+      <topicdata group="api" />
+      <apidata name="ViewStateManagerProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Xaml.AttachableMemberIdentifier" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.ViewState" />
+        <type api="T:System.Activities.Presentation.ViewState.WorkflowViewState" ref="true" />
+      </containers>
+      <file name="58b5a957-ccaf-0f0e-16d3-8a8b24e84b91" />
+    </api>
+  </apis>
+</reflection>

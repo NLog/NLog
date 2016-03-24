@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.SPOT.Native">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.SPOT.Native</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Security.Cryptography.X509Certificates">
+      <topicdata group="api" />
+      <apidata name="System.Security.Cryptography.X509Certificates" group="namespace" />
+      <elements>
+        <element api="T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      </elements>
+      <file name="7bc5c9dc-5b3c-1369-6ee7-483d10813eea" />
+    </api>
+    <api id="T:System.Security.Cryptography.X509Certificates.X509Certificate">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      <apidata name="X509Certificate" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+      </containers>
+      <file name="b421ce25-abff-ff69-c03e-34ebe388bf01" />
+    </api>
+    <api id="AllMembers.T:System.Security.Cryptography.X509Certificates.X509Certificate">
+      <topicdata name="X509Certificate" group="list" subgroup="members" typeTopicId="T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      <apidata name="X509Certificate" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor">
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Byte[])" />
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Byte[],System.String)" />
+        </element>
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetEffectiveDate" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetExpirationDate" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetRawCertData" />
+        <element api="P:System.Security.Cryptography.X509Certificates.X509Certificate.Issuer" />
+        <element api="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_effectiveDate" />
+        <element api="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_expirationDate" />
+        <element api="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_handle" />
+        <element api="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_issuer" />
+        <element api="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_sessionHandle" />
+        <element api="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_subject" />
+        <element api="P:System.Security.Cryptography.X509Certificates.X509Certificate.Subject" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      </containers>
+      <file name="2dec120f-304c-7b6e-e1b4-5d5d3a8b7f01" />
+    </api>
+    <api id="Methods.T:System.Security.Cryptography.X509Certificates.X509Certificate">
+      <topicdata name="X509Certificate" group="list" subgroup="Methods" typeTopicId="T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      <apidata name="X509Certificate" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetEffectiveDate" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetExpirationDate" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetRawCertData" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      </containers>
+      <file name="aab6390b-c9dd-8f83-cd5b-c826c92f43fb" />
+    </api>
+    <api id="Properties.T:System.Security.Cryptography.X509Certificates.X509Certificate">
+      <topicdata name="X509Certificate" group="list" subgroup="Properties" typeTopicId="T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      <apidata name="X509Certificate" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <elements>
+        <element api="P:System.Security.Cryptography.X509Certificates.X509Certificate.Issuer" />
+        <element api="P:System.Security.Cryptography.X509Certificates.X509Certificate.Subject" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      </containers>
+      <file name="1d620761-77b7-3f6e-a7f7-507c11b511b3" />
+    </api>
+    <api id="Fields.T:System.Security.Cryptography.X509Certificates.X509Certificate">
+      <topicdata name="X509Certificate" group="list" subgroup="Fields" typeTopicId="T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      <apidata name="X509Certificate" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <elements>
+        <element api="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_effectiveDate" />
+        <element api="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_expirationDate" />
+        <element api="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_handle" />
+        <element api="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_issuer" />
+        <element api="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_sessionHandle" />
+        <element api="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_subject" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      </containers>
+      <file name="1c2d10b6-5578-8ab9-862a-77c20d9f5736" />
+    </api>
+    <api id="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Byte[])" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Byte[],System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="89133a8f-5869-8d1d-91cc-403abf29df05" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="386e9d24-c88b-991a-f0d1-8e7740cf3558" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <parameters>
+        <parameter name="certificate">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="bd580f9e-558f-da76-9d8d-291faf7fc326" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Byte[],System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <parameters>
+        <parameter name="certificate">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="0c91f320-576a-e1e1-e029-5fd855eab95f" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetEffectiveDate">
+      <topicdata group="api" />
+      <apidata name="GetEffectiveDate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="5d711124-28fc-4c77-55a5-cc860a6a721c" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetExpirationDate">
+      <topicdata group="api" />
+      <apidata name="GetExpirationDate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="25efc8da-d024-04d5-5f77-c43fd181867b" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetRawCertData">
+      <topicdata group="api" />
+      <apidata name="GetRawCertData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="022727bd-443b-40d3-c48e-bd96dbf17e86" />
+    </api>
+    <api id="P:System.Security.Cryptography.X509Certificates.X509Certificate.Issuer">
+      <topicdata group="api" />
+      <apidata name="Issuer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Issuer" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="512fe779-e04a-795b-0bd9-cef08dd6f749" />
+    </api>
+    <api id="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_effectiveDate">
+      <topicdata group="api" />
+      <apidata name="m_effectiveDate" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="f22f3ad0-ae3c-83b3-8d5b-d267f577bf11" />
+    </api>
+    <api id="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_expirationDate">
+      <topicdata group="api" />
+      <apidata name="m_expirationDate" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="bcc89e4d-3da2-8c98-e88e-94e735805a68" />
+    </api>
+    <api id="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_handle">
+      <topicdata group="api" />
+      <apidata name="m_handle" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="5219f99a-4ab5-0804-16f3-200b2d30693b" />
+    </api>
+    <api id="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_issuer">
+      <topicdata group="api" />
+      <apidata name="m_issuer" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="619872ab-c444-5db6-cd76-deaa6db54bac" />
+    </api>
+    <api id="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_sessionHandle">
+      <topicdata group="api" />
+      <apidata name="m_sessionHandle" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="9ad49004-318e-ff41-1264-32130631fb8a" />
+    </api>
+    <api id="F:System.Security.Cryptography.X509Certificates.X509Certificate.m_subject">
+      <topicdata group="api" />
+      <apidata name="m_subject" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="c54c6fdd-aa12-3968-7eb5-5d95c3b4eb59" />
+    </api>
+    <api id="P:System.Security.Cryptography.X509Certificates.X509Certificate.Subject">
+      <topicdata group="api" />
+      <apidata name="Subject" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Subject" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="e0f50fab-227f-7a4a-e326-d5fdcd61cc90" />
+    </api>
+  </apis>
+</reflection>

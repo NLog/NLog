@@ -1,0 +1,2334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ComponentModel.EventBasedAsync">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ComponentModel.EventBasedAsync.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ComponentModel.EventBasedAsync.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ComponentModel.EventBasedAsync.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.ComponentModel">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ComponentModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ComponentModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ComponentModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.ObjectModel">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ObjectModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ObjectModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ObjectModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.Runtime">
+      <assemblydata version="4.0.10.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>BuildLabel</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>130703.2</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>BuildBranch</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release\ReferenceAssemblies\1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.40013.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.40013.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.dll</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ComponentModel">
+      <topicdata group="api" />
+      <apidata name="System.ComponentModel" group="namespace" />
+      <elements>
+        <element api="T:System.ComponentModel.CancelEventArgs" />
+        <element api="T:System.ComponentModel.IChangeTracking" />
+        <element api="T:System.ComponentModel.IEditableObject" />
+        <element api="T:System.ComponentModel.IRevertibleChangeTracking" />
+        <element api="T:System.ComponentModel.AsyncCompletedEventArgs" />
+        <element api="T:System.ComponentModel.AsyncCompletedEventHandler" />
+        <element api="T:System.ComponentModel.ProgressChangedEventArgs" />
+        <element api="T:System.ComponentModel.ProgressChangedEventHandler" />
+        <element api="T:System.ComponentModel.INotifyPropertyChanged" />
+        <element api="T:System.ComponentModel.DataErrorsChangedEventArgs" />
+        <element api="T:System.ComponentModel.INotifyDataErrorInfo" />
+        <element api="T:System.ComponentModel.PropertyChangedEventArgs" />
+        <element api="T:System.ComponentModel.PropertyChangedEventHandler" />
+        <element api="T:System.ComponentModel.DefaultValueAttribute" />
+        <element api="T:System.ComponentModel.EditorBrowsableAttribute" />
+        <element api="T:System.ComponentModel.EditorBrowsableState" />
+      </elements>
+      <file name="0de82105-8f0d-3514-72ed-11d749ecebe4" />
+    </api>
+    <api id="T:System.ComponentModel.AsyncCompletedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.AsyncCompletedEventArgs" />
+      <apidata name="AsyncCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <file name="0e700c98-98a7-027b-56f0-311b8f5e99b4" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.AsyncCompletedEventArgs">
+      <topicdata name="AsyncCompletedEventArgs" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.AsyncCompletedEventArgs" />
+      <apidata name="AsyncCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.AsyncCompletedEventArgs.#ctor(System.Exception,System.Boolean,System.Object)" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.Cancelled" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.Error" />
+        <element api="M:System.ComponentModel.AsyncCompletedEventArgs.RaiseExceptionIfNecessary" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.UserState" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.AsyncCompletedEventArgs" />
+      </containers>
+      <file name="919c745d-d05f-a59f-c5cd-60e012f334ae" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.AsyncCompletedEventArgs">
+      <topicdata name="AsyncCompletedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.AsyncCompletedEventArgs" />
+      <apidata name="AsyncCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.AsyncCompletedEventArgs.RaiseExceptionIfNecessary" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.AsyncCompletedEventArgs" />
+      </containers>
+      <file name="090fe544-5a5d-3ef6-b897-d77d6dacaa4e" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.AsyncCompletedEventArgs">
+      <topicdata name="AsyncCompletedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.AsyncCompletedEventArgs" />
+      <apidata name="AsyncCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.Cancelled" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.Error" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.UserState" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.AsyncCompletedEventArgs" />
+      </containers>
+      <file name="8f4f9a18-a563-3d12-abb0-f0bd2ec0bdb9" />
+    </api>
+    <api id="M:System.ComponentModel.AsyncCompletedEventArgs.#ctor(System.Exception,System.Boolean,System.Object)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="error">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+        <parameter name="cancelled">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="userState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.AsyncCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="7b49becc-54f2-afe4-ec8a-147944d3536a" />
+    </api>
+    <api id="P:System.ComponentModel.AsyncCompletedEventArgs.Cancelled">
+      <topicdata group="api" />
+      <apidata name="Cancelled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Cancelled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.AsyncCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="d9a1f175-2c1d-3ea5-93ab-769ac965b617" />
+    </api>
+    <api id="P:System.ComponentModel.AsyncCompletedEventArgs.Error">
+      <topicdata group="api" />
+      <apidata name="Error" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Error" />
+      <returns>
+        <type api="T:System.Exception" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.AsyncCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="67cd3eba-416e-fc4b-b4f0-2f1cb600b103" />
+    </api>
+    <api id="M:System.ComponentModel.AsyncCompletedEventArgs.RaiseExceptionIfNecessary">
+      <topicdata group="api" />
+      <apidata name="RaiseExceptionIfNecessary" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.AsyncCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="ebb4729c-2d4d-f618-3642-8e3106a049e4" />
+    </api>
+    <api id="P:System.ComponentModel.AsyncCompletedEventArgs.UserState">
+      <topicdata group="api" />
+      <apidata name="UserState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_UserState" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.AsyncCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="7c2f29a0-d52c-6960-7ca0-fbc29177b3b6" />
+    </api>
+    <api id="T:System.ComponentModel.AsyncCompletedEventHandler">
+      <topicdata group="api" />
+      <apidata name="AsyncCompletedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.ComponentModel.AsyncCompletedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <file name="40bc9331-3ec2-771c-c5c8-3c6384bfce7c" />
+    </api>
+    <api id="T:System.ComponentModel.CancelEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.CancelEventArgs" />
+      <apidata name="CancelEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.CancelEventArgs.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <file name="95aff0f3-e57b-83a0-2e2c-a833046e1847" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.CancelEventArgs">
+      <topicdata name="CancelEventArgs" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.CancelEventArgs" />
+      <apidata name="CancelEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.CancelEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ComponentModel.CancelEventArgs.#ctor">
+          <element api="M:System.ComponentModel.CancelEventArgs.#ctor" />
+          <element api="M:System.ComponentModel.CancelEventArgs.#ctor(System.Boolean)" />
+        </element>
+        <element api="P:System.ComponentModel.CancelEventArgs.Cancel" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.CancelEventArgs" />
+      </containers>
+      <file name="cc3b87cd-0491-2442-d5d5-8624bc91e479" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.CancelEventArgs">
+      <topicdata name="CancelEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.CancelEventArgs" />
+      <apidata name="CancelEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.CancelEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.CancelEventArgs" />
+      </containers>
+      <file name="4655f210-b662-7b8c-264f-f195519cacee" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.CancelEventArgs">
+      <topicdata name="CancelEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.CancelEventArgs" />
+      <apidata name="CancelEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ComponentModel.CancelEventArgs.#ctor" />
+      <elements>
+        <element api="P:System.ComponentModel.CancelEventArgs.Cancel" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.CancelEventArgs" />
+      </containers>
+      <file name="e59d18c5-1417-df83-63b9-cad49d72dd08" />
+    </api>
+    <api id="Overload:System.ComponentModel.CancelEventArgs.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.CancelEventArgs" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ComponentModel.CancelEventArgs.#ctor" />
+        <element api="M:System.ComponentModel.CancelEventArgs.#ctor(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.CancelEventArgs" ref="true" />
+      </containers>
+      <file name="79e5ab7e-e333-a3a0-5e55-7b76e1e51c26" />
+    </api>
+    <api id="M:System.ComponentModel.CancelEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.CancelEventArgs.#ctor" />
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.CancelEventArgs" ref="true" />
+      </containers>
+      <file name="622c11ec-550c-ca2a-3602-d56567d70e24" />
+    </api>
+    <api id="M:System.ComponentModel.CancelEventArgs.#ctor(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.CancelEventArgs.#ctor" />
+      <parameters>
+        <parameter name="cancel">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.CancelEventArgs" ref="true" />
+      </containers>
+      <file name="febe82a3-3625-de8a-9117-64bf03273226" />
+    </api>
+    <api id="P:System.ComponentModel.CancelEventArgs.Cancel">
+      <topicdata group="api" />
+      <apidata name="Cancel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Cancel" />
+      <setter name="set_Cancel" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.CancelEventArgs" ref="true" />
+      </containers>
+      <file name="f50709f0-8db1-d7a6-9a3f-765cb996eff4" />
+    </api>
+    <api id="T:System.ComponentModel.DataErrorsChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.DataErrorsChangedEventArgs" />
+      <apidata name="DataErrorsChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <file name="ac0f8a67-5280-3c5a-fd83-7db19b168e65" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.DataErrorsChangedEventArgs">
+      <topicdata name="DataErrorsChangedEventArgs" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.DataErrorsChangedEventArgs" />
+      <apidata name="DataErrorsChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.DataErrorsChangedEventArgs.#ctor(System.String)" />
+        <element api="P:System.ComponentModel.DataErrorsChangedEventArgs.PropertyName" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DataErrorsChangedEventArgs" />
+      </containers>
+      <file name="8f5f67ed-720e-4358-2eb9-c0f88a2c3088" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.DataErrorsChangedEventArgs">
+      <topicdata name="DataErrorsChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.DataErrorsChangedEventArgs" />
+      <apidata name="DataErrorsChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DataErrorsChangedEventArgs" />
+      </containers>
+      <file name="4f312422-a047-5896-c2b7-cf77f240e5d2" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.DataErrorsChangedEventArgs">
+      <topicdata name="DataErrorsChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.DataErrorsChangedEventArgs" />
+      <apidata name="DataErrorsChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.DataErrorsChangedEventArgs.PropertyName" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DataErrorsChangedEventArgs" />
+      </containers>
+      <file name="b2d22559-b411-d17a-df89-1379837b723d" />
+    </api>
+    <api id="M:System.ComponentModel.DataErrorsChangedEventArgs.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="propertyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DataErrorsChangedEventArgs" ref="true" />
+      </containers>
+      <file name="fbeeff43-ec27-f519-5684-8bc7df8695ea" />
+    </api>
+    <api id="P:System.ComponentModel.DataErrorsChangedEventArgs.PropertyName">
+      <topicdata group="api" />
+      <apidata name="PropertyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_PropertyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DataErrorsChangedEventArgs" ref="true" />
+      </containers>
+      <file name="d54a7d8c-c8e2-7e4a-e141-cbfef34b1080" />
+    </api>
+    <api id="T:System.ComponentModel.DefaultValueAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.DefaultValueAttribute" />
+      <apidata name="DefaultValueAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <file name="e7ebc088-01d8-511a-9e0f-3d09da734cf4" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.DefaultValueAttribute">
+      <topicdata name="DefaultValueAttribute" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.DefaultValueAttribute" />
+      <apidata name="DefaultValueAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ComponentModel.DefaultValueAttribute.#ctor">
+          <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Boolean)" />
+          <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Byte)" />
+          <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Char)" />
+          <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Double)" />
+          <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Int16)" />
+          <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Int32)" />
+          <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Int64)" />
+          <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Object)" />
+          <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Single)" />
+          <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.String)" />
+          <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Type,System.String)" />
+        </element>
+        <element api="M:System.ComponentModel.DefaultValueAttribute.Equals(System.Object)" />
+        <element api="M:System.ComponentModel.DefaultValueAttribute.GetHashCode" />
+        <element api="P:System.ComponentModel.DefaultValueAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" />
+      </containers>
+      <file name="caccc5dc-14dd-80b5-2b5f-cc1d19322ae8" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.DefaultValueAttribute">
+      <topicdata name="DefaultValueAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.DefaultValueAttribute" />
+      <apidata name="DefaultValueAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.DefaultValueAttribute.Equals(System.Object)" />
+        <element api="M:System.ComponentModel.DefaultValueAttribute.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" />
+      </containers>
+      <file name="54134a77-7011-c43e-3175-ace35daae057" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.DefaultValueAttribute">
+      <topicdata name="DefaultValueAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.DefaultValueAttribute" />
+      <apidata name="DefaultValueAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.DefaultValueAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" />
+      </containers>
+      <file name="77933533-af5e-0cfc-98e0-fdc136519d91" />
+    </api>
+    <api id="Overload:System.ComponentModel.DefaultValueAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ComponentModel.DefaultValueAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Boolean)" />
+        <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Byte)" />
+        <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Char)" />
+        <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Double)" />
+        <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Int16)" />
+        <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Int32)" />
+        <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Int64)" />
+        <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Object)" />
+        <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Single)" />
+        <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.String)" />
+        <element api="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Type,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+      </containers>
+      <file name="da99becf-010f-3fa0-815f-e98072f0ca03" />
+    </api>
+    <api id="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.DefaultValueAttribute.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+      </containers>
+      <file name="bae3e503-1e69-699e-3f03-78f3c8893bc4" />
+    </api>
+    <api id="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Byte)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.DefaultValueAttribute.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+      </containers>
+      <file name="4ebf0e10-afac-ec19-1429-dd7919854f3b" />
+    </api>
+    <api id="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Char)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.DefaultValueAttribute.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Char" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+      </containers>
+      <file name="009b4236-94cf-3fb6-876e-0e5c0c28d67a" />
+    </api>
+    <api id="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Double)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.DefaultValueAttribute.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+      </containers>
+      <file name="0d33a092-5fc5-9844-a15d-e4f4b6befd12" />
+    </api>
+    <api id="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Int16)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.DefaultValueAttribute.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int16" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+      </containers>
+      <file name="6cf4ac2b-fa1c-618c-fa7b-c1cdb87d7d6e" />
+    </api>
+    <api id="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.DefaultValueAttribute.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+      </containers>
+      <file name="0d7ce0a1-9769-0d7c-5156-3363ee022c13" />
+    </api>
+    <api id="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Int64)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.DefaultValueAttribute.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+      </containers>
+      <file name="651eca74-fadb-9139-646a-31d50c9b57cf" />
+    </api>
+    <api id="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Object)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.DefaultValueAttribute.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+      </containers>
+      <file name="0f7ea5c8-5107-2252-4758-0e0e7ddb17cf" />
+    </api>
+    <api id="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Single)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.DefaultValueAttribute.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Single" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+      </containers>
+      <file name="38935338-ff3d-94b5-1b3d-054a760eb09c" />
+    </api>
+    <api id="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.DefaultValueAttribute.#ctor" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+      </containers>
+      <file name="ed5d04c5-aee3-4ff7-55c4-f920f50898eb" />
+    </api>
+    <api id="M:System.ComponentModel.DefaultValueAttribute.#ctor(System.Type,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ComponentModel.DefaultValueAttribute.#ctor" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+      </containers>
+      <file name="b53aa564-894d-c59a-dbc5-ebb362715d68" />
+    </api>
+    <api id="M:System.ComponentModel.DefaultValueAttribute.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Attribute.Equals(System.Object)">
+          <type api="T:System.Attribute" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+      </containers>
+      <file name="f60d3204-3fe1-188f-fd0c-f0273f913c37" />
+    </api>
+    <api id="M:System.ComponentModel.DefaultValueAttribute.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Attribute.GetHashCode">
+          <type api="T:System.Attribute" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+      </containers>
+      <file name="5c4966d6-b43a-32b3-717c-560db7d37a3b" />
+    </api>
+    <api id="P:System.ComponentModel.DefaultValueAttribute.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+      </containers>
+      <file name="605e0680-85e2-744d-9534-c81a352f849f" />
+    </api>
+    <api id="T:System.ComponentModel.EditorBrowsableAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.EditorBrowsableAttribute" />
+      <apidata name="EditorBrowsableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b188f306-0bb4-81d8-8a08-9fe980481b0e" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.EditorBrowsableAttribute">
+      <topicdata name="EditorBrowsableAttribute" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.EditorBrowsableAttribute" />
+      <apidata name="EditorBrowsableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.EditorBrowsableAttribute.#ctor(System.ComponentModel.EditorBrowsableState)" />
+        <element api="M:System.ComponentModel.EditorBrowsableAttribute.Equals(System.Object)" />
+        <element api="M:System.ComponentModel.EditorBrowsableAttribute.GetHashCode" />
+        <element api="P:System.ComponentModel.EditorBrowsableAttribute.State" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableAttribute" />
+      </containers>
+      <file name="226ad751-9c80-8a6e-2043-5a3dd3655c7d" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.EditorBrowsableAttribute">
+      <topicdata name="EditorBrowsableAttribute" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.EditorBrowsableAttribute" />
+      <apidata name="EditorBrowsableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.EditorBrowsableAttribute.Equals(System.Object)" />
+        <element api="M:System.ComponentModel.EditorBrowsableAttribute.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableAttribute" />
+      </containers>
+      <file name="a7ba42dc-7e66-b94b-2b0e-6a67151573e3" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.EditorBrowsableAttribute">
+      <topicdata name="EditorBrowsableAttribute" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.EditorBrowsableAttribute" />
+      <apidata name="EditorBrowsableAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.EditorBrowsableAttribute.State" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableAttribute" />
+      </containers>
+      <file name="8ace78cc-9327-9f9f-5079-a22712660b16" />
+    </api>
+    <api id="M:System.ComponentModel.EditorBrowsableAttribute.#ctor(System.ComponentModel.EditorBrowsableState)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="state">
+          <type api="T:System.ComponentModel.EditorBrowsableState" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+      </containers>
+      <file name="64d5ecf0-1c2f-85a1-ba94-4f4531287eb0" />
+    </api>
+    <api id="M:System.ComponentModel.EditorBrowsableAttribute.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Attribute.Equals(System.Object)">
+          <type api="T:System.Attribute" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+      </containers>
+      <file name="1ff1eaec-eaf1-2591-9bd3-fa5a60abc19e" />
+    </api>
+    <api id="M:System.ComponentModel.EditorBrowsableAttribute.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Attribute.GetHashCode">
+          <type api="T:System.Attribute" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+      </containers>
+      <file name="bb0b7766-d01f-172e-20b4-e2b0a8f275b7" />
+    </api>
+    <api id="P:System.ComponentModel.EditorBrowsableAttribute.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:System.ComponentModel.EditorBrowsableState" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+      </containers>
+      <file name="6af33196-23c8-bcff-7c43-9cfad557400c" />
+    </api>
+    <api id="T:System.ComponentModel.EditorBrowsableState">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.EditorBrowsableState" />
+      <apidata name="EditorBrowsableState" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <file name="b0f7601a-f04a-882e-0649-4461e994768c" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.EditorBrowsableState">
+      <topicdata name="EditorBrowsableState" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.EditorBrowsableState" />
+      <apidata name="EditorBrowsableState" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.ComponentModel.EditorBrowsableState.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.ComponentModel.EditorBrowsableState.Advanced" />
+        <element api="F:System.ComponentModel.EditorBrowsableState.Always" />
+        <element api="F:System.ComponentModel.EditorBrowsableState.Never" />
+        <element api="F:System.ComponentModel.EditorBrowsableState.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableState" />
+      </containers>
+      <file name="e9315093-4694-1c13-eefd-de5b5f563a7c" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.EditorBrowsableState">
+      <topicdata name="EditorBrowsableState" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.EditorBrowsableState" />
+      <apidata name="EditorBrowsableState" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.ComponentModel.EditorBrowsableState.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableState" />
+      </containers>
+      <file name="1941e8d0-70b0-6171-d382-5728a74e20b5" />
+    </api>
+    <api id="Fields.T:System.ComponentModel.EditorBrowsableState">
+      <topicdata name="EditorBrowsableState" group="list" subgroup="Fields" typeTopicId="T:System.ComponentModel.EditorBrowsableState" />
+      <apidata name="EditorBrowsableState" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.ComponentModel.EditorBrowsableState.Advanced" />
+        <element api="F:System.ComponentModel.EditorBrowsableState.Always" />
+        <element api="F:System.ComponentModel.EditorBrowsableState.Never" />
+        <element api="F:System.ComponentModel.EditorBrowsableState.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableState" />
+      </containers>
+      <file name="5389536f-e107-0845-28f4-82ff16ec76ef" />
+    </api>
+    <api id="F:System.ComponentModel.EditorBrowsableState.Advanced">
+      <topicdata group="api" />
+      <apidata name="Advanced" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ComponentModel.EditorBrowsableState" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableState" ref="true" />
+      </containers>
+      <file name="9ee7b084-00cc-a104-b91c-770f29e6f5df" />
+    </api>
+    <api id="F:System.ComponentModel.EditorBrowsableState.Always">
+      <topicdata group="api" />
+      <apidata name="Always" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ComponentModel.EditorBrowsableState" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableState" ref="true" />
+      </containers>
+      <file name="1b76c2b5-2c78-8e1f-d892-84bd0c495d4c" />
+    </api>
+    <api id="F:System.ComponentModel.EditorBrowsableState.Never">
+      <topicdata group="api" />
+      <apidata name="Never" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ComponentModel.EditorBrowsableState" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableState" ref="true" />
+      </containers>
+      <file name="a5e03c04-5050-c5bf-1f45-7d791445e12b" />
+    </api>
+    <api id="F:System.ComponentModel.EditorBrowsableState.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime" module="System.Runtime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.40013.0" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.EditorBrowsableState" ref="true" />
+      </containers>
+      <file name="5aef8a36-373b-7be9-fb16-7bc2d0d7c66c" />
+    </api>
+    <api id="T:System.ComponentModel.IChangeTracking">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.IChangeTracking" />
+      <apidata name="IChangeTracking" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.ComponentModel.IRevertibleChangeTracking" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <file name="d6bb28dc-de67-6064-0de2-ac250bb0fc2b" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.IChangeTracking">
+      <topicdata name="IChangeTracking" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.IChangeTracking" />
+      <apidata name="IChangeTracking" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ComponentModel.IChangeTracking.AcceptChanges" />
+        <element api="P:System.ComponentModel.IChangeTracking.IsChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.IChangeTracking" />
+      </containers>
+      <file name="3b6ee472-11c4-5b76-3c8a-4c644c69db4d" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.IChangeTracking">
+      <topicdata name="IChangeTracking" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.IChangeTracking" />
+      <apidata name="IChangeTracking" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ComponentModel.IChangeTracking.AcceptChanges" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.IChangeTracking" />
+      </containers>
+      <file name="16191bd4-66e4-00e5-c2ff-2b0570ef7748" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.IChangeTracking">
+      <topicdata name="IChangeTracking" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.IChangeTracking" />
+      <apidata name="IChangeTracking" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.IChangeTracking.IsChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.IChangeTracking" />
+      </containers>
+      <file name="795de057-6104-0eb6-dfc0-5a91653b08df" />
+    </api>
+    <api id="M:System.ComponentModel.IChangeTracking.AcceptChanges">
+      <topicdata group="api" />
+      <apidata name="AcceptChanges" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.IChangeTracking" ref="true" />
+      </containers>
+      <file name="4366a6ef-f1ff-dee7-0f9f-555c824b417a" />
+    </api>
+    <api id="P:System.ComponentModel.IChangeTracking.IsChanged">
+      <topicdata group="api" />
+      <apidata name="IsChanged" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsChanged" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.IChangeTracking" ref="true" />
+      </containers>
+      <file name="3cd5082c-89ab-3096-fc11-a4961dd455f0" />
+    </api>
+    <api id="T:System.ComponentModel.IEditableObject">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.IEditableObject" />
+      <apidata name="IEditableObject" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <file name="fca9a273-e691-1497-4cc8-7730a0ca75c3" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.IEditableObject">
+      <topicdata name="IEditableObject" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.IEditableObject" />
+      <apidata name="IEditableObject" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ComponentModel.IEditableObject.BeginEdit" />
+        <element api="M:System.ComponentModel.IEditableObject.CancelEdit" />
+        <element api="M:System.ComponentModel.IEditableObject.EndEdit" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.IEditableObject" />
+      </containers>
+      <file name="a30c8eaf-1990-7425-446c-a2fd2b9d9b94" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.IEditableObject">
+      <topicdata name="IEditableObject" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.IEditableObject" />
+      <apidata name="IEditableObject" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ComponentModel.IEditableObject.BeginEdit" />
+        <element api="M:System.ComponentModel.IEditableObject.CancelEdit" />
+        <element api="M:System.ComponentModel.IEditableObject.EndEdit" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.IEditableObject" />
+      </containers>
+      <file name="0480d15d-7b82-b0c6-c18e-44a73db0fa32" />
+    </api>
+    <api id="M:System.ComponentModel.IEditableObject.BeginEdit">
+      <topicdata group="api" />
+      <apidata name="BeginEdit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.IEditableObject" ref="true" />
+      </containers>
+      <file name="e3b6334f-5e88-f4d4-77ca-d3fb34f607e1" />
+    </api>
+    <api id="M:System.ComponentModel.IEditableObject.CancelEdit">
+      <topicdata group="api" />
+      <apidata name="CancelEdit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.IEditableObject" ref="true" />
+      </containers>
+      <file name="49797bf1-5741-e986-5426-e0ce1d1b549d" />
+    </api>
+    <api id="M:System.ComponentModel.IEditableObject.EndEdit">
+      <topicdata group="api" />
+      <apidata name="EndEdit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.IEditableObject" ref="true" />
+      </containers>
+      <file name="2143b64f-9073-947b-8409-0dba51790a9d" />
+    </api>
+    <api id="T:System.ComponentModel.INotifyDataErrorInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.INotifyDataErrorInfo" />
+      <apidata name="INotifyDataErrorInfo" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <file name="307698aa-7c15-8590-249a-7b46b676f4af" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.INotifyDataErrorInfo">
+      <topicdata name="INotifyDataErrorInfo" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.INotifyDataErrorInfo" />
+      <apidata name="INotifyDataErrorInfo" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:System.ComponentModel.INotifyDataErrorInfo.ErrorsChanged" />
+        <element api="M:System.ComponentModel.INotifyDataErrorInfo.GetErrors(System.String)" />
+        <element api="P:System.ComponentModel.INotifyDataErrorInfo.HasErrors" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.INotifyDataErrorInfo" />
+      </containers>
+      <file name="e3d2b8f3-1960-c150-6be5-c5344bcf021b" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.INotifyDataErrorInfo">
+      <topicdata name="INotifyDataErrorInfo" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.INotifyDataErrorInfo" />
+      <apidata name="INotifyDataErrorInfo" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ComponentModel.INotifyDataErrorInfo.GetErrors(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.INotifyDataErrorInfo" />
+      </containers>
+      <file name="1c354a4e-5e3f-dfa6-b3fa-4a62e95e550f" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.INotifyDataErrorInfo">
+      <topicdata name="INotifyDataErrorInfo" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.INotifyDataErrorInfo" />
+      <apidata name="INotifyDataErrorInfo" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.INotifyDataErrorInfo.HasErrors" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.INotifyDataErrorInfo" />
+      </containers>
+      <file name="f782ba1e-7b3f-9b36-8b07-278bd67d1e65" />
+    </api>
+    <api id="Events.T:System.ComponentModel.INotifyDataErrorInfo">
+      <topicdata name="INotifyDataErrorInfo" group="list" subgroup="Events" typeTopicId="T:System.ComponentModel.INotifyDataErrorInfo" />
+      <apidata name="INotifyDataErrorInfo" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:System.ComponentModel.INotifyDataErrorInfo.ErrorsChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.INotifyDataErrorInfo" />
+      </containers>
+      <file name="54acd0c7-da77-f7d7-1171-e0cf6d3f3660" />
+    </api>
+    <api id="E:System.ComponentModel.INotifyDataErrorInfo.ErrorsChanged">
+      <topicdata group="api" />
+      <apidata name="ErrorsChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ErrorsChanged" />
+      <remover name="remove_ErrorsChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.ComponentModel.DataErrorsChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.ComponentModel.DataErrorsChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.INotifyDataErrorInfo" ref="true" />
+      </containers>
+      <file name="71960a73-8c05-b0c3-e759-bef5061d4123" />
+    </api>
+    <api id="M:System.ComponentModel.INotifyDataErrorInfo.GetErrors(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetErrors" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="propertyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.IEnumerable" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.INotifyDataErrorInfo" ref="true" />
+      </containers>
+      <file name="125ef033-0274-c92c-57f5-eaf05c19d246" />
+    </api>
+    <api id="P:System.ComponentModel.INotifyDataErrorInfo.HasErrors">
+      <topicdata group="api" />
+      <apidata name="HasErrors" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_HasErrors" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.INotifyDataErrorInfo" ref="true" />
+      </containers>
+      <file name="827d712a-41ff-d584-d541-e7005e52643b" />
+    </api>
+    <api id="T:System.ComponentModel.INotifyPropertyChanged">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.INotifyPropertyChanged" />
+      <apidata name="INotifyPropertyChanged" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Collections.ObjectModel.ObservableCollection`1" ref="true" />
+        <type api="T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <file name="d7424bfd-9de2-e553-d64e-57a78a2134d4" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.INotifyPropertyChanged">
+      <topicdata name="INotifyPropertyChanged" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.INotifyPropertyChanged" />
+      <apidata name="INotifyPropertyChanged" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.INotifyPropertyChanged" />
+      </containers>
+      <file name="1d38875b-7e3e-12b5-7e12-a02620e1859d" />
+    </api>
+    <api id="Events.T:System.ComponentModel.INotifyPropertyChanged">
+      <topicdata name="INotifyPropertyChanged" group="list" subgroup="Events" typeTopicId="T:System.ComponentModel.INotifyPropertyChanged" />
+      <apidata name="INotifyPropertyChanged" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.INotifyPropertyChanged" />
+      </containers>
+      <file name="4f9376d7-bd41-ad15-199b-5a832b419d06" />
+    </api>
+    <api id="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged">
+      <topicdata group="api" />
+      <apidata name="PropertyChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PropertyChanged" />
+      <remover name="remove_PropertyChanged" />
+      <eventhandler>
+        <type api="T:System.ComponentModel.PropertyChangedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.ComponentModel.PropertyChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.INotifyPropertyChanged" ref="true" />
+      </containers>
+      <file name="7daf6a76-7dfa-a09b-5d51-03526b88728c" />
+    </api>
+    <api id="T:System.ComponentModel.IRevertibleChangeTracking">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.IRevertibleChangeTracking" />
+      <apidata name="IRevertibleChangeTracking" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:System.ComponentModel.IChangeTracking" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <file name="2fded61a-f6e3-f3a4-add4-34e5ae3d6c63" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.IRevertibleChangeTracking">
+      <topicdata name="IRevertibleChangeTracking" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.IRevertibleChangeTracking" />
+      <apidata name="IRevertibleChangeTracking" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ComponentModel.IChangeTracking.AcceptChanges" />
+        <element api="P:System.ComponentModel.IChangeTracking.IsChanged" />
+        <element api="M:System.ComponentModel.IRevertibleChangeTracking.RejectChanges" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.IRevertibleChangeTracking" />
+      </containers>
+      <file name="e0c1d12d-d95e-ed6a-d466-d9f552839e4c" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.IRevertibleChangeTracking">
+      <topicdata name="IRevertibleChangeTracking" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.IRevertibleChangeTracking" />
+      <apidata name="IRevertibleChangeTracking" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ComponentModel.IChangeTracking.AcceptChanges" />
+        <element api="M:System.ComponentModel.IRevertibleChangeTracking.RejectChanges" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.IRevertibleChangeTracking" />
+      </containers>
+      <file name="4553043e-ebe3-9249-8490-a62f91d03ed8" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.IRevertibleChangeTracking">
+      <topicdata name="IRevertibleChangeTracking" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.IRevertibleChangeTracking" />
+      <apidata name="IRevertibleChangeTracking" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.IChangeTracking.IsChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.IRevertibleChangeTracking" />
+      </containers>
+      <file name="1b941a6a-b75e-6ea8-5927-2d36389db38e" />
+    </api>
+    <api id="M:System.ComponentModel.IRevertibleChangeTracking.RejectChanges">
+      <topicdata group="api" />
+      <apidata name="RejectChanges" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.ComponentModel" module="System.ComponentModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.IRevertibleChangeTracking" ref="true" />
+      </containers>
+      <file name="d06123eb-e8ed-ff53-a129-97b97a80fe20" />
+    </api>
+    <api id="T:System.ComponentModel.ProgressChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.ProgressChangedEventArgs" />
+      <apidata name="ProgressChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <file name="759c9425-c509-5d73-e8af-366a323bd2a4" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.ProgressChangedEventArgs">
+      <topicdata name="ProgressChangedEventArgs" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.ProgressChangedEventArgs" />
+      <apidata name="ProgressChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.ProgressChangedEventArgs.#ctor(System.Int32,System.Object)" />
+        <element api="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage" />
+        <element api="P:System.ComponentModel.ProgressChangedEventArgs.UserState" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.ProgressChangedEventArgs" />
+      </containers>
+      <file name="04084fe4-b8ed-4b01-2d03-c13f126fd9dd" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.ProgressChangedEventArgs">
+      <topicdata name="ProgressChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.ProgressChangedEventArgs" />
+      <apidata name="ProgressChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.ProgressChangedEventArgs" />
+      </containers>
+      <file name="f7d78341-2463-8950-ab2a-415b39275c32" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.ProgressChangedEventArgs">
+      <topicdata name="ProgressChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.ProgressChangedEventArgs" />
+      <apidata name="ProgressChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage" />
+        <element api="P:System.ComponentModel.ProgressChangedEventArgs.UserState" />
+      </elements>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.ProgressChangedEventArgs" />
+      </containers>
+      <file name="d2e00677-10e1-6598-69b4-291c81d246b6" />
+    </api>
+    <api id="M:System.ComponentModel.ProgressChangedEventArgs.#ctor(System.Int32,System.Object)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="progressPercentage">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="userState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.ProgressChangedEventArgs" ref="true" />
+      </containers>
+      <file name="f375f7c8-3dc2-5dee-434f-6511d545d4bc" />
+    </api>
+    <api id="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage">
+      <topicdata group="api" />
+      <apidata name="ProgressPercentage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ProgressPercentage" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.ProgressChangedEventArgs" ref="true" />
+      </containers>
+      <file name="3ed1ab89-3302-602e-8128-e4d1a4730bb3" />
+    </api>
+    <api id="P:System.ComponentModel.ProgressChangedEventArgs.UserState">
+      <topicdata group="api" />
+      <apidata name="UserState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_UserState" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.ProgressChangedEventArgs" ref="true" />
+      </containers>
+      <file name="395129c7-50fe-f459-903a-7b69f526eac2" />
+    </api>
+    <api id="T:System.ComponentModel.ProgressChangedEventHandler">
+      <topicdata group="api" />
+      <apidata name="ProgressChangedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.ComponentModel.ProgressChangedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ComponentModel.EventBasedAsync" module="System.ComponentModel.EventBasedAsync" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <file name="216448dd-cfca-f9e5-7590-6b4cb4b96a19" />
+    </api>
+    <api id="T:System.ComponentModel.PropertyChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ComponentModel.PropertyChangedEventArgs" />
+      <apidata name="PropertyChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <file name="cccf13f6-2b9d-4b2a-1806-bb00a600e0ec" />
+    </api>
+    <api id="AllMembers.T:System.ComponentModel.PropertyChangedEventArgs">
+      <topicdata name="PropertyChangedEventArgs" group="list" subgroup="members" typeTopicId="T:System.ComponentModel.PropertyChangedEventArgs" />
+      <apidata name="PropertyChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ComponentModel.PropertyChangedEventArgs.#ctor(System.String)" />
+        <element api="P:System.ComponentModel.PropertyChangedEventArgs.PropertyName" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.PropertyChangedEventArgs" />
+      </containers>
+      <file name="5e68817f-93bf-ed16-f8e0-1cc1b53b1a37" />
+    </api>
+    <api id="Methods.T:System.ComponentModel.PropertyChangedEventArgs">
+      <topicdata name="PropertyChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.ComponentModel.PropertyChangedEventArgs" />
+      <apidata name="PropertyChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.PropertyChangedEventArgs" />
+      </containers>
+      <file name="dd1b5598-c9e3-e919-7590-2b02896471c1" />
+    </api>
+    <api id="Properties.T:System.ComponentModel.PropertyChangedEventArgs">
+      <topicdata name="PropertyChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.ComponentModel.PropertyChangedEventArgs" />
+      <apidata name="PropertyChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.PropertyChangedEventArgs.PropertyName" />
+      </elements>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.PropertyChangedEventArgs" />
+      </containers>
+      <file name="51859255-48ae-b68a-c9ac-be78c283c24a" />
+    </api>
+    <api id="M:System.ComponentModel.PropertyChangedEventArgs.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="propertyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.PropertyChangedEventArgs" ref="true" />
+      </containers>
+      <file name="7eb55f17-edaa-52a0-c1ae-c5481fc8fc45" />
+    </api>
+    <api id="P:System.ComponentModel.PropertyChangedEventArgs.PropertyName">
+      <topicdata group="api" />
+      <apidata name="PropertyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PropertyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+        <type api="T:System.ComponentModel.PropertyChangedEventArgs" ref="true" />
+      </containers>
+      <file name="b139c0ed-e847-2637-6d3d-573540867dcb" />
+    </api>
+    <api id="T:System.ComponentModel.PropertyChangedEventHandler">
+      <topicdata group="api" />
+      <apidata name="PropertyChangedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.ComponentModel.PropertyChangedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ObjectModel" module="System.ObjectModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ComponentModel" />
+      </containers>
+      <file name="81540767-685f-ff04-10ee-76d564ce28c6" />
+    </api>
+  </apis>
+</reflection>

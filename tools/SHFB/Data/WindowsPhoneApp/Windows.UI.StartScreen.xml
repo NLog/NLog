@@ -1,0 +1,2766 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.UI.StartScreen">
+      <topicdata group="api" />
+      <apidata name="Windows.UI.StartScreen" group="namespace" />
+      <elements>
+        <element api="T:Windows.UI.StartScreen.TileOptions" />
+        <element api="T:Windows.UI.StartScreen.TileSize" />
+        <element api="T:Windows.UI.StartScreen.ForegroundText" />
+        <element api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" />
+        <element api="T:Windows.UI.StartScreen.SecondaryTile" />
+        <element api="T:Windows.UI.StartScreen.VisualElementsRequestedEventArgs" />
+        <element api="T:Windows.UI.StartScreen.VisualElementsRequest" />
+        <element api="T:Windows.UI.StartScreen.VisualElementsRequestDeferral" />
+      </elements>
+      <file name="ad514728-0185-426a-d314-2dc7fdd36850" />
+    </api>
+    <api id="T:Windows.UI.StartScreen.ForegroundText">
+      <topicdata group="api" />
+      <apidata name="ForegroundText" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.StartScreen.ForegroundText.Dark" />
+        <element api="F:Windows.UI.StartScreen.ForegroundText.Light" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b07155c9-44de-9404-117e-4f03efc10a7f" />
+    </api>
+    <api id="F:Windows.UI.StartScreen.ForegroundText.Dark">
+      <topicdata group="api" notopic="" />
+      <apidata name="Dark" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.ForegroundText" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.ForegroundText" ref="false" />
+      </containers>
+      <file name="7f20c8a6-07db-817c-1c45-aa5631bc8563" />
+    </api>
+    <api id="F:Windows.UI.StartScreen.ForegroundText.Light">
+      <topicdata group="api" notopic="" />
+      <apidata name="Light" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.ForegroundText" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.ForegroundText" ref="false" />
+      </containers>
+      <file name="9f8967b8-6cb3-6bb2-de5f-34b20ed379b8" />
+    </api>
+    <api id="T:Windows.UI.StartScreen.SecondaryTile">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.StartScreen.SecondaryTile" />
+      <apidata name="SecondaryTile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.StartScreen.SecondaryTile.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.StartScreen.ISecondaryTile" ref="true" />
+        <type api="T:Windows.UI.StartScreen.ISecondaryTile2" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="32356882-b1bf-e97e-9bf7-9585bb504be9" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.StartScreen.SecondaryTile">
+      <topicdata name="SecondaryTile" group="list" subgroup="members" typeTopicId="T:Windows.UI.StartScreen.SecondaryTile" />
+      <apidata name="SecondaryTile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.StartScreen.SecondaryTile.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.UI.StartScreen.SecondaryTile.#ctor">
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.#ctor" />
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.#ctor(System.String)" />
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.#ctor(System.String,System.String,System.String,Windows.Foundation.Uri,Windows.UI.StartScreen.TileSize)" />
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.#ctor(System.String,System.String,System.String,System.String,Windows.UI.StartScreen.TileOptions,Windows.Foundation.Uri)" />
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.#ctor(System.String,System.String,System.String,System.String,Windows.UI.StartScreen.TileOptions,Windows.Foundation.Uri,Windows.Foundation.Uri)" />
+        </element>
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.Arguments" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.BackgroundColor" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.DisplayName" />
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.Exists(System.String)" />
+        <element api="Overload:Windows.UI.StartScreen.SecondaryTile.FindAllAsync">
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.FindAllAsync" />
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.FindAllAsync(System.String)" />
+        </element>
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.FindAllForPackageAsync" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.ForegroundText" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.LockScreenBadgeLogo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.LockScreenDisplayBadgeAndTileText" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.PhoneticName" />
+        <element api="Overload:Windows.UI.StartScreen.SecondaryTile.RequestCreateAsync">
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestCreateAsync" />
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestCreateAsync(Windows.Foundation.Point)" />
+        </element>
+        <element api="Overload:Windows.UI.StartScreen.SecondaryTile.RequestCreateForSelectionAsync">
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestCreateForSelectionAsync(Windows.Foundation.Rect)" />
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestCreateForSelectionAsync(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+        </element>
+        <element api="Overload:Windows.UI.StartScreen.SecondaryTile.RequestDeleteAsync">
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestDeleteAsync" />
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestDeleteAsync(Windows.Foundation.Point)" />
+        </element>
+        <element api="Overload:Windows.UI.StartScreen.SecondaryTile.RequestDeleteForSelectionAsync">
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestDeleteForSelectionAsync(Windows.Foundation.Rect)" />
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestDeleteForSelectionAsync(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+        </element>
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.RoamingEnabled" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.ShortName" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.SmallLogo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.TileId" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.TileOptions" />
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.UpdateAsync" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.VisualElements" />
+        <element api="E:Windows.UI.StartScreen.SecondaryTile.VisualElementsRequested" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.WideLogo" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" />
+      </containers>
+      <file name="6093d561-6984-6615-95e0-e16cf182981a" />
+    </api>
+    <api id="Methods.T:Windows.UI.StartScreen.SecondaryTile">
+      <topicdata name="SecondaryTile" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.StartScreen.SecondaryTile" />
+      <apidata name="SecondaryTile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.StartScreen.SecondaryTile.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.Exists(System.String)" />
+        <element api="Overload:Windows.UI.StartScreen.SecondaryTile.FindAllAsync">
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.FindAllAsync" />
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.FindAllAsync(System.String)" />
+        </element>
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.FindAllForPackageAsync" />
+        <element api="Overload:Windows.UI.StartScreen.SecondaryTile.RequestCreateAsync">
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestCreateAsync" />
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestCreateAsync(Windows.Foundation.Point)" />
+        </element>
+        <element api="Overload:Windows.UI.StartScreen.SecondaryTile.RequestCreateForSelectionAsync">
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestCreateForSelectionAsync(Windows.Foundation.Rect)" />
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestCreateForSelectionAsync(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+        </element>
+        <element api="Overload:Windows.UI.StartScreen.SecondaryTile.RequestDeleteAsync">
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestDeleteAsync" />
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestDeleteAsync(Windows.Foundation.Point)" />
+        </element>
+        <element api="Overload:Windows.UI.StartScreen.SecondaryTile.RequestDeleteForSelectionAsync">
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestDeleteForSelectionAsync(Windows.Foundation.Rect)" />
+          <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestDeleteForSelectionAsync(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+        </element>
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.UpdateAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" />
+      </containers>
+      <file name="0d5b38d9-feb3-1f0c-5671-1fd15f80953c" />
+    </api>
+    <api id="Properties.T:Windows.UI.StartScreen.SecondaryTile">
+      <topicdata name="SecondaryTile" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.StartScreen.SecondaryTile" />
+      <apidata name="SecondaryTile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.StartScreen.SecondaryTile.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.Arguments" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.BackgroundColor" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.DisplayName" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.ForegroundText" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.LockScreenBadgeLogo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.LockScreenDisplayBadgeAndTileText" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.PhoneticName" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.RoamingEnabled" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.ShortName" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.SmallLogo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.TileId" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.TileOptions" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.VisualElements" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTile.WideLogo" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" />
+      </containers>
+      <file name="2d183492-a500-609d-5ba6-b1b1826e2829" />
+    </api>
+    <api id="Events.T:Windows.UI.StartScreen.SecondaryTile">
+      <topicdata name="SecondaryTile" group="list" subgroup="Events" typeTopicId="T:Windows.UI.StartScreen.SecondaryTile" />
+      <apidata name="SecondaryTile" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.StartScreen.SecondaryTile.#ctor" />
+      <elements>
+        <element api="E:Windows.UI.StartScreen.SecondaryTile.VisualElementsRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" />
+      </containers>
+      <file name="edb7c32f-ce3c-b719-a8b3-3b36d89eea3a" />
+    </api>
+    <api id="Overload:Windows.UI.StartScreen.SecondaryTile.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.StartScreen.SecondaryTile" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.#ctor" />
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.#ctor(System.String)" />
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.#ctor(System.String,System.String,System.String,Windows.Foundation.Uri,Windows.UI.StartScreen.TileSize)" />
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.#ctor(System.String,System.String,System.String,System.String,Windows.UI.StartScreen.TileOptions,Windows.Foundation.Uri)" />
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.#ctor(System.String,System.String,System.String,System.String,Windows.UI.StartScreen.TileOptions,Windows.Foundation.Uri,Windows.Foundation.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="12ac2b60-6dac-4a55-37f9-bbc210f09035" />
+    </api>
+    <api id="Overload:Windows.UI.StartScreen.SecondaryTile.FindAllAsync">
+      <topicdata name="FindAllAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.StartScreen.SecondaryTile" />
+      <apidata name="FindAllAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.FindAllAsync" />
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.FindAllAsync(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="00b20f35-afd6-2bbd-f0c0-b4b2fce55c49" />
+    </api>
+    <api id="Overload:Windows.UI.StartScreen.SecondaryTile.RequestCreateAsync">
+      <topicdata name="RequestCreateAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.StartScreen.SecondaryTile" />
+      <apidata name="RequestCreateAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestCreateAsync" />
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestCreateAsync(Windows.Foundation.Point)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="86fac023-a68a-cbc5-f7a3-9d2261a63c06" />
+    </api>
+    <api id="Overload:Windows.UI.StartScreen.SecondaryTile.RequestCreateForSelectionAsync">
+      <topicdata name="RequestCreateForSelectionAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.StartScreen.SecondaryTile" />
+      <apidata name="RequestCreateForSelectionAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestCreateForSelectionAsync(Windows.Foundation.Rect)" />
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestCreateForSelectionAsync(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="c2879e0a-ac62-2c2d-ed85-228e49029edd" />
+    </api>
+    <api id="Overload:Windows.UI.StartScreen.SecondaryTile.RequestDeleteAsync">
+      <topicdata name="RequestDeleteAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.StartScreen.SecondaryTile" />
+      <apidata name="RequestDeleteAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestDeleteAsync" />
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestDeleteAsync(Windows.Foundation.Point)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="26717da8-cece-dbcc-c089-ed6ddb1a6592" />
+    </api>
+    <api id="Overload:Windows.UI.StartScreen.SecondaryTile.RequestDeleteForSelectionAsync">
+      <topicdata name="RequestDeleteForSelectionAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.StartScreen.SecondaryTile" />
+      <apidata name="RequestDeleteForSelectionAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestDeleteForSelectionAsync(Windows.Foundation.Rect)" />
+        <element api="M:Windows.UI.StartScreen.SecondaryTile.RequestDeleteForSelectionAsync(Windows.Foundation.Rect,Windows.UI.Popups.Placement)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="d48feea8-cfba-ad18-67f1-18d9b57d26c5" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.StartScreen.SecondaryTile.#ctor" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="80aa5886-0ddb-1a17-1d41-896d47fa3850" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.StartScreen.SecondaryTile.#ctor" />
+      <parameters>
+        <parameter name="tileId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="6a4330e6-c02d-e6a2-5e0d-8648734e808e" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.#ctor(System.String,System.String,System.String,System.String,Windows.UI.StartScreen.TileOptions,Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.StartScreen.SecondaryTile.#ctor" />
+      <parameters>
+        <parameter name="tileId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="shortName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="displayName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="arguments" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="tileOptions" in="true">
+          <type api="T:Windows.UI.StartScreen.TileOptions" ref="false" />
+        </parameter>
+        <parameter name="logoReference" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SecondaryTile(string, string, string, string, Windows.UI.StartScreen.TileOptions, Windows.Foundation.Uri) may be altered or unavailable for releases after Windows Phone 8.1. Instead, use SecondaryTile(string, string, string, Windows.Foundation.Uri, Windows.UI.StartScreen.TileSize).</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f7abb921-088d-354a-79ed-4c02aaf8d5af" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.#ctor(System.String,System.String,System.String,System.String,Windows.UI.StartScreen.TileOptions,Windows.Foundation.Uri,Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.StartScreen.SecondaryTile.#ctor" />
+      <parameters>
+        <parameter name="tileId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="shortName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="displayName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="arguments" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="tileOptions" in="true">
+          <type api="T:Windows.UI.StartScreen.TileOptions" ref="false" />
+        </parameter>
+        <parameter name="logoReference" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="wideLogoReference" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SecondaryTile(string, string, string, string, Windows.UI.StartScreen.TileOptions, Windows.Foundation.Uri, Windows.Foundation.Uri) may be altered or unavailable for releases after Windows Phone 8.1. Instead, use SecondaryTile(string, string, string, Windows.Foundation.Uri, Windows.UI.StartScreen.TileSize).</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3b11d459-a752-5b13-ef3d-5bd77f947027" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.#ctor(System.String,System.String,System.String,Windows.Foundation.Uri,Windows.UI.StartScreen.TileSize)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.UI.StartScreen.SecondaryTile.#ctor" />
+      <parameters>
+        <parameter name="tileId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="displayName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="arguments" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="square150x150Logo" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="desiredSize" in="true">
+          <type api="T:Windows.UI.StartScreen.TileSize" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="fd799e54-768d-0698-32c5-298c908e5dd1" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTile.Arguments">
+      <topicdata group="api" />
+      <apidata name="Arguments" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Arguments" />
+      <setter name="set_Arguments" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="fedcefb9-b1f4-1601-b3e1-48051c762bbc" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTile.BackgroundColor">
+      <topicdata group="api" />
+      <apidata name="BackgroundColor" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BackgroundColor">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>BackgroundColor may be altered or unavailable for releases after Windows Phone 8.1. Instead, use VisualElements.BackgroundColor.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <setter name="set_BackgroundColor">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>BackgroundColor may be altered or unavailable for releases after Windows Phone 8.1. Instead, use VisualElements.BackgroundColor.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="f8d8576e-b614-7ef4-7a73-beb904442f11" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTile.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DisplayName" />
+      <setter name="set_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="ac13efdc-6eb0-26b9-25c6-a04bc3e30129" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.Exists(System.String)">
+      <topicdata group="api" />
+      <apidata name="Exists" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="tileId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="e185b2a9-49ec-4636-8f04-c1289c295c06" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.FindAllAsync">
+      <topicdata group="api" />
+      <apidata name="FindAllAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.UI.StartScreen.SecondaryTile.FindAllAsync" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FindAllAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3a7b5ef0-9767-5171-66de-245687d130f0" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.FindAllAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="FindAllAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.UI.StartScreen.SecondaryTile.FindAllAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="applicationId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FindAllForApplicationAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1cf4a4bc-676a-03a3-0861-9f4fcc106192" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.FindAllForPackageAsync">
+      <topicdata group="api" />
+      <apidata name="FindAllForPackageAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="69311e5b-a8d5-d38b-08f0-775d7673a6e8" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTile.ForegroundText">
+      <topicdata group="api" />
+      <apidata name="ForegroundText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ForegroundText">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>ForegroundText may be altered or unavailable for releases after Windows Phone 8.1. Instead, use VisualElements.ForegroundText.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <setter name="set_ForegroundText">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>ForegroundText may be altered or unavailable for releases after Windows Phone 8.1. Instead, use VisualElements.ForegroundText.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:Windows.UI.StartScreen.ForegroundText" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="aea3d138-23c8-5075-57e7-64ffab887c62" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTile.LockScreenBadgeLogo">
+      <topicdata group="api" />
+      <apidata name="LockScreenBadgeLogo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_LockScreenBadgeLogo" />
+      <setter name="set_LockScreenBadgeLogo" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="219e9c7e-df06-e78b-e601-3a6a00a43059" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTile.LockScreenDisplayBadgeAndTileText">
+      <topicdata group="api" />
+      <apidata name="LockScreenDisplayBadgeAndTileText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_LockScreenDisplayBadgeAndTileText" />
+      <setter name="set_LockScreenDisplayBadgeAndTileText" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="a0840a0b-d703-f41f-c6f9-6eaeb98466dc" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTile.Logo">
+      <topicdata group="api" />
+      <apidata name="Logo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Logo">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>Logo may be altered or unavailable for releases after Windows Phone 8.1. Instead, use VisualElements.Square150x150Logo.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <setter name="set_Logo">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>Logo may be altered or unavailable for releases after Windows Phone 8.1. Instead, use VisualElements.Square150x150Logo.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="ffae2dbc-aa6a-4c5b-736e-fe981cd2cd49" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTile.PhoneticName">
+      <topicdata group="api" />
+      <apidata name="PhoneticName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PhoneticName" />
+      <setter name="set_PhoneticName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="5f89b84c-9e7e-533d-ee6b-703558fc87ec" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.RequestCreateAsync">
+      <topicdata group="api" />
+      <apidata name="RequestCreateAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.StartScreen.SecondaryTile.RequestCreateAsync" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RequestCreateAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a9baf094-32c6-0f0e-6cb5-530211e268a4" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.RequestCreateAsync(Windows.Foundation.Point)">
+      <topicdata group="api" />
+      <apidata name="RequestCreateAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.StartScreen.SecondaryTile.RequestCreateAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="invocationPoint" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RequestCreateAsyncWithPoint</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ab825986-901d-907e-ea9d-8e1993919134" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.RequestCreateForSelectionAsync(Windows.Foundation.Rect)">
+      <topicdata group="api" />
+      <apidata name="RequestCreateForSelectionAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.StartScreen.SecondaryTile.RequestCreateForSelectionAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RequestCreateAsyncWithRect</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6875bb2e-b4c8-031f-d07f-c50b0333f167" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.RequestCreateForSelectionAsync(Windows.Foundation.Rect,Windows.UI.Popups.Placement)">
+      <topicdata group="api" />
+      <apidata name="RequestCreateForSelectionAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.StartScreen.SecondaryTile.RequestCreateForSelectionAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+        <parameter name="preferredPlacement" in="true">
+          <type api="T:Windows.UI.Popups.Placement" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RequestCreateAsyncWithRectAndPlacement</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="67cfa820-8633-8683-79d3-5baba896b6a6" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.RequestDeleteAsync">
+      <topicdata group="api" />
+      <apidata name="RequestDeleteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.StartScreen.SecondaryTile.RequestDeleteAsync" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RequestDeleteAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="48d32839-0faf-c947-468c-024f47dac239" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.RequestDeleteAsync(Windows.Foundation.Point)">
+      <topicdata group="api" />
+      <apidata name="RequestDeleteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.StartScreen.SecondaryTile.RequestDeleteAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="invocationPoint" in="true">
+          <type api="T:Windows.Foundation.Point" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RequestDeleteAsyncWithPoint</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a467e4ac-4c63-681b-8c2f-6edd7022768f" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.RequestDeleteForSelectionAsync(Windows.Foundation.Rect)">
+      <topicdata group="api" />
+      <apidata name="RequestDeleteForSelectionAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.StartScreen.SecondaryTile.RequestDeleteForSelectionAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RequestDeleteAsyncWithRect</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1959a2be-1c8a-c866-a6d4-8714fddf388e" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.RequestDeleteForSelectionAsync(Windows.Foundation.Rect,Windows.UI.Popups.Placement)">
+      <topicdata group="api" />
+      <apidata name="RequestDeleteForSelectionAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.StartScreen.SecondaryTile.RequestDeleteForSelectionAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="selection" in="true">
+          <type api="T:Windows.Foundation.Rect" ref="false" />
+        </parameter>
+        <parameter name="preferredPlacement" in="true">
+          <type api="T:Windows.UI.Popups.Placement" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RequestDeleteAsyncWithRectAndPlacement</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a6672f62-aac3-28ee-d539-336ff01c2548" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTile.RoamingEnabled">
+      <topicdata group="api" />
+      <apidata name="RoamingEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RoamingEnabled" />
+      <setter name="set_RoamingEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="68c8ba70-a504-3bf1-7513-4935166375e5" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTile.ShortName">
+      <topicdata group="api" />
+      <apidata name="ShortName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ShortName">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>ShortName may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayName.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <setter name="set_ShortName">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>ShortName may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayName.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="98440adf-8a24-659f-8efa-d727b229ffa0" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTile.SmallLogo">
+      <topicdata group="api" />
+      <apidata name="SmallLogo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SmallLogo">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>SmallLogo may be altered or unavailable for releases after Windows Phone 8.1. Instead, use VisualElements.Square30x30Logo.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <setter name="set_SmallLogo">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>SmallLogo may be altered or unavailable for releases after Windows Phone 8.1. Instead, use VisualElements.Square30x30Logo.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="e43520da-d632-e828-ac6a-44e36326d6f3" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTile.TileId">
+      <topicdata group="api" />
+      <apidata name="TileId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TileId" />
+      <setter name="set_TileId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="127121f0-5abe-636e-10d7-388a51ae326c" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTile.TileOptions">
+      <topicdata group="api" />
+      <apidata name="TileOptions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TileOptions">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>TileOptions may be altered or unavailable for releases after Windows Phone 8.1. Instead, use VisualElements.ShowNameOnSquare150x150Logo, VisualElements.ShowNameOnWide310x150Logo, and RoamingEnabled.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <setter name="set_TileOptions">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>TileOptions may be altered or unavailable for releases after Windows Phone 8.1. Instead, use VisualElements.ShowNameOnSquare150x150Logo, VisualElements.ShowNameOnWide310x150Logo, and RoamingEnabled.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:Windows.UI.StartScreen.TileOptions" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="8e512d5f-240f-e2af-4925-60264536ed7b" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.SecondaryTile.UpdateAsync">
+      <topicdata group="api" />
+      <apidata name="UpdateAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="73680f3c-605c-0f95-c840-06cfa207f581" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTile.VisualElements">
+      <topicdata group="api" />
+      <apidata name="VisualElements" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_VisualElements" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="73b809b2-b878-9cb8-30e8-72152be30d40" />
+    </api>
+    <api id="E:Windows.UI.StartScreen.SecondaryTile.VisualElementsRequested">
+      <topicdata group="api" />
+      <apidata name="VisualElementsRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_VisualElementsRequested" />
+      <remover name="remove_VisualElementsRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+            <type api="T:Windows.UI.StartScreen.VisualElementsRequestedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="08d88ea0-2d6c-cfbf-9122-0f47c92f27b9" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTile.WideLogo">
+      <topicdata group="api" />
+      <apidata name="WideLogo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_WideLogo">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>WideLogo may be altered or unavailable for releases after Windows Phone 8.1. Instead, use VisualElements.Wide310x150Logo.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <setter name="set_WideLogo">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>WideLogo may be altered or unavailable for releases after Windows Phone 8.1. Instead, use VisualElements.Wide310x150Logo.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTile" ref="true" />
+      </containers>
+      <file name="e18c911c-2c78-ec9c-4a66-eedb4142565a" />
+    </api>
+    <api id="T:Windows.UI.StartScreen.SecondaryTileVisualElements">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.StartScreen.SecondaryTileVisualElements" />
+      <apidata name="SecondaryTileVisualElements" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.StartScreen.ISecondaryTileVisualElements" ref="true" />
+        <type api="T:Windows.UI.StartScreen.ISecondaryTileVisualElements2" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3322616d-28b9-3f3b-0baa-961d5ae890f2" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.StartScreen.SecondaryTileVisualElements">
+      <topicdata name="SecondaryTileVisualElements" group="list" subgroup="members" typeTopicId="T:Windows.UI.StartScreen.SecondaryTileVisualElements" />
+      <apidata name="SecondaryTileVisualElements" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.BackgroundColor" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.ForegroundText" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.ShowNameOnSquare150x150Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.ShowNameOnSquare310x310Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.ShowNameOnWide310x150Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Square150x150Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Square30x30Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Square310x310Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Square70x70Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Square71x71Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Wide310x150Logo" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" />
+      </containers>
+      <file name="f7660703-4183-304f-be73-371523b951cf" />
+    </api>
+    <api id="Methods.T:Windows.UI.StartScreen.SecondaryTileVisualElements">
+      <topicdata name="SecondaryTileVisualElements" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.StartScreen.SecondaryTileVisualElements" />
+      <apidata name="SecondaryTileVisualElements" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" />
+      </containers>
+      <file name="fd69c44e-761a-675c-5245-bc30781693e6" />
+    </api>
+    <api id="Properties.T:Windows.UI.StartScreen.SecondaryTileVisualElements">
+      <topicdata name="SecondaryTileVisualElements" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.StartScreen.SecondaryTileVisualElements" />
+      <apidata name="SecondaryTileVisualElements" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.BackgroundColor" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.ForegroundText" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.ShowNameOnSquare150x150Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.ShowNameOnSquare310x310Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.ShowNameOnWide310x150Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Square150x150Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Square30x30Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Square310x310Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Square70x70Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Square71x71Logo" />
+        <element api="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Wide310x150Logo" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" />
+      </containers>
+      <file name="80d70391-a99e-4036-210a-dc12216c2b37" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTileVisualElements.BackgroundColor">
+      <topicdata group="api" />
+      <apidata name="BackgroundColor" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BackgroundColor" />
+      <setter name="set_BackgroundColor" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" ref="true" />
+      </containers>
+      <file name="f8ad8df0-664a-9d86-4907-bfdcf5afb34c" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTileVisualElements.ForegroundText">
+      <topicdata group="api" />
+      <apidata name="ForegroundText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ForegroundText" />
+      <setter name="set_ForegroundText" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.ForegroundText" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" ref="true" />
+      </containers>
+      <file name="55bbd758-de72-526a-c2b2-1fa20130268c" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTileVisualElements.ShowNameOnSquare150x150Logo">
+      <topicdata group="api" />
+      <apidata name="ShowNameOnSquare150x150Logo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ShowNameOnSquare150x150Logo" />
+      <setter name="set_ShowNameOnSquare150x150Logo" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" ref="true" />
+      </containers>
+      <file name="7607735c-4958-5c5a-14ea-23d523711e49" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTileVisualElements.ShowNameOnSquare310x310Logo">
+      <topicdata group="api" />
+      <apidata name="ShowNameOnSquare310x310Logo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ShowNameOnSquare310x310Logo" />
+      <setter name="set_ShowNameOnSquare310x310Logo" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" ref="true" />
+      </containers>
+      <file name="142bc8a7-d8a5-947c-d447-8a2955e613b5" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTileVisualElements.ShowNameOnWide310x150Logo">
+      <topicdata group="api" />
+      <apidata name="ShowNameOnWide310x150Logo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ShowNameOnWide310x150Logo" />
+      <setter name="set_ShowNameOnWide310x150Logo" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" ref="true" />
+      </containers>
+      <file name="304b4d08-8cdb-cbf2-50ae-78aa17251398" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Square150x150Logo">
+      <topicdata group="api" />
+      <apidata name="Square150x150Logo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Square150x150Logo" />
+      <setter name="set_Square150x150Logo" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" ref="true" />
+      </containers>
+      <file name="444f758b-9d62-4784-e513-ac9bd9bb5be0" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Square30x30Logo">
+      <topicdata group="api" />
+      <apidata name="Square30x30Logo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Square30x30Logo" />
+      <setter name="set_Square30x30Logo" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" ref="true" />
+      </containers>
+      <file name="9356720e-b27e-01d2-d5db-2c19b0f46d3b" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Square310x310Logo">
+      <topicdata group="api" />
+      <apidata name="Square310x310Logo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Square310x310Logo" />
+      <setter name="set_Square310x310Logo" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" ref="true" />
+      </containers>
+      <file name="5b0cb61f-870a-d99c-4613-aaa0813e648b" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Square70x70Logo">
+      <topicdata group="api" />
+      <apidata name="Square70x70Logo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Square70x70Logo">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>SecondaryTileVisualElements.Square70x70Logo may be altered or unavailable for release after Windows Phone 8.1.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <setter name="set_Square70x70Logo">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>SecondaryTileVisualElements.Square70x70Logo may be altered or unavailable for release after Windows Phone 8.1.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" ref="true" />
+      </containers>
+      <file name="39177e3c-1fc1-bce3-5060-58f1b869dff4" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Square71x71Logo">
+      <topicdata group="api" />
+      <apidata name="Square71x71Logo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Square71x71Logo" />
+      <setter name="set_Square71x71Logo" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" ref="true" />
+      </containers>
+      <file name="9e301c0a-04d0-e532-2736-455b1badd43b" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.SecondaryTileVisualElements.Wide310x150Logo">
+      <topicdata group="api" />
+      <apidata name="Wide310x150Logo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Wide310x150Logo" />
+      <setter name="set_Wide310x150Logo" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" ref="true" />
+      </containers>
+      <file name="e62daa08-cf56-b138-8826-c30388ca1076" />
+    </api>
+    <api id="T:Windows.UI.StartScreen.TileOptions">
+      <topicdata group="api" />
+      <apidata name="TileOptions" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.UI.StartScreen.TileOptions.None" />
+        <element api="F:Windows.UI.StartScreen.TileOptions.ShowNameOnLogo" />
+        <element api="F:Windows.UI.StartScreen.TileOptions.ShowNameOnWideLogo" />
+        <element api="F:Windows.UI.StartScreen.TileOptions.CopyOnDeployment" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8d0a16bf-293c-b7fd-dc7c-06a8d897b862" />
+    </api>
+    <api id="F:Windows.UI.StartScreen.TileOptions.CopyOnDeployment">
+      <topicdata group="api" notopic="" />
+      <apidata name="CopyOnDeployment" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.TileOptions" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.TileOptions" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TileOptions.CopyOnDeployment may be altered or unavailable for releases after Windows Phone 8.1. Instead, use SecondaryTile.RoamingEnabled to control roaming behavior.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2686f860-fd06-9777-b44c-8882f2d254a5" />
+    </api>
+    <api id="F:Windows.UI.StartScreen.TileOptions.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.TileOptions" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.TileOptions" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TileOptions.None may be altered or unavailable for release after Windows Phone 8.1.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8fb03b60-7cd5-4c7d-5a96-51e84f14960b" />
+    </api>
+    <api id="F:Windows.UI.StartScreen.TileOptions.ShowNameOnLogo">
+      <topicdata group="api" notopic="" />
+      <apidata name="ShowNameOnLogo" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.TileOptions" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.TileOptions" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TileOptions.ShowNameOnLogo may be altered or unavailable for releases after Windows Phone 8.1. Instead, use SecondaryTile.VisualElements.ShowNameOnSquare150x150Logo.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4a765a46-c642-f5a5-f34b-154e145e5c5b" />
+    </api>
+    <api id="F:Windows.UI.StartScreen.TileOptions.ShowNameOnWideLogo">
+      <topicdata group="api" notopic="" />
+      <apidata name="ShowNameOnWideLogo" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.TileOptions" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.TileOptions" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TileOptions.ShowNameWideOnLogo may be altered or unavailable for releases after Windows Phone 8.1. Instead, use SecondaryTile.VisualElements.ShowNameOnWide310x150Logo.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="18029665-de70-754b-3a3d-f1c22e2289ec" />
+    </api>
+    <api id="T:Windows.UI.StartScreen.TileSize">
+      <topicdata group="api" />
+      <apidata name="TileSize" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.StartScreen.TileSize.Default" />
+        <element api="F:Windows.UI.StartScreen.TileSize.Square30x30" />
+        <element api="F:Windows.UI.StartScreen.TileSize.Square70x70" />
+        <element api="F:Windows.UI.StartScreen.TileSize.Square150x150" />
+        <element api="F:Windows.UI.StartScreen.TileSize.Wide310x150" />
+        <element api="F:Windows.UI.StartScreen.TileSize.Square310x310" />
+        <element api="F:Windows.UI.StartScreen.TileSize.Square71x71" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="88aa899d-45ba-7def-aac5-ac4e16bd98bc" />
+    </api>
+    <api id="F:Windows.UI.StartScreen.TileSize.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.TileSize" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.TileSize" ref="false" />
+      </containers>
+      <file name="7ff3cbed-b3ff-341f-b084-01b723593819" />
+    </api>
+    <api id="F:Windows.UI.StartScreen.TileSize.Square150x150">
+      <topicdata group="api" notopic="" />
+      <apidata name="Square150x150" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.TileSize" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.TileSize" ref="false" />
+      </containers>
+      <file name="197a5850-c096-4ce9-b92c-d556f0441645" />
+    </api>
+    <api id="F:Windows.UI.StartScreen.TileSize.Square30x30">
+      <topicdata group="api" notopic="" />
+      <apidata name="Square30x30" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.TileSize" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.TileSize" ref="false" />
+      </containers>
+      <file name="eff2f3f3-45ed-48da-7c79-2a4f996a8024" />
+    </api>
+    <api id="F:Windows.UI.StartScreen.TileSize.Square310x310">
+      <topicdata group="api" notopic="" />
+      <apidata name="Square310x310" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.TileSize" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.TileSize" ref="false" />
+      </containers>
+      <file name="54cb2081-eb88-3ea8-8579-fbc57381af99" />
+    </api>
+    <api id="F:Windows.UI.StartScreen.TileSize.Square70x70">
+      <topicdata group="api" notopic="" />
+      <apidata name="Square70x70" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.TileSize" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.TileSize" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TileSize.Square70x70 may be altered or unavailable for release after Windows Phone 8.1.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d581d118-7c00-fad0-a08a-5f85b7edddc2" />
+    </api>
+    <api id="F:Windows.UI.StartScreen.TileSize.Square71x71">
+      <topicdata group="api" notopic="" />
+      <apidata name="Square71x71" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.TileSize" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.TileSize" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8731e3c2-5ffb-32cc-1e13-8f687a85611d" />
+    </api>
+    <api id="F:Windows.UI.StartScreen.TileSize.Wide310x150">
+      <topicdata group="api" notopic="" />
+      <apidata name="Wide310x150" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.TileSize" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.TileSize" ref="false" />
+      </containers>
+      <file name="b8d1a7d3-d673-18d3-670b-dfddfc6d6672" />
+    </api>
+    <api id="T:Windows.UI.StartScreen.VisualElementsRequest">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.StartScreen.VisualElementsRequest" />
+      <apidata name="VisualElementsRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.StartScreen.IVisualElementsRequest" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="994a15d6-66e9-15d8-81d7-f63e17e9a248" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.StartScreen.VisualElementsRequest">
+      <topicdata name="VisualElementsRequest" group="list" subgroup="members" typeTopicId="T:Windows.UI.StartScreen.VisualElementsRequest" />
+      <apidata name="VisualElementsRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.StartScreen.VisualElementsRequest.AlternateVisualElements" />
+        <element api="P:Windows.UI.StartScreen.VisualElementsRequest.Deadline" />
+        <element api="M:Windows.UI.StartScreen.VisualElementsRequest.GetDeferral" />
+        <element api="P:Windows.UI.StartScreen.VisualElementsRequest.VisualElements" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.VisualElementsRequest" />
+      </containers>
+      <file name="85dac6e1-267e-defa-7379-a341b1a4c50c" />
+    </api>
+    <api id="Methods.T:Windows.UI.StartScreen.VisualElementsRequest">
+      <topicdata name="VisualElementsRequest" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.StartScreen.VisualElementsRequest" />
+      <apidata name="VisualElementsRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.StartScreen.VisualElementsRequest.GetDeferral" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.VisualElementsRequest" />
+      </containers>
+      <file name="b45328b5-aaed-804e-8815-5eee2629cc70" />
+    </api>
+    <api id="Properties.T:Windows.UI.StartScreen.VisualElementsRequest">
+      <topicdata name="VisualElementsRequest" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.StartScreen.VisualElementsRequest" />
+      <apidata name="VisualElementsRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.StartScreen.VisualElementsRequest.AlternateVisualElements" />
+        <element api="P:Windows.UI.StartScreen.VisualElementsRequest.Deadline" />
+        <element api="P:Windows.UI.StartScreen.VisualElementsRequest.VisualElements" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.VisualElementsRequest" />
+      </containers>
+      <file name="08a2436a-a50b-4ee7-5d69-856bd41e2acd" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.VisualElementsRequest.AlternateVisualElements">
+      <topicdata group="api" />
+      <apidata name="AlternateVisualElements" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AlternateVisualElements" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.VisualElementsRequest" ref="true" />
+      </containers>
+      <file name="c275b994-2ff9-9f5a-a165-d5b3d12f5334" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.VisualElementsRequest.Deadline">
+      <topicdata group="api" />
+      <apidata name="Deadline" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Deadline" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.VisualElementsRequest" ref="true" />
+      </containers>
+      <file name="af06bb46-2bcf-f754-caa7-214014c69149" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.VisualElementsRequest.GetDeferral">
+      <topicdata group="api" />
+      <apidata name="GetDeferral" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.VisualElementsRequestDeferral" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.VisualElementsRequest" ref="true" />
+      </containers>
+      <file name="72abfcc6-f721-74eb-d756-9f3d09ba3be7" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.VisualElementsRequest.VisualElements">
+      <topicdata group="api" />
+      <apidata name="VisualElements" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_VisualElements" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.SecondaryTileVisualElements" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.VisualElementsRequest" ref="true" />
+      </containers>
+      <file name="9dd11001-aa35-a25e-0985-d0094b1faa36" />
+    </api>
+    <api id="T:Windows.UI.StartScreen.VisualElementsRequestDeferral">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.StartScreen.VisualElementsRequestDeferral" />
+      <apidata name="VisualElementsRequestDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.StartScreen.IVisualElementsRequestDeferral" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5b34a3a2-23ad-d868-640a-bfc2b52ae8f4" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.StartScreen.VisualElementsRequestDeferral">
+      <topicdata name="VisualElementsRequestDeferral" group="list" subgroup="members" typeTopicId="T:Windows.UI.StartScreen.VisualElementsRequestDeferral" />
+      <apidata name="VisualElementsRequestDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.StartScreen.VisualElementsRequestDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.VisualElementsRequestDeferral" />
+      </containers>
+      <file name="eed0d0bc-f229-2ba1-3117-5b5eca75b858" />
+    </api>
+    <api id="Methods.T:Windows.UI.StartScreen.VisualElementsRequestDeferral">
+      <topicdata name="VisualElementsRequestDeferral" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.StartScreen.VisualElementsRequestDeferral" />
+      <apidata name="VisualElementsRequestDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.StartScreen.VisualElementsRequestDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.VisualElementsRequestDeferral" />
+      </containers>
+      <file name="a9c4ae30-43a5-a320-bc22-8ffdc0ff1b79" />
+    </api>
+    <api id="M:Windows.UI.StartScreen.VisualElementsRequestDeferral.Complete">
+      <topicdata group="api" />
+      <apidata name="Complete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.VisualElementsRequestDeferral" ref="true" />
+      </containers>
+      <file name="0e31705b-8197-fad3-302f-107fff70b84f" />
+    </api>
+    <api id="T:Windows.UI.StartScreen.VisualElementsRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.StartScreen.VisualElementsRequestedEventArgs" />
+      <apidata name="VisualElementsRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.StartScreen.IVisualElementsRequestedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="de3fe92d-f945-df4c-b7c6-703d8278435a" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.StartScreen.VisualElementsRequestedEventArgs">
+      <topicdata name="VisualElementsRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.UI.StartScreen.VisualElementsRequestedEventArgs" />
+      <apidata name="VisualElementsRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.StartScreen.VisualElementsRequestedEventArgs.Request" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.VisualElementsRequestedEventArgs" />
+      </containers>
+      <file name="6516fc5a-8a6a-bd92-f4e5-e41c3e333ea2" />
+    </api>
+    <api id="Methods.T:Windows.UI.StartScreen.VisualElementsRequestedEventArgs">
+      <topicdata name="VisualElementsRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.StartScreen.VisualElementsRequestedEventArgs" />
+      <apidata name="VisualElementsRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.VisualElementsRequestedEventArgs" />
+      </containers>
+      <file name="e9b98b10-858b-5561-902a-a1a273389ac4" />
+    </api>
+    <api id="Properties.T:Windows.UI.StartScreen.VisualElementsRequestedEventArgs">
+      <topicdata name="VisualElementsRequestedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.StartScreen.VisualElementsRequestedEventArgs" />
+      <apidata name="VisualElementsRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.StartScreen.VisualElementsRequestedEventArgs.Request" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.VisualElementsRequestedEventArgs" />
+      </containers>
+      <file name="51248f44-ed6d-ec5c-c8d7-cbdf56cc5c86" />
+    </api>
+    <api id="P:Windows.UI.StartScreen.VisualElementsRequestedEventArgs.Request">
+      <topicdata group="api" />
+      <apidata name="Request" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Request" />
+      <returns>
+        <type api="T:Windows.UI.StartScreen.VisualElementsRequest" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.StartScreen" />
+        <type api="T:Windows.UI.StartScreen.VisualElementsRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="5b0f5752-3137-4686-a966-3fbc00d6bd69" />
+    </api>
+  </apis>
+</reflection>

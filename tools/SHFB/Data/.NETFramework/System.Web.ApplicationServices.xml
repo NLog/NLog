@@ -1,0 +1,2658 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Web.Extensions">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.Script.AjaxFrameworkAssemblyAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjax.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjax.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys._Application &amp;&amp; Sys.Observer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxApplicationServices.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxApplicationServices.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Services</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxComponentModel.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxComponentModel.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.CommandEventArgs</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxCore.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxCore.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Sys.Observer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxGlobalization.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxGlobalization.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.CultureInfo</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxHistory.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxHistory.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.HistoryEventArgs</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxNetwork.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxNetwork.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Net &amp;&amp; Sys.Net.WebRequestExecutor</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxSerialization.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxSerialization.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Serialization</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxTimer.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxTimer.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.UI &amp;&amp; Sys.UI._Timer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxWebForms.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxWebForms.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.WebForms</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxWebServices.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxWebServices.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Net &amp;&amp; Sys.Net.WebServiceProxy</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Date.HijriCalendar.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/Date.HijriCalendar.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Type._registerScript &amp;&amp; Type._registerScript._scripts &amp;&amp; Type._registerScript._scripts['Date.HijriCalendar.js']</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Date.UmAlQuraCalendar.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/Date.UmAlQuraCalendar.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Type._registerScript &amp;&amp; Type._registerScript._scripts &amp;&amp; Type._registerScript._scripts['Date.UmAlQuraCalendar.js']</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjax.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjax.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys._Application &amp;&amp; Sys.Observer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxApplicationServices.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxApplicationServices.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Services</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxComponentModel.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxComponentModel.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.CommandEventArgs</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxCore.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxCore.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Sys.Observer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxGlobalization.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxGlobalization.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.CultureInfo</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxHistory.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxHistory.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.HistoryEventArgs</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxNetwork.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxNetwork.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Net &amp;&amp; Sys.Net.WebRequestExecutor</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxSerialization.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxSerialization.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Serialization</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxTimer.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxTimer.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.UI &amp;&amp; Sys.UI._Timer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxWebForms.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxWebForms.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.WebForms</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxWebServices.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxWebServices.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Net &amp;&amp; Sys.Net.WebServiceProxy</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Date.HijriCalendar.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/Date.HijriCalendar.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Type._registerScript &amp;&amp; Type._registerScript._scripts &amp;&amp; Type._registerScript._scripts['Date.HijriCalendar.js']</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Date.UmAlQuraCalendar.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/Date.UmAlQuraCalendar.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Type._registerScript &amp;&amp; Type._registerScript._scripts &amp;&amp; Type._registerScript._scripts['Date.UmAlQuraCalendar.js']</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Drawing.BitmapSuffixInSatelliteAssemblyAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+          <assignment name="PartialTrustVisibilityLevel">
+            <type api="T:System.Security.PartialTrustVisibilityLevel" ref="false" />
+            <enumValue>
+              <field name="NotVisibleByDefault" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.Extensions.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.Extensions.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.Extensions.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Web.ApplicationServices">
+      <topicdata group="api" />
+      <apidata name="System.Web.ApplicationServices" group="namespace" />
+      <elements>
+        <element api="T:System.Web.ApplicationServices.ApplicationServicesHostFactory" />
+        <element api="T:System.Web.ApplicationServices.AuthenticatingEventArgs" />
+        <element api="T:System.Web.ApplicationServices.AuthenticationService" />
+        <element api="T:System.Web.ApplicationServices.CreatingCookieEventArgs" />
+        <element api="T:System.Web.ApplicationServices.KnownTypesProvider" />
+        <element api="T:System.Web.ApplicationServices.ProfilePropertyMetadata" />
+        <element api="T:System.Web.ApplicationServices.ProfileService" />
+        <element api="T:System.Web.ApplicationServices.RoleService" />
+        <element api="T:System.Web.ApplicationServices.SelectingProviderEventArgs" />
+        <element api="T:System.Web.ApplicationServices.ValidatingPropertiesEventArgs" />
+      </elements>
+      <file name="b1de0873-e6e9-cada-d040-bf9953dd9bfb" />
+    </api>
+    <api id="T:System.Web.ApplicationServices.ApplicationServicesHostFactory">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.ApplicationServices.ApplicationServicesHostFactory" />
+      <apidata name="ApplicationServicesHostFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.ApplicationServicesHostFactory.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactory" ref="true" />
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactoryBase" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+      </containers>
+      <file name="9711732c-8dbc-d7fc-409f-d077584bbddd" />
+    </api>
+    <api id="AllMembers.T:System.Web.ApplicationServices.ApplicationServicesHostFactory">
+      <topicdata name="ApplicationServicesHostFactory" group="list" subgroup="members" typeTopicId="T:System.Web.ApplicationServices.ApplicationServicesHostFactory" />
+      <apidata name="ApplicationServicesHostFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.ApplicationServicesHostFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.ApplicationServices.ApplicationServicesHostFactory.CreateServiceHost">
+          <element api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.String,System.Uri[])" />
+          <element api="M:System.Web.ApplicationServices.ApplicationServicesHostFactory.CreateServiceHost(System.Type,System.Uri[])" />
+        </element>
+        <element api="M:System.Web.ApplicationServices.ApplicationServicesHostFactory.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ApplicationServicesHostFactory" />
+      </containers>
+      <file name="af23525f-3619-01c5-bcdb-d224073ed254" />
+    </api>
+    <api id="Methods.T:System.Web.ApplicationServices.ApplicationServicesHostFactory">
+      <topicdata name="ApplicationServicesHostFactory" group="list" subgroup="Methods" typeTopicId="T:System.Web.ApplicationServices.ApplicationServicesHostFactory" />
+      <apidata name="ApplicationServicesHostFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.ApplicationServicesHostFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Web.ApplicationServices.ApplicationServicesHostFactory.CreateServiceHost">
+          <element api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.String,System.Uri[])" />
+          <element api="M:System.Web.ApplicationServices.ApplicationServicesHostFactory.CreateServiceHost(System.Type,System.Uri[])" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ApplicationServicesHostFactory" />
+      </containers>
+      <file name="2489c0a1-ff9d-5277-31a9-1001405bffb2" />
+    </api>
+    <api id="Overload:System.Web.ApplicationServices.ApplicationServicesHostFactory.CreateServiceHost">
+      <topicdata name="CreateServiceHost" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.ApplicationServices.ApplicationServicesHostFactory" />
+      <apidata name="CreateServiceHost" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.String,System.Uri[])" />
+        <element api="M:System.Web.ApplicationServices.ApplicationServicesHostFactory.CreateServiceHost(System.Type,System.Uri[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ApplicationServicesHostFactory" ref="true" />
+      </containers>
+      <file name="f8288c40-e7f5-ab31-6e2d-6c6252562419" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.ApplicationServicesHostFactory.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ApplicationServicesHostFactory" ref="true" />
+      </containers>
+      <file name="0ffc827e-6a16-73d6-0d7d-e1b3e0ba55d5" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.ApplicationServicesHostFactory.CreateServiceHost(System.Type,System.Uri[])">
+      <topicdata group="api" />
+      <apidata name="CreateServiceHost" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Web.ApplicationServices.ApplicationServicesHostFactory.CreateServiceHost" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ServiceModel.Activation.ServiceHostFactory.CreateServiceHost(System.Type,System.Uri[])">
+          <type api="T:System.ServiceModel.Activation.ServiceHostFactory" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="serviceType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="baseAddresses">
+          <arrayOf rank="1">
+            <type api="T:System.Uri" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.ServiceHost" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ApplicationServicesHostFactory" ref="true" />
+      </containers>
+      <file name="7b1a5339-d32c-29ae-1601-06be6271fc31" />
+    </api>
+    <api id="T:System.Web.ApplicationServices.AuthenticatingEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.ApplicationServices.AuthenticatingEventArgs" />
+      <apidata name="AuthenticatingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+      </containers>
+      <file name="da9372aa-653b-6a59-3335-17f0b65482d4" />
+    </api>
+    <api id="AllMembers.T:System.Web.ApplicationServices.AuthenticatingEventArgs">
+      <topicdata name="AuthenticatingEventArgs" group="list" subgroup="members" typeTopicId="T:System.Web.ApplicationServices.AuthenticatingEventArgs" />
+      <apidata name="AuthenticatingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Web.ApplicationServices.AuthenticatingEventArgs.Authenticated" />
+        <element api="P:System.Web.ApplicationServices.AuthenticatingEventArgs.AuthenticationIsComplete" />
+        <element api="P:System.Web.ApplicationServices.AuthenticatingEventArgs.CustomCredential" />
+        <element api="P:System.Web.ApplicationServices.AuthenticatingEventArgs.Password" />
+        <element api="P:System.Web.ApplicationServices.AuthenticatingEventArgs.UserName" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticatingEventArgs" />
+      </containers>
+      <file name="93fb3573-66e4-550f-73ae-c3d46bc51e8a" />
+    </api>
+    <api id="Methods.T:System.Web.ApplicationServices.AuthenticatingEventArgs">
+      <topicdata name="AuthenticatingEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Web.ApplicationServices.AuthenticatingEventArgs" />
+      <apidata name="AuthenticatingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticatingEventArgs" />
+      </containers>
+      <file name="fc0521d6-02f5-c7b1-6d54-a3d6048d350d" />
+    </api>
+    <api id="Properties.T:System.Web.ApplicationServices.AuthenticatingEventArgs">
+      <topicdata name="AuthenticatingEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Web.ApplicationServices.AuthenticatingEventArgs" />
+      <apidata name="AuthenticatingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Web.ApplicationServices.AuthenticatingEventArgs.Authenticated" />
+        <element api="P:System.Web.ApplicationServices.AuthenticatingEventArgs.AuthenticationIsComplete" />
+        <element api="P:System.Web.ApplicationServices.AuthenticatingEventArgs.CustomCredential" />
+        <element api="P:System.Web.ApplicationServices.AuthenticatingEventArgs.Password" />
+        <element api="P:System.Web.ApplicationServices.AuthenticatingEventArgs.UserName" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticatingEventArgs" />
+      </containers>
+      <file name="063df51e-d674-ef01-a444-45f30d0496c5" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.AuthenticatingEventArgs.Authenticated">
+      <topicdata group="api" />
+      <apidata name="Authenticated" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Authenticated" />
+      <setter name="set_Authenticated" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticatingEventArgs" ref="true" />
+      </containers>
+      <file name="0d23d643-d77e-84fb-1110-fb79deb8a570" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.AuthenticatingEventArgs.AuthenticationIsComplete">
+      <topicdata group="api" />
+      <apidata name="AuthenticationIsComplete" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AuthenticationIsComplete" />
+      <setter name="set_AuthenticationIsComplete" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticatingEventArgs" ref="true" />
+      </containers>
+      <file name="95e8f0fe-d41f-87e7-5ad0-267c55bdfd82" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.AuthenticatingEventArgs.CustomCredential">
+      <topicdata group="api" />
+      <apidata name="CustomCredential" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CustomCredential" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticatingEventArgs" ref="true" />
+      </containers>
+      <file name="18884127-a59a-c037-e0b8-180ff33cd8d7" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.AuthenticatingEventArgs.Password">
+      <topicdata group="api" />
+      <apidata name="Password" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Password" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticatingEventArgs" ref="true" />
+      </containers>
+      <file name="38abd703-1f12-4ca9-a7c8-ff919b280aaf" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.AuthenticatingEventArgs.UserName">
+      <topicdata group="api" />
+      <apidata name="UserName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_UserName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticatingEventArgs" ref="true" />
+      </containers>
+      <file name="7c8b03f9-44d5-cfba-ff0e-82d0ed3fdaa0" />
+    </api>
+    <api id="T:System.Web.ApplicationServices.AuthenticationService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.ApplicationServices.AuthenticationService" />
+      <apidata name="AuthenticationService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.AuthenticationService.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" ref="true" />
+          <assignment name="RequirementsMode">
+            <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode" ref="false" />
+            <enumValue>
+              <field name="Required" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.ServiceModel.ServiceContractAttribute" ref="true" />
+          <assignment name="Namespace">
+            <type api="T:System.String" ref="true" />
+            <value>http://asp.net/ApplicationServices/v200</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.ServiceModel.ServiceBehaviorAttribute" ref="true" />
+          <assignment name="Namespace">
+            <type api="T:System.String" ref="true" />
+            <value>http://asp.net/ApplicationServices/v200</value>
+          </assignment>
+          <assignment name="InstanceContextMode">
+            <type api="T:System.ServiceModel.InstanceContextMode" ref="false" />
+            <enumValue>
+              <field name="Single" />
+            </enumValue>
+          </assignment>
+          <assignment name="ConcurrencyMode">
+            <type api="T:System.ServiceModel.ConcurrencyMode" ref="false" />
+            <enumValue>
+              <field name="Multiple" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="1eb48f4c-d368-0956-96ec-3cb3c5f8ba0c" />
+    </api>
+    <api id="AllMembers.T:System.Web.ApplicationServices.AuthenticationService">
+      <topicdata name="AuthenticationService" group="list" subgroup="members" typeTopicId="T:System.Web.ApplicationServices.AuthenticationService" />
+      <apidata name="AuthenticationService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.AuthenticationService.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.ApplicationServices.AuthenticationService.#ctor" />
+        <element api="E:System.Web.ApplicationServices.AuthenticationService.Authenticating" />
+        <element api="E:System.Web.ApplicationServices.AuthenticationService.CreatingCookie" />
+        <element api="M:System.Web.ApplicationServices.AuthenticationService.IsLoggedIn" />
+        <element api="M:System.Web.ApplicationServices.AuthenticationService.Login(System.String,System.String,System.String,System.Boolean)" />
+        <element api="M:System.Web.ApplicationServices.AuthenticationService.Logout" />
+        <element api="M:System.Web.ApplicationServices.AuthenticationService.ValidateUser(System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticationService" />
+      </containers>
+      <file name="e7f94eae-3302-ff00-6970-c0e2a489bf85" />
+    </api>
+    <api id="Methods.T:System.Web.ApplicationServices.AuthenticationService">
+      <topicdata name="AuthenticationService" group="list" subgroup="Methods" typeTopicId="T:System.Web.ApplicationServices.AuthenticationService" />
+      <apidata name="AuthenticationService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.AuthenticationService.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.ApplicationServices.AuthenticationService.IsLoggedIn" />
+        <element api="M:System.Web.ApplicationServices.AuthenticationService.Login(System.String,System.String,System.String,System.Boolean)" />
+        <element api="M:System.Web.ApplicationServices.AuthenticationService.Logout" />
+        <element api="M:System.Web.ApplicationServices.AuthenticationService.ValidateUser(System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticationService" />
+      </containers>
+      <file name="128389ee-3d29-3329-49aa-4b440b6a3ce6" />
+    </api>
+    <api id="Events.T:System.Web.ApplicationServices.AuthenticationService">
+      <topicdata name="AuthenticationService" group="list" subgroup="Events" typeTopicId="T:System.Web.ApplicationServices.AuthenticationService" />
+      <apidata name="AuthenticationService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.AuthenticationService.#ctor" />
+      <elements>
+        <element api="E:System.Web.ApplicationServices.AuthenticationService.Authenticating" />
+        <element api="E:System.Web.ApplicationServices.AuthenticationService.CreatingCookie" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticationService" />
+      </containers>
+      <file name="928db56a-5a5d-ca83-527b-0c8f4170b690" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.AuthenticationService.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticationService" ref="true" />
+      </containers>
+      <file name="c9b59c5d-1780-0c39-655e-b281a4e1d631" />
+    </api>
+    <api id="E:System.Web.ApplicationServices.AuthenticationService.Authenticating">
+      <topicdata group="api" />
+      <apidata name="Authenticating" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Authenticating" />
+      <remover name="remove_Authenticating" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Web.ApplicationServices.AuthenticatingEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Web.ApplicationServices.AuthenticatingEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticationService" ref="true" />
+      </containers>
+      <file name="7d7ca1bc-434b-e9ce-27a4-c551416426ea" />
+    </api>
+    <api id="E:System.Web.ApplicationServices.AuthenticationService.CreatingCookie">
+      <topicdata group="api" />
+      <apidata name="CreatingCookie" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CreatingCookie" />
+      <remover name="remove_CreatingCookie" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Web.ApplicationServices.CreatingCookieEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Web.ApplicationServices.CreatingCookieEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticationService" ref="true" />
+      </containers>
+      <file name="54ad94ce-bb19-ad3a-96f2-b2e5eed4f906" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.AuthenticationService.IsLoggedIn">
+      <topicdata group="api" />
+      <apidata name="IsLoggedIn" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticationService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d1cd80f7-0dc9-6b5c-1764-18ae2e8e5cdc" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.AuthenticationService.Login(System.String,System.String,System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Login" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="username">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="customCredential">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="isPersistent">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticationService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d6dfb753-0201-22c7-1949-a64f5f6195a3" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.AuthenticationService.Logout">
+      <topicdata group="api" />
+      <apidata name="Logout" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticationService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="53312bca-65f2-533f-d469-b3460a3368aa" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.AuthenticationService.ValidateUser(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="ValidateUser" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="username">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="customCredential">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.AuthenticationService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d9763f2f-fec4-3b44-03df-60e48bceb860" />
+    </api>
+    <api id="T:System.Web.ApplicationServices.CreatingCookieEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.ApplicationServices.CreatingCookieEventArgs" />
+      <apidata name="CreatingCookieEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+      </containers>
+      <file name="03d967fe-22b3-59f5-8780-7aa045e80448" />
+    </api>
+    <api id="AllMembers.T:System.Web.ApplicationServices.CreatingCookieEventArgs">
+      <topicdata name="CreatingCookieEventArgs" group="list" subgroup="members" typeTopicId="T:System.Web.ApplicationServices.CreatingCookieEventArgs" />
+      <apidata name="CreatingCookieEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Web.ApplicationServices.CreatingCookieEventArgs.CookieIsSet" />
+        <element api="P:System.Web.ApplicationServices.CreatingCookieEventArgs.CustomCredential" />
+        <element api="P:System.Web.ApplicationServices.CreatingCookieEventArgs.IsPersistent" />
+        <element api="P:System.Web.ApplicationServices.CreatingCookieEventArgs.Password" />
+        <element api="P:System.Web.ApplicationServices.CreatingCookieEventArgs.UserName" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.CreatingCookieEventArgs" />
+      </containers>
+      <file name="288395b3-a5d5-50fb-99f1-3caa03b19a26" />
+    </api>
+    <api id="Methods.T:System.Web.ApplicationServices.CreatingCookieEventArgs">
+      <topicdata name="CreatingCookieEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Web.ApplicationServices.CreatingCookieEventArgs" />
+      <apidata name="CreatingCookieEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.CreatingCookieEventArgs" />
+      </containers>
+      <file name="742a18c1-cb94-1dd6-902a-fa408208a5ad" />
+    </api>
+    <api id="Properties.T:System.Web.ApplicationServices.CreatingCookieEventArgs">
+      <topicdata name="CreatingCookieEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Web.ApplicationServices.CreatingCookieEventArgs" />
+      <apidata name="CreatingCookieEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Web.ApplicationServices.CreatingCookieEventArgs.CookieIsSet" />
+        <element api="P:System.Web.ApplicationServices.CreatingCookieEventArgs.CustomCredential" />
+        <element api="P:System.Web.ApplicationServices.CreatingCookieEventArgs.IsPersistent" />
+        <element api="P:System.Web.ApplicationServices.CreatingCookieEventArgs.Password" />
+        <element api="P:System.Web.ApplicationServices.CreatingCookieEventArgs.UserName" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.CreatingCookieEventArgs" />
+      </containers>
+      <file name="81ec5405-aa4d-604c-0677-992650dfbd45" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.CreatingCookieEventArgs.CookieIsSet">
+      <topicdata group="api" />
+      <apidata name="CookieIsSet" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CookieIsSet" />
+      <setter name="set_CookieIsSet" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.CreatingCookieEventArgs" ref="true" />
+      </containers>
+      <file name="b998fc7b-eef9-5596-7da5-60b0306d9d3a" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.CreatingCookieEventArgs.CustomCredential">
+      <topicdata group="api" />
+      <apidata name="CustomCredential" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CustomCredential" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.CreatingCookieEventArgs" ref="true" />
+      </containers>
+      <file name="68f92c4a-b56e-e6e5-009b-5c47ed496816" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.CreatingCookieEventArgs.IsPersistent">
+      <topicdata group="api" />
+      <apidata name="IsPersistent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsPersistent" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.CreatingCookieEventArgs" ref="true" />
+      </containers>
+      <file name="98ca7cd0-1624-dcf0-61c5-70cfa35948ca" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.CreatingCookieEventArgs.Password">
+      <topicdata group="api" />
+      <apidata name="Password" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Password" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.CreatingCookieEventArgs" ref="true" />
+      </containers>
+      <file name="2dc7a0a5-91ee-8052-ad0e-d06d243c3176" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.CreatingCookieEventArgs.UserName">
+      <topicdata group="api" />
+      <apidata name="UserName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_UserName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.CreatingCookieEventArgs" ref="true" />
+      </containers>
+      <file name="4111404e-55ae-99da-4c85-a2c63de1f30a" />
+    </api>
+    <api id="T:System.Web.ApplicationServices.KnownTypesProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.ApplicationServices.KnownTypesProvider" />
+      <apidata name="KnownTypesProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+      </containers>
+      <file name="3ee3dcf4-8fc9-8405-c2c7-a73f6034e76c" />
+    </api>
+    <api id="AllMembers.T:System.Web.ApplicationServices.KnownTypesProvider">
+      <topicdata name="KnownTypesProvider" group="list" subgroup="members" typeTopicId="T:System.Web.ApplicationServices.KnownTypesProvider" />
+      <apidata name="KnownTypesProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Web.ApplicationServices.KnownTypesProvider.GetKnownTypes(System.Reflection.ICustomAttributeProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.KnownTypesProvider" />
+      </containers>
+      <file name="a2ac1c0c-f59f-0203-6d7f-245d9be2ad71" />
+    </api>
+    <api id="Methods.T:System.Web.ApplicationServices.KnownTypesProvider">
+      <topicdata name="KnownTypesProvider" group="list" subgroup="Methods" typeTopicId="T:System.Web.ApplicationServices.KnownTypesProvider" />
+      <apidata name="KnownTypesProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Web.ApplicationServices.KnownTypesProvider.GetKnownTypes(System.Reflection.ICustomAttributeProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.KnownTypesProvider" />
+      </containers>
+      <file name="6142a35d-310f-72d0-e1d3-e6054b1d67ab" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.KnownTypesProvider.GetKnownTypes(System.Reflection.ICustomAttributeProvider)">
+      <topicdata group="api" />
+      <apidata name="GetKnownTypes" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="knownTypeAttributeTarget">
+          <type api="T:System.Reflection.ICustomAttributeProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Type" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.KnownTypesProvider" ref="true" />
+      </containers>
+      <file name="a489db45-4973-7c7c-9ae5-c33b726ba36c" />
+    </api>
+    <api id="T:System.Web.ApplicationServices.ProfilePropertyMetadata">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.ApplicationServices.ProfilePropertyMetadata" />
+      <apidata name="ProfilePropertyMetadata" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.ProfilePropertyMetadata.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.Serialization.IExtensibleDataObject" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.Serialization.DataContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d31a31a5-ae9d-27e4-826e-e009d7cd8fa4" />
+    </api>
+    <api id="AllMembers.T:System.Web.ApplicationServices.ProfilePropertyMetadata">
+      <topicdata name="ProfilePropertyMetadata" group="list" subgroup="members" typeTopicId="T:System.Web.ApplicationServices.ProfilePropertyMetadata" />
+      <apidata name="ProfilePropertyMetadata" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.ProfilePropertyMetadata.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.ApplicationServices.ProfilePropertyMetadata.#ctor" />
+        <element api="P:System.Web.ApplicationServices.ProfilePropertyMetadata.AllowAnonymousAccess" />
+        <element api="P:System.Web.ApplicationServices.ProfilePropertyMetadata.DefaultValue" />
+        <element api="P:System.Web.ApplicationServices.ProfilePropertyMetadata.ExtensionData" />
+        <element api="P:System.Web.ApplicationServices.ProfilePropertyMetadata.IsReadOnly" />
+        <element api="P:System.Web.ApplicationServices.ProfilePropertyMetadata.PropertyName" />
+        <element api="P:System.Web.ApplicationServices.ProfilePropertyMetadata.SerializeAs" />
+        <element api="P:System.Web.ApplicationServices.ProfilePropertyMetadata.TypeName" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfilePropertyMetadata" />
+      </containers>
+      <file name="33e39670-d216-bdfe-324a-f06475e1b045" />
+    </api>
+    <api id="Methods.T:System.Web.ApplicationServices.ProfilePropertyMetadata">
+      <topicdata name="ProfilePropertyMetadata" group="list" subgroup="Methods" typeTopicId="T:System.Web.ApplicationServices.ProfilePropertyMetadata" />
+      <apidata name="ProfilePropertyMetadata" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.ProfilePropertyMetadata.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfilePropertyMetadata" />
+      </containers>
+      <file name="0f4869c0-932b-63b5-078e-172eb7e0ba3a" />
+    </api>
+    <api id="Properties.T:System.Web.ApplicationServices.ProfilePropertyMetadata">
+      <topicdata name="ProfilePropertyMetadata" group="list" subgroup="Properties" typeTopicId="T:System.Web.ApplicationServices.ProfilePropertyMetadata" />
+      <apidata name="ProfilePropertyMetadata" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.ProfilePropertyMetadata.#ctor" />
+      <elements>
+        <element api="P:System.Web.ApplicationServices.ProfilePropertyMetadata.AllowAnonymousAccess" />
+        <element api="P:System.Web.ApplicationServices.ProfilePropertyMetadata.DefaultValue" />
+        <element api="P:System.Web.ApplicationServices.ProfilePropertyMetadata.ExtensionData" />
+        <element api="P:System.Web.ApplicationServices.ProfilePropertyMetadata.IsReadOnly" />
+        <element api="P:System.Web.ApplicationServices.ProfilePropertyMetadata.PropertyName" />
+        <element api="P:System.Web.ApplicationServices.ProfilePropertyMetadata.SerializeAs" />
+        <element api="P:System.Web.ApplicationServices.ProfilePropertyMetadata.TypeName" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfilePropertyMetadata" />
+      </containers>
+      <file name="133674d3-e536-8920-adf7-a0c53c9538fc" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.ProfilePropertyMetadata.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfilePropertyMetadata" ref="true" />
+      </containers>
+      <file name="b9416099-989c-78e9-4b9a-be12437f0569" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.ProfilePropertyMetadata.AllowAnonymousAccess">
+      <topicdata group="api" />
+      <apidata name="AllowAnonymousAccess" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AllowAnonymousAccess" />
+      <setter name="set_AllowAnonymousAccess" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfilePropertyMetadata" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.Serialization.DataMemberAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="f4324eec-237d-2bfd-ca60-f485e9dc68b5" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.ProfilePropertyMetadata.DefaultValue">
+      <topicdata group="api" />
+      <apidata name="DefaultValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DefaultValue" />
+      <setter name="set_DefaultValue" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfilePropertyMetadata" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.Serialization.DataMemberAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="0195073f-a115-94bf-aa3c-057c971e06f7" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.ProfilePropertyMetadata.ExtensionData">
+      <topicdata group="api" />
+      <apidata name="ExtensionData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ExtensionData" />
+      <setter name="set_ExtensionData" />
+      <returns>
+        <type api="T:System.Runtime.Serialization.ExtensionDataObject" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Serialization.IExtensibleDataObject.ExtensionData">
+          <type api="T:System.Runtime.Serialization.IExtensibleDataObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfilePropertyMetadata" ref="true" />
+      </containers>
+      <file name="bd36210f-9a74-b632-7285-2272ec0264db" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.ProfilePropertyMetadata.IsReadOnly">
+      <topicdata group="api" />
+      <apidata name="IsReadOnly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsReadOnly" />
+      <setter name="set_IsReadOnly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfilePropertyMetadata" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.Serialization.DataMemberAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4c7070ce-3f71-37fe-e428-0d93ada86a2c" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.ProfilePropertyMetadata.PropertyName">
+      <topicdata group="api" />
+      <apidata name="PropertyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PropertyName" />
+      <setter name="set_PropertyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfilePropertyMetadata" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.Serialization.DataMemberAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="b94398a8-1eef-705a-16fb-51789395430e" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.ProfilePropertyMetadata.SerializeAs">
+      <topicdata group="api" />
+      <apidata name="SerializeAs" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SerializeAs" />
+      <setter name="set_SerializeAs" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfilePropertyMetadata" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.Serialization.DataMemberAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="339e862b-5f42-8d2b-60ab-f23f8cd99eb4" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.ProfilePropertyMetadata.TypeName">
+      <topicdata group="api" />
+      <apidata name="TypeName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TypeName" />
+      <setter name="set_TypeName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfilePropertyMetadata" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.Serialization.DataMemberAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4d7d8e6f-1173-87ba-70cd-7efa030c916d" />
+    </api>
+    <api id="T:System.Web.ApplicationServices.ProfileService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.ApplicationServices.ProfileService" />
+      <apidata name="ProfileService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.ProfileService.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.ServiceContractAttribute" ref="true" />
+          <assignment name="Namespace">
+            <type api="T:System.String" ref="true" />
+            <value>http://asp.net/ApplicationServices/v200</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.ServiceModel.ServiceKnownTypeAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetKnownTypes</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.Web.ApplicationServices.KnownTypesProvider" ref="true" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" ref="true" />
+          <assignment name="RequirementsMode">
+            <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode" ref="false" />
+            <enumValue>
+              <field name="Required" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.ServiceModel.ServiceBehaviorAttribute" ref="true" />
+          <assignment name="Namespace">
+            <type api="T:System.String" ref="true" />
+            <value>http://asp.net/ApplicationServices/v200</value>
+          </assignment>
+          <assignment name="InstanceContextMode">
+            <type api="T:System.ServiceModel.InstanceContextMode" ref="false" />
+            <enumValue>
+              <field name="Single" />
+            </enumValue>
+          </assignment>
+          <assignment name="ConcurrencyMode">
+            <type api="T:System.ServiceModel.ConcurrencyMode" ref="false" />
+            <enumValue>
+              <field name="Multiple" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="e590a333-bbfe-f29e-72d3-eac79d52f6d9" />
+    </api>
+    <api id="AllMembers.T:System.Web.ApplicationServices.ProfileService">
+      <topicdata name="ProfileService" group="list" subgroup="members" typeTopicId="T:System.Web.ApplicationServices.ProfileService" />
+      <apidata name="ProfileService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.ProfileService.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.ApplicationServices.ProfileService.#ctor" />
+        <element api="M:System.Web.ApplicationServices.ProfileService.GetAllPropertiesForCurrentUser(System.Boolean)" />
+        <element api="M:System.Web.ApplicationServices.ProfileService.GetPropertiesForCurrentUser(System.Collections.Generic.IEnumerable{System.String},System.Boolean)" />
+        <element api="M:System.Web.ApplicationServices.ProfileService.GetPropertiesMetadata" />
+        <element api="M:System.Web.ApplicationServices.ProfileService.SetPropertiesForCurrentUser(System.Collections.Generic.IDictionary{System.String,System.Object},System.Boolean)" />
+        <element api="E:System.Web.ApplicationServices.ProfileService.ValidatingProperties" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfileService" />
+      </containers>
+      <file name="1fc57749-5e6e-3f8c-583f-a8c9fdafa8e5" />
+    </api>
+    <api id="Methods.T:System.Web.ApplicationServices.ProfileService">
+      <topicdata name="ProfileService" group="list" subgroup="Methods" typeTopicId="T:System.Web.ApplicationServices.ProfileService" />
+      <apidata name="ProfileService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.ProfileService.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.ApplicationServices.ProfileService.GetAllPropertiesForCurrentUser(System.Boolean)" />
+        <element api="M:System.Web.ApplicationServices.ProfileService.GetPropertiesForCurrentUser(System.Collections.Generic.IEnumerable{System.String},System.Boolean)" />
+        <element api="M:System.Web.ApplicationServices.ProfileService.GetPropertiesMetadata" />
+        <element api="M:System.Web.ApplicationServices.ProfileService.SetPropertiesForCurrentUser(System.Collections.Generic.IDictionary{System.String,System.Object},System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfileService" />
+      </containers>
+      <file name="f0249739-0574-fc7b-e1b3-576a2114c367" />
+    </api>
+    <api id="Events.T:System.Web.ApplicationServices.ProfileService">
+      <topicdata name="ProfileService" group="list" subgroup="Events" typeTopicId="T:System.Web.ApplicationServices.ProfileService" />
+      <apidata name="ProfileService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.ProfileService.#ctor" />
+      <elements>
+        <element api="E:System.Web.ApplicationServices.ProfileService.ValidatingProperties" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfileService" />
+      </containers>
+      <file name="cb60372d-cc7f-11eb-e84d-cf014dcf6839" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.ProfileService.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfileService" ref="true" />
+      </containers>
+      <file name="4900c766-ffc4-cd3a-2cf0-1673f76d1106" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.ProfileService.GetAllPropertiesForCurrentUser(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="GetAllPropertiesForCurrentUser" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="authenticatedUserOnly">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.Dictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfileService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="fe836c1e-b634-70fb-8bec-3ab6a2db45e3" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.ProfileService.GetPropertiesForCurrentUser(System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="GetPropertiesForCurrentUser" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="properties">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="authenticatedUserOnly">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.Dictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfileService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ad65f468-a690-b313-10a4-87954d2966f7" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.ProfileService.GetPropertiesMetadata">
+      <topicdata group="api" />
+      <apidata name="GetPropertiesMetadata" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Web.ApplicationServices.ProfilePropertyMetadata" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfileService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d78b5a98-3db5-3242-789d-ac5603770aaa" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.ProfileService.SetPropertiesForCurrentUser(System.Collections.Generic.IDictionary{System.String,System.Object},System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="SetPropertiesForCurrentUser" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="values">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+              <type api="T:System.Object" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="authenticatedUserOnly">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfileService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="9748f6a2-5e9e-d403-32ca-d6f463725805" />
+    </api>
+    <api id="E:System.Web.ApplicationServices.ProfileService.ValidatingProperties">
+      <topicdata group="api" />
+      <apidata name="ValidatingProperties" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ValidatingProperties" />
+      <remover name="remove_ValidatingProperties" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Web.ApplicationServices.ValidatingPropertiesEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Web.ApplicationServices.ValidatingPropertiesEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ProfileService" ref="true" />
+      </containers>
+      <file name="0e651798-7571-04a5-69b4-862531cf281f" />
+    </api>
+    <api id="T:System.Web.ApplicationServices.RoleService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.ApplicationServices.RoleService" />
+      <apidata name="RoleService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.RoleService.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsAttribute" ref="true" />
+          <assignment name="RequirementsMode">
+            <type api="T:System.ServiceModel.Activation.AspNetCompatibilityRequirementsMode" ref="false" />
+            <enumValue>
+              <field name="Required" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.ServiceModel.ServiceContractAttribute" ref="true" />
+          <assignment name="Namespace">
+            <type api="T:System.String" ref="true" />
+            <value>http://asp.net/ApplicationServices/v200</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.ServiceModel.ServiceBehaviorAttribute" ref="true" />
+          <assignment name="Namespace">
+            <type api="T:System.String" ref="true" />
+            <value>http://asp.net/ApplicationServices/v200</value>
+          </assignment>
+          <assignment name="InstanceContextMode">
+            <type api="T:System.ServiceModel.InstanceContextMode" ref="false" />
+            <enumValue>
+              <field name="Single" />
+            </enumValue>
+          </assignment>
+          <assignment name="ConcurrencyMode">
+            <type api="T:System.ServiceModel.ConcurrencyMode" ref="false" />
+            <enumValue>
+              <field name="Multiple" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="dd5bdbbe-0153-7f2e-a99a-b687ce0178b5" />
+    </api>
+    <api id="AllMembers.T:System.Web.ApplicationServices.RoleService">
+      <topicdata name="RoleService" group="list" subgroup="members" typeTopicId="T:System.Web.ApplicationServices.RoleService" />
+      <apidata name="RoleService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.RoleService.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.ApplicationServices.RoleService.#ctor" />
+        <element api="M:System.Web.ApplicationServices.RoleService.GetRolesForCurrentUser" />
+        <element api="M:System.Web.ApplicationServices.RoleService.IsCurrentUserInRole(System.String)" />
+        <element api="E:System.Web.ApplicationServices.RoleService.SelectingProvider" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.RoleService" />
+      </containers>
+      <file name="344c2e1b-e9cd-b36c-61f5-070caf5222cd" />
+    </api>
+    <api id="Methods.T:System.Web.ApplicationServices.RoleService">
+      <topicdata name="RoleService" group="list" subgroup="Methods" typeTopicId="T:System.Web.ApplicationServices.RoleService" />
+      <apidata name="RoleService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.RoleService.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.ApplicationServices.RoleService.GetRolesForCurrentUser" />
+        <element api="M:System.Web.ApplicationServices.RoleService.IsCurrentUserInRole(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.RoleService" />
+      </containers>
+      <file name="7d98ae93-bc19-209a-c604-d4164e4ac094" />
+    </api>
+    <api id="Events.T:System.Web.ApplicationServices.RoleService">
+      <topicdata name="RoleService" group="list" subgroup="Events" typeTopicId="T:System.Web.ApplicationServices.RoleService" />
+      <apidata name="RoleService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Web.ApplicationServices.RoleService.#ctor" />
+      <elements>
+        <element api="E:System.Web.ApplicationServices.RoleService.SelectingProvider" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.RoleService" />
+      </containers>
+      <file name="570aab42-1de4-8f4a-60a3-b8d6d33b64b7" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.RoleService.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.RoleService" ref="true" />
+      </containers>
+      <file name="4d33d110-0dab-3d46-590e-4d7a132ab675" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.RoleService.GetRolesForCurrentUser">
+      <topicdata group="api" />
+      <apidata name="GetRolesForCurrentUser" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.RoleService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="66426c9e-5b50-0c2c-f22c-3503804ea7e0" />
+    </api>
+    <api id="M:System.Web.ApplicationServices.RoleService.IsCurrentUserInRole(System.String)">
+      <topicdata group="api" />
+      <apidata name="IsCurrentUserInRole" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="role">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.RoleService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="17924e43-af4d-7862-46e8-2b5cd3c44f13" />
+    </api>
+    <api id="E:System.Web.ApplicationServices.RoleService.SelectingProvider">
+      <topicdata group="api" />
+      <apidata name="SelectingProvider" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_SelectingProvider" />
+      <remover name="remove_SelectingProvider" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Web.ApplicationServices.SelectingProviderEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Web.ApplicationServices.SelectingProviderEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.RoleService" ref="true" />
+      </containers>
+      <file name="8799a202-590d-67e4-bbe6-434876adddb0" />
+    </api>
+    <api id="T:System.Web.ApplicationServices.SelectingProviderEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.ApplicationServices.SelectingProviderEventArgs" />
+      <apidata name="SelectingProviderEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+      </containers>
+      <file name="e8d443c4-fb97-e649-97c4-5078686e660a" />
+    </api>
+    <api id="AllMembers.T:System.Web.ApplicationServices.SelectingProviderEventArgs">
+      <topicdata name="SelectingProviderEventArgs" group="list" subgroup="members" typeTopicId="T:System.Web.ApplicationServices.SelectingProviderEventArgs" />
+      <apidata name="SelectingProviderEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Web.ApplicationServices.SelectingProviderEventArgs.ProviderName" />
+        <element api="P:System.Web.ApplicationServices.SelectingProviderEventArgs.User" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.SelectingProviderEventArgs" />
+      </containers>
+      <file name="d981f4af-334a-8ae0-096d-af81974a9df8" />
+    </api>
+    <api id="Methods.T:System.Web.ApplicationServices.SelectingProviderEventArgs">
+      <topicdata name="SelectingProviderEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Web.ApplicationServices.SelectingProviderEventArgs" />
+      <apidata name="SelectingProviderEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.SelectingProviderEventArgs" />
+      </containers>
+      <file name="cab1af0d-a8e7-dd83-a284-936b72499f54" />
+    </api>
+    <api id="Properties.T:System.Web.ApplicationServices.SelectingProviderEventArgs">
+      <topicdata name="SelectingProviderEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Web.ApplicationServices.SelectingProviderEventArgs" />
+      <apidata name="SelectingProviderEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Web.ApplicationServices.SelectingProviderEventArgs.ProviderName" />
+        <element api="P:System.Web.ApplicationServices.SelectingProviderEventArgs.User" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.SelectingProviderEventArgs" />
+      </containers>
+      <file name="4978d8c3-5bf2-fd67-ffd8-833501e0a461" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.SelectingProviderEventArgs.ProviderName">
+      <topicdata group="api" />
+      <apidata name="ProviderName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ProviderName" />
+      <setter name="set_ProviderName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.SelectingProviderEventArgs" ref="true" />
+      </containers>
+      <file name="bc356256-b6c5-9172-8076-5456c3f453a9" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.SelectingProviderEventArgs.User">
+      <topicdata group="api" />
+      <apidata name="User" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_User" />
+      <returns>
+        <type api="T:System.Security.Principal.IPrincipal" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.SelectingProviderEventArgs" ref="true" />
+      </containers>
+      <file name="4d2c5a18-75ff-d0d2-5add-9587161417e7" />
+    </api>
+    <api id="T:System.Web.ApplicationServices.ValidatingPropertiesEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.ApplicationServices.ValidatingPropertiesEventArgs" />
+      <apidata name="ValidatingPropertiesEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+      </containers>
+      <file name="4e728379-08ff-079d-5e1b-645f13bfa74d" />
+    </api>
+    <api id="AllMembers.T:System.Web.ApplicationServices.ValidatingPropertiesEventArgs">
+      <topicdata name="ValidatingPropertiesEventArgs" group="list" subgroup="members" typeTopicId="T:System.Web.ApplicationServices.ValidatingPropertiesEventArgs" />
+      <apidata name="ValidatingPropertiesEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Web.ApplicationServices.ValidatingPropertiesEventArgs.FailedProperties" />
+        <element api="P:System.Web.ApplicationServices.ValidatingPropertiesEventArgs.Properties" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ValidatingPropertiesEventArgs" />
+      </containers>
+      <file name="3988c1e2-5e09-848b-64cb-aef886a4c921" />
+    </api>
+    <api id="Methods.T:System.Web.ApplicationServices.ValidatingPropertiesEventArgs">
+      <topicdata name="ValidatingPropertiesEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Web.ApplicationServices.ValidatingPropertiesEventArgs" />
+      <apidata name="ValidatingPropertiesEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ValidatingPropertiesEventArgs" />
+      </containers>
+      <file name="51e1c043-60f7-b527-3065-acb980954157" />
+    </api>
+    <api id="Properties.T:System.Web.ApplicationServices.ValidatingPropertiesEventArgs">
+      <topicdata name="ValidatingPropertiesEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Web.ApplicationServices.ValidatingPropertiesEventArgs" />
+      <apidata name="ValidatingPropertiesEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Web.ApplicationServices.ValidatingPropertiesEventArgs.FailedProperties" />
+        <element api="P:System.Web.ApplicationServices.ValidatingPropertiesEventArgs.Properties" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ValidatingPropertiesEventArgs" />
+      </containers>
+      <file name="f9605dea-6291-89a0-0714-364798ed1247" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.ValidatingPropertiesEventArgs.FailedProperties">
+      <topicdata group="api" />
+      <apidata name="FailedProperties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FailedProperties" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ValidatingPropertiesEventArgs" ref="true" />
+      </containers>
+      <file name="58fb42d0-4340-ce21-3ff6-0e07ed563c79" />
+    </api>
+    <api id="P:System.Web.ApplicationServices.ValidatingPropertiesEventArgs.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.ApplicationServices" />
+        <type api="T:System.Web.ApplicationServices.ValidatingPropertiesEventArgs" ref="true" />
+      </containers>
+      <file name="fd4ee6b6-c784-f038-63bd-17d12147edf0" />
+    </api>
+  </apis>
+</reflection>

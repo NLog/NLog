@@ -1,0 +1,2538 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Net.Primitives">
+      <assemblydata version="4.0.10.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Primitives</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Primitives</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Primitives</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.Net.Security">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Security</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Security</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Security</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Net.Security">
+      <topicdata group="api" />
+      <apidata name="System.Net.Security" group="namespace" />
+      <elements>
+        <element api="T:System.Net.Security.AuthenticationLevel" />
+        <element api="T:System.Net.Security.SslPolicyErrors" />
+        <element api="T:System.Net.Security.EncryptionPolicy" />
+        <element api="T:System.Net.Security.LocalCertificateSelectionCallback" />
+        <element api="T:System.Net.Security.RemoteCertificateValidationCallback" />
+        <element api="T:System.Net.Security.SslStream" />
+      </elements>
+      <file name="52d1ee66-c2d8-f579-38ef-abd762831053" />
+    </api>
+    <api id="T:System.Net.Security.AuthenticationLevel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Security.AuthenticationLevel" />
+      <apidata name="AuthenticationLevel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+      </containers>
+      <file name="1a48a615-31d5-1b0c-0995-02d62ab9ced7" />
+    </api>
+    <api id="AllMembers.T:System.Net.Security.AuthenticationLevel">
+      <topicdata name="AuthenticationLevel" group="list" subgroup="members" typeTopicId="T:System.Net.Security.AuthenticationLevel" />
+      <apidata name="AuthenticationLevel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Net.Security.AuthenticationLevel.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Net.Security.AuthenticationLevel.MutualAuthRequested" />
+        <element api="F:System.Net.Security.AuthenticationLevel.MutualAuthRequired" />
+        <element api="F:System.Net.Security.AuthenticationLevel.None" />
+        <element api="F:System.Net.Security.AuthenticationLevel.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.AuthenticationLevel" />
+      </containers>
+      <file name="5958147f-c937-a953-e01b-1154f3184a5b" />
+    </api>
+    <api id="Methods.T:System.Net.Security.AuthenticationLevel">
+      <topicdata name="AuthenticationLevel" group="list" subgroup="Methods" typeTopicId="T:System.Net.Security.AuthenticationLevel" />
+      <apidata name="AuthenticationLevel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Net.Security.AuthenticationLevel.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.AuthenticationLevel" />
+      </containers>
+      <file name="b6b609f0-3149-c350-9af8-afa04d9c9b65" />
+    </api>
+    <api id="Fields.T:System.Net.Security.AuthenticationLevel">
+      <topicdata name="AuthenticationLevel" group="list" subgroup="Fields" typeTopicId="T:System.Net.Security.AuthenticationLevel" />
+      <apidata name="AuthenticationLevel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Security.AuthenticationLevel.MutualAuthRequested" />
+        <element api="F:System.Net.Security.AuthenticationLevel.MutualAuthRequired" />
+        <element api="F:System.Net.Security.AuthenticationLevel.None" />
+        <element api="F:System.Net.Security.AuthenticationLevel.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.AuthenticationLevel" />
+      </containers>
+      <file name="2953e338-1615-a065-2542-ad8651ab54eb" />
+    </api>
+    <api id="F:System.Net.Security.AuthenticationLevel.MutualAuthRequested">
+      <topicdata group="api" />
+      <apidata name="MutualAuthRequested" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Security.AuthenticationLevel" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.AuthenticationLevel" ref="true" />
+      </containers>
+      <file name="2ef28826-861b-1de5-bfc8-a88753e3439a" />
+    </api>
+    <api id="F:System.Net.Security.AuthenticationLevel.MutualAuthRequired">
+      <topicdata group="api" />
+      <apidata name="MutualAuthRequired" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Security.AuthenticationLevel" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.AuthenticationLevel" ref="true" />
+      </containers>
+      <file name="46cac99f-c47f-33e4-cc5c-72e0bc1f2ce4" />
+    </api>
+    <api id="F:System.Net.Security.AuthenticationLevel.None">
+      <topicdata group="api" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Security.AuthenticationLevel" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.AuthenticationLevel" ref="true" />
+      </containers>
+      <file name="b125bf3d-073f-e326-e15a-50d4ba28ebfb" />
+    </api>
+    <api id="F:System.Net.Security.AuthenticationLevel.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.AuthenticationLevel" ref="true" />
+      </containers>
+      <file name="b1a0b7fb-c1fe-b7e2-cc56-d4853ee03855" />
+    </api>
+    <api id="T:System.Net.Security.EncryptionPolicy">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Security.EncryptionPolicy" />
+      <apidata name="EncryptionPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+      </containers>
+      <file name="fb235a0d-7b43-68ec-9bde-857bd74c8598" />
+    </api>
+    <api id="AllMembers.T:System.Net.Security.EncryptionPolicy">
+      <topicdata name="EncryptionPolicy" group="list" subgroup="members" typeTopicId="T:System.Net.Security.EncryptionPolicy" />
+      <apidata name="EncryptionPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Net.Security.EncryptionPolicy.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Net.Security.EncryptionPolicy.AllowNoEncryption" />
+        <element api="F:System.Net.Security.EncryptionPolicy.NoEncryption" />
+        <element api="F:System.Net.Security.EncryptionPolicy.RequireEncryption" />
+        <element api="F:System.Net.Security.EncryptionPolicy.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.EncryptionPolicy" />
+      </containers>
+      <file name="50e56850-cb56-94bf-f2d4-8cc5a6fae974" />
+    </api>
+    <api id="Methods.T:System.Net.Security.EncryptionPolicy">
+      <topicdata name="EncryptionPolicy" group="list" subgroup="Methods" typeTopicId="T:System.Net.Security.EncryptionPolicy" />
+      <apidata name="EncryptionPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Net.Security.EncryptionPolicy.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.EncryptionPolicy" />
+      </containers>
+      <file name="8e20a1db-ba05-bac1-d0d0-7edda67ca295" />
+    </api>
+    <api id="Fields.T:System.Net.Security.EncryptionPolicy">
+      <topicdata name="EncryptionPolicy" group="list" subgroup="Fields" typeTopicId="T:System.Net.Security.EncryptionPolicy" />
+      <apidata name="EncryptionPolicy" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Security.EncryptionPolicy.AllowNoEncryption" />
+        <element api="F:System.Net.Security.EncryptionPolicy.NoEncryption" />
+        <element api="F:System.Net.Security.EncryptionPolicy.RequireEncryption" />
+        <element api="F:System.Net.Security.EncryptionPolicy.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.EncryptionPolicy" />
+      </containers>
+      <file name="8f25ca14-106b-601b-76f3-f66ee73ea43b" />
+    </api>
+    <api id="F:System.Net.Security.EncryptionPolicy.AllowNoEncryption">
+      <topicdata group="api" />
+      <apidata name="AllowNoEncryption" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Security.EncryptionPolicy" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.EncryptionPolicy" ref="true" />
+      </containers>
+      <file name="fba2fb0f-6c3f-46c1-99ab-0d79201aa957" />
+    </api>
+    <api id="F:System.Net.Security.EncryptionPolicy.NoEncryption">
+      <topicdata group="api" />
+      <apidata name="NoEncryption" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Security.EncryptionPolicy" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.EncryptionPolicy" ref="true" />
+      </containers>
+      <file name="7fc1ac54-a90b-2e07-4046-09802e893b17" />
+    </api>
+    <api id="F:System.Net.Security.EncryptionPolicy.RequireEncryption">
+      <topicdata group="api" />
+      <apidata name="RequireEncryption" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Security.EncryptionPolicy" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.EncryptionPolicy" ref="true" />
+      </containers>
+      <file name="ae932759-1ddf-e386-07aa-48ec187a4b9c" />
+    </api>
+    <api id="F:System.Net.Security.EncryptionPolicy.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.EncryptionPolicy" ref="true" />
+      </containers>
+      <file name="9924fe9b-2e7e-fc6c-7567-e92964c52c8c" />
+    </api>
+    <api id="T:System.Net.Security.LocalCertificateSelectionCallback">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Security.LocalCertificateSelectionCallback" />
+      <apidata name="LocalCertificateSelectionCallback" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.MulticastDelegate" ref="true" />
+          <type api="T:System.Delegate" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+      </containers>
+      <file name="fb59c736-fcb4-5889-3123-dc447c555b3e" />
+    </api>
+    <api id="AllMembers.T:System.Net.Security.LocalCertificateSelectionCallback">
+      <topicdata name="LocalCertificateSelectionCallback" group="list" subgroup="members" typeTopicId="T:System.Net.Security.LocalCertificateSelectionCallback" />
+      <apidata name="LocalCertificateSelectionCallback" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Delegate.DynamicInvoke(System.Object[])" />
+        <element api="P:System.Delegate.Target" />
+        <element api="M:System.MulticastDelegate.Equals(System.Object)" />
+        <element api="M:System.MulticastDelegate.GetHashCode" />
+        <element api="M:System.MulticastDelegate.GetInvocationList" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Reflection.RuntimeReflectionExtensions.GetMethodInfo(System.Delegate)" source="extension">
+          <apidata name="GetMethodInfo" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Reflection.MethodInfo" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Reflection.Extensions" module="System.Reflection.Extensions" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Reflection" />
+            <type api="T:System.Reflection.RuntimeReflectionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Net.Security.LocalCertificateSelectionCallback.#ctor(System.Object,System.IntPtr)" />
+        <element api="M:System.Net.Security.LocalCertificateSelectionCallback.BeginInvoke(System.Object,System.String,System.Security.Cryptography.X509Certificates.X509CertificateCollection,System.Security.Cryptography.X509Certificates.X509Certificate,System.String[],System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Security.LocalCertificateSelectionCallback.EndInvoke(System.IAsyncResult)" />
+        <element api="M:System.Net.Security.LocalCertificateSelectionCallback.Invoke(System.Object,System.String,System.Security.Cryptography.X509Certificates.X509CertificateCollection,System.Security.Cryptography.X509Certificates.X509Certificate,System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.LocalCertificateSelectionCallback" />
+      </containers>
+      <file name="fcf84773-3658-e2d6-583e-fdc8b125981a" />
+    </api>
+    <api id="Methods.T:System.Net.Security.LocalCertificateSelectionCallback">
+      <topicdata name="LocalCertificateSelectionCallback" group="list" subgroup="Methods" typeTopicId="T:System.Net.Security.LocalCertificateSelectionCallback" />
+      <apidata name="LocalCertificateSelectionCallback" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Delegate.DynamicInvoke(System.Object[])" />
+        <element api="M:System.MulticastDelegate.Equals(System.Object)" />
+        <element api="M:System.MulticastDelegate.GetHashCode" />
+        <element api="M:System.MulticastDelegate.GetInvocationList" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Reflection.RuntimeReflectionExtensions.GetMethodInfo(System.Delegate)" source="extension">
+          <apidata name="GetMethodInfo" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Reflection.MethodInfo" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Reflection.Extensions" module="System.Reflection.Extensions" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Reflection" />
+            <type api="T:System.Reflection.RuntimeReflectionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Net.Security.LocalCertificateSelectionCallback.BeginInvoke(System.Object,System.String,System.Security.Cryptography.X509Certificates.X509CertificateCollection,System.Security.Cryptography.X509Certificates.X509Certificate,System.String[],System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Security.LocalCertificateSelectionCallback.EndInvoke(System.IAsyncResult)" />
+        <element api="M:System.Net.Security.LocalCertificateSelectionCallback.Invoke(System.Object,System.String,System.Security.Cryptography.X509Certificates.X509CertificateCollection,System.Security.Cryptography.X509Certificates.X509Certificate,System.String[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.LocalCertificateSelectionCallback" />
+      </containers>
+      <file name="9cc22c80-a7f3-4d1e-c6b1-cc6f294d41d1" />
+    </api>
+    <api id="Properties.T:System.Net.Security.LocalCertificateSelectionCallback">
+      <topicdata name="LocalCertificateSelectionCallback" group="list" subgroup="Properties" typeTopicId="T:System.Net.Security.LocalCertificateSelectionCallback" />
+      <apidata name="LocalCertificateSelectionCallback" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Delegate.Target" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.LocalCertificateSelectionCallback" />
+      </containers>
+      <file name="52f7fd42-5d0d-3675-6985-8cff6feca362" />
+    </api>
+    <api id="M:System.Net.Security.LocalCertificateSelectionCallback.#ctor(System.Object,System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="object">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="method">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.LocalCertificateSelectionCallback" ref="true" />
+      </containers>
+      <file name="c77127c1-ed66-7b8e-e599-7eac9e8655fd" />
+    </api>
+    <api id="M:System.Net.Security.LocalCertificateSelectionCallback.BeginInvoke(System.Object,System.String,System.Security.Cryptography.X509Certificates.X509CertificateCollection,System.Security.Cryptography.X509Certificates.X509Certificate,System.String[],System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginInvoke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetHost">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="localCertificates">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509CertificateCollection" ref="true" />
+        </parameter>
+        <parameter name="remoteCertificate">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+        </parameter>
+        <parameter name="acceptableIssuers">
+          <arrayOf rank="1">
+            <type api="T:System.String" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="object">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.LocalCertificateSelectionCallback" ref="true" />
+      </containers>
+      <file name="08bcf982-b363-f55f-37db-6d4772352938" />
+    </api>
+    <api id="M:System.Net.Security.LocalCertificateSelectionCallback.EndInvoke(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndInvoke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.LocalCertificateSelectionCallback" ref="true" />
+      </containers>
+      <file name="53ce0d69-9760-f7e9-fb74-6eb89d82b06a" />
+    </api>
+    <api id="M:System.Net.Security.LocalCertificateSelectionCallback.Invoke(System.Object,System.String,System.Security.Cryptography.X509Certificates.X509CertificateCollection,System.Security.Cryptography.X509Certificates.X509Certificate,System.String[])">
+      <topicdata group="api" />
+      <apidata name="Invoke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetHost">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="localCertificates">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509CertificateCollection" ref="true" />
+        </parameter>
+        <parameter name="remoteCertificate">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+        </parameter>
+        <parameter name="acceptableIssuers">
+          <arrayOf rank="1">
+            <type api="T:System.String" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.LocalCertificateSelectionCallback" ref="true" />
+      </containers>
+      <file name="7d7a5c4c-302d-7d33-50f6-91185a26e596" />
+    </api>
+    <api id="T:System.Net.Security.RemoteCertificateValidationCallback">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Security.RemoteCertificateValidationCallback" />
+      <apidata name="RemoteCertificateValidationCallback" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.MulticastDelegate" ref="true" />
+          <type api="T:System.Delegate" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+      </containers>
+      <file name="b3a0c706-1033-a543-01ca-23d09fcc121a" />
+    </api>
+    <api id="AllMembers.T:System.Net.Security.RemoteCertificateValidationCallback">
+      <topicdata name="RemoteCertificateValidationCallback" group="list" subgroup="members" typeTopicId="T:System.Net.Security.RemoteCertificateValidationCallback" />
+      <apidata name="RemoteCertificateValidationCallback" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Delegate.DynamicInvoke(System.Object[])" />
+        <element api="P:System.Delegate.Target" />
+        <element api="M:System.MulticastDelegate.Equals(System.Object)" />
+        <element api="M:System.MulticastDelegate.GetHashCode" />
+        <element api="M:System.MulticastDelegate.GetInvocationList" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Reflection.RuntimeReflectionExtensions.GetMethodInfo(System.Delegate)" source="extension">
+          <apidata name="GetMethodInfo" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Reflection.MethodInfo" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Reflection.Extensions" module="System.Reflection.Extensions" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Reflection" />
+            <type api="T:System.Reflection.RuntimeReflectionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Net.Security.RemoteCertificateValidationCallback.#ctor(System.Object,System.IntPtr)" />
+        <element api="M:System.Net.Security.RemoteCertificateValidationCallback.BeginInvoke(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Security.RemoteCertificateValidationCallback.EndInvoke(System.IAsyncResult)" />
+        <element api="M:System.Net.Security.RemoteCertificateValidationCallback.Invoke(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.RemoteCertificateValidationCallback" />
+      </containers>
+      <file name="97b3e026-338f-245e-f8f6-86b22d648535" />
+    </api>
+    <api id="Methods.T:System.Net.Security.RemoteCertificateValidationCallback">
+      <topicdata name="RemoteCertificateValidationCallback" group="list" subgroup="Methods" typeTopicId="T:System.Net.Security.RemoteCertificateValidationCallback" />
+      <apidata name="RemoteCertificateValidationCallback" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Delegate.DynamicInvoke(System.Object[])" />
+        <element api="M:System.MulticastDelegate.Equals(System.Object)" />
+        <element api="M:System.MulticastDelegate.GetHashCode" />
+        <element api="M:System.MulticastDelegate.GetInvocationList" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Reflection.RuntimeReflectionExtensions.GetMethodInfo(System.Delegate)" source="extension">
+          <apidata name="GetMethodInfo" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Reflection.MethodInfo" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Reflection.Extensions" module="System.Reflection.Extensions" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Reflection" />
+            <type api="T:System.Reflection.RuntimeReflectionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Net.Security.RemoteCertificateValidationCallback.BeginInvoke(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Security.RemoteCertificateValidationCallback.EndInvoke(System.IAsyncResult)" />
+        <element api="M:System.Net.Security.RemoteCertificateValidationCallback.Invoke(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.RemoteCertificateValidationCallback" />
+      </containers>
+      <file name="7abc894f-e6a8-1f48-b90f-d80d29b2907a" />
+    </api>
+    <api id="Properties.T:System.Net.Security.RemoteCertificateValidationCallback">
+      <topicdata name="RemoteCertificateValidationCallback" group="list" subgroup="Properties" typeTopicId="T:System.Net.Security.RemoteCertificateValidationCallback" />
+      <apidata name="RemoteCertificateValidationCallback" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Delegate.Target" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.RemoteCertificateValidationCallback" />
+      </containers>
+      <file name="2f4cd39e-7b20-9f4c-d1bd-9c2cdf92a2ff" />
+    </api>
+    <api id="M:System.Net.Security.RemoteCertificateValidationCallback.#ctor(System.Object,System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="object">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="method">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.RemoteCertificateValidationCallback" ref="true" />
+      </containers>
+      <file name="1a626203-cc87-20e2-0082-bb0af1ffbeca" />
+    </api>
+    <api id="M:System.Net.Security.RemoteCertificateValidationCallback.BeginInvoke(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors,System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginInvoke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="certificate">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+        </parameter>
+        <parameter name="chain">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Chain" ref="true" />
+        </parameter>
+        <parameter name="sslPolicyErrors">
+          <type api="T:System.Net.Security.SslPolicyErrors" ref="true" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="object">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.RemoteCertificateValidationCallback" ref="true" />
+      </containers>
+      <file name="c705f44e-af5b-dfae-43eb-5df5ee587476" />
+    </api>
+    <api id="M:System.Net.Security.RemoteCertificateValidationCallback.EndInvoke(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndInvoke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.RemoteCertificateValidationCallback" ref="true" />
+      </containers>
+      <file name="8f77bce5-7787-b81d-6e8b-4d5aec0bfab5" />
+    </api>
+    <api id="M:System.Net.Security.RemoteCertificateValidationCallback.Invoke(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+      <topicdata group="api" />
+      <apidata name="Invoke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="certificate">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+        </parameter>
+        <parameter name="chain">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Chain" ref="true" />
+        </parameter>
+        <parameter name="sslPolicyErrors">
+          <type api="T:System.Net.Security.SslPolicyErrors" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.RemoteCertificateValidationCallback" ref="true" />
+      </containers>
+      <file name="5f83116e-ca2d-24f6-ca1d-44188d0fb1ab" />
+    </api>
+    <api id="T:System.Net.Security.SslPolicyErrors">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Security.SslPolicyErrors" />
+      <apidata name="SslPolicyErrors" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="0616abdc-aa8c-834a-b3d7-8538c540f624" />
+    </api>
+    <api id="AllMembers.T:System.Net.Security.SslPolicyErrors">
+      <topicdata name="SslPolicyErrors" group="list" subgroup="members" typeTopicId="T:System.Net.Security.SslPolicyErrors" />
+      <apidata name="SslPolicyErrors" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Net.Security.SslPolicyErrors.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Net.Security.SslPolicyErrors.None" />
+        <element api="F:System.Net.Security.SslPolicyErrors.RemoteCertificateChainErrors" />
+        <element api="F:System.Net.Security.SslPolicyErrors.RemoteCertificateNameMismatch" />
+        <element api="F:System.Net.Security.SslPolicyErrors.RemoteCertificateNotAvailable" />
+        <element api="F:System.Net.Security.SslPolicyErrors.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslPolicyErrors" />
+      </containers>
+      <file name="58ae4581-64ec-3901-09af-156e06e275fb" />
+    </api>
+    <api id="Methods.T:System.Net.Security.SslPolicyErrors">
+      <topicdata name="SslPolicyErrors" group="list" subgroup="Methods" typeTopicId="T:System.Net.Security.SslPolicyErrors" />
+      <apidata name="SslPolicyErrors" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Net.Security.SslPolicyErrors.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslPolicyErrors" />
+      </containers>
+      <file name="ffd19505-9188-30e0-3a1a-100aea6f9151" />
+    </api>
+    <api id="Fields.T:System.Net.Security.SslPolicyErrors">
+      <topicdata name="SslPolicyErrors" group="list" subgroup="Fields" typeTopicId="T:System.Net.Security.SslPolicyErrors" />
+      <apidata name="SslPolicyErrors" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Security.SslPolicyErrors.None" />
+        <element api="F:System.Net.Security.SslPolicyErrors.RemoteCertificateChainErrors" />
+        <element api="F:System.Net.Security.SslPolicyErrors.RemoteCertificateNameMismatch" />
+        <element api="F:System.Net.Security.SslPolicyErrors.RemoteCertificateNotAvailable" />
+        <element api="F:System.Net.Security.SslPolicyErrors.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslPolicyErrors" />
+      </containers>
+      <file name="b3fbf9d9-9719-7002-0616-62381d13519f" />
+    </api>
+    <api id="F:System.Net.Security.SslPolicyErrors.None">
+      <topicdata group="api" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Security.SslPolicyErrors" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslPolicyErrors" ref="true" />
+      </containers>
+      <file name="2073fdd8-41a6-fcbe-a555-fac818493839" />
+    </api>
+    <api id="F:System.Net.Security.SslPolicyErrors.RemoteCertificateChainErrors">
+      <topicdata group="api" />
+      <apidata name="RemoteCertificateChainErrors" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Security.SslPolicyErrors" ref="true" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslPolicyErrors" ref="true" />
+      </containers>
+      <file name="29dabc92-eaf8-60ed-b2e6-5d14b4e97fca" />
+    </api>
+    <api id="F:System.Net.Security.SslPolicyErrors.RemoteCertificateNameMismatch">
+      <topicdata group="api" />
+      <apidata name="RemoteCertificateNameMismatch" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Security.SslPolicyErrors" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslPolicyErrors" ref="true" />
+      </containers>
+      <file name="3bc0c901-0a4f-5e7c-f77f-28623da8670e" />
+    </api>
+    <api id="F:System.Net.Security.SslPolicyErrors.RemoteCertificateNotAvailable">
+      <topicdata group="api" />
+      <apidata name="RemoteCertificateNotAvailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Security.SslPolicyErrors" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslPolicyErrors" ref="true" />
+      </containers>
+      <file name="698bda5c-3d7b-9880-db63-bdbc9b7eee2d" />
+    </api>
+    <api id="F:System.Net.Security.SslPolicyErrors.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslPolicyErrors" ref="true" />
+      </containers>
+      <file name="db823e60-7a29-c512-6e05-286236c8d9d0" />
+    </api>
+    <api id="T:System.Net.Security.SslStream">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Security.SslStream" />
+      <apidata name="SslStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.IO.Stream" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+      </containers>
+      <file name="4e259fec-aa5c-3d0d-3904-73144b06e248" />
+    </api>
+    <api id="AllMembers.T:System.Net.Security.SslStream">
+      <topicdata name="SslStream" group="list" subgroup="members" typeTopicId="T:System.Net.Security.SslStream" />
+      <apidata name="SslStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Net.Security.SslStream.CopyTo">
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream,System.Int32)" />
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.CopyToAsync">
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.Dispose">
+          <element api="M:System.IO.Stream.Dispose" />
+          <element api="M:System.IO.Stream.Dispose(System.Boolean)" />
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.FlushAsync">
+          <element api="M:System.IO.Stream.FlushAsync" />
+          <element api="M:System.IO.Stream.FlushAsync(System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.ReadAsync">
+          <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="M:System.IO.Stream.ReadByte" />
+        <element api="Overload:System.Net.Security.SslStream.WriteAsync">
+          <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="M:System.IO.Stream.WriteByte(System.Byte)" />
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsInputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsInputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsOutputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsOutputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsRandomAccessStream(System.IO.Stream)" source="extension">
+          <apidata name="AsRandomAccessStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.#ctor">
+          <element api="M:System.Net.Security.SslStream.#ctor(System.IO.Stream)" />
+          <element api="M:System.Net.Security.SslStream.#ctor(System.IO.Stream,System.Boolean)" />
+          <element api="M:System.Net.Security.SslStream.#ctor(System.IO.Stream,System.Boolean,System.Net.Security.RemoteCertificateValidationCallback)" />
+          <element api="M:System.Net.Security.SslStream.#ctor(System.IO.Stream,System.Boolean,System.Net.Security.RemoteCertificateValidationCallback,System.Net.Security.LocalCertificateSelectionCallback)" />
+          <element api="M:System.Net.Security.SslStream.#ctor(System.IO.Stream,System.Boolean,System.Net.Security.RemoteCertificateValidationCallback,System.Net.Security.LocalCertificateSelectionCallback,System.Net.Security.EncryptionPolicy)" />
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.AuthenticateAsClient">
+          <element api="M:System.Net.Security.SslStream.AuthenticateAsClient(System.String)" />
+          <element api="M:System.Net.Security.SslStream.AuthenticateAsClient(System.String,System.Security.Cryptography.X509Certificates.X509CertificateCollection,System.Security.Authentication.SslProtocols,System.Boolean)" />
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.AuthenticateAsClientAsync">
+          <element api="M:System.Net.Security.SslStream.AuthenticateAsClientAsync(System.String)" />
+          <element api="M:System.Net.Security.SslStream.AuthenticateAsClientAsync(System.String,System.Security.Cryptography.X509Certificates.X509CertificateCollection,System.Security.Authentication.SslProtocols,System.Boolean)" />
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.AuthenticateAsServer">
+          <element api="M:System.Net.Security.SslStream.AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate)" />
+          <element api="M:System.Net.Security.SslStream.AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate,System.Boolean,System.Security.Authentication.SslProtocols,System.Boolean)" />
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.AuthenticateAsServerAsync">
+          <element api="M:System.Net.Security.SslStream.AuthenticateAsServerAsync(System.Security.Cryptography.X509Certificates.X509Certificate)" />
+          <element api="M:System.Net.Security.SslStream.AuthenticateAsServerAsync(System.Security.Cryptography.X509Certificates.X509Certificate,System.Boolean,System.Security.Authentication.SslProtocols,System.Boolean)" />
+        </element>
+        <element api="P:System.Net.Security.SslStream.CanRead" />
+        <element api="P:System.Net.Security.SslStream.CanSeek" />
+        <element api="P:System.Net.Security.SslStream.CanTimeout" />
+        <element api="P:System.Net.Security.SslStream.CanWrite" />
+        <element api="P:System.Net.Security.SslStream.CheckCertRevocationStatus" />
+        <element api="P:System.Net.Security.SslStream.CipherAlgorithm" />
+        <element api="P:System.Net.Security.SslStream.CipherStrength" />
+        <element api="M:System.Net.Security.SslStream.Flush" />
+        <element api="P:System.Net.Security.SslStream.HashAlgorithm" />
+        <element api="P:System.Net.Security.SslStream.HashStrength" />
+        <element api="P:System.Net.Security.SslStream.KeyExchangeAlgorithm" />
+        <element api="P:System.Net.Security.SslStream.KeyExchangeStrength" />
+        <element api="P:System.Net.Security.SslStream.Length" />
+        <element api="P:System.Net.Security.SslStream.LocalCertificate" />
+        <element api="P:System.Net.Security.SslStream.Position" />
+        <element api="M:System.Net.Security.SslStream.Read(System.Byte[],System.Int32,System.Int32)" />
+        <element api="P:System.Net.Security.SslStream.ReadTimeout" />
+        <element api="P:System.Net.Security.SslStream.RemoteCertificate" />
+        <element api="M:System.Net.Security.SslStream.Seek(System.Int64,System.IO.SeekOrigin)" />
+        <element api="M:System.Net.Security.SslStream.SetLength(System.Int64)" />
+        <element api="P:System.Net.Security.SslStream.SslProtocol" />
+        <element api="P:System.Net.Security.SslStream.TransportContext" />
+        <element api="Overload:System.Net.Security.SslStream.Write">
+          <element api="M:System.Net.Security.SslStream.Write(System.Byte[])" />
+          <element api="M:System.Net.Security.SslStream.Write(System.Byte[],System.Int32,System.Int32)" />
+        </element>
+        <element api="P:System.Net.Security.SslStream.WriteTimeout" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" />
+      </containers>
+      <file name="90e06e97-eda0-5c07-b5b0-41b5e0d169cb" />
+    </api>
+    <api id="Methods.T:System.Net.Security.SslStream">
+      <topicdata name="SslStream" group="list" subgroup="Methods" typeTopicId="T:System.Net.Security.SslStream" />
+      <apidata name="SslStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Net.Security.SslStream.CopyTo">
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream,System.Int32)" />
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.CopyToAsync">
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.Dispose">
+          <element api="M:System.IO.Stream.Dispose" />
+          <element api="M:System.IO.Stream.Dispose(System.Boolean)" />
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.FlushAsync">
+          <element api="M:System.IO.Stream.FlushAsync" />
+          <element api="M:System.IO.Stream.FlushAsync(System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.ReadAsync">
+          <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="M:System.IO.Stream.ReadByte" />
+        <element api="Overload:System.Net.Security.SslStream.WriteAsync">
+          <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="M:System.IO.Stream.WriteByte(System.Byte)" />
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsInputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsInputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsOutputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsOutputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsRandomAccessStream(System.IO.Stream)" source="extension">
+          <apidata name="AsRandomAccessStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.AuthenticateAsClient">
+          <element api="M:System.Net.Security.SslStream.AuthenticateAsClient(System.String)" />
+          <element api="M:System.Net.Security.SslStream.AuthenticateAsClient(System.String,System.Security.Cryptography.X509Certificates.X509CertificateCollection,System.Security.Authentication.SslProtocols,System.Boolean)" />
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.AuthenticateAsClientAsync">
+          <element api="M:System.Net.Security.SslStream.AuthenticateAsClientAsync(System.String)" />
+          <element api="M:System.Net.Security.SslStream.AuthenticateAsClientAsync(System.String,System.Security.Cryptography.X509Certificates.X509CertificateCollection,System.Security.Authentication.SslProtocols,System.Boolean)" />
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.AuthenticateAsServer">
+          <element api="M:System.Net.Security.SslStream.AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate)" />
+          <element api="M:System.Net.Security.SslStream.AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate,System.Boolean,System.Security.Authentication.SslProtocols,System.Boolean)" />
+        </element>
+        <element api="Overload:System.Net.Security.SslStream.AuthenticateAsServerAsync">
+          <element api="M:System.Net.Security.SslStream.AuthenticateAsServerAsync(System.Security.Cryptography.X509Certificates.X509Certificate)" />
+          <element api="M:System.Net.Security.SslStream.AuthenticateAsServerAsync(System.Security.Cryptography.X509Certificates.X509Certificate,System.Boolean,System.Security.Authentication.SslProtocols,System.Boolean)" />
+        </element>
+        <element api="M:System.Net.Security.SslStream.Flush" />
+        <element api="M:System.Net.Security.SslStream.Read(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.Net.Security.SslStream.Seek(System.Int64,System.IO.SeekOrigin)" />
+        <element api="M:System.Net.Security.SslStream.SetLength(System.Int64)" />
+        <element api="Overload:System.Net.Security.SslStream.Write">
+          <element api="M:System.Net.Security.SslStream.Write(System.Byte[])" />
+          <element api="M:System.Net.Security.SslStream.Write(System.Byte[],System.Int32,System.Int32)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" />
+      </containers>
+      <file name="8331dc28-e3ce-2ecd-904e-f45c2c2a0ee3" />
+    </api>
+    <api id="Properties.T:System.Net.Security.SslStream">
+      <topicdata name="SslStream" group="list" subgroup="Properties" typeTopicId="T:System.Net.Security.SslStream" />
+      <apidata name="SslStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Net.Security.SslStream.CanRead" />
+        <element api="P:System.Net.Security.SslStream.CanSeek" />
+        <element api="P:System.Net.Security.SslStream.CanTimeout" />
+        <element api="P:System.Net.Security.SslStream.CanWrite" />
+        <element api="P:System.Net.Security.SslStream.CheckCertRevocationStatus" />
+        <element api="P:System.Net.Security.SslStream.CipherAlgorithm" />
+        <element api="P:System.Net.Security.SslStream.CipherStrength" />
+        <element api="P:System.Net.Security.SslStream.HashAlgorithm" />
+        <element api="P:System.Net.Security.SslStream.HashStrength" />
+        <element api="P:System.Net.Security.SslStream.KeyExchangeAlgorithm" />
+        <element api="P:System.Net.Security.SslStream.KeyExchangeStrength" />
+        <element api="P:System.Net.Security.SslStream.Length" />
+        <element api="P:System.Net.Security.SslStream.LocalCertificate" />
+        <element api="P:System.Net.Security.SslStream.Position" />
+        <element api="P:System.Net.Security.SslStream.ReadTimeout" />
+        <element api="P:System.Net.Security.SslStream.RemoteCertificate" />
+        <element api="P:System.Net.Security.SslStream.SslProtocol" />
+        <element api="P:System.Net.Security.SslStream.TransportContext" />
+        <element api="P:System.Net.Security.SslStream.WriteTimeout" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" />
+      </containers>
+      <file name="90ad982c-d77d-7f6c-dff9-6044de5a08f6" />
+    </api>
+    <api id="Overload:System.Net.Security.SslStream.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.Security.SslStream" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Net.Security.SslStream.#ctor(System.IO.Stream)" />
+        <element api="M:System.Net.Security.SslStream.#ctor(System.IO.Stream,System.Boolean)" />
+        <element api="M:System.Net.Security.SslStream.#ctor(System.IO.Stream,System.Boolean,System.Net.Security.RemoteCertificateValidationCallback)" />
+        <element api="M:System.Net.Security.SslStream.#ctor(System.IO.Stream,System.Boolean,System.Net.Security.RemoteCertificateValidationCallback,System.Net.Security.LocalCertificateSelectionCallback)" />
+        <element api="M:System.Net.Security.SslStream.#ctor(System.IO.Stream,System.Boolean,System.Net.Security.RemoteCertificateValidationCallback,System.Net.Security.LocalCertificateSelectionCallback,System.Net.Security.EncryptionPolicy)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="3ebaeb06-c55a-0a69-4c7e-6bea447c238a" />
+    </api>
+    <api id="Overload:System.Net.Security.SslStream.AuthenticateAsClient">
+      <topicdata name="AuthenticateAsClient" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.Security.SslStream" />
+      <apidata name="AuthenticateAsClient" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Net.Security.SslStream.AuthenticateAsClient(System.String)" />
+        <element api="M:System.Net.Security.SslStream.AuthenticateAsClient(System.String,System.Security.Cryptography.X509Certificates.X509CertificateCollection,System.Security.Authentication.SslProtocols,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="bdc2f0ac-7f81-cc44-76a1-4ac8d7616886" />
+    </api>
+    <api id="Overload:System.Net.Security.SslStream.AuthenticateAsClientAsync">
+      <topicdata name="AuthenticateAsClientAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.Security.SslStream" />
+      <apidata name="AuthenticateAsClientAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Net.Security.SslStream.AuthenticateAsClientAsync(System.String)" />
+        <element api="M:System.Net.Security.SslStream.AuthenticateAsClientAsync(System.String,System.Security.Cryptography.X509Certificates.X509CertificateCollection,System.Security.Authentication.SslProtocols,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="089a8a87-2c1c-74d1-c0f3-c92f21af3819" />
+    </api>
+    <api id="Overload:System.Net.Security.SslStream.AuthenticateAsServer">
+      <topicdata name="AuthenticateAsServer" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.Security.SslStream" />
+      <apidata name="AuthenticateAsServer" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Net.Security.SslStream.AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate)" />
+        <element api="M:System.Net.Security.SslStream.AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate,System.Boolean,System.Security.Authentication.SslProtocols,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="39c3b559-0982-481e-e233-3b1d49221a35" />
+    </api>
+    <api id="Overload:System.Net.Security.SslStream.AuthenticateAsServerAsync">
+      <topicdata name="AuthenticateAsServerAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.Security.SslStream" />
+      <apidata name="AuthenticateAsServerAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Net.Security.SslStream.AuthenticateAsServerAsync(System.Security.Cryptography.X509Certificates.X509Certificate)" />
+        <element api="M:System.Net.Security.SslStream.AuthenticateAsServerAsync(System.Security.Cryptography.X509Certificates.X509Certificate,System.Boolean,System.Security.Authentication.SslProtocols,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="fa92ba9a-48b3-604a-6cd7-7b4c3b4ab545" />
+    </api>
+    <api id="Overload:System.Net.Security.SslStream.Write">
+      <topicdata name="Write" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.Security.SslStream" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Net.Security.SslStream.Write(System.Byte[])" />
+        <element api="M:System.Net.Security.SslStream.Write(System.Byte[],System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="eaf81398-ac91-43aa-78be-1e179e8415bb" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.#ctor(System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Security.SslStream.#ctor" />
+      <parameters>
+        <parameter name="innerStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="5b4a3fe1-5ff5-8950-6c4b-f4c1d30ffe92" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.#ctor(System.IO.Stream,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Security.SslStream.#ctor" />
+      <parameters>
+        <parameter name="innerStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="leaveInnerStreamOpen">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="43ea7d4f-83ac-28b1-ad37-669ecc395b4d" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.#ctor(System.IO.Stream,System.Boolean,System.Net.Security.RemoteCertificateValidationCallback)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Security.SslStream.#ctor" />
+      <parameters>
+        <parameter name="innerStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="leaveInnerStreamOpen">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="userCertificateValidationCallback">
+          <type api="T:System.Net.Security.RemoteCertificateValidationCallback" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="8e887dd4-cc08-32e2-72d7-8c1b3c12b7cf" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.#ctor(System.IO.Stream,System.Boolean,System.Net.Security.RemoteCertificateValidationCallback,System.Net.Security.LocalCertificateSelectionCallback)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Security.SslStream.#ctor" />
+      <parameters>
+        <parameter name="innerStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="leaveInnerStreamOpen">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="userCertificateValidationCallback">
+          <type api="T:System.Net.Security.RemoteCertificateValidationCallback" ref="true" />
+        </parameter>
+        <parameter name="userCertificateSelectionCallback">
+          <type api="T:System.Net.Security.LocalCertificateSelectionCallback" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="41bb431d-ac05-18fa-8dd2-c815bf03854f" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.#ctor(System.IO.Stream,System.Boolean,System.Net.Security.RemoteCertificateValidationCallback,System.Net.Security.LocalCertificateSelectionCallback,System.Net.Security.EncryptionPolicy)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Security.SslStream.#ctor" />
+      <parameters>
+        <parameter name="innerStream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="leaveInnerStreamOpen">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="userCertificateValidationCallback">
+          <type api="T:System.Net.Security.RemoteCertificateValidationCallback" ref="true" />
+        </parameter>
+        <parameter name="userCertificateSelectionCallback">
+          <type api="T:System.Net.Security.LocalCertificateSelectionCallback" ref="true" />
+        </parameter>
+        <parameter name="encryptionPolicy">
+          <type api="T:System.Net.Security.EncryptionPolicy" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="31117a6a-7158-9065-8e3f-b6c3081aad32" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.AuthenticateAsClient(System.String)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAsClient" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.Security.SslStream.AuthenticateAsClient" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="targetHost">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="4b433b8e-9656-e540-4fb2-8bba73ede10f" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.AuthenticateAsClient(System.String,System.Security.Cryptography.X509Certificates.X509CertificateCollection,System.Security.Authentication.SslProtocols,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAsClient" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.Security.SslStream.AuthenticateAsClient" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="targetHost">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="clientCertificates">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509CertificateCollection" ref="true" />
+        </parameter>
+        <parameter name="enabledSslProtocols">
+          <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+        </parameter>
+        <parameter name="checkCertificateRevocation">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="ada37c64-c730-6a8b-73aa-6d0b8c097d6e" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.AuthenticateAsClientAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAsClientAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.Security.SslStream.AuthenticateAsClientAsync" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="targetHost">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Threading.Tasks.Task" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="7a3cf8ca-c82b-1ac3-b691-175a21cc880a" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.AuthenticateAsClientAsync(System.String,System.Security.Cryptography.X509Certificates.X509CertificateCollection,System.Security.Authentication.SslProtocols,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAsClientAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.Security.SslStream.AuthenticateAsClientAsync" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="targetHost">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="clientCertificates">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509CertificateCollection" ref="true" />
+        </parameter>
+        <parameter name="enabledSslProtocols">
+          <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+        </parameter>
+        <parameter name="checkCertificateRevocation">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Threading.Tasks.Task" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="b929e919-14cc-1df4-dec1-b77f6b4ee789" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAsServer" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.Security.SslStream.AuthenticateAsServer" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="serverCertificate">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="fd55ade7-b992-af53-3597-a3b91cf21183" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate,System.Boolean,System.Security.Authentication.SslProtocols,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAsServer" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.Security.SslStream.AuthenticateAsServer" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="serverCertificate">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+        </parameter>
+        <parameter name="clientCertificateRequired">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="enabledSslProtocols">
+          <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+        </parameter>
+        <parameter name="checkCertificateRevocation">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="2ceef9ac-167a-b5e9-047f-7841f9474d9d" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.AuthenticateAsServerAsync(System.Security.Cryptography.X509Certificates.X509Certificate)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAsServerAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.Security.SslStream.AuthenticateAsServerAsync" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="serverCertificate">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Threading.Tasks.Task" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="4253e69e-2002-454f-af40-69fec3441d51" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.AuthenticateAsServerAsync(System.Security.Cryptography.X509Certificates.X509Certificate,System.Boolean,System.Security.Authentication.SslProtocols,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAsServerAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.Security.SslStream.AuthenticateAsServerAsync" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="serverCertificate">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+        </parameter>
+        <parameter name="clientCertificateRequired">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="enabledSslProtocols">
+          <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+        </parameter>
+        <parameter name="checkCertificateRevocation">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Threading.Tasks.Task" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="bae3f363-8c2b-3384-6452-45e038395f64" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.CanRead">
+      <topicdata group="api" />
+      <apidata name="CanRead" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanRead">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanRead" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="d33f1094-4cc7-8388-60ef-eb8d406e2e7e" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.CanSeek">
+      <topicdata group="api" />
+      <apidata name="CanSeek" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanSeek">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanSeek" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="c1e5aa47-1ccc-d621-df4c-018ea5c9aa90" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.CanTimeout">
+      <topicdata group="api" />
+      <apidata name="CanTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanTimeout">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanTimeout" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="f337aeb4-7614-80b5-4b56-ff3d1b188120" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.CanWrite">
+      <topicdata group="api" />
+      <apidata name="CanWrite" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.CanWrite">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanWrite" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="1dc87e92-0d7a-6e00-194f-31c18214f1de" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.CheckCertRevocationStatus">
+      <topicdata group="api" />
+      <apidata name="CheckCertRevocationStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CheckCertRevocationStatus" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="efbafa65-2b71-1528-b89d-e6970023a1a6" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.CipherAlgorithm">
+      <topicdata group="api" />
+      <apidata name="CipherAlgorithm" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CipherAlgorithm" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="72ab487d-a365-1af4-8f63-f5870e30e1cb" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.CipherStrength">
+      <topicdata group="api" />
+      <apidata name="CipherStrength" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CipherStrength" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="95cc2121-12a8-6c4a-ab49-6eff2842edf7" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.Flush">
+      <topicdata group="api" />
+      <apidata name="Flush" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Flush">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="5c6fb07f-6e3b-9035-be42-7548c30ae1fa" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.HashAlgorithm">
+      <topicdata group="api" />
+      <apidata name="HashAlgorithm" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_HashAlgorithm" />
+      <returns>
+        <type api="T:System.Security.Authentication.HashAlgorithmType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="9d6801ff-2c4c-221e-1363-417b5db4decd" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.HashStrength">
+      <topicdata group="api" />
+      <apidata name="HashStrength" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_HashStrength" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="d9a982b0-d695-487a-9e38-ccd76002c88a" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.KeyExchangeAlgorithm">
+      <topicdata group="api" />
+      <apidata name="KeyExchangeAlgorithm" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_KeyExchangeAlgorithm" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="b3504cd0-e416-ba99-c223-90aff0691599" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.KeyExchangeStrength">
+      <topicdata group="api" />
+      <apidata name="KeyExchangeStrength" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_KeyExchangeStrength" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="7bd543ec-5c14-aa22-deb4-86eda6fd0fab" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.Length">
+      <topicdata group="api" />
+      <apidata name="Length" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.Length">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Length" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="a9628067-91b1-f740-dec3-83210622c6ef" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.LocalCertificate">
+      <topicdata group="api" />
+      <apidata name="LocalCertificate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_LocalCertificate" />
+      <returns>
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="f7578695-d308-5c1e-c69e-b6d9720e0d1a" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.Position">
+      <topicdata group="api" />
+      <apidata name="Position" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.Position">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_Position" />
+      <setter name="set_Position" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="78be3ef0-088b-f186-98ca-d910a9ce3ecf" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.Read(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Read(System.Byte[],System.Int32,System.Int32)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="edd7b6b4-31d1-b407-3c37-dfdcbece1068" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.ReadTimeout">
+      <topicdata group="api" />
+      <apidata name="ReadTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.ReadTimeout">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_ReadTimeout" />
+      <setter name="set_ReadTimeout" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="74ec88bb-9b62-59d3-200d-bcd724a34461" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.RemoteCertificate">
+      <topicdata group="api" />
+      <apidata name="RemoteCertificate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_RemoteCertificate" />
+      <returns>
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="fdfe8766-0c88-ffec-1c30-0298dff7ee33" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.Seek(System.Int64,System.IO.SeekOrigin)">
+      <topicdata group="api" />
+      <apidata name="Seek" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Seek(System.Int64,System.IO.SeekOrigin)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="offset">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="origin">
+          <type api="T:System.IO.SeekOrigin" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="0c3249cf-7587-758f-946d-79cc82b83fb7" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.SetLength(System.Int64)">
+      <topicdata group="api" />
+      <apidata name="SetLength" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.SetLength(System.Int64)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="913c3868-ba90-d32d-5bc7-8241cb04df3d" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.SslProtocol">
+      <topicdata group="api" />
+      <apidata name="SslProtocol" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_SslProtocol" />
+      <returns>
+        <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="0f5c6fbc-2e5b-35ec-a219-c86db79e3e5b" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.TransportContext">
+      <topicdata group="api" />
+      <apidata name="TransportContext" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TransportContext" />
+      <returns>
+        <type api="T:System.Net.TransportContext" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="a54f763a-d167-964e-ac30-fc8bddb85705" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.Write(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.Security.SslStream.Write" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="7171bb5a-ec6b-2147-e6b0-c53a46b02ba4" />
+    </api>
+    <api id="M:System.Net.Security.SslStream.Write(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.Security.SslStream.Write" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Write(System.Byte[],System.Int32,System.Int32)">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="e1616bf5-3aa2-ec4d-bd44-f9bc5ba4f94f" />
+    </api>
+    <api id="P:System.Net.Security.SslStream.WriteTimeout">
+      <topicdata group="api" />
+      <apidata name="WriteTimeout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IO.Stream.WriteTimeout">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_WriteTimeout" />
+      <setter name="set_WriteTimeout" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Net.Security" />
+        <type api="T:System.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="057538d3-9ddd-5ef9-a2a3-8844208c614a" />
+    </api>
+  </apis>
+</reflection>

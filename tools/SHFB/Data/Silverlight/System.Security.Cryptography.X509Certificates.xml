@@ -1,0 +1,1107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\silverlightplatformpublickey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Security.Cryptography.X509Certificates">
+      <topicdata group="api" />
+      <apidata name="System.Security.Cryptography.X509Certificates" group="namespace" />
+      <elements>
+        <element api="T:System.Security.Cryptography.X509Certificates.X509ContentType" />
+        <element api="T:System.Security.Cryptography.X509Certificates.X509KeyStorageFlags" />
+        <element api="T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      </elements>
+      <file name="7bc5c9dc-5b3c-1369-6ee7-483d10813eea" />
+    </api>
+    <api id="T:System.Security.Cryptography.X509Certificates.X509Certificate">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      <apidata name="X509Certificate" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b421ce25-abff-ff69-c03e-34ebe388bf01" />
+    </api>
+    <api id="AllMembers.T:System.Security.Cryptography.X509Certificates.X509Certificate">
+      <topicdata name="X509Certificate" group="list" subgroup="members" typeTopicId="T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      <apidata name="X509Certificate" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor">
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Byte[])" />
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate)" />
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Byte[],System.String)" />
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Byte[],System.String,System.Security.Cryptography.X509Certificates.X509KeyStorageFlags)" />
+        </element>
+        <element api="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.Equals">
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Equals(System.Object)" />
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Equals(System.Security.Cryptography.X509Certificates.X509Certificate)" />
+        </element>
+        <element api="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.Export">
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Export(System.Security.Cryptography.X509Certificates.X509ContentType)" />
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Export(System.Security.Cryptography.X509Certificates.X509ContentType,System.String)" />
+        </element>
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetCertHash" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetCertHashString" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetEffectiveDateString" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetExpirationDateString" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetFormat" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetHashCode" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetKeyAlgorithm" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetKeyAlgorithmParameters" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetKeyAlgorithmParametersString" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetPublicKey" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetPublicKeyString" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetRawCertData" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetRawCertDataString" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetSerialNumber" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetSerialNumberString" />
+        <element api="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.Import">
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Import(System.Byte[])" />
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Import(System.Byte[],System.String,System.Security.Cryptography.X509Certificates.X509KeyStorageFlags)" />
+        </element>
+        <element api="P:System.Security.Cryptography.X509Certificates.X509Certificate.Issuer" />
+        <element api="P:System.Security.Cryptography.X509Certificates.X509Certificate.Subject" />
+        <element api="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.ToString">
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.ToString" />
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.ToString(System.Boolean)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      </containers>
+      <file name="2dec120f-304c-7b6e-e1b4-5d5d3a8b7f01" />
+    </api>
+    <api id="Methods.T:System.Security.Cryptography.X509Certificates.X509Certificate">
+      <topicdata name="X509Certificate" group="list" subgroup="Methods" typeTopicId="T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      <apidata name="X509Certificate" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.Equals">
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Equals(System.Object)" />
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Equals(System.Security.Cryptography.X509Certificates.X509Certificate)" />
+        </element>
+        <element api="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.Export">
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Export(System.Security.Cryptography.X509Certificates.X509ContentType)" />
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Export(System.Security.Cryptography.X509Certificates.X509ContentType,System.String)" />
+        </element>
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetCertHash" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetCertHashString" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetEffectiveDateString" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetExpirationDateString" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetFormat" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetHashCode" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetKeyAlgorithm" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetKeyAlgorithmParameters" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetKeyAlgorithmParametersString" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetPublicKey" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetPublicKeyString" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetRawCertData" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetRawCertDataString" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetSerialNumber" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetSerialNumberString" />
+        <element api="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.Import">
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Import(System.Byte[])" />
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Import(System.Byte[],System.String,System.Security.Cryptography.X509Certificates.X509KeyStorageFlags)" />
+        </element>
+        <element api="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.ToString">
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.ToString" />
+          <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.ToString(System.Boolean)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      </containers>
+      <file name="aab6390b-c9dd-8f83-cd5b-c826c92f43fb" />
+    </api>
+    <api id="Properties.T:System.Security.Cryptography.X509Certificates.X509Certificate">
+      <topicdata name="X509Certificate" group="list" subgroup="Properties" typeTopicId="T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      <apidata name="X509Certificate" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <elements>
+        <element api="P:System.Security.Cryptography.X509Certificates.X509Certificate.Issuer" />
+        <element api="P:System.Security.Cryptography.X509Certificates.X509Certificate.Subject" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      </containers>
+      <file name="1d620761-77b7-3f6e-a7f7-507c11b511b3" />
+    </api>
+    <api id="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Byte[])" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate)" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Byte[],System.String)" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Byte[],System.String,System.Security.Cryptography.X509Certificates.X509KeyStorageFlags)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="89133a8f-5869-8d1d-91cc-403abf29df05" />
+    </api>
+    <api id="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.Equals">
+      <topicdata name="Equals" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Equals(System.Object)" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Equals(System.Security.Cryptography.X509Certificates.X509Certificate)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="69a2a851-ca77-4c07-d24a-eaa75f0e6697" />
+    </api>
+    <api id="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.Export">
+      <topicdata name="Export" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      <apidata name="Export" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Export(System.Security.Cryptography.X509Certificates.X509ContentType)" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Export(System.Security.Cryptography.X509Certificates.X509ContentType,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="da233fe7-d7c7-ea19-e624-260ff2b50c3d" />
+    </api>
+    <api id="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.Import">
+      <topicdata name="Import" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      <apidata name="Import" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Import(System.Byte[])" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.Import(System.Byte[],System.String,System.Security.Cryptography.X509Certificates.X509KeyStorageFlags)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="b903f09f-9e81-8982-59e5-d15878514af0" />
+    </api>
+    <api id="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.ToString">
+      <topicdata name="ToString" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Security.Cryptography.X509Certificates.X509Certificate" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.ToString" />
+        <element api="M:System.Security.Cryptography.X509Certificates.X509Certificate.ToString(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="e2ecfeed-42a5-7ac3-8dfe-bf50d595defa" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="386e9d24-c88b-991a-f0d1-8e7740cf3558" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <parameters>
+        <parameter name="data">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="bd580f9e-558f-da76-9d8d-291faf7fc326" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Byte[],System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <parameters>
+        <parameter name="rawData">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="0c91f320-576a-e1e1-e029-5fd855eab95f" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Byte[],System.String,System.Security.Cryptography.X509Certificates.X509KeyStorageFlags)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <parameters>
+        <parameter name="rawData">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="keyStorageFlags">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509KeyStorageFlags" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="b4b3984a-4278-ff53-0c4e-037bf0397d30" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.#ctor" />
+      <parameters>
+        <parameter name="cert">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="ab8cda10-79dc-a422-6788-fb13afbee825" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.Equals" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Equals(System.Object)">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e614b96b-3278-e145-ea38-c0158de30ee9" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.Equals(System.Security.Cryptography.X509Certificates.X509Certificate)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.Equals" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="other">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="c487889d-f20e-72a6-fc42-c0af2c92c805" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.Export(System.Security.Cryptography.X509Certificates.X509ContentType)">
+      <topicdata group="api" />
+      <apidata name="Export" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.Export" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="contentType">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509ContentType" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1df694d4-1d48-1939-84ff-2601eb4ec944" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.Export(System.Security.Cryptography.X509Certificates.X509ContentType,System.String)">
+      <topicdata group="api" />
+      <apidata name="Export" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.Export" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="contentType">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509ContentType" ref="false" />
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="47f6f0f4-7bde-2dc5-87cb-e5c88a32496a" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetCertHash">
+      <topicdata group="api" />
+      <apidata name="GetCertHash" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="3236b5a7-b5c3-8e6c-1780-b87d4a09dc9c" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetCertHashString">
+      <topicdata group="api" />
+      <apidata name="GetCertHashString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="48db2910-2922-ee1a-c99d-6e3c11272230" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetEffectiveDateString">
+      <topicdata group="api" />
+      <apidata name="GetEffectiveDateString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="5732bdc8-cc2d-08e2-0cf1-0bf43b95b39d" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetExpirationDateString">
+      <topicdata group="api" />
+      <apidata name="GetExpirationDateString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="efaefd9d-ef3a-4aea-6ddf-6ae9951bbdd2" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetFormat">
+      <topicdata group="api" />
+      <apidata name="GetFormat" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="e2476406-446d-e5a9-2aa8-e93f1bf1d892" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.GetHashCode">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="a15f5c20-2553-7af1-bab6-d6c29defc6f9" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetKeyAlgorithm">
+      <topicdata group="api" />
+      <apidata name="GetKeyAlgorithm" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="18d6e4e5-bbbf-51ad-bfd1-dd9c81fb61c1" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetKeyAlgorithmParameters">
+      <topicdata group="api" />
+      <apidata name="GetKeyAlgorithmParameters" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="4cea53db-21f7-dd56-1549-0a742eead4fa" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetKeyAlgorithmParametersString">
+      <topicdata group="api" />
+      <apidata name="GetKeyAlgorithmParametersString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="89396fdb-073a-31df-a717-a11061e3f278" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetPublicKey">
+      <topicdata group="api" />
+      <apidata name="GetPublicKey" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="40f14c43-c8a9-f37c-fb70-9eed4143aed9" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetPublicKeyString">
+      <topicdata group="api" />
+      <apidata name="GetPublicKeyString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="26e48d7e-596a-ece7-7da0-7c347421231a" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetRawCertData">
+      <topicdata group="api" />
+      <apidata name="GetRawCertData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="022727bd-443b-40d3-c48e-bd96dbf17e86" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetRawCertDataString">
+      <topicdata group="api" />
+      <apidata name="GetRawCertDataString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="e082545d-136c-53f2-c821-1283bbaa5cd6" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetSerialNumber">
+      <topicdata group="api" />
+      <apidata name="GetSerialNumber" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="873dd773-c717-198d-b5b2-faa3b2f26f14" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.GetSerialNumberString">
+      <topicdata group="api" />
+      <apidata name="GetSerialNumberString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="d0e4ef1a-04c9-75b5-0948-616ed6dff862" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.Import(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="Import" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.Import" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="rawData">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8da913b5-66b9-393c-5360-b102436b21f6" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.Import(System.Byte[],System.String,System.Security.Cryptography.X509Certificates.X509KeyStorageFlags)">
+      <topicdata group="api" />
+      <apidata name="Import" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.Import" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="rawData">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="password">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="keyStorageFlags">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509KeyStorageFlags" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fed7c8be-3cc5-c290-9bac-b75f378b2145" />
+    </api>
+    <api id="P:System.Security.Cryptography.X509Certificates.X509Certificate.Issuer">
+      <topicdata group="api" />
+      <apidata name="Issuer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Issuer" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="512fe779-e04a-795b-0bd9-cef08dd6f749" />
+    </api>
+    <api id="P:System.Security.Cryptography.X509Certificates.X509Certificate.Subject">
+      <topicdata group="api" />
+      <apidata name="Subject" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Subject" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="e0f50fab-227f-7a4a-e326-d5fdcd61cc90" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.ToString" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="e0b72edd-0c32-3817-4368-df3dc2db9a01" />
+    </api>
+    <api id="M:System.Security.Cryptography.X509Certificates.X509Certificate.ToString(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Security.Cryptography.X509Certificates.X509Certificate.ToString" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="fVerbose">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+      </containers>
+      <file name="f6697937-68d8-076f-b912-c32a4c3e106b" />
+    </api>
+    <api id="T:System.Security.Cryptography.X509Certificates.X509ContentType">
+      <topicdata group="api" />
+      <apidata name="X509ContentType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Security.Cryptography.X509Certificates.X509ContentType.Unknown" />
+        <element api="F:System.Security.Cryptography.X509Certificates.X509ContentType.Cert" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e9b4e94f-c1db-2002-3615-cb95d513cf6d" />
+    </api>
+    <api id="F:System.Security.Cryptography.X509Certificates.X509ContentType.Cert">
+      <topicdata group="api" notopic="" />
+      <apidata name="Cert" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Cryptography.X509Certificates.X509ContentType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509ContentType" ref="false" />
+      </containers>
+      <file name="ba7052a9-95da-ee9c-720c-8086ad9fd78c" />
+    </api>
+    <api id="F:System.Security.Cryptography.X509Certificates.X509ContentType.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Cryptography.X509Certificates.X509ContentType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509ContentType" ref="false" />
+      </containers>
+      <file name="4b106213-876d-4ccb-527f-9cf9a640f24a" />
+    </api>
+    <api id="T:System.Security.Cryptography.X509Certificates.X509KeyStorageFlags">
+      <topicdata group="api" />
+      <apidata name="X509KeyStorageFlags" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Security.Cryptography.X509Certificates.X509KeyStorageFlags.DefaultKeySet" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d66a2cdb-b225-5d62-43b3-6bc6267f91e5" />
+    </api>
+    <api id="F:System.Security.Cryptography.X509Certificates.X509KeyStorageFlags.DefaultKeySet">
+      <topicdata group="api" notopic="" />
+      <apidata name="DefaultKeySet" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Cryptography.X509Certificates.X509KeyStorageFlags" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Cryptography.X509Certificates" />
+        <type api="T:System.Security.Cryptography.X509Certificates.X509KeyStorageFlags" ref="false" />
+      </containers>
+      <file name="e3322062-c137-3ee2-6882-ac91ad81a81e" />
+    </api>
+  </apis>
+</reflection>

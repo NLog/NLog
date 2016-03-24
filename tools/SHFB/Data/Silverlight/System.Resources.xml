@@ -1,0 +1,2175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\silverlightplatformpublickey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Resources">
+      <topicdata group="api" />
+      <apidata name="System.Resources" group="namespace" />
+      <elements>
+        <element api="T:System.Resources.IResourceReader" />
+        <element api="T:System.Resources.MissingManifestResourceException" />
+        <element api="T:System.Resources.NeutralResourcesLanguageAttribute" />
+        <element api="T:System.Resources.ResourceManager" />
+        <element api="T:System.Resources.ResourceSet" />
+        <element api="T:System.Resources.SatelliteContractVersionAttribute" />
+        <element api="T:System.Resources.UltimateResourceFallbackLocation" />
+      </elements>
+      <file name="18b85e30-6960-7bc0-c2b2-43f2f4b1a2a4" />
+    </api>
+    <api id="T:System.Resources.IResourceReader">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Resources.IResourceReader" />
+      <apidata name="IResourceReader" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:System.Collections.IEnumerable" ref="true" />
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fd7e4a20-e556-8533-da8e-de25474b5a1d" />
+    </api>
+    <api id="AllMembers.T:System.Resources.IResourceReader">
+      <topicdata name="IResourceReader" group="list" subgroup="members" typeTopicId="T:System.Resources.IResourceReader" />
+      <apidata name="IResourceReader" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.IDisposable.Dispose" />
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Resources.IResourceReader.Close" />
+        <element api="M:System.Resources.IResourceReader.GetEnumerator" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.IResourceReader" />
+      </containers>
+      <file name="c85d4ea3-a8ac-7879-cd47-b800702ac272" />
+    </api>
+    <api id="Methods.T:System.Resources.IResourceReader">
+      <topicdata name="IResourceReader" group="list" subgroup="Methods" typeTopicId="T:System.Resources.IResourceReader" />
+      <apidata name="IResourceReader" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.IDisposable.Dispose" />
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Resources.IResourceReader.Close" />
+        <element api="M:System.Resources.IResourceReader.GetEnumerator" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.IResourceReader" />
+      </containers>
+      <file name="a8f92ec7-8de7-31ce-7484-cb47d1929873" />
+    </api>
+    <api id="M:System.Resources.IResourceReader.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.IResourceReader" ref="true" />
+      </containers>
+      <file name="d24235c2-8e5b-4cda-8fef-c3fcb2e7e5b3" />
+    </api>
+    <api id="M:System.Resources.IResourceReader.GetEnumerator">
+      <topicdata group="api" />
+      <apidata name="GetEnumerator" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Collections.IDictionaryEnumerator" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.IResourceReader" ref="true" />
+      </containers>
+      <file name="9524e788-236e-68cb-e2d3-b80a48ef31af" />
+    </api>
+    <api id="T:System.Resources.MissingManifestResourceException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Resources.MissingManifestResourceException" />
+      <apidata name="MissingManifestResourceException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Resources.MissingManifestResourceException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="df171e31-8a7a-7dfe-12c4-9dfc0c14963e" />
+    </api>
+    <api id="AllMembers.T:System.Resources.MissingManifestResourceException">
+      <topicdata name="MissingManifestResourceException" group="list" subgroup="members" typeTopicId="T:System.Resources.MissingManifestResourceException" />
+      <apidata name="MissingManifestResourceException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Resources.MissingManifestResourceException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Resources.MissingManifestResourceException.#ctor">
+          <element api="M:System.Resources.MissingManifestResourceException.#ctor" />
+          <element api="M:System.Resources.MissingManifestResourceException.#ctor(System.String)" />
+          <element api="M:System.Resources.MissingManifestResourceException.#ctor(System.String,System.Exception)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.MissingManifestResourceException" />
+      </containers>
+      <file name="bccfd2d1-11be-769f-c052-0bd65da2b390" />
+    </api>
+    <api id="Methods.T:System.Resources.MissingManifestResourceException">
+      <topicdata name="MissingManifestResourceException" group="list" subgroup="Methods" typeTopicId="T:System.Resources.MissingManifestResourceException" />
+      <apidata name="MissingManifestResourceException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Resources.MissingManifestResourceException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.MissingManifestResourceException" />
+      </containers>
+      <file name="a0cbfdad-6484-4143-a4fa-fc43f6a99f4d" />
+    </api>
+    <api id="Properties.T:System.Resources.MissingManifestResourceException">
+      <topicdata name="MissingManifestResourceException" group="list" subgroup="Properties" typeTopicId="T:System.Resources.MissingManifestResourceException" />
+      <apidata name="MissingManifestResourceException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Resources.MissingManifestResourceException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.MissingManifestResourceException" />
+      </containers>
+      <file name="ddb05c34-a3a6-773d-9cad-e2005913f146" />
+    </api>
+    <api id="Overload:System.Resources.MissingManifestResourceException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Resources.MissingManifestResourceException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Resources.MissingManifestResourceException.#ctor" />
+        <element api="M:System.Resources.MissingManifestResourceException.#ctor(System.String)" />
+        <element api="M:System.Resources.MissingManifestResourceException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.MissingManifestResourceException" ref="true" />
+      </containers>
+      <file name="6228d505-b729-ab1e-320f-3ca8e1d2347c" />
+    </api>
+    <api id="M:System.Resources.MissingManifestResourceException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Resources.MissingManifestResourceException.#ctor" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.MissingManifestResourceException" ref="true" />
+      </containers>
+      <file name="eeb2dd26-ff53-a9b6-4698-b850cbb9fef0" />
+    </api>
+    <api id="M:System.Resources.MissingManifestResourceException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Resources.MissingManifestResourceException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.MissingManifestResourceException" ref="true" />
+      </containers>
+      <file name="2975164e-6bb1-9347-c1a7-f5cea9632554" />
+    </api>
+    <api id="M:System.Resources.MissingManifestResourceException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Resources.MissingManifestResourceException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inner">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.MissingManifestResourceException" ref="true" />
+      </containers>
+      <file name="ac19a3ac-58ec-2cca-d3f7-dbcabeb23c35" />
+    </api>
+    <api id="T:System.Resources.NeutralResourcesLanguageAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Resources.NeutralResourcesLanguageAttribute" />
+      <apidata name="NeutralResourcesLanguageAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="0e1a72d3-b50a-1b98-d8f5-fdab1d576244" />
+    </api>
+    <api id="AllMembers.T:System.Resources.NeutralResourcesLanguageAttribute">
+      <topicdata name="NeutralResourcesLanguageAttribute" group="list" subgroup="members" typeTopicId="T:System.Resources.NeutralResourcesLanguageAttribute" />
+      <apidata name="NeutralResourcesLanguageAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Resources.NeutralResourcesLanguageAttribute.#ctor">
+          <element api="M:System.Resources.NeutralResourcesLanguageAttribute.#ctor(System.String)" />
+          <element api="M:System.Resources.NeutralResourcesLanguageAttribute.#ctor(System.String,System.Resources.UltimateResourceFallbackLocation)" />
+        </element>
+        <element api="P:System.Resources.NeutralResourcesLanguageAttribute.CultureName" />
+        <element api="P:System.Resources.NeutralResourcesLanguageAttribute.Location" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.NeutralResourcesLanguageAttribute" />
+      </containers>
+      <file name="3bdf3339-5615-622a-e618-cb4ae8e5fca9" />
+    </api>
+    <api id="Methods.T:System.Resources.NeutralResourcesLanguageAttribute">
+      <topicdata name="NeutralResourcesLanguageAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Resources.NeutralResourcesLanguageAttribute" />
+      <apidata name="NeutralResourcesLanguageAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.NeutralResourcesLanguageAttribute" />
+      </containers>
+      <file name="16e37e3a-8f57-eb33-37c3-a0e0825459ef" />
+    </api>
+    <api id="Properties.T:System.Resources.NeutralResourcesLanguageAttribute">
+      <topicdata name="NeutralResourcesLanguageAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Resources.NeutralResourcesLanguageAttribute" />
+      <apidata name="NeutralResourcesLanguageAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Resources.NeutralResourcesLanguageAttribute.CultureName" />
+        <element api="P:System.Resources.NeutralResourcesLanguageAttribute.Location" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.NeutralResourcesLanguageAttribute" />
+      </containers>
+      <file name="43b69f86-08d6-0919-c12e-bf438faa16b0" />
+    </api>
+    <api id="Overload:System.Resources.NeutralResourcesLanguageAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Resources.NeutralResourcesLanguageAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Resources.NeutralResourcesLanguageAttribute.#ctor(System.String)" />
+        <element api="M:System.Resources.NeutralResourcesLanguageAttribute.#ctor(System.String,System.Resources.UltimateResourceFallbackLocation)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+      </containers>
+      <file name="20c55d62-1b3f-24cf-6a50-8592231f3997" />
+    </api>
+    <api id="M:System.Resources.NeutralResourcesLanguageAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Resources.NeutralResourcesLanguageAttribute.#ctor" />
+      <parameters>
+        <parameter name="cultureName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+      </containers>
+      <file name="a2f8330f-1115-0182-647b-c37aae0110ed" />
+    </api>
+    <api id="M:System.Resources.NeutralResourcesLanguageAttribute.#ctor(System.String,System.Resources.UltimateResourceFallbackLocation)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Resources.NeutralResourcesLanguageAttribute.#ctor" />
+      <parameters>
+        <parameter name="cultureName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="location">
+          <type api="T:System.Resources.UltimateResourceFallbackLocation" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+      </containers>
+      <file name="67c90910-e8c1-3ec2-3f10-2802d0726fdd" />
+    </api>
+    <api id="P:System.Resources.NeutralResourcesLanguageAttribute.CultureName">
+      <topicdata group="api" />
+      <apidata name="CultureName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CultureName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+      </containers>
+      <file name="f6bfc323-8136-b190-f99d-0154e14646a6" />
+    </api>
+    <api id="P:System.Resources.NeutralResourcesLanguageAttribute.Location">
+      <topicdata group="api" />
+      <apidata name="Location" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Location" />
+      <returns>
+        <type api="T:System.Resources.UltimateResourceFallbackLocation" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+      </containers>
+      <file name="66ddffbb-f963-a2ed-c872-9ea6413be4bd" />
+    </api>
+    <api id="T:System.Resources.ResourceManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Resources.ResourceManager" />
+      <apidata name="ResourceManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3ad9deea-8616-27cd-8364-3313fd47d111" />
+    </api>
+    <api id="AllMembers.T:System.Resources.ResourceManager">
+      <topicdata name="ResourceManager" group="list" subgroup="members" typeTopicId="T:System.Resources.ResourceManager" />
+      <apidata name="ResourceManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Resources.ResourceManager.#ctor">
+          <element api="M:System.Resources.ResourceManager.#ctor" />
+          <element api="M:System.Resources.ResourceManager.#ctor(System.Type)" />
+          <element api="M:System.Resources.ResourceManager.#ctor(System.String,System.Reflection.Assembly)" />
+          <element api="M:System.Resources.ResourceManager.#ctor(System.String,System.Reflection.Assembly,System.Type)" />
+        </element>
+        <element api="P:System.Resources.ResourceManager.BaseName" />
+        <element api="F:System.Resources.ResourceManager.BaseNameField" />
+        <element api="M:System.Resources.ResourceManager.GetNeutralResourcesLanguage(System.Reflection.Assembly)" />
+        <element api="Overload:System.Resources.ResourceManager.GetObject">
+          <element api="M:System.Resources.ResourceManager.GetObject(System.String)" />
+          <element api="M:System.Resources.ResourceManager.GetObject(System.String,System.Globalization.CultureInfo)" />
+        </element>
+        <element api="M:System.Resources.ResourceManager.GetResourceFileName(System.Globalization.CultureInfo)" />
+        <element api="M:System.Resources.ResourceManager.GetResourceSet(System.Globalization.CultureInfo,System.Boolean,System.Boolean)" />
+        <element api="M:System.Resources.ResourceManager.GetSatelliteContractVersion(System.Reflection.Assembly)" />
+        <element api="Overload:System.Resources.ResourceManager.GetStream">
+          <element api="M:System.Resources.ResourceManager.GetStream(System.String)" />
+          <element api="M:System.Resources.ResourceManager.GetStream(System.String,System.Globalization.CultureInfo)" />
+        </element>
+        <element api="Overload:System.Resources.ResourceManager.GetString">
+          <element api="M:System.Resources.ResourceManager.GetString(System.String)" />
+          <element api="M:System.Resources.ResourceManager.GetString(System.String,System.Globalization.CultureInfo)" />
+        </element>
+        <element api="F:System.Resources.ResourceManager.HeaderVersionNumber" />
+        <element api="P:System.Resources.ResourceManager.IgnoreCase" />
+        <element api="M:System.Resources.ResourceManager.InternalGetResourceSet(System.Globalization.CultureInfo,System.Boolean,System.Boolean)" />
+        <element api="F:System.Resources.ResourceManager.MagicNumber" />
+        <element api="F:System.Resources.ResourceManager.MainAssembly" />
+        <element api="M:System.Resources.ResourceManager.ReleaseAllResources" />
+        <element api="P:System.Resources.ResourceManager.ResourceSetType" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" />
+      </containers>
+      <file name="be82bb4c-ca38-91e4-10bc-1352e153988b" />
+    </api>
+    <api id="Methods.T:System.Resources.ResourceManager">
+      <topicdata name="ResourceManager" group="list" subgroup="Methods" typeTopicId="T:System.Resources.ResourceManager" />
+      <apidata name="ResourceManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Resources.ResourceManager.GetNeutralResourcesLanguage(System.Reflection.Assembly)" />
+        <element api="Overload:System.Resources.ResourceManager.GetObject">
+          <element api="M:System.Resources.ResourceManager.GetObject(System.String)" />
+          <element api="M:System.Resources.ResourceManager.GetObject(System.String,System.Globalization.CultureInfo)" />
+        </element>
+        <element api="M:System.Resources.ResourceManager.GetResourceFileName(System.Globalization.CultureInfo)" />
+        <element api="M:System.Resources.ResourceManager.GetResourceSet(System.Globalization.CultureInfo,System.Boolean,System.Boolean)" />
+        <element api="M:System.Resources.ResourceManager.GetSatelliteContractVersion(System.Reflection.Assembly)" />
+        <element api="Overload:System.Resources.ResourceManager.GetStream">
+          <element api="M:System.Resources.ResourceManager.GetStream(System.String)" />
+          <element api="M:System.Resources.ResourceManager.GetStream(System.String,System.Globalization.CultureInfo)" />
+        </element>
+        <element api="Overload:System.Resources.ResourceManager.GetString">
+          <element api="M:System.Resources.ResourceManager.GetString(System.String)" />
+          <element api="M:System.Resources.ResourceManager.GetString(System.String,System.Globalization.CultureInfo)" />
+        </element>
+        <element api="M:System.Resources.ResourceManager.InternalGetResourceSet(System.Globalization.CultureInfo,System.Boolean,System.Boolean)" />
+        <element api="M:System.Resources.ResourceManager.ReleaseAllResources" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" />
+      </containers>
+      <file name="4daeb021-4002-8e4c-ecb5-374226aae8c6" />
+    </api>
+    <api id="Properties.T:System.Resources.ResourceManager">
+      <topicdata name="ResourceManager" group="list" subgroup="Properties" typeTopicId="T:System.Resources.ResourceManager" />
+      <apidata name="ResourceManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Resources.ResourceManager.BaseName" />
+        <element api="P:System.Resources.ResourceManager.IgnoreCase" />
+        <element api="P:System.Resources.ResourceManager.ResourceSetType" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" />
+      </containers>
+      <file name="078e2dc5-7ac6-b5c8-9b6e-aa073b271853" />
+    </api>
+    <api id="Fields.T:System.Resources.ResourceManager">
+      <topicdata name="ResourceManager" group="list" subgroup="Fields" typeTopicId="T:System.Resources.ResourceManager" />
+      <apidata name="ResourceManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:System.Resources.ResourceManager.BaseNameField" />
+        <element api="F:System.Resources.ResourceManager.HeaderVersionNumber" />
+        <element api="F:System.Resources.ResourceManager.MagicNumber" />
+        <element api="F:System.Resources.ResourceManager.MainAssembly" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" />
+      </containers>
+      <file name="f3bba501-8431-a938-8c89-b9b7de4becfb" />
+    </api>
+    <api id="Overload:System.Resources.ResourceManager.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Resources.ResourceManager" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Resources.ResourceManager.#ctor" />
+        <element api="M:System.Resources.ResourceManager.#ctor(System.Type)" />
+        <element api="M:System.Resources.ResourceManager.#ctor(System.String,System.Reflection.Assembly)" />
+        <element api="M:System.Resources.ResourceManager.#ctor(System.String,System.Reflection.Assembly,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="030b2b4a-31c8-1311-4a6b-f3495ff01c03" />
+    </api>
+    <api id="Overload:System.Resources.ResourceManager.GetObject">
+      <topicdata name="GetObject" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Resources.ResourceManager" />
+      <apidata name="GetObject" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Resources.ResourceManager.GetObject(System.String)" />
+        <element api="M:System.Resources.ResourceManager.GetObject(System.String,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="a096d825-812a-db64-c29d-c243c3abff1f" />
+    </api>
+    <api id="Overload:System.Resources.ResourceManager.GetStream">
+      <topicdata name="GetStream" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Resources.ResourceManager" />
+      <apidata name="GetStream" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Resources.ResourceManager.GetStream(System.String)" />
+        <element api="M:System.Resources.ResourceManager.GetStream(System.String,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="d63f785c-5ca3-7c29-4d83-cc2f40ee17a8" />
+    </api>
+    <api id="Overload:System.Resources.ResourceManager.GetString">
+      <topicdata name="GetString" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Resources.ResourceManager" />
+      <apidata name="GetString" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Resources.ResourceManager.GetString(System.String)" />
+        <element api="M:System.Resources.ResourceManager.GetString(System.String,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="84190a62-5ce7-83a5-9598-de1ab7ee86ea" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Resources.ResourceManager.#ctor" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="4b9859d9-4c99-7415-882e-0e2ef3b1d9e4" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.#ctor(System.String,System.Reflection.Assembly)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Resources.ResourceManager.#ctor" />
+      <parameters>
+        <parameter name="baseName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="assembly">
+          <type api="T:System.Reflection.Assembly" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="7b1ec927-91d0-f93d-e276-2f915951ead5" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.#ctor(System.String,System.Reflection.Assembly,System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Resources.ResourceManager.#ctor" />
+      <parameters>
+        <parameter name="baseName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="assembly">
+          <type api="T:System.Reflection.Assembly" ref="true" />
+        </parameter>
+        <parameter name="usingResourceSet">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="75589cf2-1808-92e2-6cec-3bf5a374af4d" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.#ctor(System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Resources.ResourceManager.#ctor" />
+      <parameters>
+        <parameter name="resourceSource">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="9d7bee55-1a84-8795-67be-3b5c5ee58840" />
+    </api>
+    <api id="P:System.Resources.ResourceManager.BaseName">
+      <topicdata group="api" />
+      <apidata name="BaseName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_BaseName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="28a1bb2c-91f9-485a-619a-e8fc22a6aa94" />
+    </api>
+    <api id="F:System.Resources.ResourceManager.BaseNameField">
+      <topicdata group="api" />
+      <apidata name="BaseNameField" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="693ddd5d-5808-0879-9dbd-77ac6041934c" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.GetNeutralResourcesLanguage(System.Reflection.Assembly)">
+      <topicdata group="api" />
+      <apidata name="GetNeutralResourcesLanguage" group="member" subgroup="method" />
+      <memberdata visibility="family" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="a">
+          <type api="T:System.Reflection.Assembly" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Globalization.CultureInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="9b7a87a3-09a4-8802-f294-448d7728096f" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.GetObject(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetObject" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Resources.ResourceManager.GetObject" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="3f37ee57-265c-4d17-aae1-660b42a481ca" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.GetObject(System.String,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="GetObject" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Resources.ResourceManager.GetObject" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="02b8c577-0e40-0cae-af75-b399fbf3a1dc" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.GetResourceFileName(System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="GetResourceFileName" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="5d97ac6c-da21-84b8-78ce-783871b0ff35" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.GetResourceSet(System.Globalization.CultureInfo,System.Boolean,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="GetResourceSet" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+        <parameter name="createIfNotExists">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="tryParents">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="00448ac2-f8d3-d8ea-f6f2-65a012e3930a" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.GetSatelliteContractVersion(System.Reflection.Assembly)">
+      <topicdata group="api" />
+      <apidata name="GetSatelliteContractVersion" group="member" subgroup="method" />
+      <memberdata visibility="family" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="a">
+          <type api="T:System.Reflection.Assembly" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Version" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="0d45b2bf-3a93-713b-180e-d4cc61e52f60" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.GetStream(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetStream" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Resources.ResourceManager.GetStream" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.UnmanagedMemoryStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5efefe9e-8287-ddd1-97e7-3316ecb687b1" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.GetStream(System.String,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="GetStream" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Resources.ResourceManager.GetStream" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.UnmanagedMemoryStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bf9c841e-3508-9d70-da9d-41fb2b83a2b1" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.GetString(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Resources.ResourceManager.GetString" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="520732b7-ff94-bb81-65a1-06124284e299" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.GetString(System.String,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="GetString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Resources.ResourceManager.GetString" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="85ce2e89-033f-e92c-e8b3-6ec778f36135" />
+    </api>
+    <api id="F:System.Resources.ResourceManager.HeaderVersionNumber">
+      <topicdata group="api" />
+      <apidata name="HeaderVersionNumber" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="20b322c8-e191-2d41-6a75-d365f9406db7" />
+    </api>
+    <api id="P:System.Resources.ResourceManager.IgnoreCase">
+      <topicdata group="api" />
+      <apidata name="IgnoreCase" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IgnoreCase" />
+      <setter name="set_IgnoreCase" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="6b060fdd-8bfc-86b2-5dbc-bcd54e82dcf7" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.InternalGetResourceSet(System.Globalization.CultureInfo,System.Boolean,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="InternalGetResourceSet" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+        <parameter name="createIfNotExists">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="tryParents">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="6797b0de-cfb5-ddfe-0067-1af511dd93bd" />
+    </api>
+    <api id="F:System.Resources.ResourceManager.MagicNumber">
+      <topicdata group="api" />
+      <apidata name="MagicNumber" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="f5743d28-94e6-9854-aeac-ff9214bf1fb3" />
+    </api>
+    <api id="F:System.Resources.ResourceManager.MainAssembly">
+      <topicdata group="api" />
+      <apidata name="MainAssembly" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Reflection.Assembly" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="1de4a291-fc47-619d-2bac-a47fef6e5713" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.ReleaseAllResources">
+      <topicdata group="api" />
+      <apidata name="ReleaseAllResources" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="8fafc42d-94cd-4c7d-6b29-977ba3376fcf" />
+    </api>
+    <api id="P:System.Resources.ResourceManager.ResourceSetType">
+      <topicdata group="api" />
+      <apidata name="ResourceSetType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ResourceSetType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="412fab80-911a-bf6d-38cc-9542733a54d7" />
+    </api>
+    <api id="T:System.Resources.ResourceSet">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Resources.ResourceSet" />
+      <apidata name="ResourceSet" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+        <type api="T:System.Collections.IEnumerable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7af4fd32-cef3-d1bb-6162-02a5eb862b52" />
+    </api>
+    <api id="AllMembers.T:System.Resources.ResourceSet">
+      <topicdata name="ResourceSet" group="list" subgroup="members" typeTopicId="T:System.Resources.ResourceSet" />
+      <apidata name="ResourceSet" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:System.Resources.ResourceSet.#ctor">
+          <element api="M:System.Resources.ResourceSet.#ctor" />
+          <element api="M:System.Resources.ResourceSet.#ctor(System.Resources.IResourceReader)" />
+        </element>
+        <element api="M:System.Resources.ResourceSet.Close" />
+        <element api="Overload:System.Resources.ResourceSet.Dispose">
+          <element api="M:System.Resources.ResourceSet.Dispose" />
+          <element api="M:System.Resources.ResourceSet.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Resources.ResourceSet.GetDefaultReader" />
+        <element api="M:System.Resources.ResourceSet.GetEnumerator" />
+        <element api="Overload:System.Resources.ResourceSet.GetObject">
+          <element api="M:System.Resources.ResourceSet.GetObject(System.String)" />
+          <element api="M:System.Resources.ResourceSet.GetObject(System.String,System.Boolean)" />
+        </element>
+        <element api="Overload:System.Resources.ResourceSet.GetString">
+          <element api="M:System.Resources.ResourceSet.GetString(System.String)" />
+          <element api="M:System.Resources.ResourceSet.GetString(System.String,System.Boolean)" />
+        </element>
+        <element api="F:System.Resources.ResourceSet.Reader" />
+        <element api="M:System.Resources.ResourceSet.ReadResources" />
+        <element api="M:System.Resources.ResourceSet.System#Collections#IEnumerable#GetEnumerator" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" />
+      </containers>
+      <file name="4d188beb-b470-744e-bc15-f886ab8f48b4" />
+    </api>
+    <api id="Methods.T:System.Resources.ResourceSet">
+      <topicdata name="ResourceSet" group="list" subgroup="Methods" typeTopicId="T:System.Resources.ResourceSet" />
+      <apidata name="ResourceSet" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Resources.ResourceSet.Close" />
+        <element api="Overload:System.Resources.ResourceSet.Dispose">
+          <element api="M:System.Resources.ResourceSet.Dispose" />
+          <element api="M:System.Resources.ResourceSet.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Resources.ResourceSet.GetDefaultReader" />
+        <element api="M:System.Resources.ResourceSet.GetEnumerator" />
+        <element api="Overload:System.Resources.ResourceSet.GetObject">
+          <element api="M:System.Resources.ResourceSet.GetObject(System.String)" />
+          <element api="M:System.Resources.ResourceSet.GetObject(System.String,System.Boolean)" />
+        </element>
+        <element api="Overload:System.Resources.ResourceSet.GetString">
+          <element api="M:System.Resources.ResourceSet.GetString(System.String)" />
+          <element api="M:System.Resources.ResourceSet.GetString(System.String,System.Boolean)" />
+        </element>
+        <element api="M:System.Resources.ResourceSet.ReadResources" />
+        <element api="M:System.Resources.ResourceSet.System#Collections#IEnumerable#GetEnumerator" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" />
+      </containers>
+      <file name="9156a3c0-f130-7e9e-bc98-27030b30a843" />
+    </api>
+    <api id="Fields.T:System.Resources.ResourceSet">
+      <topicdata name="ResourceSet" group="list" subgroup="Fields" typeTopicId="T:System.Resources.ResourceSet" />
+      <apidata name="ResourceSet" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:System.Resources.ResourceSet.Reader" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" />
+      </containers>
+      <file name="45f35adb-f154-b2b9-6625-c0be9d9b0e52" />
+    </api>
+    <api id="Overload:System.Resources.ResourceSet.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Resources.ResourceSet" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Resources.ResourceSet.#ctor" />
+        <element api="M:System.Resources.ResourceSet.#ctor(System.Resources.IResourceReader)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="66fdb8d7-a1fc-a3c1-0eb7-6808a4f3c831" />
+    </api>
+    <api id="Overload:System.Resources.ResourceSet.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Resources.ResourceSet" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Resources.ResourceSet.Dispose" />
+        <element api="M:System.Resources.ResourceSet.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="25899077-2930-2c6d-6507-e5938a519691" />
+    </api>
+    <api id="Overload:System.Resources.ResourceSet.GetObject">
+      <topicdata name="GetObject" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Resources.ResourceSet" />
+      <apidata name="GetObject" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Resources.ResourceSet.GetObject(System.String)" />
+        <element api="M:System.Resources.ResourceSet.GetObject(System.String,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="b08622e5-5f70-13d5-c670-910aaec37850" />
+    </api>
+    <api id="Overload:System.Resources.ResourceSet.GetString">
+      <topicdata name="GetString" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Resources.ResourceSet" />
+      <apidata name="GetString" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Resources.ResourceSet.GetString(System.String)" />
+        <element api="M:System.Resources.ResourceSet.GetString(System.String,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="6de474c0-bb6b-4031-33e1-0b193abd6f50" />
+    </api>
+    <api id="M:System.Resources.ResourceSet.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Resources.ResourceSet.#ctor" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="a72c2105-bb88-7812-c7d4-8b804fb38626" />
+    </api>
+    <api id="M:System.Resources.ResourceSet.#ctor(System.Resources.IResourceReader)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Resources.ResourceSet.#ctor" />
+      <parameters>
+        <parameter name="reader">
+          <type api="T:System.Resources.IResourceReader" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="cb76bd83-f802-ba09-4810-84445f7c4cc5" />
+    </api>
+    <api id="M:System.Resources.ResourceSet.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="7d3bd2d4-e58e-bb85-24fc-df91ae800878" />
+    </api>
+    <api id="M:System.Resources.ResourceSet.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Resources.ResourceSet.Dispose" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="6f9845fb-8867-ef5b-3cb1-13d5d43ebbea" />
+    </api>
+    <api id="M:System.Resources.ResourceSet.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Resources.ResourceSet.Dispose" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="9ef163bb-a32f-2fc3-e598-50f55b41fd57" />
+    </api>
+    <api id="M:System.Resources.ResourceSet.GetDefaultReader">
+      <topicdata group="api" />
+      <apidata name="GetDefaultReader" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="96ff20eb-7b4d-9ba6-1600-98013ccfc79b" />
+    </api>
+    <api id="M:System.Resources.ResourceSet.GetEnumerator">
+      <topicdata group="api" />
+      <apidata name="GetEnumerator" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.Collections.IDictionaryEnumerator" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cacc707e-5388-d934-2e66-121813899592" />
+    </api>
+    <api id="M:System.Resources.ResourceSet.GetObject(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetObject" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Resources.ResourceSet.GetObject" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="ce386788-55a3-2a09-f3c6-73e03cae8910" />
+    </api>
+    <api id="M:System.Resources.ResourceSet.GetObject(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="GetObject" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Resources.ResourceSet.GetObject" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ignoreCase">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="51b4ef25-4aa1-2f4e-4f51-83575927bf24" />
+    </api>
+    <api id="M:System.Resources.ResourceSet.GetString(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Resources.ResourceSet.GetString" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="a6da290a-80ad-99b8-2c3f-3301bd995900" />
+    </api>
+    <api id="M:System.Resources.ResourceSet.GetString(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="GetString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Resources.ResourceSet.GetString" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ignoreCase">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="72eb3f58-e85c-045d-37ad-143f049e98d7" />
+    </api>
+    <api id="F:System.Resources.ResourceSet.Reader">
+      <topicdata group="api" />
+      <apidata name="Reader" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Resources.IResourceReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="fde3284c-0198-70d5-a438-2ec0d0017683" />
+    </api>
+    <api id="M:System.Resources.ResourceSet.ReadResources">
+      <topicdata group="api" />
+      <apidata name="ReadResources" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="1d1f1a0b-c8de-b58e-2819-7841ed400403" />
+    </api>
+    <api id="M:System.Resources.ResourceSet.System#Collections#IEnumerable#GetEnumerator">
+      <topicdata group="api" eiiName="IEnumerable.GetEnumerator" />
+      <apidata name="GetEnumerator" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <returns>
+        <type api="T:System.Collections.IEnumerator" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Collections.IEnumerable.GetEnumerator">
+          <type api="T:System.Collections.IEnumerable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceSet" ref="true" />
+      </containers>
+      <file name="e8a3701c-f66f-90f6-35be-f318bd04cec0" />
+    </api>
+    <api id="T:System.Resources.SatelliteContractVersionAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Resources.SatelliteContractVersionAttribute" />
+      <apidata name="SatelliteContractVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="247f473c-7c50-cfbd-b417-8b6b6013f16c" />
+    </api>
+    <api id="AllMembers.T:System.Resources.SatelliteContractVersionAttribute">
+      <topicdata name="SatelliteContractVersionAttribute" group="list" subgroup="members" typeTopicId="T:System.Resources.SatelliteContractVersionAttribute" />
+      <apidata name="SatelliteContractVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Resources.SatelliteContractVersionAttribute.#ctor(System.String)" />
+        <element api="P:System.Resources.SatelliteContractVersionAttribute.Version" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.SatelliteContractVersionAttribute" />
+      </containers>
+      <file name="f7da14e4-f2e4-74c7-ab35-0f1844ca8ec3" />
+    </api>
+    <api id="Methods.T:System.Resources.SatelliteContractVersionAttribute">
+      <topicdata name="SatelliteContractVersionAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Resources.SatelliteContractVersionAttribute" />
+      <apidata name="SatelliteContractVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.SatelliteContractVersionAttribute" />
+      </containers>
+      <file name="c153944e-1bf2-831d-916c-e13b5c22fbc3" />
+    </api>
+    <api id="Properties.T:System.Resources.SatelliteContractVersionAttribute">
+      <topicdata name="SatelliteContractVersionAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Resources.SatelliteContractVersionAttribute" />
+      <apidata name="SatelliteContractVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Resources.SatelliteContractVersionAttribute.Version" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.SatelliteContractVersionAttribute" />
+      </containers>
+      <file name="bd351874-b68f-f13c-6959-0a7cbaeddc0a" />
+    </api>
+    <api id="M:System.Resources.SatelliteContractVersionAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="version">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+      </containers>
+      <file name="6b2f96de-e1a8-8909-4ff0-d455bb84a723" />
+    </api>
+    <api id="P:System.Resources.SatelliteContractVersionAttribute.Version">
+      <topicdata group="api" />
+      <apidata name="Version" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Version" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+      </containers>
+      <file name="299c9143-e7ce-f629-5388-8fec34244b9a" />
+    </api>
+    <api id="T:System.Resources.UltimateResourceFallbackLocation">
+      <topicdata group="api" />
+      <apidata name="UltimateResourceFallbackLocation" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Resources.UltimateResourceFallbackLocation.MainAssembly" />
+        <element api="F:System.Resources.UltimateResourceFallbackLocation.Satellite" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="47bfa88c-3ccf-201e-5cde-0781e7247de8" />
+    </api>
+    <api id="F:System.Resources.UltimateResourceFallbackLocation.MainAssembly">
+      <topicdata group="api" notopic="" />
+      <apidata name="MainAssembly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Resources.UltimateResourceFallbackLocation" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.UltimateResourceFallbackLocation" ref="false" />
+      </containers>
+      <file name="49cbe155-aa58-65f0-41d3-b3feb2943b71" />
+    </api>
+    <api id="F:System.Resources.UltimateResourceFallbackLocation.Satellite">
+      <topicdata group="api" notopic="" />
+      <apidata name="Satellite" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Resources.UltimateResourceFallbackLocation" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.UltimateResourceFallbackLocation" ref="false" />
+      </containers>
+      <file name="37af4fcb-ea78-2685-983f-c60a4ea2800b" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,670 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.IdentityModel.Services">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>1755dbba-883b-4821-af64-78ed69ca9748</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IdentityModel.Services.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IdentityModel.Services.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IdentityModel.Services.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.IdentityModel.Services.Tokens">
+      <topicdata group="api" />
+      <apidata name="System.IdentityModel.Services.Tokens" group="namespace" />
+      <elements>
+        <element api="T:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler" />
+        <element api="T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler" />
+      </elements>
+      <file name="ce0e6cdb-5b1b-4093-6475-9d96a06e8ec5" />
+    </api>
+    <api id="T:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler" />
+      <apidata name="MachineKeySessionSecurityTokenHandler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.IdentityModel.Tokens.SessionSecurityTokenHandler" ref="true" />
+          <type api="T:System.IdentityModel.Tokens.SecurityTokenHandler" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+      </containers>
+      <file name="daa75165-d3de-6c26-82e7-9e41b78ac7cd" />
+    </api>
+    <api id="AllMembers.T:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler">
+      <topicdata name="MachineKeySessionSecurityTokenHandler" group="list" subgroup="members" typeTopicId="T:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler" />
+      <apidata name="MachineKeySessionSecurityTokenHandler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.#ctor">
+          <element api="M:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.#ctor" />
+          <element api="M:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.#ctor(System.TimeSpan)" />
+        </element>
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CanReadKeyIdentifierClause(System.Xml.XmlReader)" />
+        <element api="Overload:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.CanReadToken">
+          <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CanReadToken(System.String)" />
+          <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.CanReadToken(System.Xml.XmlReader)" />
+        </element>
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CanWriteKeyIdentifierClause(System.IdentityModel.Tokens.SecurityKeyIdentifierClause)" />
+        <element api="P:System.IdentityModel.Tokens.SecurityTokenHandler.Configuration" />
+        <element api="P:System.IdentityModel.Tokens.SecurityTokenHandler.ContainingCollection" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CreateSecurityTokenReference(System.IdentityModel.Tokens.SecurityToken,System.Boolean)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.DetectReplayedToken(System.IdentityModel.Tokens.SecurityToken)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.ReadKeyIdentifierClause(System.Xml.XmlReader)" />
+        <element api="Overload:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.ReadToken">
+          <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.ReadToken(System.String)" />
+          <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.ReadToken(System.Xml.XmlReader)" />
+          <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.ReadToken(System.Byte[],System.IdentityModel.Selectors.SecurityTokenResolver)" />
+          <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.ReadToken(System.Xml.XmlReader,System.IdentityModel.Selectors.SecurityTokenResolver)" />
+        </element>
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.TraceTokenValidationFailure(System.IdentityModel.Tokens.SecurityToken,System.String)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.TraceTokenValidationSuccess(System.IdentityModel.Tokens.SecurityToken)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.WriteKeyIdentifierClause(System.Xml.XmlWriter,System.IdentityModel.Tokens.SecurityKeyIdentifierClause)" />
+        <element api="Overload:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.WriteToken">
+          <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.WriteToken(System.IdentityModel.Tokens.SecurityToken)" />
+          <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.WriteToken(System.IdentityModel.Tokens.SessionSecurityToken)" />
+          <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.WriteToken(System.Xml.XmlWriter,System.IdentityModel.Tokens.SecurityToken)" />
+        </element>
+        <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.ApplyTransforms(System.Byte[],System.Boolean)" />
+        <element api="P:System.IdentityModel.Tokens.SessionSecurityTokenHandler.CanValidateToken" />
+        <element api="P:System.IdentityModel.Tokens.SessionSecurityTokenHandler.CanWriteToken" />
+        <element api="P:System.IdentityModel.Tokens.SessionSecurityTokenHandler.CookieElementName" />
+        <element api="P:System.IdentityModel.Tokens.SessionSecurityTokenHandler.CookieNamespace" />
+        <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.CreateSessionSecurityToken(System.Security.Claims.ClaimsPrincipal,System.String,System.String,System.DateTime,System.DateTime)" />
+        <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.CreateToken(System.IdentityModel.Tokens.SecurityTokenDescriptor)" />
+        <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.GetTokenTypeIdentifiers" />
+        <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.LoadCustomConfiguration(System.Xml.XmlNodeList)" />
+        <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.SetTransforms(System.Collections.Generic.IEnumerable{System.IdentityModel.CookieTransform})" />
+        <element api="P:System.IdentityModel.Tokens.SessionSecurityTokenHandler.TokenLifetime" />
+        <element api="P:System.IdentityModel.Tokens.SessionSecurityTokenHandler.TokenType" />
+        <element api="P:System.IdentityModel.Tokens.SessionSecurityTokenHandler.Transforms" />
+        <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.ValidateSession(System.IdentityModel.Tokens.SessionSecurityToken)" />
+        <element api="Overload:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.ValidateToken">
+          <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.ValidateToken(System.IdentityModel.Tokens.SecurityToken)" />
+          <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.ValidateToken(System.IdentityModel.Tokens.SessionSecurityToken,System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+        <type api="T:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler" />
+      </containers>
+      <file name="b35d2ee8-d7db-fa36-dabc-1332811cfed4" />
+    </api>
+    <api id="Methods.T:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler">
+      <topicdata name="MachineKeySessionSecurityTokenHandler" group="list" subgroup="Methods" typeTopicId="T:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler" />
+      <apidata name="MachineKeySessionSecurityTokenHandler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CanReadKeyIdentifierClause(System.Xml.XmlReader)" />
+        <element api="Overload:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.CanReadToken">
+          <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CanReadToken(System.String)" />
+          <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.CanReadToken(System.Xml.XmlReader)" />
+        </element>
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CanWriteKeyIdentifierClause(System.IdentityModel.Tokens.SecurityKeyIdentifierClause)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CreateSecurityTokenReference(System.IdentityModel.Tokens.SecurityToken,System.Boolean)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.DetectReplayedToken(System.IdentityModel.Tokens.SecurityToken)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.ReadKeyIdentifierClause(System.Xml.XmlReader)" />
+        <element api="Overload:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.ReadToken">
+          <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.ReadToken(System.String)" />
+          <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.ReadToken(System.Xml.XmlReader)" />
+          <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.ReadToken(System.Byte[],System.IdentityModel.Selectors.SecurityTokenResolver)" />
+          <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.ReadToken(System.Xml.XmlReader,System.IdentityModel.Selectors.SecurityTokenResolver)" />
+        </element>
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.TraceTokenValidationFailure(System.IdentityModel.Tokens.SecurityToken,System.String)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.TraceTokenValidationSuccess(System.IdentityModel.Tokens.SecurityToken)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.WriteKeyIdentifierClause(System.Xml.XmlWriter,System.IdentityModel.Tokens.SecurityKeyIdentifierClause)" />
+        <element api="Overload:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.WriteToken">
+          <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.WriteToken(System.IdentityModel.Tokens.SecurityToken)" />
+          <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.WriteToken(System.IdentityModel.Tokens.SessionSecurityToken)" />
+          <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.WriteToken(System.Xml.XmlWriter,System.IdentityModel.Tokens.SecurityToken)" />
+        </element>
+        <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.ApplyTransforms(System.Byte[],System.Boolean)" />
+        <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.CreateSessionSecurityToken(System.Security.Claims.ClaimsPrincipal,System.String,System.String,System.DateTime,System.DateTime)" />
+        <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.CreateToken(System.IdentityModel.Tokens.SecurityTokenDescriptor)" />
+        <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.GetTokenTypeIdentifiers" />
+        <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.LoadCustomConfiguration(System.Xml.XmlNodeList)" />
+        <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.SetTransforms(System.Collections.Generic.IEnumerable{System.IdentityModel.CookieTransform})" />
+        <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.ValidateSession(System.IdentityModel.Tokens.SessionSecurityToken)" />
+        <element api="Overload:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.ValidateToken">
+          <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.ValidateToken(System.IdentityModel.Tokens.SecurityToken)" />
+          <element api="M:System.IdentityModel.Tokens.SessionSecurityTokenHandler.ValidateToken(System.IdentityModel.Tokens.SessionSecurityToken,System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+        <type api="T:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler" />
+      </containers>
+      <file name="74d96599-65b6-0d37-5914-e9f5b133a98b" />
+    </api>
+    <api id="Properties.T:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler">
+      <topicdata name="MachineKeySessionSecurityTokenHandler" group="list" subgroup="Properties" typeTopicId="T:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler" />
+      <apidata name="MachineKeySessionSecurityTokenHandler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.#ctor" />
+      <elements>
+        <element api="P:System.IdentityModel.Tokens.SecurityTokenHandler.Configuration" />
+        <element api="P:System.IdentityModel.Tokens.SecurityTokenHandler.ContainingCollection" />
+        <element api="P:System.IdentityModel.Tokens.SessionSecurityTokenHandler.CanValidateToken" />
+        <element api="P:System.IdentityModel.Tokens.SessionSecurityTokenHandler.CanWriteToken" />
+        <element api="P:System.IdentityModel.Tokens.SessionSecurityTokenHandler.CookieElementName" />
+        <element api="P:System.IdentityModel.Tokens.SessionSecurityTokenHandler.CookieNamespace" />
+        <element api="P:System.IdentityModel.Tokens.SessionSecurityTokenHandler.TokenLifetime" />
+        <element api="P:System.IdentityModel.Tokens.SessionSecurityTokenHandler.TokenType" />
+        <element api="P:System.IdentityModel.Tokens.SessionSecurityTokenHandler.Transforms" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+        <type api="T:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler" />
+      </containers>
+      <file name="9759a1f9-9c18-3007-43e6-c6453cc18a26" />
+    </api>
+    <api id="Overload:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.#ctor" />
+        <element api="M:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.#ctor(System.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+        <type api="T:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler" ref="true" />
+      </containers>
+      <file name="1228f213-d2f6-f297-cfb0-2871fd871ac6" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.#ctor" />
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+        <type api="T:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler" ref="true" />
+      </containers>
+      <file name="1ace0c4d-a8d7-7644-4860-2e8261e631ea" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.#ctor(System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler.#ctor" />
+      <parameters>
+        <parameter name="tokenLifetime">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+        <type api="T:System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler" ref="true" />
+      </containers>
+      <file name="8103d923-541c-36e7-c06b-00fc1286d322" />
+    </api>
+    <api id="T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler" />
+      <apidata name="MembershipUserNameSecurityTokenHandler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.IdentityModel.Tokens.UserNameSecurityTokenHandler" ref="true" />
+          <type api="T:System.IdentityModel.Tokens.SecurityTokenHandler" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+      </containers>
+      <file name="cc7c031c-a9e9-2d16-9405-be8641e523d5" />
+    </api>
+    <api id="AllMembers.T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler">
+      <topicdata name="MembershipUserNameSecurityTokenHandler" group="list" subgroup="members" typeTopicId="T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler" />
+      <apidata name="MembershipUserNameSecurityTokenHandler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.#ctor">
+          <element api="M:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.#ctor" />
+          <element api="M:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.#ctor(System.Web.Security.MembershipProvider)" />
+        </element>
+        <element api="P:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.CanValidateToken" />
+        <element api="M:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.LoadCustomConfiguration(System.Xml.XmlNodeList)" />
+        <element api="P:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.MembershipProvider" />
+        <element api="M:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.ValidateToken(System.IdentityModel.Tokens.SecurityToken)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CanReadKeyIdentifierClause(System.Xml.XmlReader)" />
+        <element api="Overload:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.CanReadToken">
+          <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CanReadToken(System.String)" />
+          <element api="M:System.IdentityModel.Tokens.UserNameSecurityTokenHandler.CanReadToken(System.Xml.XmlReader)" />
+        </element>
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CanWriteKeyIdentifierClause(System.IdentityModel.Tokens.SecurityKeyIdentifierClause)" />
+        <element api="P:System.IdentityModel.Tokens.SecurityTokenHandler.Configuration" />
+        <element api="P:System.IdentityModel.Tokens.SecurityTokenHandler.ContainingCollection" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CreateSecurityTokenReference(System.IdentityModel.Tokens.SecurityToken,System.Boolean)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CreateToken(System.IdentityModel.Tokens.SecurityTokenDescriptor)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.DetectReplayedToken(System.IdentityModel.Tokens.SecurityToken)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.ReadKeyIdentifierClause(System.Xml.XmlReader)" />
+        <element api="Overload:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.ReadToken">
+          <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.ReadToken(System.String)" />
+          <element api="M:System.IdentityModel.Tokens.UserNameSecurityTokenHandler.ReadToken(System.Xml.XmlReader)" />
+          <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.ReadToken(System.Xml.XmlReader,System.IdentityModel.Selectors.SecurityTokenResolver)" />
+        </element>
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.TraceTokenValidationFailure(System.IdentityModel.Tokens.SecurityToken,System.String)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.TraceTokenValidationSuccess(System.IdentityModel.Tokens.SecurityToken)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.WriteKeyIdentifierClause(System.Xml.XmlWriter,System.IdentityModel.Tokens.SecurityKeyIdentifierClause)" />
+        <element api="Overload:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.WriteToken">
+          <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.WriteToken(System.IdentityModel.Tokens.SecurityToken)" />
+          <element api="M:System.IdentityModel.Tokens.UserNameSecurityTokenHandler.WriteToken(System.Xml.XmlWriter,System.IdentityModel.Tokens.SecurityToken)" />
+        </element>
+        <element api="P:System.IdentityModel.Tokens.UserNameSecurityTokenHandler.CanWriteToken" />
+        <element api="M:System.IdentityModel.Tokens.UserNameSecurityTokenHandler.GetTokenTypeIdentifiers" />
+        <element api="P:System.IdentityModel.Tokens.UserNameSecurityTokenHandler.RetainPassword" />
+        <element api="P:System.IdentityModel.Tokens.UserNameSecurityTokenHandler.TokenType" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+        <type api="T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler" />
+      </containers>
+      <file name="7e84b861-1d5e-ccdd-08b9-004e628df4b2" />
+    </api>
+    <api id="Methods.T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler">
+      <topicdata name="MembershipUserNameSecurityTokenHandler" group="list" subgroup="Methods" typeTopicId="T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler" />
+      <apidata name="MembershipUserNameSecurityTokenHandler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.LoadCustomConfiguration(System.Xml.XmlNodeList)" />
+        <element api="M:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.ValidateToken(System.IdentityModel.Tokens.SecurityToken)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CanReadKeyIdentifierClause(System.Xml.XmlReader)" />
+        <element api="Overload:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.CanReadToken">
+          <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CanReadToken(System.String)" />
+          <element api="M:System.IdentityModel.Tokens.UserNameSecurityTokenHandler.CanReadToken(System.Xml.XmlReader)" />
+        </element>
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CanWriteKeyIdentifierClause(System.IdentityModel.Tokens.SecurityKeyIdentifierClause)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CreateSecurityTokenReference(System.IdentityModel.Tokens.SecurityToken,System.Boolean)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.CreateToken(System.IdentityModel.Tokens.SecurityTokenDescriptor)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.DetectReplayedToken(System.IdentityModel.Tokens.SecurityToken)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.ReadKeyIdentifierClause(System.Xml.XmlReader)" />
+        <element api="Overload:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.ReadToken">
+          <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.ReadToken(System.String)" />
+          <element api="M:System.IdentityModel.Tokens.UserNameSecurityTokenHandler.ReadToken(System.Xml.XmlReader)" />
+          <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.ReadToken(System.Xml.XmlReader,System.IdentityModel.Selectors.SecurityTokenResolver)" />
+        </element>
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.TraceTokenValidationFailure(System.IdentityModel.Tokens.SecurityToken,System.String)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.TraceTokenValidationSuccess(System.IdentityModel.Tokens.SecurityToken)" />
+        <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.WriteKeyIdentifierClause(System.Xml.XmlWriter,System.IdentityModel.Tokens.SecurityKeyIdentifierClause)" />
+        <element api="Overload:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.WriteToken">
+          <element api="M:System.IdentityModel.Tokens.SecurityTokenHandler.WriteToken(System.IdentityModel.Tokens.SecurityToken)" />
+          <element api="M:System.IdentityModel.Tokens.UserNameSecurityTokenHandler.WriteToken(System.Xml.XmlWriter,System.IdentityModel.Tokens.SecurityToken)" />
+        </element>
+        <element api="M:System.IdentityModel.Tokens.UserNameSecurityTokenHandler.GetTokenTypeIdentifiers" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+        <type api="T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler" />
+      </containers>
+      <file name="c2a3870f-7584-a1c7-b6f8-ea67f2a2d8e6" />
+    </api>
+    <api id="Properties.T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler">
+      <topicdata name="MembershipUserNameSecurityTokenHandler" group="list" subgroup="Properties" typeTopicId="T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler" />
+      <apidata name="MembershipUserNameSecurityTokenHandler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.#ctor" />
+      <elements>
+        <element api="P:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.CanValidateToken" />
+        <element api="P:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.MembershipProvider" />
+        <element api="P:System.IdentityModel.Tokens.SecurityTokenHandler.Configuration" />
+        <element api="P:System.IdentityModel.Tokens.SecurityTokenHandler.ContainingCollection" />
+        <element api="P:System.IdentityModel.Tokens.UserNameSecurityTokenHandler.CanWriteToken" />
+        <element api="P:System.IdentityModel.Tokens.UserNameSecurityTokenHandler.RetainPassword" />
+        <element api="P:System.IdentityModel.Tokens.UserNameSecurityTokenHandler.TokenType" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+        <type api="T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler" />
+      </containers>
+      <file name="6c12637f-1bc1-d540-abd1-ef18de935957" />
+    </api>
+    <api id="Overload:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.#ctor" />
+        <element api="M:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.#ctor(System.Web.Security.MembershipProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+        <type api="T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler" ref="true" />
+      </containers>
+      <file name="26786fd8-ecf7-c2ca-badb-530f7c6b7d9e" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.#ctor" />
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+        <type api="T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler" ref="true" />
+      </containers>
+      <file name="927be2b0-ed12-9c77-82fe-b47134ef18fa" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.#ctor(System.Web.Security.MembershipProvider)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.#ctor" />
+      <parameters>
+        <parameter name="provider">
+          <type api="T:System.Web.Security.MembershipProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+        <type api="T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler" ref="true" />
+      </containers>
+      <file name="d630fb91-9886-ba8d-d273-fb4515d60bc0" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.CanValidateToken">
+      <topicdata group="api" />
+      <apidata name="CanValidateToken" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.IdentityModel.Tokens.SecurityTokenHandler.CanValidateToken">
+          <type api="T:System.IdentityModel.Tokens.SecurityTokenHandler" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_CanValidateToken" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+        <type api="T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler" ref="true" />
+      </containers>
+      <file name="9a7666d9-807d-02a9-c2c3-260a44bdb4ec" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.LoadCustomConfiguration(System.Xml.XmlNodeList)">
+      <topicdata group="api" />
+      <apidata name="LoadCustomConfiguration" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IdentityModel.Tokens.SecurityTokenHandler.LoadCustomConfiguration(System.Xml.XmlNodeList)">
+          <type api="T:System.IdentityModel.Tokens.SecurityTokenHandler" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="customConfigElements">
+          <type api="T:System.Xml.XmlNodeList" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.IdentityModel.Configuration.ICustomIdentityConfiguration.LoadCustomConfiguration(System.Xml.XmlNodeList)">
+          <type api="T:System.IdentityModel.Configuration.ICustomIdentityConfiguration" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+        <type api="T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler" ref="true" />
+      </containers>
+      <file name="6b45f9ab-5303-1a46-2c3a-af82e96dd838" />
+    </api>
+    <api id="P:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.MembershipProvider">
+      <topicdata group="api" />
+      <apidata name="MembershipProvider" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MembershipProvider" />
+      <setter name="set_MembershipProvider" />
+      <returns>
+        <type api="T:System.Web.Security.MembershipProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+        <type api="T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler" ref="true" />
+      </containers>
+      <file name="b1bf01b8-6a0e-6a6b-6c2f-98f15b8bb925" />
+    </api>
+    <api id="M:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler.ValidateToken(System.IdentityModel.Tokens.SecurityToken)">
+      <topicdata group="api" />
+      <apidata name="ValidateToken" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IdentityModel.Tokens.SecurityTokenHandler.ValidateToken(System.IdentityModel.Tokens.SecurityToken)">
+          <type api="T:System.IdentityModel.Tokens.SecurityTokenHandler" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="token">
+          <type api="T:System.IdentityModel.Tokens.SecurityToken" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Security.Claims.ClaimsIdentity" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.IdentityModel.Services" module="System.IdentityModel.Services" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.IdentityModel.Services.Tokens" />
+        <type api="T:System.IdentityModel.Services.Tokens.MembershipUserNameSecurityTokenHandler" ref="true" />
+      </containers>
+      <file name="9b35da9f-19d2-c874-39c3-04770b9b0398" />
+    </api>
+  </apis>
+</reflection>

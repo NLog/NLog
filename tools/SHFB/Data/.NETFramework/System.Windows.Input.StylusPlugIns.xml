@@ -1,0 +1,1380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="PresentationCore">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\wpf\src\windows.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationCore.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationCore.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationCore.dll</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Input.StylusPlugIns">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Input.StylusPlugIns" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" />
+        <element api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" />
+        <element api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" />
+        <element api="T:System.Windows.Input.StylusPlugIns.StylusPlugInCollection" />
+      </elements>
+      <file name="b9284b40-4cc2-60b2-bbec-2e16145cb845" />
+    </api>
+    <api id="T:System.Windows.Input.StylusPlugIns.DynamicRenderer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.StylusPlugIns.DynamicRenderer" />
+      <apidata name="DynamicRenderer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+      </containers>
+      <file name="f329c4c7-528c-b97b-9737-e637a3f8aaf0" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.StylusPlugIns.DynamicRenderer">
+      <topicdata name="DynamicRenderer" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" />
+      <apidata name="DynamicRenderer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.#ctor" />
+        <element api="P:System.Windows.Input.StylusPlugIns.DynamicRenderer.DrawingAttributes" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.GetDispatcher" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnAdded" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnDraw(System.Windows.Media.DrawingContext,System.Windows.Input.StylusPointCollection,System.Windows.Media.Geometry,System.Windows.Media.Brush)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnDrawingAttributesReplaced" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnEnabledChanged" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnIsActiveForInputChanged" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnRemoved" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusDown(System.Windows.Input.StylusPlugIns.RawStylusInput)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusDownProcessed(System.Object,System.Boolean)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusEnter(System.Windows.Input.StylusPlugIns.RawStylusInput,System.Boolean)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusLeave(System.Windows.Input.StylusPlugIns.RawStylusInput,System.Boolean)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusMove(System.Windows.Input.StylusPlugIns.RawStylusInput)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusUp(System.Windows.Input.StylusPlugIns.RawStylusInput)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusUpProcessed(System.Object,System.Boolean)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.Reset(System.Windows.Input.StylusDevice,System.Windows.Input.StylusPointCollection)" />
+        <element api="P:System.Windows.Input.StylusPlugIns.DynamicRenderer.RootVisual" />
+        <element api="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.Element" />
+        <element api="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.ElementBounds" />
+        <element api="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.Enabled" />
+        <element api="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.IsActiveForInput" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMoveProcessed(System.Object,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" />
+      </containers>
+      <file name="604e3206-3385-9ef1-73bd-faa3111f13d5" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.StylusPlugIns.DynamicRenderer">
+      <topicdata name="DynamicRenderer" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" />
+      <apidata name="DynamicRenderer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.GetDispatcher" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnAdded" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnDraw(System.Windows.Media.DrawingContext,System.Windows.Input.StylusPointCollection,System.Windows.Media.Geometry,System.Windows.Media.Brush)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnDrawingAttributesReplaced" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnEnabledChanged" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnIsActiveForInputChanged" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnRemoved" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusDown(System.Windows.Input.StylusPlugIns.RawStylusInput)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusDownProcessed(System.Object,System.Boolean)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusEnter(System.Windows.Input.StylusPlugIns.RawStylusInput,System.Boolean)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusLeave(System.Windows.Input.StylusPlugIns.RawStylusInput,System.Boolean)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusMove(System.Windows.Input.StylusPlugIns.RawStylusInput)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusUp(System.Windows.Input.StylusPlugIns.RawStylusInput)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusUpProcessed(System.Object,System.Boolean)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.Reset(System.Windows.Input.StylusDevice,System.Windows.Input.StylusPointCollection)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMoveProcessed(System.Object,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" />
+      </containers>
+      <file name="38efe8e9-a369-b6f8-583d-d9ae0f157c46" />
+    </api>
+    <api id="Properties.T:System.Windows.Input.StylusPlugIns.DynamicRenderer">
+      <topicdata name="DynamicRenderer" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" />
+      <apidata name="DynamicRenderer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Input.StylusPlugIns.DynamicRenderer.DrawingAttributes" />
+        <element api="P:System.Windows.Input.StylusPlugIns.DynamicRenderer.RootVisual" />
+        <element api="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.Element" />
+        <element api="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.ElementBounds" />
+        <element api="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.Enabled" />
+        <element api="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.IsActiveForInput" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" />
+      </containers>
+      <file name="c29426d7-7daf-51f6-3a3a-840820eaf09b" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="e157f9ac-808f-1611-f70c-e1a791da649b" />
+    </api>
+    <api id="P:System.Windows.Input.StylusPlugIns.DynamicRenderer.DrawingAttributes">
+      <topicdata group="api" />
+      <apidata name="DrawingAttributes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DrawingAttributes" />
+      <setter name="set_DrawingAttributes" />
+      <returns>
+        <type api="T:System.Windows.Ink.DrawingAttributes" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="a550ac9c-5ed6-d660-2e72-1f74f2e1dca2" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.GetDispatcher">
+      <topicdata group="api" />
+      <apidata name="GetDispatcher" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Windows.Threading.Dispatcher" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="7e925750-974b-709e-badd-0c7df5b6ebdf" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnAdded">
+      <topicdata group="api" />
+      <apidata name="OnAdded" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnAdded">
+          <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="4c55bd0f-9274-395b-e809-c56d36312df8" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnDraw(System.Windows.Media.DrawingContext,System.Windows.Input.StylusPointCollection,System.Windows.Media.Geometry,System.Windows.Media.Brush)">
+      <topicdata group="api" />
+      <apidata name="OnDraw" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="drawingContext">
+          <type api="T:System.Windows.Media.DrawingContext" ref="true" />
+        </parameter>
+        <parameter name="stylusPoints">
+          <type api="T:System.Windows.Input.StylusPointCollection" ref="true" />
+        </parameter>
+        <parameter name="geometry">
+          <type api="T:System.Windows.Media.Geometry" ref="true" />
+        </parameter>
+        <parameter name="fillBrush">
+          <type api="T:System.Windows.Media.Brush" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="2320313e-da18-136a-a050-866801d28d27" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnDrawingAttributesReplaced">
+      <topicdata group="api" />
+      <apidata name="OnDrawingAttributesReplaced" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="7bde58b8-0fdf-eea1-f44e-44676a85469f" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnEnabledChanged">
+      <topicdata group="api" />
+      <apidata name="OnEnabledChanged" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnEnabledChanged">
+          <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="c4772de7-2162-0a18-9bea-871583bb5191" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnIsActiveForInputChanged">
+      <topicdata group="api" />
+      <apidata name="OnIsActiveForInputChanged" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnIsActiveForInputChanged">
+          <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="7d4adca6-89cc-f196-cf42-5c64cd27f474" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnRemoved">
+      <topicdata group="api" />
+      <apidata name="OnRemoved" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnRemoved">
+          <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="8db9c273-a2a8-95c1-6722-8cc4d94fc5aa" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusDown(System.Windows.Input.StylusPlugIns.RawStylusInput)">
+      <topicdata group="api" />
+      <apidata name="OnStylusDown" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDown(System.Windows.Input.StylusPlugIns.RawStylusInput)">
+          <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="rawStylusInput">
+          <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="c6216b5e-58ea-e795-3998-ca5fd9bb42d3" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusDownProcessed(System.Object,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="OnStylusDownProcessed" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDownProcessed(System.Object,System.Boolean)">
+          <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="callbackData">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetVerified">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="3bc3c34a-f33c-d1a9-9e26-f881dd0e9d86" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusEnter(System.Windows.Input.StylusPlugIns.RawStylusInput,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="OnStylusEnter" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusEnter(System.Windows.Input.StylusPlugIns.RawStylusInput,System.Boolean)">
+          <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="rawStylusInput">
+          <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" ref="true" />
+        </parameter>
+        <parameter name="confirmed">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="250239dd-e8e0-00a0-ab89-6270291ef664" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusLeave(System.Windows.Input.StylusPlugIns.RawStylusInput,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="OnStylusLeave" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusLeave(System.Windows.Input.StylusPlugIns.RawStylusInput,System.Boolean)">
+          <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="rawStylusInput">
+          <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" ref="true" />
+        </parameter>
+        <parameter name="confirmed">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="cd25b241-a196-d3a5-e10b-59051fe7d507" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusMove(System.Windows.Input.StylusPlugIns.RawStylusInput)">
+      <topicdata group="api" />
+      <apidata name="OnStylusMove" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMove(System.Windows.Input.StylusPlugIns.RawStylusInput)">
+          <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="rawStylusInput">
+          <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="573c341c-a20e-1774-3449-b019e739ba5b" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusUp(System.Windows.Input.StylusPlugIns.RawStylusInput)">
+      <topicdata group="api" />
+      <apidata name="OnStylusUp" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUp(System.Windows.Input.StylusPlugIns.RawStylusInput)">
+          <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="rawStylusInput">
+          <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="f4afe0f2-b833-a6e3-dcd6-fdefa7a3199a" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.OnStylusUpProcessed(System.Object,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="OnStylusUpProcessed" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUpProcessed(System.Object,System.Boolean)">
+          <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="callbackData">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetVerified">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="907c5d54-ff9b-70ac-d0b9-82563dd361b4" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.DynamicRenderer.Reset(System.Windows.Input.StylusDevice,System.Windows.Input.StylusPointCollection)">
+      <topicdata group="api" />
+      <apidata name="Reset" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="stylusDevice">
+          <type api="T:System.Windows.Input.StylusDevice" ref="true" />
+        </parameter>
+        <parameter name="stylusPoints">
+          <type api="T:System.Windows.Input.StylusPointCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="551d08f5-9df6-5ddc-1c0e-11ae9175f37e" />
+    </api>
+    <api id="P:System.Windows.Input.StylusPlugIns.DynamicRenderer.RootVisual">
+      <topicdata group="api" />
+      <apidata name="RootVisual" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RootVisual" />
+      <returns>
+        <type api="T:System.Windows.Media.Visual" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+      </containers>
+      <file name="dddd590b-b213-805b-263e-466db4b95ee0" />
+    </api>
+    <api id="T:System.Windows.Input.StylusPlugIns.RawStylusInput">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.StylusPlugIns.RawStylusInput" />
+      <apidata name="RawStylusInput" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+      </containers>
+      <file name="a27c9e0d-b771-ed0a-8827-eda991a2e7b1" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.StylusPlugIns.RawStylusInput">
+      <topicdata name="RawStylusInput" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.StylusPlugIns.RawStylusInput" />
+      <apidata name="RawStylusInput" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Input.StylusPlugIns.RawStylusInput.GetStylusPoints" />
+        <element api="M:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed(System.Object)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.RawStylusInput.SetStylusPoints(System.Windows.Input.StylusPointCollection)" />
+        <element api="P:System.Windows.Input.StylusPlugIns.RawStylusInput.StylusDeviceId" />
+        <element api="P:System.Windows.Input.StylusPlugIns.RawStylusInput.TabletDeviceId" />
+        <element api="P:System.Windows.Input.StylusPlugIns.RawStylusInput.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" />
+      </containers>
+      <file name="f04454d3-7cd5-8752-1fa3-494c785b42d8" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.StylusPlugIns.RawStylusInput">
+      <topicdata name="RawStylusInput" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.StylusPlugIns.RawStylusInput" />
+      <apidata name="RawStylusInput" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Input.StylusPlugIns.RawStylusInput.GetStylusPoints" />
+        <element api="M:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed(System.Object)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.RawStylusInput.SetStylusPoints(System.Windows.Input.StylusPointCollection)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" />
+      </containers>
+      <file name="420be874-184c-ef79-0faa-0959e742188a" />
+    </api>
+    <api id="Properties.T:System.Windows.Input.StylusPlugIns.RawStylusInput">
+      <topicdata name="RawStylusInput" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Input.StylusPlugIns.RawStylusInput" />
+      <apidata name="RawStylusInput" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Input.StylusPlugIns.RawStylusInput.StylusDeviceId" />
+        <element api="P:System.Windows.Input.StylusPlugIns.RawStylusInput.TabletDeviceId" />
+        <element api="P:System.Windows.Input.StylusPlugIns.RawStylusInput.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" />
+      </containers>
+      <file name="5888decb-4a41-f91f-d7a1-a41f7391df18" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.RawStylusInput.GetStylusPoints">
+      <topicdata group="api" />
+      <apidata name="GetStylusPoints" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Windows.Input.StylusPointCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" ref="true" />
+      </containers>
+      <file name="ab2a74d3-04db-9347-4ad0-7b3471c8c0e9" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.RawStylusInput.NotifyWhenProcessed(System.Object)">
+      <topicdata group="api" />
+      <apidata name="NotifyWhenProcessed" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="callbackData">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" ref="true" />
+      </containers>
+      <file name="6b37f5de-f9b9-543d-36e6-9afdafcf338d" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.RawStylusInput.SetStylusPoints(System.Windows.Input.StylusPointCollection)">
+      <topicdata group="api" />
+      <apidata name="SetStylusPoints" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stylusPoints">
+          <type api="T:System.Windows.Input.StylusPointCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" ref="true" />
+      </containers>
+      <file name="be51fd33-ae73-ec48-0e2f-12d5368ffe5b" />
+    </api>
+    <api id="P:System.Windows.Input.StylusPlugIns.RawStylusInput.StylusDeviceId">
+      <topicdata group="api" />
+      <apidata name="StylusDeviceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_StylusDeviceId" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" ref="true" />
+      </containers>
+      <file name="4f1b07e0-98ab-5f1c-a857-11089ff72d53" />
+    </api>
+    <api id="P:System.Windows.Input.StylusPlugIns.RawStylusInput.TabletDeviceId">
+      <topicdata group="api" />
+      <apidata name="TabletDeviceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TabletDeviceId" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" ref="true" />
+      </containers>
+      <file name="73421c27-476f-56de-717a-a79fc84f74f2" />
+    </api>
+    <api id="P:System.Windows.Input.StylusPlugIns.RawStylusInput.Timestamp">
+      <topicdata group="api" />
+      <apidata name="Timestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Timestamp" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" ref="true" />
+      </containers>
+      <file name="2965a433-0356-61d9-1b19-c835adfa2cb0" />
+    </api>
+    <api id="T:System.Windows.Input.StylusPlugIns.StylusPlugIn">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.StylusPlugIns.StylusPlugIn" />
+      <apidata name="StylusPlugIn" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Windows.Input.StylusPlugIns.DynamicRenderer" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+      </containers>
+      <file name="c7e1054e-7e00-8b7d-fa13-57065b311cc4" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.StylusPlugIns.StylusPlugIn">
+      <topicdata name="StylusPlugIn" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" />
+      <apidata name="StylusPlugIn" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.#ctor" />
+        <element api="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.Element" />
+        <element api="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.ElementBounds" />
+        <element api="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.Enabled" />
+        <element api="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.IsActiveForInput" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnAdded" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnEnabledChanged" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnIsActiveForInputChanged" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnRemoved" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDown(System.Windows.Input.StylusPlugIns.RawStylusInput)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDownProcessed(System.Object,System.Boolean)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusEnter(System.Windows.Input.StylusPlugIns.RawStylusInput,System.Boolean)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusLeave(System.Windows.Input.StylusPlugIns.RawStylusInput,System.Boolean)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMove(System.Windows.Input.StylusPlugIns.RawStylusInput)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMoveProcessed(System.Object,System.Boolean)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUp(System.Windows.Input.StylusPlugIns.RawStylusInput)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUpProcessed(System.Object,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" />
+      </containers>
+      <file name="c7d3edc8-a58e-f991-64f3-de62bf25e7eb" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.StylusPlugIns.StylusPlugIn">
+      <topicdata name="StylusPlugIn" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" />
+      <apidata name="StylusPlugIn" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnAdded" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnEnabledChanged" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnIsActiveForInputChanged" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnRemoved" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDown(System.Windows.Input.StylusPlugIns.RawStylusInput)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDownProcessed(System.Object,System.Boolean)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusEnter(System.Windows.Input.StylusPlugIns.RawStylusInput,System.Boolean)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusLeave(System.Windows.Input.StylusPlugIns.RawStylusInput,System.Boolean)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMove(System.Windows.Input.StylusPlugIns.RawStylusInput)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMoveProcessed(System.Object,System.Boolean)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUp(System.Windows.Input.StylusPlugIns.RawStylusInput)" />
+        <element api="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUpProcessed(System.Object,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" />
+      </containers>
+      <file name="55745d57-0be5-745f-77bd-d7b9eefeb085" />
+    </api>
+    <api id="Properties.T:System.Windows.Input.StylusPlugIns.StylusPlugIn">
+      <topicdata name="StylusPlugIn" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" />
+      <apidata name="StylusPlugIn" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.Element" />
+        <element api="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.ElementBounds" />
+        <element api="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.Enabled" />
+        <element api="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.IsActiveForInput" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" />
+      </containers>
+      <file name="41c8be44-d0b5-7c7b-037b-574f74273bb3" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="14ab735b-faaf-60ab-e576-ac065a842d16" />
+    </api>
+    <api id="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.Element">
+      <topicdata group="api" />
+      <apidata name="Element" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Element" />
+      <returns>
+        <type api="T:System.Windows.UIElement" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="24068c39-7806-b38c-f849-c8951526208d" />
+    </api>
+    <api id="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.ElementBounds">
+      <topicdata group="api" />
+      <apidata name="ElementBounds" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ElementBounds" />
+      <returns>
+        <type api="T:System.Windows.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="baa90b63-7caa-9388-8e05-f3ea741a13f9" />
+    </api>
+    <api id="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.Enabled">
+      <topicdata group="api" />
+      <apidata name="Enabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Enabled" />
+      <setter name="set_Enabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="f6218656-c5fb-fb67-2fb5-84e39782fd61" />
+    </api>
+    <api id="P:System.Windows.Input.StylusPlugIns.StylusPlugIn.IsActiveForInput">
+      <topicdata group="api" />
+      <apidata name="IsActiveForInput" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsActiveForInput" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="16c4642f-9091-4437-840b-d23b47208cde" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnAdded">
+      <topicdata group="api" />
+      <apidata name="OnAdded" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="ef669f9c-a272-5b21-e4a4-65c1de61501f" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnEnabledChanged">
+      <topicdata group="api" />
+      <apidata name="OnEnabledChanged" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="fedf2329-ebab-29ed-7196-a6c7d3b58637" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnIsActiveForInputChanged">
+      <topicdata group="api" />
+      <apidata name="OnIsActiveForInputChanged" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="7d5697b9-a98c-1167-62f1-fb4de4752348" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnRemoved">
+      <topicdata group="api" />
+      <apidata name="OnRemoved" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="ca6088b7-92a4-9b7d-dcfe-9aa3f9d34323" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDown(System.Windows.Input.StylusPlugIns.RawStylusInput)">
+      <topicdata group="api" />
+      <apidata name="OnStylusDown" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="rawStylusInput">
+          <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="995ee4d7-aa91-d3e2-f8c4-e0323b90b8b7" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusDownProcessed(System.Object,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="OnStylusDownProcessed" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="callbackData">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetVerified">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="0ac6daa1-75d9-1b58-38df-bf245dc09fdb" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusEnter(System.Windows.Input.StylusPlugIns.RawStylusInput,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="OnStylusEnter" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="rawStylusInput">
+          <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" ref="true" />
+        </parameter>
+        <parameter name="confirmed">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="aacf5854-f5e1-b9d2-7887-0f9c81f05ca1" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusLeave(System.Windows.Input.StylusPlugIns.RawStylusInput,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="OnStylusLeave" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="rawStylusInput">
+          <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" ref="true" />
+        </parameter>
+        <parameter name="confirmed">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="b36ba4e0-4a2b-57a7-7070-b69a58d36f17" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMove(System.Windows.Input.StylusPlugIns.RawStylusInput)">
+      <topicdata group="api" />
+      <apidata name="OnStylusMove" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="rawStylusInput">
+          <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="6fc76c9a-ce23-d7c5-0b43-2a0154cbcc09" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusMoveProcessed(System.Object,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="OnStylusMoveProcessed" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="callbackData">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetVerified">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="efb360bf-a1e8-6f42-51c2-3890897e3c87" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUp(System.Windows.Input.StylusPlugIns.RawStylusInput)">
+      <topicdata group="api" />
+      <apidata name="OnStylusUp" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="rawStylusInput">
+          <type api="T:System.Windows.Input.StylusPlugIns.RawStylusInput" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="8a02a014-e751-3df4-732c-75239c59cd3f" />
+    </api>
+    <api id="M:System.Windows.Input.StylusPlugIns.StylusPlugIn.OnStylusUpProcessed(System.Object,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="OnStylusUpProcessed" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="callbackData">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetVerified">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+      </containers>
+      <file name="196c0486-763c-3456-ebfe-4365a363aa6d" />
+    </api>
+    <api id="T:System.Windows.Input.StylusPlugIns.StylusPlugInCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.StylusPlugIns.StylusPlugInCollection" />
+      <apidata name="StylusPlugInCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+            <specialization>
+              <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugIn" ref="true" />
+            </specialization>
+          </type>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+      </containers>
+      <file name="b15e5ed5-1817-751a-c340-739f54f1b259" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.StylusPlugIns.StylusPlugInCollection">
+      <topicdata name="StylusPlugInCollection" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.StylusPlugIns.StylusPlugInCollection" />
+      <apidata name="StylusPlugInCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.Add(`0)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.Clear" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.Contains(`0)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.CopyTo(`0[],System.Int32)" />
+        <element api="P:System.Collections.ObjectModel.Collection`1.Count" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.GetEnumerator" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.IndexOf(`0)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.Insert(System.Int32,`0)" />
+        <element api="P:System.Collections.ObjectModel.Collection`1.Item(System.Int32)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.Remove(`0)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.RemoveAt(System.Int32)" />
+        <element api="P:System.Collections.ObjectModel.Collection`1.System#Collections#Generic#ICollection{T}#IsReadOnly" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="P:System.Collections.ObjectModel.Collection`1.System#Collections#ICollection#IsSynchronized" />
+        <element api="P:System.Collections.ObjectModel.Collection`1.System#Collections#ICollection#SyncRoot" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.System#Collections#IEnumerable#GetEnumerator" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.System#Collections#IList#Add(System.Object)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.System#Collections#IList#Contains(System.Object)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.System#Collections#IList#IndexOf(System.Object)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.System#Collections#IList#Insert(System.Int32,System.Object)" />
+        <element api="P:System.Collections.ObjectModel.Collection`1.System#Collections#IList#IsFixedSize" />
+        <element api="P:System.Collections.ObjectModel.Collection`1.System#Collections#IList#IsReadOnly" />
+        <element api="P:System.Collections.ObjectModel.Collection`1.System#Collections#IList#Item(System.Int32)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.System#Collections#IList#Remove(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugInCollection" />
+      </containers>
+      <file name="f686062c-6ddf-0c73-db0b-4f996ef3a6fd" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.StylusPlugIns.StylusPlugInCollection">
+      <topicdata name="StylusPlugInCollection" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.StylusPlugIns.StylusPlugInCollection" />
+      <apidata name="StylusPlugInCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.Add(`0)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.Clear" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.Contains(`0)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.CopyTo(`0[],System.Int32)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.GetEnumerator" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.IndexOf(`0)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.Insert(System.Int32,`0)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.Remove(`0)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.RemoveAt(System.Int32)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.System#Collections#IEnumerable#GetEnumerator" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.System#Collections#IList#Add(System.Object)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.System#Collections#IList#Contains(System.Object)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.System#Collections#IList#IndexOf(System.Object)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.System#Collections#IList#Insert(System.Int32,System.Object)" />
+        <element api="M:System.Collections.ObjectModel.Collection`1.System#Collections#IList#Remove(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugInCollection" />
+      </containers>
+      <file name="69bb3a37-6cbe-8f32-3f97-40d9bc126c69" />
+    </api>
+    <api id="Properties.T:System.Windows.Input.StylusPlugIns.StylusPlugInCollection">
+      <topicdata name="StylusPlugInCollection" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Input.StylusPlugIns.StylusPlugInCollection" />
+      <apidata name="StylusPlugInCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Collections.ObjectModel.Collection`1.Count" />
+        <element api="P:System.Collections.ObjectModel.Collection`1.Item(System.Int32)" />
+        <element api="P:System.Collections.ObjectModel.Collection`1.System#Collections#Generic#ICollection{T}#IsReadOnly" />
+        <element api="P:System.Collections.ObjectModel.Collection`1.System#Collections#ICollection#IsSynchronized" />
+        <element api="P:System.Collections.ObjectModel.Collection`1.System#Collections#ICollection#SyncRoot" />
+        <element api="P:System.Collections.ObjectModel.Collection`1.System#Collections#IList#IsFixedSize" />
+        <element api="P:System.Collections.ObjectModel.Collection`1.System#Collections#IList#IsReadOnly" />
+        <element api="P:System.Collections.ObjectModel.Collection`1.System#Collections#IList#Item(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.StylusPlugIns" />
+        <type api="T:System.Windows.Input.StylusPlugIns.StylusPlugInCollection" />
+      </containers>
+      <file name="bba4dbb9-9945-d49c-e8f9-0dfdd05b9bae" />
+    </api>
+  </apis>
+</reflection>

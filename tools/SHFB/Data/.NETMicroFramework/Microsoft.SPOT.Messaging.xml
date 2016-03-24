@@ -1,0 +1,606 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.SPOT.Native">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.SPOT.Native</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.SPOT.Messaging">
+      <topicdata group="api" />
+      <apidata name="Microsoft.SPOT.Messaging" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.SPOT.Messaging.EndPoint" />
+        <element api="T:Microsoft.SPOT.Messaging.Message" />
+        <element api="T:Microsoft.SPOT.Messaging.Message.RemotedException" />
+      </elements>
+      <file name="fda79247-dfd8-c928-523f-e5764409edce" />
+    </api>
+    <api id="T:Microsoft.SPOT.Messaging.EndPoint">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Messaging.EndPoint" />
+      <apidata name="EndPoint" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+      </containers>
+      <file name="43a3ed1f-427b-02bf-a6fa-38b351fdae91" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Messaging.EndPoint">
+      <topicdata name="EndPoint" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Messaging.EndPoint" />
+      <apidata name="EndPoint" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Messaging.EndPoint.#ctor(System.Type,System.UInt32)" />
+        <element api="M:Microsoft.SPOT.Messaging.EndPoint.Check(System.Type,System.UInt32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Messaging.EndPoint.GetMessage(System.Int32)" />
+        <element api="M:Microsoft.SPOT.Messaging.EndPoint.SendMessage(System.Type,System.UInt32,System.Int32,System.Object)" />
+        <element api="M:Microsoft.SPOT.Messaging.EndPoint.SendMessageRaw(System.Type,System.UInt32,System.Int32,System.Byte[])" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.EndPoint" />
+      </containers>
+      <file name="30909d60-b288-5e66-a9b1-5f911704d78f" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Messaging.EndPoint">
+      <topicdata name="EndPoint" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Messaging.EndPoint" />
+      <apidata name="EndPoint" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Messaging.EndPoint.Check(System.Type,System.UInt32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Messaging.EndPoint.GetMessage(System.Int32)" />
+        <element api="M:Microsoft.SPOT.Messaging.EndPoint.SendMessage(System.Type,System.UInt32,System.Int32,System.Object)" />
+        <element api="M:Microsoft.SPOT.Messaging.EndPoint.SendMessageRaw(System.Type,System.UInt32,System.Int32,System.Byte[])" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.EndPoint" />
+      </containers>
+      <file name="cfc91f05-da44-f45e-ff29-628e50d4d846" />
+    </api>
+    <api id="M:Microsoft.SPOT.Messaging.EndPoint.#ctor(System.Type,System.UInt32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="selector">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.EndPoint" ref="true" />
+      </containers>
+      <file name="2f6b75fa-c0f8-3939-ad3c-325234858d65" />
+    </api>
+    <api id="M:Microsoft.SPOT.Messaging.EndPoint.Check(System.Type,System.UInt32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Check" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="selector">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="timeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.EndPoint" ref="true" />
+      </containers>
+      <file name="4bf7ee9a-3d04-4d47-3342-187de1ac247b" />
+    </api>
+    <api id="M:Microsoft.SPOT.Messaging.EndPoint.GetMessage(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="timeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.SPOT.Messaging.Message" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.EndPoint" ref="true" />
+      </containers>
+      <file name="267ebcc0-ad08-ff3e-7942-aff1d6c561f1" />
+    </api>
+    <api id="M:Microsoft.SPOT.Messaging.EndPoint.SendMessage(System.Type,System.UInt32,System.Int32,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SendMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="selector">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="timeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="payload">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.EndPoint" ref="true" />
+      </containers>
+      <file name="454b028b-d7e9-eb84-f5c7-7231f0988e59" />
+    </api>
+    <api id="M:Microsoft.SPOT.Messaging.EndPoint.SendMessageRaw(System.Type,System.UInt32,System.Int32,System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="SendMessageRaw" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="selector">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="timeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="payload">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.EndPoint" ref="true" />
+      </containers>
+      <file name="840f81a3-663a-a902-9887-d54ee00b015e" />
+    </api>
+    <api id="T:Microsoft.SPOT.Messaging.Message">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Messaging.Message" />
+      <apidata name="Message" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.SPOT.Messaging.Message.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+      </containers>
+      <file name="62269bc4-116a-b7e0-6735-d0657c88c61d" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Messaging.Message">
+      <topicdata name="Message" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Messaging.Message" />
+      <apidata name="Message" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.SPOT.Messaging.Message.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Messaging.Message.#ctor" />
+        <element api="P:Microsoft.SPOT.Messaging.Message.Payload" />
+        <element api="P:Microsoft.SPOT.Messaging.Message.PayloadRaw" />
+        <element api="M:Microsoft.SPOT.Messaging.Message.Reply(System.Object)" />
+        <element api="M:Microsoft.SPOT.Messaging.Message.ReplyRaw(System.Byte[])" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.Message" />
+      </containers>
+      <file name="9b8ef08d-66a1-0db3-a9e0-650952a97d70" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Messaging.Message">
+      <topicdata name="Message" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Messaging.Message" />
+      <apidata name="Message" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.SPOT.Messaging.Message.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Messaging.Message.Reply(System.Object)" />
+        <element api="M:Microsoft.SPOT.Messaging.Message.ReplyRaw(System.Byte[])" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.Message" />
+      </containers>
+      <file name="4e26ed96-b689-cb98-f592-93e45dc7b8c7" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Messaging.Message">
+      <topicdata name="Message" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Messaging.Message" />
+      <apidata name="Message" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.SPOT.Messaging.Message.#ctor" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Messaging.Message.Payload" />
+        <element api="P:Microsoft.SPOT.Messaging.Message.PayloadRaw" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.Message" />
+      </containers>
+      <file name="b494aa1d-d960-dad4-390e-f05157c8a91b" />
+    </api>
+    <api id="M:Microsoft.SPOT.Messaging.Message.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.Message" ref="true" />
+      </containers>
+      <file name="75c7445a-a402-1777-fe59-58a306ef532f" />
+    </api>
+    <api id="P:Microsoft.SPOT.Messaging.Message.Payload">
+      <topicdata group="api" />
+      <apidata name="Payload" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Payload" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.Message" ref="true" />
+      </containers>
+      <file name="eaa74457-8f2b-c545-a07d-e46ff25d0814" />
+    </api>
+    <api id="P:Microsoft.SPOT.Messaging.Message.PayloadRaw">
+      <topicdata group="api" />
+      <apidata name="PayloadRaw" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PayloadRaw" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.Message" ref="true" />
+      </containers>
+      <file name="dbababe9-62b2-46eb-a803-c58d677d4496" />
+    </api>
+    <api id="M:Microsoft.SPOT.Messaging.Message.Reply(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Reply" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.Message" ref="true" />
+      </containers>
+      <file name="e6a61c96-f36f-5273-abd0-67f5677c93f9" />
+    </api>
+    <api id="M:Microsoft.SPOT.Messaging.Message.ReplyRaw(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="ReplyRaw" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="data">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.Message" ref="true" />
+      </containers>
+      <file name="57197bb1-3bbb-6262-4d6b-1a835d46982f" />
+    </api>
+    <api id="T:Microsoft.SPOT.Messaging.Message.RemotedException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Messaging.Message.RemotedException" />
+      <apidata name="RemotedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.Message" ref="true" />
+      </containers>
+      <file name="dab260d5-1191-2466-492f-f3a601363ea9" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Messaging.Message.RemotedException">
+      <topicdata name="RemotedException" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Messaging.Message.RemotedException" />
+      <apidata name="RemotedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Messaging.Message.RemotedException.#ctor(System.Exception)" />
+        <element api="F:Microsoft.SPOT.Messaging.Message.RemotedException.m_message" />
+        <element api="M:Microsoft.SPOT.Messaging.Message.RemotedException.Raise" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.Message.RemotedException" />
+      </containers>
+      <file name="a17839c5-b124-7c44-3181-4a31954fedb0" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Messaging.Message.RemotedException">
+      <topicdata name="RemotedException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Messaging.Message.RemotedException" />
+      <apidata name="RemotedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Messaging.Message.RemotedException.Raise" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.Message.RemotedException" />
+      </containers>
+      <file name="943022a1-fe14-bdc3-6455-f6182f468e45" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Messaging.Message.RemotedException">
+      <topicdata name="RemotedException" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Messaging.Message.RemotedException" />
+      <apidata name="RemotedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Messaging.Message.RemotedException.m_message" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.Message.RemotedException" />
+      </containers>
+      <file name="292b0920-7996-091c-e1e6-ad02676f49f0" />
+    </api>
+    <api id="M:Microsoft.SPOT.Messaging.Message.RemotedException.#ctor(System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="payload">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.Message.RemotedException" ref="true">
+          <type api="T:Microsoft.SPOT.Messaging.Message" ref="true" />
+        </type>
+      </containers>
+      <file name="7914cc58-09dd-b0ba-66fe-0a950feb8bda" />
+    </api>
+    <api id="F:Microsoft.SPOT.Messaging.Message.RemotedException.m_message">
+      <topicdata group="api" />
+      <apidata name="m_message" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.Message.RemotedException" ref="true">
+          <type api="T:Microsoft.SPOT.Messaging.Message" ref="true" />
+        </type>
+      </containers>
+      <file name="bef733de-1e03-348f-1277-fbff6c6e4857" />
+    </api>
+    <api id="M:Microsoft.SPOT.Messaging.Message.RemotedException.Raise">
+      <topicdata group="api" />
+      <apidata name="Raise" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Messaging" />
+        <type api="T:Microsoft.SPOT.Messaging.Message.RemotedException" ref="true">
+          <type api="T:Microsoft.SPOT.Messaging.Message" ref="true" />
+        </type>
+      </containers>
+      <file name="62ea3afc-850a-e8fd-0ade-f2e075e4d9e2" />
+    </api>
+  </apis>
+</reflection>

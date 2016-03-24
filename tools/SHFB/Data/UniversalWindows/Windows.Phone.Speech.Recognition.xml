@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Phone.PhoneContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Phone.Speech.Recognition">
+      <topicdata group="api" />
+      <apidata name="Windows.Phone.Speech.Recognition" group="namespace" />
+      <elements>
+        <element api="T:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus" />
+      </elements>
+      <file name="ea9bcf13-311b-6ae1-1571-cf45b333a65d" />
+    </api>
+    <api id="T:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus">
+      <topicdata group="api" />
+      <apidata name="SpeechRecognitionUIStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus.Succeeded" />
+        <element api="F:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus.Busy" />
+        <element api="F:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus.Cancelled" />
+        <element api="F:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus.Preempted" />
+        <element api="F:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus.PrivacyPolicyDeclined" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Phone.Speech.Recognition" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Phone.PhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a319a2dd-c8aa-5fb0-b251-ccdf4de6b15a" />
+    </api>
+    <api id="F:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus.Busy">
+      <topicdata group="api" notopic="" />
+      <apidata name="Busy" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Speech.Recognition" />
+        <type api="T:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus" ref="false" />
+      </containers>
+      <file name="500b244d-098c-e906-0d17-6e3862d92819" />
+    </api>
+    <api id="F:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus.Cancelled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Cancelled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Speech.Recognition" />
+        <type api="T:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus" ref="false" />
+      </containers>
+      <file name="769d35a7-afeb-9f42-6d68-a1d8d11c566d" />
+    </api>
+    <api id="F:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus.Preempted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Preempted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Speech.Recognition" />
+        <type api="T:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus" ref="false" />
+      </containers>
+      <file name="6f770095-d8b9-226f-016e-c270d46417f8" />
+    </api>
+    <api id="F:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus.PrivacyPolicyDeclined">
+      <topicdata group="api" notopic="" />
+      <apidata name="PrivacyPolicyDeclined" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Speech.Recognition" />
+        <type api="T:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus" ref="false" />
+      </containers>
+      <file name="67f5773a-0853-1144-6123-178c8ddc75dc" />
+    </api>
+    <api id="F:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus.Succeeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="Succeeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Speech.Recognition" />
+        <type api="T:Windows.Phone.Speech.Recognition.SpeechRecognitionUIStatus" ref="false" />
+      </containers>
+      <file name="f0ce7a2e-ee8b-988a-31a2-175f6bb5cb25" />
+    </api>
+  </apis>
+</reflection>

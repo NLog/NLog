@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\silverlightplatformpublickey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Security.Principal">
+      <topicdata group="api" />
+      <apidata name="System.Security.Principal" group="namespace" />
+      <elements>
+        <element api="T:System.Security.Principal.IIdentity" />
+        <element api="T:System.Security.Principal.IPrincipal" />
+      </elements>
+      <file name="5a1dc8e3-97fe-0f6b-536b-e3936b8b3321" />
+    </api>
+    <api id="T:System.Security.Principal.IIdentity">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Principal.IIdentity" />
+      <apidata name="IIdentity" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.ServiceModel.DomainServices.Server.ApplicationServices.UserBase" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Principal" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1a3ce776-196f-3282-872b-e67204ca8351" />
+    </api>
+    <api id="AllMembers.T:System.Security.Principal.IIdentity">
+      <topicdata name="IIdentity" group="list" subgroup="members" typeTopicId="T:System.Security.Principal.IIdentity" />
+      <apidata name="IIdentity" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Security.Principal.IIdentity.AuthenticationType" />
+        <element api="P:System.Security.Principal.IIdentity.IsAuthenticated" />
+        <element api="P:System.Security.Principal.IIdentity.Name" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Principal" />
+        <type api="T:System.Security.Principal.IIdentity" />
+      </containers>
+      <file name="7b9801f8-ab48-8e65-c291-b966c4e8e4da" />
+    </api>
+    <api id="Properties.T:System.Security.Principal.IIdentity">
+      <topicdata name="IIdentity" group="list" subgroup="Properties" typeTopicId="T:System.Security.Principal.IIdentity" />
+      <apidata name="IIdentity" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Security.Principal.IIdentity.AuthenticationType" />
+        <element api="P:System.Security.Principal.IIdentity.IsAuthenticated" />
+        <element api="P:System.Security.Principal.IIdentity.Name" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Principal" />
+        <type api="T:System.Security.Principal.IIdentity" />
+      </containers>
+      <file name="ffe7a85a-247c-ad0f-49c2-db16b1c92a6a" />
+    </api>
+    <api id="P:System.Security.Principal.IIdentity.AuthenticationType">
+      <topicdata group="api" />
+      <apidata name="AuthenticationType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_AuthenticationType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Principal" />
+        <type api="T:System.Security.Principal.IIdentity" ref="true" />
+      </containers>
+      <file name="3ff4f302-a500-fdaa-6e33-66d365572261" />
+    </api>
+    <api id="P:System.Security.Principal.IIdentity.IsAuthenticated">
+      <topicdata group="api" />
+      <apidata name="IsAuthenticated" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsAuthenticated" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Principal" />
+        <type api="T:System.Security.Principal.IIdentity" ref="true" />
+      </containers>
+      <file name="d22d4274-bc3b-dea7-7100-b90aed05118f" />
+    </api>
+    <api id="P:System.Security.Principal.IIdentity.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Principal" />
+        <type api="T:System.Security.Principal.IIdentity" ref="true" />
+      </containers>
+      <file name="475b6d2e-3fe2-f47f-f151-2bd2e3b16eaf" />
+    </api>
+    <api id="T:System.Security.Principal.IPrincipal">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Principal.IPrincipal" />
+      <apidata name="IPrincipal" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.ServiceModel.DomainServices.Server.ApplicationServices.UserBase" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Principal" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2f67fe40-6ddd-6bae-21bc-73c704926101" />
+    </api>
+    <api id="AllMembers.T:System.Security.Principal.IPrincipal">
+      <topicdata name="IPrincipal" group="list" subgroup="members" typeTopicId="T:System.Security.Principal.IPrincipal" />
+      <apidata name="IPrincipal" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Security.Principal.IPrincipal.Identity" />
+        <element api="M:System.Security.Principal.IPrincipal.IsInRole(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Principal" />
+        <type api="T:System.Security.Principal.IPrincipal" />
+      </containers>
+      <file name="f0663b7d-75a2-1979-9ac8-c8f7695a6304" />
+    </api>
+    <api id="Methods.T:System.Security.Principal.IPrincipal">
+      <topicdata name="IPrincipal" group="list" subgroup="Methods" typeTopicId="T:System.Security.Principal.IPrincipal" />
+      <apidata name="IPrincipal" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Security.Principal.IPrincipal.IsInRole(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Principal" />
+        <type api="T:System.Security.Principal.IPrincipal" />
+      </containers>
+      <file name="c414fece-498a-8087-d9ff-9c25d4dc6d0b" />
+    </api>
+    <api id="Properties.T:System.Security.Principal.IPrincipal">
+      <topicdata name="IPrincipal" group="list" subgroup="Properties" typeTopicId="T:System.Security.Principal.IPrincipal" />
+      <apidata name="IPrincipal" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Security.Principal.IPrincipal.Identity" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Principal" />
+        <type api="T:System.Security.Principal.IPrincipal" />
+      </containers>
+      <file name="fea358b3-fafc-1bee-e86f-e539e5caa3f9" />
+    </api>
+    <api id="P:System.Security.Principal.IPrincipal.Identity">
+      <topicdata group="api" />
+      <apidata name="Identity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Identity" />
+      <returns>
+        <type api="T:System.Security.Principal.IIdentity" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Principal" />
+        <type api="T:System.Security.Principal.IPrincipal" ref="true" />
+      </containers>
+      <file name="cc8d45d8-bfa9-3c9e-c487-b9fee5e88501" />
+    </api>
+    <api id="M:System.Security.Principal.IPrincipal.IsInRole(System.String)">
+      <topicdata group="api" />
+      <apidata name="IsInRole" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="role">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Security.Principal" />
+        <type api="T:System.Security.Principal.IPrincipal" ref="true" />
+      </containers>
+      <file name="297d8fc7-63e0-3cc0-9194-5b1cb6308f62" />
+    </api>
+  </apis>
+</reflection>

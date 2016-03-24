@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.Globalization">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.Globalization" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.Globalization.SortedLocaleGrouping" />
+      </elements>
+      <file name="bda9947b-b72d-6918-fd42-030e26ce38da" />
+    </api>
+    <api id="T:Microsoft.Phone.Globalization.SortedLocaleGrouping">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Globalization.SortedLocaleGrouping" />
+      <apidata name="SortedLocaleGrouping" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Globalization.SortedLocaleGrouping.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Globalization" />
+      </containers>
+      <file name="6fdcad49-7b96-1d9a-b76e-477376cec787" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Globalization.SortedLocaleGrouping">
+      <topicdata name="SortedLocaleGrouping" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Globalization.SortedLocaleGrouping" />
+      <apidata name="SortedLocaleGrouping" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Globalization.SortedLocaleGrouping.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.Phone.Globalization.SortedLocaleGrouping.#ctor">
+          <element api="M:Microsoft.Phone.Globalization.SortedLocaleGrouping.#ctor" />
+          <element api="M:Microsoft.Phone.Globalization.SortedLocaleGrouping.#ctor(System.Globalization.CultureInfo)" />
+        </element>
+        <element api="P:Microsoft.Phone.Globalization.SortedLocaleGrouping.CultureInfo" />
+        <element api="M:Microsoft.Phone.Globalization.SortedLocaleGrouping.GetGroupIndex(System.String)" />
+        <element api="P:Microsoft.Phone.Globalization.SortedLocaleGrouping.GroupDisplayNames" />
+        <element api="P:Microsoft.Phone.Globalization.SortedLocaleGrouping.SupportsPhonetics" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Globalization" />
+        <type api="T:Microsoft.Phone.Globalization.SortedLocaleGrouping" />
+      </containers>
+      <file name="1a8d0044-3367-b82b-b933-eaf6aa351252" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Globalization.SortedLocaleGrouping">
+      <topicdata name="SortedLocaleGrouping" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Globalization.SortedLocaleGrouping" />
+      <apidata name="SortedLocaleGrouping" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Globalization.SortedLocaleGrouping.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Globalization.SortedLocaleGrouping.GetGroupIndex(System.String)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Globalization" />
+        <type api="T:Microsoft.Phone.Globalization.SortedLocaleGrouping" />
+      </containers>
+      <file name="63193096-ac9d-d878-6327-56b9f68c387f" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Globalization.SortedLocaleGrouping">
+      <topicdata name="SortedLocaleGrouping" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Globalization.SortedLocaleGrouping" />
+      <apidata name="SortedLocaleGrouping" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Globalization.SortedLocaleGrouping.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Phone.Globalization.SortedLocaleGrouping.CultureInfo" />
+        <element api="P:Microsoft.Phone.Globalization.SortedLocaleGrouping.GroupDisplayNames" />
+        <element api="P:Microsoft.Phone.Globalization.SortedLocaleGrouping.SupportsPhonetics" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Globalization" />
+        <type api="T:Microsoft.Phone.Globalization.SortedLocaleGrouping" />
+      </containers>
+      <file name="8c2c6531-1174-6d24-76df-970f0b5f0325" />
+    </api>
+    <api id="Overload:Microsoft.Phone.Globalization.SortedLocaleGrouping.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Phone.Globalization.SortedLocaleGrouping" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Globalization.SortedLocaleGrouping.#ctor" />
+        <element api="M:Microsoft.Phone.Globalization.SortedLocaleGrouping.#ctor(System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Globalization" />
+        <type api="T:Microsoft.Phone.Globalization.SortedLocaleGrouping" ref="true" />
+      </containers>
+      <file name="fe442793-23f1-c099-8fd7-8e01d4ee7ebc" />
+    </api>
+    <api id="M:Microsoft.Phone.Globalization.SortedLocaleGrouping.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Phone.Globalization.SortedLocaleGrouping.#ctor" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Globalization" />
+        <type api="T:Microsoft.Phone.Globalization.SortedLocaleGrouping" ref="true" />
+      </containers>
+      <file name="5973e9cd-f9c8-2c7e-757f-02179aa45454" />
+    </api>
+    <api id="M:Microsoft.Phone.Globalization.SortedLocaleGrouping.#ctor(System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Phone.Globalization.SortedLocaleGrouping.#ctor" />
+      <parameters>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Globalization" />
+        <type api="T:Microsoft.Phone.Globalization.SortedLocaleGrouping" ref="true" />
+      </containers>
+      <file name="8c626c0b-ec88-ce31-96dd-0381a551b0d1" />
+    </api>
+    <api id="P:Microsoft.Phone.Globalization.SortedLocaleGrouping.CultureInfo">
+      <topicdata group="api" />
+      <apidata name="CultureInfo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CultureInfo" />
+      <returns>
+        <type api="T:System.Globalization.CultureInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Globalization" />
+        <type api="T:Microsoft.Phone.Globalization.SortedLocaleGrouping" ref="true" />
+      </containers>
+      <file name="152212dd-ed2b-142b-d900-dc8fe7c2aea4" />
+    </api>
+    <api id="M:Microsoft.Phone.Globalization.SortedLocaleGrouping.GetGroupIndex(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetGroupIndex" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="itemName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Globalization" />
+        <type api="T:Microsoft.Phone.Globalization.SortedLocaleGrouping" ref="true" />
+      </containers>
+      <file name="a441d522-bbfa-a26f-ea60-85cef5f9ec93" />
+    </api>
+    <api id="P:Microsoft.Phone.Globalization.SortedLocaleGrouping.GroupDisplayNames">
+      <topicdata group="api" />
+      <apidata name="GroupDisplayNames" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_GroupDisplayNames" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Globalization" />
+        <type api="T:Microsoft.Phone.Globalization.SortedLocaleGrouping" ref="true" />
+      </containers>
+      <file name="2a432f70-ff65-2708-2740-c600f5c60231" />
+    </api>
+    <api id="P:Microsoft.Phone.Globalization.SortedLocaleGrouping.SupportsPhonetics">
+      <topicdata group="api" />
+      <apidata name="SupportsPhonetics" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SupportsPhonetics" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Globalization" />
+        <type api="T:Microsoft.Phone.Globalization.SortedLocaleGrouping" ref="true" />
+      </containers>
+      <file name="9b7e811f-8910-e1a0-54bc-d7293c03761c" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,738 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Power">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Power" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Power.BatteryReport" />
+        <element api="T:Windows.Devices.Power.Battery" />
+      </elements>
+      <file name="28bc3d70-562d-5ba1-7391-cc2146b46d50" />
+    </api>
+    <api id="T:Windows.Devices.Power.Battery">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Power.Battery" />
+      <apidata name="Battery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="bbbe81ae-7d52-d17e-c812-2dbb33c30ce7" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Power.Battery">
+      <topicdata name="Battery" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Power.Battery" />
+      <apidata name="Battery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.Power.Battery.AggregateBattery" />
+        <element api="P:Windows.Devices.Power.Battery.DeviceId" />
+        <element api="M:Windows.Devices.Power.Battery.FromIdAsync(System.String)" />
+        <element api="M:Windows.Devices.Power.Battery.GetDeviceSelector" />
+        <element api="M:Windows.Devices.Power.Battery.GetReport" />
+        <element api="E:Windows.Devices.Power.Battery.ReportUpdated" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.Battery" />
+      </containers>
+      <file name="9734274f-00f6-9737-4934-eabdde3dbcdf" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Power.Battery">
+      <topicdata name="Battery" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Power.Battery" />
+      <apidata name="Battery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Power.Battery.FromIdAsync(System.String)" />
+        <element api="M:Windows.Devices.Power.Battery.GetDeviceSelector" />
+        <element api="M:Windows.Devices.Power.Battery.GetReport" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.Battery" />
+      </containers>
+      <file name="9820f740-760d-c4ed-6692-301a04ec1089" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Power.Battery">
+      <topicdata name="Battery" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Power.Battery" />
+      <apidata name="Battery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Power.Battery.AggregateBattery" />
+        <element api="P:Windows.Devices.Power.Battery.DeviceId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.Battery" />
+      </containers>
+      <file name="e258355d-c67e-fb2f-8236-2e77730e4cab" />
+    </api>
+    <api id="Events.T:Windows.Devices.Power.Battery">
+      <topicdata name="Battery" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.Power.Battery" />
+      <apidata name="Battery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.Power.Battery.ReportUpdated" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.Battery" />
+      </containers>
+      <file name="879da252-659b-5332-3960-ba306d4c7d1c" />
+    </api>
+    <api id="P:Windows.Devices.Power.Battery.AggregateBattery">
+      <topicdata group="api" />
+      <apidata name="AggregateBattery" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AggregateBattery" />
+      <returns>
+        <type api="T:Windows.Devices.Power.Battery" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.Battery" ref="true" />
+      </containers>
+      <file name="51e07782-0b09-c000-ec95-0d01b4d19e90" />
+    </api>
+    <api id="P:Windows.Devices.Power.Battery.DeviceId">
+      <topicdata group="api" />
+      <apidata name="DeviceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DeviceId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.Battery" ref="true" />
+      </containers>
+      <file name="2114e5e0-3bff-919b-a069-077cf5fd4cc7" />
+    </api>
+    <api id="M:Windows.Devices.Power.Battery.FromIdAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="FromIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Power.Battery" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.Battery" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8292e8b5-048a-9950-edf9-095fdfe7d8ec" />
+    </api>
+    <api id="M:Windows.Devices.Power.Battery.GetDeviceSelector">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.Battery" ref="true" />
+      </containers>
+      <file name="6af8494d-1f7c-fa1f-a4ff-d9122d0b2699" />
+    </api>
+    <api id="M:Windows.Devices.Power.Battery.GetReport">
+      <topicdata group="api" />
+      <apidata name="GetReport" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Devices.Power.BatteryReport" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.Battery" ref="true" />
+      </containers>
+      <file name="27c52d22-baee-c0ff-98c1-3a9705bc3456" />
+    </api>
+    <api id="E:Windows.Devices.Power.Battery.ReportUpdated">
+      <topicdata group="api" />
+      <apidata name="ReportUpdated" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ReportUpdated" />
+      <remover name="remove_ReportUpdated" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Power.Battery" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.Battery" ref="true" />
+      </containers>
+      <file name="25634560-592d-9f42-b8ba-453c335ec88d" />
+    </api>
+    <api id="T:Windows.Devices.Power.BatteryReport">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Power.BatteryReport" />
+      <apidata name="BatteryReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c3c070cf-a3ce-f1ba-987c-0dace999b1ac" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Power.BatteryReport">
+      <topicdata name="BatteryReport" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Power.BatteryReport" />
+      <apidata name="BatteryReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.Power.BatteryReport.ChargeRateInMilliwatts" />
+        <element api="P:Windows.Devices.Power.BatteryReport.DesignCapacityInMilliwattHours" />
+        <element api="P:Windows.Devices.Power.BatteryReport.FullChargeCapacityInMilliwattHours" />
+        <element api="P:Windows.Devices.Power.BatteryReport.RemainingCapacityInMilliwattHours" />
+        <element api="P:Windows.Devices.Power.BatteryReport.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.BatteryReport" />
+      </containers>
+      <file name="c2e6e433-994b-cf73-1b8c-d5cab7c7ec55" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Power.BatteryReport">
+      <topicdata name="BatteryReport" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Power.BatteryReport" />
+      <apidata name="BatteryReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.BatteryReport" />
+      </containers>
+      <file name="ebb667c9-09e7-9f71-b703-2148dff6c935" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Power.BatteryReport">
+      <topicdata name="BatteryReport" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Power.BatteryReport" />
+      <apidata name="BatteryReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Power.BatteryReport.ChargeRateInMilliwatts" />
+        <element api="P:Windows.Devices.Power.BatteryReport.DesignCapacityInMilliwattHours" />
+        <element api="P:Windows.Devices.Power.BatteryReport.FullChargeCapacityInMilliwattHours" />
+        <element api="P:Windows.Devices.Power.BatteryReport.RemainingCapacityInMilliwattHours" />
+        <element api="P:Windows.Devices.Power.BatteryReport.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.BatteryReport" />
+      </containers>
+      <file name="ec366c11-aea5-a463-541e-c1fc58699815" />
+    </api>
+    <api id="P:Windows.Devices.Power.BatteryReport.ChargeRateInMilliwatts">
+      <topicdata group="api" />
+      <apidata name="ChargeRateInMilliwatts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChargeRateInMilliwatts" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.BatteryReport" ref="true" />
+      </containers>
+      <file name="39d7d006-1962-ebf9-66cf-becf46820759" />
+    </api>
+    <api id="P:Windows.Devices.Power.BatteryReport.DesignCapacityInMilliwattHours">
+      <topicdata group="api" />
+      <apidata name="DesignCapacityInMilliwattHours" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DesignCapacityInMilliwattHours" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.BatteryReport" ref="true" />
+      </containers>
+      <file name="66fd6d87-78e9-7247-9e41-8c97fe9d1fa3" />
+    </api>
+    <api id="P:Windows.Devices.Power.BatteryReport.FullChargeCapacityInMilliwattHours">
+      <topicdata group="api" />
+      <apidata name="FullChargeCapacityInMilliwattHours" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FullChargeCapacityInMilliwattHours" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.BatteryReport" ref="true" />
+      </containers>
+      <file name="b9962149-8f79-9dce-8949-344b6c098db9" />
+    </api>
+    <api id="P:Windows.Devices.Power.BatteryReport.RemainingCapacityInMilliwattHours">
+      <topicdata group="api" />
+      <apidata name="RemainingCapacityInMilliwattHours" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RemainingCapacityInMilliwattHours" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.Int32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.BatteryReport" ref="true" />
+      </containers>
+      <file name="45921227-81ef-5f5a-5f64-6e80c395ecf5" />
+    </api>
+    <api id="P:Windows.Devices.Power.BatteryReport.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.System.Power.BatteryStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Power" />
+        <type api="T:Windows.Devices.Power.BatteryReport" ref="true" />
+      </containers>
+      <file name="edb6783d-df59-3394-0592-f1b42a7bb026" />
+    </api>
+  </apis>
+</reflection>

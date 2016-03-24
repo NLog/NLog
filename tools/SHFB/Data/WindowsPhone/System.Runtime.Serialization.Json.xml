@@ -1,0 +1,660 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel.Web">
+      <assemblydata version="2.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Web.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Web.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Web.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30508.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30508.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\silverlightplatformpublickey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.Serialization.Json">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.Serialization.Json" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+        <element api="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" />
+      </elements>
+      <file name="e3e3cf29-3398-085f-8aa8-ac958a3d9d37" />
+    </api>
+    <api id="T:System.Runtime.Serialization.Json.DataContractJsonSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+      <apidata name="DataContractJsonSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+      </containers>
+      <file name="a338edf6-ec61-cc0f-cff8-a4b3b13ab123" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Serialization.Json.DataContractJsonSerializer">
+      <topicdata name="DataContractJsonSerializer" group="list" subgroup="members" typeTopicId="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+      <apidata name="DataContractJsonSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor">
+          <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type)" />
+          <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type,System.Collections.Generic.IEnumerable{System.Type})" />
+          <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type,System.Runtime.Serialization.Json.DataContractJsonSerializerSettings)" />
+        </element>
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.DateTimeFormat" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.EmitTypeInformation" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.KnownTypes" />
+        <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(System.IO.Stream)" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.SerializeReadOnlyTypes" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.UseSimpleDictionaryFormat" />
+        <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.WriteObject(System.IO.Stream,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+      </containers>
+      <file name="a0ba9beb-352a-7652-8917-7d949baafb45" />
+    </api>
+    <api id="Methods.T:System.Runtime.Serialization.Json.DataContractJsonSerializer">
+      <topicdata name="DataContractJsonSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+      <apidata name="DataContractJsonSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(System.IO.Stream)" />
+        <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.WriteObject(System.IO.Stream,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+      </containers>
+      <file name="f8822d63-2790-253a-ec6c-032b28545ff5" />
+    </api>
+    <api id="Properties.T:System.Runtime.Serialization.Json.DataContractJsonSerializer">
+      <topicdata name="DataContractJsonSerializer" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+      <apidata name="DataContractJsonSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.DateTimeFormat" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.EmitTypeInformation" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.KnownTypes" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.SerializeReadOnlyTypes" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.UseSimpleDictionaryFormat" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+      </containers>
+      <file name="1eb3a677-2ef2-bb09-2cdc-9941b542491c" />
+    </api>
+    <api id="Overload:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type)" />
+        <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type,System.Collections.Generic.IEnumerable{System.Type})" />
+        <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type,System.Runtime.Serialization.Json.DataContractJsonSerializerSettings)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="9c82bd5d-7916-eedc-5006-c873a1500ee3" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="f080480c-31c1-6ec5-9ddf-2a55547009f6" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type,System.Collections.Generic.IEnumerable{System.Type})">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="knownTypes">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Type" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="5221506d-4ab1-588e-a443-0e5e8bdcab14" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor(System.Type,System.Runtime.Serialization.Json.DataContractJsonSerializerSettings)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Serialization.Json.DataContractJsonSerializer.#ctor" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="settings">
+          <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="fa4dbeee-3dfb-552b-64b0-2b3d652f3595" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.DateTimeFormat">
+      <topicdata group="api" />
+      <apidata name="DateTimeFormat" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DateTimeFormat" />
+      <returns>
+        <type api="T:System.Runtime.Serialization.DateTimeFormat" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="91e39208-44a8-edcb-18f0-9d5b49391108" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.EmitTypeInformation">
+      <topicdata group="api" />
+      <apidata name="EmitTypeInformation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EmitTypeInformation" />
+      <returns>
+        <type api="T:System.Runtime.Serialization.EmitTypeInformation" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="6cf961ef-50ce-198a-b931-cdb982f72a1b" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.KnownTypes">
+      <topicdata group="api" />
+      <apidata name="KnownTypes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_KnownTypes" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Type" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="272c747a-dd8a-05db-4371-028ad8f9e196" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="ReadObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="5a6221e0-7083-9ec2-a97b-81fe92f21501" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.SerializeReadOnlyTypes">
+      <topicdata group="api" />
+      <apidata name="SerializeReadOnlyTypes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SerializeReadOnlyTypes" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="01deeaea-84cf-fb9c-5d25-84fe1fcb2570" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.UseSimpleDictionaryFormat">
+      <topicdata group="api" />
+      <apidata name="UseSimpleDictionaryFormat" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_UseSimpleDictionaryFormat" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="050f7da4-0af3-88ec-4de2-9d703bdc5997" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.WriteObject(System.IO.Stream,System.Object)">
+      <topicdata group="api" />
+      <apidata name="WriteObject" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="stream">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="graph">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" ref="true" />
+      </containers>
+      <file name="a8ce76ac-a9f7-4040-dbae-e0864a080540" />
+    </api>
+    <api id="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" />
+      <apidata name="DataContractJsonSerializerSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+      </containers>
+      <file name="032d7b0b-6157-720e-f2a0-e3472428cd5b" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings">
+      <topicdata name="DataContractJsonSerializerSettings" group="list" subgroup="members" typeTopicId="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" />
+      <apidata name="DataContractJsonSerializerSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.#ctor" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.DateTimeFormat" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.EmitTypeInformation" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.KnownTypes" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.MaxItemsInObjectGraph" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.RootName" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.SerializeReadOnlyTypes" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.UseSimpleDictionaryFormat" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" />
+      </containers>
+      <file name="9ec326f1-2630-2a9c-63c4-55c10dd8eef3" />
+    </api>
+    <api id="Methods.T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings">
+      <topicdata name="DataContractJsonSerializerSettings" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" />
+      <apidata name="DataContractJsonSerializerSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" />
+      </containers>
+      <file name="7aec8799-bb7c-b1e8-5419-be56b119f235" />
+    </api>
+    <api id="Properties.T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings">
+      <topicdata name="DataContractJsonSerializerSettings" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" />
+      <apidata name="DataContractJsonSerializerSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.DateTimeFormat" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.EmitTypeInformation" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.KnownTypes" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.MaxItemsInObjectGraph" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.RootName" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.SerializeReadOnlyTypes" />
+        <element api="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.UseSimpleDictionaryFormat" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" />
+      </containers>
+      <file name="1f0add74-38b7-a2de-5ed1-92b5a63aa9ed" />
+    </api>
+    <api id="M:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" ref="true" />
+      </containers>
+      <file name="e77539ea-7cca-03e2-2b70-1b7f525deeea" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.DateTimeFormat">
+      <topicdata group="api" />
+      <apidata name="DateTimeFormat" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DateTimeFormat" />
+      <setter name="set_DateTimeFormat" />
+      <returns>
+        <type api="T:System.Runtime.Serialization.DateTimeFormat" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" ref="true" />
+      </containers>
+      <file name="eb3b3d9c-3801-bf13-a2a8-3d6412f1fba4" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.EmitTypeInformation">
+      <topicdata group="api" />
+      <apidata name="EmitTypeInformation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EmitTypeInformation" />
+      <setter name="set_EmitTypeInformation" />
+      <returns>
+        <type api="T:System.Runtime.Serialization.EmitTypeInformation" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" ref="true" />
+      </containers>
+      <file name="445947bc-e6bc-03bc-6ada-8679f82df0b0" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.KnownTypes">
+      <topicdata group="api" />
+      <apidata name="KnownTypes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_KnownTypes" />
+      <setter name="set_KnownTypes" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Type" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" ref="true" />
+      </containers>
+      <file name="4d70e010-12d1-acc0-ae76-72f7e0fbb6b9" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.MaxItemsInObjectGraph">
+      <topicdata group="api" />
+      <apidata name="MaxItemsInObjectGraph" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxItemsInObjectGraph" />
+      <setter name="set_MaxItemsInObjectGraph" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" ref="true" />
+      </containers>
+      <file name="710835a9-9c77-2f0e-42aa-d46d87fc8953" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.RootName">
+      <topicdata group="api" />
+      <apidata name="RootName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RootName" />
+      <setter name="set_RootName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" ref="true" />
+      </containers>
+      <file name="52f597fc-9d15-85e7-27af-20ad56e61c91" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.SerializeReadOnlyTypes">
+      <topicdata group="api" />
+      <apidata name="SerializeReadOnlyTypes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SerializeReadOnlyTypes" />
+      <setter name="set_SerializeReadOnlyTypes" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" ref="true" />
+      </containers>
+      <file name="596c87ca-c4af-9573-9ab2-5b89159a4f14" />
+    </api>
+    <api id="P:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings.UseSimpleDictionaryFormat">
+      <topicdata group="api" />
+      <apidata name="UseSimpleDictionaryFormat" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UseSimpleDictionaryFormat" />
+      <setter name="set_UseSimpleDictionaryFormat" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Web" module="System.ServiceModel.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:System.Runtime.Serialization.Json" />
+        <type api="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings" ref="true" />
+      </containers>
+      <file name="2f201b2c-6822-c3ab-07fe-fc6514226871" />
+    </api>
+  </apis>
+</reflection>

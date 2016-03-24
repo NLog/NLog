@@ -1,0 +1,1516 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Globalization.DateTimeFormatting">
+      <topicdata group="api" />
+      <apidata name="Windows.Globalization.DateTimeFormatting" group="namespace" />
+      <elements>
+        <element api="T:Windows.Globalization.DateTimeFormatting.YearFormat" />
+        <element api="T:Windows.Globalization.DateTimeFormatting.MonthFormat" />
+        <element api="T:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat" />
+        <element api="T:Windows.Globalization.DateTimeFormatting.DayFormat" />
+        <element api="T:Windows.Globalization.DateTimeFormatting.HourFormat" />
+        <element api="T:Windows.Globalization.DateTimeFormatting.MinuteFormat" />
+        <element api="T:Windows.Globalization.DateTimeFormatting.SecondFormat" />
+        <element api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" />
+      </elements>
+      <file name="72b715df-1422-2f71-9341-9ac4bee29b40" />
+    </api>
+    <api id="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" />
+      <apidata name="DateTimeFormatter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Globalization.DateTimeFormatting.IDateTimeFormatter" ref="true" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.IDateTimeFormatter2" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8aec6e49-e93f-2442-7eec-99ba527c2b90" />
+    </api>
+    <api id="AllMembers.T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter">
+      <topicdata name="DateTimeFormatter" group="list" subgroup="members" typeTopicId="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" />
+      <apidata name="DateTimeFormatter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor">
+          <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(System.String)" />
+          <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(System.String,Windows.Foundation.Collections.IIterable{System.String})" />
+          <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(Windows.Globalization.DateTimeFormatting.HourFormat,Windows.Globalization.DateTimeFormatting.MinuteFormat,Windows.Globalization.DateTimeFormatting.SecondFormat)" />
+          <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(Windows.Globalization.DateTimeFormatting.YearFormat,Windows.Globalization.DateTimeFormatting.MonthFormat,Windows.Globalization.DateTimeFormatting.DayFormat,Windows.Globalization.DateTimeFormatting.DayOfWeekFormat)" />
+          <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(System.String,Windows.Foundation.Collections.IIterable{System.String},System.String,System.String,System.String)" />
+          <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(Windows.Globalization.DateTimeFormatting.YearFormat,Windows.Globalization.DateTimeFormatting.MonthFormat,Windows.Globalization.DateTimeFormatting.DayFormat,Windows.Globalization.DateTimeFormatting.DayOfWeekFormat,Windows.Globalization.DateTimeFormatting.HourFormat,Windows.Globalization.DateTimeFormatting.MinuteFormat,Windows.Globalization.DateTimeFormatting.SecondFormat,Windows.Foundation.Collections.IIterable{System.String})" />
+          <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(Windows.Globalization.DateTimeFormatting.YearFormat,Windows.Globalization.DateTimeFormatting.MonthFormat,Windows.Globalization.DateTimeFormatting.DayFormat,Windows.Globalization.DateTimeFormatting.DayOfWeekFormat,Windows.Globalization.DateTimeFormatting.HourFormat,Windows.Globalization.DateTimeFormatting.MinuteFormat,Windows.Globalization.DateTimeFormatting.SecondFormat,Windows.Foundation.Collections.IIterable{System.String},System.String,System.String,System.String)" />
+        </element>
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Calendar" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Clock" />
+        <element api="Overload:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Format">
+          <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Format(Windows.Foundation.DateTime)" />
+          <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Format(Windows.Foundation.DateTime,System.String)" />
+        </element>
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.GeographicRegion" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeDay" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeDayOfWeek" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeHour" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeMinute" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeMonth" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeSecond" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeYear" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Languages" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.LongDate" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.LongTime" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.NumeralSystem" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Patterns" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.ResolvedGeographicRegion" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.ResolvedLanguage" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.ShortDate" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.ShortTime" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Template" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" />
+      </containers>
+      <file name="8a9b08a9-1fa1-413a-8dbc-19483b5011a5" />
+    </api>
+    <api id="Methods.T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter">
+      <topicdata name="DateTimeFormatter" group="list" subgroup="Methods" typeTopicId="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" />
+      <apidata name="DateTimeFormatter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Format">
+          <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Format(Windows.Foundation.DateTime)" />
+          <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Format(Windows.Foundation.DateTime,System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" />
+      </containers>
+      <file name="376cde59-57f7-5474-95ee-c8c793f40600" />
+    </api>
+    <api id="Properties.T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter">
+      <topicdata name="DateTimeFormatter" group="list" subgroup="Properties" typeTopicId="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" />
+      <apidata name="DateTimeFormatter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Calendar" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Clock" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.GeographicRegion" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeDay" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeDayOfWeek" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeHour" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeMinute" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeMonth" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeSecond" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeYear" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Languages" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.LongDate" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.LongTime" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.NumeralSystem" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Patterns" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.ResolvedGeographicRegion" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.ResolvedLanguage" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.ShortDate" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.ShortTime" />
+        <element api="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Template" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" />
+      </containers>
+      <file name="014e5fe5-f5cd-d24a-bd26-63fbfe638dd4" />
+    </api>
+    <api id="Overload:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(System.String)" />
+        <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(System.String,Windows.Foundation.Collections.IIterable{System.String})" />
+        <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(Windows.Globalization.DateTimeFormatting.HourFormat,Windows.Globalization.DateTimeFormatting.MinuteFormat,Windows.Globalization.DateTimeFormatting.SecondFormat)" />
+        <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(Windows.Globalization.DateTimeFormatting.YearFormat,Windows.Globalization.DateTimeFormatting.MonthFormat,Windows.Globalization.DateTimeFormatting.DayFormat,Windows.Globalization.DateTimeFormatting.DayOfWeekFormat)" />
+        <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(System.String,Windows.Foundation.Collections.IIterable{System.String},System.String,System.String,System.String)" />
+        <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(Windows.Globalization.DateTimeFormatting.YearFormat,Windows.Globalization.DateTimeFormatting.MonthFormat,Windows.Globalization.DateTimeFormatting.DayFormat,Windows.Globalization.DateTimeFormatting.DayOfWeekFormat,Windows.Globalization.DateTimeFormatting.HourFormat,Windows.Globalization.DateTimeFormatting.MinuteFormat,Windows.Globalization.DateTimeFormatting.SecondFormat,Windows.Foundation.Collections.IIterable{System.String})" />
+        <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(Windows.Globalization.DateTimeFormatting.YearFormat,Windows.Globalization.DateTimeFormatting.MonthFormat,Windows.Globalization.DateTimeFormatting.DayFormat,Windows.Globalization.DateTimeFormatting.DayOfWeekFormat,Windows.Globalization.DateTimeFormatting.HourFormat,Windows.Globalization.DateTimeFormatting.MinuteFormat,Windows.Globalization.DateTimeFormatting.SecondFormat,Windows.Foundation.Collections.IIterable{System.String},System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="d4dfaa53-d2d0-3e07-08ad-9baf3c2e26a2" />
+    </api>
+    <api id="Overload:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Format">
+      <topicdata name="Format" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" />
+      <apidata name="Format" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Format(Windows.Foundation.DateTime)" />
+        <element api="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Format(Windows.Foundation.DateTime,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="c38b749c-037d-1b26-6310-3f24e2081d1f" />
+    </api>
+    <api id="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor" />
+      <parameters>
+        <parameter name="formatTemplate" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="2a9ad3f0-5d66-962a-3052-7cb94f37863f" />
+    </api>
+    <api id="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(System.String,Windows.Foundation.Collections.IIterable{System.String})">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor" />
+      <parameters>
+        <parameter name="formatTemplate" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="languages" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="b332060f-aecf-7994-3a74-2a1af44a6786" />
+    </api>
+    <api id="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(System.String,Windows.Foundation.Collections.IIterable{System.String},System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor" />
+      <parameters>
+        <parameter name="formatTemplate" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="languages" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="geographicRegion" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="calendar" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="clock" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="503f9791-4ea2-9a4e-ce3b-6aaab42a9d22" />
+    </api>
+    <api id="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(Windows.Globalization.DateTimeFormatting.HourFormat,Windows.Globalization.DateTimeFormatting.MinuteFormat,Windows.Globalization.DateTimeFormatting.SecondFormat)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor" />
+      <parameters>
+        <parameter name="hourFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.HourFormat" ref="false" />
+        </parameter>
+        <parameter name="minuteFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.MinuteFormat" ref="false" />
+        </parameter>
+        <parameter name="secondFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.SecondFormat" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="7be5d51a-2136-13fd-e027-ae8b60d389fa" />
+    </api>
+    <api id="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(Windows.Globalization.DateTimeFormatting.YearFormat,Windows.Globalization.DateTimeFormatting.MonthFormat,Windows.Globalization.DateTimeFormatting.DayFormat,Windows.Globalization.DateTimeFormatting.DayOfWeekFormat)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor" />
+      <parameters>
+        <parameter name="yearFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.YearFormat" ref="false" />
+        </parameter>
+        <parameter name="monthFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.MonthFormat" ref="false" />
+        </parameter>
+        <parameter name="dayFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.DayFormat" ref="false" />
+        </parameter>
+        <parameter name="dayOfWeekFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="440d11cf-7e14-ad0f-a111-923254d82e34" />
+    </api>
+    <api id="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(Windows.Globalization.DateTimeFormatting.YearFormat,Windows.Globalization.DateTimeFormatting.MonthFormat,Windows.Globalization.DateTimeFormatting.DayFormat,Windows.Globalization.DateTimeFormatting.DayOfWeekFormat,Windows.Globalization.DateTimeFormatting.HourFormat,Windows.Globalization.DateTimeFormatting.MinuteFormat,Windows.Globalization.DateTimeFormatting.SecondFormat,Windows.Foundation.Collections.IIterable{System.String})">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor" />
+      <parameters>
+        <parameter name="yearFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.YearFormat" ref="false" />
+        </parameter>
+        <parameter name="monthFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.MonthFormat" ref="false" />
+        </parameter>
+        <parameter name="dayFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.DayFormat" ref="false" />
+        </parameter>
+        <parameter name="dayOfWeekFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat" ref="false" />
+        </parameter>
+        <parameter name="hourFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.HourFormat" ref="false" />
+        </parameter>
+        <parameter name="minuteFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.MinuteFormat" ref="false" />
+        </parameter>
+        <parameter name="secondFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.SecondFormat" ref="false" />
+        </parameter>
+        <parameter name="languages" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="7c6224c8-4af0-3945-62ee-fd33e0fa07e1" />
+    </api>
+    <api id="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor(Windows.Globalization.DateTimeFormatting.YearFormat,Windows.Globalization.DateTimeFormatting.MonthFormat,Windows.Globalization.DateTimeFormatting.DayFormat,Windows.Globalization.DateTimeFormatting.DayOfWeekFormat,Windows.Globalization.DateTimeFormatting.HourFormat,Windows.Globalization.DateTimeFormatting.MinuteFormat,Windows.Globalization.DateTimeFormatting.SecondFormat,Windows.Foundation.Collections.IIterable{System.String},System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.#ctor" />
+      <parameters>
+        <parameter name="yearFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.YearFormat" ref="false" />
+        </parameter>
+        <parameter name="monthFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.MonthFormat" ref="false" />
+        </parameter>
+        <parameter name="dayFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.DayFormat" ref="false" />
+        </parameter>
+        <parameter name="dayOfWeekFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat" ref="false" />
+        </parameter>
+        <parameter name="hourFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.HourFormat" ref="false" />
+        </parameter>
+        <parameter name="minuteFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.MinuteFormat" ref="false" />
+        </parameter>
+        <parameter name="secondFormat" in="true">
+          <type api="T:Windows.Globalization.DateTimeFormatting.SecondFormat" ref="false" />
+        </parameter>
+        <parameter name="languages" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.String" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="geographicRegion" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="calendar" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="clock" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="8423e297-ded5-0678-0d19-ffe43e502d46" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Calendar">
+      <topicdata group="api" />
+      <apidata name="Calendar" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Calendar" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="a6cd813b-650c-f2f8-a6f1-6d6d2ace8795" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Clock">
+      <topicdata group="api" />
+      <apidata name="Clock" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Clock" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="d52f7176-a63a-1743-9fca-0bde293e239c" />
+    </api>
+    <api id="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Format(Windows.Foundation.DateTime)">
+      <topicdata group="api" />
+      <apidata name="Format" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Format" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="e85cf464-f5e0-59e8-a75a-1b099b159065" />
+    </api>
+    <api id="M:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Format(Windows.Foundation.DateTime,System.String)">
+      <topicdata group="api" />
+      <apidata name="Format" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Format" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="datetime" in="true">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+        <parameter name="timeZoneId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FormatUsingTimeZone</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="13554b03-fe4e-99d4-175f-ccb4d1a97b3d" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.GeographicRegion">
+      <topicdata group="api" />
+      <apidata name="GeographicRegion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_GeographicRegion" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="4b27176d-7adc-07ea-45fd-2927bd0034ae" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeDay">
+      <topicdata group="api" />
+      <apidata name="IncludeDay" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IncludeDay" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.DayFormat" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="618a3faf-3938-6ed0-8f4c-c367d58af334" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeDayOfWeek">
+      <topicdata group="api" />
+      <apidata name="IncludeDayOfWeek" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IncludeDayOfWeek" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="624329ef-031a-5467-b26b-81c06c932155" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeHour">
+      <topicdata group="api" />
+      <apidata name="IncludeHour" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IncludeHour" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.HourFormat" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="b545b4a9-5e59-f0e6-245d-5e6260bbb2c0" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeMinute">
+      <topicdata group="api" />
+      <apidata name="IncludeMinute" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IncludeMinute" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.MinuteFormat" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="65c16c9a-f0e9-5c42-5709-4d20dc509083" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeMonth">
+      <topicdata group="api" />
+      <apidata name="IncludeMonth" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IncludeMonth" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.MonthFormat" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="8341f4cf-1f69-bdec-ddc4-f1942341f299" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeSecond">
+      <topicdata group="api" />
+      <apidata name="IncludeSecond" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IncludeSecond" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.SecondFormat" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="c14c3146-96df-cc24-bd14-661997836102" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.IncludeYear">
+      <topicdata group="api" />
+      <apidata name="IncludeYear" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IncludeYear" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.YearFormat" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="a983789a-f92c-dae5-7a34-09522946cb9a" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Languages">
+      <topicdata group="api" />
+      <apidata name="Languages" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Languages" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="f0267e23-2e6b-76c3-87bf-d741f8328e7c" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.LongDate">
+      <topicdata group="api" />
+      <apidata name="LongDate" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LongDate" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="33ab85fb-ac85-7929-238d-c499c72ea007" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.LongTime">
+      <topicdata group="api" />
+      <apidata name="LongTime" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LongTime" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="4a9d8ed9-9ea6-c8c8-ab5f-75046f208de9" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.NumeralSystem">
+      <topicdata group="api" />
+      <apidata name="NumeralSystem" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NumeralSystem" />
+      <setter name="set_NumeralSystem" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="6de2b504-25a0-3870-413a-c29237b9a4dd" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Patterns">
+      <topicdata group="api" />
+      <apidata name="Patterns" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Patterns" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="96157f31-9f17-1032-3aa6-b67ec1125b2e" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.ResolvedGeographicRegion">
+      <topicdata group="api" />
+      <apidata name="ResolvedGeographicRegion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResolvedGeographicRegion" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="3f94bf49-c784-bbd2-c0a1-e3d97aea6765" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.ResolvedLanguage">
+      <topicdata group="api" />
+      <apidata name="ResolvedLanguage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResolvedLanguage" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="3af61812-a431-fa66-4f99-e5615015e294" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.ShortDate">
+      <topicdata group="api" />
+      <apidata name="ShortDate" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ShortDate" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="007bfaf7-9b70-2aec-1cf1-71db8b9e9cc7" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.ShortTime">
+      <topicdata group="api" />
+      <apidata name="ShortTime" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ShortTime" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="29f18c34-5584-7309-31f8-aa81409672de" />
+    </api>
+    <api id="P:Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Template">
+      <topicdata group="api" />
+      <apidata name="Template" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Template" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DateTimeFormatter" ref="true" />
+      </containers>
+      <file name="ba729acf-0a0c-9f99-8b46-5d8a45ada5f8" />
+    </api>
+    <api id="T:Windows.Globalization.DateTimeFormatting.DayFormat">
+      <topicdata group="api" />
+      <apidata name="DayFormat" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Globalization.DateTimeFormatting.DayFormat.None" />
+        <element api="F:Windows.Globalization.DateTimeFormatting.DayFormat.Default" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b3a7f59b-a81d-74d8-ae9d-9e0afd1d05cd" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.DayFormat.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.DayFormat" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DayFormat" ref="false" />
+      </containers>
+      <file name="7cf254c8-e97f-eced-e3be-f6898b39933a" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.DayFormat.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.DayFormat" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DayFormat" ref="false" />
+      </containers>
+      <file name="662e9d52-af7a-5a83-41ce-af7f004ba44f" />
+    </api>
+    <api id="T:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat">
+      <topicdata group="api" />
+      <apidata name="DayOfWeekFormat" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat.None" />
+        <element api="F:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat.Default" />
+        <element api="F:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat.Abbreviated" />
+        <element api="F:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat.Full" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7d022c2f-cf00-f577-0a3c-1e487b744589" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat.Abbreviated">
+      <topicdata group="api" notopic="" />
+      <apidata name="Abbreviated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat" ref="false" />
+      </containers>
+      <file name="afa8782f-8ca0-06db-94a8-a66b008b0e62" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat" ref="false" />
+      </containers>
+      <file name="1faa6753-5d72-cffc-0a4e-240728bfd90d" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat.Full">
+      <topicdata group="api" notopic="" />
+      <apidata name="Full" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat" ref="false" />
+      </containers>
+      <file name="47be44f2-647c-7217-986a-622e1e10868c" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.DayOfWeekFormat" ref="false" />
+      </containers>
+      <file name="13e26bf0-5b7b-4bbc-fc67-a3ecd824c00c" />
+    </api>
+    <api id="T:Windows.Globalization.DateTimeFormatting.HourFormat">
+      <topicdata group="api" />
+      <apidata name="HourFormat" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Globalization.DateTimeFormatting.HourFormat.None" />
+        <element api="F:Windows.Globalization.DateTimeFormatting.HourFormat.Default" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="14572096-ff35-c08f-d4cc-59d77abd6dab" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.HourFormat.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.HourFormat" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.HourFormat" ref="false" />
+      </containers>
+      <file name="f8052475-e03e-e9e1-b75d-df546d2f60fa" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.HourFormat.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.HourFormat" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.HourFormat" ref="false" />
+      </containers>
+      <file name="13dca2fc-caac-0af3-bfbf-48eeb7b15d53" />
+    </api>
+    <api id="T:Windows.Globalization.DateTimeFormatting.MinuteFormat">
+      <topicdata group="api" />
+      <apidata name="MinuteFormat" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Globalization.DateTimeFormatting.MinuteFormat.None" />
+        <element api="F:Windows.Globalization.DateTimeFormatting.MinuteFormat.Default" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="902457ec-c7a3-95eb-b698-e49adec1ded5" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.MinuteFormat.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.MinuteFormat" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.MinuteFormat" ref="false" />
+      </containers>
+      <file name="bac6af01-6e5c-f7c9-90a4-23587cdb9c12" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.MinuteFormat.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.MinuteFormat" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.MinuteFormat" ref="false" />
+      </containers>
+      <file name="f703dd2d-061d-1cca-d594-b8d0b0321001" />
+    </api>
+    <api id="T:Windows.Globalization.DateTimeFormatting.MonthFormat">
+      <topicdata group="api" />
+      <apidata name="MonthFormat" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Globalization.DateTimeFormatting.MonthFormat.None" />
+        <element api="F:Windows.Globalization.DateTimeFormatting.MonthFormat.Default" />
+        <element api="F:Windows.Globalization.DateTimeFormatting.MonthFormat.Abbreviated" />
+        <element api="F:Windows.Globalization.DateTimeFormatting.MonthFormat.Full" />
+        <element api="F:Windows.Globalization.DateTimeFormatting.MonthFormat.Numeric" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7200e1ed-e14c-0111-b8fa-f98ed4f2a497" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.MonthFormat.Abbreviated">
+      <topicdata group="api" notopic="" />
+      <apidata name="Abbreviated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.MonthFormat" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.MonthFormat" ref="false" />
+      </containers>
+      <file name="fa82197e-9f1b-27cd-9030-6e4e07496dfc" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.MonthFormat.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.MonthFormat" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.MonthFormat" ref="false" />
+      </containers>
+      <file name="67e858f7-a110-627a-9c03-9423ffabd102" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.MonthFormat.Full">
+      <topicdata group="api" notopic="" />
+      <apidata name="Full" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.MonthFormat" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.MonthFormat" ref="false" />
+      </containers>
+      <file name="ab527cdb-bbbf-66fe-36f0-ac156c5f9962" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.MonthFormat.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.MonthFormat" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.MonthFormat" ref="false" />
+      </containers>
+      <file name="37346291-ffdf-7e69-3cf5-c693502ff4e4" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.MonthFormat.Numeric">
+      <topicdata group="api" notopic="" />
+      <apidata name="Numeric" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.MonthFormat" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.MonthFormat" ref="false" />
+      </containers>
+      <file name="1db2a0b0-d1b3-0501-5ef7-aa8c885b8832" />
+    </api>
+    <api id="T:Windows.Globalization.DateTimeFormatting.SecondFormat">
+      <topicdata group="api" />
+      <apidata name="SecondFormat" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Globalization.DateTimeFormatting.SecondFormat.None" />
+        <element api="F:Windows.Globalization.DateTimeFormatting.SecondFormat.Default" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1eafa9ee-4c11-6d41-90b0-114e877b357a" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.SecondFormat.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.SecondFormat" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.SecondFormat" ref="false" />
+      </containers>
+      <file name="a3b17163-468c-547d-22f4-aa3afa7b0de9" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.SecondFormat.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.SecondFormat" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.SecondFormat" ref="false" />
+      </containers>
+      <file name="aa0d8246-0b2a-3ce3-324b-e7efc60a3c06" />
+    </api>
+    <api id="T:Windows.Globalization.DateTimeFormatting.YearFormat">
+      <topicdata group="api" />
+      <apidata name="YearFormat" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Globalization.DateTimeFormatting.YearFormat.None" />
+        <element api="F:Windows.Globalization.DateTimeFormatting.YearFormat.Default" />
+        <element api="F:Windows.Globalization.DateTimeFormatting.YearFormat.Abbreviated" />
+        <element api="F:Windows.Globalization.DateTimeFormatting.YearFormat.Full" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cda25f30-cf3a-839f-953b-3296cbaeb406" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.YearFormat.Abbreviated">
+      <topicdata group="api" notopic="" />
+      <apidata name="Abbreviated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.YearFormat" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.YearFormat" ref="false" />
+      </containers>
+      <file name="55551e8f-1612-fcd8-288d-87f39f6214eb" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.YearFormat.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.YearFormat" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.YearFormat" ref="false" />
+      </containers>
+      <file name="9220bc31-ac5d-34ed-2604-06cd6f80c94e" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.YearFormat.Full">
+      <topicdata group="api" notopic="" />
+      <apidata name="Full" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.YearFormat" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.YearFormat" ref="false" />
+      </containers>
+      <file name="12b8465e-f7ed-4ef6-7f3d-c502e60d13af" />
+    </api>
+    <api id="F:Windows.Globalization.DateTimeFormatting.YearFormat.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Globalization.DateTimeFormatting.YearFormat" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.DateTimeFormatting" />
+        <type api="T:Windows.Globalization.DateTimeFormatting.YearFormat" ref="false" />
+      </containers>
+      <file name="c6f4c798-f9b7-c0ce-09dc-4cafa4d3556b" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Diagnostics.Tools">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Diagnostics.Tools.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Diagnostics.Tools.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Diagnostics.Tools.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.CodeDom.Compiler">
+      <topicdata group="api" />
+      <apidata name="System.CodeDom.Compiler" group="namespace" />
+      <elements>
+        <element api="T:System.CodeDom.Compiler.GeneratedCodeAttribute" />
+      </elements>
+      <file name="2edfa3ab-4ad4-443c-1b4b-a765f383c4e2" />
+    </api>
+    <api id="T:System.CodeDom.Compiler.GeneratedCodeAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.CodeDom.Compiler.GeneratedCodeAttribute" />
+      <apidata name="GeneratedCodeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Diagnostics.Tools" module="System.Diagnostics.Tools" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.CodeDom.Compiler" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="All" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="4f666fa6-940f-0373-8444-8e12950ee07d" />
+    </api>
+    <api id="AllMembers.T:System.CodeDom.Compiler.GeneratedCodeAttribute">
+      <topicdata name="GeneratedCodeAttribute" group="list" subgroup="members" typeTopicId="T:System.CodeDom.Compiler.GeneratedCodeAttribute" />
+      <apidata name="GeneratedCodeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.CodeDom.Compiler.GeneratedCodeAttribute.#ctor(System.String,System.String)" />
+        <element api="P:System.CodeDom.Compiler.GeneratedCodeAttribute.Tool" />
+        <element api="P:System.CodeDom.Compiler.GeneratedCodeAttribute.Version" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Tools" module="System.Diagnostics.Tools" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.CodeDom.Compiler" />
+        <type api="T:System.CodeDom.Compiler.GeneratedCodeAttribute" />
+      </containers>
+      <file name="fe9f35d1-3718-8a01-6226-60b26f461af7" />
+    </api>
+    <api id="Methods.T:System.CodeDom.Compiler.GeneratedCodeAttribute">
+      <topicdata name="GeneratedCodeAttribute" group="list" subgroup="Methods" typeTopicId="T:System.CodeDom.Compiler.GeneratedCodeAttribute" />
+      <apidata name="GeneratedCodeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Tools" module="System.Diagnostics.Tools" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.CodeDom.Compiler" />
+        <type api="T:System.CodeDom.Compiler.GeneratedCodeAttribute" />
+      </containers>
+      <file name="3ca74601-5648-0823-696f-65bc5edbf043" />
+    </api>
+    <api id="Properties.T:System.CodeDom.Compiler.GeneratedCodeAttribute">
+      <topicdata name="GeneratedCodeAttribute" group="list" subgroup="Properties" typeTopicId="T:System.CodeDom.Compiler.GeneratedCodeAttribute" />
+      <apidata name="GeneratedCodeAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.CodeDom.Compiler.GeneratedCodeAttribute.Tool" />
+        <element api="P:System.CodeDom.Compiler.GeneratedCodeAttribute.Version" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Tools" module="System.Diagnostics.Tools" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.CodeDom.Compiler" />
+        <type api="T:System.CodeDom.Compiler.GeneratedCodeAttribute" />
+      </containers>
+      <file name="620347a0-5707-7a89-b3b5-aed1b50c89cc" />
+    </api>
+    <api id="M:System.CodeDom.Compiler.GeneratedCodeAttribute.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="tool">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="version">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Tools" module="System.Diagnostics.Tools" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.CodeDom.Compiler" />
+        <type api="T:System.CodeDom.Compiler.GeneratedCodeAttribute" ref="true" />
+      </containers>
+      <file name="686d81f8-9593-b4bf-3197-feb709decebe" />
+    </api>
+    <api id="P:System.CodeDom.Compiler.GeneratedCodeAttribute.Tool">
+      <topicdata group="api" />
+      <apidata name="Tool" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Tool" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Tools" module="System.Diagnostics.Tools" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.CodeDom.Compiler" />
+        <type api="T:System.CodeDom.Compiler.GeneratedCodeAttribute" ref="true" />
+      </containers>
+      <file name="19c6d988-3ac1-a576-8f2d-106b4d61bf32" />
+    </api>
+    <api id="P:System.CodeDom.Compiler.GeneratedCodeAttribute.Version">
+      <topicdata group="api" />
+      <apidata name="Version" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Version" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Tools" module="System.Diagnostics.Tools" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.CodeDom.Compiler" />
+        <type api="T:System.CodeDom.Compiler.GeneratedCodeAttribute" ref="true" />
+      </containers>
+      <file name="75d7e016-efc1-46c0-e66e-ff0b9a0dfe95" />
+    </api>
+  </apis>
+</reflection>

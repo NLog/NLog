@@ -1,0 +1,1279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="MFWsStack">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MFWsStack</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Ws.ServiceModel">
+      <topicdata group="api" />
+      <apidata name="Ws.ServiceModel" group="namespace" />
+      <elements>
+        <element api="T:Ws.ServiceModel.ServiceContractAttribute" />
+        <element api="T:Ws.ServiceModel.PolicyAssertionAttribute" />
+        <element api="T:Ws.ServiceModel.OperationContractAttribute" />
+        <element api="T:Ws.ServiceModel.MessageParameterAttribute" />
+        <element api="T:Ws.ServiceModel.DataMemberAttribute" />
+        <element api="T:Ws.ServiceModel.DataContractAttribute" />
+        <element api="T:Ws.ServiceModel.EnumMemberAttribute" />
+      </elements>
+      <file name="9dab243e-2811-6c76-ca13-6f63e0879ba1" />
+    </api>
+    <api id="T:Ws.ServiceModel.DataContractAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.ServiceModel.DataContractAttribute" />
+      <apidata name="DataContractAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.DataContractAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Struct" />
+              <field name="Enum" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="94e27f7c-f378-6f85-89c2-4accf862074a" />
+    </api>
+    <api id="AllMembers.T:Ws.ServiceModel.DataContractAttribute">
+      <topicdata name="DataContractAttribute" group="list" subgroup="members" typeTopicId="T:Ws.ServiceModel.DataContractAttribute" />
+      <apidata name="DataContractAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.DataContractAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.ServiceModel.DataContractAttribute.#ctor" />
+        <element api="P:Ws.ServiceModel.DataContractAttribute.Name" />
+        <element api="P:Ws.ServiceModel.DataContractAttribute.Namespace" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.DataContractAttribute" />
+      </containers>
+      <file name="bf6e6489-932d-e8c8-4825-6d0433f55b3d" />
+    </api>
+    <api id="Methods.T:Ws.ServiceModel.DataContractAttribute">
+      <topicdata name="DataContractAttribute" group="list" subgroup="Methods" typeTopicId="T:Ws.ServiceModel.DataContractAttribute" />
+      <apidata name="DataContractAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.DataContractAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.DataContractAttribute" />
+      </containers>
+      <file name="e57fde5c-2a71-d07e-9f39-a99a477d8018" />
+    </api>
+    <api id="Properties.T:Ws.ServiceModel.DataContractAttribute">
+      <topicdata name="DataContractAttribute" group="list" subgroup="Properties" typeTopicId="T:Ws.ServiceModel.DataContractAttribute" />
+      <apidata name="DataContractAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.DataContractAttribute.#ctor" />
+      <elements>
+        <element api="P:Ws.ServiceModel.DataContractAttribute.Name" />
+        <element api="P:Ws.ServiceModel.DataContractAttribute.Namespace" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.DataContractAttribute" />
+      </containers>
+      <file name="b9fa8d6c-961d-8c30-5cc7-c313e3fbd45d" />
+    </api>
+    <api id="M:Ws.ServiceModel.DataContractAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.DataContractAttribute" ref="true" />
+      </containers>
+      <file name="e419b3fc-da4b-83e9-7da6-0b5c61c10577" />
+    </api>
+    <api id="P:Ws.ServiceModel.DataContractAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.DataContractAttribute" ref="true" />
+      </containers>
+      <file name="02835666-459c-f7bc-97d2-6950ae794e55" />
+    </api>
+    <api id="P:Ws.ServiceModel.DataContractAttribute.Namespace">
+      <topicdata group="api" />
+      <apidata name="Namespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Namespace" />
+      <setter name="set_Namespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.DataContractAttribute" ref="true" />
+      </containers>
+      <file name="5013e8c4-880d-4148-c9e9-37d002fbf6fb" />
+    </api>
+    <api id="T:Ws.ServiceModel.DataMemberAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.ServiceModel.DataMemberAttribute" />
+      <apidata name="DataMemberAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.DataMemberAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Property" />
+              <field name="Field" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="76506cca-c163-14fa-517e-ef48833201bd" />
+    </api>
+    <api id="AllMembers.T:Ws.ServiceModel.DataMemberAttribute">
+      <topicdata name="DataMemberAttribute" group="list" subgroup="members" typeTopicId="T:Ws.ServiceModel.DataMemberAttribute" />
+      <apidata name="DataMemberAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.DataMemberAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.ServiceModel.DataMemberAttribute.#ctor" />
+        <element api="P:Ws.ServiceModel.DataMemberAttribute.EmitDefaultValue" />
+        <element api="P:Ws.ServiceModel.DataMemberAttribute.IsAttribute" />
+        <element api="P:Ws.ServiceModel.DataMemberAttribute.IsNillable" />
+        <element api="P:Ws.ServiceModel.DataMemberAttribute.IsRequired" />
+        <element api="P:Ws.ServiceModel.DataMemberAttribute.Name" />
+        <element api="P:Ws.ServiceModel.DataMemberAttribute.Order" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.DataMemberAttribute" />
+      </containers>
+      <file name="75c11dbe-eb55-12c8-79b4-a3f748cf6f2b" />
+    </api>
+    <api id="Methods.T:Ws.ServiceModel.DataMemberAttribute">
+      <topicdata name="DataMemberAttribute" group="list" subgroup="Methods" typeTopicId="T:Ws.ServiceModel.DataMemberAttribute" />
+      <apidata name="DataMemberAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.DataMemberAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.DataMemberAttribute" />
+      </containers>
+      <file name="df3b3f61-2910-8de0-d487-db12fff2700e" />
+    </api>
+    <api id="Properties.T:Ws.ServiceModel.DataMemberAttribute">
+      <topicdata name="DataMemberAttribute" group="list" subgroup="Properties" typeTopicId="T:Ws.ServiceModel.DataMemberAttribute" />
+      <apidata name="DataMemberAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.DataMemberAttribute.#ctor" />
+      <elements>
+        <element api="P:Ws.ServiceModel.DataMemberAttribute.EmitDefaultValue" />
+        <element api="P:Ws.ServiceModel.DataMemberAttribute.IsAttribute" />
+        <element api="P:Ws.ServiceModel.DataMemberAttribute.IsNillable" />
+        <element api="P:Ws.ServiceModel.DataMemberAttribute.IsRequired" />
+        <element api="P:Ws.ServiceModel.DataMemberAttribute.Name" />
+        <element api="P:Ws.ServiceModel.DataMemberAttribute.Order" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.DataMemberAttribute" />
+      </containers>
+      <file name="d4875005-ec64-6ee0-933e-8f9da5a8e481" />
+    </api>
+    <api id="M:Ws.ServiceModel.DataMemberAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.DataMemberAttribute" ref="true" />
+      </containers>
+      <file name="f90f2f21-6fbb-531c-4f11-902499cc5f6a" />
+    </api>
+    <api id="P:Ws.ServiceModel.DataMemberAttribute.EmitDefaultValue">
+      <topicdata group="api" />
+      <apidata name="EmitDefaultValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EmitDefaultValue" />
+      <setter name="set_EmitDefaultValue" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.DataMemberAttribute" ref="true" />
+      </containers>
+      <file name="27f6f68d-b21f-54b9-6e3c-fedaba6974fd" />
+    </api>
+    <api id="P:Ws.ServiceModel.DataMemberAttribute.IsAttribute">
+      <topicdata group="api" />
+      <apidata name="IsAttribute" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsAttribute" />
+      <setter name="set_IsAttribute" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.DataMemberAttribute" ref="true" />
+      </containers>
+      <file name="5bc1064d-f4bc-2505-fc54-89c228485738" />
+    </api>
+    <api id="P:Ws.ServiceModel.DataMemberAttribute.IsNillable">
+      <topicdata group="api" />
+      <apidata name="IsNillable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsNillable" />
+      <setter name="set_IsNillable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.DataMemberAttribute" ref="true" />
+      </containers>
+      <file name="974fd556-47ff-904c-1e5d-60a976defdac" />
+    </api>
+    <api id="P:Ws.ServiceModel.DataMemberAttribute.IsRequired">
+      <topicdata group="api" />
+      <apidata name="IsRequired" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsRequired" />
+      <setter name="set_IsRequired" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.DataMemberAttribute" ref="true" />
+      </containers>
+      <file name="3e5b6221-9c98-8109-29bf-5be5fa341830" />
+    </api>
+    <api id="P:Ws.ServiceModel.DataMemberAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.DataMemberAttribute" ref="true" />
+      </containers>
+      <file name="7fb6cd39-0a84-6772-e6f2-3c5bb0b96bea" />
+    </api>
+    <api id="P:Ws.ServiceModel.DataMemberAttribute.Order">
+      <topicdata group="api" />
+      <apidata name="Order" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Order" />
+      <setter name="set_Order" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.DataMemberAttribute" ref="true" />
+      </containers>
+      <file name="ea860ba7-ed90-a369-ebc0-9eb12bfc44a0" />
+    </api>
+    <api id="T:Ws.ServiceModel.EnumMemberAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.ServiceModel.EnumMemberAttribute" />
+      <apidata name="EnumMemberAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.EnumMemberAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Field" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="1aa7cba1-0646-ad56-9f2f-6e21409004d1" />
+    </api>
+    <api id="AllMembers.T:Ws.ServiceModel.EnumMemberAttribute">
+      <topicdata name="EnumMemberAttribute" group="list" subgroup="members" typeTopicId="T:Ws.ServiceModel.EnumMemberAttribute" />
+      <apidata name="EnumMemberAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.EnumMemberAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.ServiceModel.EnumMemberAttribute.#ctor" />
+        <element api="P:Ws.ServiceModel.EnumMemberAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.EnumMemberAttribute" />
+      </containers>
+      <file name="e0bb0369-dc3e-c651-2507-c35bfe09ccf5" />
+    </api>
+    <api id="Methods.T:Ws.ServiceModel.EnumMemberAttribute">
+      <topicdata name="EnumMemberAttribute" group="list" subgroup="Methods" typeTopicId="T:Ws.ServiceModel.EnumMemberAttribute" />
+      <apidata name="EnumMemberAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.EnumMemberAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.EnumMemberAttribute" />
+      </containers>
+      <file name="90a69d73-06e0-50be-fb01-823304266107" />
+    </api>
+    <api id="Properties.T:Ws.ServiceModel.EnumMemberAttribute">
+      <topicdata name="EnumMemberAttribute" group="list" subgroup="Properties" typeTopicId="T:Ws.ServiceModel.EnumMemberAttribute" />
+      <apidata name="EnumMemberAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.EnumMemberAttribute.#ctor" />
+      <elements>
+        <element api="P:Ws.ServiceModel.EnumMemberAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.EnumMemberAttribute" />
+      </containers>
+      <file name="b8780cc0-e93a-b34b-1356-2305382afb7b" />
+    </api>
+    <api id="M:Ws.ServiceModel.EnumMemberAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.EnumMemberAttribute" ref="true" />
+      </containers>
+      <file name="c3f03e2d-6a1a-e608-d610-125854cc1af4" />
+    </api>
+    <api id="P:Ws.ServiceModel.EnumMemberAttribute.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Value" />
+      <setter name="set_Value" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.EnumMemberAttribute" ref="true" />
+      </containers>
+      <file name="364564d4-4539-e8b0-9e33-7d8d3dd29093" />
+    </api>
+    <api id="T:Ws.ServiceModel.MessageParameterAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.ServiceModel.MessageParameterAttribute" />
+      <apidata name="MessageParameterAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.MessageParameterAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Parameter" />
+              <field name="ReturnValue" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="e1ea9036-f8ac-2d66-155e-d50e009409ea" />
+    </api>
+    <api id="AllMembers.T:Ws.ServiceModel.MessageParameterAttribute">
+      <topicdata name="MessageParameterAttribute" group="list" subgroup="members" typeTopicId="T:Ws.ServiceModel.MessageParameterAttribute" />
+      <apidata name="MessageParameterAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.MessageParameterAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.ServiceModel.MessageParameterAttribute.#ctor" />
+        <element api="P:Ws.ServiceModel.MessageParameterAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.MessageParameterAttribute" />
+      </containers>
+      <file name="bf7ff7de-5888-7a3e-1a9a-11d99f1d13bb" />
+    </api>
+    <api id="Methods.T:Ws.ServiceModel.MessageParameterAttribute">
+      <topicdata name="MessageParameterAttribute" group="list" subgroup="Methods" typeTopicId="T:Ws.ServiceModel.MessageParameterAttribute" />
+      <apidata name="MessageParameterAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.MessageParameterAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.MessageParameterAttribute" />
+      </containers>
+      <file name="02758db4-2b1d-2004-7fb9-be2db56c9c71" />
+    </api>
+    <api id="Properties.T:Ws.ServiceModel.MessageParameterAttribute">
+      <topicdata name="MessageParameterAttribute" group="list" subgroup="Properties" typeTopicId="T:Ws.ServiceModel.MessageParameterAttribute" />
+      <apidata name="MessageParameterAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.MessageParameterAttribute.#ctor" />
+      <elements>
+        <element api="P:Ws.ServiceModel.MessageParameterAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.MessageParameterAttribute" />
+      </containers>
+      <file name="ed990fd2-0736-d5db-f3b3-9b8adca21551" />
+    </api>
+    <api id="M:Ws.ServiceModel.MessageParameterAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.MessageParameterAttribute" ref="true" />
+      </containers>
+      <file name="daa4611e-5663-a218-f58c-248395354b66" />
+    </api>
+    <api id="P:Ws.ServiceModel.MessageParameterAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.MessageParameterAttribute" ref="true" />
+      </containers>
+      <file name="677372cd-cb96-7fcf-3d8d-115f2f17f9bd" />
+    </api>
+    <api id="T:Ws.ServiceModel.OperationContractAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.ServiceModel.OperationContractAttribute" />
+      <apidata name="OperationContractAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.OperationContractAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Method" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8bb8e562-4218-ecce-84d1-5505255e777f" />
+    </api>
+    <api id="AllMembers.T:Ws.ServiceModel.OperationContractAttribute">
+      <topicdata name="OperationContractAttribute" group="list" subgroup="members" typeTopicId="T:Ws.ServiceModel.OperationContractAttribute" />
+      <apidata name="OperationContractAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.OperationContractAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.ServiceModel.OperationContractAttribute.#ctor" />
+        <element api="P:Ws.ServiceModel.OperationContractAttribute.Action" />
+        <element api="P:Ws.ServiceModel.OperationContractAttribute.IsOneWay" />
+        <element api="P:Ws.ServiceModel.OperationContractAttribute.Name" />
+        <element api="P:Ws.ServiceModel.OperationContractAttribute.ReplyAction" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.OperationContractAttribute" />
+      </containers>
+      <file name="3df7e717-79b4-221b-8e65-89d6c2122576" />
+    </api>
+    <api id="Methods.T:Ws.ServiceModel.OperationContractAttribute">
+      <topicdata name="OperationContractAttribute" group="list" subgroup="Methods" typeTopicId="T:Ws.ServiceModel.OperationContractAttribute" />
+      <apidata name="OperationContractAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.OperationContractAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.OperationContractAttribute" />
+      </containers>
+      <file name="56159744-bfc9-2a0c-2522-cf81860e28ae" />
+    </api>
+    <api id="Properties.T:Ws.ServiceModel.OperationContractAttribute">
+      <topicdata name="OperationContractAttribute" group="list" subgroup="Properties" typeTopicId="T:Ws.ServiceModel.OperationContractAttribute" />
+      <apidata name="OperationContractAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.OperationContractAttribute.#ctor" />
+      <elements>
+        <element api="P:Ws.ServiceModel.OperationContractAttribute.Action" />
+        <element api="P:Ws.ServiceModel.OperationContractAttribute.IsOneWay" />
+        <element api="P:Ws.ServiceModel.OperationContractAttribute.Name" />
+        <element api="P:Ws.ServiceModel.OperationContractAttribute.ReplyAction" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.OperationContractAttribute" />
+      </containers>
+      <file name="0190d8e8-93de-522e-2584-27d21f6e1618" />
+    </api>
+    <api id="M:Ws.ServiceModel.OperationContractAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.OperationContractAttribute" ref="true" />
+      </containers>
+      <file name="26c8e4e7-45c9-052c-7627-d1239147741b" />
+    </api>
+    <api id="P:Ws.ServiceModel.OperationContractAttribute.Action">
+      <topicdata group="api" />
+      <apidata name="Action" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Action" />
+      <setter name="set_Action" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.OperationContractAttribute" ref="true" />
+      </containers>
+      <file name="f03be8f3-6dd1-a602-6566-6a4cafa2bad4" />
+    </api>
+    <api id="P:Ws.ServiceModel.OperationContractAttribute.IsOneWay">
+      <topicdata group="api" />
+      <apidata name="IsOneWay" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsOneWay" />
+      <setter name="set_IsOneWay" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.OperationContractAttribute" ref="true" />
+      </containers>
+      <file name="841ffa7d-6998-59e7-d57b-2439b5af2628" />
+    </api>
+    <api id="P:Ws.ServiceModel.OperationContractAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.OperationContractAttribute" ref="true" />
+      </containers>
+      <file name="2a2e9c3a-d23e-bec7-3288-44c3f24b5f2f" />
+    </api>
+    <api id="P:Ws.ServiceModel.OperationContractAttribute.ReplyAction">
+      <topicdata group="api" />
+      <apidata name="ReplyAction" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReplyAction" />
+      <setter name="set_ReplyAction" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.OperationContractAttribute" ref="true" />
+      </containers>
+      <file name="1a6e0886-dff5-16ca-4501-5fd91397d041" />
+    </api>
+    <api id="T:Ws.ServiceModel.PolicyAssertionAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.ServiceModel.PolicyAssertionAttribute" />
+      <apidata name="PolicyAssertionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.PolicyAssertionAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Method" />
+              <field name="Interface" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="3b3a1b8b-7915-e354-95e9-da32f75d0f1f" />
+    </api>
+    <api id="AllMembers.T:Ws.ServiceModel.PolicyAssertionAttribute">
+      <topicdata name="PolicyAssertionAttribute" group="list" subgroup="members" typeTopicId="T:Ws.ServiceModel.PolicyAssertionAttribute" />
+      <apidata name="PolicyAssertionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.PolicyAssertionAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.ServiceModel.PolicyAssertionAttribute.#ctor" />
+        <element api="P:Ws.ServiceModel.PolicyAssertionAttribute.Name" />
+        <element api="P:Ws.ServiceModel.PolicyAssertionAttribute.Namespace" />
+        <element api="P:Ws.ServiceModel.PolicyAssertionAttribute.PolicyID" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.PolicyAssertionAttribute" />
+      </containers>
+      <file name="e39c2211-ad34-74d5-9c7c-a04979cf6e4b" />
+    </api>
+    <api id="Methods.T:Ws.ServiceModel.PolicyAssertionAttribute">
+      <topicdata name="PolicyAssertionAttribute" group="list" subgroup="Methods" typeTopicId="T:Ws.ServiceModel.PolicyAssertionAttribute" />
+      <apidata name="PolicyAssertionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.PolicyAssertionAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.PolicyAssertionAttribute" />
+      </containers>
+      <file name="b5df6569-d57e-1788-15f7-902d401322d2" />
+    </api>
+    <api id="Properties.T:Ws.ServiceModel.PolicyAssertionAttribute">
+      <topicdata name="PolicyAssertionAttribute" group="list" subgroup="Properties" typeTopicId="T:Ws.ServiceModel.PolicyAssertionAttribute" />
+      <apidata name="PolicyAssertionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.PolicyAssertionAttribute.#ctor" />
+      <elements>
+        <element api="P:Ws.ServiceModel.PolicyAssertionAttribute.Name" />
+        <element api="P:Ws.ServiceModel.PolicyAssertionAttribute.Namespace" />
+        <element api="P:Ws.ServiceModel.PolicyAssertionAttribute.PolicyID" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.PolicyAssertionAttribute" />
+      </containers>
+      <file name="a5f3f8e0-e1b7-a3d1-ebfa-e4312422a938" />
+    </api>
+    <api id="M:Ws.ServiceModel.PolicyAssertionAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.PolicyAssertionAttribute" ref="true" />
+      </containers>
+      <file name="19e5ee00-b680-a9a8-6cbc-a2167a5522b5" />
+    </api>
+    <api id="P:Ws.ServiceModel.PolicyAssertionAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.PolicyAssertionAttribute" ref="true" />
+      </containers>
+      <file name="4fa23b03-a6aa-df02-63b9-e0f7085ac856" />
+    </api>
+    <api id="P:Ws.ServiceModel.PolicyAssertionAttribute.Namespace">
+      <topicdata group="api" />
+      <apidata name="Namespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Namespace" />
+      <setter name="set_Namespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.PolicyAssertionAttribute" ref="true" />
+      </containers>
+      <file name="46b2967b-4283-27ed-19fb-ef268fcfd563" />
+    </api>
+    <api id="P:Ws.ServiceModel.PolicyAssertionAttribute.PolicyID">
+      <topicdata group="api" />
+      <apidata name="PolicyID" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PolicyID" />
+      <setter name="set_PolicyID" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.PolicyAssertionAttribute" ref="true" />
+      </containers>
+      <file name="d93f3c27-b1e2-e9b0-9331-8ea06644faf9" />
+    </api>
+    <api id="T:Ws.ServiceModel.ServiceContractAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.ServiceModel.ServiceContractAttribute" />
+      <apidata name="ServiceContractAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.ServiceContractAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Interface" />
+            </enumValue>
+          </argument>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="4fbb8aa0-4cae-88aa-cd2f-5a959a211780" />
+    </api>
+    <api id="AllMembers.T:Ws.ServiceModel.ServiceContractAttribute">
+      <topicdata name="ServiceContractAttribute" group="list" subgroup="members" typeTopicId="T:Ws.ServiceModel.ServiceContractAttribute" />
+      <apidata name="ServiceContractAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.ServiceContractAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.ServiceModel.ServiceContractAttribute.#ctor" />
+        <element api="P:Ws.ServiceModel.ServiceContractAttribute.CallbackContract" />
+        <element api="P:Ws.ServiceModel.ServiceContractAttribute.Name" />
+        <element api="P:Ws.ServiceModel.ServiceContractAttribute.Namespace" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.ServiceContractAttribute" />
+      </containers>
+      <file name="f7cb0cea-4901-c86e-f39e-4d4324c81cb1" />
+    </api>
+    <api id="Methods.T:Ws.ServiceModel.ServiceContractAttribute">
+      <topicdata name="ServiceContractAttribute" group="list" subgroup="Methods" typeTopicId="T:Ws.ServiceModel.ServiceContractAttribute" />
+      <apidata name="ServiceContractAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.ServiceContractAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.ServiceContractAttribute" />
+      </containers>
+      <file name="cc667304-aa5a-f87d-f211-192e2dab034c" />
+    </api>
+    <api id="Properties.T:Ws.ServiceModel.ServiceContractAttribute">
+      <topicdata name="ServiceContractAttribute" group="list" subgroup="Properties" typeTopicId="T:Ws.ServiceModel.ServiceContractAttribute" />
+      <apidata name="ServiceContractAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Ws.ServiceModel.ServiceContractAttribute.#ctor" />
+      <elements>
+        <element api="P:Ws.ServiceModel.ServiceContractAttribute.CallbackContract" />
+        <element api="P:Ws.ServiceModel.ServiceContractAttribute.Name" />
+        <element api="P:Ws.ServiceModel.ServiceContractAttribute.Namespace" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.ServiceContractAttribute" />
+      </containers>
+      <file name="3975eea5-5da9-2912-2abb-97838a653bc7" />
+    </api>
+    <api id="M:Ws.ServiceModel.ServiceContractAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.ServiceContractAttribute" ref="true" />
+      </containers>
+      <file name="056a6461-26c4-e120-11e6-e47112576d5c" />
+    </api>
+    <api id="P:Ws.ServiceModel.ServiceContractAttribute.CallbackContract">
+      <topicdata group="api" />
+      <apidata name="CallbackContract" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CallbackContract" />
+      <setter name="set_CallbackContract" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.ServiceContractAttribute" ref="true" />
+      </containers>
+      <file name="cd5fba55-1deb-1a1c-6f67-0b7bbf52948b" />
+    </api>
+    <api id="P:Ws.ServiceModel.ServiceContractAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.ServiceContractAttribute" ref="true" />
+      </containers>
+      <file name="c8ad56cd-f40c-0b3f-5cad-48b95f022322" />
+    </api>
+    <api id="P:Ws.ServiceModel.ServiceContractAttribute.Namespace">
+      <topicdata group="api" />
+      <apidata name="Namespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Namespace" />
+      <setter name="set_Namespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.ServiceModel" />
+        <type api="T:Ws.ServiceModel.ServiceContractAttribute" ref="true" />
+      </containers>
+      <file name="48e8ae83-7740-c435-3a28-b923548a803e" />
+    </api>
+  </apis>
+</reflection>

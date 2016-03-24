@@ -1,0 +1,1476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.CSharp">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.CSharp.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.CSharp.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.CSharp.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.CSharp.RuntimeBinder">
+      <topicdata group="api" />
+      <apidata name="Microsoft.CSharp.RuntimeBinder" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.CSharp.RuntimeBinder.Binder" />
+        <element api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" />
+        <element api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags" />
+        <element api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" />
+        <element api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException" />
+        <element api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException" />
+      </elements>
+      <file name="40c06b0b-1bbd-807b-c501-198b876cd6ab" />
+    </api>
+    <api id="T:Microsoft.CSharp.RuntimeBinder.Binder">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.CSharp.RuntimeBinder.Binder" />
+      <apidata name="Binder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5e188498-c4a1-02e7-a7f5-8da644702097" />
+    </api>
+    <api id="AllMembers.T:Microsoft.CSharp.RuntimeBinder.Binder">
+      <topicdata name="Binder" group="list" subgroup="members" typeTopicId="T:Microsoft.CSharp.RuntimeBinder.Binder" />
+      <apidata name="Binder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.BinaryOperation(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Linq.Expressions.ExpressionType,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.Convert(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Type,System.Type)" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.GetIndex(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.GetMember(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.String,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.Invoke(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.InvokeConstructor(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.InvokeMember(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.String,System.Collections.Generic.IEnumerable{System.Type},System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.IsEvent(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.String,System.Type)" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.SetIndex(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.SetMember(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.String,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.UnaryOperation(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Linq.Expressions.ExpressionType,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.Binder" />
+      </containers>
+      <file name="12d26279-4dab-2c8f-c76a-c4794efc003c" />
+    </api>
+    <api id="Methods.T:Microsoft.CSharp.RuntimeBinder.Binder">
+      <topicdata name="Binder" group="list" subgroup="Methods" typeTopicId="T:Microsoft.CSharp.RuntimeBinder.Binder" />
+      <apidata name="Binder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.BinaryOperation(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Linq.Expressions.ExpressionType,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.Convert(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Type,System.Type)" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.GetIndex(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.GetMember(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.String,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.Invoke(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.InvokeConstructor(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.InvokeMember(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.String,System.Collections.Generic.IEnumerable{System.Type},System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.IsEvent(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.String,System.Type)" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.SetIndex(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.SetMember(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.String,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.Binder.UnaryOperation(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Linq.Expressions.ExpressionType,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.Binder" />
+      </containers>
+      <file name="a7a370d4-4e49-c452-b118-6ad510344019" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.Binder.BinaryOperation(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Linq.Expressions.ExpressionType,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})">
+      <topicdata group="api" />
+      <apidata name="BinaryOperation" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="flags">
+          <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+        </parameter>
+        <parameter name="operation">
+          <type api="T:System.Linq.Expressions.ExpressionType" ref="false" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="argumentInfo">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.CallSiteBinder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.Binder" ref="true" />
+      </containers>
+      <file name="7c34e910-1315-1687-9cba-7b3631f16009" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.Binder.Convert(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Type,System.Type)">
+      <topicdata group="api" />
+      <apidata name="Convert" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="flags">
+          <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+        </parameter>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.CallSiteBinder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.Binder" ref="true" />
+      </containers>
+      <file name="264780b6-aca9-024e-060e-96299c4e12d2" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.Binder.GetIndex(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})">
+      <topicdata group="api" />
+      <apidata name="GetIndex" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="flags">
+          <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="argumentInfo">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.CallSiteBinder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.Binder" ref="true" />
+      </containers>
+      <file name="1c777020-0578-c1fb-a6b7-c72c4e57e344" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.Binder.GetMember(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.String,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})">
+      <topicdata group="api" />
+      <apidata name="GetMember" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="flags">
+          <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="argumentInfo">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.CallSiteBinder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.Binder" ref="true" />
+      </containers>
+      <file name="d966b21a-513f-86fa-c85e-177f8d5a6f84" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.Binder.Invoke(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})">
+      <topicdata group="api" />
+      <apidata name="Invoke" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="flags">
+          <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="argumentInfo">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.CallSiteBinder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.Binder" ref="true" />
+      </containers>
+      <file name="4837fd7d-41ac-6cde-98ae-defddf2df07d" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.Binder.InvokeConstructor(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})">
+      <topicdata group="api" />
+      <apidata name="InvokeConstructor" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="flags">
+          <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="argumentInfo">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.CallSiteBinder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.Binder" ref="true" />
+      </containers>
+      <file name="793499c9-7bc6-d99b-d464-becb38f67d72" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.Binder.InvokeMember(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.String,System.Collections.Generic.IEnumerable{System.Type},System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})">
+      <topicdata group="api" />
+      <apidata name="InvokeMember" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="flags">
+          <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="typeArguments">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Type" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="argumentInfo">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.CallSiteBinder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.Binder" ref="true" />
+      </containers>
+      <file name="e78ed733-2144-7595-b619-03de547793ec" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.Binder.IsEvent(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.String,System.Type)">
+      <topicdata group="api" />
+      <apidata name="IsEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="flags">
+          <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.CallSiteBinder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.Binder" ref="true" />
+      </containers>
+      <file name="3cf70c0d-44da-fe20-9af2-73920d214531" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.Binder.SetIndex(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})">
+      <topicdata group="api" />
+      <apidata name="SetIndex" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="flags">
+          <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="argumentInfo">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.CallSiteBinder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.Binder" ref="true" />
+      </containers>
+      <file name="fd7b4651-0961-c3fb-0b9a-14b588eab04c" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.Binder.SetMember(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.String,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})">
+      <topicdata group="api" />
+      <apidata name="SetMember" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="flags">
+          <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="argumentInfo">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.CallSiteBinder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.Binder" ref="true" />
+      </containers>
+      <file name="122fcabf-de3d-1b9d-4bc5-b8eaddc44a2e" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.Binder.UnaryOperation(Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags,System.Linq.Expressions.ExpressionType,System.Type,System.Collections.Generic.IEnumerable{Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo})">
+      <topicdata group="api" />
+      <apidata name="UnaryOperation" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="flags">
+          <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+        </parameter>
+        <parameter name="operation">
+          <type api="T:System.Linq.Expressions.ExpressionType" ref="false" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="argumentInfo">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.CompilerServices.CallSiteBinder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.Binder" ref="true" />
+      </containers>
+      <file name="cc3262a0-7990-db60-bb7a-5666b725e396" />
+    </api>
+    <api id="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" />
+      <apidata name="CSharpArgumentInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8ec9b676-043d-6e08-18ae-72f24a37c611" />
+    </api>
+    <api id="AllMembers.T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo">
+      <topicdata name="CSharpArgumentInfo" group="list" subgroup="members" typeTopicId="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" />
+      <apidata name="CSharpArgumentInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo.Create(Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags,System.String)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" />
+      </containers>
+      <file name="ede62c60-d094-58c4-9d83-b90426b888da" />
+    </api>
+    <api id="Methods.T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo">
+      <topicdata name="CSharpArgumentInfo" group="list" subgroup="Methods" typeTopicId="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" />
+      <apidata name="CSharpArgumentInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo.Create(Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags,System.String)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" />
+      </containers>
+      <file name="21379d9b-4d7f-1874-3cf7-f133c6a631ef" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo.Create(Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags,System.String)">
+      <topicdata group="api" />
+      <apidata name="Create" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="flags">
+          <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags" ref="false" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo" ref="true" />
+      </containers>
+      <file name="bb2dd73b-9b14-13f3-af67-1b0476203f93" />
+    </api>
+    <api id="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags">
+      <topicdata group="api" />
+      <apidata name="CSharpArgumentInfoFlags" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags.None" />
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags.UseCompileTimeType" />
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags.Constant" />
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags.NamedArgument" />
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags.IsRef" />
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags.IsOut" />
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags.IsStaticType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fea6460b-cc4a-a804-234f-3abab094acc1" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags.Constant">
+      <topicdata group="api" notopic="" />
+      <apidata name="Constant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags" ref="false" />
+      </containers>
+      <file name="ac27c139-79b9-3956-8695-8e1f7b73469a" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags.IsOut">
+      <topicdata group="api" notopic="" />
+      <apidata name="IsOut" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags" ref="false" />
+      </containers>
+      <file name="d7c92b3a-76c2-ebb6-6ab9-d1da56bf6a7c" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags.IsRef">
+      <topicdata group="api" notopic="" />
+      <apidata name="IsRef" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags" ref="false" />
+      </containers>
+      <file name="b370519a-dfd8-c771-7299-96c6e275a795" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags.IsStaticType">
+      <topicdata group="api" notopic="" />
+      <apidata name="IsStaticType" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags" ref="false" />
+      </containers>
+      <file name="c4010fa6-e268-4ee5-b9b2-08445669332a" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags.NamedArgument">
+      <topicdata group="api" notopic="" />
+      <apidata name="NamedArgument" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags" ref="false" />
+      </containers>
+      <file name="740ffdc4-c5e5-2aa2-081a-f8aedb5288fc" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags" ref="false" />
+      </containers>
+      <file name="6b86c673-4d55-fdf0-69c2-b33985ee8202" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags.UseCompileTimeType">
+      <topicdata group="api" notopic="" />
+      <apidata name="UseCompileTimeType" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags" ref="false" />
+      </containers>
+      <file name="5ca47545-c63e-feb5-d420-6d94b9ba8ad0" />
+    </api>
+    <api id="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags">
+      <topicdata group="api" />
+      <apidata name="CSharpBinderFlags" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.None" />
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.CheckedContext" />
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.InvokeSimpleName" />
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.InvokeSpecialName" />
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.BinaryOperationLogical" />
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.ConvertExplicit" />
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.ConvertArrayIndex" />
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.ResultIndexed" />
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.ValueFromCompoundAssignment" />
+        <element api="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.ResultDiscarded" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bfc5502b-d97e-1721-3174-e9e0b7318635" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.BinaryOperationLogical">
+      <topicdata group="api" notopic="" />
+      <apidata name="BinaryOperationLogical" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </containers>
+      <file name="288aeb92-4d18-e4e5-b74b-79e6699423d0" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.CheckedContext">
+      <topicdata group="api" notopic="" />
+      <apidata name="CheckedContext" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </containers>
+      <file name="38d92336-6b10-c88d-f231-fcb21efb5945" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.ConvertArrayIndex">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConvertArrayIndex" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </containers>
+      <file name="276bfdad-6d02-e16e-d002-c11ffb1b957d" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.ConvertExplicit">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConvertExplicit" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </containers>
+      <file name="e0d72e14-beb1-dcb7-c917-af7f9dfd9411" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.InvokeSimpleName">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvokeSimpleName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </containers>
+      <file name="b137e34b-351d-8933-f51c-3d9fdd17e7a9" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.InvokeSpecialName">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvokeSpecialName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </containers>
+      <file name="ff0116db-5c48-7407-f314-898a0cfd1e79" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </containers>
+      <file name="1119b066-3bfb-da46-dd0e-2a35bab98cd7" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.ResultDiscarded">
+      <topicdata group="api" notopic="" />
+      <apidata name="ResultDiscarded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </returns>
+      <value>256</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </containers>
+      <file name="5b43c5f9-bf55-6f24-788d-02ab4751fe15" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.ResultIndexed">
+      <topicdata group="api" notopic="" />
+      <apidata name="ResultIndexed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </returns>
+      <value>64</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </containers>
+      <file name="f37e83d8-9fd8-b3f6-659c-844e06d55ee3" />
+    </api>
+    <api id="F:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags.ValueFromCompoundAssignment">
+      <topicdata group="api" notopic="" />
+      <apidata name="ValueFromCompoundAssignment" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </returns>
+      <value>128</value>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags" ref="false" />
+      </containers>
+      <file name="86af2eb7-d6ec-aad0-faae-cdc885d5bdbc" />
+    </api>
+    <api id="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException" />
+      <apidata name="RuntimeBinderException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+      </containers>
+      <file name="74f91c16-40eb-0d1d-7b91-1bcd6e004512" />
+    </api>
+    <api id="AllMembers.T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">
+      <topicdata name="RuntimeBinderException" group="list" subgroup="members" typeTopicId="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException" />
+      <apidata name="RuntimeBinderException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor">
+          <element api="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor" />
+          <element api="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor(System.String)" />
+          <element api="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+          <element api="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor(System.String,System.Exception)" />
+        </element>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="E:System.Exception.SerializeObjectState" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException" />
+      </containers>
+      <file name="e5d56d2b-461c-8e17-7bd0-69e09213a526" />
+    </api>
+    <api id="Methods.T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">
+      <topicdata name="RuntimeBinderException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException" />
+      <apidata name="RuntimeBinderException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException" />
+      </containers>
+      <file name="efbae10c-3219-6a95-b686-c47c5854ec4f" />
+    </api>
+    <api id="Properties.T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">
+      <topicdata name="RuntimeBinderException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException" />
+      <apidata name="RuntimeBinderException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException" />
+      </containers>
+      <file name="b3be2d7b-a117-bdd1-7bf1-a8ca2ec3bee1" />
+    </api>
+    <api id="Events.T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">
+      <topicdata name="RuntimeBinderException" group="list" subgroup="Events" typeTopicId="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException" />
+      <apidata name="RuntimeBinderException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor" />
+      <elements>
+        <element api="E:System.Exception.SerializeObjectState" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException" />
+      </containers>
+      <file name="390344c9-36a3-7c19-4292-06e6833d1be8" />
+    </api>
+    <api id="Overload:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor(System.String)" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException" ref="true" />
+      </containers>
+      <file name="83fc50a4-9ed8-dcef-da61-91aac50147ad" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor" />
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException" ref="true" />
+      </containers>
+      <file name="1c860b33-f4f3-dd3a-e794-5ee9fa85cc33" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor" />
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException" ref="true" />
+      </containers>
+      <file name="360127d2-c9dc-afcd-7213-4a5edfaae485" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException" ref="true" />
+      </containers>
+      <file name="27ccccc8-68a2-6370-b54d-05cd3fdf8b17" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException" ref="true" />
+      </containers>
+      <file name="50bb47e0-535f-bb87-d34b-2988c5161af7" />
+    </api>
+    <api id="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException" />
+      <apidata name="RuntimeBinderInternalCompilerException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+      </containers>
+      <file name="f2eb7563-2b0d-6e08-a254-060748969346" />
+    </api>
+    <api id="AllMembers.T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException">
+      <topicdata name="RuntimeBinderInternalCompilerException" group="list" subgroup="members" typeTopicId="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException" />
+      <apidata name="RuntimeBinderInternalCompilerException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor">
+          <element api="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor" />
+          <element api="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor(System.String)" />
+          <element api="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+          <element api="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor(System.String,System.Exception)" />
+        </element>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="E:System.Exception.SerializeObjectState" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException" />
+      </containers>
+      <file name="175adc03-33d5-2d60-eacc-141eaec11e19" />
+    </api>
+    <api id="Methods.T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException">
+      <topicdata name="RuntimeBinderInternalCompilerException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException" />
+      <apidata name="RuntimeBinderInternalCompilerException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException" />
+      </containers>
+      <file name="e8a601ae-2db6-2ce8-644a-8633b7fbebc3" />
+    </api>
+    <api id="Properties.T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException">
+      <topicdata name="RuntimeBinderInternalCompilerException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException" />
+      <apidata name="RuntimeBinderInternalCompilerException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException" />
+      </containers>
+      <file name="d296b884-d004-8d3e-e563-d1299b7a3409" />
+    </api>
+    <api id="Events.T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException">
+      <topicdata name="RuntimeBinderInternalCompilerException" group="list" subgroup="Events" typeTopicId="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException" />
+      <apidata name="RuntimeBinderInternalCompilerException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor" />
+      <elements>
+        <element api="E:System.Exception.SerializeObjectState" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException" />
+      </containers>
+      <file name="5ca7501e-4e16-0ac5-40e0-4969ce974b1f" />
+    </api>
+    <api id="Overload:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor(System.String)" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException" ref="true" />
+      </containers>
+      <file name="16f8efae-2aec-26a1-6d8d-96ade56b302e" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor" />
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException" ref="true" />
+      </containers>
+      <file name="0271e7e8-c044-f138-99e2-2cd3800b9ef5" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor" />
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException" ref="true" />
+      </containers>
+      <file name="fc5ff9ad-e1ac-59a6-2b93-1a7dd8e3e743" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException" ref="true" />
+      </containers>
+      <file name="ac9523d7-39d0-e515-ebea-8cae18cae353" />
+    </api>
+    <api id="M:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.CSharp" module="Microsoft.CSharp" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.CSharp.RuntimeBinder" />
+        <type api="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderInternalCompilerException" ref="true" />
+      </containers>
+      <file name="49c12c47-13c3-ad7f-164d-bde637a4973a" />
+    </api>
+  </apis>
+</reflection>

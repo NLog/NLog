@@ -1,0 +1,998 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Configuration">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Configuration.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Configuration.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Configuration.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Configuration.Provider">
+      <topicdata group="api" />
+      <apidata name="System.Configuration.Provider" group="namespace" />
+      <elements>
+        <element api="T:System.Configuration.Provider.ProviderBase" />
+        <element api="T:System.Configuration.Provider.ProviderCollection" />
+        <element api="T:System.Configuration.Provider.ProviderException" />
+      </elements>
+      <file name="7c6aa7e0-a403-dc03-4fc1-5ddfc9f8355f" />
+    </api>
+    <api id="T:System.Configuration.Provider.ProviderBase">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Configuration.Provider.ProviderBase" />
+      <apidata name="ProviderBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Web.SiteMapProvider" ref="true" />
+          <type api="T:System.Configuration.SettingsProvider" ref="true" />
+          <type api="T:System.Configuration.ProtectedConfigurationProvider" ref="true" />
+          <type api="T:System.Web.SessionState.SessionStateStoreProviderBase" ref="true" />
+          <type api="T:System.Web.Management.WebEventProvider" ref="true" />
+          <type api="T:System.Web.Caching.OutputCacheProvider" ref="true" />
+          <type api="T:System.Web.UI.WebControls.WebParts.PersonalizationProvider" ref="true" />
+          <type api="T:System.Web.Security.MembershipProvider" ref="true" />
+          <type api="T:System.Web.Security.RoleProvider" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+      </containers>
+      <file name="648b19d0-d90f-7c25-2821-c61585b7794f" />
+    </api>
+    <api id="AllMembers.T:System.Configuration.Provider.ProviderBase">
+      <topicdata name="ProviderBase" group="list" subgroup="members" typeTopicId="T:System.Configuration.Provider.ProviderBase" />
+      <apidata name="ProviderBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.Provider.ProviderBase.#ctor" />
+        <element api="P:System.Configuration.Provider.ProviderBase.Description" />
+        <element api="M:System.Configuration.Provider.ProviderBase.Initialize(System.String,System.Collections.Specialized.NameValueCollection)" />
+        <element api="P:System.Configuration.Provider.ProviderBase.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderBase" />
+      </containers>
+      <file name="89282159-7dcd-8aff-7b23-f3fd0fd7c0d7" />
+    </api>
+    <api id="Methods.T:System.Configuration.Provider.ProviderBase">
+      <topicdata name="ProviderBase" group="list" subgroup="Methods" typeTopicId="T:System.Configuration.Provider.ProviderBase" />
+      <apidata name="ProviderBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Configuration.Provider.ProviderBase.Initialize(System.String,System.Collections.Specialized.NameValueCollection)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderBase" />
+      </containers>
+      <file name="0914bc0d-279e-c0f4-a862-e40b5167e7b8" />
+    </api>
+    <api id="Properties.T:System.Configuration.Provider.ProviderBase">
+      <topicdata name="ProviderBase" group="list" subgroup="Properties" typeTopicId="T:System.Configuration.Provider.ProviderBase" />
+      <apidata name="ProviderBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Configuration.Provider.ProviderBase.Description" />
+        <element api="P:System.Configuration.Provider.ProviderBase.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderBase" />
+      </containers>
+      <file name="e67c4caa-13af-1487-a97d-8cad445cac61" />
+    </api>
+    <api id="M:System.Configuration.Provider.ProviderBase.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderBase" ref="true" />
+      </containers>
+      <file name="9e14255d-4ecb-4e94-8616-ca1bb42bec3e" />
+    </api>
+    <api id="P:System.Configuration.Provider.ProviderBase.Description">
+      <topicdata group="api" />
+      <apidata name="Description" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Description" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderBase" ref="true" />
+      </containers>
+      <file name="99dad841-1c8e-1d50-1bda-e31c41dec93a" />
+    </api>
+    <api id="M:System.Configuration.Provider.ProviderBase.Initialize(System.String,System.Collections.Specialized.NameValueCollection)">
+      <topicdata group="api" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="config">
+          <type api="T:System.Collections.Specialized.NameValueCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderBase" ref="true" />
+      </containers>
+      <file name="44e04b82-9265-4e6e-9d3e-3897c6ad0a83" />
+    </api>
+    <api id="P:System.Configuration.Provider.ProviderBase.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderBase" ref="true" />
+      </containers>
+      <file name="bc5b5aae-2d8a-8800-c47a-fc00da8b7562" />
+    </api>
+    <api id="T:System.Configuration.Provider.ProviderCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Configuration.Provider.ProviderCollection" />
+      <apidata name="ProviderCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Provider.ProviderCollection.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Web.SiteMapProviderCollection" ref="true" />
+          <type api="T:System.Configuration.SettingsProviderCollection" ref="true" />
+          <type api="T:System.Configuration.ProtectedConfigurationProviderCollection" ref="true" />
+          <type api="T:System.Web.Caching.OutputCacheProviderCollection" ref="true" />
+          <type api="T:System.Web.UI.WebControls.WebParts.PersonalizationProviderCollection" ref="true" />
+          <type api="T:System.Web.Security.RoleProviderCollection" ref="true" />
+          <type api="T:System.Web.Security.MembershipProviderCollection" ref="true" />
+        </descendents>
+      </family>
+      <implements>
+        <type api="T:System.Collections.IEnumerable" ref="true" />
+        <type api="T:System.Collections.ICollection" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+      </containers>
+      <file name="22544f43-def0-d931-8886-7abff8e8169c" />
+    </api>
+    <api id="AllMembers.T:System.Configuration.Provider.ProviderCollection">
+      <topicdata name="ProviderCollection" group="list" subgroup="members" typeTopicId="T:System.Configuration.Provider.ProviderCollection" />
+      <apidata name="ProviderCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Provider.ProviderCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.ParallelEnumerable.AsParallel(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsParallel" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.ParallelQuery" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.ParallelEnumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Configuration.Provider.ProviderCollection.#ctor" />
+        <element api="M:System.Configuration.Provider.ProviderCollection.Add(System.Configuration.Provider.ProviderBase)" />
+        <element api="M:System.Configuration.Provider.ProviderCollection.Clear" />
+        <element api="M:System.Configuration.Provider.ProviderCollection.CopyTo(System.Configuration.Provider.ProviderBase[],System.Int32)" />
+        <element api="P:System.Configuration.Provider.ProviderCollection.Count" />
+        <element api="M:System.Configuration.Provider.ProviderCollection.GetEnumerator" />
+        <element api="P:System.Configuration.Provider.ProviderCollection.IsSynchronized" />
+        <element api="P:System.Configuration.Provider.ProviderCollection.Item(System.String)" />
+        <element api="M:System.Configuration.Provider.ProviderCollection.Remove(System.String)" />
+        <element api="M:System.Configuration.Provider.ProviderCollection.SetReadOnly" />
+        <element api="P:System.Configuration.Provider.ProviderCollection.SyncRoot" />
+        <element api="M:System.Configuration.Provider.ProviderCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderCollection" />
+      </containers>
+      <file name="3b145ee4-62b5-fe5c-e00f-ec0b92980e57" />
+    </api>
+    <api id="Methods.T:System.Configuration.Provider.ProviderCollection">
+      <topicdata name="ProviderCollection" group="list" subgroup="Methods" typeTopicId="T:System.Configuration.Provider.ProviderCollection" />
+      <apidata name="ProviderCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Provider.ProviderCollection.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsQueryable" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.IQueryable" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Queryable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="OfType" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" source="extension">
+          <apidata name="Cast" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <templates>
+            <template name="TResult" />
+          </templates>
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <template name="TResult" index="0" api="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.Enumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Linq.ParallelEnumerable.AsParallel(System.Collections.IEnumerable)" source="extension">
+          <apidata name="AsParallel" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Linq.ParallelQuery" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Linq" />
+            <type api="T:System.Linq.ParallelEnumerable" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Configuration.Provider.ProviderCollection.Add(System.Configuration.Provider.ProviderBase)" />
+        <element api="M:System.Configuration.Provider.ProviderCollection.Clear" />
+        <element api="M:System.Configuration.Provider.ProviderCollection.CopyTo(System.Configuration.Provider.ProviderBase[],System.Int32)" />
+        <element api="M:System.Configuration.Provider.ProviderCollection.GetEnumerator" />
+        <element api="M:System.Configuration.Provider.ProviderCollection.Remove(System.String)" />
+        <element api="M:System.Configuration.Provider.ProviderCollection.SetReadOnly" />
+        <element api="M:System.Configuration.Provider.ProviderCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderCollection" />
+      </containers>
+      <file name="27d50db4-4f2b-730f-5f4e-ff4660cab942" />
+    </api>
+    <api id="Properties.T:System.Configuration.Provider.ProviderCollection">
+      <topicdata name="ProviderCollection" group="list" subgroup="Properties" typeTopicId="T:System.Configuration.Provider.ProviderCollection" />
+      <apidata name="ProviderCollection" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Configuration.Provider.ProviderCollection.#ctor" />
+      <elements>
+        <element api="P:System.Configuration.Provider.ProviderCollection.Count" />
+        <element api="P:System.Configuration.Provider.ProviderCollection.IsSynchronized" />
+        <element api="P:System.Configuration.Provider.ProviderCollection.Item(System.String)" />
+        <element api="P:System.Configuration.Provider.ProviderCollection.SyncRoot" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderCollection" />
+      </containers>
+      <file name="3203a7e8-a672-b5cd-0ce3-ce402f38ad03" />
+    </api>
+    <api id="M:System.Configuration.Provider.ProviderCollection.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderCollection" ref="true" />
+      </containers>
+      <file name="d854668a-8909-38e8-ae99-c6b1666fe41f" />
+    </api>
+    <api id="M:System.Configuration.Provider.ProviderCollection.Add(System.Configuration.Provider.ProviderBase)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="provider">
+          <type api="T:System.Configuration.Provider.ProviderBase" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderCollection" ref="true" />
+      </containers>
+      <file name="d9bedd85-37de-f84b-1a22-956c5a34cf26" />
+    </api>
+    <api id="M:System.Configuration.Provider.ProviderCollection.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderCollection" ref="true" />
+      </containers>
+      <file name="72941e6e-8fee-35b0-458f-edfd5241707e" />
+    </api>
+    <api id="M:System.Configuration.Provider.ProviderCollection.CopyTo(System.Configuration.Provider.ProviderBase[],System.Int32)">
+      <topicdata group="api" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="array">
+          <arrayOf rank="1">
+            <type api="T:System.Configuration.Provider.ProviderBase" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderCollection" ref="true" />
+      </containers>
+      <file name="a16690fd-d647-5176-4942-0a2b736b3e87" />
+    </api>
+    <api id="P:System.Configuration.Provider.ProviderCollection.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.ICollection.Count">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderCollection" ref="true" />
+      </containers>
+      <file name="d3601e94-f6b6-17f3-f07c-9cf439c3e446" />
+    </api>
+    <api id="M:System.Configuration.Provider.ProviderCollection.GetEnumerator">
+      <topicdata group="api" />
+      <apidata name="GetEnumerator" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.IEnumerator" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Collections.IEnumerable.GetEnumerator">
+          <type api="T:System.Collections.IEnumerable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderCollection" ref="true" />
+      </containers>
+      <file name="d1b12901-1aa0-2c3f-497a-877bf4e74620" />
+    </api>
+    <api id="P:System.Configuration.Provider.ProviderCollection.IsSynchronized">
+      <topicdata group="api" />
+      <apidata name="IsSynchronized" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsSynchronized" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.ICollection.IsSynchronized">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderCollection" ref="true" />
+      </containers>
+      <file name="87f28388-65ed-d33d-dcbd-dc557fa00b8c" />
+    </api>
+    <api id="P:System.Configuration.Provider.ProviderCollection.Item(System.String)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Configuration.Provider.ProviderBase" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderCollection" ref="true" />
+      </containers>
+      <file name="cddcebbd-cde3-5c8d-7fb7-c2cc31a7c5eb" />
+    </api>
+    <api id="M:System.Configuration.Provider.ProviderCollection.Remove(System.String)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderCollection" ref="true" />
+      </containers>
+      <file name="7864828b-f74c-c184-544c-5e0b6aee382e" />
+    </api>
+    <api id="M:System.Configuration.Provider.ProviderCollection.SetReadOnly">
+      <topicdata group="api" />
+      <apidata name="SetReadOnly" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderCollection" ref="true" />
+      </containers>
+      <file name="8fecbc9d-d14d-1ae3-0250-0df2c4297eaa" />
+    </api>
+    <api id="P:System.Configuration.Provider.ProviderCollection.SyncRoot">
+      <topicdata group="api" />
+      <apidata name="SyncRoot" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SyncRoot" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.ICollection.SyncRoot">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderCollection" ref="true" />
+      </containers>
+      <file name="3f68e954-2eaf-5e83-c692-4d63cb5014be" />
+    </api>
+    <api id="M:System.Configuration.Provider.ProviderCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+      <topicdata group="api" eiiName="ICollection.CopyTo" />
+      <apidata name="CopyTo" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="array">
+          <type api="T:System.Array" ref="true" />
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Collections.ICollection.CopyTo(System.Array,System.Int32)">
+          <type api="T:System.Collections.ICollection" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderCollection" ref="true" />
+      </containers>
+      <file name="d6a4f51e-b21a-54e4-334c-b0e5c38d5260" />
+    </api>
+    <api id="T:System.Configuration.Provider.ProviderException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Configuration.Provider.ProviderException" />
+      <apidata name="ProviderException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Configuration.Provider.ProviderException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+      </containers>
+      <file name="665991ab-a351-c5c9-4dd6-3e870d376239" />
+    </api>
+    <api id="AllMembers.T:System.Configuration.Provider.ProviderException">
+      <topicdata name="ProviderException" group="list" subgroup="members" typeTopicId="T:System.Configuration.Provider.ProviderException" />
+      <apidata name="ProviderException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Configuration.Provider.ProviderException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="E:System.Exception.SerializeObjectState" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Configuration.Provider.ProviderException.#ctor">
+          <element api="M:System.Configuration.Provider.ProviderException.#ctor" />
+          <element api="M:System.Configuration.Provider.ProviderException.#ctor(System.String)" />
+          <element api="M:System.Configuration.Provider.ProviderException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+          <element api="M:System.Configuration.Provider.ProviderException.#ctor(System.String,System.Exception)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderException" />
+      </containers>
+      <file name="d48eec78-dbdc-d6f2-53ed-9a23e5638e5c" />
+    </api>
+    <api id="Methods.T:System.Configuration.Provider.ProviderException">
+      <topicdata name="ProviderException" group="list" subgroup="Methods" typeTopicId="T:System.Configuration.Provider.ProviderException" />
+      <apidata name="ProviderException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Configuration.Provider.ProviderException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderException" />
+      </containers>
+      <file name="d78b6313-77b7-b241-647b-411c1ae8585d" />
+    </api>
+    <api id="Properties.T:System.Configuration.Provider.ProviderException">
+      <topicdata name="ProviderException" group="list" subgroup="Properties" typeTopicId="T:System.Configuration.Provider.ProviderException" />
+      <apidata name="ProviderException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Configuration.Provider.ProviderException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderException" />
+      </containers>
+      <file name="eb4578de-c275-1dd2-c351-f74f8b660b01" />
+    </api>
+    <api id="Events.T:System.Configuration.Provider.ProviderException">
+      <topicdata name="ProviderException" group="list" subgroup="Events" typeTopicId="T:System.Configuration.Provider.ProviderException" />
+      <apidata name="ProviderException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Configuration.Provider.ProviderException.#ctor" />
+      <elements>
+        <element api="E:System.Exception.SerializeObjectState" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderException" />
+      </containers>
+      <file name="3b6406b7-0110-d758-c0cd-228e30dfdb3a" />
+    </api>
+    <api id="Overload:System.Configuration.Provider.ProviderException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Configuration.Provider.ProviderException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Configuration.Provider.ProviderException.#ctor" />
+        <element api="M:System.Configuration.Provider.ProviderException.#ctor(System.String)" />
+        <element api="M:System.Configuration.Provider.ProviderException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Configuration.Provider.ProviderException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderException" ref="true" />
+      </containers>
+      <file name="f1e9ccca-3106-5c8d-23e8-cd9017239c0f" />
+    </api>
+    <api id="M:System.Configuration.Provider.ProviderException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Configuration.Provider.ProviderException.#ctor" />
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderException" ref="true" />
+      </containers>
+      <file name="cbbdd91c-b7fc-924a-dec1-ed6f5ca68da6" />
+    </api>
+    <api id="M:System.Configuration.Provider.ProviderException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Configuration.Provider.ProviderException.#ctor" />
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderException" ref="true" />
+      </containers>
+      <file name="7ea50f24-2047-2e70-f00e-b17c5474695c" />
+    </api>
+    <api id="M:System.Configuration.Provider.ProviderException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Configuration.Provider.ProviderException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderException" ref="true" />
+      </containers>
+      <file name="8d9a6364-3a34-a03e-1817-7d1c1d5e9418" />
+    </api>
+    <api id="M:System.Configuration.Provider.ProviderException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Configuration.Provider.ProviderException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Configuration" module="System.Configuration" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Configuration.Provider" />
+        <type api="T:System.Configuration.Provider.ProviderException" ref="true" />
+      </containers>
+      <file name="ed009a98-ae43-6b2e-7d0c-5c503aabf1d1" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,1168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="WindowsBase">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WindowsBase.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WindowsBase.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WindowsBase.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\wpf\src\windows.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Converters">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Converters" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Converters.Int32RectValueSerializer" />
+        <element api="T:System.Windows.Converters.PointValueSerializer" />
+        <element api="T:System.Windows.Converters.RectValueSerializer" />
+        <element api="T:System.Windows.Converters.SizeValueSerializer" />
+        <element api="T:System.Windows.Converters.VectorValueSerializer" />
+      </elements>
+      <file name="209509be-498c-78bd-c9c1-8c3bc31f7d1f" />
+    </api>
+    <api id="T:System.Windows.Converters.Int32RectValueSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Converters.Int32RectValueSerializer" />
+      <apidata name="Int32RectValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Converters.Int32RectValueSerializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+      </containers>
+      <file name="3698dd26-fa60-6670-5b60-d9f4dd0274cb" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Converters.Int32RectValueSerializer">
+      <topicdata name="Int32RectValueSerializer" group="list" subgroup="members" typeTopicId="T:System.Windows.Converters.Int32RectValueSerializer" />
+      <apidata name="Int32RectValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Converters.Int32RectValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Converters.Int32RectValueSerializer.#ctor" />
+        <element api="M:System.Windows.Converters.Int32RectValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.Int32RectValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.Int32RectValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.Int32RectValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.Int32RectValueSerializer" />
+      </containers>
+      <file name="f30d259a-2104-a5e9-9319-babcae17d8cc" />
+    </api>
+    <api id="Methods.T:System.Windows.Converters.Int32RectValueSerializer">
+      <topicdata name="Int32RectValueSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Converters.Int32RectValueSerializer" />
+      <apidata name="Int32RectValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Converters.Int32RectValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Converters.Int32RectValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.Int32RectValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.Int32RectValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.Int32RectValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.Int32RectValueSerializer" />
+      </containers>
+      <file name="33be5a19-14df-aa7a-ab04-4195a866559a" />
+    </api>
+    <api id="M:System.Windows.Converters.Int32RectValueSerializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.Int32RectValueSerializer" ref="true" />
+      </containers>
+      <file name="ef6493b3-b898-d1b0-1ffc-9d0bd7a8ad06" />
+    </api>
+    <api id="M:System.Windows.Converters.Int32RectValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.Int32RectValueSerializer" ref="true" />
+      </containers>
+      <file name="6f9aa579-a335-68ef-3d1d-74a3403ae2fc" />
+    </api>
+    <api id="M:System.Windows.Converters.Int32RectValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.Int32RectValueSerializer" ref="true" />
+      </containers>
+      <file name="8395a8da-d8f7-f217-782f-84bd8b2a0faa" />
+    </api>
+    <api id="M:System.Windows.Converters.Int32RectValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.Int32RectValueSerializer" ref="true" />
+      </containers>
+      <file name="f736c59e-649f-68d3-590f-2752c8ec0f57" />
+    </api>
+    <api id="M:System.Windows.Converters.Int32RectValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.Int32RectValueSerializer" ref="true" />
+      </containers>
+      <file name="3ec69ce3-a842-c8d9-196d-ce6a84b174ed" />
+    </api>
+    <api id="T:System.Windows.Converters.PointValueSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Converters.PointValueSerializer" />
+      <apidata name="PointValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Converters.PointValueSerializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+      </containers>
+      <file name="1f24bb93-6905-af68-025c-ac7f3d9d9888" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Converters.PointValueSerializer">
+      <topicdata name="PointValueSerializer" group="list" subgroup="members" typeTopicId="T:System.Windows.Converters.PointValueSerializer" />
+      <apidata name="PointValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Converters.PointValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Converters.PointValueSerializer.#ctor" />
+        <element api="M:System.Windows.Converters.PointValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.PointValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.PointValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.PointValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.PointValueSerializer" />
+      </containers>
+      <file name="3a38f265-f043-c907-de46-44d8c6ce6e1c" />
+    </api>
+    <api id="Methods.T:System.Windows.Converters.PointValueSerializer">
+      <topicdata name="PointValueSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Converters.PointValueSerializer" />
+      <apidata name="PointValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Converters.PointValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Converters.PointValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.PointValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.PointValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.PointValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.PointValueSerializer" />
+      </containers>
+      <file name="1e365fc0-76f8-2d9e-07ae-0f732b4279c6" />
+    </api>
+    <api id="M:System.Windows.Converters.PointValueSerializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.PointValueSerializer" ref="true" />
+      </containers>
+      <file name="2cc43dbe-b245-07c0-1022-f14c291aca77" />
+    </api>
+    <api id="M:System.Windows.Converters.PointValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.PointValueSerializer" ref="true" />
+      </containers>
+      <file name="e67653d3-66ac-e56d-d0c4-0022558e7b05" />
+    </api>
+    <api id="M:System.Windows.Converters.PointValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.PointValueSerializer" ref="true" />
+      </containers>
+      <file name="ddbdf05b-64da-23bf-64c8-0f7f5e2c7fcf" />
+    </api>
+    <api id="M:System.Windows.Converters.PointValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.PointValueSerializer" ref="true" />
+      </containers>
+      <file name="79c27e6b-4162-7347-890f-ad17eace133e" />
+    </api>
+    <api id="M:System.Windows.Converters.PointValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.PointValueSerializer" ref="true" />
+      </containers>
+      <file name="032dcc92-cb5e-c162-b1ce-6c2d4bf6fa86" />
+    </api>
+    <api id="T:System.Windows.Converters.RectValueSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Converters.RectValueSerializer" />
+      <apidata name="RectValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Converters.RectValueSerializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+      </containers>
+      <file name="0bd464ad-d64f-6f6c-ea65-465d9066c0d6" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Converters.RectValueSerializer">
+      <topicdata name="RectValueSerializer" group="list" subgroup="members" typeTopicId="T:System.Windows.Converters.RectValueSerializer" />
+      <apidata name="RectValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Converters.RectValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Converters.RectValueSerializer.#ctor" />
+        <element api="M:System.Windows.Converters.RectValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.RectValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.RectValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.RectValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.RectValueSerializer" />
+      </containers>
+      <file name="6403a90e-b0b8-daf7-6e1d-93427328d2bd" />
+    </api>
+    <api id="Methods.T:System.Windows.Converters.RectValueSerializer">
+      <topicdata name="RectValueSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Converters.RectValueSerializer" />
+      <apidata name="RectValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Converters.RectValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Converters.RectValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.RectValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.RectValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.RectValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.RectValueSerializer" />
+      </containers>
+      <file name="6a768f5e-e97e-76d1-f891-8f85cfd9acb1" />
+    </api>
+    <api id="M:System.Windows.Converters.RectValueSerializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.RectValueSerializer" ref="true" />
+      </containers>
+      <file name="3d7339bf-c8db-ea81-8e84-6a863d4d7be9" />
+    </api>
+    <api id="M:System.Windows.Converters.RectValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.RectValueSerializer" ref="true" />
+      </containers>
+      <file name="de229ea9-4be0-5092-ceaa-f75900e4c5d1" />
+    </api>
+    <api id="M:System.Windows.Converters.RectValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.RectValueSerializer" ref="true" />
+      </containers>
+      <file name="e1d9356f-7c0b-ef61-9758-7302c32eaf20" />
+    </api>
+    <api id="M:System.Windows.Converters.RectValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.RectValueSerializer" ref="true" />
+      </containers>
+      <file name="1f5a3388-9ba9-123d-4841-3337ecc6cef0" />
+    </api>
+    <api id="M:System.Windows.Converters.RectValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.RectValueSerializer" ref="true" />
+      </containers>
+      <file name="6a80fb74-474b-d0b5-729a-50dfe1d508eb" />
+    </api>
+    <api id="T:System.Windows.Converters.SizeValueSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Converters.SizeValueSerializer" />
+      <apidata name="SizeValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Converters.SizeValueSerializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+      </containers>
+      <file name="6f6d3b1d-d44c-8922-168b-260c003807e5" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Converters.SizeValueSerializer">
+      <topicdata name="SizeValueSerializer" group="list" subgroup="members" typeTopicId="T:System.Windows.Converters.SizeValueSerializer" />
+      <apidata name="SizeValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Converters.SizeValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Converters.SizeValueSerializer.#ctor" />
+        <element api="M:System.Windows.Converters.SizeValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.SizeValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.SizeValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.SizeValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.SizeValueSerializer" />
+      </containers>
+      <file name="33151ec3-15d2-6d6b-8294-00405a0aac5b" />
+    </api>
+    <api id="Methods.T:System.Windows.Converters.SizeValueSerializer">
+      <topicdata name="SizeValueSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Converters.SizeValueSerializer" />
+      <apidata name="SizeValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Converters.SizeValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Converters.SizeValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.SizeValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.SizeValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.SizeValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.SizeValueSerializer" />
+      </containers>
+      <file name="7307c3c4-b2d6-dec7-3a57-c9fd61197a68" />
+    </api>
+    <api id="M:System.Windows.Converters.SizeValueSerializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.SizeValueSerializer" ref="true" />
+      </containers>
+      <file name="6718fd80-bd08-8962-5bf8-f7fb78bfdf00" />
+    </api>
+    <api id="M:System.Windows.Converters.SizeValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.SizeValueSerializer" ref="true" />
+      </containers>
+      <file name="517a0a79-1dd5-b059-a08f-10ee8c8c8e47" />
+    </api>
+    <api id="M:System.Windows.Converters.SizeValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.SizeValueSerializer" ref="true" />
+      </containers>
+      <file name="9ddcfef0-0a8e-b183-c0ce-637427dd45fd" />
+    </api>
+    <api id="M:System.Windows.Converters.SizeValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.SizeValueSerializer" ref="true" />
+      </containers>
+      <file name="fb1a831f-6630-1287-cd37-df693c89628f" />
+    </api>
+    <api id="M:System.Windows.Converters.SizeValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.SizeValueSerializer" ref="true" />
+      </containers>
+      <file name="0cdd62a5-b7f2-e748-5ec2-a192afa3e6db" />
+    </api>
+    <api id="T:System.Windows.Converters.VectorValueSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Converters.VectorValueSerializer" />
+      <apidata name="VectorValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Converters.VectorValueSerializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+      </containers>
+      <file name="1208dd9b-e12f-c0fa-5900-8dd94ee12c72" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Converters.VectorValueSerializer">
+      <topicdata name="VectorValueSerializer" group="list" subgroup="members" typeTopicId="T:System.Windows.Converters.VectorValueSerializer" />
+      <apidata name="VectorValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Converters.VectorValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Converters.VectorValueSerializer.#ctor" />
+        <element api="M:System.Windows.Converters.VectorValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.VectorValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.VectorValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.VectorValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.VectorValueSerializer" />
+      </containers>
+      <file name="0c705f82-d5d8-3b25-ecd3-40381a7cf51c" />
+    </api>
+    <api id="Methods.T:System.Windows.Converters.VectorValueSerializer">
+      <topicdata name="VectorValueSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Converters.VectorValueSerializer" />
+      <apidata name="VectorValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Converters.VectorValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Converters.VectorValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.VectorValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.VectorValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Converters.VectorValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.VectorValueSerializer" />
+      </containers>
+      <file name="04a5d28a-8cbe-1573-49c4-136ac57885ca" />
+    </api>
+    <api id="M:System.Windows.Converters.VectorValueSerializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.VectorValueSerializer" ref="true" />
+      </containers>
+      <file name="dee96cf7-889d-27c2-b0d1-d64b2d37ba21" />
+    </api>
+    <api id="M:System.Windows.Converters.VectorValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.VectorValueSerializer" ref="true" />
+      </containers>
+      <file name="3d8158f5-dc34-e1c6-0c9a-5a39ce8b4220" />
+    </api>
+    <api id="M:System.Windows.Converters.VectorValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.VectorValueSerializer" ref="true" />
+      </containers>
+      <file name="33f1d7bd-0903-edb4-51ec-c934e1174cbd" />
+    </api>
+    <api id="M:System.Windows.Converters.VectorValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.VectorValueSerializer" ref="true" />
+      </containers>
+      <file name="3f7972d7-562c-392e-6cdc-7a273f46aca3" />
+    </api>
+    <api id="M:System.Windows.Converters.VectorValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Converters" />
+        <type api="T:System.Windows.Converters.VectorValueSerializer" ref="true" />
+      </containers>
+      <file name="5b64a0b9-0130-9e60-941c-5c5b41d22e6d" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,2842 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Diagnostics.Contracts">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Diagnostics.Contracts.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Diagnostics.Contracts.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Diagnostics.Contracts.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Diagnostics.Contracts">
+      <topicdata group="api" />
+      <apidata name="System.Diagnostics.Contracts" group="namespace" />
+      <elements>
+        <element api="T:System.Diagnostics.Contracts.Contract" />
+        <element api="T:System.Diagnostics.Contracts.ContractAbbreviatorAttribute" />
+        <element api="T:System.Diagnostics.Contracts.ContractArgumentValidatorAttribute" />
+        <element api="T:System.Diagnostics.Contracts.ContractClassAttribute" />
+        <element api="T:System.Diagnostics.Contracts.ContractClassForAttribute" />
+        <element api="T:System.Diagnostics.Contracts.ContractFailedEventArgs" />
+        <element api="T:System.Diagnostics.Contracts.ContractFailureKind" />
+        <element api="T:System.Diagnostics.Contracts.ContractInvariantMethodAttribute" />
+        <element api="T:System.Diagnostics.Contracts.ContractOptionAttribute" />
+        <element api="T:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute" />
+        <element api="T:System.Diagnostics.Contracts.ContractReferenceAssemblyAttribute" />
+        <element api="T:System.Diagnostics.Contracts.ContractRuntimeIgnoredAttribute" />
+        <element api="T:System.Diagnostics.Contracts.ContractVerificationAttribute" />
+        <element api="T:System.Diagnostics.Contracts.PureAttribute" />
+      </elements>
+      <file name="ceb5f56e-37c0-2db5-2803-84ebbac11a88" />
+    </api>
+    <api id="T:System.Diagnostics.Contracts.Contract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.Contract" />
+      <apidata name="Contract" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+      </containers>
+      <file name="e3db75c5-e500-3874-e0e6-3943fd133535" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Contracts.Contract">
+      <topicdata name="Contract" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Contracts.Contract" />
+      <apidata name="Contract" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.Diagnostics.Contracts.Contract.Assert">
+          <element api="M:System.Diagnostics.Contracts.Contract.Assert(System.Boolean)" />
+          <element api="M:System.Diagnostics.Contracts.Contract.Assert(System.Boolean,System.String)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Contracts.Contract.Assume">
+          <element api="M:System.Diagnostics.Contracts.Contract.Assume(System.Boolean)" />
+          <element api="M:System.Diagnostics.Contracts.Contract.Assume(System.Boolean,System.String)" />
+        </element>
+        <element api="E:System.Diagnostics.Contracts.Contract.ContractFailed" />
+        <element api="M:System.Diagnostics.Contracts.Contract.EndContractBlock" />
+        <element api="Overload:System.Diagnostics.Contracts.Contract.Ensures">
+          <element api="M:System.Diagnostics.Contracts.Contract.Ensures(System.Boolean)" />
+          <element api="M:System.Diagnostics.Contracts.Contract.Ensures(System.Boolean,System.String)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Contracts.Contract.EnsuresOnThrow">
+          <element api="M:System.Diagnostics.Contracts.Contract.EnsuresOnThrow``1(System.Boolean)" />
+          <element api="M:System.Diagnostics.Contracts.Contract.EnsuresOnThrow``1(System.Boolean,System.String)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Contracts.Contract.Exists">
+          <element api="M:System.Diagnostics.Contracts.Contract.Exists``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})" />
+          <element api="M:System.Diagnostics.Contracts.Contract.Exists(System.Int32,System.Int32,System.Predicate{System.Int32})" />
+        </element>
+        <element api="Overload:System.Diagnostics.Contracts.Contract.ForAll">
+          <element api="M:System.Diagnostics.Contracts.Contract.ForAll``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})" />
+          <element api="M:System.Diagnostics.Contracts.Contract.ForAll(System.Int32,System.Int32,System.Predicate{System.Int32})" />
+        </element>
+        <element api="Overload:System.Diagnostics.Contracts.Contract.Invariant">
+          <element api="M:System.Diagnostics.Contracts.Contract.Invariant(System.Boolean)" />
+          <element api="M:System.Diagnostics.Contracts.Contract.Invariant(System.Boolean,System.String)" />
+        </element>
+        <element api="M:System.Diagnostics.Contracts.Contract.OldValue``1(``0)" />
+        <element api="Overload:System.Diagnostics.Contracts.Contract.Requires">
+          <element api="M:System.Diagnostics.Contracts.Contract.Requires(System.Boolean)" />
+          <element api="M:System.Diagnostics.Contracts.Contract.Requires``1(System.Boolean)" />
+          <element api="M:System.Diagnostics.Contracts.Contract.Requires(System.Boolean,System.String)" />
+          <element api="M:System.Diagnostics.Contracts.Contract.Requires``1(System.Boolean,System.String)" />
+        </element>
+        <element api="M:System.Diagnostics.Contracts.Contract.Result``1" />
+        <element api="M:System.Diagnostics.Contracts.Contract.ValueAtReturn``1(``0@)" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" />
+      </containers>
+      <file name="68796d20-79e4-f65a-03ac-c7d4069e013c" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Contracts.Contract">
+      <topicdata name="Contract" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Contracts.Contract" />
+      <apidata name="Contract" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:System.Diagnostics.Contracts.Contract.Assert">
+          <element api="M:System.Diagnostics.Contracts.Contract.Assert(System.Boolean)" />
+          <element api="M:System.Diagnostics.Contracts.Contract.Assert(System.Boolean,System.String)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Contracts.Contract.Assume">
+          <element api="M:System.Diagnostics.Contracts.Contract.Assume(System.Boolean)" />
+          <element api="M:System.Diagnostics.Contracts.Contract.Assume(System.Boolean,System.String)" />
+        </element>
+        <element api="M:System.Diagnostics.Contracts.Contract.EndContractBlock" />
+        <element api="Overload:System.Diagnostics.Contracts.Contract.Ensures">
+          <element api="M:System.Diagnostics.Contracts.Contract.Ensures(System.Boolean)" />
+          <element api="M:System.Diagnostics.Contracts.Contract.Ensures(System.Boolean,System.String)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Contracts.Contract.EnsuresOnThrow">
+          <element api="M:System.Diagnostics.Contracts.Contract.EnsuresOnThrow``1(System.Boolean)" />
+          <element api="M:System.Diagnostics.Contracts.Contract.EnsuresOnThrow``1(System.Boolean,System.String)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Contracts.Contract.Exists">
+          <element api="M:System.Diagnostics.Contracts.Contract.Exists``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})" />
+          <element api="M:System.Diagnostics.Contracts.Contract.Exists(System.Int32,System.Int32,System.Predicate{System.Int32})" />
+        </element>
+        <element api="Overload:System.Diagnostics.Contracts.Contract.ForAll">
+          <element api="M:System.Diagnostics.Contracts.Contract.ForAll``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})" />
+          <element api="M:System.Diagnostics.Contracts.Contract.ForAll(System.Int32,System.Int32,System.Predicate{System.Int32})" />
+        </element>
+        <element api="Overload:System.Diagnostics.Contracts.Contract.Invariant">
+          <element api="M:System.Diagnostics.Contracts.Contract.Invariant(System.Boolean)" />
+          <element api="M:System.Diagnostics.Contracts.Contract.Invariant(System.Boolean,System.String)" />
+        </element>
+        <element api="M:System.Diagnostics.Contracts.Contract.OldValue``1(``0)" />
+        <element api="Overload:System.Diagnostics.Contracts.Contract.Requires">
+          <element api="M:System.Diagnostics.Contracts.Contract.Requires(System.Boolean)" />
+          <element api="M:System.Diagnostics.Contracts.Contract.Requires``1(System.Boolean)" />
+          <element api="M:System.Diagnostics.Contracts.Contract.Requires(System.Boolean,System.String)" />
+          <element api="M:System.Diagnostics.Contracts.Contract.Requires``1(System.Boolean,System.String)" />
+        </element>
+        <element api="M:System.Diagnostics.Contracts.Contract.Result``1" />
+        <element api="M:System.Diagnostics.Contracts.Contract.ValueAtReturn``1(``0@)" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" />
+      </containers>
+      <file name="f7f848a5-1d35-dcf0-8e06-2eb120fc664d" />
+    </api>
+    <api id="Events.T:System.Diagnostics.Contracts.Contract">
+      <topicdata name="Contract" group="list" subgroup="Events" typeTopicId="T:System.Diagnostics.Contracts.Contract" />
+      <apidata name="Contract" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:System.Diagnostics.Contracts.Contract.ContractFailed" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" />
+      </containers>
+      <file name="5349b8c6-574e-a8ad-3653-cba5c68e7d01" />
+    </api>
+    <api id="Overload:System.Diagnostics.Contracts.Contract.Assert">
+      <topicdata name="Assert" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.Contract" />
+      <apidata name="Assert" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.Contracts.Contract.Assert(System.Boolean)" />
+        <element api="M:System.Diagnostics.Contracts.Contract.Assert(System.Boolean,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="f89a042b-29e2-39bc-f745-90e525dd3eb0" />
+    </api>
+    <api id="Overload:System.Diagnostics.Contracts.Contract.Assume">
+      <topicdata name="Assume" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.Contract" />
+      <apidata name="Assume" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.Contracts.Contract.Assume(System.Boolean)" />
+        <element api="M:System.Diagnostics.Contracts.Contract.Assume(System.Boolean,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="d395d08e-a271-1529-821f-b6d10301a689" />
+    </api>
+    <api id="Overload:System.Diagnostics.Contracts.Contract.Ensures">
+      <topicdata name="Ensures" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.Contract" />
+      <apidata name="Ensures" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.Contracts.Contract.Ensures(System.Boolean)" />
+        <element api="M:System.Diagnostics.Contracts.Contract.Ensures(System.Boolean,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="7afc91f6-e31c-d884-8f32-e34504cbeee5" />
+    </api>
+    <api id="Overload:System.Diagnostics.Contracts.Contract.EnsuresOnThrow">
+      <topicdata name="EnsuresOnThrow" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.Contract" />
+      <apidata name="EnsuresOnThrow" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.Contracts.Contract.EnsuresOnThrow``1(System.Boolean)" />
+        <element api="M:System.Diagnostics.Contracts.Contract.EnsuresOnThrow``1(System.Boolean,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="5974bdb5-3800-6587-27f0-9f3c08e3e187" />
+    </api>
+    <api id="Overload:System.Diagnostics.Contracts.Contract.Exists">
+      <topicdata name="Exists" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.Contract" />
+      <apidata name="Exists" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.Contracts.Contract.Exists``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})" />
+        <element api="M:System.Diagnostics.Contracts.Contract.Exists(System.Int32,System.Int32,System.Predicate{System.Int32})" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="f2b4b31a-fa1c-4ca4-d9f7-c8c45cf3b2bf" />
+    </api>
+    <api id="Overload:System.Diagnostics.Contracts.Contract.ForAll">
+      <topicdata name="ForAll" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.Contract" />
+      <apidata name="ForAll" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.Contracts.Contract.ForAll``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})" />
+        <element api="M:System.Diagnostics.Contracts.Contract.ForAll(System.Int32,System.Int32,System.Predicate{System.Int32})" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="8ea75052-cd31-a831-0772-56580c479f97" />
+    </api>
+    <api id="Overload:System.Diagnostics.Contracts.Contract.Invariant">
+      <topicdata name="Invariant" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.Contract" />
+      <apidata name="Invariant" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.Contracts.Contract.Invariant(System.Boolean)" />
+        <element api="M:System.Diagnostics.Contracts.Contract.Invariant(System.Boolean,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="360a7f2c-032c-347a-ad19-7808dc1cb65a" />
+    </api>
+    <api id="Overload:System.Diagnostics.Contracts.Contract.Requires">
+      <topicdata name="Requires" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.Contract" />
+      <apidata name="Requires" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.Contracts.Contract.Requires(System.Boolean)" />
+        <element api="M:System.Diagnostics.Contracts.Contract.Requires``1(System.Boolean)" />
+        <element api="M:System.Diagnostics.Contracts.Contract.Requires(System.Boolean,System.String)" />
+        <element api="M:System.Diagnostics.Contracts.Contract.Requires``1(System.Boolean,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="cb17abf5-2080-89e2-4f21-39b1bcb63ca9" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.Assert(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Assert" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.Assert" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="condition">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DEBUG</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b7737ee8-6833-52f0-cc00-87c75912b890" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.Assert(System.Boolean,System.String)">
+      <topicdata group="api" />
+      <apidata name="Assert" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.Assert" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="condition">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="userMessage">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DEBUG</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6169f5e1-c775-503b-001f-1ed87625d03c" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.Assume(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Assume" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.Assume" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="condition">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DEBUG</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="92143512-1d42-ce82-5c00-e2568db415e6" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.Assume(System.Boolean,System.String)">
+      <topicdata group="api" />
+      <apidata name="Assume" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.Assume" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="condition">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="userMessage">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DEBUG</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="027bc1c6-7fd8-04ed-d077-c0186efc255e" />
+    </api>
+    <api id="E:System.Diagnostics.Contracts.Contract.ContractFailed">
+      <topicdata group="api" />
+      <apidata name="ContractFailed" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ContractFailed" />
+      <remover name="remove_ContractFailed" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Diagnostics.Contracts.ContractFailedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Diagnostics.Contracts.ContractFailedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="286df393-eb9c-7eaa-210d-6042a888d12b" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.EndContractBlock">
+      <topicdata group="api" />
+      <apidata name="EndContractBlock" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9c6e838a-63f9-439a-4974-f92dafe92554" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.Ensures(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Ensures" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.Ensures" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="condition">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7156c7c8-ede9-1a97-9313-a39d4a0dbe37" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.Ensures(System.Boolean,System.String)">
+      <topicdata group="api" />
+      <apidata name="Ensures" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.Ensures" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="condition">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="userMessage">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="651d05a3-98cd-448c-04d3-ee94cd241480" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.EnsuresOnThrow``1(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="EnsuresOnThrow" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.EnsuresOnThrow" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TException">
+          <constrained>
+            <type api="T:System.Exception" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <parameters>
+        <parameter name="condition">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="034738b6-6134-f394-18e2-5b8d81f456b4" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.EnsuresOnThrow``1(System.Boolean,System.String)">
+      <topicdata group="api" />
+      <apidata name="EnsuresOnThrow" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.EnsuresOnThrow" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TException">
+          <constrained>
+            <type api="T:System.Exception" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <parameters>
+        <parameter name="condition">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="userMessage">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ddb6dd29-9177-3cf9-6309-f79d763ed3a3" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.Exists``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})">
+      <topicdata group="api" />
+      <apidata name="Exists" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.Exists" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="collection">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:System.Diagnostics.Contracts.Contract.Exists``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="predicate">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:System.Diagnostics.Contracts.Contract.Exists``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="7434887f-5355-45d0-9ba3-d8122a090300" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.Exists(System.Int32,System.Int32,System.Predicate{System.Int32})">
+      <topicdata group="api" />
+      <apidata name="Exists" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.Exists" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="fromInclusive">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="toExclusive">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="predicate">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <type api="T:System.Int32" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="1c88064d-37f0-0789-ac63-eecb8bb202fc" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.ForAll``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})">
+      <topicdata group="api" />
+      <apidata name="ForAll" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.ForAll" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="collection">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:System.Diagnostics.Contracts.Contract.ForAll``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="predicate">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <template name="T" index="0" api="M:System.Diagnostics.Contracts.Contract.ForAll``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="cfa816fe-087f-6f6e-dd16-80bec52e1c13" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.ForAll(System.Int32,System.Int32,System.Predicate{System.Int32})">
+      <topicdata group="api" />
+      <apidata name="ForAll" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.ForAll" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="fromInclusive">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="toExclusive">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="predicate">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <type api="T:System.Int32" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="4a782c4f-8a11-bb08-e543-9a8cf586ec2b" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.Invariant(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Invariant" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.Invariant" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="condition">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e0b615bf-eac6-2ef0-c0c0-b28c6dbc37e4" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.Invariant(System.Boolean,System.String)">
+      <topicdata group="api" />
+      <apidata name="Invariant" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.Invariant" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="condition">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="userMessage">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d77179a0-34a3-9f18-6c42-b1c1658bb4b4" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.OldValue``1(``0)">
+      <topicdata group="api" />
+      <apidata name="OldValue" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="value">
+          <template name="T" index="0" api="M:System.Diagnostics.Contracts.Contract.OldValue``1(``0)" />
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:System.Diagnostics.Contracts.Contract.OldValue``1(``0)" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="42850fd7-0eff-29db-796b-3480d632a8ee" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.Requires(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Requires" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.Requires" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="condition">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="07ef511f-0ce8-689b-65bf-3caa5aba2bb3" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.Requires``1(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Requires" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.Requires" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TException">
+          <constrained>
+            <type api="T:System.Exception" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <parameters>
+        <parameter name="condition">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="6bd24ecb-af3f-9a73-dab7-481abe89f7e5" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.Requires(System.Boolean,System.String)">
+      <topicdata group="api" />
+      <apidata name="Requires" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.Requires" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="condition">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="userMessage">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e4788ced-3a78-af0e-19b5-baa135edeee6" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.Requires``1(System.Boolean,System.String)">
+      <topicdata group="api" />
+      <apidata name="Requires" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Diagnostics.Contracts.Contract.Requires" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="TException">
+          <constrained>
+            <type api="T:System.Exception" ref="true" />
+          </constrained>
+        </template>
+      </templates>
+      <parameters>
+        <parameter name="condition">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="userMessage">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="53f96856-2930-373d-7096-b6fd890a2817" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.Result``1">
+      <topicdata group="api" />
+      <apidata name="Result" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <returns>
+        <template name="T" index="0" api="M:System.Diagnostics.Contracts.Contract.Result``1" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="82a83ea2-7f3a-1ce4-4bf0-c28aa0976ecf" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.Contract.ValueAtReturn``1(``0@)">
+      <topicdata group="api" />
+      <apidata name="ValueAtReturn" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="value" out="true">
+          <referenceTo>
+            <template name="T" index="0" api="M:System.Diagnostics.Contracts.Contract.ValueAtReturn``1(``0@)" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <template name="T" index="0" api="M:System.Diagnostics.Contracts.Contract.ValueAtReturn``1(``0@)" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.Contract" ref="true" />
+      </containers>
+      <file name="6320caf9-dcdd-bf41-2ada-c9c71ac36d3e" />
+    </api>
+    <api id="T:System.Diagnostics.Contracts.ContractAbbreviatorAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.ContractAbbreviatorAttribute" />
+      <apidata name="ContractAbbreviatorAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.ContractAbbreviatorAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Method" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="f693c6fb-d916-e264-434e-a4ed6e1a2493" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Contracts.ContractAbbreviatorAttribute">
+      <topicdata name="ContractAbbreviatorAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Contracts.ContractAbbreviatorAttribute" />
+      <apidata name="ContractAbbreviatorAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.ContractAbbreviatorAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.Contracts.ContractAbbreviatorAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractAbbreviatorAttribute" />
+      </containers>
+      <file name="31aae80f-7c08-2531-f35b-40c67ad6590f" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Contracts.ContractAbbreviatorAttribute">
+      <topicdata name="ContractAbbreviatorAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Contracts.ContractAbbreviatorAttribute" />
+      <apidata name="ContractAbbreviatorAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.ContractAbbreviatorAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractAbbreviatorAttribute" />
+      </containers>
+      <file name="5d620b10-e950-f6b5-5095-a0c2ce231fb2" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.ContractAbbreviatorAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractAbbreviatorAttribute" ref="true" />
+      </containers>
+      <file name="fcd6c0fa-cfc4-39ec-2847-f80364f3cb4f" />
+    </api>
+    <api id="T:System.Diagnostics.Contracts.ContractArgumentValidatorAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.ContractArgumentValidatorAttribute" />
+      <apidata name="ContractArgumentValidatorAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.ContractArgumentValidatorAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Method" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="dd32c64a-0127-9fa4-f1ec-a7f7c589b396" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Contracts.ContractArgumentValidatorAttribute">
+      <topicdata name="ContractArgumentValidatorAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Contracts.ContractArgumentValidatorAttribute" />
+      <apidata name="ContractArgumentValidatorAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.ContractArgumentValidatorAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.Contracts.ContractArgumentValidatorAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractArgumentValidatorAttribute" />
+      </containers>
+      <file name="69314b01-e053-ffb8-ed56-7aaaada84191" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Contracts.ContractArgumentValidatorAttribute">
+      <topicdata name="ContractArgumentValidatorAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Contracts.ContractArgumentValidatorAttribute" />
+      <apidata name="ContractArgumentValidatorAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.ContractArgumentValidatorAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractArgumentValidatorAttribute" />
+      </containers>
+      <file name="bd753157-09dc-0bdb-f8a2-bfbc46fbb4a8" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.ContractArgumentValidatorAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractArgumentValidatorAttribute" ref="true" />
+      </containers>
+      <file name="b98a0443-b7ee-f38e-1ec7-7c22d8fd236d" />
+    </api>
+    <api id="T:System.Diagnostics.Contracts.ContractClassAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.ContractClassAttribute" />
+      <apidata name="ContractClassAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DEBUG</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Delegate" />
+              <field name="Interface" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="04cf17a6-07b4-7463-97b8-d4e0476cf2c9" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Contracts.ContractClassAttribute">
+      <topicdata name="ContractClassAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Contracts.ContractClassAttribute" />
+      <apidata name="ContractClassAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.Contracts.ContractClassAttribute.#ctor(System.Type)" />
+        <element api="P:System.Diagnostics.Contracts.ContractClassAttribute.TypeContainingContracts" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractClassAttribute" />
+      </containers>
+      <file name="52fd05f1-36f2-5a51-25bf-42a677995b0c" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Contracts.ContractClassAttribute">
+      <topicdata name="ContractClassAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Contracts.ContractClassAttribute" />
+      <apidata name="ContractClassAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractClassAttribute" />
+      </containers>
+      <file name="9dd9e22c-e857-94ef-523f-9bf5cc1e4328" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.Contracts.ContractClassAttribute">
+      <topicdata name="ContractClassAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.Contracts.ContractClassAttribute" />
+      <apidata name="ContractClassAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Diagnostics.Contracts.ContractClassAttribute.TypeContainingContracts" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractClassAttribute" />
+      </containers>
+      <file name="fdf88257-3bde-dd18-5bf9-ec8ad2ae56ef" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.ContractClassAttribute.#ctor(System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="typeContainingContracts">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractClassAttribute" ref="true" />
+      </containers>
+      <file name="0258f195-e499-1150-a32a-15fe858907d0" />
+    </api>
+    <api id="P:System.Diagnostics.Contracts.ContractClassAttribute.TypeContainingContracts">
+      <topicdata group="api" />
+      <apidata name="TypeContainingContracts" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TypeContainingContracts" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractClassAttribute" ref="true" />
+      </containers>
+      <file name="91a3328e-59a7-1951-b295-48eb18bda747" />
+    </api>
+    <api id="T:System.Diagnostics.Contracts.ContractClassForAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.ContractClassForAttribute" />
+      <apidata name="ContractClassForAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="bcf024d7-e237-ff42-f786-c25f508577e3" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Contracts.ContractClassForAttribute">
+      <topicdata name="ContractClassForAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Contracts.ContractClassForAttribute" />
+      <apidata name="ContractClassForAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.Contracts.ContractClassForAttribute.#ctor(System.Type)" />
+        <element api="P:System.Diagnostics.Contracts.ContractClassForAttribute.TypeContractsAreFor" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractClassForAttribute" />
+      </containers>
+      <file name="2b10f21d-7c5c-808a-674b-10106320ce68" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Contracts.ContractClassForAttribute">
+      <topicdata name="ContractClassForAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Contracts.ContractClassForAttribute" />
+      <apidata name="ContractClassForAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractClassForAttribute" />
+      </containers>
+      <file name="f46a867b-ebe3-b075-7177-483c1319b695" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.Contracts.ContractClassForAttribute">
+      <topicdata name="ContractClassForAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.Contracts.ContractClassForAttribute" />
+      <apidata name="ContractClassForAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Diagnostics.Contracts.ContractClassForAttribute.TypeContractsAreFor" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractClassForAttribute" />
+      </containers>
+      <file name="4fb0e010-a583-6165-c40d-41f7b6bf5540" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.ContractClassForAttribute.#ctor(System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="typeContractsAreFor">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractClassForAttribute" ref="true" />
+      </containers>
+      <file name="54505f2c-88b6-6e76-7c8e-47a23f3094c5" />
+    </api>
+    <api id="P:System.Diagnostics.Contracts.ContractClassForAttribute.TypeContractsAreFor">
+      <topicdata group="api" />
+      <apidata name="TypeContractsAreFor" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TypeContractsAreFor" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractClassForAttribute" ref="true" />
+      </containers>
+      <file name="43060067-cbf3-1472-b1cf-2f89b79ef792" />
+    </api>
+    <api id="T:System.Diagnostics.Contracts.ContractFailedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.ContractFailedEventArgs" />
+      <apidata name="ContractFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+      </containers>
+      <file name="d0a326c3-9c6e-1946-57e0-1f4ace25d1fa" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Contracts.ContractFailedEventArgs">
+      <topicdata name="ContractFailedEventArgs" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Contracts.ContractFailedEventArgs" />
+      <apidata name="ContractFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.Contracts.ContractFailedEventArgs.#ctor(System.Diagnostics.Contracts.ContractFailureKind,System.String,System.String,System.Exception)" />
+        <element api="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Condition" />
+        <element api="P:System.Diagnostics.Contracts.ContractFailedEventArgs.FailureKind" />
+        <element api="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Handled" />
+        <element api="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Message" />
+        <element api="P:System.Diagnostics.Contracts.ContractFailedEventArgs.OriginalException" />
+        <element api="M:System.Diagnostics.Contracts.ContractFailedEventArgs.SetHandled" />
+        <element api="M:System.Diagnostics.Contracts.ContractFailedEventArgs.SetUnwind" />
+        <element api="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Unwind" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailedEventArgs" />
+      </containers>
+      <file name="23419f83-5cae-75ae-e2f1-e6abbbb19aaa" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Contracts.ContractFailedEventArgs">
+      <topicdata name="ContractFailedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Contracts.ContractFailedEventArgs" />
+      <apidata name="ContractFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.Contracts.ContractFailedEventArgs.SetHandled" />
+        <element api="M:System.Diagnostics.Contracts.ContractFailedEventArgs.SetUnwind" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailedEventArgs" />
+      </containers>
+      <file name="8890ef35-01fe-fb4e-1427-f4545fd78355" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.Contracts.ContractFailedEventArgs">
+      <topicdata name="ContractFailedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.Contracts.ContractFailedEventArgs" />
+      <apidata name="ContractFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Condition" />
+        <element api="P:System.Diagnostics.Contracts.ContractFailedEventArgs.FailureKind" />
+        <element api="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Handled" />
+        <element api="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Message" />
+        <element api="P:System.Diagnostics.Contracts.ContractFailedEventArgs.OriginalException" />
+        <element api="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Unwind" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailedEventArgs" />
+      </containers>
+      <file name="533c49b5-21f2-d576-381a-44f8890c2de5" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.ContractFailedEventArgs.#ctor(System.Diagnostics.Contracts.ContractFailureKind,System.String,System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="failureKind">
+          <type api="T:System.Diagnostics.Contracts.ContractFailureKind" ref="false" />
+        </parameter>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="condition">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="originalException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailedEventArgs" ref="true" />
+      </containers>
+      <file name="e4108284-4372-4a61-541a-60c9a5e0591d" />
+    </api>
+    <api id="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Condition">
+      <topicdata group="api" />
+      <apidata name="Condition" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Condition" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailedEventArgs" ref="true" />
+      </containers>
+      <file name="703f2435-e994-391f-b9d4-b837e559e450" />
+    </api>
+    <api id="P:System.Diagnostics.Contracts.ContractFailedEventArgs.FailureKind">
+      <topicdata group="api" />
+      <apidata name="FailureKind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FailureKind" />
+      <returns>
+        <type api="T:System.Diagnostics.Contracts.ContractFailureKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailedEventArgs" ref="true" />
+      </containers>
+      <file name="7edcc180-451a-35ec-888f-487e517859bc" />
+    </api>
+    <api id="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Handled">
+      <topicdata group="api" />
+      <apidata name="Handled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Handled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailedEventArgs" ref="true" />
+      </containers>
+      <file name="ca3226ac-41cf-45ee-6783-3d386b505abd" />
+    </api>
+    <api id="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Message" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailedEventArgs" ref="true" />
+      </containers>
+      <file name="dd4936b0-ea45-3b70-9af5-e0b982058a73" />
+    </api>
+    <api id="P:System.Diagnostics.Contracts.ContractFailedEventArgs.OriginalException">
+      <topicdata group="api" />
+      <apidata name="OriginalException" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OriginalException" />
+      <returns>
+        <type api="T:System.Exception" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailedEventArgs" ref="true" />
+      </containers>
+      <file name="19e07c4f-03ce-e9ca-59fc-0a0011d7c15a" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.ContractFailedEventArgs.SetHandled">
+      <topicdata group="api" />
+      <apidata name="SetHandled" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailedEventArgs" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="14436c61-d109-a548-1b5e-bba6c678ae9f" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.ContractFailedEventArgs.SetUnwind">
+      <topicdata group="api" />
+      <apidata name="SetUnwind" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailedEventArgs" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="108855e4-d350-ee2f-ba27-91137311da01" />
+    </api>
+    <api id="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Unwind">
+      <topicdata group="api" />
+      <apidata name="Unwind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Unwind" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailedEventArgs" ref="true" />
+      </containers>
+      <file name="461359db-2976-765f-a284-a5d64b8f664c" />
+    </api>
+    <api id="T:System.Diagnostics.Contracts.ContractFailureKind">
+      <topicdata group="api" />
+      <apidata name="ContractFailureKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Diagnostics.Contracts.ContractFailureKind.Assert" />
+        <element api="F:System.Diagnostics.Contracts.ContractFailureKind.Assume" />
+        <element api="F:System.Diagnostics.Contracts.ContractFailureKind.Invariant" />
+        <element api="F:System.Diagnostics.Contracts.ContractFailureKind.Postcondition" />
+        <element api="F:System.Diagnostics.Contracts.ContractFailureKind.PostconditionOnException" />
+        <element api="F:System.Diagnostics.Contracts.ContractFailureKind.Precondition" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+      </containers>
+      <file name="26902aa6-be91-58ac-5131-ccc0879e1e66" />
+    </api>
+    <api id="F:System.Diagnostics.Contracts.ContractFailureKind.Assert">
+      <topicdata group="api" notopic="" />
+      <apidata name="Assert" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.Contracts.ContractFailureKind" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailureKind" ref="false" />
+      </containers>
+      <file name="e000233e-8eac-e6e7-4e77-54b5555966fe" />
+    </api>
+    <api id="F:System.Diagnostics.Contracts.ContractFailureKind.Assume">
+      <topicdata group="api" notopic="" />
+      <apidata name="Assume" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.Contracts.ContractFailureKind" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailureKind" ref="false" />
+      </containers>
+      <file name="73c94d91-fde8-6850-5a21-4e97221f2a80" />
+    </api>
+    <api id="F:System.Diagnostics.Contracts.ContractFailureKind.Invariant">
+      <topicdata group="api" notopic="" />
+      <apidata name="Invariant" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.Contracts.ContractFailureKind" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailureKind" ref="false" />
+      </containers>
+      <file name="166b7c4b-6d11-8db5-0801-e3a972225eb9" />
+    </api>
+    <api id="F:System.Diagnostics.Contracts.ContractFailureKind.Postcondition">
+      <topicdata group="api" notopic="" />
+      <apidata name="Postcondition" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.Contracts.ContractFailureKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailureKind" ref="false" />
+      </containers>
+      <file name="234fd320-1510-d8e2-5144-cd895c343af9" />
+    </api>
+    <api id="F:System.Diagnostics.Contracts.ContractFailureKind.PostconditionOnException">
+      <topicdata group="api" notopic="" />
+      <apidata name="PostconditionOnException" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.Contracts.ContractFailureKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailureKind" ref="false" />
+      </containers>
+      <file name="383dc4aa-0702-8c1e-c3da-51f4bc87e5c7" />
+    </api>
+    <api id="F:System.Diagnostics.Contracts.ContractFailureKind.Precondition">
+      <topicdata group="api" notopic="" />
+      <apidata name="Precondition" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.Contracts.ContractFailureKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractFailureKind" ref="false" />
+      </containers>
+      <file name="af91f23f-c757-27ad-3786-efeb24715208" />
+    </api>
+    <api id="T:System.Diagnostics.Contracts.ContractInvariantMethodAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.ContractInvariantMethodAttribute" />
+      <apidata name="ContractInvariantMethodAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.ContractInvariantMethodAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Method" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d417541d-fb74-8307-b16e-0e10ef2f7664" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Contracts.ContractInvariantMethodAttribute">
+      <topicdata name="ContractInvariantMethodAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Contracts.ContractInvariantMethodAttribute" />
+      <apidata name="ContractInvariantMethodAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.ContractInvariantMethodAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.Contracts.ContractInvariantMethodAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractInvariantMethodAttribute" />
+      </containers>
+      <file name="a0e71e93-1cae-9bfb-7731-6bfda659ac50" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Contracts.ContractInvariantMethodAttribute">
+      <topicdata name="ContractInvariantMethodAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Contracts.ContractInvariantMethodAttribute" />
+      <apidata name="ContractInvariantMethodAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.ContractInvariantMethodAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractInvariantMethodAttribute" />
+      </containers>
+      <file name="d642e257-8d3e-08b7-0e3e-152b5cf39951" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.ContractInvariantMethodAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractInvariantMethodAttribute" ref="true" />
+      </containers>
+      <file name="d899bb42-67a2-4660-5225-c2b5b65f9304" />
+    </api>
+    <api id="T:System.Diagnostics.Contracts.ContractOptionAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.ContractOptionAttribute" />
+      <apidata name="ContractOptionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="All" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="15987e0f-02c1-9bd2-84ad-856a953c90c4" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Contracts.ContractOptionAttribute">
+      <topicdata name="ContractOptionAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Contracts.ContractOptionAttribute" />
+      <apidata name="ContractOptionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Diagnostics.Contracts.ContractOptionAttribute.#ctor">
+          <element api="M:System.Diagnostics.Contracts.ContractOptionAttribute.#ctor(System.String,System.String,System.Boolean)" />
+          <element api="M:System.Diagnostics.Contracts.ContractOptionAttribute.#ctor(System.String,System.String,System.String)" />
+        </element>
+        <element api="P:System.Diagnostics.Contracts.ContractOptionAttribute.Category" />
+        <element api="P:System.Diagnostics.Contracts.ContractOptionAttribute.Enabled" />
+        <element api="P:System.Diagnostics.Contracts.ContractOptionAttribute.Setting" />
+        <element api="P:System.Diagnostics.Contracts.ContractOptionAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractOptionAttribute" />
+      </containers>
+      <file name="85c3fdd6-9a03-d0c1-2d97-5216de33d133" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Contracts.ContractOptionAttribute">
+      <topicdata name="ContractOptionAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Contracts.ContractOptionAttribute" />
+      <apidata name="ContractOptionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractOptionAttribute" />
+      </containers>
+      <file name="46c6aeaf-32cf-7199-d938-81843a1019b2" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.Contracts.ContractOptionAttribute">
+      <topicdata name="ContractOptionAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.Contracts.ContractOptionAttribute" />
+      <apidata name="ContractOptionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Diagnostics.Contracts.ContractOptionAttribute.Category" />
+        <element api="P:System.Diagnostics.Contracts.ContractOptionAttribute.Enabled" />
+        <element api="P:System.Diagnostics.Contracts.ContractOptionAttribute.Setting" />
+        <element api="P:System.Diagnostics.Contracts.ContractOptionAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractOptionAttribute" />
+      </containers>
+      <file name="a1a0ef61-5f74-6dd9-4342-c3d90b731d70" />
+    </api>
+    <api id="Overload:System.Diagnostics.Contracts.ContractOptionAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.ContractOptionAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Diagnostics.Contracts.ContractOptionAttribute.#ctor(System.String,System.String,System.Boolean)" />
+        <element api="M:System.Diagnostics.Contracts.ContractOptionAttribute.#ctor(System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractOptionAttribute" ref="true" />
+      </containers>
+      <file name="14d1d3e2-3712-bd40-690f-0e65eb692f3d" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.ContractOptionAttribute.#ctor(System.String,System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Diagnostics.Contracts.ContractOptionAttribute.#ctor" />
+      <parameters>
+        <parameter name="category">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="setting">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="enabled">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractOptionAttribute" ref="true" />
+      </containers>
+      <file name="181e750e-5adb-f100-fced-bff7cee1584b" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.ContractOptionAttribute.#ctor(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Diagnostics.Contracts.ContractOptionAttribute.#ctor" />
+      <parameters>
+        <parameter name="category">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="setting">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractOptionAttribute" ref="true" />
+      </containers>
+      <file name="5f324598-de69-b367-f057-a5947cfade7e" />
+    </api>
+    <api id="P:System.Diagnostics.Contracts.ContractOptionAttribute.Category">
+      <topicdata group="api" />
+      <apidata name="Category" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Category" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractOptionAttribute" ref="true" />
+      </containers>
+      <file name="0275ea2d-2186-5f36-411d-6f88e0decdc7" />
+    </api>
+    <api id="P:System.Diagnostics.Contracts.ContractOptionAttribute.Enabled">
+      <topicdata group="api" />
+      <apidata name="Enabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Enabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractOptionAttribute" ref="true" />
+      </containers>
+      <file name="307b5332-4423-3ad3-7917-9e539209a4d1" />
+    </api>
+    <api id="P:System.Diagnostics.Contracts.ContractOptionAttribute.Setting">
+      <topicdata group="api" />
+      <apidata name="Setting" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Setting" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractOptionAttribute" ref="true" />
+      </containers>
+      <file name="70cb4d8a-fe75-00ea-4c01-47d5c86f999c" />
+    </api>
+    <api id="P:System.Diagnostics.Contracts.ContractOptionAttribute.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractOptionAttribute" ref="true" />
+      </containers>
+      <file name="f572c4d9-2f54-df4d-42e2-87e90c9e875d" />
+    </api>
+    <api id="T:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute" />
+      <apidata name="ContractPublicPropertyNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Field" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a2bfa3e3-c925-b6b5-ea69-e1bb38eb13a1" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute">
+      <topicdata name="ContractPublicPropertyNameAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute" />
+      <apidata name="ContractPublicPropertyNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute.#ctor(System.String)" />
+        <element api="P:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute" />
+      </containers>
+      <file name="952a4000-9c07-31fd-3bb8-aaa4c875b299" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute">
+      <topicdata name="ContractPublicPropertyNameAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute" />
+      <apidata name="ContractPublicPropertyNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute" />
+      </containers>
+      <file name="11aa4883-abd4-3bdc-8266-0c4a597f0fb3" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute">
+      <topicdata name="ContractPublicPropertyNameAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute" />
+      <apidata name="ContractPublicPropertyNameAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute" />
+      </containers>
+      <file name="b51c1baa-2ff3-d98c-f283-283143edceb8" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute" ref="true" />
+      </containers>
+      <file name="65d6c142-45fa-3aa2-e335-52a4d3f95b71" />
+    </api>
+    <api id="P:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractPublicPropertyNameAttribute" ref="true" />
+      </containers>
+      <file name="4d06ab50-a5ef-d05f-8e84-d7ae1dc88c94" />
+    </api>
+    <api id="T:System.Diagnostics.Contracts.ContractReferenceAssemblyAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.ContractReferenceAssemblyAttribute" />
+      <apidata name="ContractReferenceAssemblyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.ContractReferenceAssemblyAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a13958e1-b3c6-a6f0-4410-114738c066b5" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Contracts.ContractReferenceAssemblyAttribute">
+      <topicdata name="ContractReferenceAssemblyAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Contracts.ContractReferenceAssemblyAttribute" />
+      <apidata name="ContractReferenceAssemblyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.ContractReferenceAssemblyAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.Contracts.ContractReferenceAssemblyAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractReferenceAssemblyAttribute" />
+      </containers>
+      <file name="bd7751fc-73aa-e953-fee5-25115f54ce06" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Contracts.ContractReferenceAssemblyAttribute">
+      <topicdata name="ContractReferenceAssemblyAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Contracts.ContractReferenceAssemblyAttribute" />
+      <apidata name="ContractReferenceAssemblyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.ContractReferenceAssemblyAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractReferenceAssemblyAttribute" />
+      </containers>
+      <file name="49d8c2be-e655-2db6-e805-0c552bd2b583" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.ContractReferenceAssemblyAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractReferenceAssemblyAttribute" ref="true" />
+      </containers>
+      <file name="18e498a1-fe07-373c-a46e-4d448c5d3be4" />
+    </api>
+    <api id="T:System.Diagnostics.Contracts.ContractRuntimeIgnoredAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.ContractRuntimeIgnoredAttribute" />
+      <apidata name="ContractRuntimeIgnoredAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.ContractRuntimeIgnoredAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Method" />
+              <field name="Property" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a62e447b-096c-4521-7c0d-aa18ee26c940" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Contracts.ContractRuntimeIgnoredAttribute">
+      <topicdata name="ContractRuntimeIgnoredAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Contracts.ContractRuntimeIgnoredAttribute" />
+      <apidata name="ContractRuntimeIgnoredAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.ContractRuntimeIgnoredAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.Contracts.ContractRuntimeIgnoredAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractRuntimeIgnoredAttribute" />
+      </containers>
+      <file name="5b932739-c548-8f90-0d74-3400006bb023" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Contracts.ContractRuntimeIgnoredAttribute">
+      <topicdata name="ContractRuntimeIgnoredAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Contracts.ContractRuntimeIgnoredAttribute" />
+      <apidata name="ContractRuntimeIgnoredAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.ContractRuntimeIgnoredAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractRuntimeIgnoredAttribute" />
+      </containers>
+      <file name="1890dc34-15d6-516d-8412-80d34e544c6b" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.ContractRuntimeIgnoredAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractRuntimeIgnoredAttribute" ref="true" />
+      </containers>
+      <file name="d98bfed5-56be-436a-73af-a763988bd8ca" />
+    </api>
+    <api id="T:System.Diagnostics.Contracts.ContractVerificationAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.ContractVerificationAttribute" />
+      <apidata name="ContractVerificationAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+              <field name="Class" />
+              <field name="Constructor" />
+              <field name="Method" />
+              <field name="Property" />
+              <field name="Struct" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f7c8ee26-0b9a-1228-16f7-d731ac64e9a6" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Contracts.ContractVerificationAttribute">
+      <topicdata name="ContractVerificationAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Contracts.ContractVerificationAttribute" />
+      <apidata name="ContractVerificationAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.Contracts.ContractVerificationAttribute.#ctor(System.Boolean)" />
+        <element api="P:System.Diagnostics.Contracts.ContractVerificationAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractVerificationAttribute" />
+      </containers>
+      <file name="dc6d7245-7393-a5d5-3e75-481a09b29f8b" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Contracts.ContractVerificationAttribute">
+      <topicdata name="ContractVerificationAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Contracts.ContractVerificationAttribute" />
+      <apidata name="ContractVerificationAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractVerificationAttribute" />
+      </containers>
+      <file name="92a9a494-afe1-8247-1d0b-55118b7c6def" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.Contracts.ContractVerificationAttribute">
+      <topicdata name="ContractVerificationAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.Contracts.ContractVerificationAttribute" />
+      <apidata name="ContractVerificationAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Diagnostics.Contracts.ContractVerificationAttribute.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractVerificationAttribute" />
+      </containers>
+      <file name="96c11a75-dc50-6a21-0f94-7ca3be732285" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.ContractVerificationAttribute.#ctor(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractVerificationAttribute" ref="true" />
+      </containers>
+      <file name="0352dd1b-6b89-d182-09b3-1bf5d7eb72cd" />
+    </api>
+    <api id="P:System.Diagnostics.Contracts.ContractVerificationAttribute.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.ContractVerificationAttribute" ref="true" />
+      </containers>
+      <file name="157a9c4b-e5de-b235-a44b-1f62f761c5f7" />
+    </api>
+    <api id="T:System.Diagnostics.Contracts.PureAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Contracts.PureAttribute" />
+      <apidata name="PureAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.PureAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Diagnostics.ConditionalAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CONTRACTS_FULL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+              <field name="Constructor" />
+              <field name="Delegate" />
+              <field name="Event" />
+              <field name="Method" />
+              <field name="Parameter" />
+              <field name="Property" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="b7ab30f8-9902-9165-3d4b-d45969a67f09" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Contracts.PureAttribute">
+      <topicdata name="PureAttribute" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Contracts.PureAttribute" />
+      <apidata name="PureAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.PureAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.Contracts.PureAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.PureAttribute" />
+      </containers>
+      <file name="efb1e1f4-0dce-28b0-6fed-11ebbd2232e6" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Contracts.PureAttribute">
+      <topicdata name="PureAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Contracts.PureAttribute" />
+      <apidata name="PureAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Diagnostics.Contracts.PureAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.PureAttribute" />
+      </containers>
+      <file name="ad9b45de-3a40-5145-baba-6e80568b85b4" />
+    </api>
+    <api id="M:System.Diagnostics.Contracts.PureAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Diagnostics.Contracts" module="System.Diagnostics.Contracts" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Diagnostics.Contracts" />
+        <type api="T:System.Diagnostics.Contracts.PureAttribute" ref="true" />
+      </containers>
+      <file name="71698174-fbfc-3e86-d884-ccbe1b05bde0" />
+    </api>
+  </apis>
+</reflection>

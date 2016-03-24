@@ -1,0 +1,1741 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Graphics.Display">
+      <topicdata group="api" />
+      <apidata name="Windows.Graphics.Display" group="namespace" />
+      <elements>
+        <element api="T:Windows.Graphics.Display.DisplayInformation" />
+        <element api="T:Windows.Graphics.Display.DisplayPropertiesEventHandler" />
+        <element api="T:Windows.Graphics.Display.DisplayOrientations" />
+        <element api="T:Windows.Graphics.Display.ResolutionScale" />
+        <element api="T:Windows.Graphics.Display.DisplayProperties" />
+      </elements>
+      <file name="dee2649a-2977-b642-153d-52b474b3030b" />
+    </api>
+    <api id="T:Windows.Graphics.Display.DisplayInformation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Graphics.Display.DisplayInformation" />
+      <apidata name="DisplayInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Graphics.Display.IDisplayInformation" ref="true" />
+        <type api="T:Windows.Graphics.Display.IDisplayInformation2" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0b3de92c-5a85-64c9-c53c-286ee8bfdc3e" />
+    </api>
+    <api id="AllMembers.T:Windows.Graphics.Display.DisplayInformation">
+      <topicdata name="DisplayInformation" group="list" subgroup="members" typeTopicId="T:Windows.Graphics.Display.DisplayInformation" />
+      <apidata name="DisplayInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.AutoRotationPreferences" />
+        <element api="E:Windows.Graphics.Display.DisplayInformation.ColorProfileChanged" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.CurrentOrientation" />
+        <element api="E:Windows.Graphics.Display.DisplayInformation.DisplayContentsInvalidated" />
+        <element api="E:Windows.Graphics.Display.DisplayInformation.DpiChanged" />
+        <element api="M:Windows.Graphics.Display.DisplayInformation.GetColorProfileAsync" />
+        <element api="M:Windows.Graphics.Display.DisplayInformation.GetForCurrentView" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.LogicalDpi" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.NativeOrientation" />
+        <element api="E:Windows.Graphics.Display.DisplayInformation.OrientationChanged" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.RawDpiX" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.RawDpiY" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.RawPixelsPerViewPixel" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.ResolutionScale" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.StereoEnabled" />
+        <element api="E:Windows.Graphics.Display.DisplayInformation.StereoEnabledChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" />
+      </containers>
+      <file name="06bcdb3d-f08f-a0d9-793a-06385f47851d" />
+    </api>
+    <api id="Methods.T:Windows.Graphics.Display.DisplayInformation">
+      <topicdata name="DisplayInformation" group="list" subgroup="Methods" typeTopicId="T:Windows.Graphics.Display.DisplayInformation" />
+      <apidata name="DisplayInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Graphics.Display.DisplayInformation.GetColorProfileAsync" />
+        <element api="M:Windows.Graphics.Display.DisplayInformation.GetForCurrentView" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" />
+      </containers>
+      <file name="e9b661b0-7c4e-b231-824e-ea7f69efc0af" />
+    </api>
+    <api id="Properties.T:Windows.Graphics.Display.DisplayInformation">
+      <topicdata name="DisplayInformation" group="list" subgroup="Properties" typeTopicId="T:Windows.Graphics.Display.DisplayInformation" />
+      <apidata name="DisplayInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Graphics.Display.DisplayInformation.AutoRotationPreferences" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.CurrentOrientation" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.LogicalDpi" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.NativeOrientation" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.RawDpiX" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.RawDpiY" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.RawPixelsPerViewPixel" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.ResolutionScale" />
+        <element api="P:Windows.Graphics.Display.DisplayInformation.StereoEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" />
+      </containers>
+      <file name="f3c54978-4488-11dd-4be4-58f680954ee3" />
+    </api>
+    <api id="Events.T:Windows.Graphics.Display.DisplayInformation">
+      <topicdata name="DisplayInformation" group="list" subgroup="Events" typeTopicId="T:Windows.Graphics.Display.DisplayInformation" />
+      <apidata name="DisplayInformation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Graphics.Display.DisplayInformation.ColorProfileChanged" />
+        <element api="E:Windows.Graphics.Display.DisplayInformation.DisplayContentsInvalidated" />
+        <element api="E:Windows.Graphics.Display.DisplayInformation.DpiChanged" />
+        <element api="E:Windows.Graphics.Display.DisplayInformation.OrientationChanged" />
+        <element api="E:Windows.Graphics.Display.DisplayInformation.StereoEnabledChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" />
+      </containers>
+      <file name="ed3716fc-32f3-0330-941e-f34813d7f0b5" />
+    </api>
+    <api id="P:Windows.Graphics.Display.DisplayInformation.AutoRotationPreferences">
+      <topicdata group="api" />
+      <apidata name="AutoRotationPreferences" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AutoRotationPreferences" />
+      <setter name="set_AutoRotationPreferences" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.DisplayOrientations" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </containers>
+      <file name="d74e3f23-ddca-964c-a214-40d54c02e1aa" />
+    </api>
+    <api id="E:Windows.Graphics.Display.DisplayInformation.ColorProfileChanged">
+      <topicdata group="api" />
+      <apidata name="ColorProfileChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ColorProfileChanged" />
+      <remover name="remove_ColorProfileChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </containers>
+      <file name="f60f94c9-0a72-208e-f3bd-a6e11a6e34c1" />
+    </api>
+    <api id="P:Windows.Graphics.Display.DisplayInformation.CurrentOrientation">
+      <topicdata group="api" />
+      <apidata name="CurrentOrientation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CurrentOrientation" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.DisplayOrientations" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </containers>
+      <file name="3867872e-a38b-80d8-ddc7-1262f1d227da" />
+    </api>
+    <api id="E:Windows.Graphics.Display.DisplayInformation.DisplayContentsInvalidated">
+      <topicdata group="api" />
+      <apidata name="DisplayContentsInvalidated" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DisplayContentsInvalidated" />
+      <remover name="remove_DisplayContentsInvalidated" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </containers>
+      <file name="a486dd52-919b-4667-2d9b-8563473981d7" />
+    </api>
+    <api id="E:Windows.Graphics.Display.DisplayInformation.DpiChanged">
+      <topicdata group="api" />
+      <apidata name="DpiChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DpiChanged" />
+      <remover name="remove_DpiChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </containers>
+      <file name="8470db0c-73a6-a70c-a306-e52bca601e2d" />
+    </api>
+    <api id="M:Windows.Graphics.Display.DisplayInformation.GetColorProfileAsync">
+      <topicdata group="api" />
+      <apidata name="GetColorProfileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </containers>
+      <file name="a4291892-7a1c-2c2c-85cf-8fc321962cfb" />
+    </api>
+    <api id="M:Windows.Graphics.Display.DisplayInformation.GetForCurrentView">
+      <topicdata group="api" />
+      <apidata name="GetForCurrentView" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </containers>
+      <file name="1f082adf-7a15-a6e6-d994-284d696cd030" />
+    </api>
+    <api id="P:Windows.Graphics.Display.DisplayInformation.LogicalDpi">
+      <topicdata group="api" />
+      <apidata name="LogicalDpi" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LogicalDpi" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </containers>
+      <file name="8dc26022-5639-0a01-949e-b21c1395dbc6" />
+    </api>
+    <api id="P:Windows.Graphics.Display.DisplayInformation.NativeOrientation">
+      <topicdata group="api" />
+      <apidata name="NativeOrientation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NativeOrientation" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.DisplayOrientations" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </containers>
+      <file name="6ea5e586-ea77-5796-3ca8-25190e4a0bed" />
+    </api>
+    <api id="E:Windows.Graphics.Display.DisplayInformation.OrientationChanged">
+      <topicdata group="api" />
+      <apidata name="OrientationChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_OrientationChanged" />
+      <remover name="remove_OrientationChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </containers>
+      <file name="513252e4-f70e-35cd-5fac-68b7497fdb14" />
+    </api>
+    <api id="P:Windows.Graphics.Display.DisplayInformation.RawDpiX">
+      <topicdata group="api" />
+      <apidata name="RawDpiX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RawDpiX" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </containers>
+      <file name="d0652d37-50c7-30b2-1ed2-4b0338472bf3" />
+    </api>
+    <api id="P:Windows.Graphics.Display.DisplayInformation.RawDpiY">
+      <topicdata group="api" />
+      <apidata name="RawDpiY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RawDpiY" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </containers>
+      <file name="4fed0229-7351-cb92-1d93-dd3953217466" />
+    </api>
+    <api id="P:Windows.Graphics.Display.DisplayInformation.RawPixelsPerViewPixel">
+      <topicdata group="api" />
+      <apidata name="RawPixelsPerViewPixel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RawPixelsPerViewPixel" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </containers>
+      <file name="f16dd88d-46e4-2a54-4cd6-75d13b73705b" />
+    </api>
+    <api id="P:Windows.Graphics.Display.DisplayInformation.ResolutionScale">
+      <topicdata group="api" />
+      <apidata name="ResolutionScale" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResolutionScale">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>ResolutionScale is not supported on Windows Phone, and can return incorrect results. Instead, use RawPixelsPerViewPixel</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </containers>
+      <file name="65c3443e-2261-dc58-d078-fae33d70dcc5" />
+    </api>
+    <api id="P:Windows.Graphics.Display.DisplayInformation.StereoEnabled">
+      <topicdata group="api" />
+      <apidata name="StereoEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_StereoEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </containers>
+      <file name="75800ced-44a9-6fcd-dea5-7e4628826758" />
+    </api>
+    <api id="E:Windows.Graphics.Display.DisplayInformation.StereoEnabledChanged">
+      <topicdata group="api" />
+      <apidata name="StereoEnabledChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_StereoEnabledChanged" />
+      <remover name="remove_StereoEnabledChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayInformation" ref="true" />
+      </containers>
+      <file name="997b0759-d17d-e6c4-b3df-9f3a77ac629d" />
+    </api>
+    <api id="T:Windows.Graphics.Display.DisplayOrientations">
+      <topicdata group="api" />
+      <apidata name="DisplayOrientations" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Graphics.Display.DisplayOrientations.None" />
+        <element api="F:Windows.Graphics.Display.DisplayOrientations.Landscape" />
+        <element api="F:Windows.Graphics.Display.DisplayOrientations.Portrait" />
+        <element api="F:Windows.Graphics.Display.DisplayOrientations.LandscapeFlipped" />
+        <element api="F:Windows.Graphics.Display.DisplayOrientations.PortraitFlipped" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a7ed8a3f-9142-8cdb-b4c7-be632eb78d3e" />
+    </api>
+    <api id="F:Windows.Graphics.Display.DisplayOrientations.Landscape">
+      <topicdata group="api" notopic="" />
+      <apidata name="Landscape" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.DisplayOrientations" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayOrientations" ref="false" />
+      </containers>
+      <file name="4f520ad4-3a0e-fcbb-7b46-b55981576a57" />
+    </api>
+    <api id="F:Windows.Graphics.Display.DisplayOrientations.LandscapeFlipped">
+      <topicdata group="api" notopic="" />
+      <apidata name="LandscapeFlipped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.DisplayOrientations" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayOrientations" ref="false" />
+      </containers>
+      <file name="046fc924-02b9-0bce-54ea-5088aaf39d92" />
+    </api>
+    <api id="F:Windows.Graphics.Display.DisplayOrientations.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.DisplayOrientations" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayOrientations" ref="false" />
+      </containers>
+      <file name="f26878a1-b71b-3d1a-4afa-46ce061a4521" />
+    </api>
+    <api id="F:Windows.Graphics.Display.DisplayOrientations.Portrait">
+      <topicdata group="api" notopic="" />
+      <apidata name="Portrait" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.DisplayOrientations" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayOrientations" ref="false" />
+      </containers>
+      <file name="79b0d97e-b352-9c9a-df8f-2e2df12cf585" />
+    </api>
+    <api id="F:Windows.Graphics.Display.DisplayOrientations.PortraitFlipped">
+      <topicdata group="api" notopic="" />
+      <apidata name="PortraitFlipped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.DisplayOrientations" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayOrientations" ref="false" />
+      </containers>
+      <file name="135d4efa-3578-693e-1583-9b5fb65cbed6" />
+    </api>
+    <api id="T:Windows.Graphics.Display.DisplayProperties">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Graphics.Display.DisplayProperties" />
+      <apidata name="DisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6cc5eaf0-47c0-0cbd-5710-8e74ed1f5dc5" />
+    </api>
+    <api id="AllMembers.T:Windows.Graphics.Display.DisplayProperties">
+      <topicdata name="DisplayProperties" group="list" subgroup="members" typeTopicId="T:Windows.Graphics.Display.DisplayProperties" />
+      <apidata name="DisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Graphics.Display.DisplayProperties.AutoRotationPreferences" />
+        <element api="E:Windows.Graphics.Display.DisplayProperties.ColorProfileChanged" />
+        <element api="P:Windows.Graphics.Display.DisplayProperties.CurrentOrientation" />
+        <element api="E:Windows.Graphics.Display.DisplayProperties.DisplayContentsInvalidated" />
+        <element api="M:Windows.Graphics.Display.DisplayProperties.GetColorProfileAsync" />
+        <element api="P:Windows.Graphics.Display.DisplayProperties.LogicalDpi" />
+        <element api="E:Windows.Graphics.Display.DisplayProperties.LogicalDpiChanged" />
+        <element api="P:Windows.Graphics.Display.DisplayProperties.NativeOrientation" />
+        <element api="E:Windows.Graphics.Display.DisplayProperties.OrientationChanged" />
+        <element api="P:Windows.Graphics.Display.DisplayProperties.ResolutionScale" />
+        <element api="P:Windows.Graphics.Display.DisplayProperties.StereoEnabled" />
+        <element api="E:Windows.Graphics.Display.DisplayProperties.StereoEnabledChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayProperties" />
+      </containers>
+      <file name="5884bc60-a9da-46c4-0cd9-b201e0fe1675" />
+    </api>
+    <api id="Methods.T:Windows.Graphics.Display.DisplayProperties">
+      <topicdata name="DisplayProperties" group="list" subgroup="Methods" typeTopicId="T:Windows.Graphics.Display.DisplayProperties" />
+      <apidata name="DisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Graphics.Display.DisplayProperties.GetColorProfileAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayProperties" />
+      </containers>
+      <file name="f58b8979-1c9d-4ef4-08f2-6ad84efed02b" />
+    </api>
+    <api id="Properties.T:Windows.Graphics.Display.DisplayProperties">
+      <topicdata name="DisplayProperties" group="list" subgroup="Properties" typeTopicId="T:Windows.Graphics.Display.DisplayProperties" />
+      <apidata name="DisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Graphics.Display.DisplayProperties.AutoRotationPreferences" />
+        <element api="P:Windows.Graphics.Display.DisplayProperties.CurrentOrientation" />
+        <element api="P:Windows.Graphics.Display.DisplayProperties.LogicalDpi" />
+        <element api="P:Windows.Graphics.Display.DisplayProperties.NativeOrientation" />
+        <element api="P:Windows.Graphics.Display.DisplayProperties.ResolutionScale" />
+        <element api="P:Windows.Graphics.Display.DisplayProperties.StereoEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayProperties" />
+      </containers>
+      <file name="db5ef85f-e8c5-cf08-3eef-cdfcb75d9172" />
+    </api>
+    <api id="Events.T:Windows.Graphics.Display.DisplayProperties">
+      <topicdata name="DisplayProperties" group="list" subgroup="Events" typeTopicId="T:Windows.Graphics.Display.DisplayProperties" />
+      <apidata name="DisplayProperties" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Graphics.Display.DisplayProperties.ColorProfileChanged" />
+        <element api="E:Windows.Graphics.Display.DisplayProperties.DisplayContentsInvalidated" />
+        <element api="E:Windows.Graphics.Display.DisplayProperties.LogicalDpiChanged" />
+        <element api="E:Windows.Graphics.Display.DisplayProperties.OrientationChanged" />
+        <element api="E:Windows.Graphics.Display.DisplayProperties.StereoEnabledChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayProperties" />
+      </containers>
+      <file name="f04232e4-416b-84fd-51a2-b5a30e8e34a1" />
+    </api>
+    <api id="P:Windows.Graphics.Display.DisplayProperties.AutoRotationPreferences">
+      <topicdata group="api" />
+      <apidata name="AutoRotationPreferences" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AutoRotationPreferences">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <setter name="set_AutoRotationPreferences">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </setter>
+      <returns>
+        <type api="T:Windows.Graphics.Display.DisplayOrientations" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayProperties" ref="true" />
+      </containers>
+      <file name="32fe0277-7bb4-545b-cc21-f8ac801a9a80" />
+    </api>
+    <api id="E:Windows.Graphics.Display.DisplayProperties.ColorProfileChanged">
+      <topicdata group="api" />
+      <apidata name="ColorProfileChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ColorProfileChanged">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </adder>
+      <remover name="remove_ColorProfileChanged">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </remover>
+      <eventhandler>
+        <type api="T:Windows.Graphics.Display.DisplayPropertiesEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayProperties" ref="true" />
+      </containers>
+      <file name="1d03e8cf-c17a-3bb2-7b20-337c84ec0604" />
+    </api>
+    <api id="P:Windows.Graphics.Display.DisplayProperties.CurrentOrientation">
+      <topicdata group="api" />
+      <apidata name="CurrentOrientation" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CurrentOrientation">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:Windows.Graphics.Display.DisplayOrientations" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayProperties" ref="true" />
+      </containers>
+      <file name="2e460bce-ecbc-4682-a845-043c7bab69a3" />
+    </api>
+    <api id="E:Windows.Graphics.Display.DisplayProperties.DisplayContentsInvalidated">
+      <topicdata group="api" />
+      <apidata name="DisplayContentsInvalidated" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_DisplayContentsInvalidated">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </adder>
+      <remover name="remove_DisplayContentsInvalidated">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </remover>
+      <eventhandler>
+        <type api="T:Windows.Graphics.Display.DisplayPropertiesEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayProperties" ref="true" />
+      </containers>
+      <file name="b0cbee52-71c2-20c3-190e-6adbf5028ed5" />
+    </api>
+    <api id="M:Windows.Graphics.Display.DisplayProperties.GetColorProfileAsync">
+      <topicdata group="api" />
+      <apidata name="GetColorProfileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayProperties" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2cd8cc42-c2db-a845-1394-13e4dea035ab" />
+    </api>
+    <api id="P:Windows.Graphics.Display.DisplayProperties.LogicalDpi">
+      <topicdata group="api" />
+      <apidata name="LogicalDpi" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LogicalDpi">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayProperties" ref="true" />
+      </containers>
+      <file name="6bd5a009-a376-f733-7f29-30ca9ed1a36f" />
+    </api>
+    <api id="E:Windows.Graphics.Display.DisplayProperties.LogicalDpiChanged">
+      <topicdata group="api" />
+      <apidata name="LogicalDpiChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_LogicalDpiChanged">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </adder>
+      <remover name="remove_LogicalDpiChanged">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </remover>
+      <eventhandler>
+        <type api="T:Windows.Graphics.Display.DisplayPropertiesEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayProperties" ref="true" />
+      </containers>
+      <file name="f585cece-f50a-fda3-1f6e-12dc62314caa" />
+    </api>
+    <api id="P:Windows.Graphics.Display.DisplayProperties.NativeOrientation">
+      <topicdata group="api" />
+      <apidata name="NativeOrientation" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NativeOrientation">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:Windows.Graphics.Display.DisplayOrientations" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayProperties" ref="true" />
+      </containers>
+      <file name="8691052d-819d-934c-4c3e-fea957e06acf" />
+    </api>
+    <api id="E:Windows.Graphics.Display.DisplayProperties.OrientationChanged">
+      <topicdata group="api" />
+      <apidata name="OrientationChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_OrientationChanged">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </adder>
+      <remover name="remove_OrientationChanged">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </remover>
+      <eventhandler>
+        <type api="T:Windows.Graphics.Display.DisplayPropertiesEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayProperties" ref="true" />
+      </containers>
+      <file name="126ec945-84c4-52b6-15ab-502be246e4d1" />
+    </api>
+    <api id="P:Windows.Graphics.Display.DisplayProperties.ResolutionScale">
+      <topicdata group="api" />
+      <apidata name="ResolutionScale" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ResolutionScale">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>ResolutionScale is not supported on Windows Phone, and can return incorrect results. Instead, use RawPixelsPerViewPixel</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayProperties" ref="true" />
+      </containers>
+      <file name="77a939ca-2601-b1c1-c02a-bb7d7b0a868e" />
+    </api>
+    <api id="P:Windows.Graphics.Display.DisplayProperties.StereoEnabled">
+      <topicdata group="api" />
+      <apidata name="StereoEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_StereoEnabled">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayProperties" ref="true" />
+      </containers>
+      <file name="5ca77d25-051c-c60e-97c6-a569de38a157" />
+    </api>
+    <api id="E:Windows.Graphics.Display.DisplayProperties.StereoEnabledChanged">
+      <topicdata group="api" />
+      <apidata name="StereoEnabledChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_StereoEnabledChanged">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </adder>
+      <remover name="remove_StereoEnabledChanged">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </remover>
+      <eventhandler>
+        <type api="T:Windows.Graphics.Display.DisplayPropertiesEventHandler" ref="true" />
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.DisplayProperties" ref="true" />
+      </containers>
+      <file name="d0a1c6f3-6664-94ab-f33f-d45442c86661" />
+    </api>
+    <api id="T:Windows.Graphics.Display.DisplayPropertiesEventHandler">
+      <topicdata group="api" />
+      <apidata name="DisplayPropertiesEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3688729345</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>61857</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18129</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>158</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>227</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>84</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>59</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>204</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>153</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>89</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>128</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DisplayProperties may be altered or unavailable for releases after Windows Phone 8.1. Instead, use DisplayInformation.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="50e51e4b-8733-1663-3e5b-c84cf86e79b7" />
+    </api>
+    <api id="T:Windows.Graphics.Display.ResolutionScale">
+      <topicdata group="api" />
+      <apidata name="ResolutionScale" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Graphics.Display.ResolutionScale.Invalid" />
+        <element api="F:Windows.Graphics.Display.ResolutionScale.Scale100Percent" />
+        <element api="F:Windows.Graphics.Display.ResolutionScale.Scale120Percent" />
+        <element api="F:Windows.Graphics.Display.ResolutionScale.Scale140Percent" />
+        <element api="F:Windows.Graphics.Display.ResolutionScale.Scale150Percent" />
+        <element api="F:Windows.Graphics.Display.ResolutionScale.Scale160Percent" />
+        <element api="F:Windows.Graphics.Display.ResolutionScale.Scale180Percent" />
+        <element api="F:Windows.Graphics.Display.ResolutionScale.Scale225Percent" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ResolutionScale is not supported on Windows Phone, and can return incorrect results. Instead, use RawPixelsPerViewPixel</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="16490aed-b00a-2829-f9ca-f37e77df80c0" />
+    </api>
+    <api id="F:Windows.Graphics.Display.ResolutionScale.Invalid">
+      <topicdata group="api" notopic="" />
+      <apidata name="Invalid" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </containers>
+      <file name="05d93b3e-db98-1e03-c4cd-d35d97b4efe4" />
+    </api>
+    <api id="F:Windows.Graphics.Display.ResolutionScale.Scale100Percent">
+      <topicdata group="api" notopic="" />
+      <apidata name="Scale100Percent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </returns>
+      <value>100</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </containers>
+      <file name="ca2655ea-f0b0-9a18-77ea-0de16e3e7402" />
+    </api>
+    <api id="F:Windows.Graphics.Display.ResolutionScale.Scale120Percent">
+      <topicdata group="api" notopic="" />
+      <apidata name="Scale120Percent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </returns>
+      <value>120</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="08d30132-b0ea-24c0-9a22-50f6010a9c4c" />
+    </api>
+    <api id="F:Windows.Graphics.Display.ResolutionScale.Scale140Percent">
+      <topicdata group="api" notopic="" />
+      <apidata name="Scale140Percent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </returns>
+      <value>140</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </containers>
+      <file name="60cb74d0-1ee5-5177-af41-c5bf822e5492" />
+    </api>
+    <api id="F:Windows.Graphics.Display.ResolutionScale.Scale150Percent">
+      <topicdata group="api" notopic="" />
+      <apidata name="Scale150Percent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </returns>
+      <value>150</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="83a1ce6d-d1d5-8fd0-b77e-a26e52409446" />
+    </api>
+    <api id="F:Windows.Graphics.Display.ResolutionScale.Scale160Percent">
+      <topicdata group="api" notopic="" />
+      <apidata name="Scale160Percent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </returns>
+      <value>160</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9cf3cda8-c1f5-0840-751b-c67c940a4b67" />
+    </api>
+    <api id="F:Windows.Graphics.Display.ResolutionScale.Scale180Percent">
+      <topicdata group="api" notopic="" />
+      <apidata name="Scale180Percent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </returns>
+      <value>180</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </containers>
+      <file name="1fc03bc5-733f-8e32-9b5c-089db360c453" />
+    </api>
+    <api id="F:Windows.Graphics.Display.ResolutionScale.Scale225Percent">
+      <topicdata group="api" notopic="" />
+      <apidata name="Scale225Percent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </returns>
+      <value>225</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.Display" />
+        <type api="T:Windows.Graphics.Display.ResolutionScale" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f52dc7f1-2d3d-081f-08c8-6d793ada719e" />
+    </api>
+  </apis>
+</reflection>

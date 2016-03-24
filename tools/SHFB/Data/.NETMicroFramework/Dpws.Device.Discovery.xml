@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="MFDpwsDevice">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MFDpwsDevice</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Dpws.Device.Discovery">
+      <topicdata group="api" />
+      <apidata name="Dpws.Device.Discovery" group="namespace" />
+      <elements>
+        <element api="T:Dpws.Device.Discovery.ManagedDiscovery" />
+        <element api="T:Dpws.Device.Discovery.DpwsDiscoGreeting" />
+      </elements>
+      <file name="e00aeeae-5da8-e168-703a-fd9cc671b66f" />
+    </api>
+    <api id="T:Dpws.Device.Discovery.DpwsDiscoGreeting">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Dpws.Device.Discovery.DpwsDiscoGreeting" />
+      <apidata name="DpwsDiscoGreeting" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Discovery" />
+      </containers>
+      <file name="dfa756cd-747e-102c-2677-47811ac3f032" />
+    </api>
+    <api id="AllMembers.T:Dpws.Device.Discovery.DpwsDiscoGreeting">
+      <topicdata name="DpwsDiscoGreeting" group="list" subgroup="members" typeTopicId="T:Dpws.Device.Discovery.DpwsDiscoGreeting" />
+      <apidata name="DpwsDiscoGreeting" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Dpws.Device.Discovery.DpwsDiscoGreeting.#ctor(Ws.Services.ProtocolVersion)" />
+        <element api="M:Dpws.Device.Discovery.DpwsDiscoGreeting.SendGreetingMessage(System.Boolean)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Discovery" />
+        <type api="T:Dpws.Device.Discovery.DpwsDiscoGreeting" />
+      </containers>
+      <file name="723e8884-8c1a-7a0b-d343-ffa2e824c5d8" />
+    </api>
+    <api id="Methods.T:Dpws.Device.Discovery.DpwsDiscoGreeting">
+      <topicdata name="DpwsDiscoGreeting" group="list" subgroup="Methods" typeTopicId="T:Dpws.Device.Discovery.DpwsDiscoGreeting" />
+      <apidata name="DpwsDiscoGreeting" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Dpws.Device.Discovery.DpwsDiscoGreeting.SendGreetingMessage(System.Boolean)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Discovery" />
+        <type api="T:Dpws.Device.Discovery.DpwsDiscoGreeting" />
+      </containers>
+      <file name="1518f31c-0376-021e-e47e-63cbceeb9f9f" />
+    </api>
+    <api id="M:Dpws.Device.Discovery.DpwsDiscoGreeting.#ctor(Ws.Services.ProtocolVersion)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="v">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Discovery" />
+        <type api="T:Dpws.Device.Discovery.DpwsDiscoGreeting" ref="true" />
+      </containers>
+      <file name="30bffff9-82b3-5bc8-da27-5f006886a69b" />
+    </api>
+    <api id="M:Dpws.Device.Discovery.DpwsDiscoGreeting.SendGreetingMessage(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="SendGreetingMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="isHello">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Discovery" />
+        <type api="T:Dpws.Device.Discovery.DpwsDiscoGreeting" ref="true" />
+      </containers>
+      <file name="b209c9a5-98e3-b0d3-4b7a-9376a12aa62d" />
+    </api>
+    <api id="T:Dpws.Device.Discovery.ManagedDiscovery">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Dpws.Device.Discovery.ManagedDiscovery" />
+      <apidata name="ManagedDiscovery" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Dpws.Device.Discovery.ManagedDiscovery.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Discovery" />
+      </containers>
+      <file name="8e4308d4-c580-e4cd-35d1-bf1a7560cf8f" />
+    </api>
+    <api id="AllMembers.T:Dpws.Device.Discovery.ManagedDiscovery">
+      <topicdata name="ManagedDiscovery" group="list" subgroup="members" typeTopicId="T:Dpws.Device.Discovery.ManagedDiscovery" />
+      <apidata name="ManagedDiscovery" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Dpws.Device.Discovery.ManagedDiscovery.#ctor" />
+      <elements>
+        <element api="M:Dpws.Device.Discovery.ManagedDiscovery.#ctor" />
+        <element api="M:Dpws.Device.Discovery.ManagedDiscovery.DirectedBye(System.String,Dpws.Device.Discovery.DpwsDiscoGreeting,Ws.Services.ProtocolVersion)" />
+        <element api="M:Dpws.Device.Discovery.ManagedDiscovery.DirectedHello(System.String,Dpws.Device.Discovery.DpwsDiscoGreeting,Ws.Services.ProtocolVersion)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Discovery" />
+        <type api="T:Dpws.Device.Discovery.ManagedDiscovery" />
+      </containers>
+      <file name="cf865164-aaaf-3d0b-acbf-bab7aaf09f2d" />
+    </api>
+    <api id="Methods.T:Dpws.Device.Discovery.ManagedDiscovery">
+      <topicdata name="ManagedDiscovery" group="list" subgroup="Methods" typeTopicId="T:Dpws.Device.Discovery.ManagedDiscovery" />
+      <apidata name="ManagedDiscovery" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Dpws.Device.Discovery.ManagedDiscovery.#ctor" />
+      <elements>
+        <element api="M:Dpws.Device.Discovery.ManagedDiscovery.DirectedBye(System.String,Dpws.Device.Discovery.DpwsDiscoGreeting,Ws.Services.ProtocolVersion)" />
+        <element api="M:Dpws.Device.Discovery.ManagedDiscovery.DirectedHello(System.String,Dpws.Device.Discovery.DpwsDiscoGreeting,Ws.Services.ProtocolVersion)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Device.Discovery" />
+        <type api="T:Dpws.Device.Discovery.ManagedDiscovery" />
+      </containers>
+      <file name="d1ffb396-e1c3-2bdf-8a5b-d5d58b2f8edb" />
+    </api>
+    <api id="M:Dpws.Device.Discovery.ManagedDiscovery.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Discovery" />
+        <type api="T:Dpws.Device.Discovery.ManagedDiscovery" ref="true" />
+      </containers>
+      <file name="c49f5e9e-7cab-c52e-2d1e-0959244373f9" />
+    </api>
+    <api id="M:Dpws.Device.Discovery.ManagedDiscovery.DirectedBye(System.String,Dpws.Device.Discovery.DpwsDiscoGreeting,Ws.Services.ProtocolVersion)">
+      <topicdata group="api" />
+      <apidata name="DirectedBye" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="endpointAddress">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="greeting">
+          <type api="T:Dpws.Device.Discovery.DpwsDiscoGreeting" ref="true" />
+        </parameter>
+        <parameter name="version">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Discovery" />
+        <type api="T:Dpws.Device.Discovery.ManagedDiscovery" ref="true" />
+      </containers>
+      <file name="d1885076-bf94-6a52-0c86-fe583336ba05" />
+    </api>
+    <api id="M:Dpws.Device.Discovery.ManagedDiscovery.DirectedHello(System.String,Dpws.Device.Discovery.DpwsDiscoGreeting,Ws.Services.ProtocolVersion)">
+      <topicdata group="api" />
+      <apidata name="DirectedHello" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="endpointAddress">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="greeting">
+          <type api="T:Dpws.Device.Discovery.DpwsDiscoGreeting" ref="true" />
+        </parameter>
+        <parameter name="version">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsDevice" module="MFDpwsDevice" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Device.Discovery" />
+        <type api="T:Dpws.Device.Discovery.ManagedDiscovery" ref="true" />
+      </containers>
+      <file name="ea7d1e9a-f4fb-e2c6-1588-5fa19d166af7" />
+    </api>
+  </apis>
+</reflection>

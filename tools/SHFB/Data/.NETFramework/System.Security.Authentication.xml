@@ -1,0 +1,1081 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Security.Authentication">
+      <topicdata group="api" />
+      <apidata name="System.Security.Authentication" group="namespace" />
+      <elements>
+        <element api="T:System.Security.Authentication.AuthenticationException" />
+        <element api="T:System.Security.Authentication.InvalidCredentialException" />
+        <element api="T:System.Security.Authentication.SslProtocols" />
+        <element api="T:System.Security.Authentication.ExchangeAlgorithmType" />
+        <element api="T:System.Security.Authentication.CipherAlgorithmType" />
+        <element api="T:System.Security.Authentication.HashAlgorithmType" />
+      </elements>
+      <file name="39bbb198-bb18-6d6c-f656-3c62d09f0887" />
+    </api>
+    <api id="T:System.Security.Authentication.AuthenticationException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Authentication.AuthenticationException" />
+      <apidata name="AuthenticationException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Security.Authentication.AuthenticationException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Security.Authentication.InvalidCredentialException" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+      </containers>
+      <file name="17218e40-639a-0008-936c-6164703cf936" />
+    </api>
+    <api id="AllMembers.T:System.Security.Authentication.AuthenticationException">
+      <topicdata name="AuthenticationException" group="list" subgroup="members" typeTopicId="T:System.Security.Authentication.AuthenticationException" />
+      <apidata name="AuthenticationException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Security.Authentication.AuthenticationException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="E:System.Exception.SerializeObjectState" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Security.Authentication.AuthenticationException.#ctor">
+          <element api="M:System.Security.Authentication.AuthenticationException.#ctor" />
+          <element api="M:System.Security.Authentication.AuthenticationException.#ctor(System.String)" />
+          <element api="M:System.Security.Authentication.AuthenticationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+          <element api="M:System.Security.Authentication.AuthenticationException.#ctor(System.String,System.Exception)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.AuthenticationException" />
+      </containers>
+      <file name="898c3172-4865-bdf8-2601-dfc9e1582f19" />
+    </api>
+    <api id="Methods.T:System.Security.Authentication.AuthenticationException">
+      <topicdata name="AuthenticationException" group="list" subgroup="Methods" typeTopicId="T:System.Security.Authentication.AuthenticationException" />
+      <apidata name="AuthenticationException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Security.Authentication.AuthenticationException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.AuthenticationException" />
+      </containers>
+      <file name="96e83cda-2ce0-e1d1-50d8-6fc4fcb2c683" />
+    </api>
+    <api id="Properties.T:System.Security.Authentication.AuthenticationException">
+      <topicdata name="AuthenticationException" group="list" subgroup="Properties" typeTopicId="T:System.Security.Authentication.AuthenticationException" />
+      <apidata name="AuthenticationException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Security.Authentication.AuthenticationException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.AuthenticationException" />
+      </containers>
+      <file name="74830ecc-bbab-8ce4-8014-5aade7daaef1" />
+    </api>
+    <api id="Events.T:System.Security.Authentication.AuthenticationException">
+      <topicdata name="AuthenticationException" group="list" subgroup="Events" typeTopicId="T:System.Security.Authentication.AuthenticationException" />
+      <apidata name="AuthenticationException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Security.Authentication.AuthenticationException.#ctor" />
+      <elements>
+        <element api="E:System.Exception.SerializeObjectState" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.AuthenticationException" />
+      </containers>
+      <file name="9c7df130-4d93-a9cb-4b16-1ba205e928e9" />
+    </api>
+    <api id="Overload:System.Security.Authentication.AuthenticationException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Security.Authentication.AuthenticationException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Security.Authentication.AuthenticationException.#ctor" />
+        <element api="M:System.Security.Authentication.AuthenticationException.#ctor(System.String)" />
+        <element api="M:System.Security.Authentication.AuthenticationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Security.Authentication.AuthenticationException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.AuthenticationException" ref="true" />
+      </containers>
+      <file name="ea0bcd8d-7863-1d84-248c-c4e7bee59cf0" />
+    </api>
+    <api id="M:System.Security.Authentication.AuthenticationException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Authentication.AuthenticationException.#ctor" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.AuthenticationException" ref="true" />
+      </containers>
+      <file name="0918ccb6-6828-d5f6-ceb2-75f2851cb1f8" />
+    </api>
+    <api id="M:System.Security.Authentication.AuthenticationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Security.Authentication.AuthenticationException.#ctor" />
+      <parameters>
+        <parameter name="serializationInfo">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="streamingContext">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.AuthenticationException" ref="true" />
+      </containers>
+      <file name="14a555ed-0270-18a7-ad22-fc0833f4bf9b" />
+    </api>
+    <api id="M:System.Security.Authentication.AuthenticationException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Authentication.AuthenticationException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.AuthenticationException" ref="true" />
+      </containers>
+      <file name="ffe1cd5f-8ad2-258f-5f42-ecc40e94e213" />
+    </api>
+    <api id="M:System.Security.Authentication.AuthenticationException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Authentication.AuthenticationException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.AuthenticationException" ref="true" />
+      </containers>
+      <file name="2743d61e-e1c4-8dd5-d161-ea5d4724047a" />
+    </api>
+    <api id="T:System.Security.Authentication.CipherAlgorithmType">
+      <topicdata group="api" />
+      <apidata name="CipherAlgorithmType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.None" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Rc2" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Rc4" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Des" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.TripleDes" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Aes" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Aes128" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Aes192" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Aes256" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Null" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+      </containers>
+      <file name="901ae46b-6bdf-dd06-9a58-d3ddbcaf6a89" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.Aes">
+      <topicdata group="api" notopic="" />
+      <apidata name="Aes" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </returns>
+      <value>26129</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </containers>
+      <file name="c639c347-ac48-826a-3547-98df0a3e4f98" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.Aes128">
+      <topicdata group="api" notopic="" />
+      <apidata name="Aes128" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </returns>
+      <value>26126</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </containers>
+      <file name="e630bf64-1667-ea77-3b9e-97ac859e96af" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.Aes192">
+      <topicdata group="api" notopic="" />
+      <apidata name="Aes192" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </returns>
+      <value>26127</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </containers>
+      <file name="8abf1f50-3637-e513-cd49-845e91dc64d9" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.Aes256">
+      <topicdata group="api" notopic="" />
+      <apidata name="Aes256" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </returns>
+      <value>26128</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </containers>
+      <file name="fb471470-ed63-a260-0981-b57d6e0ab780" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.Des">
+      <topicdata group="api" notopic="" />
+      <apidata name="Des" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </returns>
+      <value>26113</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </containers>
+      <file name="c9af9c6b-3a8d-540d-981e-370c7da4064f" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </containers>
+      <file name="31dc1298-8d4d-cfaa-a91a-e1f261001c54" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.Null">
+      <topicdata group="api" notopic="" />
+      <apidata name="Null" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </returns>
+      <value>24576</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </containers>
+      <file name="03a1a199-1d39-040d-2faf-e2d9f5df7b3c" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.Rc2">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rc2" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </returns>
+      <value>26114</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </containers>
+      <file name="12e949ed-014c-7f41-dce1-005004033d2d" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.Rc4">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rc4" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </returns>
+      <value>26625</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </containers>
+      <file name="0d9c7798-5f31-9795-1ba5-c26aa2d9209d" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.TripleDes">
+      <topicdata group="api" notopic="" />
+      <apidata name="TripleDes" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </returns>
+      <value>26115</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="false" />
+      </containers>
+      <file name="a0df9113-afc1-c78a-043a-1ea39f6ee6bd" />
+    </api>
+    <api id="T:System.Security.Authentication.ExchangeAlgorithmType">
+      <topicdata group="api" />
+      <apidata name="ExchangeAlgorithmType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Security.Authentication.ExchangeAlgorithmType.None" />
+        <element api="F:System.Security.Authentication.ExchangeAlgorithmType.RsaSign" />
+        <element api="F:System.Security.Authentication.ExchangeAlgorithmType.RsaKeyX" />
+        <element api="F:System.Security.Authentication.ExchangeAlgorithmType.DiffieHellman" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+      </containers>
+      <file name="b3b6e545-d933-89b2-518e-bdd55e74bcd1" />
+    </api>
+    <api id="F:System.Security.Authentication.ExchangeAlgorithmType.DiffieHellman">
+      <topicdata group="api" notopic="" />
+      <apidata name="DiffieHellman" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="false" />
+      </returns>
+      <value>43522</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="false" />
+      </containers>
+      <file name="7e9c1916-e6df-6e0f-cee4-75eeb1c2d95d" />
+    </api>
+    <api id="F:System.Security.Authentication.ExchangeAlgorithmType.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="false" />
+      </containers>
+      <file name="4778f11b-be9c-ad23-3079-cd5ce9481abc" />
+    </api>
+    <api id="F:System.Security.Authentication.ExchangeAlgorithmType.RsaKeyX">
+      <topicdata group="api" notopic="" />
+      <apidata name="RsaKeyX" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="false" />
+      </returns>
+      <value>41984</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="false" />
+      </containers>
+      <file name="88ea7da5-d060-4f01-d971-889b7237c194" />
+    </api>
+    <api id="F:System.Security.Authentication.ExchangeAlgorithmType.RsaSign">
+      <topicdata group="api" notopic="" />
+      <apidata name="RsaSign" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="false" />
+      </returns>
+      <value>9216</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="false" />
+      </containers>
+      <file name="762b4516-8823-e491-27ff-9bf79a310cce" />
+    </api>
+    <api id="T:System.Security.Authentication.HashAlgorithmType">
+      <topicdata group="api" />
+      <apidata name="HashAlgorithmType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Security.Authentication.HashAlgorithmType.None" />
+        <element api="F:System.Security.Authentication.HashAlgorithmType.Md5" />
+        <element api="F:System.Security.Authentication.HashAlgorithmType.Sha1" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+      </containers>
+      <file name="538a3aed-c381-20fa-fb9f-b73ffdefebd2" />
+    </api>
+    <api id="F:System.Security.Authentication.HashAlgorithmType.Md5">
+      <topicdata group="api" notopic="" />
+      <apidata name="Md5" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.HashAlgorithmType" ref="false" />
+      </returns>
+      <value>32771</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.HashAlgorithmType" ref="false" />
+      </containers>
+      <file name="062a7622-e3aa-e7c2-319f-40405ded9184" />
+    </api>
+    <api id="F:System.Security.Authentication.HashAlgorithmType.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.HashAlgorithmType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.HashAlgorithmType" ref="false" />
+      </containers>
+      <file name="b68d7bdb-1151-40e3-5215-bebc6776dded" />
+    </api>
+    <api id="F:System.Security.Authentication.HashAlgorithmType.Sha1">
+      <topicdata group="api" notopic="" />
+      <apidata name="Sha1" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.HashAlgorithmType" ref="false" />
+      </returns>
+      <value>32772</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.HashAlgorithmType" ref="false" />
+      </containers>
+      <file name="eef3e3b5-a58b-c1e2-ea79-86e12e001584" />
+    </api>
+    <api id="T:System.Security.Authentication.InvalidCredentialException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Authentication.InvalidCredentialException" />
+      <apidata name="InvalidCredentialException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Security.Authentication.InvalidCredentialException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Security.Authentication.AuthenticationException" ref="true" />
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+      </containers>
+      <file name="8a91e501-4a57-7fd7-58a6-814562e7db9d" />
+    </api>
+    <api id="AllMembers.T:System.Security.Authentication.InvalidCredentialException">
+      <topicdata name="InvalidCredentialException" group="list" subgroup="members" typeTopicId="T:System.Security.Authentication.InvalidCredentialException" />
+      <apidata name="InvalidCredentialException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Security.Authentication.InvalidCredentialException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="E:System.Exception.SerializeObjectState" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Security.Authentication.InvalidCredentialException.#ctor">
+          <element api="M:System.Security.Authentication.InvalidCredentialException.#ctor" />
+          <element api="M:System.Security.Authentication.InvalidCredentialException.#ctor(System.String)" />
+          <element api="M:System.Security.Authentication.InvalidCredentialException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+          <element api="M:System.Security.Authentication.InvalidCredentialException.#ctor(System.String,System.Exception)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.InvalidCredentialException" />
+      </containers>
+      <file name="6f21653a-22a4-e386-6104-256a3bec581a" />
+    </api>
+    <api id="Methods.T:System.Security.Authentication.InvalidCredentialException">
+      <topicdata name="InvalidCredentialException" group="list" subgroup="Methods" typeTopicId="T:System.Security.Authentication.InvalidCredentialException" />
+      <apidata name="InvalidCredentialException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Security.Authentication.InvalidCredentialException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.InvalidCredentialException" />
+      </containers>
+      <file name="300baef8-6bbe-c391-8496-042762a94dd1" />
+    </api>
+    <api id="Properties.T:System.Security.Authentication.InvalidCredentialException">
+      <topicdata name="InvalidCredentialException" group="list" subgroup="Properties" typeTopicId="T:System.Security.Authentication.InvalidCredentialException" />
+      <apidata name="InvalidCredentialException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Security.Authentication.InvalidCredentialException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.InvalidCredentialException" />
+      </containers>
+      <file name="1b9ef2d8-a97f-6fc0-b626-40fccbb87ec4" />
+    </api>
+    <api id="Events.T:System.Security.Authentication.InvalidCredentialException">
+      <topicdata name="InvalidCredentialException" group="list" subgroup="Events" typeTopicId="T:System.Security.Authentication.InvalidCredentialException" />
+      <apidata name="InvalidCredentialException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Security.Authentication.InvalidCredentialException.#ctor" />
+      <elements>
+        <element api="E:System.Exception.SerializeObjectState" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.InvalidCredentialException" />
+      </containers>
+      <file name="4fdd45e1-bd16-9fde-f650-7d1591af812d" />
+    </api>
+    <api id="Overload:System.Security.Authentication.InvalidCredentialException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Security.Authentication.InvalidCredentialException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Security.Authentication.InvalidCredentialException.#ctor" />
+        <element api="M:System.Security.Authentication.InvalidCredentialException.#ctor(System.String)" />
+        <element api="M:System.Security.Authentication.InvalidCredentialException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Security.Authentication.InvalidCredentialException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.InvalidCredentialException" ref="true" />
+      </containers>
+      <file name="58548de4-d900-9407-29bb-7822b9562c2a" />
+    </api>
+    <api id="M:System.Security.Authentication.InvalidCredentialException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Authentication.InvalidCredentialException.#ctor" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.InvalidCredentialException" ref="true" />
+      </containers>
+      <file name="d9993df2-9925-50db-c775-459cef3f683f" />
+    </api>
+    <api id="M:System.Security.Authentication.InvalidCredentialException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Security.Authentication.InvalidCredentialException.#ctor" />
+      <parameters>
+        <parameter name="serializationInfo">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="streamingContext">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.InvalidCredentialException" ref="true" />
+      </containers>
+      <file name="657e79b9-8da9-409a-55eb-7d96c8fe02ad" />
+    </api>
+    <api id="M:System.Security.Authentication.InvalidCredentialException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Authentication.InvalidCredentialException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.InvalidCredentialException" ref="true" />
+      </containers>
+      <file name="ddab4e9a-3cae-203b-2e55-728e176ad26a" />
+    </api>
+    <api id="M:System.Security.Authentication.InvalidCredentialException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Authentication.InvalidCredentialException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.InvalidCredentialException" ref="true" />
+      </containers>
+      <file name="e94292a4-b9ff-7949-e28f-6387b759fecc" />
+    </api>
+    <api id="T:System.Security.Authentication.SslProtocols">
+      <topicdata group="api" />
+      <apidata name="SslProtocols" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Security.Authentication.SslProtocols.None" />
+        <element api="F:System.Security.Authentication.SslProtocols.Ssl2" />
+        <element api="F:System.Security.Authentication.SslProtocols.Ssl3" />
+        <element api="F:System.Security.Authentication.SslProtocols.Tls" />
+        <element api="F:System.Security.Authentication.SslProtocols.Tls11" />
+        <element api="F:System.Security.Authentication.SslProtocols.Tls12" />
+        <element api="F:System.Security.Authentication.SslProtocols.Default" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="fcf9abbf-28b9-56e8-553e-70d0b9b499b2" />
+    </api>
+    <api id="F:System.Security.Authentication.SslProtocols.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.SslProtocols" ref="false" />
+      </returns>
+      <value>240</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" ref="false" />
+      </containers>
+      <file name="74d50843-322e-7c08-67e4-086e84cb26f0" />
+    </api>
+    <api id="F:System.Security.Authentication.SslProtocols.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.SslProtocols" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" ref="false" />
+      </containers>
+      <file name="d74153a6-8ccc-cc04-6b74-72e76a8965d2" />
+    </api>
+    <api id="F:System.Security.Authentication.SslProtocols.Ssl2">
+      <topicdata group="api" notopic="" />
+      <apidata name="Ssl2" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.SslProtocols" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" ref="false" />
+      </containers>
+      <file name="6952fdda-9df8-7798-71de-a4425b1471c3" />
+    </api>
+    <api id="F:System.Security.Authentication.SslProtocols.Ssl3">
+      <topicdata group="api" notopic="" />
+      <apidata name="Ssl3" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.SslProtocols" ref="false" />
+      </returns>
+      <value>48</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" ref="false" />
+      </containers>
+      <file name="b8feca15-8b61-a5ac-023f-732fa8ef5cfa" />
+    </api>
+    <api id="F:System.Security.Authentication.SslProtocols.Tls">
+      <topicdata group="api" notopic="" />
+      <apidata name="Tls" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.SslProtocols" ref="false" />
+      </returns>
+      <value>192</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" ref="false" />
+      </containers>
+      <file name="c489e9c7-2822-6a55-00a7-35e9775cf10f" />
+    </api>
+    <api id="F:System.Security.Authentication.SslProtocols.Tls11">
+      <topicdata group="api" notopic="" />
+      <apidata name="Tls11" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.SslProtocols" ref="false" />
+      </returns>
+      <value>768</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" ref="false" />
+      </containers>
+      <file name="721c8aec-d629-5e60-95ce-3db0b32594c0" />
+    </api>
+    <api id="F:System.Security.Authentication.SslProtocols.Tls12">
+      <topicdata group="api" notopic="" />
+      <apidata name="Tls12" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.SslProtocols" ref="false" />
+      </returns>
+      <value>3072</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" ref="false" />
+      </containers>
+      <file name="c1cc14bb-6a19-2f6a-72e4-ea3c512f0781" />
+    </api>
+  </apis>
+</reflection>

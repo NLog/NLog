@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+
+	<!-- main window stuff -->
+	<item id="productTitle">Gu&#237;a del desarrollador de .NET Framework</item>
+
+	<!-- body -->
+
+	<!-- section titles -->
+	<item id="title_inThisSection">En esta secci&#243;n</item>
+	<item id="title_buildInstructions">Compilar el c&#243;digo</item>
+	<item id="title_nextSteps">Pasos siguientes</item>
+	<item id="title_requirements">Requerimientos</item>
+	<item id="title_relatedSections">Secciones relacionadas</item>
+	<item id="title_relatedTopics">Vea tambi&#233;n</item>
+	<item id="title_syntax">Sintaxis</item>
+	<item id="title_parameters">Par&#225;metros</item>
+	<item id="title_returnValue">Valor devuelto</item>
+  <item id="title_attributesAndElements">Atributos y elementos</item>
+	<item id="title_attributes">Atributos</item>
+	<item id="title_childElement">Elementos secundarios</item>
+	<item id="title_parentElement">Elementos primarios</item>
+	<item id="title_elementInformation">Informaci&#243;n del elemento</item>
+  <item id="title_textValue">Valor textual</item>
+  <item id="title_dotNetFrameworkEquivalent">Equivalente de .NET Framework</item>
+  <item id="title_prerequisites">Requisitos previos</item>
+  <item id="title_robustProgramming">Programaci&#243;n eficaz</item>
+	<item id="title_securitySection">Seguridad</item>
+	<item id="title_externalResources">Recursos externos</item>
+	<item id="title_demonstrates">Demuestra</item>
+  <item id="title_appliesTo">Aplicable a</item>
+	<item id="title_conclusion">Conclusi&#243;n</item>
+  <item id="title_background">Background</item>
+	<item id="title_whatsNew">Novedades</item>
+  <item id="title_reference">Referencia</item>
+  <item id="title_errorMessage">Mensaje de error</item>
+  <item id="title_example">Ejemplo</item>
+
+  <!-- autoOutline boilerplate -->
+  <item id="boilerplate_autoOutlineTopLevelIntro">Este tema contiene las secciones siguientes.</item>
+	<item id="boilerplate_autoOutlineSubsectionIntro">Este tema contiene las siguientes subsecciones.</item>
+
+  <!-- resolve the autoOutline token -->
+  <item id="autoOutline">
+    <autoOutline/>
+  </item>
+
+  <!-- Copyright notice. {0} = Copyright text, {1} = Year(s), {2} = Holder(s) -->
+  <item id="boilerplate_copyrightNotice"><p>{0} &#169;{1}{2}. Todos los derechos reservados.</p></item>
+
+  <!-- Glossary related entries -->
+  <item id="text_relatedEntries">Vea tambi&#233;n:</item>
+
+	<!-- Legacy content -->
+
+	<!-- values for MSHelp:Attr Name="TopicType" -->
+  <item id="meta_mshelp_topicType_developerConceptualDocument">kbArticle</item>
+  <item id="meta_mshelp_topicType_developerErrorMessageDocument">kbRef</item>
+  <item id="meta_mshelp_topicType_developerGlossaryDocument">kbRef</item>
+  <item id="meta_mshelp_topicType_developerHowToDocument">kbHowTo</item>
+  <item id="meta_mshelp_topicType_developerOrientationDocument">kbOrient</item>
+  <item id="meta_mshelp_topicType_developerReferenceWithSyntaxDocument">kbSyntax</item>
+  <item id="meta_mshelp_topicType_developerReferenceWithoutSyntaxDocument">kbRef</item>
+  <item id="meta_mshelp_topicType_developerSampleDocument">kbSampleProd</item>
+  <item id="meta_mshelp_topicType_developerSDKTechnologyOverviewArchitectureDocument">kbArticle</item>
+  <item id="meta_mshelp_topicType_developerSDKTechnologyOverviewCodeDirectoryDocument">kbOrient</item>
+  <item id="meta_mshelp_topicType_developerSDKTechnologyOverviewOrientationDocument">kbOrient</item>
+  <item id="meta_mshelp_topicType_developerSDKTechnologyOverviewScenariosDocument">kbHowTo</item>
+  <item id="meta_mshelp_topicType_developerSDKTechnologyOverviewTechnologySummaryDocument">kbRef</item>
+  <item id="meta_mshelp_topicType_developerTroubleshootingDocument">kbHowTo</item>
+  <item id="meta_mshelp_topicType_developerUIReferenceDocument">kbRef</item>
+  <item id="meta_mshelp_topicType_developerWalkthroughDocument">kbHowTo</item>
+  <item id="meta_mshelp_topicType_developerWhitePaperDocument">kbArticle</item>
+  <item id="meta_mshelp_topicType_developerXmlReference">kbSyntax</item>
+  <item id="meta_mshelp_topicType_ManagedReference">apiref</item>
+
+</content>

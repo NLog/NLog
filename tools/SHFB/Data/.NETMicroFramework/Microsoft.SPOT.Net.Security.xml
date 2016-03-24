@@ -1,0 +1,945 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.SPOT.Net.Security">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.SPOT.Net.Security</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.Net.Security">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Security</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.SPOT.Net.Security">
+      <topicdata group="api" />
+      <apidata name="Microsoft.SPOT.Net.Security" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.SPOT.Net.Security.SslProtocols" />
+        <element api="T:Microsoft.SPOT.Net.Security.SslVerification" />
+        <element api="T:Microsoft.SPOT.Net.Security.SslStream" />
+      </elements>
+      <file name="85ba6dde-8d8d-2a80-9326-fa900c98ca08" />
+    </api>
+    <api id="T:Microsoft.SPOT.Net.Security.SslProtocols">
+      <topicdata group="api" />
+      <apidata name="SslProtocols" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Net.Security.SslProtocols.None" />
+        <element api="F:Microsoft.SPOT.Net.Security.SslProtocols.SSLv3" />
+        <element api="F:Microsoft.SPOT.Net.Security.SslProtocols.TLSv1" />
+        <element api="F:Microsoft.SPOT.Net.Security.SslProtocols.Default" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net.Security" module="Microsoft.SPOT.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8492913c-ff63-e7cf-281e-807c253d6525" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.Security.SslProtocols.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.Security.SslProtocols" ref="false" />
+      </returns>
+      <value>24</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net.Security" module="Microsoft.SPOT.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslProtocols" ref="false" />
+      </containers>
+      <file name="91b3cdd5-f681-2c85-4e3f-67bf5d5cf140" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.Security.SslProtocols.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.Security.SslProtocols" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net.Security" module="Microsoft.SPOT.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslProtocols" ref="false" />
+      </containers>
+      <file name="40c11cfb-7a97-832a-648c-fe194c0e56e8" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.Security.SslProtocols.SSLv3">
+      <topicdata group="api" notopic="" />
+      <apidata name="SSLv3" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.Security.SslProtocols" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net.Security" module="Microsoft.SPOT.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslProtocols" ref="false" />
+      </containers>
+      <file name="465c99df-5839-67d5-c70c-249f24f4c6d3" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.Security.SslProtocols.TLSv1">
+      <topicdata group="api" notopic="" />
+      <apidata name="TLSv1" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.Security.SslProtocols" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net.Security" module="Microsoft.SPOT.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslProtocols" ref="false" />
+      </containers>
+      <file name="9916cd62-e77e-0d95-c90f-cddaad002a91" />
+    </api>
+    <api id="T:Microsoft.SPOT.Net.Security.SslStream">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Net.Security.SslStream" />
+      <apidata name="SslStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Net.Sockets.NetworkStream" ref="true" />
+          <type api="T:System.IO.Stream" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+      </containers>
+      <file name="5e9ef1c7-ab0e-cf1e-1370-e39b0b4cdc72" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Net.Security.SslStream">
+      <topicdata name="SslStream" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Net.Security.SslStream" />
+      <apidata name="SslStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Net.Security.SslStream.#ctor(System.Net.Sockets.Socket)" />
+        <element api="Overload:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient">
+          <element api="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient(System.String,Microsoft.SPOT.Net.Security.SslProtocols[])" />
+          <element api="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient(System.String,System.Security.Cryptography.X509Certificates.X509Certificate,Microsoft.SPOT.Net.Security.SslVerification,Microsoft.SPOT.Net.Security.SslProtocols[])" />
+          <element api="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient(System.String,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate[],Microsoft.SPOT.Net.Security.SslVerification,Microsoft.SPOT.Net.Security.SslProtocols[])" />
+        </element>
+        <element api="Overload:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsServer">
+          <element api="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate,Microsoft.SPOT.Net.Security.SslVerification,Microsoft.SPOT.Net.Security.SslProtocols[])" />
+          <element api="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate[],Microsoft.SPOT.Net.Security.SslVerification,Microsoft.SPOT.Net.Security.SslProtocols[])" />
+        </element>
+        <element api="P:Microsoft.SPOT.Net.Security.SslStream.DataAvailable" />
+        <element api="Overload:Microsoft.SPOT.Net.Security.SslStream.Dispose">
+          <element api="M:System.IO.Stream.Dispose" />
+          <element api="M:Microsoft.SPOT.Net.Security.SslStream.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.SPOT.Net.Security.SslStream.Finalize" />
+        <element api="P:Microsoft.SPOT.Net.Security.SslStream.IsServer" />
+        <element api="P:Microsoft.SPOT.Net.Security.SslStream.Length" />
+        <element api="M:Microsoft.SPOT.Net.Security.SslStream.Read(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Net.Security.SslStream.UpdateCertificates(System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate[])" />
+        <element api="M:Microsoft.SPOT.Net.Security.SslStream.Write(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Microsoft.SPOT.Net.Security.SslStream.Close">
+          <element api="M:System.IO.Stream.Close" />
+          <element api="M:System.Net.Sockets.NetworkStream.Close(System.Int32)" />
+        </element>
+        <element api="M:System.IO.Stream.ReadByte" />
+        <element api="M:System.IO.Stream.WriteByte(System.Byte)" />
+        <element api="F:System.Net.Sockets.NetworkStream._disposed" />
+        <element api="F:System.Net.Sockets.NetworkStream._remoteEndPoint" />
+        <element api="F:System.Net.Sockets.NetworkStream._socketType" />
+        <element api="P:System.Net.Sockets.NetworkStream.CanRead" />
+        <element api="P:System.Net.Sockets.NetworkStream.CanSeek" />
+        <element api="P:System.Net.Sockets.NetworkStream.CanTimeout" />
+        <element api="P:System.Net.Sockets.NetworkStream.CanWrite" />
+        <element api="M:System.Net.Sockets.NetworkStream.Flush" />
+        <element api="P:System.Net.Sockets.NetworkStream.Position" />
+        <element api="P:System.Net.Sockets.NetworkStream.ReadTimeout" />
+        <element api="M:System.Net.Sockets.NetworkStream.Seek(System.Int64,System.IO.SeekOrigin)" />
+        <element api="M:System.Net.Sockets.NetworkStream.SetLength(System.Int64)" />
+        <element api="P:System.Net.Sockets.NetworkStream.WriteTimeout" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" />
+      </containers>
+      <file name="cbde9c8c-d301-6c7b-e8bb-c619b5906c16" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Net.Security.SslStream">
+      <topicdata name="SslStream" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Net.Security.SslStream" />
+      <apidata name="SslStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient">
+          <element api="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient(System.String,Microsoft.SPOT.Net.Security.SslProtocols[])" />
+          <element api="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient(System.String,System.Security.Cryptography.X509Certificates.X509Certificate,Microsoft.SPOT.Net.Security.SslVerification,Microsoft.SPOT.Net.Security.SslProtocols[])" />
+          <element api="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient(System.String,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate[],Microsoft.SPOT.Net.Security.SslVerification,Microsoft.SPOT.Net.Security.SslProtocols[])" />
+        </element>
+        <element api="Overload:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsServer">
+          <element api="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate,Microsoft.SPOT.Net.Security.SslVerification,Microsoft.SPOT.Net.Security.SslProtocols[])" />
+          <element api="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate[],Microsoft.SPOT.Net.Security.SslVerification,Microsoft.SPOT.Net.Security.SslProtocols[])" />
+        </element>
+        <element api="Overload:Microsoft.SPOT.Net.Security.SslStream.Dispose">
+          <element api="M:System.IO.Stream.Dispose" />
+          <element api="M:Microsoft.SPOT.Net.Security.SslStream.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.SPOT.Net.Security.SslStream.Finalize" />
+        <element api="M:Microsoft.SPOT.Net.Security.SslStream.Read(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Net.Security.SslStream.UpdateCertificates(System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate[])" />
+        <element api="M:Microsoft.SPOT.Net.Security.SslStream.Write(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Microsoft.SPOT.Net.Security.SslStream.Close">
+          <element api="M:System.IO.Stream.Close" />
+          <element api="M:System.Net.Sockets.NetworkStream.Close(System.Int32)" />
+        </element>
+        <element api="M:System.IO.Stream.ReadByte" />
+        <element api="M:System.IO.Stream.WriteByte(System.Byte)" />
+        <element api="M:System.Net.Sockets.NetworkStream.Flush" />
+        <element api="M:System.Net.Sockets.NetworkStream.Seek(System.Int64,System.IO.SeekOrigin)" />
+        <element api="M:System.Net.Sockets.NetworkStream.SetLength(System.Int64)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" />
+      </containers>
+      <file name="71e0ef90-9c84-98f2-5ca1-44d78e4221c4" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Net.Security.SslStream">
+      <topicdata name="SslStream" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Net.Security.SslStream" />
+      <apidata name="SslStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Net.Security.SslStream.DataAvailable" />
+        <element api="P:Microsoft.SPOT.Net.Security.SslStream.IsServer" />
+        <element api="P:Microsoft.SPOT.Net.Security.SslStream.Length" />
+        <element api="P:System.Net.Sockets.NetworkStream.CanRead" />
+        <element api="P:System.Net.Sockets.NetworkStream.CanSeek" />
+        <element api="P:System.Net.Sockets.NetworkStream.CanTimeout" />
+        <element api="P:System.Net.Sockets.NetworkStream.CanWrite" />
+        <element api="P:System.Net.Sockets.NetworkStream.Position" />
+        <element api="P:System.Net.Sockets.NetworkStream.ReadTimeout" />
+        <element api="P:System.Net.Sockets.NetworkStream.WriteTimeout" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" />
+      </containers>
+      <file name="8e547b10-00b7-3344-7ad2-7cc75e2dee17" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Net.Security.SslStream">
+      <topicdata name="SslStream" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Net.Security.SslStream" />
+      <apidata name="SslStream" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Sockets.NetworkStream._disposed" />
+        <element api="F:System.Net.Sockets.NetworkStream._remoteEndPoint" />
+        <element api="F:System.Net.Sockets.NetworkStream._socketType" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" />
+      </containers>
+      <file name="3cc485b5-12d8-57ff-9ae0-f23ed392c9ce" />
+    </api>
+    <api id="Overload:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient">
+      <topicdata name="AuthenticateAsClient" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Net.Security.SslStream" />
+      <apidata name="AuthenticateAsClient" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient(System.String,Microsoft.SPOT.Net.Security.SslProtocols[])" />
+        <element api="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient(System.String,System.Security.Cryptography.X509Certificates.X509Certificate,Microsoft.SPOT.Net.Security.SslVerification,Microsoft.SPOT.Net.Security.SslProtocols[])" />
+        <element api="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient(System.String,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate[],Microsoft.SPOT.Net.Security.SslVerification,Microsoft.SPOT.Net.Security.SslProtocols[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="961a680d-b061-f9db-577c-33e9de06ca2a" />
+    </api>
+    <api id="Overload:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsServer">
+      <topicdata name="AuthenticateAsServer" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Net.Security.SslStream" />
+      <apidata name="AuthenticateAsServer" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate,Microsoft.SPOT.Net.Security.SslVerification,Microsoft.SPOT.Net.Security.SslProtocols[])" />
+        <element api="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate[],Microsoft.SPOT.Net.Security.SslVerification,Microsoft.SPOT.Net.Security.SslProtocols[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="21f786b0-43a0-2f69-1861-0b9d698c9d98" />
+    </api>
+    <api id="Overload:Microsoft.SPOT.Net.Security.SslStream.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Net.Security.SslStream" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.Stream.Dispose" />
+        <element api="M:Microsoft.SPOT.Net.Security.SslStream.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="96babb7a-8f5a-99c7-cd5c-5e19176614ae" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.Security.SslStream.#ctor(System.Net.Sockets.Socket)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="socket">
+          <type api="T:System.Net.Sockets.Socket" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="89b2d5de-b380-b531-a60b-c93025510f7c" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient(System.String,Microsoft.SPOT.Net.Security.SslProtocols[])">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAsClient" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="targetHost">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="sslProtocols" params="true">
+          <arrayOf rank="1">
+            <type api="T:Microsoft.SPOT.Net.Security.SslProtocols" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="e39aa1e5-772c-4ccf-81e5-a2a3430f2f94" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient(System.String,System.Security.Cryptography.X509Certificates.X509Certificate,Microsoft.SPOT.Net.Security.SslVerification,Microsoft.SPOT.Net.Security.SslProtocols[])">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAsClient" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="targetHost">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="cert">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+        </parameter>
+        <parameter name="verify">
+          <type api="T:Microsoft.SPOT.Net.Security.SslVerification" ref="false" />
+        </parameter>
+        <parameter name="sslProtocols" params="true">
+          <arrayOf rank="1">
+            <type api="T:Microsoft.SPOT.Net.Security.SslProtocols" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="b69f3bd7-01f0-7a30-4586-3d7f8345a689" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient(System.String,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate[],Microsoft.SPOT.Net.Security.SslVerification,Microsoft.SPOT.Net.Security.SslProtocols[])">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAsClient" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsClient" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="targetHost">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="cert">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+        </parameter>
+        <parameter name="ca">
+          <arrayOf rank="1">
+            <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="verify">
+          <type api="T:Microsoft.SPOT.Net.Security.SslVerification" ref="false" />
+        </parameter>
+        <parameter name="sslProtocols" params="true">
+          <arrayOf rank="1">
+            <type api="T:Microsoft.SPOT.Net.Security.SslProtocols" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="31f267c1-286c-5172-dbbe-befd166901ef" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate,Microsoft.SPOT.Net.Security.SslVerification,Microsoft.SPOT.Net.Security.SslProtocols[])">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAsServer" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsServer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="cert">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+        </parameter>
+        <parameter name="verify">
+          <type api="T:Microsoft.SPOT.Net.Security.SslVerification" ref="false" />
+        </parameter>
+        <parameter name="sslProtocols" params="true">
+          <arrayOf rank="1">
+            <type api="T:Microsoft.SPOT.Net.Security.SslProtocols" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="37396f81-00e1-cdf2-d2f8-07fc586bbe8f" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsServer(System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate[],Microsoft.SPOT.Net.Security.SslVerification,Microsoft.SPOT.Net.Security.SslProtocols[])">
+      <topicdata group="api" />
+      <apidata name="AuthenticateAsServer" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.SPOT.Net.Security.SslStream.AuthenticateAsServer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="cert">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+        </parameter>
+        <parameter name="ca">
+          <arrayOf rank="1">
+            <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="verify">
+          <type api="T:Microsoft.SPOT.Net.Security.SslVerification" ref="false" />
+        </parameter>
+        <parameter name="sslProtocols" params="true">
+          <arrayOf rank="1">
+            <type api="T:Microsoft.SPOT.Net.Security.SslProtocols" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="68e943c8-1703-4826-4756-b202daf415b3" />
+    </api>
+    <api id="P:Microsoft.SPOT.Net.Security.SslStream.DataAvailable">
+      <topicdata group="api" />
+      <apidata name="DataAvailable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.Sockets.NetworkStream.DataAvailable">
+          <type api="T:System.Net.Sockets.NetworkStream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_DataAvailable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="b2c6cfb7-5f4b-db3e-4a19-414374f86f9c" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.Security.SslStream.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:Microsoft.SPOT.Net.Security.SslStream.Dispose" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Net.Sockets.NetworkStream.Dispose(System.Boolean)">
+          <type api="T:System.Net.Sockets.NetworkStream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="bcc0b6a6-08a6-bcd6-57cf-54d3a4c6b7dd" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.Security.SslStream.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.Stream.Finalize">
+          <type api="T:System.IO.Stream" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="ec9a4b49-1811-f37d-762f-c109c6ce412c" />
+    </api>
+    <api id="P:Microsoft.SPOT.Net.Security.SslStream.IsServer">
+      <topicdata group="api" />
+      <apidata name="IsServer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsServer" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="1b8c4724-3294-d21c-bf86-accab5095853" />
+    </api>
+    <api id="P:Microsoft.SPOT.Net.Security.SslStream.Length">
+      <topicdata group="api" />
+      <apidata name="Length" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Net.Sockets.NetworkStream.Length">
+          <type api="T:System.Net.Sockets.NetworkStream" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Length" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="db1c6bf2-5110-fb81-6a47-3bae222aaed7" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.Security.SslStream.Read(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Net.Sockets.NetworkStream.Read(System.Byte[],System.Int32,System.Int32)">
+          <type api="T:System.Net.Sockets.NetworkStream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="size">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="12d50852-cabe-352f-b27d-c886991c1637" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.Security.SslStream.UpdateCertificates(System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate[])">
+      <topicdata group="api" />
+      <apidata name="UpdateCertificates" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="cert">
+          <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+        </parameter>
+        <parameter name="ca">
+          <arrayOf rank="1">
+            <type api="T:System.Security.Cryptography.X509Certificates.X509Certificate" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="700a854a-2bf0-c04a-80da-65eb72c5bb20" />
+    </api>
+    <api id="M:Microsoft.SPOT.Net.Security.SslStream.Write(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Net.Sockets.NetworkStream.Write(System.Byte[],System.Int32,System.Int32)">
+          <type api="T:System.Net.Sockets.NetworkStream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="size">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslStream" ref="true" />
+      </containers>
+      <file name="b3c556bb-1872-bc76-dc10-517bbf2ea5cf" />
+    </api>
+    <api id="T:Microsoft.SPOT.Net.Security.SslVerification">
+      <topicdata group="api" />
+      <apidata name="SslVerification" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Net.Security.SslVerification.NoVerification" />
+        <element api="F:Microsoft.SPOT.Net.Security.SslVerification.VerifyPeer" />
+        <element api="F:Microsoft.SPOT.Net.Security.SslVerification.CertificateRequired" />
+        <element api="F:Microsoft.SPOT.Net.Security.SslVerification.VerifyClientOnce" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net.Security" module="Microsoft.SPOT.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+      </containers>
+      <file name="204ae66b-9572-cbbf-6b68-e8fa55843ab9" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.Security.SslVerification.CertificateRequired">
+      <topicdata group="api" notopic="" />
+      <apidata name="CertificateRequired" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.Security.SslVerification" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net.Security" module="Microsoft.SPOT.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslVerification" ref="false" />
+      </containers>
+      <file name="aff9a819-0d75-87c0-51d0-4160f900a31b" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.Security.SslVerification.NoVerification">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoVerification" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.Security.SslVerification" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net.Security" module="Microsoft.SPOT.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslVerification" ref="false" />
+      </containers>
+      <file name="c4dc8f03-0279-0b7c-7f2f-5cffbbd8a3b5" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.Security.SslVerification.VerifyClientOnce">
+      <topicdata group="api" notopic="" />
+      <apidata name="VerifyClientOnce" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.Security.SslVerification" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net.Security" module="Microsoft.SPOT.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslVerification" ref="false" />
+      </containers>
+      <file name="acdc47bd-078a-a671-c25e-c27e1c903014" />
+    </api>
+    <api id="F:Microsoft.SPOT.Net.Security.SslVerification.VerifyPeer">
+      <topicdata group="api" notopic="" />
+      <apidata name="VerifyPeer" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Net.Security.SslVerification" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Net.Security" module="Microsoft.SPOT.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Net.Security" />
+        <type api="T:Microsoft.SPOT.Net.Security.SslVerification" ref="false" />
+      </containers>
+      <file name="67076cc4-4ac2-09fa-f6fb-500ed4bc00eb" />
+    </api>
+  </apis>
+</reflection>

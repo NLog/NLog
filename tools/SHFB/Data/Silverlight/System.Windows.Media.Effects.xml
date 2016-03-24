@@ -1,0 +1,2798 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Media.Effects">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Media.Effects" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Media.Effects.PixelShader" />
+        <element api="T:System.Windows.Media.Effects.Effect" />
+        <element api="T:System.Windows.Media.Effects.ShaderEffect" />
+        <element api="T:System.Windows.Media.Effects.BlurEffect" />
+        <element api="T:System.Windows.Media.Effects.DropShadowEffect" />
+        <element api="T:System.Windows.Media.Effects.SamplingMode" />
+      </elements>
+      <file name="ed327ce5-929d-3f88-7199-130a1abca819" />
+    </api>
+    <api id="T:System.Windows.Media.Effects.BlurEffect">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Effects.BlurEffect" />
+      <apidata name="BlurEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Effects.BlurEffect.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Media.Effects.Effect" ref="true" />
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+      </containers>
+      <file name="c8ff463b-9a7d-0e60-78c1-7925f8eb418c" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Effects.BlurEffect">
+      <topicdata name="BlurEffect" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Effects.BlurEffect" />
+      <apidata name="BlurEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Effects.BlurEffect.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Media.Effects.BlurEffect.#ctor" />
+        <element api="P:System.Windows.Media.Effects.BlurEffect.Radius" />
+        <element api="F:System.Windows.Media.Effects.BlurEffect.RadiusProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.BlurEffect" />
+      </containers>
+      <file name="e1f2c293-11ad-3d14-a0f2-fefdf386bf82" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Effects.BlurEffect">
+      <topicdata name="BlurEffect" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Effects.BlurEffect" />
+      <apidata name="BlurEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Effects.BlurEffect.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.BlurEffect" />
+      </containers>
+      <file name="16afe154-f0b2-c3a0-fe7a-89a996ed9788" />
+    </api>
+    <api id="Properties.T:System.Windows.Media.Effects.BlurEffect">
+      <topicdata name="BlurEffect" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Media.Effects.BlurEffect" />
+      <apidata name="BlurEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Effects.BlurEffect.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.Media.Effects.BlurEffect.Radius" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.BlurEffect" />
+      </containers>
+      <file name="0b71876f-fd53-deee-b494-ed230edb2df9" />
+    </api>
+    <api id="Fields.T:System.Windows.Media.Effects.BlurEffect">
+      <topicdata name="BlurEffect" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Media.Effects.BlurEffect" />
+      <apidata name="BlurEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Effects.BlurEffect.#ctor" />
+      <elements>
+        <element api="F:System.Windows.Media.Effects.BlurEffect.RadiusProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.BlurEffect" />
+      </containers>
+      <file name="f6a360be-8d6a-c4dd-e6bc-0e25f6cea553" />
+    </api>
+    <api id="M:System.Windows.Media.Effects.BlurEffect.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.BlurEffect" ref="true" />
+      </containers>
+      <file name="4677dafe-0cd2-cec6-2cb3-e4891a3ffd3b" />
+    </api>
+    <api id="P:System.Windows.Media.Effects.BlurEffect.Radius">
+      <topicdata group="api" />
+      <apidata name="Radius" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Radius" />
+      <setter name="set_Radius" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.BlurEffect" ref="true" />
+      </containers>
+      <file name="329af916-f8eb-6b54-58d6-e618729bf545" />
+    </api>
+    <api id="F:System.Windows.Media.Effects.BlurEffect.RadiusProperty">
+      <topicdata group="api" />
+      <apidata name="RadiusProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.BlurEffect" ref="true" />
+      </containers>
+      <file name="497ba08a-dcab-b2d2-c934-b4b8d938ae6f" />
+    </api>
+    <api id="T:System.Windows.Media.Effects.DropShadowEffect">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Effects.DropShadowEffect" />
+      <apidata name="DropShadowEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Effects.DropShadowEffect.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Media.Effects.Effect" ref="true" />
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+      </containers>
+      <file name="e82fc98a-158f-b0ab-9241-672c7a666248" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Effects.DropShadowEffect">
+      <topicdata name="DropShadowEffect" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Effects.DropShadowEffect" />
+      <apidata name="DropShadowEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Effects.DropShadowEffect.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Media.Effects.DropShadowEffect.#ctor" />
+        <element api="P:System.Windows.Media.Effects.DropShadowEffect.BlurRadius" />
+        <element api="F:System.Windows.Media.Effects.DropShadowEffect.BlurRadiusProperty" />
+        <element api="P:System.Windows.Media.Effects.DropShadowEffect.Color" />
+        <element api="F:System.Windows.Media.Effects.DropShadowEffect.ColorProperty" />
+        <element api="P:System.Windows.Media.Effects.DropShadowEffect.Direction" />
+        <element api="F:System.Windows.Media.Effects.DropShadowEffect.DirectionProperty" />
+        <element api="P:System.Windows.Media.Effects.DropShadowEffect.Opacity" />
+        <element api="F:System.Windows.Media.Effects.DropShadowEffect.OpacityProperty" />
+        <element api="P:System.Windows.Media.Effects.DropShadowEffect.ShadowDepth" />
+        <element api="F:System.Windows.Media.Effects.DropShadowEffect.ShadowDepthProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.DropShadowEffect" />
+      </containers>
+      <file name="054fa2e3-c13f-5b5e-66fa-6033a20c3e45" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Effects.DropShadowEffect">
+      <topicdata name="DropShadowEffect" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Effects.DropShadowEffect" />
+      <apidata name="DropShadowEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Effects.DropShadowEffect.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.DropShadowEffect" />
+      </containers>
+      <file name="ade0209f-a2d8-503d-c586-4529d4478077" />
+    </api>
+    <api id="Properties.T:System.Windows.Media.Effects.DropShadowEffect">
+      <topicdata name="DropShadowEffect" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Media.Effects.DropShadowEffect" />
+      <apidata name="DropShadowEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Effects.DropShadowEffect.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.Media.Effects.DropShadowEffect.BlurRadius" />
+        <element api="P:System.Windows.Media.Effects.DropShadowEffect.Color" />
+        <element api="P:System.Windows.Media.Effects.DropShadowEffect.Direction" />
+        <element api="P:System.Windows.Media.Effects.DropShadowEffect.Opacity" />
+        <element api="P:System.Windows.Media.Effects.DropShadowEffect.ShadowDepth" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.DropShadowEffect" />
+      </containers>
+      <file name="d186513a-49ce-6c3f-b0c8-b2e12e21ead8" />
+    </api>
+    <api id="Fields.T:System.Windows.Media.Effects.DropShadowEffect">
+      <topicdata name="DropShadowEffect" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Media.Effects.DropShadowEffect" />
+      <apidata name="DropShadowEffect" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Effects.DropShadowEffect.#ctor" />
+      <elements>
+        <element api="F:System.Windows.Media.Effects.DropShadowEffect.BlurRadiusProperty" />
+        <element api="F:System.Windows.Media.Effects.DropShadowEffect.ColorProperty" />
+        <element api="F:System.Windows.Media.Effects.DropShadowEffect.DirectionProperty" />
+        <element api="F:System.Windows.Media.Effects.DropShadowEffect.OpacityProperty" />
+        <element api="F:System.Windows.Media.Effects.DropShadowEffect.ShadowDepthProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.DropShadowEffect" />
+      </containers>
+      <file name="74eaa78a-24d6-e15a-7288-e9c72b82794f" />
+    </api>
+    <api id="M:System.Windows.Media.Effects.DropShadowEffect.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.DropShadowEffect" ref="true" />
+      </containers>
+      <file name="280b72d9-c307-4141-7351-aab87e954b30" />
+    </api>
+    <api id="P:System.Windows.Media.Effects.DropShadowEffect.BlurRadius">
+      <topicdata group="api" />
+      <apidata name="BlurRadius" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BlurRadius" />
+      <setter name="set_BlurRadius" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.DropShadowEffect" ref="true" />
+      </containers>
+      <file name="6a514c0c-678e-68b9-894f-0cdbd8b18ac0" />
+    </api>
+    <api id="F:System.Windows.Media.Effects.DropShadowEffect.BlurRadiusProperty">
+      <topicdata group="api" />
+      <apidata name="BlurRadiusProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.DropShadowEffect" ref="true" />
+      </containers>
+      <file name="1ef3b4b6-a226-810a-2f57-e9dd405fd45d" />
+    </api>
+    <api id="P:System.Windows.Media.Effects.DropShadowEffect.Color">
+      <topicdata group="api" />
+      <apidata name="Color" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Color" />
+      <setter name="set_Color" />
+      <returns>
+        <type api="T:System.Windows.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.DropShadowEffect" ref="true" />
+      </containers>
+      <file name="2ad86d07-e705-8eb7-c3ee-3ae87d88931c" />
+    </api>
+    <api id="F:System.Windows.Media.Effects.DropShadowEffect.ColorProperty">
+      <topicdata group="api" />
+      <apidata name="ColorProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.DropShadowEffect" ref="true" />
+      </containers>
+      <file name="793d9efb-95b0-50bf-aacb-df254a38c4d5" />
+    </api>
+    <api id="P:System.Windows.Media.Effects.DropShadowEffect.Direction">
+      <topicdata group="api" />
+      <apidata name="Direction" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Direction" />
+      <setter name="set_Direction" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.DropShadowEffect" ref="true" />
+      </containers>
+      <file name="606e29f0-1cec-05cc-af99-909578fcacbc" />
+    </api>
+    <api id="F:System.Windows.Media.Effects.DropShadowEffect.DirectionProperty">
+      <topicdata group="api" />
+      <apidata name="DirectionProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.DropShadowEffect" ref="true" />
+      </containers>
+      <file name="4f9e9313-7b3a-685c-fa1e-e2ef3ec73061" />
+    </api>
+    <api id="P:System.Windows.Media.Effects.DropShadowEffect.Opacity">
+      <topicdata group="api" />
+      <apidata name="Opacity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Opacity" />
+      <setter name="set_Opacity" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.DropShadowEffect" ref="true" />
+      </containers>
+      <file name="8649fd5d-e30d-fe9a-3008-76226f2d4c0c" />
+    </api>
+    <api id="F:System.Windows.Media.Effects.DropShadowEffect.OpacityProperty">
+      <topicdata group="api" />
+      <apidata name="OpacityProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.DropShadowEffect" ref="true" />
+      </containers>
+      <file name="19dc232f-a380-a9aa-d3e3-d7bae7962035" />
+    </api>
+    <api id="P:System.Windows.Media.Effects.DropShadowEffect.ShadowDepth">
+      <topicdata group="api" />
+      <apidata name="ShadowDepth" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ShadowDepth" />
+      <setter name="set_ShadowDepth" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.DropShadowEffect" ref="true" />
+      </containers>
+      <file name="ceea4c98-c7ce-9579-45ea-251dcb14854e" />
+    </api>
+    <api id="F:System.Windows.Media.Effects.DropShadowEffect.ShadowDepthProperty">
+      <topicdata group="api" />
+      <apidata name="ShadowDepthProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.DropShadowEffect" ref="true" />
+      </containers>
+      <file name="a7ce13e9-e18d-c0b1-537d-428e004be086" />
+    </api>
+    <api id="T:System.Windows.Media.Effects.Effect">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Effects.Effect" />
+      <apidata name="Effect" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+          <type api="T:System.Windows.Media.Effects.BlurEffect" ref="true" />
+          <type api="T:System.Windows.Media.Effects.DropShadowEffect" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+      </containers>
+      <file name="62075773-db4d-9a74-f129-ecd90d0a60a2" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Effects.Effect">
+      <topicdata name="Effect" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Effects.Effect" />
+      <apidata name="Effect" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Media.Effects.Effect.#ctor" />
+        <element api="P:System.Windows.Media.Effects.Effect.EffectMapping" />
+        <element api="P:System.Windows.Media.Effects.Effect.ImplicitInput" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.Effect" />
+      </containers>
+      <file name="a62c24ec-9b4d-3a09-7e38-3c1c78f648c2" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Effects.Effect">
+      <topicdata name="Effect" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Effects.Effect" />
+      <apidata name="Effect" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.Effect" />
+      </containers>
+      <file name="5e0af8fa-4ca5-f396-2971-99e959adbbb6" />
+    </api>
+    <api id="Properties.T:System.Windows.Media.Effects.Effect">
+      <topicdata name="Effect" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Media.Effects.Effect" />
+      <apidata name="Effect" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.Media.Effects.Effect.EffectMapping" />
+        <element api="P:System.Windows.Media.Effects.Effect.ImplicitInput" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.Effect" />
+      </containers>
+      <file name="ae738e35-de5d-6c38-2416-6aa171bb6192" />
+    </api>
+    <api id="M:System.Windows.Media.Effects.Effect.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.Effect" ref="true" />
+      </containers>
+      <file name="42533247-29b0-eb39-4e06-bd35c8b200f4" />
+    </api>
+    <api id="P:System.Windows.Media.Effects.Effect.EffectMapping">
+      <topicdata group="api" />
+      <apidata name="EffectMapping" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_EffectMapping" />
+      <returns>
+        <type api="T:System.Windows.Media.GeneralTransform" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.Effect" ref="true" />
+      </containers>
+      <file name="22277df8-9167-a464-b611-3d9f5c1e3eb1" />
+    </api>
+    <api id="P:System.Windows.Media.Effects.Effect.ImplicitInput">
+      <topicdata group="api" />
+      <apidata name="ImplicitInput" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ImplicitInput" />
+      <returns>
+        <type api="T:System.Windows.Media.Brush" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.Effect" ref="true" />
+      </containers>
+      <file name="102f94d8-8e0b-5e67-b99d-17f2f30b23d6" />
+    </api>
+    <api id="T:System.Windows.Media.Effects.PixelShader">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Effects.PixelShader" />
+      <apidata name="PixelShader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Effects.PixelShader.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+      </containers>
+      <file name="12deadbe-12b9-3ecf-c22f-dc9b9207ce34" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Effects.PixelShader">
+      <topicdata name="PixelShader" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Effects.PixelShader" />
+      <apidata name="PixelShader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Effects.PixelShader.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Media.Effects.PixelShader.#ctor" />
+        <element api="P:System.Windows.Media.Effects.PixelShader.UriSource" />
+        <element api="F:System.Windows.Media.Effects.PixelShader.UriSourceProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.PixelShader" />
+      </containers>
+      <file name="2ed4c1ae-6dc4-62a7-0e93-08a5f720a889" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Effects.PixelShader">
+      <topicdata name="PixelShader" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Effects.PixelShader" />
+      <apidata name="PixelShader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Effects.PixelShader.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.PixelShader" />
+      </containers>
+      <file name="00ae61b0-fbcd-6aa2-280d-45202200346e" />
+    </api>
+    <api id="Properties.T:System.Windows.Media.Effects.PixelShader">
+      <topicdata name="PixelShader" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Media.Effects.PixelShader" />
+      <apidata name="PixelShader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Effects.PixelShader.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.Media.Effects.PixelShader.UriSource" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.PixelShader" />
+      </containers>
+      <file name="dd7f59b0-8b01-a412-3312-a1c443c5a51c" />
+    </api>
+    <api id="Fields.T:System.Windows.Media.Effects.PixelShader">
+      <topicdata name="PixelShader" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Media.Effects.PixelShader" />
+      <apidata name="PixelShader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Media.Effects.PixelShader.#ctor" />
+      <elements>
+        <element api="F:System.Windows.Media.Effects.PixelShader.UriSourceProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.PixelShader" />
+      </containers>
+      <file name="99a6e268-9ce6-ce55-6e48-0496ca1a5180" />
+    </api>
+    <api id="M:System.Windows.Media.Effects.PixelShader.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.PixelShader" ref="true" />
+      </containers>
+      <file name="8a6db0c2-e290-bf18-830d-b663b23db681" />
+    </api>
+    <api id="P:System.Windows.Media.Effects.PixelShader.UriSource">
+      <topicdata group="api" />
+      <apidata name="UriSource" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UriSource" />
+      <setter name="set_UriSource" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.PixelShader" ref="true" />
+      </containers>
+      <file name="14fa0517-f7ff-8fec-61d4-1e48d3528253" />
+    </api>
+    <api id="F:System.Windows.Media.Effects.PixelShader.UriSourceProperty">
+      <topicdata group="api" />
+      <apidata name="UriSourceProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.PixelShader" ref="true" />
+      </containers>
+      <file name="809c794b-86a2-8863-3568-abda1f7d67d7" />
+    </api>
+    <api id="T:System.Windows.Media.Effects.SamplingMode">
+      <topicdata group="api" />
+      <apidata name="SamplingMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Media.Effects.SamplingMode.Auto" />
+        <element api="F:System.Windows.Media.Effects.SamplingMode.NearestNeighbor" />
+        <element api="F:System.Windows.Media.Effects.SamplingMode.Bilinear" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+      </containers>
+      <file name="662e531a-aed5-67c0-b1b6-90f5db60eb52" />
+    </api>
+    <api id="F:System.Windows.Media.Effects.SamplingMode.Auto">
+      <topicdata group="api" notopic="" />
+      <apidata name="Auto" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Media.Effects.SamplingMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.SamplingMode" ref="false" />
+      </containers>
+      <file name="e40e07af-4cbd-bea6-12e5-04347a334e7c" />
+    </api>
+    <api id="F:System.Windows.Media.Effects.SamplingMode.Bilinear">
+      <topicdata group="api" notopic="" />
+      <apidata name="Bilinear" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Media.Effects.SamplingMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.SamplingMode" ref="false" />
+      </containers>
+      <file name="86f62395-1af4-6d51-3697-01c37f65e128" />
+    </api>
+    <api id="F:System.Windows.Media.Effects.SamplingMode.NearestNeighbor">
+      <topicdata group="api" notopic="" />
+      <apidata name="NearestNeighbor" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Media.Effects.SamplingMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.SamplingMode" ref="false" />
+      </containers>
+      <file name="04eb36a5-c230-1def-4e03-ba94bb5d6297" />
+    </api>
+    <api id="T:System.Windows.Media.Effects.ShaderEffect">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Effects.ShaderEffect" />
+      <apidata name="ShaderEffect" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Media.Effects.Effect" ref="true" />
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+      </containers>
+      <file name="2c5c4b39-2a87-dfd9-d30f-7e3e7b6de99c" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Effects.ShaderEffect">
+      <topicdata name="ShaderEffect" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Effects.ShaderEffect" />
+      <apidata name="ShaderEffect" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="P:System.Windows.Media.Effects.Effect.EffectMapping" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Media.Effects.ShaderEffect.#ctor" />
+        <element api="P:System.Windows.Media.Effects.ShaderEffect.DdxUvDdyUvRegisterIndex" />
+        <element api="P:System.Windows.Media.Effects.ShaderEffect.PaddingBottom" />
+        <element api="P:System.Windows.Media.Effects.ShaderEffect.PaddingLeft" />
+        <element api="P:System.Windows.Media.Effects.ShaderEffect.PaddingRight" />
+        <element api="P:System.Windows.Media.Effects.ShaderEffect.PaddingTop" />
+        <element api="P:System.Windows.Media.Effects.ShaderEffect.PixelShader" />
+        <element api="M:System.Windows.Media.Effects.ShaderEffect.PixelShaderConstantCallback(System.Int32)" />
+        <element api="F:System.Windows.Media.Effects.ShaderEffect.PixelShaderProperty" />
+        <element api="Overload:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback">
+          <element api="M:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback(System.Int32)" />
+          <element api="M:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback(System.Int32,System.Windows.Media.Effects.SamplingMode)" />
+        </element>
+        <element api="Overload:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty">
+          <element api="M:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty(System.String,System.Type,System.Int32)" />
+          <element api="M:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty(System.String,System.Type,System.Int32,System.Windows.Media.Effects.SamplingMode)" />
+        </element>
+        <element api="M:System.Windows.Media.Effects.ShaderEffect.UpdateShaderValue(System.Windows.DependencyProperty)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" />
+      </containers>
+      <file name="7e5afa4b-baa9-d723-a30c-9ee8c02db943" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Effects.ShaderEffect">
+      <topicdata name="ShaderEffect" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Effects.ShaderEffect" />
+      <apidata name="ShaderEffect" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Media.Effects.ShaderEffect.PixelShaderConstantCallback(System.Int32)" />
+        <element api="Overload:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback">
+          <element api="M:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback(System.Int32)" />
+          <element api="M:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback(System.Int32,System.Windows.Media.Effects.SamplingMode)" />
+        </element>
+        <element api="Overload:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty">
+          <element api="M:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty(System.String,System.Type,System.Int32)" />
+          <element api="M:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty(System.String,System.Type,System.Int32,System.Windows.Media.Effects.SamplingMode)" />
+        </element>
+        <element api="M:System.Windows.Media.Effects.ShaderEffect.UpdateShaderValue(System.Windows.DependencyProperty)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" />
+      </containers>
+      <file name="db7ed87d-e65d-fc45-7b4a-c84d76703ec1" />
+    </api>
+    <api id="Properties.T:System.Windows.Media.Effects.ShaderEffect">
+      <topicdata name="ShaderEffect" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Media.Effects.ShaderEffect" />
+      <apidata name="ShaderEffect" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.Media.Effects.Effect.EffectMapping" />
+        <element api="P:System.Windows.Media.Effects.ShaderEffect.DdxUvDdyUvRegisterIndex" />
+        <element api="P:System.Windows.Media.Effects.ShaderEffect.PaddingBottom" />
+        <element api="P:System.Windows.Media.Effects.ShaderEffect.PaddingLeft" />
+        <element api="P:System.Windows.Media.Effects.ShaderEffect.PaddingRight" />
+        <element api="P:System.Windows.Media.Effects.ShaderEffect.PaddingTop" />
+        <element api="P:System.Windows.Media.Effects.ShaderEffect.PixelShader" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" />
+      </containers>
+      <file name="94945cdb-3d0e-7653-05ff-b36f36d16030" />
+    </api>
+    <api id="Fields.T:System.Windows.Media.Effects.ShaderEffect">
+      <topicdata name="ShaderEffect" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Media.Effects.ShaderEffect" />
+      <apidata name="ShaderEffect" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Media.Effects.ShaderEffect.PixelShaderProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" />
+      </containers>
+      <file name="30c75767-83f6-3db3-53e9-47b15834954f" />
+    </api>
+    <api id="Overload:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback">
+      <topicdata name="PixelShaderSamplerCallback" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Media.Effects.ShaderEffect" />
+      <apidata name="PixelShaderSamplerCallback" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback(System.Int32)" />
+        <element api="M:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback(System.Int32,System.Windows.Media.Effects.SamplingMode)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+      </containers>
+      <file name="1787f0d4-e0f7-1aff-9bd9-89b41eacda9f" />
+    </api>
+    <api id="Overload:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty">
+      <topicdata name="RegisterPixelShaderSamplerProperty" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Media.Effects.ShaderEffect" />
+      <apidata name="RegisterPixelShaderSamplerProperty" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty(System.String,System.Type,System.Int32)" />
+        <element api="M:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty(System.String,System.Type,System.Int32,System.Windows.Media.Effects.SamplingMode)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+      </containers>
+      <file name="f0eef740-98b1-0968-078e-f3a396d50c3c" />
+    </api>
+    <api id="M:System.Windows.Media.Effects.ShaderEffect.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+      </containers>
+      <file name="9d48a1cc-a9b1-43c6-b240-6ec96fd6d17c" />
+    </api>
+    <api id="P:System.Windows.Media.Effects.ShaderEffect.DdxUvDdyUvRegisterIndex">
+      <topicdata group="api" />
+      <apidata name="DdxUvDdyUvRegisterIndex" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DdxUvDdyUvRegisterIndex" />
+      <setter name="set_DdxUvDdyUvRegisterIndex" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+      </containers>
+      <file name="72e6cca8-7f8c-7afb-3d5e-25b35a9aa499" />
+    </api>
+    <api id="P:System.Windows.Media.Effects.ShaderEffect.PaddingBottom">
+      <topicdata group="api" />
+      <apidata name="PaddingBottom" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PaddingBottom" />
+      <setter name="set_PaddingBottom" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+      </containers>
+      <file name="5db5fb12-9a67-4074-e310-3db4740a97a4" />
+    </api>
+    <api id="P:System.Windows.Media.Effects.ShaderEffect.PaddingLeft">
+      <topicdata group="api" />
+      <apidata name="PaddingLeft" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PaddingLeft" />
+      <setter name="set_PaddingLeft" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+      </containers>
+      <file name="7b6a9e45-865b-2df5-b394-716ff5eda2a1" />
+    </api>
+    <api id="P:System.Windows.Media.Effects.ShaderEffect.PaddingRight">
+      <topicdata group="api" />
+      <apidata name="PaddingRight" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PaddingRight" />
+      <setter name="set_PaddingRight" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+      </containers>
+      <file name="e83c7928-6f61-a7ad-6583-4bf80c899845" />
+    </api>
+    <api id="P:System.Windows.Media.Effects.ShaderEffect.PaddingTop">
+      <topicdata group="api" />
+      <apidata name="PaddingTop" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PaddingTop" />
+      <setter name="set_PaddingTop" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+      </containers>
+      <file name="a269b574-c4ed-5e02-f662-3cd08309f69d" />
+    </api>
+    <api id="P:System.Windows.Media.Effects.ShaderEffect.PixelShader">
+      <topicdata group="api" />
+      <apidata name="PixelShader" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PixelShader" />
+      <setter name="set_PixelShader" />
+      <returns>
+        <type api="T:System.Windows.Media.Effects.PixelShader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+      </containers>
+      <file name="5a474c9d-5dd6-83a5-9d89-dae4b90272dc" />
+    </api>
+    <api id="M:System.Windows.Media.Effects.ShaderEffect.PixelShaderConstantCallback(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="PixelShaderConstantCallback" group="member" subgroup="method" />
+      <memberdata visibility="family" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="register">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.PropertyChangedCallback" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+      </containers>
+      <file name="aa2caae7-25bc-3356-b414-34afacd37d80" />
+    </api>
+    <api id="F:System.Windows.Media.Effects.ShaderEffect.PixelShaderProperty">
+      <topicdata group="api" />
+      <apidata name="PixelShaderProperty" group="member" subgroup="field" />
+      <memberdata visibility="family" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+      </containers>
+      <file name="5c2779fb-6504-ba36-2e50-f338d8e2dd03" />
+    </api>
+    <api id="M:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="PixelShaderSamplerCallback" group="member" subgroup="method" />
+      <memberdata visibility="family" static="true" overload="Overload:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="register">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.PropertyChangedCallback" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+      </containers>
+      <file name="10e53883-f9c5-12a6-f48c-768ac994f197" />
+    </api>
+    <api id="M:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback(System.Int32,System.Windows.Media.Effects.SamplingMode)">
+      <topicdata group="api" />
+      <apidata name="PixelShaderSamplerCallback" group="member" subgroup="method" />
+      <memberdata visibility="family" static="true" overload="Overload:System.Windows.Media.Effects.ShaderEffect.PixelShaderSamplerCallback" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="register">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="samplingMode">
+          <type api="T:System.Windows.Media.Effects.SamplingMode" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.PropertyChangedCallback" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+      </containers>
+      <file name="e131fbfd-c48e-a64c-7b7e-b148d4a4cc7f" />
+    </api>
+    <api id="M:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty(System.String,System.Type,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="RegisterPixelShaderSamplerProperty" group="member" subgroup="method" />
+      <memberdata visibility="family" static="true" overload="Overload:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="dpName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ownerType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="samplerRegisterIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+      </containers>
+      <file name="79097019-3891-f0f7-a41b-067fe43e46d7" />
+    </api>
+    <api id="M:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty(System.String,System.Type,System.Int32,System.Windows.Media.Effects.SamplingMode)">
+      <topicdata group="api" />
+      <apidata name="RegisterPixelShaderSamplerProperty" group="member" subgroup="method" />
+      <memberdata visibility="family" static="true" overload="Overload:System.Windows.Media.Effects.ShaderEffect.RegisterPixelShaderSamplerProperty" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="dpName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ownerType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="samplerRegisterIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="samplingMode">
+          <type api="T:System.Windows.Media.Effects.SamplingMode" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+      </containers>
+      <file name="df8f5ef4-1ee3-4245-c00a-fc1e5cc0c863" />
+    </api>
+    <api id="M:System.Windows.Media.Effects.ShaderEffect.UpdateShaderValue(System.Windows.DependencyProperty)">
+      <topicdata group="api" />
+      <apidata name="UpdateShaderValue" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="dp">
+          <type api="T:System.Windows.DependencyProperty" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Effects" />
+        <type api="T:System.Windows.Media.Effects.ShaderEffect" ref="true" />
+      </containers>
+      <file name="a7b7dab4-0387-a58b-d19c-322caedd10d1" />
+    </api>
+  </apis>
+</reflection>

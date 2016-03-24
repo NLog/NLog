@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.BackgroundAgent" />
+        <element api="T:Microsoft.Phone.PictureDecoder" />
+      </elements>
+      <file name="3132a9c8-acd5-e9bb-91c9-9865e608f181" />
+    </api>
+    <api id="T:Microsoft.Phone.BackgroundAgent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.BackgroundAgent" />
+      <apidata name="BackgroundAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Phone.Scheduler.ScheduledTaskAgent" ref="true" />
+          <type api="T:Microsoft.Phone.DeviceManufacturers.ServiceAgent" ref="true" />
+          <type api="T:Microsoft.Phone.Networking.Voip.VoipCallInProgressAgent" ref="true" />
+          <type api="T:Microsoft.Phone.Networking.Voip.VoipForegroundLifetimeAgent" ref="true" />
+          <type api="T:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent" ref="true" />
+          <type api="T:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent" ref="true" />
+          <type api="T:Microsoft.Phone.Wallet.WalletAgent" ref="true" />
+          <type api="T:Microsoft.Phone.TileAgent.TileForegroundAgent" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone" />
+      </containers>
+      <file name="1be4d42d-f0b7-77f8-8d83-1cecd625c005" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.BackgroundAgent">
+      <topicdata name="BackgroundAgent" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.BackgroundAgent" />
+      <apidata name="BackgroundAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAgent.#ctor" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.Abort" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyComplete" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.OnCancel" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone" />
+        <type api="T:Microsoft.Phone.BackgroundAgent" />
+      </containers>
+      <file name="c172b32a-40f6-63a6-a685-a9c6150b5e86" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.BackgroundAgent">
+      <topicdata name="BackgroundAgent" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.BackgroundAgent" />
+      <apidata name="BackgroundAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAgent.Abort" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyComplete" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.OnCancel" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone" />
+        <type api="T:Microsoft.Phone.BackgroundAgent" />
+      </containers>
+      <file name="1b0c52d7-1565-f467-e04c-27c454c9af4b" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAgent.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone" />
+        <type api="T:Microsoft.Phone.BackgroundAgent" ref="true" />
+      </containers>
+      <file name="a0429775-baa8-13c4-67e1-8d4e97a5ec10" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAgent.Abort">
+      <topicdata group="api" />
+      <apidata name="Abort" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone" />
+        <type api="T:Microsoft.Phone.BackgroundAgent" ref="true" />
+      </containers>
+      <file name="4b1fa8db-5ec9-5c47-63b2-b55937d0f8a1" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAgent.NotifyComplete">
+      <topicdata group="api" />
+      <apidata name="NotifyComplete" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone" />
+        <type api="T:Microsoft.Phone.BackgroundAgent" ref="true" />
+      </containers>
+      <file name="01c6c05c-510d-d1bc-98ed-46232e7c0ddb" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="NotifyCompleteWithResult" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone" />
+        <type api="T:Microsoft.Phone.BackgroundAgent" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3ae4a276-fb0f-1a53-5451-3728ddbd3ee0" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAgent.OnCancel">
+      <topicdata group="api" />
+      <apidata name="OnCancel" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone" />
+        <type api="T:Microsoft.Phone.BackgroundAgent" ref="true" />
+      </containers>
+      <file name="652dc628-bd3f-4941-daf3-0720e89adbd0" />
+    </api>
+    <api id="T:Microsoft.Phone.PictureDecoder">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.PictureDecoder" />
+      <apidata name="PictureDecoder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone" />
+      </containers>
+      <file name="c2aea3ec-49f5-866a-a49f-ec5313b905fb" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.PictureDecoder">
+      <topicdata name="PictureDecoder" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.PictureDecoder" />
+      <apidata name="PictureDecoder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Phone.PictureDecoder.DecodeJpeg">
+          <element api="M:Microsoft.Phone.PictureDecoder.DecodeJpeg(System.IO.Stream)" />
+          <element api="M:Microsoft.Phone.PictureDecoder.DecodeJpeg(System.IO.Stream,System.Int32,System.Int32)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone" />
+        <type api="T:Microsoft.Phone.PictureDecoder" />
+      </containers>
+      <file name="0ba0c955-fcc4-eee7-45ba-84d319b188cb" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.PictureDecoder">
+      <topicdata name="PictureDecoder" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.PictureDecoder" />
+      <apidata name="PictureDecoder" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Phone.PictureDecoder.DecodeJpeg">
+          <element api="M:Microsoft.Phone.PictureDecoder.DecodeJpeg(System.IO.Stream)" />
+          <element api="M:Microsoft.Phone.PictureDecoder.DecodeJpeg(System.IO.Stream,System.Int32,System.Int32)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone" />
+        <type api="T:Microsoft.Phone.PictureDecoder" />
+      </containers>
+      <file name="1837e8ce-ba16-5eb9-db7c-ac456083bbfb" />
+    </api>
+    <api id="Overload:Microsoft.Phone.PictureDecoder.DecodeJpeg">
+      <topicdata name="DecodeJpeg" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Phone.PictureDecoder" />
+      <apidata name="DecodeJpeg" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Phone.PictureDecoder.DecodeJpeg(System.IO.Stream)" />
+        <element api="M:Microsoft.Phone.PictureDecoder.DecodeJpeg(System.IO.Stream,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone" />
+        <type api="T:Microsoft.Phone.PictureDecoder" ref="true" />
+      </containers>
+      <file name="3cff75ae-907a-9127-ab0a-1c3bccbb42a7" />
+    </api>
+    <api id="M:Microsoft.Phone.PictureDecoder.DecodeJpeg(System.IO.Stream)">
+      <topicdata group="api" />
+      <apidata name="DecodeJpeg" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Microsoft.Phone.PictureDecoder.DecodeJpeg" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Media.Imaging.WriteableBitmap" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone" />
+        <type api="T:Microsoft.Phone.PictureDecoder" ref="true" />
+      </containers>
+      <file name="d3e801c8-d8e4-7353-12d1-87f9fceb1160" />
+    </api>
+    <api id="M:Microsoft.Phone.PictureDecoder.DecodeJpeg(System.IO.Stream,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="DecodeJpeg" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Microsoft.Phone.PictureDecoder.DecodeJpeg" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.IO.Stream" ref="true" />
+        </parameter>
+        <parameter name="maxPixelWidth">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="maxPixelHeight">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Media.Imaging.WriteableBitmap" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone" />
+        <type api="T:Microsoft.Phone.PictureDecoder" ref="true" />
+      </containers>
+      <file name="b20e8317-7e2c-57f6-3588-e97222bcd419" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Data.Linq">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Linq.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System Linq to Sql Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Windows Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.Data.Linq">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.Data.Linq" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.Data.Linq.Extensions" />
+        <element api="T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater" />
+      </elements>
+      <file name="2fad2dff-648f-61fb-fc8d-b19cd359e14c" />
+    </api>
+    <api id="T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater" />
+      <apidata name="DatabaseSchemaUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq" />
+      </containers>
+      <file name="17a46f84-8d9f-e5b9-56ef-d3d58bdf9256" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater">
+      <topicdata name="DatabaseSchemaUpdater" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater" />
+      <apidata name="DatabaseSchemaUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.AddAssociation``1(System.String)" />
+        <element api="M:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.AddColumn``1(System.String)" />
+        <element api="M:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.AddIndex``1(System.String)" />
+        <element api="M:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.AddTable``1" />
+        <element api="P:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.Context" />
+        <element api="P:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.DatabaseSchemaVersion" />
+        <element api="M:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.Execute" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq" />
+        <type api="T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater" />
+      </containers>
+      <file name="361978fe-0b62-6ef3-7565-53beb73f490d" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater">
+      <topicdata name="DatabaseSchemaUpdater" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater" />
+      <apidata name="DatabaseSchemaUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.AddAssociation``1(System.String)" />
+        <element api="M:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.AddColumn``1(System.String)" />
+        <element api="M:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.AddIndex``1(System.String)" />
+        <element api="M:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.AddTable``1" />
+        <element api="M:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.Execute" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq" />
+        <type api="T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater" />
+      </containers>
+      <file name="9b559b6d-e9ff-6b64-fc68-90aec90573b9" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater">
+      <topicdata name="DatabaseSchemaUpdater" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater" />
+      <apidata name="DatabaseSchemaUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.Context" />
+        <element api="P:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.DatabaseSchemaVersion" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq" />
+        <type api="T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater" />
+      </containers>
+      <file name="ca3ee3bd-79d3-15bb-c61b-507bccf23b9f" />
+    </api>
+    <api id="M:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.AddAssociation``1(System.String)">
+      <topicdata group="api" />
+      <apidata name="AddAssociation" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="associationPropertyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq" />
+        <type api="T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater" ref="true" />
+      </containers>
+      <file name="fc62fa97-b0a2-c522-db84-248fd21fcc70" />
+    </api>
+    <api id="M:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.AddColumn``1(System.String)">
+      <topicdata group="api" />
+      <apidata name="AddColumn" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="columnPropertyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq" />
+        <type api="T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater" ref="true" />
+      </containers>
+      <file name="9f5922bc-3535-1150-6e2c-9dfffccf4cf8" />
+    </api>
+    <api id="M:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.AddIndex``1(System.String)">
+      <topicdata group="api" />
+      <apidata name="AddIndex" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <parameters>
+        <parameter name="indexName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq" />
+        <type api="T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater" ref="true" />
+      </containers>
+      <file name="1fcb8c99-ec0e-8af3-c1a9-f261bbdaad01" />
+    </api>
+    <api id="M:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.AddTable``1">
+      <topicdata group="api" />
+      <apidata name="AddTable" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq" />
+        <type api="T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater" ref="true" />
+      </containers>
+      <file name="93dae3fb-42b7-6323-fcab-997f89ae5d75" />
+    </api>
+    <api id="P:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.Context">
+      <topicdata group="api" />
+      <apidata name="Context" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Context" />
+      <returns>
+        <type api="T:System.Data.Linq.DataContext" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq" />
+        <type api="T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater" ref="true" />
+      </containers>
+      <file name="07e7b86b-53a6-5643-1839-cfb24507c1ab" />
+    </api>
+    <api id="P:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.DatabaseSchemaVersion">
+      <topicdata group="api" />
+      <apidata name="DatabaseSchemaVersion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DatabaseSchemaVersion" />
+      <setter name="set_DatabaseSchemaVersion" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq" />
+        <type api="T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater" ref="true" />
+      </containers>
+      <file name="c1494106-666c-360f-8ed9-2181c7515252" />
+    </api>
+    <api id="M:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater.Execute">
+      <topicdata group="api" />
+      <apidata name="Execute" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq" />
+        <type api="T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater" ref="true" />
+      </containers>
+      <file name="541160e2-d2ff-bf60-3c91-756ed2a549f0" />
+    </api>
+    <api id="T:Microsoft.Phone.Data.Linq.Extensions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Data.Linq.Extensions" />
+      <apidata name="Extensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a54b296b-eb6e-446e-205e-ecf2fabc52af" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Data.Linq.Extensions">
+      <topicdata name="Extensions" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Data.Linq.Extensions" />
+      <apidata name="Extensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Data.Linq.Extensions.CreateDatabaseSchemaUpdater(System.Data.Linq.DataContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq" />
+        <type api="T:Microsoft.Phone.Data.Linq.Extensions" />
+      </containers>
+      <file name="0d062bf6-c788-6502-a4e7-1d9fde71cebd" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Data.Linq.Extensions">
+      <topicdata name="Extensions" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Data.Linq.Extensions" />
+      <apidata name="Extensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Data.Linq.Extensions.CreateDatabaseSchemaUpdater(System.Data.Linq.DataContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq" />
+        <type api="T:Microsoft.Phone.Data.Linq.Extensions" />
+      </containers>
+      <file name="7289ea62-dbd0-f7ba-52f6-c63af37f8b08" />
+    </api>
+    <api id="M:Microsoft.Phone.Data.Linq.Extensions.CreateDatabaseSchemaUpdater(System.Data.Linq.DataContext)">
+      <topicdata group="api" />
+      <apidata name="CreateDatabaseSchemaUpdater" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="dataContext">
+          <type api="T:System.Data.Linq.DataContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Phone.Data.Linq.DatabaseSchemaUpdater" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Linq" module="System.Data.Linq" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Data.Linq" />
+        <type api="T:Microsoft.Phone.Data.Linq.Extensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="f4051431-2aa8-b976-0aad-318f73a7e6d6" />
+    </api>
+  </apis>
+</reflection>

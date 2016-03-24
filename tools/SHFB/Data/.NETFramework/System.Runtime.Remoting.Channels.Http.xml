@@ -1,0 +1,2229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Runtime.Remoting">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Remoting.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Remoting.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.Remoting.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.Remoting.Channels.Http">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.Remoting.Channels.Http" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" />
+        <element api="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" />
+        <element api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" />
+        <element api="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler" />
+        <element api="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory" />
+      </elements>
+      <file name="397add12-0d83-2df6-5efe-190f6939ca19" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Channels.Http.HttpChannel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Channels.Http.HttpChannel" />
+      <apidata name="HttpChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.Remoting.Channels.BaseChannelWithProperties" ref="true" />
+          <type api="T:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        <type api="T:System.Runtime.Remoting.Channels.IChannelSender" ref="true" />
+        <type api="T:System.Runtime.Remoting.Channels.IChannelReceiverHook" ref="true" />
+        <type api="T:System.Runtime.Remoting.Channels.ISecurableChannel" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+      </containers>
+      <file name="537df68f-b96e-60f1-aeba-ef6deecb752e" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Channels.Http.HttpChannel">
+      <topicdata name="HttpChannel" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpChannel" />
+      <apidata name="HttpChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Add(System.Object,System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Clear" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Contains(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.CopyTo(System.Array,System.Int32)" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Count" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.GetEnumerator" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsFixedSize" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsReadOnly" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsSynchronized" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Remove(System.Object)" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.SyncRoot" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.System#Collections#IEnumerable#GetEnumerator" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Values" />
+        <element api="F:System.Runtime.Remoting.Channels.BaseChannelWithProperties.SinksWithProperties" />
+        <element api="Overload:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor">
+          <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor" />
+          <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor(System.Int32)" />
+          <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IClientChannelSinkProvider,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)" />
+        </element>
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.AddHookChannelUri(System.String)" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.ChannelData" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.ChannelName" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.ChannelPriority" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.ChannelScheme" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.ChannelSinkChain" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.CreateMessageSink(System.String,System.Object,System.String@)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.GetUrlsForUri(System.String)" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.IsSecured" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.Item(System.Object)" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.Keys" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.Parse(System.String,System.String@)" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.Properties" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.StartListening(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.StopListening(System.Object)" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.WantsToListen" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" />
+      </containers>
+      <file name="049c2de2-7cbf-ed7f-a6fb-3eda6ff6df49" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Channels.Http.HttpChannel">
+      <topicdata name="HttpChannel" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpChannel" />
+      <apidata name="HttpChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Add(System.Object,System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Clear" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Contains(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.GetEnumerator" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Remove(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.System#Collections#IEnumerable#GetEnumerator" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.AddHookChannelUri(System.String)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.CreateMessageSink(System.String,System.Object,System.String@)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.GetUrlsForUri(System.String)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.Parse(System.String,System.String@)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.StartListening(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.StopListening(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" />
+      </containers>
+      <file name="c034aa02-9978-c606-f864-11755af21585" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Channels.Http.HttpChannel">
+      <topicdata name="HttpChannel" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpChannel" />
+      <apidata name="HttpChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Count" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsFixedSize" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsReadOnly" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsSynchronized" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.SyncRoot" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Values" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.ChannelData" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.ChannelName" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.ChannelPriority" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.ChannelScheme" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.ChannelSinkChain" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.IsSecured" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.Item(System.Object)" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.Keys" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.Properties" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpChannel.WantsToListen" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" />
+      </containers>
+      <file name="4be0e7a6-6c20-fc0d-e55c-fdb07153d7d2" />
+    </api>
+    <api id="Fields.T:System.Runtime.Remoting.Channels.Http.HttpChannel">
+      <topicdata name="HttpChannel" group="list" subgroup="Fields" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpChannel" />
+      <apidata name="HttpChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor" />
+      <elements>
+        <element api="F:System.Runtime.Remoting.Channels.BaseChannelWithProperties.SinksWithProperties" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" />
+      </containers>
+      <file name="7c46be28-a3f8-6ae6-12ac-112d78f00eec" />
+    </api>
+    <api id="Overload:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Channels.Http.HttpChannel" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor(System.Int32)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IClientChannelSinkProvider,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="2a5207ec-cc1b-6104-e046-ab9b36142b5e" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor" />
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="1890de9c-2f96-0dc6-48a6-2aafb894b5a0" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IClientChannelSinkProvider,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor" />
+      <parameters>
+        <parameter name="properties">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+        <parameter name="clientSinkProvider">
+          <type api="T:System.Runtime.Remoting.Channels.IClientChannelSinkProvider" ref="true" />
+        </parameter>
+        <parameter name="serverSinkProvider">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSinkProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="681d5aa1-7357-a051-764a-670ddbd026ac" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor(System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Http.HttpChannel.#ctor" />
+      <parameters>
+        <parameter name="port">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="f87f7770-9d27-317e-0f7d-d4064bba64a3" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpChannel.AddHookChannelUri(System.String)">
+      <topicdata group="api" />
+      <apidata name="AddHookChannelUri" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="channelUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelReceiverHook.AddHookChannelUri(System.String)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiverHook" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="c1b442fc-72ed-ca45-720d-f050609d868e" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpChannel.ChannelData">
+      <topicdata group="api" />
+      <apidata name="ChannelData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelData" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannelReceiver.ChannelData">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="1f58d483-00d0-872c-ae38-0361c9765d42" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpChannel.ChannelName">
+      <topicdata group="api" />
+      <apidata name="ChannelName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannel.ChannelName">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="3456352b-5703-74dc-96b9-486e4f1da003" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpChannel.ChannelPriority">
+      <topicdata group="api" />
+      <apidata name="ChannelPriority" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelPriority" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannel.ChannelPriority">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="7598e740-27fd-e5b1-4d81-ea865f501fd3" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpChannel.ChannelScheme">
+      <topicdata group="api" />
+      <apidata name="ChannelScheme" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelScheme" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannelReceiverHook.ChannelScheme">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiverHook" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="8df4c067-fb1c-4b67-4646-a80530238377" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpChannel.ChannelSinkChain">
+      <topicdata group="api" />
+      <apidata name="ChannelSinkChain" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelSinkChain" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Channels.IServerChannelSink" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannelReceiverHook.ChannelSinkChain">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiverHook" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="681a29a6-ac6c-df74-fe17-c55b65c466df" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpChannel.CreateMessageSink(System.String,System.Object,System.String@)">
+      <topicdata group="api" />
+      <apidata name="CreateMessageSink" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="remoteChannelData">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="objectURI" out="true">
+          <referenceTo>
+            <type api="T:System.String" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Remoting.Messaging.IMessageSink" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelSender.CreateMessageSink(System.String,System.Object,System.String@)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelSender" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="18992027-6f7c-cdb3-2609-557f53791075" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpChannel.GetUrlsForUri(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetUrlsForUri" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="objectURI">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelReceiver.GetUrlsForUri(System.String)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="c41f129f-20c7-a9e7-d82e-c7f1001c0c8a" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpChannel.IsSecured">
+      <topicdata group="api" />
+      <apidata name="IsSecured" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsSecured" />
+      <setter name="set_IsSecured" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.ISecurableChannel.IsSecured">
+          <type api="T:System.Runtime.Remoting.Channels.ISecurableChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="6c58ee45-488f-206b-c5de-f792d2ed2804" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpChannel.Item(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Item(System.Object)">
+          <type api="T:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IDictionary.Item(System.Object)">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="cf7ab31b-2736-8a45-4d4c-16401d842c53" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpChannel.Keys">
+      <topicdata group="api" />
+      <apidata name="Keys" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Keys">
+          <type api="T:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Keys" />
+      <returns>
+        <type api="T:System.Collections.ICollection" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IDictionary.Keys">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="3cfde571-cefa-1ef7-3372-d9d295e38ebc" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpChannel.Parse(System.String,System.String@)">
+      <topicdata group="api" />
+      <apidata name="Parse" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="objectURI" out="true">
+          <referenceTo>
+            <type api="T:System.String" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannel.Parse(System.String,System.String@)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="3840e062-4347-111e-220d-1f451bdc7c29" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpChannel.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.Remoting.Channels.BaseChannelWithProperties.Properties">
+          <type api="T:System.Runtime.Remoting.Channels.BaseChannelWithProperties" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.IDictionary" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="a127f36f-1f7c-b9e5-8d3f-20879657ec4e" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpChannel.StartListening(System.Object)">
+      <topicdata group="api" />
+      <apidata name="StartListening" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelReceiver.StartListening(System.Object)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="e40887c5-c79d-099e-80bf-5011e438b979" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpChannel.StopListening(System.Object)">
+      <topicdata group="api" />
+      <apidata name="StopListening" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelReceiver.StopListening(System.Object)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="2202a0b7-5a55-a29a-3d6e-fc8a66ac1657" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpChannel.WantsToListen">
+      <topicdata group="api" />
+      <apidata name="WantsToListen" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_WantsToListen" />
+      <setter name="set_WantsToListen" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannelReceiverHook.WantsToListen">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiverHook" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpChannel" ref="true" />
+      </containers>
+      <file name="b322e683-4c1e-749d-fc4b-90741aaf72ef" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" />
+      <apidata name="HttpClientChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.Remoting.Channels.BaseChannelWithProperties" ref="true" />
+          <type api="T:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.Remoting.Channels.IChannelSender" ref="true" />
+        <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        <type api="T:System.Runtime.Remoting.Channels.ISecurableChannel" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+      </containers>
+      <file name="494d4d38-8da0-69a3-5467-2234c05d0876" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Channels.Http.HttpClientChannel">
+      <topicdata name="HttpClientChannel" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" />
+      <apidata name="HttpClientChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Add(System.Object,System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Clear" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Contains(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.CopyTo(System.Array,System.Int32)" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Count" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.GetEnumerator" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsFixedSize" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsReadOnly" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsSynchronized" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Remove(System.Object)" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.SyncRoot" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.System#Collections#IEnumerable#GetEnumerator" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Values" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelWithProperties.Properties" />
+        <element api="F:System.Runtime.Remoting.Channels.BaseChannelWithProperties.SinksWithProperties" />
+        <element api="Overload:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor">
+          <element api="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor" />
+          <element api="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IClientChannelSinkProvider)" />
+          <element api="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor(System.String,System.Runtime.Remoting.Channels.IClientChannelSinkProvider)" />
+        </element>
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpClientChannel.ChannelName" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpClientChannel.ChannelPriority" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.CreateMessageSink(System.String,System.Object,System.String@)" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpClientChannel.IsSecured" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpClientChannel.Item(System.Object)" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpClientChannel.Keys" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.Parse(System.String,System.String@)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" />
+      </containers>
+      <file name="acd9a2dd-05c9-e364-1fd7-ca3b3b1f3656" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Channels.Http.HttpClientChannel">
+      <topicdata name="HttpClientChannel" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" />
+      <apidata name="HttpClientChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Add(System.Object,System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Clear" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Contains(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.GetEnumerator" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Remove(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.System#Collections#IEnumerable#GetEnumerator" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.CreateMessageSink(System.String,System.Object,System.String@)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.Parse(System.String,System.String@)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" />
+      </containers>
+      <file name="dc047832-03f9-a315-49b3-c6c8db3355dd" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Channels.Http.HttpClientChannel">
+      <topicdata name="HttpClientChannel" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" />
+      <apidata name="HttpClientChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Count" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsFixedSize" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsReadOnly" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsSynchronized" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.SyncRoot" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Values" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelWithProperties.Properties" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpClientChannel.ChannelName" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpClientChannel.ChannelPriority" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpClientChannel.IsSecured" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpClientChannel.Item(System.Object)" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpClientChannel.Keys" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" />
+      </containers>
+      <file name="ef48b01a-2122-d1cf-f5bf-27e24b9a5245" />
+    </api>
+    <api id="Fields.T:System.Runtime.Remoting.Channels.Http.HttpClientChannel">
+      <topicdata name="HttpClientChannel" group="list" subgroup="Fields" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" />
+      <apidata name="HttpClientChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor" />
+      <elements>
+        <element api="F:System.Runtime.Remoting.Channels.BaseChannelWithProperties.SinksWithProperties" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" />
+      </containers>
+      <file name="73c38039-eea1-fe68-65bb-21688300eda4" />
+    </api>
+    <api id="Overload:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IClientChannelSinkProvider)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor(System.String,System.Runtime.Remoting.Channels.IClientChannelSinkProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" ref="true" />
+      </containers>
+      <file name="c1371b4f-6631-d21c-31a2-90706269a74b" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor" />
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" ref="true" />
+      </containers>
+      <file name="265b6a7b-72f8-4f54-b7bb-787d8dc601e1" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IClientChannelSinkProvider)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor" />
+      <parameters>
+        <parameter name="properties">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+        <parameter name="sinkProvider">
+          <type api="T:System.Runtime.Remoting.Channels.IClientChannelSinkProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" ref="true" />
+      </containers>
+      <file name="475605cb-3b97-1430-56bd-eed22155d83e" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor(System.String,System.Runtime.Remoting.Channels.IClientChannelSinkProvider)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Http.HttpClientChannel.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="sinkProvider">
+          <type api="T:System.Runtime.Remoting.Channels.IClientChannelSinkProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" ref="true" />
+      </containers>
+      <file name="c7873192-0e78-e3b8-6931-2a6b7d4a86d3" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpClientChannel.ChannelName">
+      <topicdata group="api" />
+      <apidata name="ChannelName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannel.ChannelName">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" ref="true" />
+      </containers>
+      <file name="e2b6528b-793b-b4ca-d6ac-d8f0453feb1c" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpClientChannel.ChannelPriority">
+      <topicdata group="api" />
+      <apidata name="ChannelPriority" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelPriority" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannel.ChannelPriority">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" ref="true" />
+      </containers>
+      <file name="0ab1a7bd-f9c4-4d96-4e86-bee28c0df0c0" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.CreateMessageSink(System.String,System.Object,System.String@)">
+      <topicdata group="api" />
+      <apidata name="CreateMessageSink" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="remoteChannelData">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="objectURI" out="true">
+          <referenceTo>
+            <type api="T:System.String" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Remoting.Messaging.IMessageSink" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelSender.CreateMessageSink(System.String,System.Object,System.String@)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelSender" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" ref="true" />
+      </containers>
+      <file name="4fa2e697-710d-f2e3-a50b-b6c50aa3c147" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpClientChannel.IsSecured">
+      <topicdata group="api" />
+      <apidata name="IsSecured" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsSecured" />
+      <setter name="set_IsSecured" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.ISecurableChannel.IsSecured">
+          <type api="T:System.Runtime.Remoting.Channels.ISecurableChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" ref="true" />
+      </containers>
+      <file name="f9c975a0-a012-6031-2da7-517c6bd8b5bd" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpClientChannel.Item(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Item(System.Object)">
+          <type api="T:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IDictionary.Item(System.Object)">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" ref="true" />
+      </containers>
+      <file name="5edd25c4-e782-eb01-3132-3a7ddb77394b" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpClientChannel.Keys">
+      <topicdata group="api" />
+      <apidata name="Keys" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Keys">
+          <type api="T:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Keys" />
+      <returns>
+        <type api="T:System.Collections.ICollection" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IDictionary.Keys">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" ref="true" />
+      </containers>
+      <file name="3a7a14e3-0628-6c75-6e76-eb3df630f753" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpClientChannel.Parse(System.String,System.String@)">
+      <topicdata group="api" />
+      <apidata name="Parse" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="objectURI" out="true">
+          <referenceTo>
+            <type api="T:System.String" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannel.Parse(System.String,System.String@)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpClientChannel" ref="true" />
+      </containers>
+      <file name="8085e778-8890-c1c3-f240-2ea6e1a6d608" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler" />
+      <apidata name="HttpRemotingHandler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Web.IHttpHandler" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+      </containers>
+      <file name="840bf6de-f9ec-fa98-d629-93e76532528d" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler">
+      <topicdata name="HttpRemotingHandler" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler" />
+      <apidata name="HttpRemotingHandler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.#ctor">
+          <element api="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.#ctor" />
+          <element api="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.#ctor(System.Type,System.Object)" />
+        </element>
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.IsReusable" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.ProcessRequest(System.Web.HttpContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler" />
+      </containers>
+      <file name="d48d7772-12eb-dc66-26a6-82ae7bb82a55" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler">
+      <topicdata name="HttpRemotingHandler" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler" />
+      <apidata name="HttpRemotingHandler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.ProcessRequest(System.Web.HttpContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler" />
+      </containers>
+      <file name="0b567e4b-27f1-570a-ec7d-d863cd0189ed" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler">
+      <topicdata name="HttpRemotingHandler" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler" />
+      <apidata name="HttpRemotingHandler" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.IsReusable" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler" />
+      </containers>
+      <file name="861afced-715b-7a8a-a3e9-d3f4d3a18372" />
+    </api>
+    <api id="Overload:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.#ctor" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.#ctor(System.Type,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler" ref="true" />
+      </containers>
+      <file name="b37013fb-053d-37e4-8e5e-52dd9bd8ea81" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.#ctor" />
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler" ref="true" />
+      </containers>
+      <file name="59e9bd72-c4c0-9dda-cda5-af95225f2138" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.#ctor(System.Type,System.Object)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.#ctor" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="srvID">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler" ref="true" />
+      </containers>
+      <file name="3d42d727-3c77-e948-0fe9-a14f424a1d57" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.IsReusable">
+      <topicdata group="api" />
+      <apidata name="IsReusable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsReusable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Web.IHttpHandler.IsReusable">
+          <type api="T:System.Web.IHttpHandler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler" ref="true" />
+      </containers>
+      <file name="401bd665-10bd-336c-021c-5c1047aa5bd0" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler.ProcessRequest(System.Web.HttpContext)">
+      <topicdata group="api" />
+      <apidata name="ProcessRequest" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.Web.HttpContext" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Web.IHttpHandler.ProcessRequest(System.Web.HttpContext)">
+          <type api="T:System.Web.IHttpHandler" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandler" ref="true" />
+      </containers>
+      <file name="b81500b0-d006-1f67-6b78-0483437fd894" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory" />
+      <apidata name="HttpRemotingHandlerFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Web.IHttpHandlerFactory" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+      </containers>
+      <file name="91289620-5cf1-d4f6-4585-48054d17eec3" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory">
+      <topicdata name="HttpRemotingHandlerFactory" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory" />
+      <apidata name="HttpRemotingHandlerFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory.#ctor" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory.GetHandler(System.Web.HttpContext,System.String,System.String,System.String)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory.ReleaseHandler(System.Web.IHttpHandler)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory" />
+      </containers>
+      <file name="e2f23331-e609-903a-822f-8d604156abe8" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory">
+      <topicdata name="HttpRemotingHandlerFactory" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory" />
+      <apidata name="HttpRemotingHandlerFactory" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory.GetHandler(System.Web.HttpContext,System.String,System.String,System.String)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory.ReleaseHandler(System.Web.IHttpHandler)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory" />
+      </containers>
+      <file name="242abcbf-331c-77c3-08e3-4156a4fb5ecc" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory" ref="true" />
+      </containers>
+      <file name="0f4e1169-d49a-a7b3-2c14-ff8c3d33f38b" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory.GetHandler(System.Web.HttpContext,System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="GetHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.Web.HttpContext" ref="true" />
+        </parameter>
+        <parameter name="verb">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="filePath">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Web.IHttpHandler" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Web.IHttpHandlerFactory.GetHandler(System.Web.HttpContext,System.String,System.String,System.String)">
+          <type api="T:System.Web.IHttpHandlerFactory" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory" ref="true" />
+      </containers>
+      <file name="0454725e-b263-7f52-cb49-9c6e3a955274" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory.ReleaseHandler(System.Web.IHttpHandler)">
+      <topicdata group="api" />
+      <apidata name="ReleaseHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="handler">
+          <type api="T:System.Web.IHttpHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Web.IHttpHandlerFactory.ReleaseHandler(System.Web.IHttpHandler)">
+          <type api="T:System.Web.IHttpHandlerFactory" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpRemotingHandlerFactory" ref="true" />
+      </containers>
+      <file name="d6a18b40-f2d9-f1b0-cbbd-cfe81f1c7fa4" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" />
+      <apidata name="HttpServerChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.Remoting.Channels.BaseChannelWithProperties" ref="true" />
+          <type api="T:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        <type api="T:System.Runtime.Remoting.Channels.IChannelReceiverHook" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+      </containers>
+      <file name="711406d4-dce6-771f-db1b-29d8a61875fe" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Channels.Http.HttpServerChannel">
+      <topicdata name="HttpServerChannel" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" />
+      <apidata name="HttpServerChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Add(System.Object,System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Clear" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Contains(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.CopyTo(System.Array,System.Int32)" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Count" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.GetEnumerator" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsFixedSize" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsReadOnly" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsSynchronized" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Remove(System.Object)" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.SyncRoot" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.System#Collections#IEnumerable#GetEnumerator" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Values" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelWithProperties.Properties" />
+        <element api="F:System.Runtime.Remoting.Channels.BaseChannelWithProperties.SinksWithProperties" />
+        <element api="Overload:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor">
+          <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor" />
+          <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor(System.Int32)" />
+          <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)" />
+          <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor(System.String,System.Int32)" />
+          <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor(System.String,System.Int32,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)" />
+        </element>
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.AddHookChannelUri(System.String)" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.ChannelData" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.ChannelName" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.ChannelPriority" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.ChannelScheme" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.ChannelSinkChain" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.GetChannelUri" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.GetUrlsForUri(System.String)" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.Item(System.Object)" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.Keys" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.Parse(System.String,System.String@)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.StartListening(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.StopListening(System.Object)" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.WantsToListen" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" />
+      </containers>
+      <file name="8aaede62-9f2c-673b-697b-cf6b94a08d1e" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Channels.Http.HttpServerChannel">
+      <topicdata name="HttpServerChannel" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" />
+      <apidata name="HttpServerChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Add(System.Object,System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Clear" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Contains(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.CopyTo(System.Array,System.Int32)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.GetEnumerator" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Remove(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.System#Collections#IEnumerable#GetEnumerator" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.AddHookChannelUri(System.String)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.GetChannelUri" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.GetUrlsForUri(System.String)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.Parse(System.String,System.String@)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.StartListening(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.StopListening(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" />
+      </containers>
+      <file name="05d98707-3a2f-2a84-9b25-b02ca0640837" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Channels.Http.HttpServerChannel">
+      <topicdata name="HttpServerChannel" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" />
+      <apidata name="HttpServerChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Count" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsFixedSize" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsReadOnly" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.IsSynchronized" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.SyncRoot" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Values" />
+        <element api="P:System.Runtime.Remoting.Channels.BaseChannelWithProperties.Properties" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.ChannelData" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.ChannelName" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.ChannelPriority" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.ChannelScheme" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.ChannelSinkChain" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.Item(System.Object)" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.Keys" />
+        <element api="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.WantsToListen" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" />
+      </containers>
+      <file name="99d26636-c253-8670-24e9-2a3d8fd083f6" />
+    </api>
+    <api id="Fields.T:System.Runtime.Remoting.Channels.Http.HttpServerChannel">
+      <topicdata name="HttpServerChannel" group="list" subgroup="Fields" typeTopicId="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" />
+      <apidata name="HttpServerChannel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor" />
+      <elements>
+        <element api="F:System.Runtime.Remoting.Channels.BaseChannelWithProperties.SinksWithProperties" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" />
+      </containers>
+      <file name="84fc6658-9968-0218-ff98-28d4fa7d7919" />
+    </api>
+    <api id="Overload:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor(System.Int32)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor(System.String,System.Int32)" />
+        <element api="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor(System.String,System.Int32,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="c433758e-f7b8-5e5f-67be-b5aa4ae9b338" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor" />
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="ed2a89de-0c6b-de4b-f0a6-54259b361be3" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor(System.Collections.IDictionary,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor" />
+      <parameters>
+        <parameter name="properties">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </parameter>
+        <parameter name="sinkProvider">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSinkProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="ee943b81-af99-5b82-95d0-ee003c5e01b6" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor(System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor" />
+      <parameters>
+        <parameter name="port">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="280f538f-109c-ae4a-92c1-bf573859cc8a" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor(System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="port">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="6e51cf42-1de2-a873-7ea2-41b23ecdfda2" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor(System.String,System.Int32,System.Runtime.Remoting.Channels.IServerChannelSinkProvider)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Channels.Http.HttpServerChannel.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="port">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sinkProvider">
+          <type api="T:System.Runtime.Remoting.Channels.IServerChannelSinkProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="092881ac-57d0-da87-b4a9-5dd213786642" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.AddHookChannelUri(System.String)">
+      <topicdata group="api" />
+      <apidata name="AddHookChannelUri" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="channelUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelReceiverHook.AddHookChannelUri(System.String)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiverHook" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="37c170af-29d6-4ba9-1c9f-11dd1d69e808" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.ChannelData">
+      <topicdata group="api" />
+      <apidata name="ChannelData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelData" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannelReceiver.ChannelData">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="4660a15a-5d33-2249-b055-cc09629d0144" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.ChannelName">
+      <topicdata group="api" />
+      <apidata name="ChannelName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannel.ChannelName">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="dc824e1e-d72e-eaf6-605b-d2f6ca2fb75d" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.ChannelPriority">
+      <topicdata group="api" />
+      <apidata name="ChannelPriority" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelPriority" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannel.ChannelPriority">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="b4ce989f-60d8-5ccf-4478-d1987f5e2b7a" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.ChannelScheme">
+      <topicdata group="api" />
+      <apidata name="ChannelScheme" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelScheme" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannelReceiverHook.ChannelScheme">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiverHook" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="d9cd4985-f80a-53b7-455d-4895695db9ed" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.ChannelSinkChain">
+      <topicdata group="api" />
+      <apidata name="ChannelSinkChain" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChannelSinkChain" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Channels.IServerChannelSink" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannelReceiverHook.ChannelSinkChain">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiverHook" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="be252c6c-3d6b-3f9a-9e1e-3e46005edeeb" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.GetChannelUri">
+      <topicdata group="api" />
+      <apidata name="GetChannelUri" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="4869a32c-3018-e10c-8f46-446f017973db" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.GetUrlsForUri(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetUrlsForUri" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="objectUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelReceiver.GetUrlsForUri(System.String)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="8996053b-1bb5-24a8-75a5-a6211103978c" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.Item(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Item(System.Object)">
+          <type api="T:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" set="true" />
+      <getter name="get_Item" />
+      <setter name="set_Item" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IDictionary.Item(System.Object)">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="6ab02002-5f9b-9257-5ba0-6732d7570d07" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.Keys">
+      <topicdata group="api" />
+      <apidata name="Keys" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties.Keys">
+          <type api="T:System.Runtime.Remoting.Channels.BaseChannelObjectWithProperties" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Keys" />
+      <returns>
+        <type api="T:System.Collections.ICollection" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Collections.IDictionary.Keys">
+          <type api="T:System.Collections.IDictionary" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="3bc8cbba-2f30-0113-db8e-6028fda25819" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.Parse(System.String,System.String@)">
+      <topicdata group="api" />
+      <apidata name="Parse" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="url">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="objectURI" out="true">
+          <referenceTo>
+            <type api="T:System.String" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannel.Parse(System.String,System.String@)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="cd3a4ca5-2b71-69db-d9dc-0d8c6f89c483" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.StartListening(System.Object)">
+      <topicdata group="api" />
+      <apidata name="StartListening" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelReceiver.StartListening(System.Object)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="ae4c7f4d-b379-f5fa-7f14-43d90314d1f9" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Channels.Http.HttpServerChannel.StopListening(System.Object)">
+      <topicdata group="api" />
+      <apidata name="StopListening" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Channels.IChannelReceiver.StopListening(System.Object)">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiver" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="d0b85407-105f-5d35-9422-b9293e506bfd" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Channels.Http.HttpServerChannel.WantsToListen">
+      <topicdata group="api" />
+      <apidata name="WantsToListen" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_WantsToListen" />
+      <setter name="set_WantsToListen" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Channels.IChannelReceiverHook.WantsToListen">
+          <type api="T:System.Runtime.Remoting.Channels.IChannelReceiverHook" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.Remoting" module="System.Runtime.Remoting" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Channels.Http" />
+        <type api="T:System.Runtime.Remoting.Channels.Http.HttpServerChannel" ref="true" />
+      </containers>
+      <file name="f1321934-4396-58b6-ba70-78ab836730d6" />
+    </api>
+  </apis>
+</reflection>

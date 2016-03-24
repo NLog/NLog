@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.DataTransfer.DragDrop">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.DataTransfer.DragDrop" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers" />
+      </elements>
+      <file name="56dc52cb-1907-166e-b3e4-f4c7184e3c8b" />
+    </api>
+    <api id="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers">
+      <topicdata group="api" />
+      <apidata name="DragDropModifiers" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers.None" />
+        <element api="F:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers.Shift" />
+        <element api="F:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers.Control" />
+        <element api="F:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers.Alt" />
+        <element api="F:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers.LeftButton" />
+        <element api="F:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers.MiddleButton" />
+        <element api="F:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers.RightButton" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ed679fed-51b6-c2ec-24af-ef287ae4068d" />
+    </api>
+    <api id="F:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers.Alt">
+      <topicdata group="api" notopic="" />
+      <apidata name="Alt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers" ref="false" />
+      </containers>
+      <file name="45ea1316-0022-2e3b-54a1-44c0cb96b5ba" />
+    </api>
+    <api id="F:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers.Control">
+      <topicdata group="api" notopic="" />
+      <apidata name="Control" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers" ref="false" />
+      </containers>
+      <file name="dbfec2cb-be95-3409-1395-3f8db7db88e7" />
+    </api>
+    <api id="F:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers.LeftButton">
+      <topicdata group="api" notopic="" />
+      <apidata name="LeftButton" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers" ref="false" />
+      </containers>
+      <file name="1d13697e-5ae1-2261-a7b2-65911dd4ed9b" />
+    </api>
+    <api id="F:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers.MiddleButton">
+      <topicdata group="api" notopic="" />
+      <apidata name="MiddleButton" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers" ref="false" />
+      </containers>
+      <file name="ff29dce5-042d-1cbd-0fa3-ce28968b9c68" />
+    </api>
+    <api id="F:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers" ref="false" />
+      </containers>
+      <file name="60d305a7-6856-ccc2-13f3-6102665b43be" />
+    </api>
+    <api id="F:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers.RightButton">
+      <topicdata group="api" notopic="" />
+      <apidata name="RightButton" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers" ref="false" />
+      </containers>
+      <file name="1fd98967-cb9c-ae93-b9fc-aace3de085bd" />
+    </api>
+    <api id="F:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers.Shift">
+      <topicdata group="api" notopic="" />
+      <apidata name="Shift" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.DragDrop" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.DragDrop.DragDropModifiers" ref="false" />
+      </containers>
+      <file name="293519db-4f8a-da88-d1a7-e864510f2984" />
+    </api>
+  </apis>
+</reflection>

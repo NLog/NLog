@@ -1,0 +1,1519 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Build">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Build.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Build.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Build.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Build.Exceptions">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Build.Exceptions" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Build.Exceptions.BuildAbortedException" />
+        <element api="T:Microsoft.Build.Exceptions.InternalLoggerException" />
+        <element api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" />
+        <element api="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" />
+      </elements>
+      <file name="e81fdad4-da27-736b-5057-f108b0b17594" />
+    </api>
+    <api id="T:Microsoft.Build.Exceptions.BuildAbortedException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Build.Exceptions.BuildAbortedException" />
+      <apidata name="BuildAbortedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+      </containers>
+      <file name="20687f3c-ba04-5947-ab72-bf32784b962d" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Build.Exceptions.BuildAbortedException">
+      <topicdata name="BuildAbortedException" group="list" subgroup="members" typeTopicId="T:Microsoft.Build.Exceptions.BuildAbortedException" />
+      <apidata name="BuildAbortedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.Build.Exceptions.BuildAbortedException.#ctor">
+          <element api="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor" />
+          <element api="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor(System.String)" />
+          <element api="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+          <element api="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor(System.String,System.Exception)" />
+        </element>
+        <element api="P:Microsoft.Build.Exceptions.BuildAbortedException.ErrorCode" />
+        <element api="M:Microsoft.Build.Exceptions.BuildAbortedException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="E:System.Exception.SerializeObjectState" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.BuildAbortedException" />
+      </containers>
+      <file name="5f8d5ec6-bbfd-b855-e230-f737279a9b12" />
+    </api>
+    <api id="Methods.T:Microsoft.Build.Exceptions.BuildAbortedException">
+      <topicdata name="BuildAbortedException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Build.Exceptions.BuildAbortedException" />
+      <apidata name="BuildAbortedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Build.Exceptions.BuildAbortedException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.BuildAbortedException" />
+      </containers>
+      <file name="58ec1fe3-ac4b-3b1b-03b5-d2a89c33953f" />
+    </api>
+    <api id="Properties.T:Microsoft.Build.Exceptions.BuildAbortedException">
+      <topicdata name="BuildAbortedException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Build.Exceptions.BuildAbortedException" />
+      <apidata name="BuildAbortedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Build.Exceptions.BuildAbortedException.ErrorCode" />
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.BuildAbortedException" />
+      </containers>
+      <file name="9c1e8417-6500-7158-dd41-a6f91139f163" />
+    </api>
+    <api id="Events.T:Microsoft.Build.Exceptions.BuildAbortedException">
+      <topicdata name="BuildAbortedException" group="list" subgroup="Events" typeTopicId="T:Microsoft.Build.Exceptions.BuildAbortedException" />
+      <apidata name="BuildAbortedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor" />
+      <elements>
+        <element api="E:System.Exception.SerializeObjectState" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.BuildAbortedException" />
+      </containers>
+      <file name="094aac27-eaa0-387d-0a48-089cd8c47a3a" />
+    </api>
+    <api id="Overload:Microsoft.Build.Exceptions.BuildAbortedException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Build.Exceptions.BuildAbortedException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor" />
+        <element api="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor(System.String)" />
+        <element api="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.BuildAbortedException" ref="true" />
+      </containers>
+      <file name="554a878d-fe9f-2ea7-3cff-fb01c67ba335" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Exceptions.BuildAbortedException.#ctor" />
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.BuildAbortedException" ref="true" />
+      </containers>
+      <file name="a1bb0a3e-371a-59a8-1774-d2c90675a577" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:Microsoft.Build.Exceptions.BuildAbortedException.#ctor" />
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.BuildAbortedException" ref="true" />
+      </containers>
+      <file name="9a5ed2a1-cae0-cb03-7771-8d9c3e0e8ca2" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Exceptions.BuildAbortedException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.BuildAbortedException" ref="true" />
+      </containers>
+      <file name="cf1cbe27-a5cb-85fc-5593-f5c4f6b27e83" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.BuildAbortedException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Exceptions.BuildAbortedException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.BuildAbortedException" ref="true" />
+      </containers>
+      <file name="d6bcf728-8a83-f431-dea2-35417f01e913" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.BuildAbortedException.ErrorCode">
+      <topicdata group="api" />
+      <apidata name="ErrorCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ErrorCode" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.BuildAbortedException" ref="true" />
+      </containers>
+      <file name="5059de39-0f60-bea3-01d6-c99f337f42c9" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.BuildAbortedException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name="GetObjectData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Exception" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.Serialization.ISerializable" ref="true" />
+        </member>
+        <member api="M:System.Runtime.InteropServices._Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.InteropServices._Exception" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.BuildAbortedException" ref="true" />
+      </containers>
+      <file name="962ffcc8-93a5-59f0-87c1-9135cf8999e0" />
+    </api>
+    <api id="T:Microsoft.Build.Exceptions.InternalLoggerException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Build.Exceptions.InternalLoggerException" />
+      <apidata name="InternalLoggerException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.InternalLoggerException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+      </containers>
+      <file name="8eb433bd-eaa0-cfc6-70ab-0eae5c187c2d" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Build.Exceptions.InternalLoggerException">
+      <topicdata name="InternalLoggerException" group="list" subgroup="members" typeTopicId="T:Microsoft.Build.Exceptions.InternalLoggerException" />
+      <apidata name="InternalLoggerException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.InternalLoggerException.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.Build.Exceptions.InternalLoggerException.#ctor">
+          <element api="M:Microsoft.Build.Exceptions.InternalLoggerException.#ctor" />
+          <element api="M:Microsoft.Build.Exceptions.InternalLoggerException.#ctor(System.String)" />
+          <element api="M:Microsoft.Build.Exceptions.InternalLoggerException.#ctor(System.String,System.Exception)" />
+        </element>
+        <element api="P:Microsoft.Build.Exceptions.InternalLoggerException.BuildEventArgs" />
+        <element api="P:Microsoft.Build.Exceptions.InternalLoggerException.ErrorCode" />
+        <element api="M:Microsoft.Build.Exceptions.InternalLoggerException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="P:Microsoft.Build.Exceptions.InternalLoggerException.HelpKeyword" />
+        <element api="P:Microsoft.Build.Exceptions.InternalLoggerException.InitializationException" />
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InternalLoggerException" />
+      </containers>
+      <file name="4287d0ed-e429-8504-7881-6b3c3d0176f7" />
+    </api>
+    <api id="Methods.T:Microsoft.Build.Exceptions.InternalLoggerException">
+      <topicdata name="InternalLoggerException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Build.Exceptions.InternalLoggerException" />
+      <apidata name="InternalLoggerException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.InternalLoggerException.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Build.Exceptions.InternalLoggerException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InternalLoggerException" />
+      </containers>
+      <file name="2ca152f2-f65c-02b3-0f92-8a628ef8ea8c" />
+    </api>
+    <api id="Properties.T:Microsoft.Build.Exceptions.InternalLoggerException">
+      <topicdata name="InternalLoggerException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Build.Exceptions.InternalLoggerException" />
+      <apidata name="InternalLoggerException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.InternalLoggerException.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Build.Exceptions.InternalLoggerException.BuildEventArgs" />
+        <element api="P:Microsoft.Build.Exceptions.InternalLoggerException.ErrorCode" />
+        <element api="P:Microsoft.Build.Exceptions.InternalLoggerException.HelpKeyword" />
+        <element api="P:Microsoft.Build.Exceptions.InternalLoggerException.InitializationException" />
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InternalLoggerException" />
+      </containers>
+      <file name="ba22eb9c-4409-807f-77bc-13f932aa15ee" />
+    </api>
+    <api id="Overload:Microsoft.Build.Exceptions.InternalLoggerException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Build.Exceptions.InternalLoggerException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Build.Exceptions.InternalLoggerException.#ctor" />
+        <element api="M:Microsoft.Build.Exceptions.InternalLoggerException.#ctor(System.String)" />
+        <element api="M:Microsoft.Build.Exceptions.InternalLoggerException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InternalLoggerException" ref="true" />
+      </containers>
+      <file name="fafacc22-acbb-af7c-fc46-25143f04c26b" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.InternalLoggerException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Exceptions.InternalLoggerException.#ctor" />
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InternalLoggerException" ref="true" />
+      </containers>
+      <file name="9a9ccc02-c95d-fca5-43c2-497146aa4e2f" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.InternalLoggerException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Exceptions.InternalLoggerException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InternalLoggerException" ref="true" />
+      </containers>
+      <file name="f6325e64-b22a-1947-7ee1-e3f697daa16a" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.InternalLoggerException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Exceptions.InternalLoggerException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InternalLoggerException" ref="true" />
+      </containers>
+      <file name="cd073da5-99f3-cd83-8884-6bc574e50c90" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.InternalLoggerException.BuildEventArgs">
+      <topicdata group="api" />
+      <apidata name="BuildEventArgs" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BuildEventArgs" />
+      <returns>
+        <type api="T:Microsoft.Build.Framework.BuildEventArgs" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InternalLoggerException" ref="true" />
+      </containers>
+      <file name="48c80815-e8d1-eccd-b674-8373f966d819" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.InternalLoggerException.ErrorCode">
+      <topicdata group="api" />
+      <apidata name="ErrorCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ErrorCode" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InternalLoggerException" ref="true" />
+      </containers>
+      <file name="ce20b4fb-198f-6645-0ab6-d70b7cc2452e" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.InternalLoggerException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name="GetObjectData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Exception" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.Serialization.ISerializable" ref="true" />
+        </member>
+        <member api="M:System.Runtime.InteropServices._Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.InteropServices._Exception" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InternalLoggerException" ref="true" />
+      </containers>
+      <file name="fa1bbebc-1b05-2f71-9c30-561f0be8fbae" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.InternalLoggerException.HelpKeyword">
+      <topicdata group="api" />
+      <apidata name="HelpKeyword" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_HelpKeyword" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InternalLoggerException" ref="true" />
+      </containers>
+      <file name="f7cdc958-cc85-71da-5c35-9305afcad932" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.InternalLoggerException.InitializationException">
+      <topicdata group="api" />
+      <apidata name="InitializationException" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InitializationException" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InternalLoggerException" ref="true" />
+      </containers>
+      <file name="0bc91987-0743-e3fb-ae86-3c2a14afd23c" />
+    </api>
+    <api id="T:Microsoft.Build.Exceptions.InvalidProjectFileException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Build.Exceptions.InvalidProjectFileException" />
+      <apidata name="InvalidProjectFileException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+      </containers>
+      <file name="688e0f0c-dff3-43b9-e6ae-7308012f9302" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Build.Exceptions.InvalidProjectFileException">
+      <topicdata name="InvalidProjectFileException" group="list" subgroup="members" typeTopicId="T:Microsoft.Build.Exceptions.InvalidProjectFileException" />
+      <apidata name="InvalidProjectFileException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor">
+          <element api="M:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor" />
+          <element api="M:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor(System.String)" />
+          <element api="M:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor(System.String,System.Exception)" />
+          <element api="M:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String)" />
+        </element>
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.BaseMessage" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.ColumnNumber" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.EndColumnNumber" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.EndLineNumber" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.ErrorCode" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.ErrorSubcategory" />
+        <element api="M:Microsoft.Build.Exceptions.InvalidProjectFileException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.HasBeenLogged" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.HelpKeyword" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.LineNumber" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.Message" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.ProjectFile" />
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" />
+      </containers>
+      <file name="8ae24072-bb9c-4253-281f-a1a4d404d16a" />
+    </api>
+    <api id="Methods.T:Microsoft.Build.Exceptions.InvalidProjectFileException">
+      <topicdata name="InvalidProjectFileException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Build.Exceptions.InvalidProjectFileException" />
+      <apidata name="InvalidProjectFileException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Build.Exceptions.InvalidProjectFileException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" />
+      </containers>
+      <file name="c43a6ad5-c486-19ff-5c45-aafb1f2987ce" />
+    </api>
+    <api id="Properties.T:Microsoft.Build.Exceptions.InvalidProjectFileException">
+      <topicdata name="InvalidProjectFileException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Build.Exceptions.InvalidProjectFileException" />
+      <apidata name="InvalidProjectFileException" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.BaseMessage" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.ColumnNumber" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.EndColumnNumber" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.EndLineNumber" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.ErrorCode" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.ErrorSubcategory" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.HasBeenLogged" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.HelpKeyword" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.LineNumber" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.Message" />
+        <element api="P:Microsoft.Build.Exceptions.InvalidProjectFileException.ProjectFile" />
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" />
+      </containers>
+      <file name="a1e552a3-0ecb-cf27-5106-a8257ee5219e" />
+    </api>
+    <api id="Overload:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Build.Exceptions.InvalidProjectFileException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor" />
+        <element api="M:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor(System.String)" />
+        <element api="M:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor(System.String,System.Exception)" />
+        <element api="M:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="58f7027b-65ee-1bd9-a5bf-8f7d7ad4f66e" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor" />
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="fa031e89-a9ec-4241-6bcc-ca382407bd1b" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="85936a61-02d1-c1de-8feb-47b0c02c58db" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="9905ba07-716d-2968-1fd8-0d7807a7df58" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Exceptions.InvalidProjectFileException.#ctor" />
+      <parameters>
+        <parameter name="projectFile">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="lineNumber">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="columnNumber">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="endLineNumber">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="endColumnNumber">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="errorSubcategory">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="errorCode">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="helpKeyword">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="9b3c3967-e271-6266-0fcd-e93a3c35745e" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.InvalidProjectFileException.BaseMessage">
+      <topicdata group="api" />
+      <apidata name="BaseMessage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BaseMessage" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="7457b3ab-53d8-0d82-75a1-52f6724f98b2" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.InvalidProjectFileException.ColumnNumber">
+      <topicdata group="api" />
+      <apidata name="ColumnNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ColumnNumber" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="704b386b-2bef-e8f2-ac92-74ece19f5050" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.InvalidProjectFileException.EndColumnNumber">
+      <topicdata group="api" />
+      <apidata name="EndColumnNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EndColumnNumber" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="97fe38d8-eb35-bada-ae03-dd4fb6556593" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.InvalidProjectFileException.EndLineNumber">
+      <topicdata group="api" />
+      <apidata name="EndLineNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EndLineNumber" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="6a77d525-cd34-5e04-5650-15d98c75061f" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.InvalidProjectFileException.ErrorCode">
+      <topicdata group="api" />
+      <apidata name="ErrorCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ErrorCode" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="fdda43a7-0b57-6fe2-4c7f-33a7b2d7925f" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.InvalidProjectFileException.ErrorSubcategory">
+      <topicdata group="api" />
+      <apidata name="ErrorSubcategory" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ErrorSubcategory" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="fa714c19-f99e-167a-40b2-d199cfed9267" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.InvalidProjectFileException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name="GetObjectData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Exception" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.Serialization.ISerializable" ref="true" />
+        </member>
+        <member api="M:System.Runtime.InteropServices._Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.InteropServices._Exception" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="8cf15076-1d38-c0f0-4250-d77017ae2b84" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.InvalidProjectFileException.HasBeenLogged">
+      <topicdata group="api" />
+      <apidata name="HasBeenLogged" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_HasBeenLogged" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="6d3f8c82-6fa4-894c-14cc-351218a2a5a5" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.InvalidProjectFileException.HelpKeyword">
+      <topicdata group="api" />
+      <apidata name="HelpKeyword" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_HelpKeyword" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="32dc0bca-c697-62f8-7cb3-8c94f15f4cd4" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.InvalidProjectFileException.LineNumber">
+      <topicdata group="api" />
+      <apidata name="LineNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LineNumber" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="1c918551-396f-d65c-fee4-80dcb36eb1c8" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.InvalidProjectFileException.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Exception.Message">
+          <type api="T:System.Exception" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Message" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.InteropServices._Exception.Message">
+          <type api="T:System.Runtime.InteropServices._Exception" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="0bf56ac0-79a8-0d08-8181-ff181bfc7cc1" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.InvalidProjectFileException.ProjectFile">
+      <topicdata group="api" />
+      <apidata name="ProjectFile" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ProjectFile" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidProjectFileException" ref="true" />
+      </containers>
+      <file name="43b8de4c-66ff-a05c-f110-2ca80077e560" />
+    </api>
+    <api id="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" />
+      <apidata name="InvalidToolsetDefinitionException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+      </containers>
+      <file name="479b4a07-5ddd-b4f9-8e26-7d1c22b04af1" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException">
+      <topicdata name="InvalidToolsetDefinitionException" group="list" subgroup="members" typeTopicId="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" />
+      <apidata name="InvalidToolsetDefinitionException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor">
+          <element api="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor" />
+          <element api="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor(System.String)" />
+          <element api="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+          <element api="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor(System.String,System.Exception)" />
+          <element api="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor(System.String,System.String)" />
+          <element api="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor(System.String,System.String,System.Exception)" />
+        </element>
+        <element api="P:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.ErrorCode" />
+        <element api="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="E:System.Exception.SerializeObjectState" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" />
+      </containers>
+      <file name="23c0285d-6112-4822-68e5-a9c534240007" />
+    </api>
+    <api id="Methods.T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException">
+      <topicdata name="InvalidToolsetDefinitionException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" />
+      <apidata name="InvalidToolsetDefinitionException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" />
+      </containers>
+      <file name="25de39c8-36e7-c85e-7537-1506bb9649d7" />
+    </api>
+    <api id="Properties.T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException">
+      <topicdata name="InvalidToolsetDefinitionException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" />
+      <apidata name="InvalidToolsetDefinitionException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.ErrorCode" />
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" />
+      </containers>
+      <file name="3b61dcde-e7e6-ff1e-7696-c54ffd010e5b" />
+    </api>
+    <api id="Events.T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException">
+      <topicdata name="InvalidToolsetDefinitionException" group="list" subgroup="Events" typeTopicId="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" />
+      <apidata name="InvalidToolsetDefinitionException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor" />
+      <elements>
+        <element api="E:System.Exception.SerializeObjectState" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" />
+      </containers>
+      <file name="8a648b29-027f-48e2-82d3-3a702183211c" />
+    </api>
+    <api id="Overload:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor" />
+        <element api="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor(System.String)" />
+        <element api="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor(System.String,System.Exception)" />
+        <element api="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor(System.String,System.String)" />
+        <element api="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor(System.String,System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" ref="true" />
+      </containers>
+      <file name="c077b5ee-1c41-32d8-0b46-2fab6d48b13e" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor" />
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" ref="true" />
+      </containers>
+      <file name="fa435bd1-fe47-3409-9a31-46580b7334ad" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor" />
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" ref="true" />
+      </containers>
+      <file name="06012dab-f2b5-4a15-29c8-f7a7aae8d307" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" ref="true" />
+      </containers>
+      <file name="5948cc31-fde2-df0f-7171-c98e80fa01b9" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" ref="true" />
+      </containers>
+      <file name="95289102-329b-a945-c244-9888f4f9afbc" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="errorCode">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" ref="true" />
+      </containers>
+      <file name="a02ae497-b7a2-0a97-689a-498934f57892" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor(System.String,System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="errorCode">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" ref="true" />
+      </containers>
+      <file name="00cb2eea-ad49-d42b-e617-f6cc711538a7" />
+    </api>
+    <api id="P:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.ErrorCode">
+      <topicdata group="api" />
+      <apidata name="ErrorCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ErrorCode" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" ref="true" />
+      </containers>
+      <file name="1f7e7745-9cc7-14cd-a816-b5063fa4d0ff" />
+    </api>
+    <api id="M:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <topicdata group="api" />
+      <apidata name="GetObjectData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Exception" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="info">
+          <type api="T:System.Runtime.Serialization.SerializationInfo" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Runtime.Serialization.StreamingContext" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Serialization.ISerializable.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.Serialization.ISerializable" ref="true" />
+        </member>
+        <member api="M:System.Runtime.InteropServices._Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+          <type api="T:System.Runtime.InteropServices._Exception" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Exceptions" />
+        <type api="T:Microsoft.Build.Exceptions.InvalidToolsetDefinitionException" ref="true" />
+      </containers>
+      <file name="c0d9d107-b79e-70db-d899-031fea9c7057" />
+    </api>
+  </apis>
+</reflection>

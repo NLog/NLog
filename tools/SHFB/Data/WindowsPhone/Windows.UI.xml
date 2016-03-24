@@ -1,0 +1,4234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Runtime.WindowsRuntime">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.WindowsRuntime.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.WindowsRuntime.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Runtime.WindowsRuntime.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30508.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30508.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.UI">
+      <topicdata group="api" />
+      <apidata name="Windows.UI" group="namespace" />
+      <elements>
+        <element api="T:Windows.UI.Color" />
+        <element api="T:Windows.UI.ColorHelper" />
+        <element api="T:Windows.UI.Colors" />
+      </elements>
+      <file name="749abcdc-8056-0727-b539-2e7cacd46f7d" />
+    </api>
+    <api id="T:Windows.UI.Color">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Color" />
+      <apidata name="Color" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <implements>
+        <type api="T:System.IFormattable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="3e9552ea-9790-baee-158e-0c61bf5ccaf5" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Color">
+      <topicdata name="Color" group="list" subgroup="members" typeTopicId="T:Windows.UI.Color" />
+      <apidata name="Color" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:Windows.UI.Color.Equals">
+          <element api="M:Windows.UI.Color.Equals(Windows.UI.Color)">
+            <libraries>
+              <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+          <element api="M:System.ValueType.Equals(System.Object)">
+            <libraries>
+              <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+          <element api="M:Windows.UI.Color.Equals(System.Object)">
+            <libraries>
+              <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+        </element>
+        <element api="Overload:Windows.UI.Color.GetHashCode">
+          <element api="M:System.ValueType.GetHashCode">
+            <libraries>
+              <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+          <element api="M:Windows.UI.Color.GetHashCode">
+            <libraries>
+              <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+        </element>
+        <element api="Overload:Windows.UI.Color.ToString">
+          <element api="M:System.ValueType.ToString">
+            <libraries>
+              <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+          <element api="M:Windows.UI.Color.ToString">
+            <libraries>
+              <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+          <element api="M:Windows.UI.Color.ToString(System.IFormatProvider)">
+            <libraries>
+              <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+        </element>
+        <element api="P:Windows.UI.Color.A">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.UI.Color.B">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.UI.Color.FromArgb(System.Byte,System.Byte,System.Byte,System.Byte)">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.UI.Color.G">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.UI.Color.op_Equality(Windows.UI.Color,Windows.UI.Color)">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.UI.Color.op_Inequality(Windows.UI.Color,Windows.UI.Color)">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.UI.Color.R">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.UI.Color.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="F:Windows.UI.Color.A">
+          <libraries>
+            <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="F:Windows.UI.Color.B">
+          <libraries>
+            <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="F:Windows.UI.Color.G">
+          <libraries>
+            <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="F:Windows.UI.Color.R">
+          <libraries>
+            <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" />
+      </containers>
+      <file name="7db696c7-145f-d2d4-f8b0-8219652a758f" />
+    </api>
+    <api id="Methods.T:Windows.UI.Color">
+      <topicdata name="Color" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Color" />
+      <apidata name="Color" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="Overload:Windows.UI.Color.Equals">
+          <element api="M:Windows.UI.Color.Equals(Windows.UI.Color)">
+            <libraries>
+              <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+          <element api="M:System.ValueType.Equals(System.Object)">
+            <libraries>
+              <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+          <element api="M:Windows.UI.Color.Equals(System.Object)">
+            <libraries>
+              <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+        </element>
+        <element api="Overload:Windows.UI.Color.GetHashCode">
+          <element api="M:System.ValueType.GetHashCode">
+            <libraries>
+              <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+          <element api="M:Windows.UI.Color.GetHashCode">
+            <libraries>
+              <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+        </element>
+        <element api="Overload:Windows.UI.Color.ToString">
+          <element api="M:System.ValueType.ToString">
+            <libraries>
+              <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+          <element api="M:Windows.UI.Color.ToString">
+            <libraries>
+              <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+          <element api="M:Windows.UI.Color.ToString(System.IFormatProvider)">
+            <libraries>
+              <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            </libraries>
+          </element>
+        </element>
+        <element api="M:Windows.UI.Color.FromArgb(System.Byte,System.Byte,System.Byte,System.Byte)">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.UI.Color.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" />
+      </containers>
+      <file name="1d70d922-b7d3-c25a-0af0-d4703089cf1e" />
+    </api>
+    <api id="Operators.T:Windows.UI.Color">
+      <topicdata name="Color" group="list" subgroup="Operators" subsubgroup="Operators" typeTopicId="T:Windows.UI.Color" />
+      <apidata name="Color" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.Color.op_Equality(Windows.UI.Color,Windows.UI.Color)">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.UI.Color.op_Inequality(Windows.UI.Color,Windows.UI.Color)">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" />
+      </containers>
+      <file name="eeb5a8ce-7a52-0a04-ba91-611750da57b3" />
+    </api>
+    <api id="Properties.T:Windows.UI.Color">
+      <topicdata name="Color" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Color" />
+      <apidata name="Color" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Color.A">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.UI.Color.B">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.UI.Color.G">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.UI.Color.R">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" />
+      </containers>
+      <file name="82b8441e-15c6-8502-0fc7-537a350770c8" />
+    </api>
+    <api id="Fields.T:Windows.UI.Color">
+      <topicdata name="Color" group="list" subgroup="Fields" typeTopicId="T:Windows.UI.Color" />
+      <apidata name="Color" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.Color.A">
+          <libraries>
+            <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="F:Windows.UI.Color.B">
+          <libraries>
+            <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="F:Windows.UI.Color.G">
+          <libraries>
+            <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="F:Windows.UI.Color.R">
+          <libraries>
+            <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" />
+      </containers>
+      <file name="a2d6a5d9-63fe-acb6-9c21-b60124daf194" />
+    </api>
+    <api id="Overload:Windows.UI.Color.Equals">
+      <topicdata name="Equals" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.Color" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.UI.Color.Equals(Windows.UI.Color)">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <libraries>
+            <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.UI.Color.Equals(System.Object)">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="2d6d2b45-7e80-46a2-1d70-aec0218b09ab" />
+    </api>
+    <api id="Overload:Windows.UI.Color.GetHashCode">
+      <topicdata name="GetHashCode" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.Color" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ValueType.GetHashCode">
+          <libraries>
+            <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.UI.Color.GetHashCode">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="516cf81f-530f-48fe-35e5-2971508bb6f8" />
+    </api>
+    <api id="Overload:Windows.UI.Color.ToString">
+      <topicdata name="ToString" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.Color" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ValueType.ToString">
+          <libraries>
+            <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.UI.Color.ToString">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.UI.Color.ToString(System.IFormatProvider)">
+          <libraries>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="074b1cf3-2a57-24de-b7c0-026f3862610e" />
+    </api>
+    <api id="P:Windows.UI.Color.A">
+      <topicdata group="api" />
+      <apidata name="A" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_A" />
+      <setter name="set_A" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="08f8e886-7093-76a5-0498-3e2e2f781d03" />
+    </api>
+    <api id="P:Windows.UI.Color.B">
+      <topicdata group="api" />
+      <apidata name="B" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_B" />
+      <setter name="set_B" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="c9edc286-06fb-13e0-94df-bcd20fd79fde" />
+    </api>
+    <api id="M:Windows.UI.Color.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.Color.Equals" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.Equals(System.Object)">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="o">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="c75ee63b-d3a6-9828-3543-42aec67920f3" />
+    </api>
+    <api id="M:Windows.UI.Color.Equals(Windows.UI.Color)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.Color.Equals" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="color">
+          <type api="T:Windows.UI.Color" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="92c8c0dd-6521-fbd0-9832-13bd8c1f5450" />
+    </api>
+    <api id="M:Windows.UI.Color.FromArgb(System.Byte,System.Byte,System.Byte,System.Byte)">
+      <topicdata group="api" />
+      <apidata name="FromArgb" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="a">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="r">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="g">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="b">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="a9171fc3-c49e-3371-7dde-dc9941d60027" />
+    </api>
+    <api id="P:Windows.UI.Color.G">
+      <topicdata group="api" />
+      <apidata name="G" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_G" />
+      <setter name="set_G" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="e62dbfb5-d207-366a-47e7-96045d93225b" />
+    </api>
+    <api id="M:Windows.UI.Color.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.Color.GetHashCode" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.GetHashCode">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="6da21077-6e0b-7442-5872-fdec42d1664e" />
+    </api>
+    <api id="M:Windows.UI.Color.op_Equality(Windows.UI.Color,Windows.UI.Color)">
+      <topicdata group="api" />
+      <apidata name="Equality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="color1">
+          <type api="T:Windows.UI.Color" ref="false" />
+        </parameter>
+        <parameter name="color2">
+          <type api="T:Windows.UI.Color" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="bc45ca3e-8328-0155-f90a-9ccf39c6a936" />
+    </api>
+    <api id="M:Windows.UI.Color.op_Inequality(Windows.UI.Color,Windows.UI.Color)">
+      <topicdata group="api" />
+      <apidata name="Inequality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="color1">
+          <type api="T:Windows.UI.Color" ref="false" />
+        </parameter>
+        <parameter name="color2">
+          <type api="T:Windows.UI.Color" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="c9d47766-d726-4ce8-5cb4-ef0d51fdbaeb" />
+    </api>
+    <api id="P:Windows.UI.Color.R">
+      <topicdata group="api" />
+      <apidata name="R" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_R" />
+      <setter name="set_R" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="007b9042-1f0b-b493-eacf-91c36d21e779" />
+    </api>
+    <api id="M:Windows.UI.Color.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+      <topicdata group="api" eiiName="IFormattable.ToString" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="provider">
+          <type api="T:System.IFormatProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.IFormattable.ToString(System.String,System.IFormatProvider)">
+          <type api="T:System.IFormattable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="517caaef-64d6-03b7-fe18-6db89b87e02c" />
+    </api>
+    <api id="M:Windows.UI.Color.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.Color.ToString" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.ToString">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="2c19fb54-4efa-c2fa-d298-f7d8fda47d84" />
+    </api>
+    <api id="M:Windows.UI.Color.ToString(System.IFormatProvider)">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.UI.Color.ToString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="provider">
+          <type api="T:System.IFormatProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30508.0" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="47c3d0c0-383f-703e-e30f-9dc5ce908d82" />
+    </api>
+    <api id="F:Windows.UI.Color.A">
+      <topicdata group="api" />
+      <apidata name="A" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="4eed6289-1afc-8a71-eec6-dcd306f9c4ee" />
+    </api>
+    <api id="F:Windows.UI.Color.B">
+      <topicdata group="api" />
+      <apidata name="B" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="84edcc24-c667-dd91-6047-e6aa26a9bc38" />
+    </api>
+    <api id="F:Windows.UI.Color.G">
+      <topicdata group="api" />
+      <apidata name="G" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="e4c73e43-d8ec-3ee8-f473-a8e09adb5002" />
+    </api>
+    <api id="F:Windows.UI.Color.R">
+      <topicdata group="api" />
+      <apidata name="R" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Color" ref="false" />
+      </containers>
+      <file name="95b7225e-66e8-badb-f381-8ad226feb54a" />
+    </api>
+    <api id="T:Windows.UI.ColorHelper">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.ColorHelper" />
+      <apidata name="ColorHelper" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.IColorHelper" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="068e6054-bb76-7854-2589-42e587b46b5c" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.ColorHelper">
+      <topicdata name="ColorHelper" group="list" subgroup="members" typeTopicId="T:Windows.UI.ColorHelper" />
+      <apidata name="ColorHelper" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.ColorHelper.FromArgb(System.Byte,System.Byte,System.Byte,System.Byte)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.ColorHelper" />
+      </containers>
+      <file name="1a8016a1-e35f-b06a-0575-c178c99eaca7" />
+    </api>
+    <api id="Methods.T:Windows.UI.ColorHelper">
+      <topicdata name="ColorHelper" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.ColorHelper" />
+      <apidata name="ColorHelper" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.ColorHelper.FromArgb(System.Byte,System.Byte,System.Byte,System.Byte)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.ColorHelper" />
+      </containers>
+      <file name="d3c4a09c-f9c5-a1bd-b335-5eaf61a2cedb" />
+    </api>
+    <api id="M:Windows.UI.ColorHelper.FromArgb(System.Byte,System.Byte,System.Byte,System.Byte)">
+      <topicdata group="api" />
+      <apidata name="FromArgb" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="a" in="true">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="r" in="true">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="g" in="true">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="b" in="true">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.ColorHelper" ref="true" />
+      </containers>
+      <file name="2539166e-a667-ea7c-c959-9da292377993" />
+    </api>
+    <api id="T:Windows.UI.Colors">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Colors" />
+      <apidata name="Colors" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.IColors" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="1635a002-f4f5-d034-fe9d-01bc9fe58234" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Colors">
+      <topicdata name="Colors" group="list" subgroup="members" typeTopicId="T:Windows.UI.Colors" />
+      <apidata name="Colors" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.Colors.AliceBlue" />
+        <element api="P:Windows.UI.Colors.AntiqueWhite" />
+        <element api="P:Windows.UI.Colors.Aqua" />
+        <element api="P:Windows.UI.Colors.Aquamarine" />
+        <element api="P:Windows.UI.Colors.Azure" />
+        <element api="P:Windows.UI.Colors.Beige" />
+        <element api="P:Windows.UI.Colors.Bisque" />
+        <element api="P:Windows.UI.Colors.Black" />
+        <element api="P:Windows.UI.Colors.BlanchedAlmond" />
+        <element api="P:Windows.UI.Colors.Blue" />
+        <element api="P:Windows.UI.Colors.BlueViolet" />
+        <element api="P:Windows.UI.Colors.Brown" />
+        <element api="P:Windows.UI.Colors.BurlyWood" />
+        <element api="P:Windows.UI.Colors.CadetBlue" />
+        <element api="P:Windows.UI.Colors.Chartreuse" />
+        <element api="P:Windows.UI.Colors.Chocolate" />
+        <element api="P:Windows.UI.Colors.Coral" />
+        <element api="P:Windows.UI.Colors.CornflowerBlue" />
+        <element api="P:Windows.UI.Colors.Cornsilk" />
+        <element api="P:Windows.UI.Colors.Crimson" />
+        <element api="P:Windows.UI.Colors.Cyan" />
+        <element api="P:Windows.UI.Colors.DarkBlue" />
+        <element api="P:Windows.UI.Colors.DarkCyan" />
+        <element api="P:Windows.UI.Colors.DarkGoldenrod" />
+        <element api="P:Windows.UI.Colors.DarkGray" />
+        <element api="P:Windows.UI.Colors.DarkGreen" />
+        <element api="P:Windows.UI.Colors.DarkKhaki" />
+        <element api="P:Windows.UI.Colors.DarkMagenta" />
+        <element api="P:Windows.UI.Colors.DarkOliveGreen" />
+        <element api="P:Windows.UI.Colors.DarkOrange" />
+        <element api="P:Windows.UI.Colors.DarkOrchid" />
+        <element api="P:Windows.UI.Colors.DarkRed" />
+        <element api="P:Windows.UI.Colors.DarkSalmon" />
+        <element api="P:Windows.UI.Colors.DarkSeaGreen" />
+        <element api="P:Windows.UI.Colors.DarkSlateBlue" />
+        <element api="P:Windows.UI.Colors.DarkSlateGray" />
+        <element api="P:Windows.UI.Colors.DarkTurquoise" />
+        <element api="P:Windows.UI.Colors.DarkViolet" />
+        <element api="P:Windows.UI.Colors.DeepPink" />
+        <element api="P:Windows.UI.Colors.DeepSkyBlue" />
+        <element api="P:Windows.UI.Colors.DimGray" />
+        <element api="P:Windows.UI.Colors.DodgerBlue" />
+        <element api="P:Windows.UI.Colors.Firebrick" />
+        <element api="P:Windows.UI.Colors.FloralWhite" />
+        <element api="P:Windows.UI.Colors.ForestGreen" />
+        <element api="P:Windows.UI.Colors.Fuchsia" />
+        <element api="P:Windows.UI.Colors.Gainsboro" />
+        <element api="P:Windows.UI.Colors.GhostWhite" />
+        <element api="P:Windows.UI.Colors.Gold" />
+        <element api="P:Windows.UI.Colors.Goldenrod" />
+        <element api="P:Windows.UI.Colors.Gray" />
+        <element api="P:Windows.UI.Colors.Green" />
+        <element api="P:Windows.UI.Colors.GreenYellow" />
+        <element api="P:Windows.UI.Colors.Honeydew" />
+        <element api="P:Windows.UI.Colors.HotPink" />
+        <element api="P:Windows.UI.Colors.IndianRed" />
+        <element api="P:Windows.UI.Colors.Indigo" />
+        <element api="P:Windows.UI.Colors.Ivory" />
+        <element api="P:Windows.UI.Colors.Khaki" />
+        <element api="P:Windows.UI.Colors.Lavender" />
+        <element api="P:Windows.UI.Colors.LavenderBlush" />
+        <element api="P:Windows.UI.Colors.LawnGreen" />
+        <element api="P:Windows.UI.Colors.LemonChiffon" />
+        <element api="P:Windows.UI.Colors.LightBlue" />
+        <element api="P:Windows.UI.Colors.LightCoral" />
+        <element api="P:Windows.UI.Colors.LightCyan" />
+        <element api="P:Windows.UI.Colors.LightGoldenrodYellow" />
+        <element api="P:Windows.UI.Colors.LightGray" />
+        <element api="P:Windows.UI.Colors.LightGreen" />
+        <element api="P:Windows.UI.Colors.LightPink" />
+        <element api="P:Windows.UI.Colors.LightSalmon" />
+        <element api="P:Windows.UI.Colors.LightSeaGreen" />
+        <element api="P:Windows.UI.Colors.LightSkyBlue" />
+        <element api="P:Windows.UI.Colors.LightSlateGray" />
+        <element api="P:Windows.UI.Colors.LightSteelBlue" />
+        <element api="P:Windows.UI.Colors.LightYellow" />
+        <element api="P:Windows.UI.Colors.Lime" />
+        <element api="P:Windows.UI.Colors.LimeGreen" />
+        <element api="P:Windows.UI.Colors.Linen" />
+        <element api="P:Windows.UI.Colors.Magenta" />
+        <element api="P:Windows.UI.Colors.Maroon" />
+        <element api="P:Windows.UI.Colors.MediumAquamarine" />
+        <element api="P:Windows.UI.Colors.MediumBlue" />
+        <element api="P:Windows.UI.Colors.MediumOrchid" />
+        <element api="P:Windows.UI.Colors.MediumPurple" />
+        <element api="P:Windows.UI.Colors.MediumSeaGreen" />
+        <element api="P:Windows.UI.Colors.MediumSlateBlue" />
+        <element api="P:Windows.UI.Colors.MediumSpringGreen" />
+        <element api="P:Windows.UI.Colors.MediumTurquoise" />
+        <element api="P:Windows.UI.Colors.MediumVioletRed" />
+        <element api="P:Windows.UI.Colors.MidnightBlue" />
+        <element api="P:Windows.UI.Colors.MintCream" />
+        <element api="P:Windows.UI.Colors.MistyRose" />
+        <element api="P:Windows.UI.Colors.Moccasin" />
+        <element api="P:Windows.UI.Colors.NavajoWhite" />
+        <element api="P:Windows.UI.Colors.Navy" />
+        <element api="P:Windows.UI.Colors.OldLace" />
+        <element api="P:Windows.UI.Colors.Olive" />
+        <element api="P:Windows.UI.Colors.OliveDrab" />
+        <element api="P:Windows.UI.Colors.Orange" />
+        <element api="P:Windows.UI.Colors.OrangeRed" />
+        <element api="P:Windows.UI.Colors.Orchid" />
+        <element api="P:Windows.UI.Colors.PaleGoldenrod" />
+        <element api="P:Windows.UI.Colors.PaleGreen" />
+        <element api="P:Windows.UI.Colors.PaleTurquoise" />
+        <element api="P:Windows.UI.Colors.PaleVioletRed" />
+        <element api="P:Windows.UI.Colors.PapayaWhip" />
+        <element api="P:Windows.UI.Colors.PeachPuff" />
+        <element api="P:Windows.UI.Colors.Peru" />
+        <element api="P:Windows.UI.Colors.Pink" />
+        <element api="P:Windows.UI.Colors.Plum" />
+        <element api="P:Windows.UI.Colors.PowderBlue" />
+        <element api="P:Windows.UI.Colors.Purple" />
+        <element api="P:Windows.UI.Colors.Red" />
+        <element api="P:Windows.UI.Colors.RosyBrown" />
+        <element api="P:Windows.UI.Colors.RoyalBlue" />
+        <element api="P:Windows.UI.Colors.SaddleBrown" />
+        <element api="P:Windows.UI.Colors.Salmon" />
+        <element api="P:Windows.UI.Colors.SandyBrown" />
+        <element api="P:Windows.UI.Colors.SeaGreen" />
+        <element api="P:Windows.UI.Colors.SeaShell" />
+        <element api="P:Windows.UI.Colors.Sienna" />
+        <element api="P:Windows.UI.Colors.Silver" />
+        <element api="P:Windows.UI.Colors.SkyBlue" />
+        <element api="P:Windows.UI.Colors.SlateBlue" />
+        <element api="P:Windows.UI.Colors.SlateGray" />
+        <element api="P:Windows.UI.Colors.Snow" />
+        <element api="P:Windows.UI.Colors.SpringGreen" />
+        <element api="P:Windows.UI.Colors.SteelBlue" />
+        <element api="P:Windows.UI.Colors.Tan" />
+        <element api="P:Windows.UI.Colors.Teal" />
+        <element api="P:Windows.UI.Colors.Thistle" />
+        <element api="P:Windows.UI.Colors.Tomato" />
+        <element api="P:Windows.UI.Colors.Transparent" />
+        <element api="P:Windows.UI.Colors.Turquoise" />
+        <element api="P:Windows.UI.Colors.Violet" />
+        <element api="P:Windows.UI.Colors.Wheat" />
+        <element api="P:Windows.UI.Colors.White" />
+        <element api="P:Windows.UI.Colors.WhiteSmoke" />
+        <element api="P:Windows.UI.Colors.Yellow" />
+        <element api="P:Windows.UI.Colors.YellowGreen" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" />
+      </containers>
+      <file name="d1dd00c7-d3d3-ba06-a176-50fdfe60ee3d" />
+    </api>
+    <api id="Methods.T:Windows.UI.Colors">
+      <topicdata name="Colors" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Colors" />
+      <apidata name="Colors" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" />
+      </containers>
+      <file name="3f341c20-9ae4-c06b-a801-dfee6f1d35d4" />
+    </api>
+    <api id="Properties.T:Windows.UI.Colors">
+      <topicdata name="Colors" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Colors" />
+      <apidata name="Colors" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Colors.AliceBlue" />
+        <element api="P:Windows.UI.Colors.AntiqueWhite" />
+        <element api="P:Windows.UI.Colors.Aqua" />
+        <element api="P:Windows.UI.Colors.Aquamarine" />
+        <element api="P:Windows.UI.Colors.Azure" />
+        <element api="P:Windows.UI.Colors.Beige" />
+        <element api="P:Windows.UI.Colors.Bisque" />
+        <element api="P:Windows.UI.Colors.Black" />
+        <element api="P:Windows.UI.Colors.BlanchedAlmond" />
+        <element api="P:Windows.UI.Colors.Blue" />
+        <element api="P:Windows.UI.Colors.BlueViolet" />
+        <element api="P:Windows.UI.Colors.Brown" />
+        <element api="P:Windows.UI.Colors.BurlyWood" />
+        <element api="P:Windows.UI.Colors.CadetBlue" />
+        <element api="P:Windows.UI.Colors.Chartreuse" />
+        <element api="P:Windows.UI.Colors.Chocolate" />
+        <element api="P:Windows.UI.Colors.Coral" />
+        <element api="P:Windows.UI.Colors.CornflowerBlue" />
+        <element api="P:Windows.UI.Colors.Cornsilk" />
+        <element api="P:Windows.UI.Colors.Crimson" />
+        <element api="P:Windows.UI.Colors.Cyan" />
+        <element api="P:Windows.UI.Colors.DarkBlue" />
+        <element api="P:Windows.UI.Colors.DarkCyan" />
+        <element api="P:Windows.UI.Colors.DarkGoldenrod" />
+        <element api="P:Windows.UI.Colors.DarkGray" />
+        <element api="P:Windows.UI.Colors.DarkGreen" />
+        <element api="P:Windows.UI.Colors.DarkKhaki" />
+        <element api="P:Windows.UI.Colors.DarkMagenta" />
+        <element api="P:Windows.UI.Colors.DarkOliveGreen" />
+        <element api="P:Windows.UI.Colors.DarkOrange" />
+        <element api="P:Windows.UI.Colors.DarkOrchid" />
+        <element api="P:Windows.UI.Colors.DarkRed" />
+        <element api="P:Windows.UI.Colors.DarkSalmon" />
+        <element api="P:Windows.UI.Colors.DarkSeaGreen" />
+        <element api="P:Windows.UI.Colors.DarkSlateBlue" />
+        <element api="P:Windows.UI.Colors.DarkSlateGray" />
+        <element api="P:Windows.UI.Colors.DarkTurquoise" />
+        <element api="P:Windows.UI.Colors.DarkViolet" />
+        <element api="P:Windows.UI.Colors.DeepPink" />
+        <element api="P:Windows.UI.Colors.DeepSkyBlue" />
+        <element api="P:Windows.UI.Colors.DimGray" />
+        <element api="P:Windows.UI.Colors.DodgerBlue" />
+        <element api="P:Windows.UI.Colors.Firebrick" />
+        <element api="P:Windows.UI.Colors.FloralWhite" />
+        <element api="P:Windows.UI.Colors.ForestGreen" />
+        <element api="P:Windows.UI.Colors.Fuchsia" />
+        <element api="P:Windows.UI.Colors.Gainsboro" />
+        <element api="P:Windows.UI.Colors.GhostWhite" />
+        <element api="P:Windows.UI.Colors.Gold" />
+        <element api="P:Windows.UI.Colors.Goldenrod" />
+        <element api="P:Windows.UI.Colors.Gray" />
+        <element api="P:Windows.UI.Colors.Green" />
+        <element api="P:Windows.UI.Colors.GreenYellow" />
+        <element api="P:Windows.UI.Colors.Honeydew" />
+        <element api="P:Windows.UI.Colors.HotPink" />
+        <element api="P:Windows.UI.Colors.IndianRed" />
+        <element api="P:Windows.UI.Colors.Indigo" />
+        <element api="P:Windows.UI.Colors.Ivory" />
+        <element api="P:Windows.UI.Colors.Khaki" />
+        <element api="P:Windows.UI.Colors.Lavender" />
+        <element api="P:Windows.UI.Colors.LavenderBlush" />
+        <element api="P:Windows.UI.Colors.LawnGreen" />
+        <element api="P:Windows.UI.Colors.LemonChiffon" />
+        <element api="P:Windows.UI.Colors.LightBlue" />
+        <element api="P:Windows.UI.Colors.LightCoral" />
+        <element api="P:Windows.UI.Colors.LightCyan" />
+        <element api="P:Windows.UI.Colors.LightGoldenrodYellow" />
+        <element api="P:Windows.UI.Colors.LightGray" />
+        <element api="P:Windows.UI.Colors.LightGreen" />
+        <element api="P:Windows.UI.Colors.LightPink" />
+        <element api="P:Windows.UI.Colors.LightSalmon" />
+        <element api="P:Windows.UI.Colors.LightSeaGreen" />
+        <element api="P:Windows.UI.Colors.LightSkyBlue" />
+        <element api="P:Windows.UI.Colors.LightSlateGray" />
+        <element api="P:Windows.UI.Colors.LightSteelBlue" />
+        <element api="P:Windows.UI.Colors.LightYellow" />
+        <element api="P:Windows.UI.Colors.Lime" />
+        <element api="P:Windows.UI.Colors.LimeGreen" />
+        <element api="P:Windows.UI.Colors.Linen" />
+        <element api="P:Windows.UI.Colors.Magenta" />
+        <element api="P:Windows.UI.Colors.Maroon" />
+        <element api="P:Windows.UI.Colors.MediumAquamarine" />
+        <element api="P:Windows.UI.Colors.MediumBlue" />
+        <element api="P:Windows.UI.Colors.MediumOrchid" />
+        <element api="P:Windows.UI.Colors.MediumPurple" />
+        <element api="P:Windows.UI.Colors.MediumSeaGreen" />
+        <element api="P:Windows.UI.Colors.MediumSlateBlue" />
+        <element api="P:Windows.UI.Colors.MediumSpringGreen" />
+        <element api="P:Windows.UI.Colors.MediumTurquoise" />
+        <element api="P:Windows.UI.Colors.MediumVioletRed" />
+        <element api="P:Windows.UI.Colors.MidnightBlue" />
+        <element api="P:Windows.UI.Colors.MintCream" />
+        <element api="P:Windows.UI.Colors.MistyRose" />
+        <element api="P:Windows.UI.Colors.Moccasin" />
+        <element api="P:Windows.UI.Colors.NavajoWhite" />
+        <element api="P:Windows.UI.Colors.Navy" />
+        <element api="P:Windows.UI.Colors.OldLace" />
+        <element api="P:Windows.UI.Colors.Olive" />
+        <element api="P:Windows.UI.Colors.OliveDrab" />
+        <element api="P:Windows.UI.Colors.Orange" />
+        <element api="P:Windows.UI.Colors.OrangeRed" />
+        <element api="P:Windows.UI.Colors.Orchid" />
+        <element api="P:Windows.UI.Colors.PaleGoldenrod" />
+        <element api="P:Windows.UI.Colors.PaleGreen" />
+        <element api="P:Windows.UI.Colors.PaleTurquoise" />
+        <element api="P:Windows.UI.Colors.PaleVioletRed" />
+        <element api="P:Windows.UI.Colors.PapayaWhip" />
+        <element api="P:Windows.UI.Colors.PeachPuff" />
+        <element api="P:Windows.UI.Colors.Peru" />
+        <element api="P:Windows.UI.Colors.Pink" />
+        <element api="P:Windows.UI.Colors.Plum" />
+        <element api="P:Windows.UI.Colors.PowderBlue" />
+        <element api="P:Windows.UI.Colors.Purple" />
+        <element api="P:Windows.UI.Colors.Red" />
+        <element api="P:Windows.UI.Colors.RosyBrown" />
+        <element api="P:Windows.UI.Colors.RoyalBlue" />
+        <element api="P:Windows.UI.Colors.SaddleBrown" />
+        <element api="P:Windows.UI.Colors.Salmon" />
+        <element api="P:Windows.UI.Colors.SandyBrown" />
+        <element api="P:Windows.UI.Colors.SeaGreen" />
+        <element api="P:Windows.UI.Colors.SeaShell" />
+        <element api="P:Windows.UI.Colors.Sienna" />
+        <element api="P:Windows.UI.Colors.Silver" />
+        <element api="P:Windows.UI.Colors.SkyBlue" />
+        <element api="P:Windows.UI.Colors.SlateBlue" />
+        <element api="P:Windows.UI.Colors.SlateGray" />
+        <element api="P:Windows.UI.Colors.Snow" />
+        <element api="P:Windows.UI.Colors.SpringGreen" />
+        <element api="P:Windows.UI.Colors.SteelBlue" />
+        <element api="P:Windows.UI.Colors.Tan" />
+        <element api="P:Windows.UI.Colors.Teal" />
+        <element api="P:Windows.UI.Colors.Thistle" />
+        <element api="P:Windows.UI.Colors.Tomato" />
+        <element api="P:Windows.UI.Colors.Transparent" />
+        <element api="P:Windows.UI.Colors.Turquoise" />
+        <element api="P:Windows.UI.Colors.Violet" />
+        <element api="P:Windows.UI.Colors.Wheat" />
+        <element api="P:Windows.UI.Colors.White" />
+        <element api="P:Windows.UI.Colors.WhiteSmoke" />
+        <element api="P:Windows.UI.Colors.Yellow" />
+        <element api="P:Windows.UI.Colors.YellowGreen" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" />
+      </containers>
+      <file name="58f71af4-451a-b3d2-464d-c66fb3f12c2e" />
+    </api>
+    <api id="P:Windows.UI.Colors.AliceBlue">
+      <topicdata group="api" />
+      <apidata name="AliceBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AliceBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="a71f1644-cb52-eecd-aa7d-9620348bd208" />
+    </api>
+    <api id="P:Windows.UI.Colors.AntiqueWhite">
+      <topicdata group="api" />
+      <apidata name="AntiqueWhite" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AntiqueWhite" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="df818348-c953-3e02-6aaf-4d3953301d5b" />
+    </api>
+    <api id="P:Windows.UI.Colors.Aqua">
+      <topicdata group="api" />
+      <apidata name="Aqua" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Aqua" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="c4d7a5c2-dbab-060e-d0c4-a4b87adb9cd6" />
+    </api>
+    <api id="P:Windows.UI.Colors.Aquamarine">
+      <topicdata group="api" />
+      <apidata name="Aquamarine" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Aquamarine" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="916a5cd8-e054-8b9e-73d6-305b7c839119" />
+    </api>
+    <api id="P:Windows.UI.Colors.Azure">
+      <topicdata group="api" />
+      <apidata name="Azure" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Azure" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="21c90f14-d1f7-c541-6e6f-7f5a1e3a72bf" />
+    </api>
+    <api id="P:Windows.UI.Colors.Beige">
+      <topicdata group="api" />
+      <apidata name="Beige" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Beige" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="8f21d149-8803-652c-3df6-009fa2feb1b4" />
+    </api>
+    <api id="P:Windows.UI.Colors.Bisque">
+      <topicdata group="api" />
+      <apidata name="Bisque" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Bisque" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="00b73c7e-9c42-ed6b-2d35-5b2b87e9663b" />
+    </api>
+    <api id="P:Windows.UI.Colors.Black">
+      <topicdata group="api" />
+      <apidata name="Black" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Black" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="3fa9f92c-f892-e41b-9f9a-0ec5ae2d82c1" />
+    </api>
+    <api id="P:Windows.UI.Colors.BlanchedAlmond">
+      <topicdata group="api" />
+      <apidata name="BlanchedAlmond" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BlanchedAlmond" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="142937ca-e17b-57c8-c831-a978e3dfa0c8" />
+    </api>
+    <api id="P:Windows.UI.Colors.Blue">
+      <topicdata group="api" />
+      <apidata name="Blue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Blue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="87f53567-7099-4c51-b221-db31c4271ae9" />
+    </api>
+    <api id="P:Windows.UI.Colors.BlueViolet">
+      <topicdata group="api" />
+      <apidata name="BlueViolet" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BlueViolet" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="b622d9f3-84d1-b231-7fbf-2eb9eedc7694" />
+    </api>
+    <api id="P:Windows.UI.Colors.Brown">
+      <topicdata group="api" />
+      <apidata name="Brown" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Brown" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="ae1ff6a6-5976-c234-ec55-b63f898b26b0" />
+    </api>
+    <api id="P:Windows.UI.Colors.BurlyWood">
+      <topicdata group="api" />
+      <apidata name="BurlyWood" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BurlyWood" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="4467a4e5-66e4-e0ce-4424-96a712d54886" />
+    </api>
+    <api id="P:Windows.UI.Colors.CadetBlue">
+      <topicdata group="api" />
+      <apidata name="CadetBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CadetBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="219881af-b9e2-a39e-fd4f-0dbca16d05b8" />
+    </api>
+    <api id="P:Windows.UI.Colors.Chartreuse">
+      <topicdata group="api" />
+      <apidata name="Chartreuse" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Chartreuse" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="6a21c467-1c3c-2a5a-ed67-fc3495ebb381" />
+    </api>
+    <api id="P:Windows.UI.Colors.Chocolate">
+      <topicdata group="api" />
+      <apidata name="Chocolate" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Chocolate" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="37ed41c8-eff1-4f9c-1aa4-5151d6e00345" />
+    </api>
+    <api id="P:Windows.UI.Colors.Coral">
+      <topicdata group="api" />
+      <apidata name="Coral" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Coral" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="1bc9f02f-681d-4ab3-b890-fcff0e6ebf21" />
+    </api>
+    <api id="P:Windows.UI.Colors.CornflowerBlue">
+      <topicdata group="api" />
+      <apidata name="CornflowerBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CornflowerBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="73845641-b300-746d-0676-ebcbd3624464" />
+    </api>
+    <api id="P:Windows.UI.Colors.Cornsilk">
+      <topicdata group="api" />
+      <apidata name="Cornsilk" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Cornsilk" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="a548fcb3-8f70-2c0a-a9db-81f4f5ce6bf3" />
+    </api>
+    <api id="P:Windows.UI.Colors.Crimson">
+      <topicdata group="api" />
+      <apidata name="Crimson" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Crimson" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="6bd5f372-4d5b-6723-a850-cb0d10b0694f" />
+    </api>
+    <api id="P:Windows.UI.Colors.Cyan">
+      <topicdata group="api" />
+      <apidata name="Cyan" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Cyan" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="2b0de969-1b6a-d883-82d5-6a6909eef9c7" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkBlue">
+      <topicdata group="api" />
+      <apidata name="DarkBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="e5dc2608-d52f-30f9-9487-12fe1386d31a" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkCyan">
+      <topicdata group="api" />
+      <apidata name="DarkCyan" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkCyan" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="0055a235-5291-6f2d-9b60-6a0bb3730eb4" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkGoldenrod">
+      <topicdata group="api" />
+      <apidata name="DarkGoldenrod" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkGoldenrod" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="8a2b6dfd-5431-7eff-8bc9-f2f5a178daab" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkGray">
+      <topicdata group="api" />
+      <apidata name="DarkGray" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkGray" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="d2df1790-f231-b7e6-cf2b-91268ff66afb" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkGreen">
+      <topicdata group="api" />
+      <apidata name="DarkGreen" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkGreen" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="0f7561fb-d708-399e-2eea-d4ff896f3eed" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkKhaki">
+      <topicdata group="api" />
+      <apidata name="DarkKhaki" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkKhaki" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="fe91f885-f9c6-4983-301e-4e6c8139940d" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkMagenta">
+      <topicdata group="api" />
+      <apidata name="DarkMagenta" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkMagenta" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="dc8d190b-7240-0669-7978-51051dc8d13c" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkOliveGreen">
+      <topicdata group="api" />
+      <apidata name="DarkOliveGreen" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkOliveGreen" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="8e6666be-c2dc-5f6d-de00-222a8705d56c" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkOrange">
+      <topicdata group="api" />
+      <apidata name="DarkOrange" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkOrange" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="89049905-1be3-ce73-edd4-d7fcfdd380c8" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkOrchid">
+      <topicdata group="api" />
+      <apidata name="DarkOrchid" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkOrchid" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="96c9403a-f186-d920-8eeb-67f6ed3de81b" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkRed">
+      <topicdata group="api" />
+      <apidata name="DarkRed" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkRed" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="3127e646-0ea1-030b-c321-c9f395287674" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkSalmon">
+      <topicdata group="api" />
+      <apidata name="DarkSalmon" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkSalmon" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="4b17aec5-2d6b-1ce3-2ff8-3d80e87e1538" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkSeaGreen">
+      <topicdata group="api" />
+      <apidata name="DarkSeaGreen" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkSeaGreen" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="43299214-1cba-04b0-b26a-0dc73055381d" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkSlateBlue">
+      <topicdata group="api" />
+      <apidata name="DarkSlateBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkSlateBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="d004257f-20d0-5113-de8f-10815f715b8c" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkSlateGray">
+      <topicdata group="api" />
+      <apidata name="DarkSlateGray" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkSlateGray" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="621d8aa6-489d-1fee-61bb-76e289059352" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkTurquoise">
+      <topicdata group="api" />
+      <apidata name="DarkTurquoise" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkTurquoise" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="f5a05791-c735-de31-1e14-570a0c00ce93" />
+    </api>
+    <api id="P:Windows.UI.Colors.DarkViolet">
+      <topicdata group="api" />
+      <apidata name="DarkViolet" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DarkViolet" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="e32e4149-4d24-904b-b679-ebc41b67ac7b" />
+    </api>
+    <api id="P:Windows.UI.Colors.DeepPink">
+      <topicdata group="api" />
+      <apidata name="DeepPink" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DeepPink" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="9e3aa095-5419-001c-b538-7d4ebadefb1c" />
+    </api>
+    <api id="P:Windows.UI.Colors.DeepSkyBlue">
+      <topicdata group="api" />
+      <apidata name="DeepSkyBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DeepSkyBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="d87ea81d-b318-a388-b357-a9466e9bb7c5" />
+    </api>
+    <api id="P:Windows.UI.Colors.DimGray">
+      <topicdata group="api" />
+      <apidata name="DimGray" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DimGray" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="077956cd-1bb7-1373-68c9-12e1cf1a240b" />
+    </api>
+    <api id="P:Windows.UI.Colors.DodgerBlue">
+      <topicdata group="api" />
+      <apidata name="DodgerBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DodgerBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="4f446e90-9884-c9d7-1709-033b35b36e3d" />
+    </api>
+    <api id="P:Windows.UI.Colors.Firebrick">
+      <topicdata group="api" />
+      <apidata name="Firebrick" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Firebrick" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="070ea647-8db0-47be-5315-aac179d27666" />
+    </api>
+    <api id="P:Windows.UI.Colors.FloralWhite">
+      <topicdata group="api" />
+      <apidata name="FloralWhite" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_FloralWhite" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="defffe02-5ead-de2a-ffe2-cf0951dbdb52" />
+    </api>
+    <api id="P:Windows.UI.Colors.ForestGreen">
+      <topicdata group="api" />
+      <apidata name="ForestGreen" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ForestGreen" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="f413bf6c-03fb-8f83-f63d-6435e1fbd48f" />
+    </api>
+    <api id="P:Windows.UI.Colors.Fuchsia">
+      <topicdata group="api" />
+      <apidata name="Fuchsia" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Fuchsia" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="417bf2a3-8496-423f-c29e-35b12110233b" />
+    </api>
+    <api id="P:Windows.UI.Colors.Gainsboro">
+      <topicdata group="api" />
+      <apidata name="Gainsboro" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Gainsboro" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="34cc6796-3bff-6603-f458-e81301fed8a0" />
+    </api>
+    <api id="P:Windows.UI.Colors.GhostWhite">
+      <topicdata group="api" />
+      <apidata name="GhostWhite" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_GhostWhite" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="c63b7673-1344-7416-30e2-cd8dac260daa" />
+    </api>
+    <api id="P:Windows.UI.Colors.Gold">
+      <topicdata group="api" />
+      <apidata name="Gold" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Gold" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="b50fe958-2d6e-f600-c734-43a635e472d7" />
+    </api>
+    <api id="P:Windows.UI.Colors.Goldenrod">
+      <topicdata group="api" />
+      <apidata name="Goldenrod" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Goldenrod" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="69708f13-c5b8-4723-7824-b195ffcd39cd" />
+    </api>
+    <api id="P:Windows.UI.Colors.Gray">
+      <topicdata group="api" />
+      <apidata name="Gray" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Gray" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="9dd1794f-28aa-a80d-38fa-040dc9d1e484" />
+    </api>
+    <api id="P:Windows.UI.Colors.Green">
+      <topicdata group="api" />
+      <apidata name="Green" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Green" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="93a6e9ea-6254-2aad-d1d0-7c3ef38cb6cf" />
+    </api>
+    <api id="P:Windows.UI.Colors.GreenYellow">
+      <topicdata group="api" />
+      <apidata name="GreenYellow" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_GreenYellow" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="6b223254-a9b0-1aaf-3a3f-438b1c2af0c6" />
+    </api>
+    <api id="P:Windows.UI.Colors.Honeydew">
+      <topicdata group="api" />
+      <apidata name="Honeydew" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Honeydew" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="1d30b000-8f49-fb17-33fc-0ab1b7066028" />
+    </api>
+    <api id="P:Windows.UI.Colors.HotPink">
+      <topicdata group="api" />
+      <apidata name="HotPink" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_HotPink" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="cf695d42-fd2d-a486-20e0-e81888e20913" />
+    </api>
+    <api id="P:Windows.UI.Colors.IndianRed">
+      <topicdata group="api" />
+      <apidata name="IndianRed" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IndianRed" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="dda484b1-30d6-734c-74de-716445e3b8fc" />
+    </api>
+    <api id="P:Windows.UI.Colors.Indigo">
+      <topicdata group="api" />
+      <apidata name="Indigo" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Indigo" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="f6d2acf3-719a-7d13-01cd-c7758e48e4fc" />
+    </api>
+    <api id="P:Windows.UI.Colors.Ivory">
+      <topicdata group="api" />
+      <apidata name="Ivory" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Ivory" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="a2c81722-c6b4-369a-d28b-44327940715c" />
+    </api>
+    <api id="P:Windows.UI.Colors.Khaki">
+      <topicdata group="api" />
+      <apidata name="Khaki" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Khaki" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="6e9dde69-cee6-27db-d03b-30416fdbd5de" />
+    </api>
+    <api id="P:Windows.UI.Colors.Lavender">
+      <topicdata group="api" />
+      <apidata name="Lavender" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Lavender" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="d03d56ee-b4b2-aa54-9f93-d982484fac22" />
+    </api>
+    <api id="P:Windows.UI.Colors.LavenderBlush">
+      <topicdata group="api" />
+      <apidata name="LavenderBlush" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LavenderBlush" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="dd6f1ebb-b90e-9cc3-3565-613f1f07e031" />
+    </api>
+    <api id="P:Windows.UI.Colors.LawnGreen">
+      <topicdata group="api" />
+      <apidata name="LawnGreen" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LawnGreen" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="6f39a4c6-088a-85e2-d15f-df3acc0c6219" />
+    </api>
+    <api id="P:Windows.UI.Colors.LemonChiffon">
+      <topicdata group="api" />
+      <apidata name="LemonChiffon" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LemonChiffon" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="9c20b101-3ec4-b83a-ce8f-c61b0210faa1" />
+    </api>
+    <api id="P:Windows.UI.Colors.LightBlue">
+      <topicdata group="api" />
+      <apidata name="LightBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LightBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="1ac4dc99-c71f-cde3-1d3d-c27b0e9b02bb" />
+    </api>
+    <api id="P:Windows.UI.Colors.LightCoral">
+      <topicdata group="api" />
+      <apidata name="LightCoral" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LightCoral" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="12d64384-1b00-936f-b4c1-78a112d87b21" />
+    </api>
+    <api id="P:Windows.UI.Colors.LightCyan">
+      <topicdata group="api" />
+      <apidata name="LightCyan" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LightCyan" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="f7f03562-d1f8-a71a-21f5-45feff77b8f8" />
+    </api>
+    <api id="P:Windows.UI.Colors.LightGoldenrodYellow">
+      <topicdata group="api" />
+      <apidata name="LightGoldenrodYellow" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LightGoldenrodYellow" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="53838ded-efc4-78f2-a35b-df9114a64e38" />
+    </api>
+    <api id="P:Windows.UI.Colors.LightGray">
+      <topicdata group="api" />
+      <apidata name="LightGray" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LightGray" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="d3a67e91-6b21-1858-eceb-03ed80488382" />
+    </api>
+    <api id="P:Windows.UI.Colors.LightGreen">
+      <topicdata group="api" />
+      <apidata name="LightGreen" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LightGreen" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="d37f812f-d690-db88-05c5-0376925518fb" />
+    </api>
+    <api id="P:Windows.UI.Colors.LightPink">
+      <topicdata group="api" />
+      <apidata name="LightPink" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LightPink" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="5770685f-e538-9ac2-decb-328af360fb47" />
+    </api>
+    <api id="P:Windows.UI.Colors.LightSalmon">
+      <topicdata group="api" />
+      <apidata name="LightSalmon" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LightSalmon" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="e5a389e8-9f12-7b8e-fb23-ae5f11a71fb9" />
+    </api>
+    <api id="P:Windows.UI.Colors.LightSeaGreen">
+      <topicdata group="api" />
+      <apidata name="LightSeaGreen" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LightSeaGreen" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="53ae34a2-cd47-6f82-25a0-9805161fe9d9" />
+    </api>
+    <api id="P:Windows.UI.Colors.LightSkyBlue">
+      <topicdata group="api" />
+      <apidata name="LightSkyBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LightSkyBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="08919fe9-a063-d580-0de4-7c85c4984514" />
+    </api>
+    <api id="P:Windows.UI.Colors.LightSlateGray">
+      <topicdata group="api" />
+      <apidata name="LightSlateGray" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LightSlateGray" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="76a974f5-7d54-6cfc-30af-e3c52c8804b2" />
+    </api>
+    <api id="P:Windows.UI.Colors.LightSteelBlue">
+      <topicdata group="api" />
+      <apidata name="LightSteelBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LightSteelBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="3924dd21-b79d-b51a-a186-2f4637e1ea80" />
+    </api>
+    <api id="P:Windows.UI.Colors.LightYellow">
+      <topicdata group="api" />
+      <apidata name="LightYellow" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LightYellow" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="f080364b-707e-19d1-0583-1fe7f706c965" />
+    </api>
+    <api id="P:Windows.UI.Colors.Lime">
+      <topicdata group="api" />
+      <apidata name="Lime" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Lime" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="caa5aee4-0bcc-dfb0-1215-1c224b0d69e0" />
+    </api>
+    <api id="P:Windows.UI.Colors.LimeGreen">
+      <topicdata group="api" />
+      <apidata name="LimeGreen" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LimeGreen" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="5baf1950-7e30-9507-8461-8d33efea8065" />
+    </api>
+    <api id="P:Windows.UI.Colors.Linen">
+      <topicdata group="api" />
+      <apidata name="Linen" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Linen" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="496efdd8-ef25-4fab-6513-86b08bc032f9" />
+    </api>
+    <api id="P:Windows.UI.Colors.Magenta">
+      <topicdata group="api" />
+      <apidata name="Magenta" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Magenta" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="82736567-b134-5cce-e01a-c0902d240387" />
+    </api>
+    <api id="P:Windows.UI.Colors.Maroon">
+      <topicdata group="api" />
+      <apidata name="Maroon" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Maroon" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="1f71b030-9ae8-009e-b8e6-387256447017" />
+    </api>
+    <api id="P:Windows.UI.Colors.MediumAquamarine">
+      <topicdata group="api" />
+      <apidata name="MediumAquamarine" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MediumAquamarine" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="accc5aff-772e-3727-289d-a39f88ecee8e" />
+    </api>
+    <api id="P:Windows.UI.Colors.MediumBlue">
+      <topicdata group="api" />
+      <apidata name="MediumBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MediumBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="8668c4b3-9bc9-a46d-70a5-28fd452d3130" />
+    </api>
+    <api id="P:Windows.UI.Colors.MediumOrchid">
+      <topicdata group="api" />
+      <apidata name="MediumOrchid" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MediumOrchid" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="3a25041c-c087-d0b8-c887-125c63912ba7" />
+    </api>
+    <api id="P:Windows.UI.Colors.MediumPurple">
+      <topicdata group="api" />
+      <apidata name="MediumPurple" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MediumPurple" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="ef27fb24-70fc-6c16-f169-29f1a9e440f9" />
+    </api>
+    <api id="P:Windows.UI.Colors.MediumSeaGreen">
+      <topicdata group="api" />
+      <apidata name="MediumSeaGreen" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MediumSeaGreen" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="db73edd7-a9f9-982b-24b9-e81c275c04c7" />
+    </api>
+    <api id="P:Windows.UI.Colors.MediumSlateBlue">
+      <topicdata group="api" />
+      <apidata name="MediumSlateBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MediumSlateBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="67a525ba-a87e-ce55-c3d4-a09cfc909ae2" />
+    </api>
+    <api id="P:Windows.UI.Colors.MediumSpringGreen">
+      <topicdata group="api" />
+      <apidata name="MediumSpringGreen" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MediumSpringGreen" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="b30e01a7-a71c-fb95-659b-bfd816eb2604" />
+    </api>
+    <api id="P:Windows.UI.Colors.MediumTurquoise">
+      <topicdata group="api" />
+      <apidata name="MediumTurquoise" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MediumTurquoise" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="320b6782-b269-1abd-bc6a-621f6b730a5e" />
+    </api>
+    <api id="P:Windows.UI.Colors.MediumVioletRed">
+      <topicdata group="api" />
+      <apidata name="MediumVioletRed" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MediumVioletRed" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="6efe4e80-a1d1-556f-119a-e23944342e67" />
+    </api>
+    <api id="P:Windows.UI.Colors.MidnightBlue">
+      <topicdata group="api" />
+      <apidata name="MidnightBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MidnightBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="3c69c96f-7f73-708a-4e73-a0a89964441e" />
+    </api>
+    <api id="P:Windows.UI.Colors.MintCream">
+      <topicdata group="api" />
+      <apidata name="MintCream" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MintCream" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="1e6c5e44-a411-abd3-784b-5fe9f7448db2" />
+    </api>
+    <api id="P:Windows.UI.Colors.MistyRose">
+      <topicdata group="api" />
+      <apidata name="MistyRose" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MistyRose" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="09b33e7e-dbb0-d801-3048-46baec025659" />
+    </api>
+    <api id="P:Windows.UI.Colors.Moccasin">
+      <topicdata group="api" />
+      <apidata name="Moccasin" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Moccasin" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="bc9e4c47-e7e1-0dca-9a12-1607c2f2391d" />
+    </api>
+    <api id="P:Windows.UI.Colors.NavajoWhite">
+      <topicdata group="api" />
+      <apidata name="NavajoWhite" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NavajoWhite" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="93d3b251-4d08-2541-6ce9-72a152c5eded" />
+    </api>
+    <api id="P:Windows.UI.Colors.Navy">
+      <topicdata group="api" />
+      <apidata name="Navy" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Navy" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="5d0935eb-6abe-4904-6335-ffb23ac58919" />
+    </api>
+    <api id="P:Windows.UI.Colors.OldLace">
+      <topicdata group="api" />
+      <apidata name="OldLace" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OldLace" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="65233eec-2319-3be7-07af-452bcd524ca7" />
+    </api>
+    <api id="P:Windows.UI.Colors.Olive">
+      <topicdata group="api" />
+      <apidata name="Olive" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Olive" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="47b82472-2759-6ac2-8046-008ec7f98184" />
+    </api>
+    <api id="P:Windows.UI.Colors.OliveDrab">
+      <topicdata group="api" />
+      <apidata name="OliveDrab" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OliveDrab" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="252f010d-d786-6979-2035-cddcd90db42e" />
+    </api>
+    <api id="P:Windows.UI.Colors.Orange">
+      <topicdata group="api" />
+      <apidata name="Orange" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Orange" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="9338432b-a87f-10b7-731f-e7acc253793d" />
+    </api>
+    <api id="P:Windows.UI.Colors.OrangeRed">
+      <topicdata group="api" />
+      <apidata name="OrangeRed" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OrangeRed" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="59527408-688a-5f9d-a8d8-4293b858e74d" />
+    </api>
+    <api id="P:Windows.UI.Colors.Orchid">
+      <topicdata group="api" />
+      <apidata name="Orchid" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Orchid" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="65999319-0096-5d8f-5f6e-c02f03d072bb" />
+    </api>
+    <api id="P:Windows.UI.Colors.PaleGoldenrod">
+      <topicdata group="api" />
+      <apidata name="PaleGoldenrod" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PaleGoldenrod" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="cbdc9322-1124-7e5f-5722-999ea99cdf2c" />
+    </api>
+    <api id="P:Windows.UI.Colors.PaleGreen">
+      <topicdata group="api" />
+      <apidata name="PaleGreen" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PaleGreen" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="dc838731-952c-482c-555e-1e97c0e31260" />
+    </api>
+    <api id="P:Windows.UI.Colors.PaleTurquoise">
+      <topicdata group="api" />
+      <apidata name="PaleTurquoise" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PaleTurquoise" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="ac0b7e74-7c3a-0815-98f5-ee79e11e4db7" />
+    </api>
+    <api id="P:Windows.UI.Colors.PaleVioletRed">
+      <topicdata group="api" />
+      <apidata name="PaleVioletRed" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PaleVioletRed" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="34435b11-2348-e1eb-2879-e1c621578aed" />
+    </api>
+    <api id="P:Windows.UI.Colors.PapayaWhip">
+      <topicdata group="api" />
+      <apidata name="PapayaWhip" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PapayaWhip" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="2b672513-3b8a-443d-da0c-42264bf6a1c7" />
+    </api>
+    <api id="P:Windows.UI.Colors.PeachPuff">
+      <topicdata group="api" />
+      <apidata name="PeachPuff" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PeachPuff" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="3c71e603-7229-b851-a0b5-c07b0c353cbb" />
+    </api>
+    <api id="P:Windows.UI.Colors.Peru">
+      <topicdata group="api" />
+      <apidata name="Peru" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Peru" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="3eda3a86-2174-a9d6-7b15-96bf15dd755f" />
+    </api>
+    <api id="P:Windows.UI.Colors.Pink">
+      <topicdata group="api" />
+      <apidata name="Pink" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Pink" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="0f87e74d-0a33-fd1a-9b8c-f6cf4d3cd690" />
+    </api>
+    <api id="P:Windows.UI.Colors.Plum">
+      <topicdata group="api" />
+      <apidata name="Plum" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Plum" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="a2d95dc3-0c06-c71f-7e9f-ec48e84da621" />
+    </api>
+    <api id="P:Windows.UI.Colors.PowderBlue">
+      <topicdata group="api" />
+      <apidata name="PowderBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PowderBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="b9cb773c-791e-a9e4-f39e-5ce95f44fc8b" />
+    </api>
+    <api id="P:Windows.UI.Colors.Purple">
+      <topicdata group="api" />
+      <apidata name="Purple" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Purple" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="f68108eb-ce4d-28da-5b70-f6c4d40b46e4" />
+    </api>
+    <api id="P:Windows.UI.Colors.Red">
+      <topicdata group="api" />
+      <apidata name="Red" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Red" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="76f94a4c-3dff-8675-2704-4f784cf200af" />
+    </api>
+    <api id="P:Windows.UI.Colors.RosyBrown">
+      <topicdata group="api" />
+      <apidata name="RosyBrown" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RosyBrown" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="41bf49f9-7097-9a04-e35d-8c6a459e2927" />
+    </api>
+    <api id="P:Windows.UI.Colors.RoyalBlue">
+      <topicdata group="api" />
+      <apidata name="RoyalBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RoyalBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="4bc2c9f8-ebda-721b-afe6-083bcd1827dd" />
+    </api>
+    <api id="P:Windows.UI.Colors.SaddleBrown">
+      <topicdata group="api" />
+      <apidata name="SaddleBrown" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SaddleBrown" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="6320b4d7-f566-29d1-fad9-cb4dbfae3e25" />
+    </api>
+    <api id="P:Windows.UI.Colors.Salmon">
+      <topicdata group="api" />
+      <apidata name="Salmon" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Salmon" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="6ceb83f0-9a79-8610-f80e-08ebd4ec08f2" />
+    </api>
+    <api id="P:Windows.UI.Colors.SandyBrown">
+      <topicdata group="api" />
+      <apidata name="SandyBrown" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SandyBrown" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="64c70b46-7e8d-2435-eea2-e40c73202e8f" />
+    </api>
+    <api id="P:Windows.UI.Colors.SeaGreen">
+      <topicdata group="api" />
+      <apidata name="SeaGreen" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SeaGreen" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="33957c8e-073a-fa18-d653-6740063af715" />
+    </api>
+    <api id="P:Windows.UI.Colors.SeaShell">
+      <topicdata group="api" />
+      <apidata name="SeaShell" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SeaShell" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="6c71015e-d958-ab75-f826-6faf0b2f45e0" />
+    </api>
+    <api id="P:Windows.UI.Colors.Sienna">
+      <topicdata group="api" />
+      <apidata name="Sienna" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Sienna" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="73a5aa9f-ccca-ed76-8643-f65305cf2381" />
+    </api>
+    <api id="P:Windows.UI.Colors.Silver">
+      <topicdata group="api" />
+      <apidata name="Silver" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Silver" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="83efca88-2219-d961-d9db-368d9b77cf75" />
+    </api>
+    <api id="P:Windows.UI.Colors.SkyBlue">
+      <topicdata group="api" />
+      <apidata name="SkyBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SkyBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="790c4b72-e42f-59fe-db1c-cb908ce6067c" />
+    </api>
+    <api id="P:Windows.UI.Colors.SlateBlue">
+      <topicdata group="api" />
+      <apidata name="SlateBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SlateBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="273ef64e-7bbb-4a4e-1c2b-a4fab8dbd05b" />
+    </api>
+    <api id="P:Windows.UI.Colors.SlateGray">
+      <topicdata group="api" />
+      <apidata name="SlateGray" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SlateGray" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="e53fe841-2de9-9312-ded1-0ecf83fbeb17" />
+    </api>
+    <api id="P:Windows.UI.Colors.Snow">
+      <topicdata group="api" />
+      <apidata name="Snow" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Snow" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="590c024d-a7ed-dc04-9aaa-29a981082c87" />
+    </api>
+    <api id="P:Windows.UI.Colors.SpringGreen">
+      <topicdata group="api" />
+      <apidata name="SpringGreen" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SpringGreen" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="68234f5c-a448-a396-4eca-609999da47b3" />
+    </api>
+    <api id="P:Windows.UI.Colors.SteelBlue">
+      <topicdata group="api" />
+      <apidata name="SteelBlue" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SteelBlue" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="9f3ce9f6-28c1-a714-cb63-b5cc6576f975" />
+    </api>
+    <api id="P:Windows.UI.Colors.Tan">
+      <topicdata group="api" />
+      <apidata name="Tan" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Tan" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="ea64e358-f0ce-2dcd-15c6-dce434be1d3f" />
+    </api>
+    <api id="P:Windows.UI.Colors.Teal">
+      <topicdata group="api" />
+      <apidata name="Teal" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Teal" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="b8f48c13-332f-8792-0cee-5076846dfa55" />
+    </api>
+    <api id="P:Windows.UI.Colors.Thistle">
+      <topicdata group="api" />
+      <apidata name="Thistle" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Thistle" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="8f0ba788-b116-a2e8-bdaa-15949d55332d" />
+    </api>
+    <api id="P:Windows.UI.Colors.Tomato">
+      <topicdata group="api" />
+      <apidata name="Tomato" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Tomato" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="b364ba42-c083-aafe-d192-c22568a7a982" />
+    </api>
+    <api id="P:Windows.UI.Colors.Transparent">
+      <topicdata group="api" />
+      <apidata name="Transparent" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Transparent" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="2c3026fc-1e16-b2c2-f3d3-059af6e1dd17" />
+    </api>
+    <api id="P:Windows.UI.Colors.Turquoise">
+      <topicdata group="api" />
+      <apidata name="Turquoise" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Turquoise" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="31355cfe-a8aa-a1ec-f13b-9def2002bac0" />
+    </api>
+    <api id="P:Windows.UI.Colors.Violet">
+      <topicdata group="api" />
+      <apidata name="Violet" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Violet" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="5d5c36f8-2b02-39b2-fd7a-5089e35f4e62" />
+    </api>
+    <api id="P:Windows.UI.Colors.Wheat">
+      <topicdata group="api" />
+      <apidata name="Wheat" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Wheat" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="653c1f3f-0e2b-5805-92c3-fb0f5911f367" />
+    </api>
+    <api id="P:Windows.UI.Colors.White">
+      <topicdata group="api" />
+      <apidata name="White" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_White" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="9bc2a3d1-62db-ef92-c476-a739ac990bbf" />
+    </api>
+    <api id="P:Windows.UI.Colors.WhiteSmoke">
+      <topicdata group="api" />
+      <apidata name="WhiteSmoke" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_WhiteSmoke" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="e0591421-d8bd-1a10-bafe-e9f14846c43f" />
+    </api>
+    <api id="P:Windows.UI.Colors.Yellow">
+      <topicdata group="api" />
+      <apidata name="Yellow" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Yellow" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="f82ea546-78de-8c0a-7c6d-3fb1924cafad" />
+    </api>
+    <api id="P:Windows.UI.Colors.YellowGreen">
+      <topicdata group="api" />
+      <apidata name="YellowGreen" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_YellowGreen" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI" />
+        <type api="T:Windows.UI.Colors" ref="true" />
+      </containers>
+      <file name="a0ba4171-c256-9bc2-3354-be661badfdd4" />
+    </api>
+  </apis>
+</reflection>

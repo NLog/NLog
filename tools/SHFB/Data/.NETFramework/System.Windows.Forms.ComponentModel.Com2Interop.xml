@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows.Forms">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Drawing.BitmapSuffixInSatelliteAssemblyAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Forms.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Forms.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Forms.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Forms.ComponentModel.Com2Interop">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Forms.ComponentModel.Com2Interop" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Forms.ComponentModel.Com2Interop.Com2Variant" />
+        <element api="T:System.Windows.Forms.ComponentModel.Com2Interop.ICom2PropertyPageDisplayService" />
+        <element api="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" />
+      </elements>
+      <file name="8c4b7d0d-e53e-42a7-044f-acf233e9d40b" />
+    </api>
+    <api id="T:System.Windows.Forms.ComponentModel.Com2Interop.Com2Variant">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Forms.ComponentModel.Com2Interop.Com2Variant" />
+      <apidata name="Com2Variant" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Forms.ComponentModel.Com2Interop.Com2Variant.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+      </containers>
+      <file name="2554f7e7-409e-2bbb-747e-4c1399e281d1" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Forms.ComponentModel.Com2Interop.Com2Variant">
+      <topicdata name="Com2Variant" group="list" subgroup="members" typeTopicId="T:System.Windows.Forms.ComponentModel.Com2Interop.Com2Variant" />
+      <apidata name="Com2Variant" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Forms.ComponentModel.Com2Interop.Com2Variant.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Forms.ComponentModel.Com2Interop.Com2Variant.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.Com2Variant" />
+      </containers>
+      <file name="351becb8-0612-5131-d59a-8b9a403c2668" />
+    </api>
+    <api id="Methods.T:System.Windows.Forms.ComponentModel.Com2Interop.Com2Variant">
+      <topicdata name="Com2Variant" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Forms.ComponentModel.Com2Interop.Com2Variant" />
+      <apidata name="Com2Variant" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Forms.ComponentModel.Com2Interop.Com2Variant.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.Com2Variant" />
+      </containers>
+      <file name="3aa7ac1e-81cb-6c9d-08e3-c56a84b4ba68" />
+    </api>
+    <api id="M:System.Windows.Forms.ComponentModel.Com2Interop.Com2Variant.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.Com2Variant" ref="true" />
+      </containers>
+      <file name="84f7c75a-f346-bbdc-7082-012b29a24ee2" />
+    </api>
+    <api id="T:System.Windows.Forms.ComponentModel.Com2Interop.ICom2PropertyPageDisplayService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Forms.ComponentModel.Com2Interop.ICom2PropertyPageDisplayService" />
+      <apidata name="ICom2PropertyPageDisplayService" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+      </containers>
+      <file name="92b0fba5-dd9a-43a1-42ca-a860454a8cad" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Forms.ComponentModel.Com2Interop.ICom2PropertyPageDisplayService">
+      <topicdata name="ICom2PropertyPageDisplayService" group="list" subgroup="members" typeTopicId="T:System.Windows.Forms.ComponentModel.Com2Interop.ICom2PropertyPageDisplayService" />
+      <apidata name="ICom2PropertyPageDisplayService" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Forms.ComponentModel.Com2Interop.ICom2PropertyPageDisplayService.ShowPropertyPage(System.String,System.Object,System.Int32,System.Guid,System.IntPtr)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.ICom2PropertyPageDisplayService" />
+      </containers>
+      <file name="09647b25-a2e5-a226-86e4-9a3609a5b952" />
+    </api>
+    <api id="Methods.T:System.Windows.Forms.ComponentModel.Com2Interop.ICom2PropertyPageDisplayService">
+      <topicdata name="ICom2PropertyPageDisplayService" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Forms.ComponentModel.Com2Interop.ICom2PropertyPageDisplayService" />
+      <apidata name="ICom2PropertyPageDisplayService" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Forms.ComponentModel.Com2Interop.ICom2PropertyPageDisplayService.ShowPropertyPage(System.String,System.Object,System.Int32,System.Guid,System.IntPtr)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.ICom2PropertyPageDisplayService" />
+      </containers>
+      <file name="e955999e-eb71-f5d3-2bb5-f6ed32bef1cf" />
+    </api>
+    <api id="M:System.Windows.Forms.ComponentModel.Com2Interop.ICom2PropertyPageDisplayService.ShowPropertyPage(System.String,System.Object,System.Int32,System.Guid,System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="ShowPropertyPage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="title">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="component">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="dispid">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="pageGuid">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="parentHandle">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.ICom2PropertyPageDisplayService" ref="true" />
+      </containers>
+      <file name="f3f24305-255e-7a77-31f9-5a91315717e2" />
+    </api>
+    <api id="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" />
+      <apidata name="IComPropertyBrowser" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Forms.PropertyGrid" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+      </containers>
+      <file name="4322c065-c004-cd9d-f659-e738c1b13628" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser">
+      <topicdata name="IComPropertyBrowser" group="list" subgroup="members" typeTopicId="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" />
+      <apidata name="IComPropertyBrowser" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.ComComponentNameChanged" />
+        <element api="M:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.DropDownDone" />
+        <element api="M:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.EnsurePendingChangesCommitted" />
+        <element api="M:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.HandleF4" />
+        <element api="P:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.InPropertySet" />
+        <element api="M:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.LoadState(Microsoft.Win32.RegistryKey)" />
+        <element api="M:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.SaveState(Microsoft.Win32.RegistryKey)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" />
+      </containers>
+      <file name="25c3056c-aad5-4e89-cf11-577f55fa43ba" />
+    </api>
+    <api id="Methods.T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser">
+      <topicdata name="IComPropertyBrowser" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" />
+      <apidata name="IComPropertyBrowser" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.DropDownDone" />
+        <element api="M:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.EnsurePendingChangesCommitted" />
+        <element api="M:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.HandleF4" />
+        <element api="M:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.LoadState(Microsoft.Win32.RegistryKey)" />
+        <element api="M:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.SaveState(Microsoft.Win32.RegistryKey)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" />
+      </containers>
+      <file name="5c94480b-039b-ae3d-c4c0-8fed9d0749df" />
+    </api>
+    <api id="Properties.T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser">
+      <topicdata name="IComPropertyBrowser" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" />
+      <apidata name="IComPropertyBrowser" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.InPropertySet" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" />
+      </containers>
+      <file name="e69304fd-5936-c8d9-dc16-8b8533e47928" />
+    </api>
+    <api id="Events.T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser">
+      <topicdata name="IComPropertyBrowser" group="list" subgroup="Events" typeTopicId="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" />
+      <apidata name="IComPropertyBrowser" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.ComComponentNameChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" />
+      </containers>
+      <file name="806270b0-fb2c-a73d-5e01-d92a40dd0cb7" />
+    </api>
+    <api id="E:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.ComComponentNameChanged">
+      <topicdata group="api" />
+      <apidata name="ComComponentNameChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ComComponentNameChanged" />
+      <remover name="remove_ComComponentNameChanged" />
+      <eventhandler>
+        <type api="T:System.ComponentModel.Design.ComponentRenameEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.ComponentModel.Design.ComponentRenameEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" ref="true" />
+      </containers>
+      <file name="8a619d7f-b544-2ce4-dd6f-f056b1306e5b" />
+    </api>
+    <api id="M:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.DropDownDone">
+      <topicdata group="api" />
+      <apidata name="DropDownDone" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" ref="true" />
+      </containers>
+      <file name="47d31995-81e1-57b5-f87c-371765641ed3" />
+    </api>
+    <api id="M:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.EnsurePendingChangesCommitted">
+      <topicdata group="api" />
+      <apidata name="EnsurePendingChangesCommitted" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" ref="true" />
+      </containers>
+      <file name="bab0b938-0d7e-de2d-9c1e-6e070ab70afa" />
+    </api>
+    <api id="M:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.HandleF4">
+      <topicdata group="api" />
+      <apidata name="HandleF4" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" ref="true" />
+      </containers>
+      <file name="e3795c8b-1fb8-fda2-1bf0-5386e324c6e3" />
+    </api>
+    <api id="P:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.InPropertySet">
+      <topicdata group="api" />
+      <apidata name="InPropertySet" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_InPropertySet" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" ref="true" />
+      </containers>
+      <file name="85aaeb28-4ec7-9d1d-8583-52c8a3928039" />
+    </api>
+    <api id="M:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.LoadState(Microsoft.Win32.RegistryKey)">
+      <topicdata group="api" />
+      <apidata name="LoadState" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" ref="true" />
+      </containers>
+      <file name="cb41f897-b352-1a6c-8b04-dd3c86d64c4d" />
+    </api>
+    <api id="M:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser.SaveState(Microsoft.Win32.RegistryKey)">
+      <topicdata group="api" />
+      <apidata name="SaveState" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="key">
+          <type api="T:Microsoft.Win32.RegistryKey" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.ComponentModel.Com2Interop" />
+        <type api="T:System.Windows.Forms.ComponentModel.Com2Interop.IComPropertyBrowser" ref="true" />
+      </containers>
+      <file name="3c349397-d6f5-d764-0f77-e8cdf77414e2" />
+    </api>
+  </apis>
+</reflection>

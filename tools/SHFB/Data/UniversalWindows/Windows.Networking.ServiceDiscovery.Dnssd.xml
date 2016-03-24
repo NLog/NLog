@@ -1,0 +1,1918 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Networking.ServiceDiscovery.Dnssd">
+      <topicdata group="api" />
+      <apidata name="Windows.Networking.ServiceDiscovery.Dnssd" group="namespace" />
+      <elements>
+        <element api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus" />
+        <element api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus" />
+        <element api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" />
+        <element api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" />
+        <element api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" />
+        <element api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection" />
+      </elements>
+      <file name="3b851678-9449-2bd7-869a-6a15d0a71819" />
+    </api>
+    <api id="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" />
+      <apidata name="DnssdRegistrationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.IStringable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="da57bde4-6612-b4bf-eec0-a1469f9bff0e" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult">
+      <topicdata name="DnssdRegistrationResult" group="list" subgroup="members" typeTopicId="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" />
+      <apidata name="DnssdRegistrationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.#ctor" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.HasInstanceNameChanged" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.IPAddress" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.Status" />
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" />
+      </containers>
+      <file name="23a55c47-9813-7d55-7027-2a36ef8ec2cd" />
+    </api>
+    <api id="Methods.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult">
+      <topicdata name="DnssdRegistrationResult" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" />
+      <apidata name="DnssdRegistrationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" />
+      </containers>
+      <file name="44b1b64d-388c-dd7f-49ba-f6e62c6bd199" />
+    </api>
+    <api id="Properties.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult">
+      <topicdata name="DnssdRegistrationResult" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" />
+      <apidata name="DnssdRegistrationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.#ctor" />
+      <elements>
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.HasInstanceNameChanged" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.IPAddress" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" />
+      </containers>
+      <file name="d87d6b0f-8649-c338-93d5-76c35e7abe74" />
+    </api>
+    <api id="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" ref="true" />
+      </containers>
+      <file name="6fac8e49-e8bf-15c5-6f6b-b33e374d1d5b" />
+    </api>
+    <api id="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.HasInstanceNameChanged">
+      <topicdata group="api" />
+      <apidata name="HasInstanceNameChanged" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_HasInstanceNameChanged" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" ref="true" />
+      </containers>
+      <file name="5e30a938-056f-9995-487e-5087bcd2d370" />
+    </api>
+    <api id="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.IPAddress">
+      <topicdata group="api" />
+      <apidata name="IPAddress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IPAddress" />
+      <returns>
+        <type api="T:Windows.Networking.HostName" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" ref="true" />
+      </containers>
+      <file name="b8883bcc-c825-2b3e-19a0-886b8383bf4c" />
+    </api>
+    <api id="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" ref="true" />
+      </containers>
+      <file name="20accea1-e7f5-79bc-b1c9-d52df9a9633d" />
+    </api>
+    <api id="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.IStringable.ToString">
+          <type api="T:Windows.Foundation.IStringable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" ref="true" />
+      </containers>
+      <file name="93877ad2-61ae-7ab4-3978-a4eeddab7d31" />
+    </api>
+    <api id="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus">
+      <topicdata group="api" />
+      <apidata name="DnssdRegistrationStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus.Success" />
+        <element api="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus.InvalidServiceName" />
+        <element api="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus.ServerError" />
+        <element api="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus.SecurityError" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cf217c26-8bf0-f8eb-a73b-b0d9f91bf3fb" />
+    </api>
+    <api id="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus.InvalidServiceName">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidServiceName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus" ref="false" />
+      </containers>
+      <file name="63841101-db3c-2600-26da-908c0ed2b1ff" />
+    </api>
+    <api id="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus.SecurityError">
+      <topicdata group="api" notopic="" />
+      <apidata name="SecurityError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus" ref="false" />
+      </containers>
+      <file name="e1ef3899-d9b0-650a-c60a-4e4eebf0c957" />
+    </api>
+    <api id="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus.ServerError">
+      <topicdata group="api" notopic="" />
+      <apidata name="ServerError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus" ref="false" />
+      </containers>
+      <file name="252c1d53-d3f3-5995-052a-e36dc8c4317b" />
+    </api>
+    <api id="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus.Success">
+      <topicdata group="api" notopic="" />
+      <apidata name="Success" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationStatus" ref="false" />
+      </containers>
+      <file name="2afe0b0a-61ad-c2a9-ed7f-d3ea1215ab9c" />
+    </api>
+    <api id="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" />
+      <apidata name="DnssdServiceInstance" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.IStringable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9d567205-a073-0318-2b5c-58e972e37145" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance">
+      <topicdata name="DnssdServiceInstance" group="list" subgroup="members" typeTopicId="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" />
+      <apidata name="DnssdServiceInstance" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.#ctor(System.String,Windows.Networking.HostName,System.UInt16)" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.DnssdServiceInstanceName" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.HostName" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.Port" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.Priority" />
+        <element api="Overload:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterDatagramSocketAsync">
+          <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterDatagramSocketAsync(Windows.Networking.Sockets.DatagramSocket)" />
+          <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterDatagramSocketAsync(Windows.Networking.Sockets.DatagramSocket,Windows.Networking.Connectivity.NetworkAdapter)" />
+        </element>
+        <element api="Overload:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterStreamSocketListenerAsync">
+          <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterStreamSocketListenerAsync(Windows.Networking.Sockets.StreamSocketListener)" />
+          <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterStreamSocketListenerAsync(Windows.Networking.Sockets.StreamSocketListener,Windows.Networking.Connectivity.NetworkAdapter)" />
+        </element>
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.TextAttributes" />
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.ToString" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.Weight" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" />
+      </containers>
+      <file name="c2105bb7-a436-afa6-7417-fc84d00080ed" />
+    </api>
+    <api id="Methods.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance">
+      <topicdata name="DnssdServiceInstance" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" />
+      <apidata name="DnssdServiceInstance" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterDatagramSocketAsync">
+          <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterDatagramSocketAsync(Windows.Networking.Sockets.DatagramSocket)" />
+          <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterDatagramSocketAsync(Windows.Networking.Sockets.DatagramSocket,Windows.Networking.Connectivity.NetworkAdapter)" />
+        </element>
+        <element api="Overload:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterStreamSocketListenerAsync">
+          <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterStreamSocketListenerAsync(Windows.Networking.Sockets.StreamSocketListener)" />
+          <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterStreamSocketListenerAsync(Windows.Networking.Sockets.StreamSocketListener,Windows.Networking.Connectivity.NetworkAdapter)" />
+        </element>
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" />
+      </containers>
+      <file name="c79510a6-10c1-c33e-0143-f26196d61335" />
+    </api>
+    <api id="Properties.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance">
+      <topicdata name="DnssdServiceInstance" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" />
+      <apidata name="DnssdServiceInstance" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.DnssdServiceInstanceName" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.HostName" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.Port" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.Priority" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.TextAttributes" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.Weight" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" />
+      </containers>
+      <file name="4703451d-5aa6-37b7-d9dc-e6e11ca1f9e7" />
+    </api>
+    <api id="Overload:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterDatagramSocketAsync">
+      <topicdata name="RegisterDatagramSocketAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" />
+      <apidata name="RegisterDatagramSocketAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterDatagramSocketAsync(Windows.Networking.Sockets.DatagramSocket)" />
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterDatagramSocketAsync(Windows.Networking.Sockets.DatagramSocket,Windows.Networking.Connectivity.NetworkAdapter)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+      </containers>
+      <file name="c23f5507-610d-a805-d9a9-9b21354a40ed" />
+    </api>
+    <api id="Overload:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterStreamSocketListenerAsync">
+      <topicdata name="RegisterStreamSocketListenerAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" />
+      <apidata name="RegisterStreamSocketListenerAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterStreamSocketListenerAsync(Windows.Networking.Sockets.StreamSocketListener)" />
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterStreamSocketListenerAsync(Windows.Networking.Sockets.StreamSocketListener,Windows.Networking.Connectivity.NetworkAdapter)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+      </containers>
+      <file name="4f174380-8c72-75e2-03f5-34a6bf70be61" />
+    </api>
+    <api id="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.#ctor(System.String,Windows.Networking.HostName,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="dnssdServiceInstanceName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="hostName" in="true">
+          <type api="T:Windows.Networking.HostName" ref="true" />
+        </parameter>
+        <parameter name="port" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+      </containers>
+      <file name="12e46034-41fc-a557-efd1-b685fdb5f8a4" />
+    </api>
+    <api id="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.DnssdServiceInstanceName">
+      <topicdata group="api" />
+      <apidata name="DnssdServiceInstanceName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DnssdServiceInstanceName" />
+      <setter name="set_DnssdServiceInstanceName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+      </containers>
+      <file name="875a6c4b-1c0d-fa2c-7e39-ac18c0602e08" />
+    </api>
+    <api id="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.HostName">
+      <topicdata group="api" />
+      <apidata name="HostName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_HostName" />
+      <setter name="set_HostName" />
+      <returns>
+        <type api="T:Windows.Networking.HostName" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+      </containers>
+      <file name="c84038a3-2aa2-cffc-fd06-c2395594a303" />
+    </api>
+    <api id="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.Port">
+      <topicdata group="api" />
+      <apidata name="Port" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Port" />
+      <setter name="set_Port" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+      </containers>
+      <file name="39d264ab-cb9e-670e-2a9e-f5eb1b646bd1" />
+    </api>
+    <api id="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.Priority">
+      <topicdata group="api" />
+      <apidata name="Priority" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Priority" />
+      <setter name="set_Priority" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+      </containers>
+      <file name="75b3ab3f-d388-b7b8-1e30-b376f4ceddb7" />
+    </api>
+    <api id="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterDatagramSocketAsync(Windows.Networking.Sockets.DatagramSocket)">
+      <topicdata group="api" />
+      <apidata name="RegisterDatagramSocketAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterDatagramSocketAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="socket" in="true">
+          <type api="T:Windows.Networking.Sockets.DatagramSocket" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RegisterDatagramSocketAsync1</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4391c92c-e47d-44ac-24fe-4cb8835f6034" />
+    </api>
+    <api id="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterDatagramSocketAsync(Windows.Networking.Sockets.DatagramSocket,Windows.Networking.Connectivity.NetworkAdapter)">
+      <topicdata group="api" />
+      <apidata name="RegisterDatagramSocketAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterDatagramSocketAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="socket" in="true">
+          <type api="T:Windows.Networking.Sockets.DatagramSocket" ref="true" />
+        </parameter>
+        <parameter name="adapter" in="true">
+          <type api="T:Windows.Networking.Connectivity.NetworkAdapter" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RegisterDatagramSocketAsync2</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="11f4e406-6e47-5e3b-9f67-5807f4ac8219" />
+    </api>
+    <api id="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterStreamSocketListenerAsync(Windows.Networking.Sockets.StreamSocketListener)">
+      <topicdata group="api" />
+      <apidata name="RegisterStreamSocketListenerAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterStreamSocketListenerAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="socket" in="true">
+          <type api="T:Windows.Networking.Sockets.StreamSocketListener" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RegisterStreamSocketListenerAsync1</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="1e13bc69-b12c-5719-6265-8bccf28eec5f" />
+    </api>
+    <api id="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterStreamSocketListenerAsync(Windows.Networking.Sockets.StreamSocketListener,Windows.Networking.Connectivity.NetworkAdapter)">
+      <topicdata group="api" />
+      <apidata name="RegisterStreamSocketListenerAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.RegisterStreamSocketListenerAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="socket" in="true">
+          <type api="T:Windows.Networking.Sockets.StreamSocketListener" ref="true" />
+        </parameter>
+        <parameter name="adapter" in="true">
+          <type api="T:Windows.Networking.Connectivity.NetworkAdapter" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RegisterStreamSocketListenerAsync2</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8c67081d-070a-bf21-7b85-d88fdc353466" />
+    </api>
+    <api id="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.TextAttributes">
+      <topicdata group="api" />
+      <apidata name="TextAttributes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_TextAttributes" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+      </containers>
+      <file name="01bc623c-0601-b4d8-06cb-2b0082ef4aef" />
+    </api>
+    <api id="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.IStringable.ToString">
+          <type api="T:Windows.Foundation.IStringable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+      </containers>
+      <file name="b6cb1f1e-0a03-018f-dd82-90b40ba01677" />
+    </api>
+    <api id="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance.Weight">
+      <topicdata group="api" />
+      <apidata name="Weight" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Weight" />
+      <setter name="set_Weight" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+      </containers>
+      <file name="a827eecd-0e5e-20fc-53aa-9efa55731253" />
+    </api>
+    <api id="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection" />
+      <apidata name="DnssdServiceInstanceCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+          </specialization>
+        </type>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+          </specialization>
+        </type>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4d68090a-d6d3-f72b-608f-4c7ef8cce085" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection">
+      <topicdata name="DnssdServiceInstanceCollection" group="list" subgroup="members" typeTopicId="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection" />
+      <apidata name="DnssdServiceInstanceCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection.First" />
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection.GetAt(System.UInt32)" />
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection.GetMany(System.UInt32,Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance[])" />
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection.IndexOf(Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance,System.UInt32@)" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection" />
+      </containers>
+      <file name="07166f8c-8bdd-7a33-9e1d-26c52531a7d9" />
+    </api>
+    <api id="Methods.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection">
+      <topicdata name="DnssdServiceInstanceCollection" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection" />
+      <apidata name="DnssdServiceInstanceCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection.First" />
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection.GetAt(System.UInt32)" />
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection.GetMany(System.UInt32,Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance[])" />
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection.IndexOf(Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance,System.UInt32@)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection" />
+      </containers>
+      <file name="e7054d02-3112-6777-fc24-74c19e1b404c" />
+    </api>
+    <api id="Properties.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection">
+      <topicdata name="DnssdServiceInstanceCollection" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection" />
+      <apidata name="DnssdServiceInstanceCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection" />
+      </containers>
+      <file name="4b2e1610-151d-5fb5-6dca-7f7925518703" />
+    </api>
+    <api id="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection.First">
+      <topicdata group="api" />
+      <apidata name="First" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IIterator`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IIterable`1.First">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection" ref="true" />
+      </containers>
+      <file name="8ae81330-23b8-d201-5c30-1d1edd5d1e47" />
+    </api>
+    <api id="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection.GetAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVectorView`1.GetAt(System.UInt32)">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection" ref="true" />
+      </containers>
+      <file name="f26a077a-e195-70eb-78e3-3b13e23c18be" />
+    </api>
+    <api id="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection.GetMany(System.UInt32,Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance[])">
+      <topicdata group="api" />
+      <apidata name="GetMany" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="startIndex" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="items" out="true">
+          <arrayOf rank="1">
+            <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVectorView`1.GetMany(System.UInt32,`0[])">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection" ref="true" />
+      </containers>
+      <file name="6cf3d3ff-65bb-726f-95c4-1fd2c7d2a92a" />
+    </api>
+    <api id="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection.IndexOf(Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+        </parameter>
+        <parameter name="index" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVectorView`1.IndexOf(`0,System.UInt32@)">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection" ref="true" />
+      </containers>
+      <file name="adaf24ec-15ae-98af-a173-f0952ae1f70d" />
+    </api>
+    <api id="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.Collections.IVectorView`1.Size">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstanceCollection" ref="true" />
+      </containers>
+      <file name="97e5aeac-9900-0d99-ef0b-6e2e1bbcd5bc" />
+    </api>
+    <api id="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" />
+      <apidata name="DnssdServiceWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="95534076-8ddd-0961-7e64-7474134e1fb0" />
+    </api>
+    <api id="AllMembers.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher">
+      <topicdata name="DnssdServiceWatcher" group="list" subgroup="members" typeTopicId="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" />
+      <apidata name="DnssdServiceWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="E:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.Added" />
+        <element api="E:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.EnumerationCompleted" />
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.Start" />
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.Status" />
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.Stop" />
+        <element api="E:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.Stopped" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" />
+      </containers>
+      <file name="62171721-628a-3212-1c86-69510f8e0f1a" />
+    </api>
+    <api id="Methods.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher">
+      <topicdata name="DnssdServiceWatcher" group="list" subgroup="Methods" typeTopicId="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" />
+      <apidata name="DnssdServiceWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.Start" />
+        <element api="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.Stop" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" />
+      </containers>
+      <file name="7ebb4d10-bfe8-e528-d799-9d3e7abea682" />
+    </api>
+    <api id="Properties.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher">
+      <topicdata name="DnssdServiceWatcher" group="list" subgroup="Properties" typeTopicId="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" />
+      <apidata name="DnssdServiceWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" />
+      </containers>
+      <file name="796267dc-15c0-2419-1746-e4250b742259" />
+    </api>
+    <api id="Events.T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher">
+      <topicdata name="DnssdServiceWatcher" group="list" subgroup="Events" typeTopicId="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" />
+      <apidata name="DnssdServiceWatcher" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.Added" />
+        <element api="E:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.EnumerationCompleted" />
+        <element api="E:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.Stopped" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" />
+      </containers>
+      <file name="598e6868-1d35-2a48-2642-a399a1578d78" />
+    </api>
+    <api id="E:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.Added">
+      <topicdata group="api" />
+      <apidata name="Added" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Added" />
+      <remover name="remove_Added" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" ref="true" />
+            <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" ref="true" />
+      </containers>
+      <file name="2d41d3ee-2db0-ad0b-2dfe-54795deb6e7f" />
+    </api>
+    <api id="E:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.EnumerationCompleted">
+      <topicdata group="api" />
+      <apidata name="EnumerationCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_EnumerationCompleted" />
+      <remover name="remove_EnumerationCompleted" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" ref="true" />
+      </containers>
+      <file name="5423124b-40d8-1583-20b7-9e90023739dd" />
+    </api>
+    <api id="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" ref="true" />
+      </containers>
+      <file name="fca8db03-0576-e822-0b6d-e8ef99e240bf" />
+    </api>
+    <api id="P:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" ref="true" />
+      </containers>
+      <file name="8537b3e1-dece-372e-d2a5-750c005c5abc" />
+    </api>
+    <api id="M:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" ref="true" />
+      </containers>
+      <file name="c60013db-82fe-8e91-727d-d92684e2855d" />
+    </api>
+    <api id="E:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher.Stopped">
+      <topicdata group="api" />
+      <apidata name="Stopped" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Stopped" />
+      <remover name="remove_Stopped" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcher" ref="true" />
+      </containers>
+      <file name="d8b9315e-49f1-f30e-9c51-b767e5145648" />
+    </api>
+    <api id="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus">
+      <topicdata group="api" />
+      <apidata name="DnssdServiceWatcherStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus.Created" />
+        <element api="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus.Started" />
+        <element api="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus.EnumerationCompleted" />
+        <element api="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus.Stopping" />
+        <element api="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus.Stopped" />
+        <element api="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus.Aborted" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7019bcf5-a1ed-eb6c-b02b-f6c0d4217a09" />
+    </api>
+    <api id="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus.Aborted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Aborted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus" ref="false" />
+      </containers>
+      <file name="d54d9da4-b3ac-400d-4d2f-2db4070ccc55" />
+    </api>
+    <api id="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus.Created">
+      <topicdata group="api" notopic="" />
+      <apidata name="Created" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus" ref="false" />
+      </containers>
+      <file name="05c39b72-f09c-c00d-f48a-867f48cd15f2" />
+    </api>
+    <api id="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus.EnumerationCompleted">
+      <topicdata group="api" notopic="" />
+      <apidata name="EnumerationCompleted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus" ref="false" />
+      </containers>
+      <file name="d56d6b50-b5f9-3e94-b002-6b83d821d6df" />
+    </api>
+    <api id="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus.Started">
+      <topicdata group="api" notopic="" />
+      <apidata name="Started" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus" ref="false" />
+      </containers>
+      <file name="a8eb8a17-f8a7-e34c-996d-6add8022a253" />
+    </api>
+    <api id="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus.Stopped">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stopped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus" ref="false" />
+      </containers>
+      <file name="e9a57262-bab3-0472-e9a0-0dfbdba6c26e" />
+    </api>
+    <api id="F:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus.Stopping">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stopping" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Networking.ServiceDiscovery.Dnssd" />
+        <type api="T:Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceWatcherStatus" ref="false" />
+      </containers>
+      <file name="87a8da0b-d4d9-39ef-b01c-ad9c5bce329f" />
+    </api>
+  </apis>
+</reflection>

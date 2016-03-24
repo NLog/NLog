@@ -1,0 +1,3175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.Chat">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.Chat" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" />
+        <element api="T:Windows.ApplicationModel.Chat.ChatMessageChangeType" />
+        <element api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" />
+        <element api="T:Windows.ApplicationModel.Chat.ChatMessage" />
+        <element api="T:Windows.ApplicationModel.Chat.ChatMessageChange" />
+        <element api="T:Windows.ApplicationModel.Chat.ChatMessageChangeReader" />
+        <element api="T:Windows.ApplicationModel.Chat.ChatMessageAttachment" />
+        <element api="T:Windows.ApplicationModel.Chat.ChatMessageChangeTracker" />
+        <element api="T:Windows.ApplicationModel.Chat.ChatMessageReader" />
+        <element api="T:Windows.ApplicationModel.Chat.ChatMessageValidationResult" />
+        <element api="T:Windows.ApplicationModel.Chat.ChatMessageStore" />
+        <element api="T:Windows.ApplicationModel.Chat.ChatMessageChangedEventArgs" />
+        <element api="T:Windows.ApplicationModel.Chat.ChatMessageChangedDeferral" />
+        <element api="T:Windows.ApplicationModel.Chat.ChatMessageTransport" />
+        <element api="T:Windows.ApplicationModel.Chat.ChatMessageManager" />
+        <element api="T:Windows.ApplicationModel.Chat.ChatMessageNotificationTriggerDetails" />
+      </elements>
+      <file name="5306cf88-4f2b-2645-2b2c-b18fbe124b4d" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Chat.ChatMessage">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessage" />
+      <apidata name="ChatMessage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Chat.ChatMessage.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Chat.IChatMessage" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6d258ae5-cbad-975a-68f9-e25cbb65b82d" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessage">
+      <topicdata name="ChatMessage" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessage" />
+      <apidata name="ChatMessage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Chat.ChatMessage.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessage.#ctor" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.Attachments" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.Body" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.From" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.Id" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.IsForwardingDisabled" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.IsIncoming" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.IsRead" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.LocalTimestamp" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.NetworkTimestamp" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.Recipients" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.RecipientSendStatuses" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.Status" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.Subject" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.TransportFriendlyName" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.TransportId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" />
+      </containers>
+      <file name="01df4248-23b3-03a4-adcc-a733f3f65f40" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Chat.ChatMessage">
+      <topicdata name="ChatMessage" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessage" />
+      <apidata name="ChatMessage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Chat.ChatMessage.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" />
+      </containers>
+      <file name="2c2a7eac-596f-6c8e-f8ca-c0fd6df52be0" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Chat.ChatMessage">
+      <topicdata name="ChatMessage" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessage" />
+      <apidata name="ChatMessage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Chat.ChatMessage.#ctor" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.Attachments" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.Body" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.From" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.Id" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.IsForwardingDisabled" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.IsIncoming" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.IsRead" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.LocalTimestamp" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.NetworkTimestamp" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.Recipients" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.RecipientSendStatuses" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.Status" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.Subject" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.TransportFriendlyName" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessage.TransportId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" />
+      </containers>
+      <file name="41f8be57-18a6-2162-bbaa-a9f71c58b298" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessage.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </containers>
+      <file name="a2dbae37-7a14-c691-3835-75e8f460552e" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessage.Attachments">
+      <topicdata group="api" />
+      <apidata name="Attachments" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Attachments" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Chat.ChatMessageAttachment" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </containers>
+      <file name="9b548522-74db-c297-9f20-ad7ba8951208" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessage.Body">
+      <topicdata group="api" />
+      <apidata name="Body" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Body" />
+      <setter name="set_Body" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </containers>
+      <file name="c11f1b9c-f9a1-9809-9c31-086e8127ca76" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessage.From">
+      <topicdata group="api" />
+      <apidata name="From" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_From" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </containers>
+      <file name="2b009cb8-06aa-f3da-f0a1-84c4b91ed571" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessage.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </containers>
+      <file name="f7d26c97-4003-9cea-7fab-d60590b9eaa5" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessage.IsForwardingDisabled">
+      <topicdata group="api" />
+      <apidata name="IsForwardingDisabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsForwardingDisabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </containers>
+      <file name="e090078e-38b6-3496-1897-2425c5a8a956" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessage.IsIncoming">
+      <topicdata group="api" />
+      <apidata name="IsIncoming" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsIncoming" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </containers>
+      <file name="4c41cd2c-36b2-07a7-0b43-da93ca27c670" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessage.IsRead">
+      <topicdata group="api" />
+      <apidata name="IsRead" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsRead" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </containers>
+      <file name="6502d903-9af5-a4c5-09ae-1b74ba28ff00" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessage.LocalTimestamp">
+      <topicdata group="api" />
+      <apidata name="LocalTimestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LocalTimestamp" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </containers>
+      <file name="08104c1e-5284-eb77-10de-94b75c20d876" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessage.NetworkTimestamp">
+      <topicdata group="api" />
+      <apidata name="NetworkTimestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NetworkTimestamp" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </containers>
+      <file name="b0e0ae4c-3076-e3b9-6256-cfec6296dd3e" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessage.Recipients">
+      <topicdata group="api" />
+      <apidata name="Recipients" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Recipients" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </containers>
+      <file name="da8bf394-0f41-48f8-28fb-eb2d8e8269bf" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessage.RecipientSendStatuses">
+      <topicdata group="api" />
+      <apidata name="RecipientSendStatuses" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RecipientSendStatuses" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </containers>
+      <file name="dab19f54-e728-00ce-b3a6-931d98b5b5c7" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessage.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </containers>
+      <file name="fea7b6c2-9dda-2362-52b9-36c20cab7344" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessage.Subject">
+      <topicdata group="api" />
+      <apidata name="Subject" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Subject" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </containers>
+      <file name="3daaa65e-a5de-d361-f147-c45ea61444ef" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessage.TransportFriendlyName">
+      <topicdata group="api" />
+      <apidata name="TransportFriendlyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_TransportFriendlyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </containers>
+      <file name="5e6b9f26-36e5-f07f-4da4-65c516e72e98" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessage.TransportId">
+      <topicdata group="api" />
+      <apidata name="TransportId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TransportId" />
+      <setter name="set_TransportId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </containers>
+      <file name="c5f64241-c68c-9dfd-f0a1-cdfb8d994c09" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Chat.ChatMessageAttachment">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageAttachment" />
+      <apidata name="ChatMessageAttachment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Chat.IChatMessageAttachment" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7ea47a87-01e4-8a0f-2240-3602bfa1f28c" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageAttachment">
+      <topicdata name="ChatMessageAttachment" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageAttachment" />
+      <apidata name="ChatMessageAttachment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageAttachment.#ctor(System.String,Windows.Storage.Streams.IRandomAccessStreamReference)" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageAttachment.DataStreamReference" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageAttachment.GroupId" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageAttachment.MimeType" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageAttachment.Text" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageAttachment" />
+      </containers>
+      <file name="d6e0a0b3-ee21-6e57-f5e2-4a647053e4fc" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Chat.ChatMessageAttachment">
+      <topicdata name="ChatMessageAttachment" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageAttachment" />
+      <apidata name="ChatMessageAttachment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageAttachment" />
+      </containers>
+      <file name="6471431e-f685-75bd-700e-9367cd65b4dd" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Chat.ChatMessageAttachment">
+      <topicdata name="ChatMessageAttachment" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageAttachment" />
+      <apidata name="ChatMessageAttachment" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageAttachment.DataStreamReference" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageAttachment.GroupId" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageAttachment.MimeType" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageAttachment.Text" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageAttachment" />
+      </containers>
+      <file name="fec25c77-3819-8c6d-c22f-20622a5e2aaf" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageAttachment.#ctor(System.String,Windows.Storage.Streams.IRandomAccessStreamReference)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="mimeType" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="dataStreamReference" in="true">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStreamReference" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageAttachment" ref="true" />
+      </containers>
+      <file name="0bcfbf8e-df69-401f-b422-08a3927a14df" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessageAttachment.DataStreamReference">
+      <topicdata group="api" />
+      <apidata name="DataStreamReference" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DataStreamReference" />
+      <setter name="set_DataStreamReference" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStreamReference" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageAttachment" ref="true" />
+      </containers>
+      <file name="00a2060b-a905-0857-d695-23822836e868" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessageAttachment.GroupId">
+      <topicdata group="api" />
+      <apidata name="GroupId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_GroupId" />
+      <setter name="set_GroupId" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageAttachment" ref="true" />
+      </containers>
+      <file name="3d075649-1866-83a7-2232-0749d369d2a0" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessageAttachment.MimeType">
+      <topicdata group="api" />
+      <apidata name="MimeType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MimeType" />
+      <setter name="set_MimeType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageAttachment" ref="true" />
+      </containers>
+      <file name="7e90f60e-891b-97a9-3961-14e74edee2ba" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessageAttachment.Text">
+      <topicdata group="api" />
+      <apidata name="Text" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Text" />
+      <setter name="set_Text" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageAttachment" ref="true" />
+      </containers>
+      <file name="f08fc49d-3fad-da7a-aa30-4fb1c2288fcb" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Chat.ChatMessageChange">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageChange" />
+      <apidata name="ChatMessageChange" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Chat.IChatMessageChange" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="28eb93f5-3575-0176-dc05-a4ecf9c0b574" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageChange">
+      <topicdata name="ChatMessageChange" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageChange" />
+      <apidata name="ChatMessageChange" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageChange.ChangeType" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageChange.Message" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChange" />
+      </containers>
+      <file name="d6ead906-a229-8deb-7c67-383d0552dc28" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Chat.ChatMessageChange">
+      <topicdata name="ChatMessageChange" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageChange" />
+      <apidata name="ChatMessageChange" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChange" />
+      </containers>
+      <file name="c7a58269-1c74-1b5a-6261-652584c52832" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Chat.ChatMessageChange">
+      <topicdata name="ChatMessageChange" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageChange" />
+      <apidata name="ChatMessageChange" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageChange.ChangeType" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageChange.Message" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChange" />
+      </containers>
+      <file name="b92c13d9-f435-e962-39c2-89e65f548cd8" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessageChange.ChangeType">
+      <topicdata group="api" />
+      <apidata name="ChangeType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChangeType" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChange" ref="true" />
+      </containers>
+      <file name="3838da80-e982-2fde-01a8-e9ead325ec2b" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessageChange.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Message" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChange" ref="true" />
+      </containers>
+      <file name="76ca3116-90e0-73a7-75ca-09405268a0fb" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Chat.ChatMessageChangedDeferral">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageChangedDeferral" />
+      <apidata name="ChatMessageChangedDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Chat.IChatMessageChangedDeferral" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="75c45e23-9fe4-05f4-861f-4daa6b31243b" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageChangedDeferral">
+      <topicdata name="ChatMessageChangedDeferral" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageChangedDeferral" />
+      <apidata name="ChatMessageChangedDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageChangedDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangedDeferral" />
+      </containers>
+      <file name="ee803874-8393-9b4c-560d-25193cd9977b" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Chat.ChatMessageChangedDeferral">
+      <topicdata name="ChatMessageChangedDeferral" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageChangedDeferral" />
+      <apidata name="ChatMessageChangedDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageChangedDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangedDeferral" />
+      </containers>
+      <file name="faf2167a-fd82-443d-a8f9-f2b9fc275853" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageChangedDeferral.Complete">
+      <topicdata group="api" />
+      <apidata name="Complete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangedDeferral" ref="true" />
+      </containers>
+      <file name="154eb9a9-41ec-204c-c774-2e0de794c964" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Chat.ChatMessageChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageChangedEventArgs" />
+      <apidata name="ChatMessageChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Chat.IChatMessageChangedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3205e99e-a7b9-f16d-7c53-006c7278e28e" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageChangedEventArgs">
+      <topicdata name="ChatMessageChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageChangedEventArgs" />
+      <apidata name="ChatMessageChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageChangedEventArgs.GetDeferral" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangedEventArgs" />
+      </containers>
+      <file name="35182420-d34a-df6d-7af9-ea6105019c4c" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Chat.ChatMessageChangedEventArgs">
+      <topicdata name="ChatMessageChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageChangedEventArgs" />
+      <apidata name="ChatMessageChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageChangedEventArgs.GetDeferral" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangedEventArgs" />
+      </containers>
+      <file name="c157f52f-35b7-f6cb-4551-d0099ac80e48" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageChangedEventArgs.GetDeferral">
+      <topicdata group="api" />
+      <apidata name="GetDeferral" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangedDeferral" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangedEventArgs" ref="true" />
+      </containers>
+      <file name="a1a668c0-0b9f-c6ff-999b-116ef72e060b" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Chat.ChatMessageChangeReader">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageChangeReader" />
+      <apidata name="ChatMessageChangeReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Chat.IChatMessageChangeReader" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3065473a-3abb-c12e-1012-b3acc74671a2" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageChangeReader">
+      <topicdata name="ChatMessageChangeReader" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageChangeReader" />
+      <apidata name="ChatMessageChangeReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageChangeReader.AcceptChanges" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageChangeReader.AcceptChangesThrough(Windows.ApplicationModel.Chat.ChatMessageChange)" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageChangeReader.ReadBatchAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeReader" />
+      </containers>
+      <file name="8d3a5378-1406-a150-5df9-0e826bcee3d0" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Chat.ChatMessageChangeReader">
+      <topicdata name="ChatMessageChangeReader" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageChangeReader" />
+      <apidata name="ChatMessageChangeReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageChangeReader.AcceptChanges" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageChangeReader.AcceptChangesThrough(Windows.ApplicationModel.Chat.ChatMessageChange)" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageChangeReader.ReadBatchAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeReader" />
+      </containers>
+      <file name="d9c638bf-0db0-f8d8-027f-2c939456b66a" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageChangeReader.AcceptChanges">
+      <topicdata group="api" />
+      <apidata name="AcceptChanges" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeReader" ref="true" />
+      </containers>
+      <file name="e528f153-8615-6762-b137-a0e023d9b643" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageChangeReader.AcceptChangesThrough(Windows.ApplicationModel.Chat.ChatMessageChange)">
+      <topicdata group="api" />
+      <apidata name="AcceptChangesThrough" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="lastChangeToAcknowledge" in="true">
+          <type api="T:Windows.ApplicationModel.Chat.ChatMessageChange" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeReader" ref="true" />
+      </containers>
+      <file name="0a2c5aaa-802f-f268-d443-716283dec1e8" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageChangeReader.ReadBatchAsync">
+      <topicdata group="api" />
+      <apidata name="ReadBatchAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.ApplicationModel.Chat.ChatMessageChange" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeReader" ref="true" />
+      </containers>
+      <file name="8aba931d-2e07-980e-75ad-b80a08657823" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Chat.ChatMessageChangeTracker">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageChangeTracker" />
+      <apidata name="ChatMessageChangeTracker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Chat.IChatMessageChangeTracker" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ee7954c0-fd62-1624-6bbe-6ee3ed07e696" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageChangeTracker">
+      <topicdata name="ChatMessageChangeTracker" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageChangeTracker" />
+      <apidata name="ChatMessageChangeTracker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageChangeTracker.Enable" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageChangeTracker.GetChangeReader" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageChangeTracker.Reset" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeTracker" />
+      </containers>
+      <file name="63a2d8a5-d27b-5e1b-c849-63735b9f5cf4" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Chat.ChatMessageChangeTracker">
+      <topicdata name="ChatMessageChangeTracker" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageChangeTracker" />
+      <apidata name="ChatMessageChangeTracker" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageChangeTracker.Enable" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageChangeTracker.GetChangeReader" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageChangeTracker.Reset" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeTracker" />
+      </containers>
+      <file name="41d73701-9778-38b3-d39f-cf1085d2c55e" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageChangeTracker.Enable">
+      <topicdata group="api" />
+      <apidata name="Enable" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeTracker" ref="true" />
+      </containers>
+      <file name="05afd5ef-1da4-501c-1224-18d0ca7cc09a" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageChangeTracker.GetChangeReader">
+      <topicdata group="api" />
+      <apidata name="GetChangeReader" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeTracker" ref="true" />
+      </containers>
+      <file name="99f1c5fe-e21f-a91d-e1d7-c250afea7d9e" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageChangeTracker.Reset">
+      <topicdata group="api" />
+      <apidata name="Reset" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeTracker" ref="true" />
+      </containers>
+      <file name="291af6cf-7e33-4d46-aa41-a46776dfb549" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Chat.ChatMessageChangeType">
+      <topicdata group="api" />
+      <apidata name="ChatMessageChangeType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageChangeType.MessageCreated" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageChangeType.MessageModified" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageChangeType.MessageDeleted" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageChangeType.ChangeTrackingLost" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="643a9632-aeb7-952f-57d7-87b190657ae5" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageChangeType.ChangeTrackingLost">
+      <topicdata group="api" notopic="" />
+      <apidata name="ChangeTrackingLost" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeType" ref="false" />
+      </containers>
+      <file name="c2e7a003-67d5-ef24-d5eb-3010778bb753" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageChangeType.MessageCreated">
+      <topicdata group="api" notopic="" />
+      <apidata name="MessageCreated" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeType" ref="false" />
+      </containers>
+      <file name="c337b99e-a304-c071-0c98-38cee4e3c9df" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageChangeType.MessageDeleted">
+      <topicdata group="api" notopic="" />
+      <apidata name="MessageDeleted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeType" ref="false" />
+      </containers>
+      <file name="ad038897-725f-a7ec-fc00-3af37d3c8f3d" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageChangeType.MessageModified">
+      <topicdata group="api" notopic="" />
+      <apidata name="MessageModified" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeType" ref="false" />
+      </containers>
+      <file name="7bc71124-1af6-8051-79d8-843903782e55" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Chat.ChatMessageManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageManager" />
+      <apidata name="ChatMessageManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5b702561-cdee-e84c-9cbc-148390f7419e" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageManager">
+      <topicdata name="ChatMessageManager" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageManager" />
+      <apidata name="ChatMessageManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageManager.GetTransportsAsync" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageManager.RequestStoreAsync" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageManager.ShowComposeSmsMessageAsync(Windows.ApplicationModel.Chat.ChatMessage)" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageManager.ShowSmsSettings" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageManager" />
+      </containers>
+      <file name="ffd55ddb-420b-b303-fcb1-b029154fd209" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Chat.ChatMessageManager">
+      <topicdata name="ChatMessageManager" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageManager" />
+      <apidata name="ChatMessageManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageManager.GetTransportsAsync" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageManager.RequestStoreAsync" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageManager.ShowComposeSmsMessageAsync(Windows.ApplicationModel.Chat.ChatMessage)" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageManager.ShowSmsSettings" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageManager" />
+      </containers>
+      <file name="f3f11c5a-f88d-974a-b043-167d2980f30c" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageManager.GetTransportsAsync">
+      <topicdata group="api" />
+      <apidata name="GetTransportsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.ApplicationModel.Chat.ChatMessageTransport" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageManager" ref="true" />
+      </containers>
+      <file name="d809b539-a907-858c-7cad-75358658a0e0" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageManager.RequestStoreAsync">
+      <topicdata group="api" />
+      <apidata name="RequestStoreAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageManager" ref="true" />
+      </containers>
+      <file name="54285e5a-d247-323d-beff-b660869f2054" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageManager.ShowComposeSmsMessageAsync(Windows.ApplicationModel.Chat.ChatMessage)">
+      <topicdata group="api" />
+      <apidata name="ShowComposeSmsMessageAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="message" in="true">
+          <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageManager" ref="true" />
+      </containers>
+      <file name="0a724e5a-f21a-28a6-4255-b3b74cabd537" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageManager.ShowSmsSettings">
+      <topicdata group="api" />
+      <apidata name="ShowSmsSettings" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageManager" ref="true" />
+      </containers>
+      <file name="7ff4e726-9f88-3c47-c12d-625d6b75b4e3" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Chat.ChatMessageNotificationTriggerDetails">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageNotificationTriggerDetails" />
+      <apidata name="ChatMessageNotificationTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Chat.IChatMessageNotificationTriggerDetails" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="954244ae-ca2e-2aba-4122-48307f39ffb8" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageNotificationTriggerDetails">
+      <topicdata name="ChatMessageNotificationTriggerDetails" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageNotificationTriggerDetails" />
+      <apidata name="ChatMessageNotificationTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageNotificationTriggerDetails.ChatMessage" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageNotificationTriggerDetails" />
+      </containers>
+      <file name="a8b109b8-8013-59cd-8405-812431b9abc0" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Chat.ChatMessageNotificationTriggerDetails">
+      <topicdata name="ChatMessageNotificationTriggerDetails" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageNotificationTriggerDetails" />
+      <apidata name="ChatMessageNotificationTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageNotificationTriggerDetails" />
+      </containers>
+      <file name="c9ad8470-8c7c-4121-2697-c6b76f6e0f8d" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Chat.ChatMessageNotificationTriggerDetails">
+      <topicdata name="ChatMessageNotificationTriggerDetails" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageNotificationTriggerDetails" />
+      <apidata name="ChatMessageNotificationTriggerDetails" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageNotificationTriggerDetails.ChatMessage" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageNotificationTriggerDetails" />
+      </containers>
+      <file name="5f30b487-7f42-859f-4aec-fdc523119261" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessageNotificationTriggerDetails.ChatMessage">
+      <topicdata group="api" />
+      <apidata name="ChatMessage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChatMessage" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageNotificationTriggerDetails" ref="true" />
+      </containers>
+      <file name="5da7233d-2a1d-df61-bb85-ee3f3731c5d5" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Chat.ChatMessageReader">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageReader" />
+      <apidata name="ChatMessageReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Chat.IChatMessageReader" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="eddd791a-346f-7c28-f5e3-4465bcce1d45" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageReader">
+      <topicdata name="ChatMessageReader" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageReader" />
+      <apidata name="ChatMessageReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageReader.ReadBatchAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageReader" />
+      </containers>
+      <file name="2a8aea19-09e6-f7b1-a2c2-b5b673dee0fa" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Chat.ChatMessageReader">
+      <topicdata name="ChatMessageReader" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageReader" />
+      <apidata name="ChatMessageReader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageReader.ReadBatchAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageReader" />
+      </containers>
+      <file name="9a1e5aca-f313-49b4-f621-87d1d7a63338" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageReader.ReadBatchAsync">
+      <topicdata group="api" />
+      <apidata name="ReadBatchAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageReader" ref="true" />
+      </containers>
+      <file name="6cd7213f-c726-3510-593d-e0ae7938fc02" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Chat.ChatMessageStatus">
+      <topicdata group="api" />
+      <apidata name="ChatMessageStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageStatus.Draft" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageStatus.Sending" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageStatus.Sent" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageStatus.SendRetryNeeded" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageStatus.SendFailed" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageStatus.Received" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageStatus.ReceiveDownloadNeeded" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageStatus.ReceiveDownloadFailed" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageStatus.ReceiveDownloading" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageStatus.Deleted" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4164e7bf-d90b-530d-2a8d-69198791f4b8" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageStatus.Deleted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Deleted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </containers>
+      <file name="b6494dd5-8546-4ef6-4a74-5eb7050480db" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageStatus.Draft">
+      <topicdata group="api" notopic="" />
+      <apidata name="Draft" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </containers>
+      <file name="9c850452-dc8b-67fa-3ade-0604ca825d08" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageStatus.Received">
+      <topicdata group="api" notopic="" />
+      <apidata name="Received" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </containers>
+      <file name="7e69a6a2-b44a-1e8a-21de-ad12173f19d5" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageStatus.ReceiveDownloadFailed">
+      <topicdata group="api" notopic="" />
+      <apidata name="ReceiveDownloadFailed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </containers>
+      <file name="f6223d8c-2993-b81e-b0f0-d2d65d465532" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageStatus.ReceiveDownloading">
+      <topicdata group="api" notopic="" />
+      <apidata name="ReceiveDownloading" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </containers>
+      <file name="84e15183-8c13-75ff-b5c2-5f21a9a1a0bc" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageStatus.ReceiveDownloadNeeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="ReceiveDownloadNeeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </containers>
+      <file name="c92188da-dc8d-9c4f-56b6-df25223f383d" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageStatus.SendFailed">
+      <topicdata group="api" notopic="" />
+      <apidata name="SendFailed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </containers>
+      <file name="99db7808-bcb9-c472-1e28-ba06fa6595d0" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageStatus.Sending">
+      <topicdata group="api" notopic="" />
+      <apidata name="Sending" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </containers>
+      <file name="5ceb5f6e-ee25-8f4c-bd48-6e4c9bd415db" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageStatus.SendRetryNeeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="SendRetryNeeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </containers>
+      <file name="eed51255-b9d5-f985-2291-6da9d002fa20" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageStatus.Sent">
+      <topicdata group="api" notopic="" />
+      <apidata name="Sent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStatus" ref="false" />
+      </containers>
+      <file name="17fbf1eb-7d20-3f5e-f314-718e653b3729" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Chat.ChatMessageStore">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageStore" />
+      <apidata name="ChatMessageStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Chat.IChatMessageStore" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="89092ee5-3384-e8ee-7005-94183b39e2aa" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageStore">
+      <topicdata name="ChatMessageStore" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageStore" />
+      <apidata name="ChatMessageStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageStore.ChangeTracker" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.DeleteMessageAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.DownloadMessageAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.GetMessageAsync(System.String)" />
+        <element api="Overload:Windows.ApplicationModel.Chat.ChatMessageStore.GetMessageReader">
+          <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.GetMessageReader" />
+          <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.GetMessageReader(Windows.Foundation.TimeSpan)" />
+        </element>
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.MarkMessageReadAsync(System.String)" />
+        <element api="E:Windows.ApplicationModel.Chat.ChatMessageStore.MessageChanged" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.RetrySendMessageAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.SendMessageAsync(Windows.ApplicationModel.Chat.ChatMessage)" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.ValidateMessage(Windows.ApplicationModel.Chat.ChatMessage)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" />
+      </containers>
+      <file name="beba20a1-4a05-a8fe-3dbe-376e37343546" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Chat.ChatMessageStore">
+      <topicdata name="ChatMessageStore" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageStore" />
+      <apidata name="ChatMessageStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.DeleteMessageAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.DownloadMessageAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.GetMessageAsync(System.String)" />
+        <element api="Overload:Windows.ApplicationModel.Chat.ChatMessageStore.GetMessageReader">
+          <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.GetMessageReader" />
+          <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.GetMessageReader(Windows.Foundation.TimeSpan)" />
+        </element>
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.MarkMessageReadAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.RetrySendMessageAsync(System.String)" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.SendMessageAsync(Windows.ApplicationModel.Chat.ChatMessage)" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.ValidateMessage(Windows.ApplicationModel.Chat.ChatMessage)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" />
+      </containers>
+      <file name="2345f902-8ceb-261a-2bdf-a3e3d04c2c13" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Chat.ChatMessageStore">
+      <topicdata name="ChatMessageStore" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageStore" />
+      <apidata name="ChatMessageStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageStore.ChangeTracker" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" />
+      </containers>
+      <file name="9d3b593b-64e9-d7c7-db7e-8a499f6e406e" />
+    </api>
+    <api id="Events.T:Windows.ApplicationModel.Chat.ChatMessageStore">
+      <topicdata name="ChatMessageStore" group="list" subgroup="Events" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageStore" />
+      <apidata name="ChatMessageStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.ApplicationModel.Chat.ChatMessageStore.MessageChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" />
+      </containers>
+      <file name="d0354659-210f-6a3c-439e-eb10d2de97e5" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.Chat.ChatMessageStore.GetMessageReader">
+      <topicdata name="GetMessageReader" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageStore" />
+      <apidata name="GetMessageReader" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.GetMessageReader" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageStore.GetMessageReader(Windows.Foundation.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" ref="true" />
+      </containers>
+      <file name="35443859-d073-0daa-41e6-13ff54be95d2" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessageStore.ChangeTracker">
+      <topicdata group="api" />
+      <apidata name="ChangeTracker" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ChangeTracker" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangeTracker" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" ref="true" />
+      </containers>
+      <file name="26801844-3ac5-bfc0-711d-4943cae4474e" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageStore.DeleteMessageAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="DeleteMessageAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="localMessageId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" ref="true" />
+      </containers>
+      <file name="aac2bdd5-37f1-8143-38ba-6cf0a506a5ed" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageStore.DownloadMessageAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="DownloadMessageAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="localChatMessageId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" ref="true" />
+      </containers>
+      <file name="20c13e4f-328b-84fe-0e62-42d6a59080d0" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageStore.GetMessageAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetMessageAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="localChatMessageId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" ref="true" />
+      </containers>
+      <file name="2ae85fa3-29bb-7455-4120-c5dbd33d0e48" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageStore.GetMessageReader">
+      <topicdata group="api" />
+      <apidata name="GetMessageReader" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.ApplicationModel.Chat.ChatMessageStore.GetMessageReader" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetMessageReader1</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="029ee008-a210-6589-1777-53bdf7cb20ea" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageStore.GetMessageReader(Windows.Foundation.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="GetMessageReader" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.ApplicationModel.Chat.ChatMessageStore.GetMessageReader" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="recentTimeLimit" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageReader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetMessageReader2</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b1cc11e1-5694-0833-51ba-d89194946ea5" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageStore.MarkMessageReadAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="MarkMessageReadAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="localChatMessageId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" ref="true" />
+      </containers>
+      <file name="e72dd98b-9e4b-4b0e-b504-08262f756f41" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Chat.ChatMessageStore.MessageChanged">
+      <topicdata group="api" />
+      <apidata name="MessageChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_MessageChanged" />
+      <remover name="remove_MessageChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" ref="true" />
+            <type api="T:Windows.ApplicationModel.Chat.ChatMessageChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" ref="true" />
+      </containers>
+      <file name="79a37baf-0c9e-5a89-fdc5-43c57d052e42" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageStore.RetrySendMessageAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="RetrySendMessageAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="localChatMessageId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" ref="true" />
+      </containers>
+      <file name="257b3e87-9b6d-f62f-cf85-3bf450de1685" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageStore.SendMessageAsync(Windows.ApplicationModel.Chat.ChatMessage)">
+      <topicdata group="api" />
+      <apidata name="SendMessageAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="chatMessage" in="true">
+          <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" ref="true" />
+      </containers>
+      <file name="65683abd-b884-a955-e730-5cc8b06545c3" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageStore.ValidateMessage(Windows.ApplicationModel.Chat.ChatMessage)">
+      <topicdata group="api" />
+      <apidata name="ValidateMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="chatMessage" in="true">
+          <type api="T:Windows.ApplicationModel.Chat.ChatMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageStore" ref="true" />
+      </containers>
+      <file name="965b4d1f-fca6-374d-1796-ac5ad8664952" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Chat.ChatMessageTransport">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageTransport" />
+      <apidata name="ChatMessageTransport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Chat.IChatMessageTransport" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="093951de-5f0c-b931-6920-4928e51d4651" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageTransport">
+      <topicdata name="ChatMessageTransport" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageTransport" />
+      <apidata name="ChatMessageTransport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageTransport.IsActive" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageTransport.IsAppSetAsNotificationProvider" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageTransport.RequestSetAsNotificationProviderAsync" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageTransport.TransportFriendlyName" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageTransport.TransportId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageTransport" />
+      </containers>
+      <file name="ec1d00a0-9ad8-1c26-8436-4f5f9a913492" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Chat.ChatMessageTransport">
+      <topicdata name="ChatMessageTransport" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageTransport" />
+      <apidata name="ChatMessageTransport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Chat.ChatMessageTransport.RequestSetAsNotificationProviderAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageTransport" />
+      </containers>
+      <file name="1f0915a3-9503-5e23-ae81-1a50336cbb6d" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Chat.ChatMessageTransport">
+      <topicdata name="ChatMessageTransport" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageTransport" />
+      <apidata name="ChatMessageTransport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageTransport.IsActive" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageTransport.IsAppSetAsNotificationProvider" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageTransport.TransportFriendlyName" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageTransport.TransportId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageTransport" />
+      </containers>
+      <file name="b01219ac-da66-d963-41b0-5810de764742" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessageTransport.IsActive">
+      <topicdata group="api" />
+      <apidata name="IsActive" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsActive" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageTransport" ref="true" />
+      </containers>
+      <file name="2e0a5261-de30-43c8-a55f-8a264d52a134" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessageTransport.IsAppSetAsNotificationProvider">
+      <topicdata group="api" />
+      <apidata name="IsAppSetAsNotificationProvider" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsAppSetAsNotificationProvider" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageTransport" ref="true" />
+      </containers>
+      <file name="1ff3d986-8047-4db9-5045-49f6e4fae68e" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Chat.ChatMessageTransport.RequestSetAsNotificationProviderAsync">
+      <topicdata group="api" />
+      <apidata name="RequestSetAsNotificationProviderAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageTransport" ref="true" />
+      </containers>
+      <file name="9fc8d280-b288-4003-8fc0-7999dae24846" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessageTransport.TransportFriendlyName">
+      <topicdata group="api" />
+      <apidata name="TransportFriendlyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_TransportFriendlyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageTransport" ref="true" />
+      </containers>
+      <file name="7347ea3b-1fd2-868e-c7a9-b4828609f6d2" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessageTransport.TransportId">
+      <topicdata group="api" />
+      <apidata name="TransportId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_TransportId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageTransport" ref="true" />
+      </containers>
+      <file name="d37e5efd-3f6b-bc3d-1d38-423dc473050b" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Chat.ChatMessageValidationResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageValidationResult" />
+      <apidata name="ChatMessageValidationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Chat.IChatMessageValidationResult" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b92a0ad2-ba46-e060-8bb8-56383f8d59d9" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Chat.ChatMessageValidationResult">
+      <topicdata name="ChatMessageValidationResult" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageValidationResult" />
+      <apidata name="ChatMessageValidationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageValidationResult.MaxPartCount" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageValidationResult.PartCount" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageValidationResult.RemainingCharacterCountInPart" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageValidationResult.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationResult" />
+      </containers>
+      <file name="34aaf759-5398-1f4d-0733-f1ba537b3ab5" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Chat.ChatMessageValidationResult">
+      <topicdata name="ChatMessageValidationResult" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageValidationResult" />
+      <apidata name="ChatMessageValidationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationResult" />
+      </containers>
+      <file name="bd88d2e8-5e11-c4bc-27c8-a70499b011b2" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Chat.ChatMessageValidationResult">
+      <topicdata name="ChatMessageValidationResult" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Chat.ChatMessageValidationResult" />
+      <apidata name="ChatMessageValidationResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageValidationResult.MaxPartCount" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageValidationResult.PartCount" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageValidationResult.RemainingCharacterCountInPart" />
+        <element api="P:Windows.ApplicationModel.Chat.ChatMessageValidationResult.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationResult" />
+      </containers>
+      <file name="d8479a5f-3c82-c9bc-7008-2b23bd9b7687" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessageValidationResult.MaxPartCount">
+      <topicdata group="api" />
+      <apidata name="MaxPartCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MaxPartCount" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationResult" ref="true" />
+      </containers>
+      <file name="1a5cd0af-0105-449a-1a6d-47f60c6f706e" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessageValidationResult.PartCount">
+      <topicdata group="api" />
+      <apidata name="PartCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PartCount" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationResult" ref="true" />
+      </containers>
+      <file name="4e06f434-fbb4-57a8-07e9-dcf97484a99d" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessageValidationResult.RemainingCharacterCountInPart">
+      <topicdata group="api" />
+      <apidata name="RemainingCharacterCountInPart" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RemainingCharacterCountInPart" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationResult" ref="true" />
+      </containers>
+      <file name="d87951f6-5bc1-e85a-7aa5-8f527edeb6e7" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Chat.ChatMessageValidationResult.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationResult" ref="true" />
+      </containers>
+      <file name="6b464040-4b0f-7a8c-0519-6d49e3fdf523" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus">
+      <topicdata group="api" />
+      <apidata name="ChatMessageValidationStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.Valid" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.NoRecipients" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.InvalidData" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.MessageTooLarge" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.TooManyRecipients" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.TransportInactive" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.TransportNotFound" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.TooManyAttachments" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.InvalidRecipients" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.InvalidBody" />
+        <element api="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.InvalidOther" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="60c56303-bc20-ccd6-4186-093818355662" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.InvalidBody">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidBody" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </containers>
+      <file name="b8faccea-962b-af2e-3d0e-9ae6b097d0c4" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.InvalidData">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidData" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </containers>
+      <file name="389061b5-d700-96b9-aad2-efcb4aea7ce5" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.InvalidOther">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidOther" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </containers>
+      <file name="b5111f45-e049-7ae4-89ab-4eb8ed216ec7" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.InvalidRecipients">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidRecipients" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </containers>
+      <file name="7be88cc5-7cf4-1359-7f14-33baf73254cb" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.MessageTooLarge">
+      <topicdata group="api" notopic="" />
+      <apidata name="MessageTooLarge" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </containers>
+      <file name="d0b9d9ac-45ac-faf4-9183-f819047298d4" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.NoRecipients">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoRecipients" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </containers>
+      <file name="9500e662-91e5-2770-a35e-fbfa0cb6b066" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.TooManyAttachments">
+      <topicdata group="api" notopic="" />
+      <apidata name="TooManyAttachments" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </containers>
+      <file name="b0be7e23-23fa-2119-c92f-ed188d1039bc" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.TooManyRecipients">
+      <topicdata group="api" notopic="" />
+      <apidata name="TooManyRecipients" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </containers>
+      <file name="5a50c2ac-fbb1-7b34-9685-e86589dd36ea" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.TransportInactive">
+      <topicdata group="api" notopic="" />
+      <apidata name="TransportInactive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </containers>
+      <file name="31c48dd3-afe8-425b-6c24-4625f751b425" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.TransportNotFound">
+      <topicdata group="api" notopic="" />
+      <apidata name="TransportNotFound" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </containers>
+      <file name="2c45013e-55ff-cd53-d86f-29bcf72c97df" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Chat.ChatMessageValidationStatus.Valid">
+      <topicdata group="api" notopic="" />
+      <apidata name="Valid" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Chat" />
+        <type api="T:Windows.ApplicationModel.Chat.ChatMessageValidationStatus" ref="false" />
+      </containers>
+      <file name="3dc1be11-8976-8a6f-e536-ff64a2555c8f" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,2298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.Store.Preview">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.Store.Preview" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus" />
+        <element api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" />
+        <element api="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" />
+        <element api="T:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults" />
+        <element api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo" />
+        <element api="T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo" />
+        <element api="T:Windows.ApplicationModel.Store.Preview.StorePreview" />
+        <element api="T:Windows.ApplicationModel.Store.Preview.StoreConfiguration" />
+      </elements>
+      <file name="c33fff54-00a9-9028-6451-aff0757bfd1d" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Store.Preview.StoreConfiguration">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Store.Preview.StoreConfiguration" />
+      <apidata name="StoreConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f24f7653-23b2-a6ae-1d63-ed54f92a0c3e" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Store.Preview.StoreConfiguration">
+      <topicdata name="StoreConfiguration" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StoreConfiguration" />
+      <apidata name="StoreConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Store.Preview.StoreConfiguration.FilterUnsupportedSystemFeaturesAsync(Windows.Foundation.Collections.IIterable{Windows.ApplicationModel.Store.Preview.StoreSystemFeature})" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StoreConfiguration.HardwareManufacturerInfo" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.StoreConfiguration.IsStoreWebAccountId(System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.StoreConfiguration.SetMobileOperatorConfiguration(System.String,System.UInt32,System.UInt32)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.StoreConfiguration.SetStoreWebAccountId(System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.StoreConfiguration.SetSystemConfiguration(System.String,System.String,Windows.Foundation.DateTime,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreConfiguration" />
+      </containers>
+      <file name="1cd2afc6-99ed-0f1d-9806-d8dc1289a86c" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Store.Preview.StoreConfiguration">
+      <topicdata name="StoreConfiguration" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StoreConfiguration" />
+      <apidata name="StoreConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Store.Preview.StoreConfiguration.FilterUnsupportedSystemFeaturesAsync(Windows.Foundation.Collections.IIterable{Windows.ApplicationModel.Store.Preview.StoreSystemFeature})" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.StoreConfiguration.IsStoreWebAccountId(System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.StoreConfiguration.SetMobileOperatorConfiguration(System.String,System.UInt32,System.UInt32)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.StoreConfiguration.SetStoreWebAccountId(System.String)" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.StoreConfiguration.SetSystemConfiguration(System.String,System.String,Windows.Foundation.DateTime,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreConfiguration" />
+      </containers>
+      <file name="f3d49e64-abe5-377a-96b6-d8382b7099ee" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Store.Preview.StoreConfiguration">
+      <topicdata name="StoreConfiguration" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StoreConfiguration" />
+      <apidata name="StoreConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Store.Preview.StoreConfiguration.HardwareManufacturerInfo" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreConfiguration" />
+      </containers>
+      <file name="59ad5964-5d17-5594-59d6-f6532eb5f9ec" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.StoreConfiguration.FilterUnsupportedSystemFeaturesAsync(Windows.Foundation.Collections.IIterable{Windows.ApplicationModel.Store.Preview.StoreSystemFeature})">
+      <topicdata group="api" />
+      <apidata name="FilterUnsupportedSystemFeaturesAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="systemFeatures" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreConfiguration" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="32f59a3f-1d23-7e3f-6f34-f0ab020414ef" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StoreConfiguration.HardwareManufacturerInfo">
+      <topicdata group="api" />
+      <apidata name="HardwareManufacturerInfo" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_HardwareManufacturerInfo" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreConfiguration" ref="true" />
+      </containers>
+      <file name="4316cd99-d138-7074-2447-b1a1194b7a9a" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.StoreConfiguration.IsStoreWebAccountId(System.String)">
+      <topicdata group="api" />
+      <apidata name="IsStoreWebAccountId" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="webAccountId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreConfiguration" ref="true" />
+      </containers>
+      <file name="ab971d05-cf9b-9314-c9f3-959089fe2df0" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.StoreConfiguration.SetMobileOperatorConfiguration(System.String,System.UInt32,System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="SetMobileOperatorConfiguration" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="mobileOperatorId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="appDownloadLimitInMegabytes" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="updateDownloadLimitInMegabytes" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreConfiguration" ref="true" />
+      </containers>
+      <file name="84e88d1d-7980-1c6c-29c0-9693de670ab1" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.StoreConfiguration.SetStoreWebAccountId(System.String)">
+      <topicdata group="api" />
+      <apidata name="SetStoreWebAccountId" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="webAccountId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreConfiguration" ref="true" />
+      </containers>
+      <file name="7c6abb26-a7d3-cd6a-2440-24ee5a2b3f4e" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.StoreConfiguration.SetSystemConfiguration(System.String,System.String,Windows.Foundation.DateTime,System.String)">
+      <topicdata group="api" />
+      <apidata name="SetSystemConfiguration" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="catalogHardwareManufacturerId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="catalogStoreContentModifierId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="systemConfigurationExpiration" in="true">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+        <parameter name="catalogHardwareDescriptor" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreConfiguration" ref="true" />
+      </containers>
+      <file name="c2a2ccb1-1aac-b95b-00b6-cf1cb3009d72" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo" />
+      <apidata name="StoreHardwareManufacturerInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4f3b7962-80ff-df63-40cb-fe03760863ef" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo">
+      <topicdata name="StoreHardwareManufacturerInfo" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo" />
+      <apidata name="StoreHardwareManufacturerInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo.HardwareManufacturerId" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo.ManufacturerName" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo.ModelName" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo.StoreContentModifierId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo" />
+      </containers>
+      <file name="f9a8a217-f22a-1976-bba7-ebf2415960a3" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo">
+      <topicdata name="StoreHardwareManufacturerInfo" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo" />
+      <apidata name="StoreHardwareManufacturerInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo" />
+      </containers>
+      <file name="f6c31726-ee21-4a65-6020-b9ea39ae7929" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo">
+      <topicdata name="StoreHardwareManufacturerInfo" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo" />
+      <apidata name="StoreHardwareManufacturerInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo.HardwareManufacturerId" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo.ManufacturerName" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo.ModelName" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo.StoreContentModifierId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo" />
+      </containers>
+      <file name="52aa2037-6b1c-785f-aed2-3bb6d5c20cbb" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo.HardwareManufacturerId">
+      <topicdata group="api" />
+      <apidata name="HardwareManufacturerId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_HardwareManufacturerId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo" ref="true" />
+      </containers>
+      <file name="1bf3f727-295c-8f4e-13e8-86ed742d849c" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo.ManufacturerName">
+      <topicdata group="api" />
+      <apidata name="ManufacturerName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ManufacturerName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo" ref="true" />
+      </containers>
+      <file name="a57fe6d9-ed96-ec2c-20c8-88daee1c16c5" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo.ModelName">
+      <topicdata group="api" />
+      <apidata name="ModelName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ModelName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo" ref="true" />
+      </containers>
+      <file name="1bff4578-5258-125b-76ce-0536c92c53e7" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo.StoreContentModifierId">
+      <topicdata group="api" />
+      <apidata name="StoreContentModifierId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_StoreContentModifierId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreHardwareManufacturerInfo" ref="true" />
+      </containers>
+      <file name="7c861287-409f-29f9-ab81-943ad5fa2771" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Store.Preview.StorePreview">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Store.Preview.StorePreview" />
+      <apidata name="StorePreview" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="38338930-bd6c-778a-7991-ec2a0145236f" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Store.Preview.StorePreview">
+      <topicdata name="StorePreview" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StorePreview" />
+      <apidata name="StorePreview" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Store.Preview.StorePreview.LoadAddOnProductInfosAsync" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.StorePreview.RequestProductPurchaseByProductIdAndSkuIdAsync(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreview" />
+      </containers>
+      <file name="83d5bccb-08d1-2f4f-561e-4a4ed5c127a8" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Store.Preview.StorePreview">
+      <topicdata name="StorePreview" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StorePreview" />
+      <apidata name="StorePreview" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Store.Preview.StorePreview.LoadAddOnProductInfosAsync" />
+        <element api="M:Windows.ApplicationModel.Store.Preview.StorePreview.RequestProductPurchaseByProductIdAndSkuIdAsync(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreview" />
+      </containers>
+      <file name="8017e8d4-f7da-0611-3aa7-4e477d7c83af" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.StorePreview.LoadAddOnProductInfosAsync">
+      <topicdata group="api" />
+      <apidata name="LoadAddOnProductInfosAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreview" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="f8e3330d-05d4-01c5-68b9-5d303fdf5037" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Store.Preview.StorePreview.RequestProductPurchaseByProductIdAndSkuIdAsync(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="RequestProductPurchaseByProductIdAndSkuIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="productId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="skuId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreview" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="0e719aec-c140-f384-b081-18fd4d66371d" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo" />
+      <apidata name="StorePreviewProductInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e2e51b11-b974-6da8-3bf7-a8ee8aea3656" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo">
+      <topicdata name="StorePreviewProductInfo" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo" />
+      <apidata name="StorePreviewProductInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo.Description" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo.ProductId" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo.ProductType" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo.SkuInfoList" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo" />
+      </containers>
+      <file name="c131a1b9-86ec-5304-b406-768fdbc24d16" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo">
+      <topicdata name="StorePreviewProductInfo" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo" />
+      <apidata name="StorePreviewProductInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo" />
+      </containers>
+      <file name="33adcb30-1bd7-46a2-9649-bcc8e38a4ce8" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo">
+      <topicdata name="StorePreviewProductInfo" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo" />
+      <apidata name="StorePreviewProductInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo.Description" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo.ProductId" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo.ProductType" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo.SkuInfoList" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo" />
+      </containers>
+      <file name="2ae4597f-4f99-b09e-e748-3563e53a2dec" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo.Description">
+      <topicdata group="api" />
+      <apidata name="Description" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Description" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo" ref="true" />
+      </containers>
+      <file name="15753d43-5233-727c-3526-60280a7af87f" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo.ProductId">
+      <topicdata group="api" />
+      <apidata name="ProductId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ProductId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo" ref="true" />
+      </containers>
+      <file name="2d35114d-a970-ce3b-b26d-158028379496" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo.ProductType">
+      <topicdata group="api" />
+      <apidata name="ProductType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ProductType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo" ref="true" />
+      </containers>
+      <file name="53fad259-412f-fae6-9925-c1a6ceb68463" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo.SkuInfoList">
+      <topicdata group="api" />
+      <apidata name="SkuInfoList" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SkuInfoList" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo" ref="true" />
+      </containers>
+      <file name="49736259-f318-4c88-c300-65522c9497f3" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductInfo" ref="true" />
+      </containers>
+      <file name="3aced248-bd0a-c2fd-5507-4d57d072e064" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus">
+      <topicdata group="api" />
+      <apidata name="StorePreviewProductPurchaseStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus.Succeeded" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus.AlreadyPurchased" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus.NotFulfilled" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus.NotPurchased" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2a88ab20-8ebb-43a5-ea9b-2e5ea056c7bb" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus.AlreadyPurchased">
+      <topicdata group="api" notopic="" />
+      <apidata name="AlreadyPurchased" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus" ref="false" />
+      </containers>
+      <file name="6e915aee-9fa1-a9b4-cf2b-c12285a1428d" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus.NotFulfilled">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotFulfilled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus" ref="false" />
+      </containers>
+      <file name="a9dc12a9-4a85-5476-96fc-5ebeec3ffc61" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus.NotPurchased">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotPurchased" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus" ref="false" />
+      </containers>
+      <file name="bfc6158b-3bb6-8cdf-b0c9-e4394550fb8f" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus.Succeeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="Succeeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus" ref="false" />
+      </containers>
+      <file name="24ae12d8-0003-3fd3-1b6c-a4ffffc59ae3" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults" />
+      <apidata name="StorePreviewPurchaseResults" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b4dbd418-4158-4c22-89f5-9611c312a35e" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults">
+      <topicdata name="StorePreviewPurchaseResults" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults" />
+      <apidata name="StorePreviewPurchaseResults" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults.ProductPurchaseStatus" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults" />
+      </containers>
+      <file name="f924f215-bdb3-2c65-9a1b-aaa7013da24d" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults">
+      <topicdata name="StorePreviewPurchaseResults" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults" />
+      <apidata name="StorePreviewPurchaseResults" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults" />
+      </containers>
+      <file name="ad27e06e-3207-123f-8367-67ac253f973c" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults">
+      <topicdata name="StorePreviewPurchaseResults" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults" />
+      <apidata name="StorePreviewPurchaseResults" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults.ProductPurchaseStatus" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults" />
+      </containers>
+      <file name="db647bc1-e0f5-d2cf-c3d9-76cd54d2f9a4" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults.ProductPurchaseStatus">
+      <topicdata group="api" />
+      <apidata name="ProductPurchaseStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ProductPurchaseStatus" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewProductPurchaseStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewPurchaseResults" ref="true" />
+      </containers>
+      <file name="2aca63fb-4e41-b191-cec8-dd10e4be4c93" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" />
+      <apidata name="StorePreviewSkuInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a57dff4c-0a7f-7912-cef1-3fdeea76f09f" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo">
+      <topicdata name="StorePreviewSkuInfo" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" />
+      <apidata name="StorePreviewSkuInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.CurrencyCode" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.CustomDeveloperData" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.Description" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.ExtendedData" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.FormattedListPrice" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.ProductId" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.SkuId" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.SkuType" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" />
+      </containers>
+      <file name="420baee2-2c27-7f8f-9666-21f58797b129" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo">
+      <topicdata name="StorePreviewSkuInfo" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" />
+      <apidata name="StorePreviewSkuInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" />
+      </containers>
+      <file name="fae84db0-185f-9f5e-eac9-38a08597fb0e" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo">
+      <topicdata name="StorePreviewSkuInfo" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" />
+      <apidata name="StorePreviewSkuInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.CurrencyCode" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.CustomDeveloperData" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.Description" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.ExtendedData" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.FormattedListPrice" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.ProductId" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.SkuId" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.SkuType" />
+        <element api="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" />
+      </containers>
+      <file name="fa7b8e61-eefd-3c7c-01e2-28e58edf7718" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.CurrencyCode">
+      <topicdata group="api" />
+      <apidata name="CurrencyCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CurrencyCode" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" ref="true" />
+      </containers>
+      <file name="9e252536-db4e-4a5a-f90e-cbf0eddbe319" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.CustomDeveloperData">
+      <topicdata group="api" />
+      <apidata name="CustomDeveloperData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CustomDeveloperData" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" ref="true" />
+      </containers>
+      <file name="2bb6269b-a417-f79a-00aa-bfd67649c4e9" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.Description">
+      <topicdata group="api" />
+      <apidata name="Description" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Description" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" ref="true" />
+      </containers>
+      <file name="f791d30b-690a-d1d5-ccd2-d66e32cce164" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.ExtendedData">
+      <topicdata group="api" />
+      <apidata name="ExtendedData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ExtendedData" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" ref="true" />
+      </containers>
+      <file name="7c990826-900e-8f33-6b6a-a053056d10c0" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.FormattedListPrice">
+      <topicdata group="api" />
+      <apidata name="FormattedListPrice" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FormattedListPrice" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" ref="true" />
+      </containers>
+      <file name="850d633f-4125-fc84-b4ad-d22d77bf1f2e" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.ProductId">
+      <topicdata group="api" />
+      <apidata name="ProductId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ProductId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" ref="true" />
+      </containers>
+      <file name="0183f383-1e11-ef9a-8808-a53a308888d8" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.SkuId">
+      <topicdata group="api" />
+      <apidata name="SkuId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SkuId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" ref="true" />
+      </containers>
+      <file name="68ff86af-7d26-dee1-2cd3-5554a9579938" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.SkuType">
+      <topicdata group="api" />
+      <apidata name="SkuType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SkuType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" ref="true" />
+      </containers>
+      <file name="f193bd0a-1f78-c10f-0ce6-73129eadd010" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StorePreviewSkuInfo" ref="true" />
+      </containers>
+      <file name="8b12ae59-e739-6e53-ce92-2e5b48697eb5" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature">
+      <topicdata group="api" />
+      <apidata name="StoreSystemFeature" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.ArchitectureX86" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.ArchitectureX64" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.ArchitectureArm" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.DirectX9" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.DirectX10" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.DirectX11" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.D3D12HardwareFL11" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.D3D12HardwareFL12" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Memory300MB" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Memory750MB" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Memory1GB" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Memory2GB" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.CameraFront" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.CameraRear" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Gyroscope" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Hover" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Magnetometer" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Nfc" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Resolution720P" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.ResolutionWvga" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.ResolutionWvgaOr720P" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.ResolutionWxga" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.ResolutionWvgaOrWxga" />
+        <element api="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.ResolutionWxgaOr720P" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a431c0b1-b3e7-2938-1102-a732f2d79162" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.ArchitectureArm">
+      <topicdata group="api" notopic="" />
+      <apidata name="ArchitectureArm" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="4debba8b-c0db-b706-a8aa-5e2b1a05174a" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.ArchitectureX64">
+      <topicdata group="api" notopic="" />
+      <apidata name="ArchitectureX64" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="fba8b3f0-f1eb-5ae2-f95d-0fc932c8f474" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.ArchitectureX86">
+      <topicdata group="api" notopic="" />
+      <apidata name="ArchitectureX86" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="0cfb91a4-d2c4-1b74-a8e1-cfb4981ca7db" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.CameraFront">
+      <topicdata group="api" notopic="" />
+      <apidata name="CameraFront" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="fd685bf6-d9e9-ad46-da85-216162e16e60" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.CameraRear">
+      <topicdata group="api" notopic="" />
+      <apidata name="CameraRear" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>13</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="eb0d6333-886b-4403-17e5-7851563ceae4" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.D3D12HardwareFL11">
+      <topicdata group="api" notopic="" />
+      <apidata name="D3D12HardwareFL11" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="f62e5427-7c48-5ec7-ce3c-f4f40e4fb3e6" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.D3D12HardwareFL12">
+      <topicdata group="api" notopic="" />
+      <apidata name="D3D12HardwareFL12" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="ef2537b0-3117-a7be-68ed-432a810d6ff2" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.DirectX10">
+      <topicdata group="api" notopic="" />
+      <apidata name="DirectX10" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="14fed6e8-311a-8232-3fff-e1554cb131f5" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.DirectX11">
+      <topicdata group="api" notopic="" />
+      <apidata name="DirectX11" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="4498b7fe-5c75-38b3-6f8b-d38150bc1475" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.DirectX9">
+      <topicdata group="api" notopic="" />
+      <apidata name="DirectX9" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="39246560-1097-3082-f9c8-7015974c7702" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Gyroscope">
+      <topicdata group="api" notopic="" />
+      <apidata name="Gyroscope" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>14</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="228da162-89c9-f5fc-8cda-98dd92b8f6bc" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Hover">
+      <topicdata group="api" notopic="" />
+      <apidata name="Hover" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>15</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="c195957d-8d94-f8af-c0c1-9d61a7d1616c" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Magnetometer">
+      <topicdata group="api" notopic="" />
+      <apidata name="Magnetometer" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="99293bae-6103-7517-ccb4-fee0e5a60a99" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Memory1GB">
+      <topicdata group="api" notopic="" />
+      <apidata name="Memory1GB" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="6e82fd01-d872-f7a6-9a91-9d8a8ae63b8f" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Memory2GB">
+      <topicdata group="api" notopic="" />
+      <apidata name="Memory2GB" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="78ffd09b-439a-5682-0c01-547c515e216c" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Memory300MB">
+      <topicdata group="api" notopic="" />
+      <apidata name="Memory300MB" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="899100dc-a67d-3679-4c7f-4e533fd85aea" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Memory750MB">
+      <topicdata group="api" notopic="" />
+      <apidata name="Memory750MB" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="6916379f-a656-dcec-1efb-7692a14fda4b" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Nfc">
+      <topicdata group="api" notopic="" />
+      <apidata name="Nfc" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>17</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="98de6eb5-ba94-e02a-b26d-c573cc9d7b90" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.Resolution720P">
+      <topicdata group="api" notopic="" />
+      <apidata name="Resolution720P" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>18</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="2b218d04-94bb-4faf-11ef-199876d282e6" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.ResolutionWvga">
+      <topicdata group="api" notopic="" />
+      <apidata name="ResolutionWvga" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>19</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="4db8c1af-b68e-e044-9f6d-f33909a6ebd1" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.ResolutionWvgaOr720P">
+      <topicdata group="api" notopic="" />
+      <apidata name="ResolutionWvgaOr720P" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>20</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="692b761c-ef71-00d0-2fe0-ec4ebf921504" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.ResolutionWvgaOrWxga">
+      <topicdata group="api" notopic="" />
+      <apidata name="ResolutionWvgaOrWxga" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>22</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="3291a56f-3330-290d-8d85-de0917e2be05" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.ResolutionWxga">
+      <topicdata group="api" notopic="" />
+      <apidata name="ResolutionWxga" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>21</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="56e77198-5229-18ab-7765-3517fb5e8cf6" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Store.Preview.StoreSystemFeature.ResolutionWxgaOr720P">
+      <topicdata group="api" notopic="" />
+      <apidata name="ResolutionWxgaOr720P" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </returns>
+      <value>23</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Store.Preview" />
+        <type api="T:Windows.ApplicationModel.Store.Preview.StoreSystemFeature" ref="false" />
+      </containers>
+      <file name="9ff40b27-577a-a2aa-647e-675c99075dc7" />
+    </api>
+  </apis>
+</reflection>

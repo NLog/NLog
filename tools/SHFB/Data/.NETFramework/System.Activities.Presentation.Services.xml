@@ -1,0 +1,1473 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities.Presentation">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Windows.ThemeInfoAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="SourceAssembly" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="SourceAssembly" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Activities.Presentation.Services">
+      <topicdata group="api" />
+      <apidata name="System.Activities.Presentation.Services" group="namespace" />
+      <elements>
+        <element api="T:System.Activities.Presentation.Services.ModelChangeInfo" />
+        <element api="T:System.Activities.Presentation.Services.ModelChangeType" />
+        <element api="T:System.Activities.Presentation.Services.ModelChangedEventArgs" />
+        <element api="T:System.Activities.Presentation.Services.ViewService" />
+        <element api="T:System.Activities.Presentation.Services.ModelSearchService" />
+        <element api="T:System.Activities.Presentation.Services.ModelService" />
+      </elements>
+      <file name="fe2a79ef-32eb-e906-3d01-7abe76d0cbea" />
+    </api>
+    <api id="T:System.Activities.Presentation.Services.ModelChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Services.ModelChangedEventArgs" />
+      <apidata name="ModelChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+      </containers>
+      <file name="c7afc824-5316-b88b-6bae-ab1bd8d7569b" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Services.ModelChangedEventArgs">
+      <topicdata name="ModelChangedEventArgs" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Services.ModelChangedEventArgs" />
+      <apidata name="ModelChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Services.ModelChangedEventArgs.#ctor" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangedEventArgs.ItemsAdded" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangedEventArgs.ItemsRemoved" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangedEventArgs.ModelChangeInfo" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangedEventArgs.PropertiesChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangedEventArgs" />
+      </containers>
+      <file name="6f647337-7709-88f6-f288-ed554e0993a1" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Services.ModelChangedEventArgs">
+      <topicdata name="ModelChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Services.ModelChangedEventArgs" />
+      <apidata name="ModelChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangedEventArgs" />
+      </containers>
+      <file name="8c0a5b77-9aba-d49d-876f-5445cc234309" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.Services.ModelChangedEventArgs">
+      <topicdata name="ModelChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.Services.ModelChangedEventArgs" />
+      <apidata name="ModelChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Presentation.Services.ModelChangedEventArgs.ItemsAdded" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangedEventArgs.ItemsRemoved" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangedEventArgs.ModelChangeInfo" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangedEventArgs.PropertiesChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangedEventArgs" />
+      </containers>
+      <file name="f12aae40-de41-6420-e9ea-85421b94f717" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ModelChangedEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangedEventArgs" ref="true" />
+      </containers>
+      <file name="c17c6ba1-c34c-f0e5-b642-6f4b80670405" />
+    </api>
+    <api id="P:System.Activities.Presentation.Services.ModelChangedEventArgs.ItemsAdded">
+      <topicdata group="api" />
+      <apidata name="ItemsAdded" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ItemsAdded" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangedEventArgs" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Don't use this property. Use "ModelChangeInfo" instead.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="80f08def-2e12-fcc0-d9b3-9c001be6dd92" />
+    </api>
+    <api id="P:System.Activities.Presentation.Services.ModelChangedEventArgs.ItemsRemoved">
+      <topicdata group="api" />
+      <apidata name="ItemsRemoved" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ItemsRemoved" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangedEventArgs" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Don't use this property. Use "ModelChangeInfo" instead.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="be5233b6-bc06-5048-cc20-fa7f1db64245" />
+    </api>
+    <api id="P:System.Activities.Presentation.Services.ModelChangedEventArgs.ModelChangeInfo">
+      <topicdata group="api" />
+      <apidata name="ModelChangeInfo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ModelChangeInfo" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Services.ModelChangeInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangedEventArgs" ref="true" />
+      </containers>
+      <file name="90e9637e-4122-e97c-237d-330cc9c2d7cc" />
+    </api>
+    <api id="P:System.Activities.Presentation.Services.ModelChangedEventArgs.PropertiesChanged">
+      <topicdata group="api" />
+      <apidata name="PropertiesChanged" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_PropertiesChanged" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Presentation.Model.ModelProperty" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangedEventArgs" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Don't use this property. Use "ModelChangeInfo" instead.</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0038e87f-b5ad-dede-4683-9db642b5f5f6" />
+    </api>
+    <api id="T:System.Activities.Presentation.Services.ModelChangeInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Services.ModelChangeInfo" />
+      <apidata name="ModelChangeInfo" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+      </containers>
+      <file name="8f9f77d8-d449-16b6-29e7-8b7e0f002895" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Services.ModelChangeInfo">
+      <topicdata name="ModelChangeInfo" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Services.ModelChangeInfo" />
+      <apidata name="ModelChangeInfo" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Services.ModelChangeInfo.#ctor" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangeInfo.Key" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangeInfo.ModelChangeType" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangeInfo.OldValue" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangeInfo.PropertyName" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangeInfo.Subject" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangeInfo.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeInfo" />
+      </containers>
+      <file name="37fe1876-5674-cab2-3a92-5014c66da812" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Services.ModelChangeInfo">
+      <topicdata name="ModelChangeInfo" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Services.ModelChangeInfo" />
+      <apidata name="ModelChangeInfo" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeInfo" />
+      </containers>
+      <file name="f6fcdd58-1467-e386-1e6d-31dd2ef012e9" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.Services.ModelChangeInfo">
+      <topicdata name="ModelChangeInfo" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.Services.ModelChangeInfo" />
+      <apidata name="ModelChangeInfo" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Presentation.Services.ModelChangeInfo.Key" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangeInfo.ModelChangeType" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangeInfo.OldValue" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangeInfo.PropertyName" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangeInfo.Subject" />
+        <element api="P:System.Activities.Presentation.Services.ModelChangeInfo.Value" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeInfo" />
+      </containers>
+      <file name="e6e0bc54-5615-df12-e8b0-9aa46599b5fc" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ModelChangeInfo.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeInfo" ref="true" />
+      </containers>
+      <file name="364d7057-468d-dbcf-b02d-3f5914ee2170" />
+    </api>
+    <api id="P:System.Activities.Presentation.Services.ModelChangeInfo.Key">
+      <topicdata group="api" />
+      <apidata name="Key" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Key" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeInfo" ref="true" />
+      </containers>
+      <file name="bb163ec7-6ace-2909-f876-1c0d23adeabb" />
+    </api>
+    <api id="P:System.Activities.Presentation.Services.ModelChangeInfo.ModelChangeType">
+      <topicdata group="api" />
+      <apidata name="ModelChangeType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ModelChangeType" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Services.ModelChangeType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeInfo" ref="true" />
+      </containers>
+      <file name="55a9362d-c87f-43c8-00cf-41370890b528" />
+    </api>
+    <api id="P:System.Activities.Presentation.Services.ModelChangeInfo.OldValue">
+      <topicdata group="api" />
+      <apidata name="OldValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_OldValue" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeInfo" ref="true" />
+      </containers>
+      <file name="1cefeb8f-efb2-55a5-bd96-02a8c3c4c4d0" />
+    </api>
+    <api id="P:System.Activities.Presentation.Services.ModelChangeInfo.PropertyName">
+      <topicdata group="api" />
+      <apidata name="PropertyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_PropertyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeInfo" ref="true" />
+      </containers>
+      <file name="e1591395-ca3f-dba9-cb43-99cb960d0225" />
+    </api>
+    <api id="P:System.Activities.Presentation.Services.ModelChangeInfo.Subject">
+      <topicdata group="api" />
+      <apidata name="Subject" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Subject" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeInfo" ref="true" />
+      </containers>
+      <file name="233136e0-ccc5-1caf-974f-e4fa6b9bdbdd" />
+    </api>
+    <api id="P:System.Activities.Presentation.Services.ModelChangeInfo.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeInfo" ref="true" />
+      </containers>
+      <file name="a653c48c-993b-a6d6-5d51-96854e52dc47" />
+    </api>
+    <api id="T:System.Activities.Presentation.Services.ModelChangeType">
+      <topicdata group="api" />
+      <apidata name="ModelChangeType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Activities.Presentation.Services.ModelChangeType.None" />
+        <element api="F:System.Activities.Presentation.Services.ModelChangeType.PropertyChanged" />
+        <element api="F:System.Activities.Presentation.Services.ModelChangeType.CollectionItemAdded" />
+        <element api="F:System.Activities.Presentation.Services.ModelChangeType.CollectionItemRemoved" />
+        <element api="F:System.Activities.Presentation.Services.ModelChangeType.DictionaryKeyValueAdded" />
+        <element api="F:System.Activities.Presentation.Services.ModelChangeType.DictionaryKeyValueRemoved" />
+        <element api="F:System.Activities.Presentation.Services.ModelChangeType.DictionaryValueChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+      </containers>
+      <file name="303def9c-c971-9286-05e0-b6ff8c6492f5" />
+    </api>
+    <api id="F:System.Activities.Presentation.Services.ModelChangeType.CollectionItemAdded">
+      <topicdata group="api" notopic="" />
+      <apidata name="CollectionItemAdded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Services.ModelChangeType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeType" ref="false" />
+      </containers>
+      <file name="6289e922-7289-aa0f-b1e9-438605fb3cbc" />
+    </api>
+    <api id="F:System.Activities.Presentation.Services.ModelChangeType.CollectionItemRemoved">
+      <topicdata group="api" notopic="" />
+      <apidata name="CollectionItemRemoved" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Services.ModelChangeType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeType" ref="false" />
+      </containers>
+      <file name="1a3c2857-0295-c6b4-5242-da6f60209da3" />
+    </api>
+    <api id="F:System.Activities.Presentation.Services.ModelChangeType.DictionaryKeyValueAdded">
+      <topicdata group="api" notopic="" />
+      <apidata name="DictionaryKeyValueAdded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Services.ModelChangeType" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeType" ref="false" />
+      </containers>
+      <file name="4f27595d-ed08-1ca6-482e-1f7f0c2757a2" />
+    </api>
+    <api id="F:System.Activities.Presentation.Services.ModelChangeType.DictionaryKeyValueRemoved">
+      <topicdata group="api" notopic="" />
+      <apidata name="DictionaryKeyValueRemoved" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Services.ModelChangeType" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeType" ref="false" />
+      </containers>
+      <file name="4e50d523-92ce-6e77-e57a-7b3ecc785c26" />
+    </api>
+    <api id="F:System.Activities.Presentation.Services.ModelChangeType.DictionaryValueChanged">
+      <topicdata group="api" notopic="" />
+      <apidata name="DictionaryValueChanged" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Services.ModelChangeType" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeType" ref="false" />
+      </containers>
+      <file name="06e053b2-e73f-76e4-3ae3-c3519674ec88" />
+    </api>
+    <api id="F:System.Activities.Presentation.Services.ModelChangeType.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Services.ModelChangeType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeType" ref="false" />
+      </containers>
+      <file name="c00daa00-4ca5-7e88-b071-0c13ca17f49b" />
+    </api>
+    <api id="F:System.Activities.Presentation.Services.ModelChangeType.PropertyChanged">
+      <topicdata group="api" notopic="" />
+      <apidata name="PropertyChanged" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Services.ModelChangeType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelChangeType" ref="false" />
+      </containers>
+      <file name="f4a8bad3-474c-dcca-53e1-a50ea151995c" />
+    </api>
+    <api id="T:System.Activities.Presentation.Services.ModelSearchService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Services.ModelSearchService" />
+      <apidata name="ModelSearchService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+      </containers>
+      <file name="17597cd9-8d76-5649-c8ad-95bf19a29aaf" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Services.ModelSearchService">
+      <topicdata name="ModelSearchService" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Services.ModelSearchService" />
+      <apidata name="ModelSearchService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Services.ModelSearchService.#ctor" />
+        <element api="M:System.Activities.Presentation.Services.ModelSearchService.GenerateTextImage" />
+        <element api="Overload:System.Activities.Presentation.Services.ModelSearchService.NavigateTo">
+          <element api="M:System.Activities.Presentation.Services.ModelSearchService.NavigateTo(System.Int32)" />
+          <element api="M:System.Activities.Presentation.Services.ModelSearchService.NavigateTo(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelSearchService" />
+      </containers>
+      <file name="7fa558ea-817e-4de0-98e3-561f26c95e0d" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Services.ModelSearchService">
+      <topicdata name="ModelSearchService" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Services.ModelSearchService" />
+      <apidata name="ModelSearchService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Services.ModelSearchService.GenerateTextImage" />
+        <element api="Overload:System.Activities.Presentation.Services.ModelSearchService.NavigateTo">
+          <element api="M:System.Activities.Presentation.Services.ModelSearchService.NavigateTo(System.Int32)" />
+          <element api="M:System.Activities.Presentation.Services.ModelSearchService.NavigateTo(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelSearchService" />
+      </containers>
+      <file name="64c3ebec-6aca-afd1-36a6-c1c3356ada36" />
+    </api>
+    <api id="Overload:System.Activities.Presentation.Services.ModelSearchService.NavigateTo">
+      <topicdata name="NavigateTo" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Services.ModelSearchService" />
+      <apidata name="NavigateTo" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Activities.Presentation.Services.ModelSearchService.NavigateTo(System.Int32)" />
+        <element api="M:System.Activities.Presentation.Services.ModelSearchService.NavigateTo(System.Int32,System.Int32,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelSearchService" ref="true" />
+      </containers>
+      <file name="6babc1aa-4184-d198-0a18-a14b41ec5ece" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ModelSearchService.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelSearchService" ref="true" />
+      </containers>
+      <file name="2102ff2a-8deb-2c3e-3e4a-b4942148ceb8" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ModelSearchService.GenerateTextImage">
+      <topicdata group="api" />
+      <apidata name="GenerateTextImage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Model.TextImage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelSearchService" ref="true" />
+      </containers>
+      <file name="743d6a44-51a1-00af-6bd3-523a5f05e158" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ModelSearchService.NavigateTo(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="NavigateTo" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Activities.Presentation.Services.ModelSearchService.NavigateTo" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="location">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelSearchService" ref="true" />
+      </containers>
+      <file name="08d0b84e-2656-a639-d587-6006bc32a3f5" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ModelSearchService.NavigateTo(System.Int32,System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="NavigateTo" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Activities.Presentation.Services.ModelSearchService.NavigateTo" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="startLine">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="startColumn">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="endLine">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="endColumn">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelSearchService" ref="true" />
+      </containers>
+      <file name="bccbe60b-2667-1cb7-6db0-d7dbbaa07377" />
+    </api>
+    <api id="T:System.Activities.Presentation.Services.ModelService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Services.ModelService" />
+      <apidata name="ModelService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+      </containers>
+      <file name="089ac721-e086-ac64-e59c-0f1e46ff8ce3" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Services.ModelService">
+      <topicdata name="ModelService" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Services.ModelService" />
+      <apidata name="ModelService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Services.ModelService.#ctor" />
+        <element api="Overload:System.Activities.Presentation.Services.ModelService.CreateItem">
+          <element api="M:System.Activities.Presentation.Services.ModelService.CreateItem(System.Object)" />
+          <element api="M:System.Activities.Presentation.Services.ModelService.CreateItem(System.Type,System.Activities.Presentation.Model.CreateOptions,System.Object[])" />
+        </element>
+        <element api="M:System.Activities.Presentation.Services.ModelService.CreateStaticMemberItem(System.Type,System.String)" />
+        <element api="Overload:System.Activities.Presentation.Services.ModelService.Find">
+          <element api="M:System.Activities.Presentation.Services.ModelService.Find(System.Activities.Presentation.Model.ModelItem,System.Predicate{System.Type})" />
+          <element api="M:System.Activities.Presentation.Services.ModelService.Find(System.Activities.Presentation.Model.ModelItem,System.Type)" />
+        </element>
+        <element api="Overload:System.Activities.Presentation.Services.ModelService.FromName">
+          <element api="M:System.Activities.Presentation.Services.ModelService.FromName(System.Activities.Presentation.Model.ModelItem,System.String)" />
+          <element api="M:System.Activities.Presentation.Services.ModelService.FromName(System.Activities.Presentation.Model.ModelItem,System.String,System.StringComparison)" />
+        </element>
+        <element api="E:System.Activities.Presentation.Services.ModelService.ModelChanged" />
+        <element api="P:System.Activities.Presentation.Services.ModelService.Root" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" />
+      </containers>
+      <file name="11ae4d74-45a4-6ad2-f7ba-399a836035b9" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Services.ModelService">
+      <topicdata name="ModelService" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Services.ModelService" />
+      <apidata name="ModelService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Activities.Presentation.Services.ModelService.CreateItem">
+          <element api="M:System.Activities.Presentation.Services.ModelService.CreateItem(System.Object)" />
+          <element api="M:System.Activities.Presentation.Services.ModelService.CreateItem(System.Type,System.Activities.Presentation.Model.CreateOptions,System.Object[])" />
+        </element>
+        <element api="M:System.Activities.Presentation.Services.ModelService.CreateStaticMemberItem(System.Type,System.String)" />
+        <element api="Overload:System.Activities.Presentation.Services.ModelService.Find">
+          <element api="M:System.Activities.Presentation.Services.ModelService.Find(System.Activities.Presentation.Model.ModelItem,System.Predicate{System.Type})" />
+          <element api="M:System.Activities.Presentation.Services.ModelService.Find(System.Activities.Presentation.Model.ModelItem,System.Type)" />
+        </element>
+        <element api="Overload:System.Activities.Presentation.Services.ModelService.FromName">
+          <element api="M:System.Activities.Presentation.Services.ModelService.FromName(System.Activities.Presentation.Model.ModelItem,System.String)" />
+          <element api="M:System.Activities.Presentation.Services.ModelService.FromName(System.Activities.Presentation.Model.ModelItem,System.String,System.StringComparison)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" />
+      </containers>
+      <file name="53505616-b9b5-0fb9-9624-880b90b810a7" />
+    </api>
+    <api id="Properties.T:System.Activities.Presentation.Services.ModelService">
+      <topicdata name="ModelService" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Presentation.Services.ModelService" />
+      <apidata name="ModelService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Presentation.Services.ModelService.Root" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" />
+      </containers>
+      <file name="612d92f4-3bab-46c6-e1f3-35dfd5635c1b" />
+    </api>
+    <api id="Events.T:System.Activities.Presentation.Services.ModelService">
+      <topicdata name="ModelService" group="list" subgroup="Events" typeTopicId="T:System.Activities.Presentation.Services.ModelService" />
+      <apidata name="ModelService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:System.Activities.Presentation.Services.ModelService.ModelChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" />
+      </containers>
+      <file name="264f8bee-260a-640b-6b66-6dfa791bef46" />
+    </api>
+    <api id="Overload:System.Activities.Presentation.Services.ModelService.CreateItem">
+      <topicdata name="CreateItem" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Services.ModelService" />
+      <apidata name="CreateItem" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Activities.Presentation.Services.ModelService.CreateItem(System.Object)" />
+        <element api="M:System.Activities.Presentation.Services.ModelService.CreateItem(System.Type,System.Activities.Presentation.Model.CreateOptions,System.Object[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" ref="true" />
+      </containers>
+      <file name="8fa5dd40-2fa4-9299-f2ef-0d4f850ce07f" />
+    </api>
+    <api id="Overload:System.Activities.Presentation.Services.ModelService.Find">
+      <topicdata name="Find" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Services.ModelService" />
+      <apidata name="Find" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Activities.Presentation.Services.ModelService.Find(System.Activities.Presentation.Model.ModelItem,System.Predicate{System.Type})" />
+        <element api="M:System.Activities.Presentation.Services.ModelService.Find(System.Activities.Presentation.Model.ModelItem,System.Type)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" ref="true" />
+      </containers>
+      <file name="d25515f4-3461-732c-1eac-672962e35785" />
+    </api>
+    <api id="Overload:System.Activities.Presentation.Services.ModelService.FromName">
+      <topicdata name="FromName" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Services.ModelService" />
+      <apidata name="FromName" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Activities.Presentation.Services.ModelService.FromName(System.Activities.Presentation.Model.ModelItem,System.String)" />
+        <element api="M:System.Activities.Presentation.Services.ModelService.FromName(System.Activities.Presentation.Model.ModelItem,System.String,System.StringComparison)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" ref="true" />
+      </containers>
+      <file name="1cd4a6ce-2912-4fc3-9bc1-e66a06a75141" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ModelService.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" ref="true" />
+      </containers>
+      <file name="bfb8f1e1-fdec-7a1e-3160-751e29efdcdd" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ModelService.CreateItem(System.Object)">
+      <topicdata group="api" />
+      <apidata name="CreateItem" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Activities.Presentation.Services.ModelService.CreateItem" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="item">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" ref="true" />
+      </containers>
+      <file name="5cefb3db-8ac5-5e0b-97cc-979049fa19fb" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ModelService.CreateItem(System.Type,System.Activities.Presentation.Model.CreateOptions,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="CreateItem" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Activities.Presentation.Services.ModelService.CreateItem" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="itemType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="options">
+          <type api="T:System.Activities.Presentation.Model.CreateOptions" ref="false" />
+        </parameter>
+        <parameter name="arguments" params="true">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" ref="true" />
+      </containers>
+      <file name="9130c239-0681-adc6-155e-426bc0b50311" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ModelService.CreateStaticMemberItem(System.Type,System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateStaticMemberItem" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="memberName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" ref="true" />
+      </containers>
+      <file name="7d47082d-8c08-2ecb-8f7d-2665e3a4d8ac" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ModelService.Find(System.Activities.Presentation.Model.ModelItem,System.Predicate{System.Type})">
+      <topicdata group="api" />
+      <apidata name="Find" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Activities.Presentation.Services.ModelService.Find" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="startingItem">
+          <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+        </parameter>
+        <parameter name="match">
+          <type api="T:System.Predicate`1" ref="true">
+            <specialization>
+              <type api="T:System.Type" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" ref="true" />
+      </containers>
+      <file name="528544aa-38bf-7103-5950-cb1d6863b0e2" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ModelService.Find(System.Activities.Presentation.Model.ModelItem,System.Type)">
+      <topicdata group="api" />
+      <apidata name="Find" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Activities.Presentation.Services.ModelService.Find" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="startingItem">
+          <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+        </parameter>
+        <parameter name="type">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" ref="true" />
+      </containers>
+      <file name="1387cbfd-0808-b1b0-df78-fd5310933ad5" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ModelService.FromName(System.Activities.Presentation.Model.ModelItem,System.String)">
+      <topicdata group="api" />
+      <apidata name="FromName" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Activities.Presentation.Services.ModelService.FromName" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="scope">
+          <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" ref="true" />
+      </containers>
+      <file name="c88572e6-62aa-0032-55a3-d3bb90eeb809" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ModelService.FromName(System.Activities.Presentation.Model.ModelItem,System.String,System.StringComparison)">
+      <topicdata group="api" />
+      <apidata name="FromName" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Activities.Presentation.Services.ModelService.FromName" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="scope">
+          <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="comparison">
+          <type api="T:System.StringComparison" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" ref="true" />
+      </containers>
+      <file name="e08be009-d146-ea85-3ae9-76e1721eb09d" />
+    </api>
+    <api id="E:System.Activities.Presentation.Services.ModelService.ModelChanged">
+      <topicdata group="api" />
+      <apidata name="ModelChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ModelChanged" />
+      <remover name="remove_ModelChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Presentation.Services.ModelChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Activities.Presentation.Services.ModelChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" ref="true" />
+      </containers>
+      <file name="516e9d27-36e2-11a6-0910-30eb19a67f72" />
+    </api>
+    <api id="P:System.Activities.Presentation.Services.ModelService.Root">
+      <topicdata group="api" />
+      <apidata name="Root" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Root" />
+      <returns>
+        <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ModelService" ref="true" />
+      </containers>
+      <file name="76f93090-2229-0436-f46c-c3a7c702f655" />
+    </api>
+    <api id="T:System.Activities.Presentation.Services.ViewService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Presentation.Services.ViewService" />
+      <apidata name="ViewService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Activities.Presentation.View.WorkflowViewService" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+      </containers>
+      <file name="b09f2bb7-3c77-a0a6-63e1-e349164eeaa0" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Presentation.Services.ViewService">
+      <topicdata name="ViewService" group="list" subgroup="members" typeTopicId="T:System.Activities.Presentation.Services.ViewService" />
+      <apidata name="ViewService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Services.ViewService.#ctor" />
+        <element api="M:System.Activities.Presentation.Services.ViewService.GetModel(System.Windows.DependencyObject)" />
+        <element api="M:System.Activities.Presentation.Services.ViewService.GetView(System.Activities.Presentation.Model.ModelItem)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ViewService" />
+      </containers>
+      <file name="7093c583-5fdd-0e0e-918e-3874b400359e" />
+    </api>
+    <api id="Methods.T:System.Activities.Presentation.Services.ViewService">
+      <topicdata name="ViewService" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Presentation.Services.ViewService" />
+      <apidata name="ViewService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Presentation.Services.ViewService.GetModel(System.Windows.DependencyObject)" />
+        <element api="M:System.Activities.Presentation.Services.ViewService.GetView(System.Activities.Presentation.Model.ModelItem)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ViewService" />
+      </containers>
+      <file name="b9b2a461-df2b-ca8f-c7d9-fd5f336e1c18" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ViewService.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ViewService" ref="true" />
+      </containers>
+      <file name="196f93ab-123c-1335-c8f6-c6f04985d738" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ViewService.GetModel(System.Windows.DependencyObject)">
+      <topicdata group="api" />
+      <apidata name="GetModel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="view">
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ViewService" ref="true" />
+      </containers>
+      <file name="7c025be9-7eb4-a250-b720-75484b6a560c" />
+    </api>
+    <api id="M:System.Activities.Presentation.Services.ViewService.GetView(System.Activities.Presentation.Model.ModelItem)">
+      <topicdata group="api" />
+      <apidata name="GetView" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="model">
+          <type api="T:System.Activities.Presentation.Model.ModelItem" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.DependencyObject" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Presentation" module="System.Activities.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Presentation.Services" />
+        <type api="T:System.Activities.Presentation.Services.ViewService" ref="true" />
+      </containers>
+      <file name="f1b5ca10-727c-1a68-d10b-9f86dfa4742d" />
+    </api>
+  </apis>
+</reflection>

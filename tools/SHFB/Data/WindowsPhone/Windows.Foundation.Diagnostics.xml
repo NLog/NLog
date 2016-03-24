@@ -1,0 +1,3911 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Foundation.Diagnostics">
+      <topicdata group="api" />
+      <apidata name="Windows.Foundation.Diagnostics" group="namespace" />
+      <elements>
+        <element api="T:Windows.Foundation.Diagnostics.ErrorOptions" />
+        <element api="T:Windows.Foundation.Diagnostics.IErrorReportingSettings" />
+        <element api="T:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings" />
+        <element api="T:Windows.Foundation.Diagnostics.CausalityTraceLevel" />
+        <element api="T:Windows.Foundation.Diagnostics.CausalitySource" />
+        <element api="T:Windows.Foundation.Diagnostics.CausalityRelation" />
+        <element api="T:Windows.Foundation.Diagnostics.CausalitySynchronousWork" />
+        <element api="T:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs" />
+        <element api="T:Windows.Foundation.Diagnostics.AsyncCausalityTracer" />
+        <element api="T:Windows.Foundation.Diagnostics.LoggingLevel" />
+        <element api="T:Windows.Foundation.Diagnostics.ILoggingChannel" />
+        <element api="T:Windows.Foundation.Diagnostics.LoggingChannel" />
+        <element api="T:Windows.Foundation.Diagnostics.LoggingActivity" />
+        <element api="T:Windows.Foundation.Diagnostics.ILoggingSession" />
+        <element api="T:Windows.Foundation.Diagnostics.LoggingSession" />
+        <element api="T:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs" />
+        <element api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" />
+        <element api="T:Windows.Foundation.Diagnostics.FileLoggingSession" />
+      </elements>
+      <file name="9ced8502-ef85-1860-afcb-239604cb78bf" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.AsyncCausalityTracer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.AsyncCausalityTracer" />
+      <apidata name="AsyncCausalityTracer" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="30c5f852-95b2-3674-040f-b7f214710c1d" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Diagnostics.AsyncCausalityTracer">
+      <topicdata name="AsyncCausalityTracer" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Diagnostics.AsyncCausalityTracer" />
+      <apidata name="AsyncCausalityTracer" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TraceOperationCompletion(Windows.Foundation.Diagnostics.CausalityTraceLevel,Windows.Foundation.Diagnostics.CausalitySource,System.Guid,System.UInt64,Windows.Foundation.AsyncStatus)" />
+        <element api="M:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TraceOperationCreation(Windows.Foundation.Diagnostics.CausalityTraceLevel,Windows.Foundation.Diagnostics.CausalitySource,System.Guid,System.UInt64,System.String,System.UInt64)" />
+        <element api="M:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TraceOperationRelation(Windows.Foundation.Diagnostics.CausalityTraceLevel,Windows.Foundation.Diagnostics.CausalitySource,System.Guid,System.UInt64,Windows.Foundation.Diagnostics.CausalityRelation)" />
+        <element api="M:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TraceSynchronousWorkCompletion(Windows.Foundation.Diagnostics.CausalityTraceLevel,Windows.Foundation.Diagnostics.CausalitySource,Windows.Foundation.Diagnostics.CausalitySynchronousWork)" />
+        <element api="M:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TraceSynchronousWorkStart(Windows.Foundation.Diagnostics.CausalityTraceLevel,Windows.Foundation.Diagnostics.CausalitySource,System.Guid,System.UInt64,Windows.Foundation.Diagnostics.CausalitySynchronousWork)" />
+        <element api="E:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TracingStatusChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.AsyncCausalityTracer" />
+      </containers>
+      <file name="14ec8232-8ed1-e868-7689-91b0fb21f1f0" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Diagnostics.AsyncCausalityTracer">
+      <topicdata name="AsyncCausalityTracer" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Diagnostics.AsyncCausalityTracer" />
+      <apidata name="AsyncCausalityTracer" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TraceOperationCompletion(Windows.Foundation.Diagnostics.CausalityTraceLevel,Windows.Foundation.Diagnostics.CausalitySource,System.Guid,System.UInt64,Windows.Foundation.AsyncStatus)" />
+        <element api="M:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TraceOperationCreation(Windows.Foundation.Diagnostics.CausalityTraceLevel,Windows.Foundation.Diagnostics.CausalitySource,System.Guid,System.UInt64,System.String,System.UInt64)" />
+        <element api="M:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TraceOperationRelation(Windows.Foundation.Diagnostics.CausalityTraceLevel,Windows.Foundation.Diagnostics.CausalitySource,System.Guid,System.UInt64,Windows.Foundation.Diagnostics.CausalityRelation)" />
+        <element api="M:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TraceSynchronousWorkCompletion(Windows.Foundation.Diagnostics.CausalityTraceLevel,Windows.Foundation.Diagnostics.CausalitySource,Windows.Foundation.Diagnostics.CausalitySynchronousWork)" />
+        <element api="M:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TraceSynchronousWorkStart(Windows.Foundation.Diagnostics.CausalityTraceLevel,Windows.Foundation.Diagnostics.CausalitySource,System.Guid,System.UInt64,Windows.Foundation.Diagnostics.CausalitySynchronousWork)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.AsyncCausalityTracer" />
+      </containers>
+      <file name="2a372a25-e004-983c-9389-660826d397b9" />
+    </api>
+    <api id="Events.T:Windows.Foundation.Diagnostics.AsyncCausalityTracer">
+      <topicdata name="AsyncCausalityTracer" group="list" subgroup="Events" typeTopicId="T:Windows.Foundation.Diagnostics.AsyncCausalityTracer" />
+      <apidata name="AsyncCausalityTracer" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TracingStatusChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.AsyncCausalityTracer" />
+      </containers>
+      <file name="643238b9-59b6-6793-af9c-851b9178df75" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TraceOperationCompletion(Windows.Foundation.Diagnostics.CausalityTraceLevel,Windows.Foundation.Diagnostics.CausalitySource,System.Guid,System.UInt64,Windows.Foundation.AsyncStatus)">
+      <topicdata group="api" />
+      <apidata name="TraceOperationCompletion" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="traceLevel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.CausalityTraceLevel" ref="false" />
+        </parameter>
+        <parameter name="source" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.CausalitySource" ref="false" />
+        </parameter>
+        <parameter name="platformId" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="operationId" in="true">
+          <type api="T:System.UInt64" ref="false" />
+        </parameter>
+        <parameter name="status" in="true">
+          <type api="T:Windows.Foundation.AsyncStatus" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.AsyncCausalityTracer" ref="true" />
+      </containers>
+      <file name="c1fce540-f7e3-12e5-fbfd-f6d06b9aa0a8" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TraceOperationCreation(Windows.Foundation.Diagnostics.CausalityTraceLevel,Windows.Foundation.Diagnostics.CausalitySource,System.Guid,System.UInt64,System.String,System.UInt64)">
+      <topicdata group="api" />
+      <apidata name="TraceOperationCreation" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="traceLevel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.CausalityTraceLevel" ref="false" />
+        </parameter>
+        <parameter name="source" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.CausalitySource" ref="false" />
+        </parameter>
+        <parameter name="platformId" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="operationId" in="true">
+          <type api="T:System.UInt64" ref="false" />
+        </parameter>
+        <parameter name="operationName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="relatedContext" in="true">
+          <type api="T:System.UInt64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.AsyncCausalityTracer" ref="true" />
+      </containers>
+      <file name="1c3cd2ac-685b-c188-44d5-97cbbb4f8548" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TraceOperationRelation(Windows.Foundation.Diagnostics.CausalityTraceLevel,Windows.Foundation.Diagnostics.CausalitySource,System.Guid,System.UInt64,Windows.Foundation.Diagnostics.CausalityRelation)">
+      <topicdata group="api" />
+      <apidata name="TraceOperationRelation" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="traceLevel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.CausalityTraceLevel" ref="false" />
+        </parameter>
+        <parameter name="source" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.CausalitySource" ref="false" />
+        </parameter>
+        <parameter name="platformId" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="operationId" in="true">
+          <type api="T:System.UInt64" ref="false" />
+        </parameter>
+        <parameter name="relation" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.CausalityRelation" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.AsyncCausalityTracer" ref="true" />
+      </containers>
+      <file name="c9d1d765-7559-1c72-5cc9-a9f0a9af7115" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TraceSynchronousWorkCompletion(Windows.Foundation.Diagnostics.CausalityTraceLevel,Windows.Foundation.Diagnostics.CausalitySource,Windows.Foundation.Diagnostics.CausalitySynchronousWork)">
+      <topicdata group="api" />
+      <apidata name="TraceSynchronousWorkCompletion" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="traceLevel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.CausalityTraceLevel" ref="false" />
+        </parameter>
+        <parameter name="source" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.CausalitySource" ref="false" />
+        </parameter>
+        <parameter name="work" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.CausalitySynchronousWork" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.AsyncCausalityTracer" ref="true" />
+      </containers>
+      <file name="0aa0156a-c6f1-6b9d-d1cc-19e44fed027f" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TraceSynchronousWorkStart(Windows.Foundation.Diagnostics.CausalityTraceLevel,Windows.Foundation.Diagnostics.CausalitySource,System.Guid,System.UInt64,Windows.Foundation.Diagnostics.CausalitySynchronousWork)">
+      <topicdata group="api" />
+      <apidata name="TraceSynchronousWorkStart" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="traceLevel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.CausalityTraceLevel" ref="false" />
+        </parameter>
+        <parameter name="source" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.CausalitySource" ref="false" />
+        </parameter>
+        <parameter name="platformId" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="operationId" in="true">
+          <type api="T:System.UInt64" ref="false" />
+        </parameter>
+        <parameter name="work" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.CausalitySynchronousWork" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.AsyncCausalityTracer" ref="true" />
+      </containers>
+      <file name="44c6d248-4a76-8080-29d8-7a11c52fbf4d" />
+    </api>
+    <api id="E:Windows.Foundation.Diagnostics.AsyncCausalityTracer.TracingStatusChanged">
+      <topicdata group="api" />
+      <apidata name="TracingStatusChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_TracingStatusChanged" />
+      <remover name="remove_TracingStatusChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.AsyncCausalityTracer" ref="true" />
+      </containers>
+      <file name="a755bff9-05bb-da06-f2e1-2cca87810ca8" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.CausalityRelation">
+      <topicdata group="api" />
+      <apidata name="CausalityRelation" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Foundation.Diagnostics.CausalityRelation.AssignDelegate" />
+        <element api="F:Windows.Foundation.Diagnostics.CausalityRelation.Join" />
+        <element api="F:Windows.Foundation.Diagnostics.CausalityRelation.Choice" />
+        <element api="F:Windows.Foundation.Diagnostics.CausalityRelation.Cancel" />
+        <element api="F:Windows.Foundation.Diagnostics.CausalityRelation.Error" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fdf69770-bf36-04dd-3deb-01c67361634d" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.CausalityRelation.AssignDelegate">
+      <topicdata group="api" notopic="" />
+      <apidata name="AssignDelegate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.CausalityRelation" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.CausalityRelation" ref="false" />
+      </containers>
+      <file name="4262fd41-83f4-ba3f-1584-68d5167db547" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.CausalityRelation.Cancel">
+      <topicdata group="api" notopic="" />
+      <apidata name="Cancel" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.CausalityRelation" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.CausalityRelation" ref="false" />
+      </containers>
+      <file name="a051bd2f-9f1d-b5a7-d9ca-d15c5ac8f10c" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.CausalityRelation.Choice">
+      <topicdata group="api" notopic="" />
+      <apidata name="Choice" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.CausalityRelation" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.CausalityRelation" ref="false" />
+      </containers>
+      <file name="53808ba5-46be-ef8e-a5c9-fa2a0be0410f" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.CausalityRelation.Error">
+      <topicdata group="api" notopic="" />
+      <apidata name="Error" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.CausalityRelation" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.CausalityRelation" ref="false" />
+      </containers>
+      <file name="ff4bb3aa-1002-5c37-07e6-14f7f029fc72" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.CausalityRelation.Join">
+      <topicdata group="api" notopic="" />
+      <apidata name="Join" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.CausalityRelation" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.CausalityRelation" ref="false" />
+      </containers>
+      <file name="189f75a4-e05b-950e-0353-d301f9514405" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.CausalitySource">
+      <topicdata group="api" />
+      <apidata name="CausalitySource" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Foundation.Diagnostics.CausalitySource.Application" />
+        <element api="F:Windows.Foundation.Diagnostics.CausalitySource.Library" />
+        <element api="F:Windows.Foundation.Diagnostics.CausalitySource.System" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="05de53dd-a12d-d69d-4e01-a5024e183325" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.CausalitySource.Application">
+      <topicdata group="api" notopic="" />
+      <apidata name="Application" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.CausalitySource" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.CausalitySource" ref="false" />
+      </containers>
+      <file name="1aabfc3a-7f52-8750-ca28-3820ff3cf8ea" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.CausalitySource.Library">
+      <topicdata group="api" notopic="" />
+      <apidata name="Library" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.CausalitySource" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.CausalitySource" ref="false" />
+      </containers>
+      <file name="6ea0f98e-3568-ac11-7aa5-1c92ca6f47d2" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.CausalitySource.System">
+      <topicdata group="api" notopic="" />
+      <apidata name="System" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.CausalitySource" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.CausalitySource" ref="false" />
+      </containers>
+      <file name="d7856815-1d30-71f1-046d-8d755d7d0b3a" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.CausalitySynchronousWork">
+      <topicdata group="api" />
+      <apidata name="CausalitySynchronousWork" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Foundation.Diagnostics.CausalitySynchronousWork.CompletionNotification" />
+        <element api="F:Windows.Foundation.Diagnostics.CausalitySynchronousWork.ProgressNotification" />
+        <element api="F:Windows.Foundation.Diagnostics.CausalitySynchronousWork.Execution" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="61ad7259-d5dc-96c5-5684-575cdf3b84ac" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.CausalitySynchronousWork.CompletionNotification">
+      <topicdata group="api" notopic="" />
+      <apidata name="CompletionNotification" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.CausalitySynchronousWork" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.CausalitySynchronousWork" ref="false" />
+      </containers>
+      <file name="a19ccf46-fc62-e568-5d91-d162270e98eb" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.CausalitySynchronousWork.Execution">
+      <topicdata group="api" notopic="" />
+      <apidata name="Execution" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.CausalitySynchronousWork" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.CausalitySynchronousWork" ref="false" />
+      </containers>
+      <file name="29662812-2441-a4bd-8861-4d809491be8d" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.CausalitySynchronousWork.ProgressNotification">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProgressNotification" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.CausalitySynchronousWork" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.CausalitySynchronousWork" ref="false" />
+      </containers>
+      <file name="40c107db-f36e-f3c6-3e55-02adf86792f0" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.CausalityTraceLevel">
+      <topicdata group="api" />
+      <apidata name="CausalityTraceLevel" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Foundation.Diagnostics.CausalityTraceLevel.Required" />
+        <element api="F:Windows.Foundation.Diagnostics.CausalityTraceLevel.Important" />
+        <element api="F:Windows.Foundation.Diagnostics.CausalityTraceLevel.Verbose" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="577f9972-1185-b04f-d04a-2559c50b5961" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.CausalityTraceLevel.Important">
+      <topicdata group="api" notopic="" />
+      <apidata name="Important" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.CausalityTraceLevel" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.CausalityTraceLevel" ref="false" />
+      </containers>
+      <file name="062e9817-c753-f251-1c89-012674a4dede" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.CausalityTraceLevel.Required">
+      <topicdata group="api" notopic="" />
+      <apidata name="Required" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.CausalityTraceLevel" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.CausalityTraceLevel" ref="false" />
+      </containers>
+      <file name="83751ff4-d96b-2578-3477-3f6808001f43" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.CausalityTraceLevel.Verbose">
+      <topicdata group="api" notopic="" />
+      <apidata name="Verbose" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.CausalityTraceLevel" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.CausalityTraceLevel" ref="false" />
+      </containers>
+      <file name="67fa334c-5631-dab5-3086-c92ff1f6a9f4" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.ErrorOptions">
+      <topicdata group="api" />
+      <apidata name="ErrorOptions" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Foundation.Diagnostics.ErrorOptions.None" />
+        <element api="F:Windows.Foundation.Diagnostics.ErrorOptions.SuppressExceptions" />
+        <element api="F:Windows.Foundation.Diagnostics.ErrorOptions.ForceExceptions" />
+        <element api="F:Windows.Foundation.Diagnostics.ErrorOptions.UseSetErrorInfo" />
+        <element api="F:Windows.Foundation.Diagnostics.ErrorOptions.SuppressSetErrorInfo" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="af6c8962-6b6c-b21c-6736-b47e4f08ae78" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.ErrorOptions.ForceExceptions">
+      <topicdata group="api" notopic="" />
+      <apidata name="ForceExceptions" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.ErrorOptions" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ErrorOptions" ref="false" />
+      </containers>
+      <file name="dc7db3cf-049e-bd6d-e70c-2da8eab5e1c6" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.ErrorOptions.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.ErrorOptions" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ErrorOptions" ref="false" />
+      </containers>
+      <file name="adec0d79-54ad-b472-8e31-c23e5c798950" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.ErrorOptions.SuppressExceptions">
+      <topicdata group="api" notopic="" />
+      <apidata name="SuppressExceptions" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.ErrorOptions" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ErrorOptions" ref="false" />
+      </containers>
+      <file name="a229b95a-45b5-8326-f4a3-0b7137017713" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.ErrorOptions.SuppressSetErrorInfo">
+      <topicdata group="api" notopic="" />
+      <apidata name="SuppressSetErrorInfo" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.ErrorOptions" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ErrorOptions" ref="false" />
+      </containers>
+      <file name="12f0611d-05cc-45a2-e5d8-07299fac5c2b" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.ErrorOptions.UseSetErrorInfo">
+      <topicdata group="api" notopic="" />
+      <apidata name="UseSetErrorInfo" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.ErrorOptions" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ErrorOptions" ref="false" />
+      </containers>
+      <file name="b382472f-9a47-fa3f-1dc2-497f4629d160" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.FileLoggingSession">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.FileLoggingSession" />
+      <apidata name="FileLoggingSession" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" ref="true" />
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0c200726-f093-b0a0-ad2a-9656cca97cf3" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Diagnostics.FileLoggingSession">
+      <topicdata name="FileLoggingSession" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Diagnostics.FileLoggingSession" />
+      <apidata name="FileLoggingSession" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Diagnostics.FileLoggingSession.#ctor(System.String)" />
+        <element api="Overload:Windows.Foundation.Diagnostics.FileLoggingSession.AddLoggingChannel">
+          <element api="M:Windows.Foundation.Diagnostics.FileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+          <element api="M:Windows.Foundation.Diagnostics.FileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+        <element api="M:Windows.Foundation.Diagnostics.FileLoggingSession.Close" />
+        <element api="M:Windows.Foundation.Diagnostics.FileLoggingSession.CloseAndSaveToFileAsync" />
+        <element api="E:Windows.Foundation.Diagnostics.FileLoggingSession.LogFileGenerated" />
+        <element api="P:Windows.Foundation.Diagnostics.FileLoggingSession.Name" />
+        <element api="M:Windows.Foundation.Diagnostics.FileLoggingSession.RemoveLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.FileLoggingSession" />
+      </containers>
+      <file name="5da5c9a3-3bc9-6eea-5a2d-577a480cf79b" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Diagnostics.FileLoggingSession">
+      <topicdata name="FileLoggingSession" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Diagnostics.FileLoggingSession" />
+      <apidata name="FileLoggingSession" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Foundation.Diagnostics.FileLoggingSession.AddLoggingChannel">
+          <element api="M:Windows.Foundation.Diagnostics.FileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+          <element api="M:Windows.Foundation.Diagnostics.FileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+        <element api="M:Windows.Foundation.Diagnostics.FileLoggingSession.Close" />
+        <element api="M:Windows.Foundation.Diagnostics.FileLoggingSession.CloseAndSaveToFileAsync" />
+        <element api="M:Windows.Foundation.Diagnostics.FileLoggingSession.RemoveLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.FileLoggingSession" />
+      </containers>
+      <file name="8797df53-43a6-0669-54be-329850e2efe1" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Diagnostics.FileLoggingSession">
+      <topicdata name="FileLoggingSession" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Diagnostics.FileLoggingSession" />
+      <apidata name="FileLoggingSession" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Foundation.Diagnostics.FileLoggingSession.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.FileLoggingSession" />
+      </containers>
+      <file name="44ec6390-f0bf-4a0b-3f52-e4417611d15a" />
+    </api>
+    <api id="Events.T:Windows.Foundation.Diagnostics.FileLoggingSession">
+      <topicdata name="FileLoggingSession" group="list" subgroup="Events" typeTopicId="T:Windows.Foundation.Diagnostics.FileLoggingSession" />
+      <apidata name="FileLoggingSession" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Foundation.Diagnostics.FileLoggingSession.LogFileGenerated" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.FileLoggingSession" />
+      </containers>
+      <file name="33ef68ca-ec86-e1a0-aff0-b41f2a009834" />
+    </api>
+    <api id="Overload:Windows.Foundation.Diagnostics.FileLoggingSession.AddLoggingChannel">
+      <topicdata name="AddLoggingChannel" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.FileLoggingSession" />
+      <apidata name="AddLoggingChannel" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Foundation.Diagnostics.FileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+        <element api="M:Windows.Foundation.Diagnostics.FileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.FileLoggingSession" ref="true" />
+      </containers>
+      <file name="5ba7893e-2874-4ebd-468f-bf063f2ed95a" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.FileLoggingSession.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.FileLoggingSession" ref="true" />
+      </containers>
+      <file name="b9dd0637-a271-30e9-8336-b66d785a7cdf" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.FileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)">
+      <topicdata group="api" />
+      <apidata name="AddLoggingChannel" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Foundation.Diagnostics.FileLoggingSession.AddLoggingChannel" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="loggingChannel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Diagnostics.IFileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)">
+          <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.FileLoggingSession" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddLoggingChannel</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="be38bc20-2dc2-717b-ed60-61a6bdbf5487" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.FileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)">
+      <topicdata group="api" />
+      <apidata name="AddLoggingChannel" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Foundation.Diagnostics.FileLoggingSession.AddLoggingChannel" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="loggingChannel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </parameter>
+        <parameter name="maxLevel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Diagnostics.IFileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)">
+          <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.FileLoggingSession" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddLoggingChannelWithLevel</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="784a3014-1349-747a-0c13-a948a26edc58" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.FileLoggingSession.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.FileLoggingSession" ref="true" />
+      </containers>
+      <file name="b326402c-3c2b-a4a6-e3f0-0ef3790329b0" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.FileLoggingSession.CloseAndSaveToFileAsync">
+      <topicdata group="api" />
+      <apidata name="CloseAndSaveToFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFile" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Diagnostics.IFileLoggingSession.CloseAndSaveToFileAsync">
+          <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.FileLoggingSession" ref="true" />
+      </containers>
+      <file name="eb795ba8-cb63-3f61-5520-8c2995645250" />
+    </api>
+    <api id="E:Windows.Foundation.Diagnostics.FileLoggingSession.LogFileGenerated">
+      <topicdata group="api" />
+      <apidata name="LogFileGenerated" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_LogFileGenerated" />
+      <remover name="remove_LogFileGenerated" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" ref="true" />
+            <type api="T:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <implements>
+        <member api="E:Windows.Foundation.Diagnostics.IFileLoggingSession.LogFileGenerated">
+          <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.FileLoggingSession" ref="true" />
+      </containers>
+      <file name="3ea7d920-cb42-cb6d-3dc8-743214ad386d" />
+    </api>
+    <api id="P:Windows.Foundation.Diagnostics.FileLoggingSession.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.Diagnostics.IFileLoggingSession.Name">
+          <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.FileLoggingSession" ref="true" />
+      </containers>
+      <file name="e5f86bfe-dde5-86cd-0a68-173968c19a46" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.FileLoggingSession.RemoveLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)">
+      <topicdata group="api" />
+      <apidata name="RemoveLoggingChannel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="loggingChannel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Diagnostics.IFileLoggingSession.RemoveLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)">
+          <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.FileLoggingSession" ref="true" />
+      </containers>
+      <file name="5c1a9d47-9689-2648-b04a-6b7491d955b2" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.IErrorReportingSettings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.IErrorReportingSettings" />
+      <apidata name="IErrorReportingSettings" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>372676498</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>45118</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19361</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>139</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>184</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>210</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>143</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>74</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>180</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>210</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>192</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cafb2c3a-5b6a-a47c-dc09-e08d834b833e" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Diagnostics.IErrorReportingSettings">
+      <topicdata name="IErrorReportingSettings" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Diagnostics.IErrorReportingSettings" />
+      <apidata name="IErrorReportingSettings" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.Diagnostics.IErrorReportingSettings.GetErrorOptions" />
+        <element api="M:Windows.Foundation.Diagnostics.IErrorReportingSettings.SetErrorOptions(Windows.Foundation.Diagnostics.ErrorOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.IErrorReportingSettings" />
+      </containers>
+      <file name="da8aed2e-ef58-2560-4749-b53549183420" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Diagnostics.IErrorReportingSettings">
+      <topicdata name="IErrorReportingSettings" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Diagnostics.IErrorReportingSettings" />
+      <apidata name="IErrorReportingSettings" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.Diagnostics.IErrorReportingSettings.GetErrorOptions" />
+        <element api="M:Windows.Foundation.Diagnostics.IErrorReportingSettings.SetErrorOptions(Windows.Foundation.Diagnostics.ErrorOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.IErrorReportingSettings" />
+      </containers>
+      <file name="02802cc8-80b4-7c72-6e00-c524c18fefaf" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.IErrorReportingSettings.GetErrorOptions">
+      <topicdata group="api" />
+      <apidata name="GetErrorOptions" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.ErrorOptions" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.IErrorReportingSettings" ref="true" />
+      </containers>
+      <file name="9818d94b-9df1-1d68-39b9-07167afc58b3" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.IErrorReportingSettings.SetErrorOptions(Windows.Foundation.Diagnostics.ErrorOptions)">
+      <topicdata group="api" />
+      <apidata name="SetErrorOptions" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.ErrorOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.IErrorReportingSettings" ref="true" />
+      </containers>
+      <file name="00beaea3-e2cf-e019-4867-c88c0c1323a6" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.IFileLoggingSession">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.IFileLoggingSession" />
+      <apidata name="IFileLoggingSession" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <implementors>
+        <type api="T:Windows.Foundation.Diagnostics.FileLoggingSession" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>617038358</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>65234</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>16460</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>137</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>95</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>31</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>150</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>153</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>203</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>2</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>247</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9b3f5436-f926-4f0e-6d91-19bd96a6581b" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Diagnostics.IFileLoggingSession">
+      <topicdata name="IFileLoggingSession" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Diagnostics.IFileLoggingSession" />
+      <apidata name="IFileLoggingSession" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.IClosable.Close" />
+        <element api="Overload:Windows.Foundation.Diagnostics.IFileLoggingSession.AddLoggingChannel">
+          <element api="M:Windows.Foundation.Diagnostics.IFileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+          <element api="M:Windows.Foundation.Diagnostics.IFileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+        <element api="M:Windows.Foundation.Diagnostics.IFileLoggingSession.CloseAndSaveToFileAsync" />
+        <element api="E:Windows.Foundation.Diagnostics.IFileLoggingSession.LogFileGenerated" />
+        <element api="P:Windows.Foundation.Diagnostics.IFileLoggingSession.Name" />
+        <element api="M:Windows.Foundation.Diagnostics.IFileLoggingSession.RemoveLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" />
+      </containers>
+      <file name="7d779b7e-716c-20c8-999d-d15f9105b399" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Diagnostics.IFileLoggingSession">
+      <topicdata name="IFileLoggingSession" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Diagnostics.IFileLoggingSession" />
+      <apidata name="IFileLoggingSession" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.IClosable.Close" />
+        <element api="Overload:Windows.Foundation.Diagnostics.IFileLoggingSession.AddLoggingChannel">
+          <element api="M:Windows.Foundation.Diagnostics.IFileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+          <element api="M:Windows.Foundation.Diagnostics.IFileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+        <element api="M:Windows.Foundation.Diagnostics.IFileLoggingSession.CloseAndSaveToFileAsync" />
+        <element api="M:Windows.Foundation.Diagnostics.IFileLoggingSession.RemoveLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" />
+      </containers>
+      <file name="e91c9a9a-69b1-6eed-caf6-9e7bf8d59523" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Diagnostics.IFileLoggingSession">
+      <topicdata name="IFileLoggingSession" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Diagnostics.IFileLoggingSession" />
+      <apidata name="IFileLoggingSession" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Foundation.Diagnostics.IFileLoggingSession.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" />
+      </containers>
+      <file name="11bc2136-f2dd-8aca-1433-3d53b42d206f" />
+    </api>
+    <api id="Events.T:Windows.Foundation.Diagnostics.IFileLoggingSession">
+      <topicdata name="IFileLoggingSession" group="list" subgroup="Events" typeTopicId="T:Windows.Foundation.Diagnostics.IFileLoggingSession" />
+      <apidata name="IFileLoggingSession" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Foundation.Diagnostics.IFileLoggingSession.LogFileGenerated" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" />
+      </containers>
+      <file name="5d98f347-9ff9-d279-aaef-fcc3bc7c8151" />
+    </api>
+    <api id="Overload:Windows.Foundation.Diagnostics.IFileLoggingSession.AddLoggingChannel">
+      <topicdata name="AddLoggingChannel" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.IFileLoggingSession" />
+      <apidata name="AddLoggingChannel" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Foundation.Diagnostics.IFileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+        <element api="M:Windows.Foundation.Diagnostics.IFileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" ref="true" />
+      </containers>
+      <file name="9b870416-6ae1-d210-8b73-0411581a4838" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.IFileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)">
+      <topicdata group="api" />
+      <apidata name="AddLoggingChannel" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Foundation.Diagnostics.IFileLoggingSession.AddLoggingChannel" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="loggingChannel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddLoggingChannel</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b464cb86-60a3-b2fc-18ea-07b1d59023f4" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.IFileLoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)">
+      <topicdata group="api" />
+      <apidata name="AddLoggingChannel" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Foundation.Diagnostics.IFileLoggingSession.AddLoggingChannel" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="loggingChannel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </parameter>
+        <parameter name="maxLevel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddLoggingChannelWithLevel</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3ab50d55-8c68-83c1-ac18-ec681ffd2455" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.IFileLoggingSession.CloseAndSaveToFileAsync">
+      <topicdata group="api" />
+      <apidata name="CloseAndSaveToFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFile" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" ref="true" />
+      </containers>
+      <file name="3c747355-abfd-79e7-c12b-33b5690ff14e" />
+    </api>
+    <api id="E:Windows.Foundation.Diagnostics.IFileLoggingSession.LogFileGenerated">
+      <topicdata group="api" />
+      <apidata name="LogFileGenerated" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_LogFileGenerated" />
+      <remover name="remove_LogFileGenerated" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" ref="true" />
+            <type api="T:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" ref="true" />
+      </containers>
+      <file name="bfe2cb5b-fa2d-6f30-d2c2-9eefcdc09c6e" />
+    </api>
+    <api id="P:Windows.Foundation.Diagnostics.IFileLoggingSession.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" ref="true" />
+      </containers>
+      <file name="79ac5e04-ad6f-8bd0-f225-70306d2f2fa1" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.IFileLoggingSession.RemoveLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)">
+      <topicdata group="api" />
+      <apidata name="RemoveLoggingChannel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="loggingChannel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.IFileLoggingSession" ref="true" />
+      </containers>
+      <file name="49551ad4-5de3-16d9-84ae-ce9b51ef0bfa" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.ILoggingChannel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.ILoggingChannel" />
+      <apidata name="ILoggingChannel" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <implementors>
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3919905603</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>4567</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>20225</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>181</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>202</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>207</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>73</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>82</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>120</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>192</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>168</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="794b3bff-1367-21cd-2728-6674d6151bd0" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Diagnostics.ILoggingChannel">
+      <topicdata name="ILoggingChannel" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Diagnostics.ILoggingChannel" />
+      <apidata name="ILoggingChannel" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.IClosable.Close" />
+        <element api="P:Windows.Foundation.Diagnostics.ILoggingChannel.Enabled" />
+        <element api="P:Windows.Foundation.Diagnostics.ILoggingChannel.Level" />
+        <element api="E:Windows.Foundation.Diagnostics.ILoggingChannel.LoggingEnabled" />
+        <element api="Overload:Windows.Foundation.Diagnostics.ILoggingChannel.LogMessage">
+          <element api="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogMessage(System.String)" />
+          <element api="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogMessage(System.String,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+        <element api="Overload:Windows.Foundation.Diagnostics.ILoggingChannel.LogValuePair">
+          <element api="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogValuePair(System.String,System.Int32)" />
+          <element api="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogValuePair(System.String,System.Int32,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+        <element api="P:Windows.Foundation.Diagnostics.ILoggingChannel.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" />
+      </containers>
+      <file name="715b7b6c-af36-0c5f-04e9-0032307bc526" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Diagnostics.ILoggingChannel">
+      <topicdata name="ILoggingChannel" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Diagnostics.ILoggingChannel" />
+      <apidata name="ILoggingChannel" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.IClosable.Close" />
+        <element api="Overload:Windows.Foundation.Diagnostics.ILoggingChannel.LogMessage">
+          <element api="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogMessage(System.String)" />
+          <element api="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogMessage(System.String,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+        <element api="Overload:Windows.Foundation.Diagnostics.ILoggingChannel.LogValuePair">
+          <element api="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogValuePair(System.String,System.Int32)" />
+          <element api="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogValuePair(System.String,System.Int32,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" />
+      </containers>
+      <file name="310f4236-c5e9-d746-553d-959a3441f4c2" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Diagnostics.ILoggingChannel">
+      <topicdata name="ILoggingChannel" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Diagnostics.ILoggingChannel" />
+      <apidata name="ILoggingChannel" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Foundation.Diagnostics.ILoggingChannel.Enabled" />
+        <element api="P:Windows.Foundation.Diagnostics.ILoggingChannel.Level" />
+        <element api="P:Windows.Foundation.Diagnostics.ILoggingChannel.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" />
+      </containers>
+      <file name="f1c3d07f-8132-3677-8dac-9a390e6eb0e7" />
+    </api>
+    <api id="Events.T:Windows.Foundation.Diagnostics.ILoggingChannel">
+      <topicdata name="ILoggingChannel" group="list" subgroup="Events" typeTopicId="T:Windows.Foundation.Diagnostics.ILoggingChannel" />
+      <apidata name="ILoggingChannel" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Foundation.Diagnostics.ILoggingChannel.LoggingEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" />
+      </containers>
+      <file name="c9ec0033-d798-d11d-8979-6e4e6ac0a37a" />
+    </api>
+    <api id="Overload:Windows.Foundation.Diagnostics.ILoggingChannel.LogMessage">
+      <topicdata name="LogMessage" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.ILoggingChannel" />
+      <apidata name="LogMessage" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogMessage(System.String)" />
+        <element api="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogMessage(System.String,Windows.Foundation.Diagnostics.LoggingLevel)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+      </containers>
+      <file name="1e3370a8-83c2-d73a-9156-1a00bf21d885" />
+    </api>
+    <api id="Overload:Windows.Foundation.Diagnostics.ILoggingChannel.LogValuePair">
+      <topicdata name="LogValuePair" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.ILoggingChannel" />
+      <apidata name="LogValuePair" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogValuePair(System.String,System.Int32)" />
+        <element api="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogValuePair(System.String,System.Int32,Windows.Foundation.Diagnostics.LoggingLevel)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+      </containers>
+      <file name="9a999b56-414d-3857-e770-4cc198bbcae8" />
+    </api>
+    <api id="P:Windows.Foundation.Diagnostics.ILoggingChannel.Enabled">
+      <topicdata group="api" />
+      <apidata name="Enabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Enabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+      </containers>
+      <file name="92207b94-27a4-737f-683c-802895dfbd2e" />
+    </api>
+    <api id="P:Windows.Foundation.Diagnostics.ILoggingChannel.Level">
+      <topicdata group="api" />
+      <apidata name="Level" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Level" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+      </containers>
+      <file name="92e77616-451c-8cb4-ec24-f1c1109e8dce" />
+    </api>
+    <api id="E:Windows.Foundation.Diagnostics.ILoggingChannel.LoggingEnabled">
+      <topicdata group="api" />
+      <apidata name="LoggingEnabled" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_LoggingEnabled" />
+      <remover name="remove_LoggingEnabled" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+      </containers>
+      <file name="2240726a-8bc4-1449-bb70-5b050b04cb99" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogMessage(System.String)">
+      <topicdata group="api" />
+      <apidata name="LogMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Foundation.Diagnostics.ILoggingChannel.LogMessage" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="eventString" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>LogMessage</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="794ac3e0-1641-dc53-27dd-320354ff966b" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogMessage(System.String,Windows.Foundation.Diagnostics.LoggingLevel)">
+      <topicdata group="api" />
+      <apidata name="LogMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Foundation.Diagnostics.ILoggingChannel.LogMessage" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="eventString" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="level" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>LogMessageWithLevel</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1377eeb6-0c39-5db8-e4e6-7b0c2fceedd5" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogValuePair(System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="LogValuePair" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Foundation.Diagnostics.ILoggingChannel.LogValuePair" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value1" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value2" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>LogValuePair</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2ede9638-a7fd-b0c6-7fbb-b10efeb26888" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogValuePair(System.String,System.Int32,Windows.Foundation.Diagnostics.LoggingLevel)">
+      <topicdata group="api" />
+      <apidata name="LogValuePair" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Foundation.Diagnostics.ILoggingChannel.LogValuePair" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="value1" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value2" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="level" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>LogValuePairWithLevel</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4a614975-444c-16e0-211f-ce97618fa937" />
+    </api>
+    <api id="P:Windows.Foundation.Diagnostics.ILoggingChannel.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+      </containers>
+      <file name="2c12defd-54d4-87db-fa02-6d6841f72a49" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.ILoggingSession">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.ILoggingSession" />
+      <apidata name="ILoggingSession" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <implementors>
+        <type api="T:Windows.Foundation.Diagnostics.LoggingSession" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1646392070</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>37760</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19159</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>186</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>245</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>65</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>234</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>147</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>16</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>215</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>104</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5016ad25-f244-139d-85ca-f6d35ce6d9f7" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Diagnostics.ILoggingSession">
+      <topicdata name="ILoggingSession" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Diagnostics.ILoggingSession" />
+      <apidata name="ILoggingSession" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.IClosable.Close" />
+        <element api="Overload:Windows.Foundation.Diagnostics.ILoggingSession.AddLoggingChannel">
+          <element api="M:Windows.Foundation.Diagnostics.ILoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+          <element api="M:Windows.Foundation.Diagnostics.ILoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+        <element api="P:Windows.Foundation.Diagnostics.ILoggingSession.Name" />
+        <element api="M:Windows.Foundation.Diagnostics.ILoggingSession.RemoveLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+        <element api="M:Windows.Foundation.Diagnostics.ILoggingSession.SaveToFileAsync(Windows.Storage.IStorageFolder,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingSession" />
+      </containers>
+      <file name="02f0763e-0a74-6970-22c0-901409fb8b50" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Diagnostics.ILoggingSession">
+      <topicdata name="ILoggingSession" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Diagnostics.ILoggingSession" />
+      <apidata name="ILoggingSession" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Foundation.IClosable.Close" />
+        <element api="Overload:Windows.Foundation.Diagnostics.ILoggingSession.AddLoggingChannel">
+          <element api="M:Windows.Foundation.Diagnostics.ILoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+          <element api="M:Windows.Foundation.Diagnostics.ILoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+        <element api="M:Windows.Foundation.Diagnostics.ILoggingSession.RemoveLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+        <element api="M:Windows.Foundation.Diagnostics.ILoggingSession.SaveToFileAsync(Windows.Storage.IStorageFolder,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingSession" />
+      </containers>
+      <file name="dacbaaf7-aa76-b0c9-d0ec-c601d8d76a87" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Diagnostics.ILoggingSession">
+      <topicdata name="ILoggingSession" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Diagnostics.ILoggingSession" />
+      <apidata name="ILoggingSession" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Foundation.Diagnostics.ILoggingSession.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingSession" />
+      </containers>
+      <file name="7f50d52f-4c37-2a0a-dccc-4c5d54ee7dd6" />
+    </api>
+    <api id="Overload:Windows.Foundation.Diagnostics.ILoggingSession.AddLoggingChannel">
+      <topicdata name="AddLoggingChannel" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.ILoggingSession" />
+      <apidata name="AddLoggingChannel" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Foundation.Diagnostics.ILoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+        <element api="M:Windows.Foundation.Diagnostics.ILoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingSession" ref="true" />
+      </containers>
+      <file name="73fcabfa-dd68-0bc0-6a51-8c350ad4a8ee" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.ILoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)">
+      <topicdata group="api" />
+      <apidata name="AddLoggingChannel" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Foundation.Diagnostics.ILoggingSession.AddLoggingChannel" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="loggingChannel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingSession" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddLoggingChannel</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a8bae3bc-51b7-f3bd-4f9f-801d72a58266" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.ILoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)">
+      <topicdata group="api" />
+      <apidata name="AddLoggingChannel" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Foundation.Diagnostics.ILoggingSession.AddLoggingChannel" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="loggingChannel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </parameter>
+        <parameter name="maxLevel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingSession" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddLoggingChannelWithLevel</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="00d65ebd-2c90-8030-e3d4-c80bf571c130" />
+    </api>
+    <api id="P:Windows.Foundation.Diagnostics.ILoggingSession.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingSession" ref="true" />
+      </containers>
+      <file name="91b3c5ca-f593-23d3-0e81-a5e1160fc7c3" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.ILoggingSession.RemoveLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)">
+      <topicdata group="api" />
+      <apidata name="RemoveLoggingChannel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="loggingChannel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingSession" ref="true" />
+      </containers>
+      <file name="f8798485-c779-b6b1-1c39-c822ee627b31" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.ILoggingSession.SaveToFileAsync(Windows.Storage.IStorageFolder,System.String)">
+      <topicdata group="api" />
+      <apidata name="SaveToFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="folder" in="true">
+          <type api="T:Windows.Storage.IStorageFolder" ref="true" />
+        </parameter>
+        <parameter name="fileName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFile" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingSession" ref="true" />
+      </containers>
+      <file name="c7d5424a-01fb-531e-bd00-b4b35349e6c1" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs" />
+      <apidata name="LogFileGeneratedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.Diagnostics.ILogFileGeneratedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="96243d7b-ec64-81eb-6f17-ffc04e911998" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs">
+      <topicdata name="LogFileGeneratedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs" />
+      <apidata name="LogFileGeneratedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs.File" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs" />
+      </containers>
+      <file name="f4b8804b-3897-4fd1-0ea9-3ad0db8c9d54" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs">
+      <topicdata name="LogFileGeneratedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs" />
+      <apidata name="LogFileGeneratedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs" />
+      </containers>
+      <file name="64601a79-0eaa-039a-b021-77003d4365a7" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs">
+      <topicdata name="LogFileGeneratedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs" />
+      <apidata name="LogFileGeneratedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs.File" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs" />
+      </containers>
+      <file name="85540379-59f8-5684-670a-e1cc31a09686" />
+    </api>
+    <api id="P:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs.File">
+      <topicdata group="api" />
+      <apidata name="File" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_File" />
+      <returns>
+        <type api="T:Windows.Storage.StorageFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs" ref="true" />
+      </containers>
+      <file name="0ff5cd98-c5d0-1ba3-c79d-61abf261628b" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.LoggingActivity">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.LoggingActivity" />
+      <apidata name="LoggingActivity" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingActivity" ref="true" />
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="932d4408-bb3d-d6d2-8198-877cda17c4f8" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Diagnostics.LoggingActivity">
+      <topicdata name="LoggingActivity" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Diagnostics.LoggingActivity" />
+      <apidata name="LoggingActivity" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Foundation.Diagnostics.LoggingActivity.#ctor">
+          <element api="M:Windows.Foundation.Diagnostics.LoggingActivity.#ctor(System.String,Windows.Foundation.Diagnostics.ILoggingChannel)" />
+          <element api="M:Windows.Foundation.Diagnostics.LoggingActivity.#ctor(System.String,Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+        <element api="M:Windows.Foundation.Diagnostics.LoggingActivity.Close" />
+        <element api="P:Windows.Foundation.Diagnostics.LoggingActivity.Id" />
+        <element api="P:Windows.Foundation.Diagnostics.LoggingActivity.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingActivity" />
+      </containers>
+      <file name="c7a83b24-a678-c610-a482-4941d67e3ba1" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Diagnostics.LoggingActivity">
+      <topicdata name="LoggingActivity" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Diagnostics.LoggingActivity" />
+      <apidata name="LoggingActivity" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Diagnostics.LoggingActivity.Close" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingActivity" />
+      </containers>
+      <file name="288b0d09-fbfa-c37e-cf9e-bd9c84a847a5" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Diagnostics.LoggingActivity">
+      <topicdata name="LoggingActivity" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Diagnostics.LoggingActivity" />
+      <apidata name="LoggingActivity" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Foundation.Diagnostics.LoggingActivity.Id" />
+        <element api="P:Windows.Foundation.Diagnostics.LoggingActivity.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingActivity" />
+      </containers>
+      <file name="6810e553-daeb-6d2a-7fd8-5e867c608f99" />
+    </api>
+    <api id="Overload:Windows.Foundation.Diagnostics.LoggingActivity.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.LoggingActivity" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Foundation.Diagnostics.LoggingActivity.#ctor(System.String,Windows.Foundation.Diagnostics.ILoggingChannel)" />
+        <element api="M:Windows.Foundation.Diagnostics.LoggingActivity.#ctor(System.String,Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingActivity" ref="true" />
+      </containers>
+      <file name="3ac8dc7e-eac4-9c3d-064f-cec0b5b6ef2a" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.LoggingActivity.#ctor(System.String,Windows.Foundation.Diagnostics.ILoggingChannel)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Foundation.Diagnostics.LoggingActivity.#ctor" />
+      <parameters>
+        <parameter name="activityName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="loggingChannel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingActivity" ref="true" />
+      </containers>
+      <file name="a32066d7-ccc0-082e-5693-c5fa3906bc4c" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.LoggingActivity.#ctor(System.String,Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Foundation.Diagnostics.LoggingActivity.#ctor" />
+      <parameters>
+        <parameter name="activityName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="loggingChannel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </parameter>
+        <parameter name="level" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingActivity" ref="true" />
+      </containers>
+      <file name="8eb738d5-6cc0-2c1a-21c0-0bda374515e3" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.LoggingActivity.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingActivity" ref="true" />
+      </containers>
+      <file name="f4091402-8596-94d1-491e-fc4463f08797" />
+    </api>
+    <api id="P:Windows.Foundation.Diagnostics.LoggingActivity.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingActivity" ref="true" />
+      </containers>
+      <file name="5945cb89-9c73-b674-f0fc-5c89d70b4768" />
+    </api>
+    <api id="P:Windows.Foundation.Diagnostics.LoggingActivity.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingActivity" ref="true" />
+      </containers>
+      <file name="ae0c2658-21a1-f76e-a2d2-e697c0e42c88" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.LoggingChannel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.LoggingChannel" />
+      <apidata name="LoggingChannel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="623a484a-54a2-c175-4231-3706a5582f4c" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Diagnostics.LoggingChannel">
+      <topicdata name="LoggingChannel" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Diagnostics.LoggingChannel" />
+      <apidata name="LoggingChannel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Diagnostics.LoggingChannel.#ctor(System.String)" />
+        <element api="M:Windows.Foundation.Diagnostics.LoggingChannel.Close" />
+        <element api="P:Windows.Foundation.Diagnostics.LoggingChannel.Enabled" />
+        <element api="P:Windows.Foundation.Diagnostics.LoggingChannel.Level" />
+        <element api="E:Windows.Foundation.Diagnostics.LoggingChannel.LoggingEnabled" />
+        <element api="Overload:Windows.Foundation.Diagnostics.LoggingChannel.LogMessage">
+          <element api="M:Windows.Foundation.Diagnostics.LoggingChannel.LogMessage(System.String)" />
+          <element api="M:Windows.Foundation.Diagnostics.LoggingChannel.LogMessage(System.String,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+        <element api="Overload:Windows.Foundation.Diagnostics.LoggingChannel.LogValuePair">
+          <element api="M:Windows.Foundation.Diagnostics.LoggingChannel.LogValuePair(System.String,System.Int32)" />
+          <element api="M:Windows.Foundation.Diagnostics.LoggingChannel.LogValuePair(System.String,System.Int32,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+        <element api="P:Windows.Foundation.Diagnostics.LoggingChannel.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" />
+      </containers>
+      <file name="bc7b70aa-e989-5202-2bc0-f66d086b4455" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Diagnostics.LoggingChannel">
+      <topicdata name="LoggingChannel" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Diagnostics.LoggingChannel" />
+      <apidata name="LoggingChannel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Diagnostics.LoggingChannel.Close" />
+        <element api="Overload:Windows.Foundation.Diagnostics.LoggingChannel.LogMessage">
+          <element api="M:Windows.Foundation.Diagnostics.LoggingChannel.LogMessage(System.String)" />
+          <element api="M:Windows.Foundation.Diagnostics.LoggingChannel.LogMessage(System.String,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+        <element api="Overload:Windows.Foundation.Diagnostics.LoggingChannel.LogValuePair">
+          <element api="M:Windows.Foundation.Diagnostics.LoggingChannel.LogValuePair(System.String,System.Int32)" />
+          <element api="M:Windows.Foundation.Diagnostics.LoggingChannel.LogValuePair(System.String,System.Int32,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" />
+      </containers>
+      <file name="075d4ac1-303c-aee6-ff56-3ee02e1aacf9" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Diagnostics.LoggingChannel">
+      <topicdata name="LoggingChannel" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Diagnostics.LoggingChannel" />
+      <apidata name="LoggingChannel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Foundation.Diagnostics.LoggingChannel.Enabled" />
+        <element api="P:Windows.Foundation.Diagnostics.LoggingChannel.Level" />
+        <element api="P:Windows.Foundation.Diagnostics.LoggingChannel.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" />
+      </containers>
+      <file name="e2ddc45b-23bc-3062-96d8-cf4c316178b5" />
+    </api>
+    <api id="Events.T:Windows.Foundation.Diagnostics.LoggingChannel">
+      <topicdata name="LoggingChannel" group="list" subgroup="Events" typeTopicId="T:Windows.Foundation.Diagnostics.LoggingChannel" />
+      <apidata name="LoggingChannel" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Foundation.Diagnostics.LoggingChannel.LoggingEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" />
+      </containers>
+      <file name="96cbb319-9bcf-5b2b-4f4a-1ce9db2810ef" />
+    </api>
+    <api id="Overload:Windows.Foundation.Diagnostics.LoggingChannel.LogMessage">
+      <topicdata name="LogMessage" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.LoggingChannel" />
+      <apidata name="LogMessage" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Foundation.Diagnostics.LoggingChannel.LogMessage(System.String)" />
+        <element api="M:Windows.Foundation.Diagnostics.LoggingChannel.LogMessage(System.String,Windows.Foundation.Diagnostics.LoggingLevel)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" ref="true" />
+      </containers>
+      <file name="61a4ab0c-2700-aa83-4033-0e6dce8ca48a" />
+    </api>
+    <api id="Overload:Windows.Foundation.Diagnostics.LoggingChannel.LogValuePair">
+      <topicdata name="LogValuePair" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.LoggingChannel" />
+      <apidata name="LogValuePair" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Foundation.Diagnostics.LoggingChannel.LogValuePair(System.String,System.Int32)" />
+        <element api="M:Windows.Foundation.Diagnostics.LoggingChannel.LogValuePair(System.String,System.Int32,Windows.Foundation.Diagnostics.LoggingLevel)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" ref="true" />
+      </containers>
+      <file name="4bf0f0fc-0536-6a13-097a-ca2e18ceeeea" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.LoggingChannel.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" ref="true" />
+      </containers>
+      <file name="3b8039dd-d325-9103-8f5b-3f3afa9a9efc" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.LoggingChannel.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" ref="true" />
+      </containers>
+      <file name="71888425-e6cb-9039-a43c-a9ec1f33de36" />
+    </api>
+    <api id="P:Windows.Foundation.Diagnostics.LoggingChannel.Enabled">
+      <topicdata group="api" />
+      <apidata name="Enabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Enabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.Diagnostics.ILoggingChannel.Enabled">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" ref="true" />
+      </containers>
+      <file name="ea1685ee-e1ba-45cf-16f1-f4e4eeb906dd" />
+    </api>
+    <api id="P:Windows.Foundation.Diagnostics.LoggingChannel.Level">
+      <topicdata group="api" />
+      <apidata name="Level" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Level" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.Diagnostics.ILoggingChannel.Level">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" ref="true" />
+      </containers>
+      <file name="f826dadc-9c58-5087-4117-3f0229a01ab3" />
+    </api>
+    <api id="E:Windows.Foundation.Diagnostics.LoggingChannel.LoggingEnabled">
+      <topicdata group="api" />
+      <apidata name="LoggingEnabled" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_LoggingEnabled" />
+      <remover name="remove_LoggingEnabled" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <implements>
+        <member api="E:Windows.Foundation.Diagnostics.ILoggingChannel.LoggingEnabled">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" ref="true" />
+      </containers>
+      <file name="5d90a960-5a89-267e-bff2-9dcf43634b07" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.LoggingChannel.LogMessage(System.String)">
+      <topicdata group="api" />
+      <apidata name="LogMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Foundation.Diagnostics.LoggingChannel.LogMessage" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="eventString" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogMessage(System.String)">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>LogMessage</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="936a8cb1-70b6-8857-3b99-e25d9c52fd24" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.LoggingChannel.LogMessage(System.String,Windows.Foundation.Diagnostics.LoggingLevel)">
+      <topicdata group="api" />
+      <apidata name="LogMessage" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Foundation.Diagnostics.LoggingChannel.LogMessage" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="eventString" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="level" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogMessage(System.String,Windows.Foundation.Diagnostics.LoggingLevel)">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>LogMessageWithLevel</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2e317956-d508-8135-0fc8-29cef66f787e" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.LoggingChannel.LogValuePair(System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="LogValuePair" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Foundation.Diagnostics.LoggingChannel.LogValuePair" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value1" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value2" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogValuePair(System.String,System.Int32)">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>LogValuePair</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2d6ad1bc-c27f-e07c-5a66-3c4ac69f1438" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.LoggingChannel.LogValuePair(System.String,System.Int32,Windows.Foundation.Diagnostics.LoggingLevel)">
+      <topicdata group="api" />
+      <apidata name="LogValuePair" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Foundation.Diagnostics.LoggingChannel.LogValuePair" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value1" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="value2" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="level" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Diagnostics.ILoggingChannel.LogValuePair(System.String,System.Int32,Windows.Foundation.Diagnostics.LoggingLevel)">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>LogValuePairWithLevel</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1bc9e16c-9c89-9390-51e9-870acfb60ed4" />
+    </api>
+    <api id="P:Windows.Foundation.Diagnostics.LoggingChannel.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.Diagnostics.ILoggingChannel.Name">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingChannel" ref="true" />
+      </containers>
+      <file name="c028dff5-f59a-0a15-25bd-a52a497f6b03" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.LoggingLevel">
+      <topicdata group="api" />
+      <apidata name="LoggingLevel" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Foundation.Diagnostics.LoggingLevel.Verbose" />
+        <element api="F:Windows.Foundation.Diagnostics.LoggingLevel.Information" />
+        <element api="F:Windows.Foundation.Diagnostics.LoggingLevel.Warning" />
+        <element api="F:Windows.Foundation.Diagnostics.LoggingLevel.Error" />
+        <element api="F:Windows.Foundation.Diagnostics.LoggingLevel.Critical" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b96b9bc6-ff61-ee60-7679-80339dd34322" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.LoggingLevel.Critical">
+      <topicdata group="api" notopic="" />
+      <apidata name="Critical" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+      </containers>
+      <file name="a4c038a8-205e-90ca-4ab3-31ab29bb9264" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.LoggingLevel.Error">
+      <topicdata group="api" notopic="" />
+      <apidata name="Error" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+      </containers>
+      <file name="e472ed3b-68d6-d93e-ea52-a93c2e091dcb" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.LoggingLevel.Information">
+      <topicdata group="api" notopic="" />
+      <apidata name="Information" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+      </containers>
+      <file name="ec2787af-0c2d-26ac-6c09-682f86476478" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.LoggingLevel.Verbose">
+      <topicdata group="api" notopic="" />
+      <apidata name="Verbose" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+      </containers>
+      <file name="d1b9d544-dfb9-c912-ce15-3100b6168100" />
+    </api>
+    <api id="F:Windows.Foundation.Diagnostics.LoggingLevel.Warning">
+      <topicdata group="api" notopic="" />
+      <apidata name="Warning" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+      </containers>
+      <file name="f5f9c423-6e17-3ff2-2010-2e5620fa7d07" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.LoggingSession">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.LoggingSession" />
+      <apidata name="LoggingSession" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.Diagnostics.ILoggingSession" ref="true" />
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b61dff81-717d-0fe8-cfc6-a7d9668066c5" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Diagnostics.LoggingSession">
+      <topicdata name="LoggingSession" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Diagnostics.LoggingSession" />
+      <apidata name="LoggingSession" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Diagnostics.LoggingSession.#ctor(System.String)" />
+        <element api="Overload:Windows.Foundation.Diagnostics.LoggingSession.AddLoggingChannel">
+          <element api="M:Windows.Foundation.Diagnostics.LoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+          <element api="M:Windows.Foundation.Diagnostics.LoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+        <element api="M:Windows.Foundation.Diagnostics.LoggingSession.Close" />
+        <element api="P:Windows.Foundation.Diagnostics.LoggingSession.Name" />
+        <element api="M:Windows.Foundation.Diagnostics.LoggingSession.RemoveLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+        <element api="M:Windows.Foundation.Diagnostics.LoggingSession.SaveToFileAsync(Windows.Storage.IStorageFolder,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingSession" />
+      </containers>
+      <file name="3f0f8fc5-522f-15b6-17f6-c8faaff9020c" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Diagnostics.LoggingSession">
+      <topicdata name="LoggingSession" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Diagnostics.LoggingSession" />
+      <apidata name="LoggingSession" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Foundation.Diagnostics.LoggingSession.AddLoggingChannel">
+          <element api="M:Windows.Foundation.Diagnostics.LoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+          <element api="M:Windows.Foundation.Diagnostics.LoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)" />
+        </element>
+        <element api="M:Windows.Foundation.Diagnostics.LoggingSession.Close" />
+        <element api="M:Windows.Foundation.Diagnostics.LoggingSession.RemoveLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+        <element api="M:Windows.Foundation.Diagnostics.LoggingSession.SaveToFileAsync(Windows.Storage.IStorageFolder,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingSession" />
+      </containers>
+      <file name="4e50ff1a-ef95-643f-97d9-4bbb85ac8b56" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Diagnostics.LoggingSession">
+      <topicdata name="LoggingSession" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Diagnostics.LoggingSession" />
+      <apidata name="LoggingSession" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Foundation.Diagnostics.LoggingSession.Name" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingSession" />
+      </containers>
+      <file name="77bd25d3-77e9-7f49-585d-d58fb079e62c" />
+    </api>
+    <api id="Overload:Windows.Foundation.Diagnostics.LoggingSession.AddLoggingChannel">
+      <topicdata name="AddLoggingChannel" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.LoggingSession" />
+      <apidata name="AddLoggingChannel" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Foundation.Diagnostics.LoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)" />
+        <element api="M:Windows.Foundation.Diagnostics.LoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingSession" ref="true" />
+      </containers>
+      <file name="b44ed9ac-1b54-5505-081e-c0fcd04b4875" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.LoggingSession.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingSession" ref="true" />
+      </containers>
+      <file name="a182f58f-10b9-c30a-5f2d-419e4fded807" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.LoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)">
+      <topicdata group="api" />
+      <apidata name="AddLoggingChannel" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Foundation.Diagnostics.LoggingSession.AddLoggingChannel" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="loggingChannel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Diagnostics.ILoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingSession" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingSession" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddLoggingChannel</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6cd4c22a-639f-7389-7c1a-9385328897f9" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.LoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)">
+      <topicdata group="api" />
+      <apidata name="AddLoggingChannel" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Foundation.Diagnostics.LoggingSession.AddLoggingChannel" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="loggingChannel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </parameter>
+        <parameter name="maxLevel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.LoggingLevel" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Diagnostics.ILoggingSession.AddLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel,Windows.Foundation.Diagnostics.LoggingLevel)">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingSession" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingSession" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddLoggingChannelWithLevel</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="15a0ecda-1935-5d72-7c16-9ecf3c962851" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.LoggingSession.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingSession" ref="true" />
+      </containers>
+      <file name="985feccb-aaec-e015-a202-c3efcbacb2d3" />
+    </api>
+    <api id="P:Windows.Foundation.Diagnostics.LoggingSession.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.Diagnostics.ILoggingSession.Name">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingSession" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingSession" ref="true" />
+      </containers>
+      <file name="0be50440-e97b-12d5-5ad0-aebf519f5428" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.LoggingSession.RemoveLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)">
+      <topicdata group="api" />
+      <apidata name="RemoveLoggingChannel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="loggingChannel" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingChannel" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Diagnostics.ILoggingSession.RemoveLoggingChannel(Windows.Foundation.Diagnostics.ILoggingChannel)">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingSession" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingSession" ref="true" />
+      </containers>
+      <file name="af3675a0-b4bf-63f8-5a1a-6bf941148ed3" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.LoggingSession.SaveToFileAsync(Windows.Storage.IStorageFolder,System.String)">
+      <topicdata group="api" />
+      <apidata name="SaveToFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="folder" in="true">
+          <type api="T:Windows.Storage.IStorageFolder" ref="true" />
+        </parameter>
+        <parameter name="fileName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.StorageFile" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Diagnostics.ILoggingSession.SaveToFileAsync(Windows.Storage.IStorageFolder,System.String)">
+          <type api="T:Windows.Foundation.Diagnostics.ILoggingSession" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.LoggingSession" ref="true" />
+      </containers>
+      <file name="ef9a7555-1a7a-1e26-5105-a731440cc84b" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings" />
+      <apidata name="RuntimeBrokerErrorSettings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.Diagnostics.IErrorReportingSettings" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="37a6a27a-79c4-2ff7-c9b5-d48f505db6eb" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings">
+      <topicdata name="RuntimeBrokerErrorSettings" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings" />
+      <apidata name="RuntimeBrokerErrorSettings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings.#ctor" />
+        <element api="M:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings.GetErrorOptions" />
+        <element api="M:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings.SetErrorOptions(Windows.Foundation.Diagnostics.ErrorOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings" />
+      </containers>
+      <file name="7069249e-a514-3868-d101-0a4b34283498" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings">
+      <topicdata name="RuntimeBrokerErrorSettings" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings" />
+      <apidata name="RuntimeBrokerErrorSettings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings.GetErrorOptions" />
+        <element api="M:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings.SetErrorOptions(Windows.Foundation.Diagnostics.ErrorOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings" />
+      </containers>
+      <file name="05912ae7-3da1-f1a7-85f8-9b7bc0f70a12" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings" ref="true" />
+      </containers>
+      <file name="9f7332a4-9380-b33b-22db-041de0368553" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings.GetErrorOptions">
+      <topicdata group="api" />
+      <apidata name="GetErrorOptions" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.ErrorOptions" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Diagnostics.IErrorReportingSettings.GetErrorOptions">
+          <type api="T:Windows.Foundation.Diagnostics.IErrorReportingSettings" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings" ref="true" />
+      </containers>
+      <file name="3408edba-0126-6e6f-5148-70dfbb3acf53" />
+    </api>
+    <api id="M:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings.SetErrorOptions(Windows.Foundation.Diagnostics.ErrorOptions)">
+      <topicdata group="api" />
+      <apidata name="SetErrorOptions" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Foundation.Diagnostics.ErrorOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Windows.Foundation.Diagnostics.IErrorReportingSettings.SetErrorOptions(Windows.Foundation.Diagnostics.ErrorOptions)">
+          <type api="T:Windows.Foundation.Diagnostics.IErrorReportingSettings" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings" ref="true" />
+      </containers>
+      <file name="55ea220e-ddd3-0dff-2739-444b60ffe089" />
+    </api>
+    <api id="T:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs" />
+      <apidata name="TracingStatusChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.Diagnostics.ITracingStatusChangedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2a157cc1-3e2e-b0e5-4116-b6bc1273394f" />
+    </api>
+    <api id="AllMembers.T:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs">
+      <topicdata name="TracingStatusChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs" />
+      <apidata name="TracingStatusChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs.Enabled" />
+        <element api="P:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs.TraceLevel" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs" />
+      </containers>
+      <file name="bef182f0-28fc-8ebc-6968-cd4cf97d9451" />
+    </api>
+    <api id="Methods.T:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs">
+      <topicdata name="TracingStatusChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs" />
+      <apidata name="TracingStatusChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs" />
+      </containers>
+      <file name="68d83b0c-b8a5-9512-6023-5c762bc7368e" />
+    </api>
+    <api id="Properties.T:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs">
+      <topicdata name="TracingStatusChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs" />
+      <apidata name="TracingStatusChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs.Enabled" />
+        <element api="P:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs.TraceLevel" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs" />
+      </containers>
+      <file name="b59b6f3f-6e39-781b-0c4d-f313b7355ea3" />
+    </api>
+    <api id="P:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs.Enabled">
+      <topicdata group="api" />
+      <apidata name="Enabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Enabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs" ref="true" />
+      </containers>
+      <file name="a33c2419-120d-a0a5-5bf5-fd89b20e92ac" />
+    </api>
+    <api id="P:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs.TraceLevel">
+      <topicdata group="api" />
+      <apidata name="TraceLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_TraceLevel" />
+      <returns>
+        <type api="T:Windows.Foundation.Diagnostics.CausalityTraceLevel" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Foundation.Diagnostics" />
+        <type api="T:Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs" ref="true" />
+      </containers>
+      <file name="7b8ed007-5eff-a30a-f74f-be20fd0f0966" />
+    </api>
+  </apis>
+</reflection>
