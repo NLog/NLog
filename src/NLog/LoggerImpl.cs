@@ -109,30 +109,43 @@ namespace NLog
         /// <param name="stackTrace">The stack trace of the logging method invocation</param>
         /// <param name="loggerType">Type of the logger or logger wrapper. This is still Logger if it's a subclass of Logger.</param>
         /// <returns>Index of the first user stack frame or 0 if all stack frames are non-user</returns>
-        private static int FindCallingMethodOnStackTrace([NotNull] StackTrace stackTrace, [NotNull] Type loggerType)
+        internal static int FindCallingMethodOnStackTrace([NotNull] StackTrace stackTrace, [NotNull] Type loggerType)
         {
             var stackFrames = stackTrace.GetFrames();
             if (stackFrames == null)
                 return 0;
 
-            var intermediate = stackFrames.Select((f, i) => new StackFrameWithIndex(i, f));
+            //create StackFrameWithIndex so the index is know after filtering
+            var allStackFrames = stackFrames.Select((f, i) => new StackFrameWithIndex(i, f)).ToList();
+            //filter on assemblies
+            var filteredStackframes = allStackFrames.Where(p => !SkipAssembly(p.StackFrame)).ToList();
             //find until logger type
-            intermediate = intermediate.SkipWhile(p => !IsLoggerType(p.StackFrame, loggerType));
+            var intermediate = filteredStackframes.SkipWhile(p => !IsLoggerType(p.StackFrame, loggerType));
             //skip the logger type
-            intermediate = intermediate.SkipWhile(p => IsLoggerType(p.StackFrame, loggerType));
+            var stackframesAfterLogger = intermediate.SkipWhile(p => IsLoggerType(p.StackFrame, loggerType)).ToList();
 
-            intermediate = FilterBySkipAssembly(intermediate);
-            return FindIndexOfCallingMethod(intermediate);
+            //get first call after logger (or skip if is moveNext)
+            var candidateStackFrames = stackframesAfterLogger;
+            if (!candidateStackFrames.Any())
+            {
+                //If some calls got inlined, we can't find LoggerType on the stack. Fallback to the filteredStackframes
+                candidateStackFrames = filteredStackframes;
+            }
+
+            return FindIndexOfCallingMethod(allStackFrames, candidateStackFrames);
         }
 
         /// <summary>
         /// Get the index which correspondens to the calling method.
+        /// 
+        /// This is most of the time the first index after <paramref name="candidateStackFrames"/>.
         /// </summary>
-        /// <param name="stackFrames"></param>
-        /// <returns></returns>
-        private static int FindIndexOfCallingMethod(IEnumerable<StackFrameWithIndex> stackFrames)
+        /// <param name="allStackFrames">all the frames of the stacktrace</param>
+        /// <param name="candidateStackFrames">frames which all hiddenAssemblies are removed</param>
+        /// <returns>index on stacktrace</returns>
+        private static int FindIndexOfCallingMethod(List<StackFrameWithIndex> allStackFrames, List<StackFrameWithIndex> candidateStackFrames)
         {
-            var stackFrameWithIndex = stackFrames.FirstOrDefault();
+            var stackFrameWithIndex = candidateStackFrames.FirstOrDefault();
             var last = stackFrameWithIndex;
 
             if (last != null)
@@ -142,17 +155,16 @@ namespace NLog
                 //movenext and then AsyncTaskMethodBuilder (method start)? this is a generated MoveNext by async.
                 if (last.StackFrame.GetMethod().Name == "MoveNext")
                 {
-                    var next = stackFrames.Skip(1).FirstOrDefault();
-                    if (next != null)
+
+                    if (allStackFrames.Count > last.StackFrameIndex)
                     {
+                        var next = allStackFrames[last.StackFrameIndex + 1];
                         var declaringType = next.StackFrame.GetMethod().DeclaringType;
                         if (declaringType == typeof(System.Runtime.CompilerServices.AsyncTaskMethodBuilder))
                         {
-
                             //async, search futher
-
-                            stackFrames = FilterBySkipAssembly(stackFrames.Skip(1));
-                            return FindIndexOfCallingMethod(stackFrames);
+                            candidateStackFrames = candidateStackFrames.Skip(1).ToList();
+                            return FindIndexOfCallingMethod(allStackFrames, candidateStackFrames);
                         }
                     }
                 }
@@ -161,18 +173,6 @@ namespace NLog
                 return last.StackFrameIndex;
             }
             return 0;
-        }
-
-        /// <summary>
-        /// Filter strackframes by assembly filter
-        /// </summary>
-        /// <param name="stackFrames"></param>
-        /// <returns></returns>
-        private static IEnumerable<StackFrameWithIndex> FilterBySkipAssembly(IEnumerable<StackFrameWithIndex> stackFrames)
-        {
-            //skip while in "skip" assemlbl
-            stackFrames = stackFrames.SkipWhile(p => SkipAssembly(p.StackFrame));
-            return stackFrames;
         }
 
         /// <summary>
@@ -185,7 +185,8 @@ namespace NLog
             var method = frame.GetMethod();
             var assembly = method.DeclaringType != null ? method.DeclaringType.Assembly : method.Module.Assembly;
             // skip stack frame if the method declaring type assembly is from hidden assemblies list
-            return SkipAssembly(assembly);
+            var skipAssembly = SkipAssembly(assembly);
+            return skipAssembly;
         }
 
         /// <summary>

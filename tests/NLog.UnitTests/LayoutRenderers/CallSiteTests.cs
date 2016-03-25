@@ -31,8 +31,13 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 // 
 
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using NLog.Config;
+using NLog.Internal;
+using NLog.Layouts;
 using NLog.Targets;
 
 namespace NLog.UnitTests.LayoutRenderers
@@ -78,7 +83,7 @@ namespace NLog.UnitTests.LayoutRenderers
             // compile code and generate assembly
             System.CodeDom.Compiler.CompilerResults results = provider.CompileAssemblyFromSource(parameters, code);
 
-            Assert.False(results.Errors.HasErrors,"Compiler errors: " + string.Join(";", results.Errors));
+            Assert.False(results.Errors.HasErrors, "Compiler errors: " + string.Join(";", results.Errors));
 
             // create nlog configuration
             LogManager.Configuration = CreateConfigurationFromString(@"
@@ -871,7 +876,29 @@ namespace NLog.UnitTests.LayoutRenderers
                 return new NLogLogger(log);
             }
         }
-      
+
+        /// <summary>
+        /// If some calls got inlined, we can't find LoggerType anymore. We should fallback if loggerType can be found
+        /// 
+        /// Example of those stacktraces:
+        ///    at NLog.LoggerImpl.Write(Type loggerType, TargetWithFilterChain targets, LogEventInfo logEvent, LogFactory factory) in c:\temp\NLog\src\NLog\LoggerImpl.cs:line 68
+        ///    at NLog.UnitTests.LayoutRenderers.NLogLogger.ErrorWithoutLoggerTypeArg(String message) in c:\temp\NLog\tests\NLog.UnitTests\LayoutRenderers\CallSiteTests.cs:line 989
+        ///    at NLog.UnitTests.LayoutRenderers.CallSiteTests.TestCallsiteWhileCallsGotInlined() in c:\temp\NLog\tests\NLog.UnitTests\LayoutRenderers\CallSiteTests.cs:line 893
+        /// 
+        /// </summary>
+        [Fact]
+        private void CallSiteShouldWorkEvenInlined()
+        {
+            Type loggerType = typeof(Logger);
+            var stacktrace = StackTraceUsageUtils.GetWriteStackTrace(loggerType);
+            var index = LoggerImpl.FindCallingMethodOnStackTrace(stacktrace, loggerType);
+            var logEvent = new LogEventInfo(LogLevel.Error, "logger1", "message1");
+            logEvent.SetStackTrace(stacktrace, index);
+            Layout l = "${callsite}";
+            var callSite = l.Render(logEvent);
+            Assert.Equal("NLog.UnitTests.LayoutRenderers.CallSiteTests.CallSiteShouldWorkEvenInlined", callSite);
+        }
+
     }
 
     /// <summary>
