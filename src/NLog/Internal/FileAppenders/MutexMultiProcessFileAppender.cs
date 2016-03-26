@@ -163,7 +163,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods", MessageId = "System.Runtime.InteropServices.SafeHandle.DangerousGetHandle", Justification = "Optimization")]
-        public override FileCharacteristics GetFileCharacteristics()
+        public override FileCharacteristics? GetFileCharacteristics()
         {
             return FileCharacteristicsHelper.Helper.GetFileCharacteristics(FileName, this.fileStream.SafeFileHandle.DangerousGetHandle());
         }

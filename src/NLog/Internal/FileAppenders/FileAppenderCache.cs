@@ -291,7 +291,7 @@ namespace NLog.Internal.FileAppenders
         /// </summary>
         /// <param name="fileName">The file name associated with a particular appender.</param>
         /// <returns>The file characteristics, if the file information was retrieved successfully, otherwise null.</returns>
-        public FileCharacteristics GetFileCharacteristics(string fileName)
+        public FileCharacteristics? GetFileCharacteristics(string fileName)
         {
             foreach (BaseFileAppender appender in appenders)
             {
