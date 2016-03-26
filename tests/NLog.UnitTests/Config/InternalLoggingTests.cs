@@ -67,7 +67,9 @@ namespace NLog.UnitTests.Config
                 LogManager.GlobalThreshold = LogLevel.Fatal;
                 LogManager.ThrowExceptions = true;
                 LogManager.ThrowConfigExceptions = null;
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 InternalLogger.LogToTrace = true;
+#endif
 
                 CreateConfigurationFromString(@"
 <nlog>
@@ -79,7 +81,9 @@ namespace NLog.UnitTests.Config
                 Assert.Same(LogLevel.Fatal, LogManager.GlobalThreshold);
                 Assert.True(LogManager.ThrowExceptions);
                 Assert.Null(LogManager.ThrowConfigExceptions);
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 Assert.True(InternalLogger.LogToTrace);
+#endif
             }
         }
 
@@ -114,7 +118,9 @@ namespace NLog.UnitTests.Config
 
                 Assert.Equal(throwConfigExceptions, LogManager.ThrowConfigExceptions);
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 Assert.Equal(logToTrace, InternalLogger.LogToTrace);
+#endif
             }
         }
     }
