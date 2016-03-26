@@ -69,6 +69,21 @@ namespace NLog.UnitTests.Targets.Wrappers
             Assert.Equal(100, targetWrapper.BatchSize);
         }
 
+        /// <summary>
+        /// Test for https://github.com/NLog/NLog/issues/1069
+        /// </summary>
+        [Fact]
+        public void AsyncTargetWrapperInitTest_WhenTimeToSleepBetweenBatchesIsEqualToZero_ShouldThrowNLogConfigurationException() {
+            LogManager.ThrowConfigExceptions = true;
+
+            var myTarget = new MyTarget();
+            var targetWrapper = new AsyncTargetWrapper() {
+                WrappedTarget = myTarget,
+                TimeToSleepBetweenBatches = 0,
+            };
+            Assert.Throws<NLogConfigurationException>(() => targetWrapper.Initialize(null));
+        }
+
         [Fact]
         public void AsyncTargetWrapperSyncTest1()
         {
