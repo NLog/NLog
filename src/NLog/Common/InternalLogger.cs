@@ -84,7 +84,6 @@ namespace NLog.Common
             LogToConsole = false;
             LogToConsoleError = false;
             LogFile = string.Empty;
-            LogToTrace = false;
             IncludeTimestamp = true;
 #endif
 
@@ -109,10 +108,12 @@ namespace NLog.Common
         /// <remarks>Your application must be a console application.</remarks>
         public static bool LogToConsoleError { get; set; }
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Gets or sets a value indicating whether internal messages should be written to the <see cref="System.Diagnostics.Trace"/>.
         /// </summary>
         public static bool LogToTrace { get; set; }
+#endif
 
         /// <summary>
         /// Gets or sets the file path of the internal log file.
@@ -271,8 +272,9 @@ namespace NLog.Common
                 {
                     Console.Error.WriteLine(msg);
                 }
-
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
                 WriteToTrace(msg);
+#endif
             }
             catch (Exception exception)
             {
@@ -311,10 +313,13 @@ namespace NLog.Common
             return !string.IsNullOrEmpty(LogFile) ||
                    LogToConsole ||
                    LogToConsoleError ||
-                   LogWriter != null ||
-                   LogToTrace;
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+                   LogToTrace ||
+#endif
+                   LogWriter != null;
         }
 
+#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
         /// <summary>
         /// Write internal messages to the <see cref="System.Diagnostics.Trace"/>.
         /// </summary>
@@ -327,15 +332,16 @@ namespace NLog.Common
         /// </remarks>
         private static void WriteToTrace(string message)
         {
-#if !SILVERLIGHT && !__IOS__ && !__ANDROID__
+
             if (!LogToTrace)
             {
                 return;
             }
             
             System.Diagnostics.Trace.WriteLine(message, "NLog");
-#endif
         }
+
+#endif
 
         /// <summary>
         /// Logs the assembly version and file version of the given Assembly.

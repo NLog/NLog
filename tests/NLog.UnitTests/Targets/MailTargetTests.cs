@@ -802,7 +802,7 @@ namespace NLog.UnitTests.Targets
                     throw new InvalidOperationException("Some SMTP error.");
                 }
             }
-            public new void Dispose()
+            public void Dispose()
             {
             }
         }
